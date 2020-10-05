@@ -1,0 +1,33 @@
+{
+  "name": "@adempiere/grpc-api",
+  "version": "1.0.0",
+  "description": "ADempiere Web Store write in Javascript for a node service",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/erpcya/gRPC-API.git"
+  },
+  "author": "Yamel Senih",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/erpcya/gRPC-API/issues"
+  },
+  "homepage": "https://github.com/erpcya/gRPC-API#readme",
+  "dependencies": {
+    "google-protobuf": "^3.12.4",
+    "grpc": "^1.11.0"
+  },
+  "devDependencies": {},
+  "keywords": [
+    "compiere",
+    "adempiere",
+    "erp",
+    "grpc",
+    "webstore",
+    "java",
+    "web"
+  ]
+}
