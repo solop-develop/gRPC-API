@@ -27,6 +27,7 @@ class Api {
       const adempiereConfig = config.adempiereApi.api
       this.accessHost = adempiereConfig.accessHost
       this.businessHost = adempiereConfig.businessHost
+      this.dictionaryHost = adempiereConfig.dictionaryHost
       this.version = adempiereConfig.version
       this.language = adempiereConfig.language
       this.user = adempiereConfig.user
@@ -34,6 +35,7 @@ class Api {
     }
     this.initAccessService()
     this.initBusinessService()
+    this.initDictionaryService()
   }
 
   //  Init service
@@ -77,6 +79,13 @@ class Api {
   }
 
   // Init connection
+  initDictionaryService() {
+    var grpc = require('grpc');
+    var services = require('./src/grpc/proto/dictionary_grpc_pb');
+    this.dictionary = new services.DictionaryClient(this.dictionaryHost, grpc.credentials.createInsecure());
+  }
+
+  // Init connection
   initBusinessService() {
     var grpc = require('grpc');
     var services = require('./src/grpc/proto/business_grpc_pb');
@@ -91,6 +100,11 @@ class Api {
   //  Get Business Service
   getBusinessService() {
     return this.business
+  }
+
+  //  Get Dictionary Service
+  getDictionaryService() {
+    return this.dictionary
   }
 
   //  Get Client Context
@@ -271,6 +285,23 @@ class Api {
         break
     }
     return returnValue
+  }
+
+  //  Get Window
+  getWindow({
+    token,
+    id,
+    uuid
+  }, callback) {
+    const { EntityRequest, ApplicationRequest } = require('./src/grpc/proto/dictionary_pb.js')
+    const request = new EntityRequest()
+    const applicationRequest = new ApplicationRequest()
+    request.setId(id)
+    request.setUuid(uuid)
+    applicationRequest.setSessionUuid(token)
+    applicationRequest.setLanguage(this.language)
+    request.setApplicationRequest(applicationRequest)
+    this.getDictionaryService().getWindow(request, callback)
   }
 }
 module.exports = Api;
