@@ -3224,25 +3224,25 @@ proto.data.Country.toObject = function(includeInstance, msg) {
   var f, obj = {
     uuid: jspb.Message.getFieldWithDefault(msg, 1, ""),
     id: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    countrycode: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    countryCode: jspb.Message.getFieldWithDefault(msg, 3, ""),
     name: jspb.Message.getFieldWithDefault(msg, 4, ""),
     description: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    hasregion: jspb.Message.getBooleanFieldWithDefault(msg, 6, false),
-    regionname: jspb.Message.getFieldWithDefault(msg, 7, ""),
-    displaysequence: jspb.Message.getFieldWithDefault(msg, 8, ""),
-    isaddresslinesreverse: jspb.Message.getBooleanFieldWithDefault(msg, 9, false),
-    capturesequence: jspb.Message.getFieldWithDefault(msg, 10, ""),
-    displaysequencelocal: jspb.Message.getFieldWithDefault(msg, 11, ""),
-    isaddresslineslocalreverse: jspb.Message.getBooleanFieldWithDefault(msg, 12, false),
-    expressionpostal: jspb.Message.getFieldWithDefault(msg, 13, ""),
-    haspostaladd: jspb.Message.getBooleanFieldWithDefault(msg, 14, false),
-    expressionphone: jspb.Message.getFieldWithDefault(msg, 15, ""),
-    mediasize: jspb.Message.getFieldWithDefault(msg, 16, ""),
-    expressionbankroutingno: jspb.Message.getFieldWithDefault(msg, 17, ""),
-    expressionbankaccountno: jspb.Message.getFieldWithDefault(msg, 18, ""),
+    hasRegion: jspb.Message.getBooleanFieldWithDefault(msg, 6, false),
+    regionName: jspb.Message.getFieldWithDefault(msg, 7, ""),
+    displaySequence: jspb.Message.getFieldWithDefault(msg, 8, ""),
+    isAddressLinesReverse: jspb.Message.getBooleanFieldWithDefault(msg, 9, false),
+    captureSequence: jspb.Message.getFieldWithDefault(msg, 10, ""),
+    displaySequenceLocal: jspb.Message.getFieldWithDefault(msg, 11, ""),
+    isAddressLinesLocalReverse: jspb.Message.getBooleanFieldWithDefault(msg, 12, false),
+    expressionPostal: jspb.Message.getFieldWithDefault(msg, 13, ""),
+    hasPostalAdd: jspb.Message.getBooleanFieldWithDefault(msg, 14, false),
+    expressionPhone: jspb.Message.getFieldWithDefault(msg, 15, ""),
+    mediaSize: jspb.Message.getFieldWithDefault(msg, 16, ""),
+    expressionBankRoutingNo: jspb.Message.getFieldWithDefault(msg, 17, ""),
+    expressionBankAccountNo: jspb.Message.getFieldWithDefault(msg, 18, ""),
     language: jspb.Message.getFieldWithDefault(msg, 19, ""),
-    allowcitiesoutoflist: jspb.Message.getBooleanFieldWithDefault(msg, 20, false),
-    ispostcodelookup: jspb.Message.getBooleanFieldWithDefault(msg, 21, false),
+    allowCitiesOutOfList: jspb.Message.getBooleanFieldWithDefault(msg, 20, false),
+    isPostcodeLookup: jspb.Message.getBooleanFieldWithDefault(msg, 21, false),
     currency: (f = msg.getCurrency()) && proto.data.Currency.toObject(includeInstance, f)
   };
 
@@ -3290,7 +3290,7 @@ proto.data.Country.deserializeBinaryFromReader = function(msg, reader) {
       break;
     case 3:
       var value = /** @type {string} */ (reader.readString());
-      msg.setCountrycode(value);
+      msg.setCountryCode(value);
       break;
     case 4:
       var value = /** @type {string} */ (reader.readString());
@@ -3302,55 +3302,55 @@ proto.data.Country.deserializeBinaryFromReader = function(msg, reader) {
       break;
     case 6:
       var value = /** @type {boolean} */ (reader.readBool());
-      msg.setHasregion(value);
+      msg.setHasRegion(value);
       break;
     case 7:
       var value = /** @type {string} */ (reader.readString());
-      msg.setRegionname(value);
+      msg.setRegionName(value);
       break;
     case 8:
       var value = /** @type {string} */ (reader.readString());
-      msg.setDisplaysequence(value);
+      msg.setDisplaySequence(value);
       break;
     case 9:
       var value = /** @type {boolean} */ (reader.readBool());
-      msg.setIsaddresslinesreverse(value);
+      msg.setIsAddressLinesReverse(value);
       break;
     case 10:
       var value = /** @type {string} */ (reader.readString());
-      msg.setCapturesequence(value);
+      msg.setCaptureSequence(value);
       break;
     case 11:
       var value = /** @type {string} */ (reader.readString());
-      msg.setDisplaysequencelocal(value);
+      msg.setDisplaySequenceLocal(value);
       break;
     case 12:
       var value = /** @type {boolean} */ (reader.readBool());
-      msg.setIsaddresslineslocalreverse(value);
+      msg.setIsAddressLinesLocalReverse(value);
       break;
     case 13:
       var value = /** @type {string} */ (reader.readString());
-      msg.setExpressionpostal(value);
+      msg.setExpressionPostal(value);
       break;
     case 14:
       var value = /** @type {boolean} */ (reader.readBool());
-      msg.setHaspostaladd(value);
+      msg.setHasPostalAdd(value);
       break;
     case 15:
       var value = /** @type {string} */ (reader.readString());
-      msg.setExpressionphone(value);
+      msg.setExpressionPhone(value);
       break;
     case 16:
       var value = /** @type {string} */ (reader.readString());
-      msg.setMediasize(value);
+      msg.setMediaSize(value);
       break;
     case 17:
       var value = /** @type {string} */ (reader.readString());
-      msg.setExpressionbankroutingno(value);
+      msg.setExpressionBankRoutingNo(value);
       break;
     case 18:
       var value = /** @type {string} */ (reader.readString());
-      msg.setExpressionbankaccountno(value);
+      msg.setExpressionBankAccountNo(value);
       break;
     case 19:
       var value = /** @type {string} */ (reader.readString());
@@ -3358,11 +3358,11 @@ proto.data.Country.deserializeBinaryFromReader = function(msg, reader) {
       break;
     case 20:
       var value = /** @type {boolean} */ (reader.readBool());
-      msg.setAllowcitiesoutoflist(value);
+      msg.setAllowCitiesOutOfList(value);
       break;
     case 21:
       var value = /** @type {boolean} */ (reader.readBool());
-      msg.setIspostcodelookup(value);
+      msg.setIsPostcodeLookup(value);
       break;
     case 22:
       var value = new proto.data.Currency;
@@ -3412,7 +3412,7 @@ proto.data.Country.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-  f = message.getCountrycode();
+  f = message.getCountryCode();
   if (f.length > 0) {
     writer.writeString(
       3,
@@ -3433,91 +3433,91 @@ proto.data.Country.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-  f = message.getHasregion();
+  f = message.getHasRegion();
   if (f) {
     writer.writeBool(
       6,
       f
     );
   }
-  f = message.getRegionname();
+  f = message.getRegionName();
   if (f.length > 0) {
     writer.writeString(
       7,
       f
     );
   }
-  f = message.getDisplaysequence();
+  f = message.getDisplaySequence();
   if (f.length > 0) {
     writer.writeString(
       8,
       f
     );
   }
-  f = message.getIsaddresslinesreverse();
+  f = message.getIsAddressLinesReverse();
   if (f) {
     writer.writeBool(
       9,
       f
     );
   }
-  f = message.getCapturesequence();
+  f = message.getCaptureSequence();
   if (f.length > 0) {
     writer.writeString(
       10,
       f
     );
   }
-  f = message.getDisplaysequencelocal();
+  f = message.getDisplaySequenceLocal();
   if (f.length > 0) {
     writer.writeString(
       11,
       f
     );
   }
-  f = message.getIsaddresslineslocalreverse();
+  f = message.getIsAddressLinesLocalReverse();
   if (f) {
     writer.writeBool(
       12,
       f
     );
   }
-  f = message.getExpressionpostal();
+  f = message.getExpressionPostal();
   if (f.length > 0) {
     writer.writeString(
       13,
       f
     );
   }
-  f = message.getHaspostaladd();
+  f = message.getHasPostalAdd();
   if (f) {
     writer.writeBool(
       14,
       f
     );
   }
-  f = message.getExpressionphone();
+  f = message.getExpressionPhone();
   if (f.length > 0) {
     writer.writeString(
       15,
       f
     );
   }
-  f = message.getMediasize();
+  f = message.getMediaSize();
   if (f.length > 0) {
     writer.writeString(
       16,
       f
     );
   }
-  f = message.getExpressionbankroutingno();
+  f = message.getExpressionBankRoutingNo();
   if (f.length > 0) {
     writer.writeString(
       17,
       f
     );
   }
-  f = message.getExpressionbankaccountno();
+  f = message.getExpressionBankAccountNo();
   if (f.length > 0) {
     writer.writeString(
       18,
@@ -3531,14 +3531,14 @@ proto.data.Country.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-  f = message.getAllowcitiesoutoflist();
+  f = message.getAllowCitiesOutOfList();
   if (f) {
     writer.writeBool(
       20,
       f
     );
   }
-  f = message.getIspostcodelookup();
+  f = message.getIsPostcodeLookup();
   if (f) {
     writer.writeBool(
       21,
@@ -3593,10 +3593,10 @@ proto.data.Country.prototype.setId = function(value) {
 
 
 /**
- * optional string countryCode = 3;
+ * optional string country_code = 3;
  * @return {string}
  */
-proto.data.Country.prototype.getCountrycode = function() {
+proto.data.Country.prototype.getCountryCode = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
 
@@ -3605,7 +3605,7 @@ proto.data.Country.prototype.getCountrycode = function() {
  * @param {string} value
  * @return {!proto.data.Country} returns this
  */
-proto.data.Country.prototype.setCountrycode = function(value) {
+proto.data.Country.prototype.setCountryCode = function(value) {
   return jspb.Message.setProto3StringField(this, 3, value);
 };
 
@@ -3647,10 +3647,10 @@ proto.data.Country.prototype.setDescription = function(value) {
 
 
 /**
- * optional bool hasRegion = 6;
+ * optional bool has_region = 6;
  * @return {boolean}
  */
-proto.data.Country.prototype.getHasregion = function() {
+proto.data.Country.prototype.getHasRegion = function() {
   return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 6, false));
 };
 
@@ -3659,16 +3659,16 @@ proto.data.Country.prototype.getHasregion = function() {
  * @param {boolean} value
  * @return {!proto.data.Country} returns this
  */
-proto.data.Country.prototype.setHasregion = function(value) {
+proto.data.Country.prototype.setHasRegion = function(value) {
   return jspb.Message.setProto3BooleanField(this, 6, value);
 };
 
 
 /**
- * optional string regionName = 7;
+ * optional string region_name = 7;
  * @return {string}
  */
-proto.data.Country.prototype.getRegionname = function() {
+proto.data.Country.prototype.getRegionName = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 7, ""));
 };
 
@@ -3677,16 +3677,16 @@ proto.data.Country.prototype.getRegionname = function() {
  * @param {string} value
  * @return {!proto.data.Country} returns this
  */
-proto.data.Country.prototype.setRegionname = function(value) {
+proto.data.Country.prototype.setRegionName = function(value) {
   return jspb.Message.setProto3StringField(this, 7, value);
 };
 
 
 /**
- * optional string displaySequence = 8;
+ * optional string display_sequence = 8;
  * @return {string}
  */
-proto.data.Country.prototype.getDisplaysequence = function() {
+proto.data.Country.prototype.getDisplaySequence = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 8, ""));
 };
 
@@ -3695,16 +3695,16 @@ proto.data.Country.prototype.getDisplaysequence = function() {
  * @param {string} value
  * @return {!proto.data.Country} returns this
  */
-proto.data.Country.prototype.setDisplaysequence = function(value) {
+proto.data.Country.prototype.setDisplaySequence = function(value) {
   return jspb.Message.setProto3StringField(this, 8, value);
 };
 
 
 /**
- * optional bool isAddressLinesReverse = 9;
+ * optional bool is_address_lines_reverse = 9;
  * @return {boolean}
  */
-proto.data.Country.prototype.getIsaddresslinesreverse = function() {
+proto.data.Country.prototype.getIsAddressLinesReverse = function() {
   return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 9, false));
 };
 
@@ -3713,16 +3713,16 @@ proto.data.Country.prototype.getIsaddresslinesreverse = function() {
  * @param {boolean} value
  * @return {!proto.data.Country} returns this
  */
-proto.data.Country.prototype.setIsaddresslinesreverse = function(value) {
+proto.data.Country.prototype.setIsAddressLinesReverse = function(value) {
   return jspb.Message.setProto3BooleanField(this, 9, value);
 };
 
 
 /**
- * optional string captureSequence = 10;
+ * optional string capture_sequence = 10;
  * @return {string}
  */
-proto.data.Country.prototype.getCapturesequence = function() {
+proto.data.Country.prototype.getCaptureSequence = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 10, ""));
 };
 
@@ -3731,16 +3731,16 @@ proto.data.Country.prototype.getCapturesequence = function() {
  * @param {string} value
  * @return {!proto.data.Country} returns this
  */
-proto.data.Country.prototype.setCapturesequence = function(value) {
+proto.data.Country.prototype.setCaptureSequence = function(value) {
   return jspb.Message.setProto3StringField(this, 10, value);
 };
 
 
 /**
- * optional string displaySequenceLocal = 11;
+ * optional string display_sequence_local = 11;
  * @return {string}
  */
-proto.data.Country.prototype.getDisplaysequencelocal = function() {
+proto.data.Country.prototype.getDisplaySequenceLocal = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 11, ""));
 };
 
@@ -3749,16 +3749,16 @@ proto.data.Country.prototype.getDisplaysequencelocal = function() {
  * @param {string} value
  * @return {!proto.data.Country} returns this
  */
-proto.data.Country.prototype.setDisplaysequencelocal = function(value) {
+proto.data.Country.prototype.setDisplaySequenceLocal = function(value) {
   return jspb.Message.setProto3StringField(this, 11, value);
 };
 
 
 /**
- * optional bool isAddressLinesLocalReverse = 12;
+ * optional bool is_address_lines_local_reverse = 12;
  * @return {boolean}
  */
-proto.data.Country.prototype.getIsaddresslineslocalreverse = function() {
+proto.data.Country.prototype.getIsAddressLinesLocalReverse = function() {
   return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 12, false));
 };
 
@@ -3767,16 +3767,16 @@ proto.data.Country.prototype.getIsaddresslineslocalreverse = function() {
  * @param {boolean} value
  * @return {!proto.data.Country} returns this
  */
-proto.data.Country.prototype.setIsaddresslineslocalreverse = function(value) {
+proto.data.Country.prototype.setIsAddressLinesLocalReverse = function(value) {
   return jspb.Message.setProto3BooleanField(this, 12, value);
 };
 
 
 /**
- * optional string expressionPostal = 13;
+ * optional string expression_postal = 13;
  * @return {string}
  */
-proto.data.Country.prototype.getExpressionpostal = function() {
+proto.data.Country.prototype.getExpressionPostal = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 13, ""));
 };
 
@@ -3785,16 +3785,16 @@ proto.data.Country.prototype.getExpressionpostal = function() {
  * @param {string} value
  * @return {!proto.data.Country} returns this
  */
-proto.data.Country.prototype.setExpressionpostal = function(value) {
+proto.data.Country.prototype.setExpressionPostal = function(value) {
   return jspb.Message.setProto3StringField(this, 13, value);
 };
 
 
 /**
- * optional bool hasPostalAdd = 14;
+ * optional bool has_postal_add = 14;
  * @return {boolean}
  */
-proto.data.Country.prototype.getHaspostaladd = function() {
+proto.data.Country.prototype.getHasPostalAdd = function() {
   return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 14, false));
 };
 
@@ -3803,16 +3803,16 @@ proto.data.Country.prototype.getHaspostaladd = function() {
  * @param {boolean} value
  * @return {!proto.data.Country} returns this
  */
-proto.data.Country.prototype.setHaspostaladd = function(value) {
+proto.data.Country.prototype.setHasPostalAdd = function(value) {
   return jspb.Message.setProto3BooleanField(this, 14, value);
 };
 
 
 /**
- * optional string expressionPhone = 15;
+ * optional string expression_phone = 15;
  * @return {string}
  */
-proto.data.Country.prototype.getExpressionphone = function() {
+proto.data.Country.prototype.getExpressionPhone = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 15, ""));
 };
 
@@ -3821,16 +3821,16 @@ proto.data.Country.prototype.getExpressionphone = function() {
  * @param {string} value
  * @return {!proto.data.Country} returns this
  */
-proto.data.Country.prototype.setExpressionphone = function(value) {
+proto.data.Country.prototype.setExpressionPhone = function(value) {
   return jspb.Message.setProto3StringField(this, 15, value);
 };
 
 
 /**
- * optional string mediaSize = 16;
+ * optional string media_size = 16;
  * @return {string}
  */
-proto.data.Country.prototype.getMediasize = function() {
+proto.data.Country.prototype.getMediaSize = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 16, ""));
 };
 
@@ -3839,16 +3839,16 @@ proto.data.Country.prototype.getMediasize = function() {
  * @param {string} value
  * @return {!proto.data.Country} returns this
  */
-proto.data.Country.prototype.setMediasize = function(value) {
+proto.data.Country.prototype.setMediaSize = function(value) {
   return jspb.Message.setProto3StringField(this, 16, value);
 };
 
 
 /**
- * optional string expressionBankRoutingNo = 17;
+ * optional string expression_bank_routing_no = 17;
  * @return {string}
  */
-proto.data.Country.prototype.getExpressionbankroutingno = function() {
+proto.data.Country.prototype.getExpressionBankRoutingNo = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 17, ""));
 };
 
@@ -3857,16 +3857,16 @@ proto.data.Country.prototype.getExpressionbankroutingno = function() {
  * @param {string} value
  * @return {!proto.data.Country} returns this
  */
-proto.data.Country.prototype.setExpressionbankroutingno = function(value) {
+proto.data.Country.prototype.setExpressionBankRoutingNo = function(value) {
   return jspb.Message.setProto3StringField(this, 17, value);
 };
 
 
 /**
- * optional string expressionBankAccountNo = 18;
+ * optional string expression_bank_account_no = 18;
  * @return {string}
  */
-proto.data.Country.prototype.getExpressionbankaccountno = function() {
+proto.data.Country.prototype.getExpressionBankAccountNo = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 18, ""));
 };
 
@@ -3875,7 +3875,7 @@ proto.data.Country.prototype.getExpressionbankaccountno = function() {
  * @param {string} value
  * @return {!proto.data.Country} returns this
  */
-proto.data.Country.prototype.setExpressionbankaccountno = function(value) {
+proto.data.Country.prototype.setExpressionBankAccountNo = function(value) {
   return jspb.Message.setProto3StringField(this, 18, value);
 };
 
@@ -3899,10 +3899,10 @@ proto.data.Country.prototype.setLanguage = function(value) {
 
 
 /**
- * optional bool allowCitiesOutOfList = 20;
+ * optional bool allow_cities_out_of_list = 20;
  * @return {boolean}
  */
-proto.data.Country.prototype.getAllowcitiesoutoflist = function() {
+proto.data.Country.prototype.getAllowCitiesOutOfList = function() {
   return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 20, false));
 };
 
@@ -3911,16 +3911,16 @@ proto.data.Country.prototype.getAllowcitiesoutoflist = function() {
  * @param {boolean} value
  * @return {!proto.data.Country} returns this
  */
-proto.data.Country.prototype.setAllowcitiesoutoflist = function(value) {
+proto.data.Country.prototype.setAllowCitiesOutOfList = function(value) {
   return jspb.Message.setProto3BooleanField(this, 20, value);
 };
 
 
 /**
- * optional bool isPostcodeLookup = 21;
+ * optional bool is_postcode_lookup = 21;
  * @return {boolean}
  */
-proto.data.Country.prototype.getIspostcodelookup = function() {
+proto.data.Country.prototype.getIsPostcodeLookup = function() {
   return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 21, false));
 };
 
@@ -3929,7 +3929,7 @@ proto.data.Country.prototype.getIspostcodelookup = function() {
  * @param {boolean} value
  * @return {!proto.data.Country} returns this
  */
-proto.data.Country.prototype.setIspostcodelookup = function(value) {
+proto.data.Country.prototype.setIsPostcodeLookup = function(value) {
   return jspb.Message.setProto3BooleanField(this, 21, value);
 };
 
@@ -4276,11 +4276,11 @@ proto.data.Currency.toObject = function(includeInstance, msg) {
   var f, obj = {
     uuid: jspb.Message.getFieldWithDefault(msg, 1, ""),
     id: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    isocode: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    cursymbol: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    isoCode: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    curSymbol: jspb.Message.getFieldWithDefault(msg, 4, ""),
     description: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    stdprecision: jspb.Message.getFieldWithDefault(msg, 6, 0),
-    costingprecision: jspb.Message.getFieldWithDefault(msg, 7, 0)
+    stdPrecision: jspb.Message.getFieldWithDefault(msg, 6, 0),
+    costingPrecision: jspb.Message.getFieldWithDefault(msg, 7, 0)
   };
 
   if (includeInstance) {
@@ -4327,11 +4327,11 @@ proto.data.Currency.deserializeBinaryFromReader = function(msg, reader) {
       break;
     case 3:
       var value = /** @type {string} */ (reader.readString());
-      msg.setIsocode(value);
+      msg.setIsoCode(value);
       break;
     case 4:
       var value = /** @type {string} */ (reader.readString());
-      msg.setCursymbol(value);
+      msg.setCurSymbol(value);
       break;
     case 5:
       var value = /** @type {string} */ (reader.readString());
@@ -4339,11 +4339,11 @@ proto.data.Currency.deserializeBinaryFromReader = function(msg, reader) {
       break;
     case 6:
       var value = /** @type {number} */ (reader.readInt32());
-      msg.setStdprecision(value);
+      msg.setStdPrecision(value);
       break;
     case 7:
       var value = /** @type {number} */ (reader.readInt32());
-      msg.setCostingprecision(value);
+      msg.setCostingPrecision(value);
       break;
     default:
       reader.skipField();
@@ -4388,14 +4388,14 @@ proto.data.Currency.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-  f = message.getIsocode();
+  f = message.getIsoCode();
   if (f.length > 0) {
     writer.writeString(
       3,
       f
     );
   }
-  f = message.getCursymbol();
+  f = message.getCurSymbol();
   if (f.length > 0) {
     writer.writeString(
       4,
@@ -4409,14 +4409,14 @@ proto.data.Currency.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-  f = message.getStdprecision();
+  f = message.getStdPrecision();
   if (f !== 0) {
     writer.writeInt32(
       6,
       f
     );
   }
-  f = message.getCostingprecision();
+  f = message.getCostingPrecision();
   if (f !== 0) {
     writer.writeInt32(
       7,
@@ -4463,10 +4463,10 @@ proto.data.Currency.prototype.setId = function(value) {
 
 
 /**
- * optional string iSOCode = 3;
+ * optional string iSO_code = 3;
  * @return {string}
  */
-proto.data.Currency.prototype.getIsocode = function() {
+proto.data.Currency.prototype.getIsoCode = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
 
@@ -4475,16 +4475,16 @@ proto.data.Currency.prototype.getIsocode = function() {
  * @param {string} value
  * @return {!proto.data.Currency} returns this
  */
-proto.data.Currency.prototype.setIsocode = function(value) {
+proto.data.Currency.prototype.setIsoCode = function(value) {
   return jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
 /**
- * optional string curSymbol = 4;
+ * optional string cur_symbol = 4;
  * @return {string}
  */
-proto.data.Currency.prototype.getCursymbol = function() {
+proto.data.Currency.prototype.getCurSymbol = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
 };
 
@@ -4493,7 +4493,7 @@ proto.data.Currency.prototype.getCursymbol = function() {
  * @param {string} value
  * @return {!proto.data.Currency} returns this
  */
-proto.data.Currency.prototype.setCursymbol = function(value) {
+proto.data.Currency.prototype.setCurSymbol = function(value) {
   return jspb.Message.setProto3StringField(this, 4, value);
 };
 
@@ -4517,10 +4517,10 @@ proto.data.Currency.prototype.setDescription = function(value) {
 
 
 /**
- * optional int32 stdPrecision = 6;
+ * optional int32 std_precision = 6;
  * @return {number}
  */
-proto.data.Currency.prototype.getStdprecision = function() {
+proto.data.Currency.prototype.getStdPrecision = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 6, 0));
 };
 
@@ -4529,16 +4529,16 @@ proto.data.Currency.prototype.getStdprecision = function() {
  * @param {number} value
  * @return {!proto.data.Currency} returns this
  */
-proto.data.Currency.prototype.setStdprecision = function(value) {
+proto.data.Currency.prototype.setStdPrecision = function(value) {
   return jspb.Message.setProto3IntField(this, 6, value);
 };
 
 
 /**
- * optional int32 costingPrecision = 7;
+ * optional int32 costing_precision = 7;
  * @return {number}
  */
-proto.data.Currency.prototype.getCostingprecision = function() {
+proto.data.Currency.prototype.getCostingPrecision = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 7, 0));
 };
 
@@ -4547,7 +4547,7 @@ proto.data.Currency.prototype.getCostingprecision = function() {
  * @param {number} value
  * @return {!proto.data.Currency} returns this
  */
-proto.data.Currency.prototype.setCostingprecision = function(value) {
+proto.data.Currency.prototype.setCostingPrecision = function(value) {
   return jspb.Message.setProto3IntField(this, 7, value);
 };
 

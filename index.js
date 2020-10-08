@@ -24,14 +24,16 @@ class Api {
    */
   constructor(config) {
     if(config) {
-      const adempiereConfig = config.adempiere.api
+      const adempiereConfig = config.adempiereApi.api
       this.accessHost = adempiereConfig.accessHost
+      this.businessHost = adempiereConfig.businessHost
       this.version = adempiereConfig.version
       this.language = adempiereConfig.language
       this.user = adempiereConfig.user
       this.password = adempiereConfig.password
     }
     this.initAccessService()
+    this.initBusinessService()
   }
 
   //  Init service
@@ -51,7 +53,7 @@ class Api {
         client.setSessionUuid(response.getUuid())
         client.setLanguage(language)
         current.setClientContext(client)
-        console.log('ADempiere Client Started')
+        console.log('ADempiere Api Client Started')
       } else if(err) {
         console.log(err)
       }
@@ -74,9 +76,21 @@ class Api {
     this.access = new services.SecurityClient(this.accessHost, grpc.credentials.createInsecure());
   }
 
+  // Init connection
+  initBusinessService() {
+    var grpc = require('grpc');
+    var services = require('./src/grpc/proto/business_grpc_pb');
+    this.business = new services.UserInterfaceClient(this.businessHost, grpc.credentials.createInsecure());
+  }
+
   //  Get Access Service
   getAccessService() {
     return this.access
+  }
+
+  //  Get Business Service
+  getBusinessService() {
+    return this.business
   }
 
   //  Get Client Context
@@ -98,13 +112,73 @@ class Api {
   }, callback) {
     const { LoginRequest } = require('./src/grpc/proto/access_pb.js')
     const request = new LoginRequest()
-    request.setUsername(user)
-    request.setUserpass(password)
-    request.setRoleuuid(roleUuid)
-    request.setOrganizationuuid(organizationUuid)
+    request.setUserName(user)
+    request.setUserPass(password)
+    request.setRoleUuid(roleUuid)
+    request.setOrganizationUuid(organizationUuid)
     request.setLanguage(this.language)
-    request.setClientversion(this.version)
-    this.getAccessService().runLoginDefault(request, callback)
+    request.setClientVersion(this.version)
+    this.getAccessService().runLogin(request, callback)
+  }
+
+  //  Get User Information
+  getUserInfo({
+    token
+  }, callback) {
+    const { UserInfoRequest } = require('./src/grpc/proto/access_pb.js')
+    const request = new UserInfoRequest()
+    request.setSessionUuid(token)
+    request.setLanguage(this.language)
+    request.setClientVersion(this.version)
+    this.getAccessService().getUserInfo(request, callback)
+  }
+
+  //  Get User Information
+  getUserRoles({
+    token
+  }, callback) {
+    const { ListRolesRequest } = require('./src/grpc/proto/access_pb.js')
+    const request = new ListRolesRequest()
+    request.setSessionUuid(token)
+    request.setLanguage(this.language)
+    request.setClientVersion(this.version)
+    this.getAccessService().listRoles(request, callback)
+  }
+
+  //  Get User Menu
+  getMenu({
+    token
+  }, callback) {
+    const { MenuRequest } = require('./src/grpc/proto/access_pb.js')
+    const request = new MenuRequest()
+    request.setSessionUuid(token)
+    request.setLanguage(this.language)
+    request.setClientVersion(this.version)
+    this.getAccessService().getMenu(request, callback)
+  }
+
+  //  Get User Menu
+  getSessionInfo({
+    token
+  }, callback) {
+    const { SessionRequest } = require('./src/grpc/proto/access_pb.js')
+    const request = new SessionRequest()
+    request.setSessionUuid(token)
+    request.setLanguage(this.language)
+    request.setClientVersion(this.version)
+    this.getAccessService().getSession(request, callback)
+  }
+
+  //  Login with a user
+  logout({
+    token
+  }, callback) {
+    const { LogoutRequest } = require('./src/grpc/proto/access_pb.js')
+    const request = new LogoutRequest()
+    request.setSessionUuid(token)
+    request.setLanguage(this.language)
+    request.setClientVersion(this.version)
+    this.getAccessService().runLogout(request, callback)
   }
 
   //  Get Resource Image from name
@@ -117,7 +191,7 @@ class Api {
     request.setClientRequest(this.getClientContext())
     request.setResourceName(resourceName)
     request.setResourceUuid(resourceUuid)
-    const stream = this.getStoreService().getResource(request)//, callback)
+    const stream = this.getBusinessService().getResource(request)//, callback)
     let result = new Uint8Array()
     stream.on('data', (response) => {
       result = this.mergeByteArray(result, response.getData())
@@ -148,5 +222,37 @@ class Api {
       )
     )
   }
+
+  //  Convert value from gRPC
+  convertValueFromGRPC(value) {
+    const { ContextValue } = require('./src/grpc/proto/access_pb.js')
+    const { ValueType } = ContextValue
+
+    if (!value) {
+      return undefined
+    }
+    let returnValue
+    switch (value.getValueType()) {
+      case ValueType.INTEGER:
+        returnValue = value.getIntValue()
+        break
+      // data type Boolean
+      case ValueType.BOOLEAN:
+        returnValue = value.getBooleanValue()
+        break
+      // data type Boolean
+      case ValueType.DATE:
+        returnValue = new Date(value.getLongValue())
+        break
+      // data type String
+      case ValueType.STRING:
+        returnValue = value.getStringValue()
+        break
+      case ValueType.UNKNOWN:
+        returnValue = undefined;
+        break
+    }
+    return returnValue
+  }
 }
-module.exports = WebStore;
+module.exports = Api;
