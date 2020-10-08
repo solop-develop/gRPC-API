@@ -169,6 +169,24 @@ class Api {
     this.getAccessService().getSession(request, callback)
   }
 
+  //  Change role
+  changeRole({
+    token,
+    role,
+    organization,
+    warehouse
+  }, callback) {
+    const { ChangeRoleRequest } = require('./src/grpc/proto/access_pb.js')
+    const request = new ChangeRoleRequest()
+    request.setSessionUuid(token)
+    request.setRoleUuid(role)
+    request.setOrganizationUuid(organization)
+    request.setWarehouseUuid(warehouse)
+    request.setLanguage(this.language)
+    request.setClientVersion(this.version)
+    this.getAccessService().runChangeRole(request, callback)
+  }
+
   //  Login with a user
   logout({
     token
