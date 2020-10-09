@@ -129,17 +129,6 @@ function deserialize_dictionary_ValidationRule(buffer_arg) {
   return proto_dictionary_pb.ValidationRule.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_dictionary_ValidationRuleRequest(arg) {
-  if (!(arg instanceof proto_dictionary_pb.ValidationRuleRequest)) {
-    throw new Error('Expected argument of type dictionary.ValidationRuleRequest');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_dictionary_ValidationRuleRequest(buffer_arg) {
-  return proto_dictionary_pb.ValidationRuleRequest.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
 function serialize_dictionary_Window(arg) {
   if (!(arg instanceof proto_dictionary_pb.Window)) {
     throw new Error('Expected argument of type dictionary.Window');
@@ -207,10 +196,10 @@ getValidationRule: {
     path: '/dictionary.Dictionary/GetValidationRule',
     requestStream: false,
     responseStream: false,
-    requestType: proto_dictionary_pb.ValidationRuleRequest,
+    requestType: proto_dictionary_pb.EntityRequest,
     responseType: proto_dictionary_pb.ValidationRule,
-    requestSerialize: serialize_dictionary_ValidationRuleRequest,
-    requestDeserialize: deserialize_dictionary_ValidationRuleRequest,
+    requestSerialize: serialize_dictionary_EntityRequest,
+    requestDeserialize: deserialize_dictionary_EntityRequest,
     responseSerialize: serialize_dictionary_ValidationRule,
     responseDeserialize: deserialize_dictionary_ValidationRule,
   },

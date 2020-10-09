@@ -287,12 +287,99 @@ class Api {
     return returnValue
   }
 
+  //  Dictionary
   //  Get Window
   getWindow({
     token,
     id,
     uuid
   }, callback) {
+    this.getDictionaryService().getWindow(this.getDictionaryRequest(token, id, uuid), callback)
+  }
+
+  //  Get Process
+  getProcess({
+    token,
+    id,
+    uuid
+  }, callback) {
+    this.getDictionaryService().getProcess(this.getDictionaryRequest(token, id, uuid), callback)
+  }
+
+  //  Get Browser
+  getBrowser({
+    token,
+    id,
+    uuid
+  }, callback) {
+    this.getDictionaryService().getBrowser(this.getDictionaryRequest(token, id, uuid), callback)
+  }
+
+  //  Get Form
+  getForm({
+    token,
+    id,
+    uuid
+  }, callback) {
+    this.getDictionaryService().getForm(this.getDictionaryRequest(token, id, uuid), callback)
+  }
+
+  //  Get Form
+  getValidationRule({
+    token,
+    id,
+    uuid
+  }, callback) {
+    this.getDictionaryService().getValidationRule(this.getDictionaryRequest(token, id, uuid), callback)
+  }
+
+  //  Get Field
+  getField({
+    token,
+    uuid,
+    columnUuid,
+    elementUuid,
+    tableName,
+    columnName,
+    elementNolumnName
+  }, callback) {
+    const { FieldRequest, ApplicationRequest } = require('./src/grpc/proto/dictionary_pb.js')
+    const request = new FieldRequest()
+    const applicationRequest = new ApplicationRequest()
+    request.setFieldUuid(uuid)
+    request.setColumnUuid(columnUuid)
+    request.setElementUuid(elementUuid)
+    request.setFieldUuid(tableName)
+    request.setColumnName(columnName)
+    request.setElementColumnName(elementNolumnName)
+    applicationRequest.setSessionUuid(token)
+    applicationRequest.setLanguage(this.language)
+    request.setApplicationRequest(applicationRequest)
+    this.getDictionaryService().getField(request, callback)
+  }
+
+  //  Get Reference
+  getReference({
+    token,
+    uuid,
+    columnName
+  }, callback) {
+    const { ReferenceRequest, ApplicationRequest } = require('./src/grpc/proto/dictionary_pb.js')
+    const request = new ReferenceRequest()
+    const applicationRequest = new ApplicationRequest()
+    request.setReferenceUuid(uuid)
+    request.setColumnName(columnName)
+    applicationRequest.setSessionUuid(token)
+    applicationRequest.setLanguage(this.language)
+    request.setApplicationRequest(applicationRequest)
+    this.getDictionaryService().getReference(request, callback)
+  }
+
+  //  Get Process
+  getDictionaryRequest(
+    token,
+    id,
+    uuid) {
     const { EntityRequest, ApplicationRequest } = require('./src/grpc/proto/dictionary_pb.js')
     const request = new EntityRequest()
     const applicationRequest = new ApplicationRequest()
@@ -301,7 +388,7 @@ class Api {
     applicationRequest.setSessionUuid(token)
     applicationRequest.setLanguage(this.language)
     request.setApplicationRequest(applicationRequest)
-    this.getDictionaryService().getWindow(request, callback)
+    return request
   }
 }
 module.exports = Api;
