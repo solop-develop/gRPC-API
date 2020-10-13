@@ -34,6 +34,7 @@ class Api {
       this.password = adempiereConfig.password
     }
     this.initAccessService()
+    this.initUIService()
     this.initBusinessService()
     this.initDictionaryService()
   }
@@ -86,15 +87,27 @@ class Api {
   }
 
   // Init connection
+  initUIService() {
+    var grpc = require('grpc');
+    var services = require('./src/grpc/proto/business_grpc_pb');
+    this.ui = new services.UserInterfaceClient(this.businessHost, grpc.credentials.createInsecure());
+  }
+
+  // Init connection
   initBusinessService() {
     var grpc = require('grpc');
     var services = require('./src/grpc/proto/business_grpc_pb');
-    this.business = new services.UserInterfaceClient(this.businessHost, grpc.credentials.createInsecure());
+    this.business = new services.BusinessDataClient(this.businessHost, grpc.credentials.createInsecure());
   }
 
   //  Get Access Service
   getAccessService() {
     return this.access
+  }
+
+  //  Get UI Service
+  getUIService() {
+    return this.ui
   }
 
   //  Get Business Service
@@ -223,7 +236,7 @@ class Api {
     request.setClientRequest(this.getClientContext())
     request.setResourceName(resourceName)
     request.setResourceUuid(resourceUuid)
-    const stream = this.getBusinessService().getResource(request)//, callback)
+    const stream = this.getUIService().getResource(request)
     let result = new Uint8Array()
     stream.on('data', (response) => {
       result = this.mergeByteArray(result, response.getData())
@@ -256,7 +269,7 @@ class Api {
   }
 
   //  Convert value from gRPC
-  convertValueFromGRPC(value) {
+  convertAccessValuesFromGRPC(value) {
     const { ContextValue } = require('./src/grpc/proto/access_pb.js')
     const { ValueType } = ContextValue
 
@@ -389,6 +402,122 @@ class Api {
     applicationRequest.setLanguage(this.language)
     request.setApplicationRequest(applicationRequest)
     return request
+  }
+
+  //  Business CRUD
+  //  Get a Entity
+  getEntity({
+    token,
+    id,
+    uuid,
+    tableName
+  }, callback) {
+    const { GetEntityRequest } = require('./src/grpc/proto/business_pb.js')
+    const request = new GetEntityRequest()
+    request.setRecordId(id)
+    request.setUuid(uuid)
+    request.setTableName(tableName)
+    request.setClientRequest(this.createClientRequest(token))
+    this.getBusinessService().getEntity(request, callback)
+  }
+
+  //  Create a Entity
+  createEntity({
+    token,
+    tableName,
+    attributes
+  }, callback) {
+    const { CreateEntityRequest } = require('./src/grpc/proto/business_pb.js')
+    const { convertParameterToGRPC } = require('./src/convertValues.js');
+    const request = new CreateEntityRequest()
+    request.setTableName(tableName)
+    if(attributes) {
+      attributes.forEach(attribute => {
+        request.addAttributes(convertParameterToGRPC({
+          columnName: attribute.key,
+          value: attribute.value
+        }))
+      })
+    }
+    request.setClientRequest(this.createClientRequest(token))
+    this.getBusinessService().createEntity(request, callback)
+  }
+
+  //  Create a Entity
+  updateEntity({
+    token,
+    tableName,
+    id,
+    uuid,
+    attributes
+  }, callback) {
+    const { UpdateEntityRequest } = require('./src/grpc/proto/business_pb.js')
+    const { convertParameterToGRPC } = require('./src/convertValues.js');
+    const request = new UpdateEntityRequest()
+    request.setTableName(tableName)
+    request.setRecordId(id)
+    request.setUuid(uuid)
+    if(attributes) {
+      attributes.forEach(attribute => {
+        request.addAttributes(convertParameterToGRPC({
+          columnName: attribute.key,
+          value: attribute.value
+        }))
+      })
+    }
+    request.setClientRequest(this.createClientRequest(token))
+    this.getBusinessService().updateEntity(request, callback)
+  }
+
+  //  Convert business values from gRPC
+  convertBusinessValuesFromGRPC(value) {
+    const { convertValueFromGRPC } = require('./src/convertBaseDataType.js');
+    return convertValueFromGRPC(value)
+  }
+
+  //  Delete a Entity
+  deleteEntity({
+    token,
+    id,
+    uuid,
+    tableName
+  }, callback) {
+    const { DeleteEntityRequest } = require('./src/grpc/proto/business_pb.js')
+    const request = new DeleteEntityRequest()
+    request.setRecordId(id)
+    request.setUuid(uuid)
+    request.setTableName(tableName)
+    request.setClientRequest(this.createClientRequest(token))
+    this.getBusinessService().deleteEntity(request, callback)
+  }
+
+  //  List Entities
+  listEntities({
+    token,
+    tableName,
+    //  Custom Query
+    query,
+    whereClause,
+    orderByClause,
+    limit,
+    //  Page Data
+    pageSize,
+    pageToken
+  }, callback) {
+    const { ListEntitiesRequest } = require('./src/grpc/proto/business_pb.js')
+    const request = new ListEntitiesRequest()
+    const { convertCriteriaToGRPC } = require('./src/convertValues.js');
+    //  TODO: Add support to all parameters
+    request.setCriteria(convertCriteriaToGRPC({
+      tableName,
+      query,
+      whereClause,
+      orderByClause,
+      limit
+    }))
+    //  TODO: Add Criteria
+    request.setClientRequest(this.createClientRequest(token))
+    this.getBusinessService().listEntities(request, callback)
   }
 }
 module.exports = Api;

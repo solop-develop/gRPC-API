@@ -106,7 +106,7 @@ Run Access gRPC
 ```sh
 cd ../../protos
 yarn global add grpc-tools
-grpc_tools_node_protoc --js_out=import_style=commonjs,binary:src/grpc --grpc_out=src/grpc --plugin=protoc-gen-grpc=`which grpc_tools_node_protoc_plugin` proto/access.proto proto/client.proto proto/base_data_type.proto proto/core_functionality.proto proto/dictionary.proto
+grpc_tools_node_protoc --js_out=import_style=commonjs,binary:src/grpc --grpc_out=src/grpc --plugin=protoc-gen-grpc=`which grpc_tools_node_protoc_plugin` proto/access.proto proto/client.proto proto/base_data_type.proto proto/core_functionality.proto proto/dictionary.proto proto/business.proto
 ```
 
 Or run:
