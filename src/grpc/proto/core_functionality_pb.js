@@ -665,9 +665,9 @@ proto.data.GetCountryRequest.prototype.toObject = function(opt_includeInstance) 
  */
 proto.data.GetCountryRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    countryuuid: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    countryid: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    clientrequest: (f = msg.getClientrequest()) && proto_client_pb.ClientRequest.toObject(includeInstance, f)
+    countryUuid: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    countryId: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    clientRequest: (f = msg.getClientRequest()) && proto_client_pb.ClientRequest.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -706,16 +706,16 @@ proto.data.GetCountryRequest.deserializeBinaryFromReader = function(msg, reader)
     switch (field) {
     case 1:
       var value = /** @type {string} */ (reader.readString());
-      msg.setCountryuuid(value);
+      msg.setCountryUuid(value);
       break;
     case 2:
       var value = /** @type {number} */ (reader.readInt32());
-      msg.setCountryid(value);
+      msg.setCountryId(value);
       break;
     case 3:
       var value = new proto_client_pb.ClientRequest;
       reader.readMessage(value,proto_client_pb.ClientRequest.deserializeBinaryFromReader);
-      msg.setClientrequest(value);
+      msg.setClientRequest(value);
       break;
     default:
       reader.skipField();
@@ -746,21 +746,21 @@ proto.data.GetCountryRequest.prototype.serializeBinary = function() {
  */
 proto.data.GetCountryRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getCountryuuid();
+  f = message.getCountryUuid();
   if (f.length > 0) {
     writer.writeString(
       1,
       f
     );
   }
-  f = message.getCountryid();
+  f = message.getCountryId();
   if (f !== 0) {
     writer.writeInt32(
       2,
       f
     );
   }
-  f = message.getClientrequest();
+  f = message.getClientRequest();
   if (f != null) {
     writer.writeMessage(
       3,
@@ -772,10 +772,10 @@ proto.data.GetCountryRequest.serializeBinaryToWriter = function(message, writer)
 
 
 /**
- * optional string countryUuid = 1;
+ * optional string country_uuid = 1;
  * @return {string}
  */
-proto.data.GetCountryRequest.prototype.getCountryuuid = function() {
+proto.data.GetCountryRequest.prototype.getCountryUuid = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
@@ -784,16 +784,16 @@ proto.data.GetCountryRequest.prototype.getCountryuuid = function() {
  * @param {string} value
  * @return {!proto.data.GetCountryRequest} returns this
  */
-proto.data.GetCountryRequest.prototype.setCountryuuid = function(value) {
+proto.data.GetCountryRequest.prototype.setCountryUuid = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
 /**
- * optional int32 countryId = 2;
+ * optional int32 country_id = 2;
  * @return {number}
  */
-proto.data.GetCountryRequest.prototype.getCountryid = function() {
+proto.data.GetCountryRequest.prototype.getCountryId = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
 };
 
@@ -802,16 +802,16 @@ proto.data.GetCountryRequest.prototype.getCountryid = function() {
  * @param {number} value
  * @return {!proto.data.GetCountryRequest} returns this
  */
-proto.data.GetCountryRequest.prototype.setCountryid = function(value) {
+proto.data.GetCountryRequest.prototype.setCountryId = function(value) {
   return jspb.Message.setProto3IntField(this, 2, value);
 };
 
 
 /**
- * optional ClientRequest clientRequest = 3;
+ * optional ClientRequest client_request = 3;
  * @return {?proto.data.ClientRequest}
  */
-proto.data.GetCountryRequest.prototype.getClientrequest = function() {
+proto.data.GetCountryRequest.prototype.getClientRequest = function() {
   return /** @type{?proto.data.ClientRequest} */ (
     jspb.Message.getWrapperField(this, proto_client_pb.ClientRequest, 3));
 };
@@ -821,7 +821,7 @@ proto.data.GetCountryRequest.prototype.getClientrequest = function() {
  * @param {?proto.data.ClientRequest|undefined} value
  * @return {!proto.data.GetCountryRequest} returns this
 */
-proto.data.GetCountryRequest.prototype.setClientrequest = function(value) {
+proto.data.GetCountryRequest.prototype.setClientRequest = function(value) {
   return jspb.Message.setWrapperField(this, 3, value);
 };
 
@@ -830,8 +830,8 @@ proto.data.GetCountryRequest.prototype.setClientrequest = function(value) {
  * Clears the message field making it undefined.
  * @return {!proto.data.GetCountryRequest} returns this
  */
-proto.data.GetCountryRequest.prototype.clearClientrequest = function() {
-  return this.setClientrequest(undefined);
+proto.data.GetCountryRequest.prototype.clearClientRequest = function() {
+  return this.setClientRequest(undefined);
 };
 
 
@@ -839,7 +839,7 @@ proto.data.GetCountryRequest.prototype.clearClientrequest = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.data.GetCountryRequest.prototype.hasClientrequest = function() {
+proto.data.GetCountryRequest.prototype.hasClientRequest = function() {
   return jspb.Message.getField(this, 3) != null;
 };
 
@@ -883,8 +883,8 @@ proto.data.ListBusinessPartnerResponse.prototype.toObject = function(opt_include
  */
 proto.data.ListBusinessPartnerResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    recordcount: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    businesspartnersList: jspb.Message.toObjectList(msg.getBusinesspartnersList(),
+    recordCount: jspb.Message.getFieldWithDefault(msg, 1, 0),
+    businessPartnersList: jspb.Message.toObjectList(msg.getBusinessPartnersList(),
     proto.data.BusinessPartner.toObject, includeInstance),
     nextPageToken: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
@@ -925,12 +925,12 @@ proto.data.ListBusinessPartnerResponse.deserializeBinaryFromReader = function(ms
     switch (field) {
     case 1:
       var value = /** @type {number} */ (reader.readInt64());
-      msg.setRecordcount(value);
+      msg.setRecordCount(value);
       break;
     case 2:
       var value = new proto.data.BusinessPartner;
       reader.readMessage(value,proto.data.BusinessPartner.deserializeBinaryFromReader);
-      msg.addBusinesspartners(value);
+      msg.addBusinessPartners(value);
       break;
     case 3:
       var value = /** @type {string} */ (reader.readString());
@@ -965,14 +965,14 @@ proto.data.ListBusinessPartnerResponse.prototype.serializeBinary = function() {
  */
 proto.data.ListBusinessPartnerResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getRecordcount();
+  f = message.getRecordCount();
   if (f !== 0) {
     writer.writeInt64(
       1,
       f
     );
   }
-  f = message.getBusinesspartnersList();
+  f = message.getBusinessPartnersList();
   if (f.length > 0) {
     writer.writeRepeatedMessage(
       2,
@@ -991,10 +991,10 @@ proto.data.ListBusinessPartnerResponse.serializeBinaryToWriter = function(messag
 
 
 /**
- * optional int64 recordCount = 1;
+ * optional int64 record_count = 1;
  * @return {number}
  */
-proto.data.ListBusinessPartnerResponse.prototype.getRecordcount = function() {
+proto.data.ListBusinessPartnerResponse.prototype.getRecordCount = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
 };
 
@@ -1003,16 +1003,16 @@ proto.data.ListBusinessPartnerResponse.prototype.getRecordcount = function() {
  * @param {number} value
  * @return {!proto.data.ListBusinessPartnerResponse} returns this
  */
-proto.data.ListBusinessPartnerResponse.prototype.setRecordcount = function(value) {
+proto.data.ListBusinessPartnerResponse.prototype.setRecordCount = function(value) {
   return jspb.Message.setProto3IntField(this, 1, value);
 };
 
 
 /**
- * repeated BusinessPartner businessPartners = 2;
+ * repeated BusinessPartner business_partners = 2;
  * @return {!Array<!proto.data.BusinessPartner>}
  */
-proto.data.ListBusinessPartnerResponse.prototype.getBusinesspartnersList = function() {
+proto.data.ListBusinessPartnerResponse.prototype.getBusinessPartnersList = function() {
   return /** @type{!Array<!proto.data.BusinessPartner>} */ (
     jspb.Message.getRepeatedWrapperField(this, proto.data.BusinessPartner, 2));
 };
@@ -1022,7 +1022,7 @@ proto.data.ListBusinessPartnerResponse.prototype.getBusinesspartnersList = funct
  * @param {!Array<!proto.data.BusinessPartner>} value
  * @return {!proto.data.ListBusinessPartnerResponse} returns this
 */
-proto.data.ListBusinessPartnerResponse.prototype.setBusinesspartnersList = function(value) {
+proto.data.ListBusinessPartnerResponse.prototype.setBusinessPartnersList = function(value) {
   return jspb.Message.setRepeatedWrapperField(this, 2, value);
 };
 
@@ -1032,7 +1032,7 @@ proto.data.ListBusinessPartnerResponse.prototype.setBusinesspartnersList = funct
  * @param {number=} opt_index
  * @return {!proto.data.BusinessPartner}
  */
-proto.data.ListBusinessPartnerResponse.prototype.addBusinesspartners = function(opt_value, opt_index) {
+proto.data.ListBusinessPartnerResponse.prototype.addBusinessPartners = function(opt_value, opt_index) {
   return jspb.Message.addToRepeatedWrapperField(this, 2, opt_value, proto.data.BusinessPartner, opt_index);
 };
 
@@ -1041,8 +1041,8 @@ proto.data.ListBusinessPartnerResponse.prototype.addBusinesspartners = function(
  * Clears the list making it empty but non-null.
  * @return {!proto.data.ListBusinessPartnerResponse} returns this
  */
-proto.data.ListBusinessPartnerResponse.prototype.clearBusinesspartnersList = function() {
-  return this.setBusinesspartnersList([]);
+proto.data.ListBusinessPartnerResponse.prototype.clearBusinessPartnersList = function() {
+  return this.setBusinessPartnersList([]);
 };
 
 
@@ -1096,13 +1096,13 @@ proto.data.ListBusinessPartnerRequest.prototype.toObject = function(opt_includeI
  */
 proto.data.ListBusinessPartnerRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    clientrequest: (f = msg.getClientrequest()) && proto_client_pb.ClientRequest.toObject(includeInstance, f),
-    searchvalue: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    clientRequest: (f = msg.getClientRequest()) && proto_client_pb.ClientRequest.toObject(includeInstance, f),
+    searchValue: jspb.Message.getFieldWithDefault(msg, 2, ""),
     value: jspb.Message.getFieldWithDefault(msg, 3, ""),
     name: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    contactname: jspb.Message.getFieldWithDefault(msg, 6, ""),
+    contactName: jspb.Message.getFieldWithDefault(msg, 6, ""),
     email: jspb.Message.getFieldWithDefault(msg, 7, ""),
-    postalcode: jspb.Message.getFieldWithDefault(msg, 8, ""),
+    postalCode: jspb.Message.getFieldWithDefault(msg, 8, ""),
     phone: jspb.Message.getFieldWithDefault(msg, 9, ""),
     criteria: (f = msg.getCriteria()) && proto_base_data_type_pb.Criteria.toObject(includeInstance, f),
     pageSize: jspb.Message.getFieldWithDefault(msg, 11, 0),
@@ -1146,11 +1146,11 @@ proto.data.ListBusinessPartnerRequest.deserializeBinaryFromReader = function(msg
     case 1:
       var value = new proto_client_pb.ClientRequest;
       reader.readMessage(value,proto_client_pb.ClientRequest.deserializeBinaryFromReader);
-      msg.setClientrequest(value);
+      msg.setClientRequest(value);
       break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
-      msg.setSearchvalue(value);
+      msg.setSearchValue(value);
       break;
     case 3:
       var value = /** @type {string} */ (reader.readString());
@@ -1162,7 +1162,7 @@ proto.data.ListBusinessPartnerRequest.deserializeBinaryFromReader = function(msg
       break;
     case 6:
       var value = /** @type {string} */ (reader.readString());
-      msg.setContactname(value);
+      msg.setContactName(value);
       break;
     case 7:
       var value = /** @type {string} */ (reader.readString());
@@ -1170,7 +1170,7 @@ proto.data.ListBusinessPartnerRequest.deserializeBinaryFromReader = function(msg
       break;
     case 8:
       var value = /** @type {string} */ (reader.readString());
-      msg.setPostalcode(value);
+      msg.setPostalCode(value);
       break;
     case 9:
       var value = /** @type {string} */ (reader.readString());
@@ -1218,7 +1218,7 @@ proto.data.ListBusinessPartnerRequest.prototype.serializeBinary = function() {
  */
 proto.data.ListBusinessPartnerRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getClientrequest();
+  f = message.getClientRequest();
   if (f != null) {
     writer.writeMessage(
       1,
@@ -1226,7 +1226,7 @@ proto.data.ListBusinessPartnerRequest.serializeBinaryToWriter = function(message
       proto_client_pb.ClientRequest.serializeBinaryToWriter
     );
   }
-  f = message.getSearchvalue();
+  f = message.getSearchValue();
   if (f.length > 0) {
     writer.writeString(
       2,
@@ -1247,7 +1247,7 @@ proto.data.ListBusinessPartnerRequest.serializeBinaryToWriter = function(message
       f
     );
   }
-  f = message.getContactname();
+  f = message.getContactName();
   if (f.length > 0) {
     writer.writeString(
       6,
@@ -1261,7 +1261,7 @@ proto.data.ListBusinessPartnerRequest.serializeBinaryToWriter = function(message
       f
     );
   }
-  f = message.getPostalcode();
+  f = message.getPostalCode();
   if (f.length > 0) {
     writer.writeString(
       8,
@@ -1301,10 +1301,10 @@ proto.data.ListBusinessPartnerRequest.serializeBinaryToWriter = function(message
 
 
 /**
- * optional ClientRequest clientRequest = 1;
+ * optional ClientRequest client_request = 1;
  * @return {?proto.data.ClientRequest}
  */
-proto.data.ListBusinessPartnerRequest.prototype.getClientrequest = function() {
+proto.data.ListBusinessPartnerRequest.prototype.getClientRequest = function() {
   return /** @type{?proto.data.ClientRequest} */ (
     jspb.Message.getWrapperField(this, proto_client_pb.ClientRequest, 1));
 };
@@ -1314,7 +1314,7 @@ proto.data.ListBusinessPartnerRequest.prototype.getClientrequest = function() {
  * @param {?proto.data.ClientRequest|undefined} value
  * @return {!proto.data.ListBusinessPartnerRequest} returns this
 */
-proto.data.ListBusinessPartnerRequest.prototype.setClientrequest = function(value) {
+proto.data.ListBusinessPartnerRequest.prototype.setClientRequest = function(value) {
   return jspb.Message.setWrapperField(this, 1, value);
 };
 
@@ -1323,8 +1323,8 @@ proto.data.ListBusinessPartnerRequest.prototype.setClientrequest = function(valu
  * Clears the message field making it undefined.
  * @return {!proto.data.ListBusinessPartnerRequest} returns this
  */
-proto.data.ListBusinessPartnerRequest.prototype.clearClientrequest = function() {
-  return this.setClientrequest(undefined);
+proto.data.ListBusinessPartnerRequest.prototype.clearClientRequest = function() {
+  return this.setClientRequest(undefined);
 };
 
 
@@ -1332,16 +1332,16 @@ proto.data.ListBusinessPartnerRequest.prototype.clearClientrequest = function() 
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.data.ListBusinessPartnerRequest.prototype.hasClientrequest = function() {
+proto.data.ListBusinessPartnerRequest.prototype.hasClientRequest = function() {
   return jspb.Message.getField(this, 1) != null;
 };
 
 
 /**
- * optional string searchValue = 2;
+ * optional string search_value = 2;
  * @return {string}
  */
-proto.data.ListBusinessPartnerRequest.prototype.getSearchvalue = function() {
+proto.data.ListBusinessPartnerRequest.prototype.getSearchValue = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
@@ -1350,7 +1350,7 @@ proto.data.ListBusinessPartnerRequest.prototype.getSearchvalue = function() {
  * @param {string} value
  * @return {!proto.data.ListBusinessPartnerRequest} returns this
  */
-proto.data.ListBusinessPartnerRequest.prototype.setSearchvalue = function(value) {
+proto.data.ListBusinessPartnerRequest.prototype.setSearchValue = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
 };
 
@@ -1392,10 +1392,10 @@ proto.data.ListBusinessPartnerRequest.prototype.setName = function(value) {
 
 
 /**
- * optional string contactName = 6;
+ * optional string contact_name = 6;
  * @return {string}
  */
-proto.data.ListBusinessPartnerRequest.prototype.getContactname = function() {
+proto.data.ListBusinessPartnerRequest.prototype.getContactName = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
 };
 
@@ -1404,13 +1404,13 @@ proto.data.ListBusinessPartnerRequest.prototype.getContactname = function() {
  * @param {string} value
  * @return {!proto.data.ListBusinessPartnerRequest} returns this
  */
-proto.data.ListBusinessPartnerRequest.prototype.setContactname = function(value) {
+proto.data.ListBusinessPartnerRequest.prototype.setContactName = function(value) {
   return jspb.Message.setProto3StringField(this, 6, value);
 };
 
 
 /**
- * optional string eMail = 7;
+ * optional string email = 7;
  * @return {string}
  */
 proto.data.ListBusinessPartnerRequest.prototype.getEmail = function() {
@@ -1428,10 +1428,10 @@ proto.data.ListBusinessPartnerRequest.prototype.setEmail = function(value) {
 
 
 /**
- * optional string postalCode = 8;
+ * optional string postal_code = 8;
  * @return {string}
  */
-proto.data.ListBusinessPartnerRequest.prototype.getPostalcode = function() {
+proto.data.ListBusinessPartnerRequest.prototype.getPostalCode = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 8, ""));
 };
 
@@ -1440,7 +1440,7 @@ proto.data.ListBusinessPartnerRequest.prototype.getPostalcode = function() {
  * @param {string} value
  * @return {!proto.data.ListBusinessPartnerRequest} returns this
  */
-proto.data.ListBusinessPartnerRequest.prototype.setPostalcode = function(value) {
+proto.data.ListBusinessPartnerRequest.prototype.setPostalCode = function(value) {
   return jspb.Message.setProto3StringField(this, 8, value);
 };
 
@@ -1568,13 +1568,13 @@ proto.data.GetBusinessPartnerRequest.prototype.toObject = function(opt_includeIn
  */
 proto.data.GetBusinessPartnerRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    clientrequest: (f = msg.getClientrequest()) && proto_client_pb.ClientRequest.toObject(includeInstance, f),
-    searchvalue: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    clientRequest: (f = msg.getClientRequest()) && proto_client_pb.ClientRequest.toObject(includeInstance, f),
+    searchValue: jspb.Message.getFieldWithDefault(msg, 2, ""),
     value: jspb.Message.getFieldWithDefault(msg, 3, ""),
     name: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    contactname: jspb.Message.getFieldWithDefault(msg, 6, ""),
+    contactName: jspb.Message.getFieldWithDefault(msg, 6, ""),
     email: jspb.Message.getFieldWithDefault(msg, 7, ""),
-    postalcode: jspb.Message.getFieldWithDefault(msg, 8, ""),
+    postalCode: jspb.Message.getFieldWithDefault(msg, 8, ""),
     phone: jspb.Message.getFieldWithDefault(msg, 9, ""),
     criteria: (f = msg.getCriteria()) && proto_base_data_type_pb.Criteria.toObject(includeInstance, f)
   };
@@ -1616,11 +1616,11 @@ proto.data.GetBusinessPartnerRequest.deserializeBinaryFromReader = function(msg,
     case 1:
       var value = new proto_client_pb.ClientRequest;
       reader.readMessage(value,proto_client_pb.ClientRequest.deserializeBinaryFromReader);
-      msg.setClientrequest(value);
+      msg.setClientRequest(value);
       break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
-      msg.setSearchvalue(value);
+      msg.setSearchValue(value);
       break;
     case 3:
       var value = /** @type {string} */ (reader.readString());
@@ -1632,7 +1632,7 @@ proto.data.GetBusinessPartnerRequest.deserializeBinaryFromReader = function(msg,
       break;
     case 6:
       var value = /** @type {string} */ (reader.readString());
-      msg.setContactname(value);
+      msg.setContactName(value);
       break;
     case 7:
       var value = /** @type {string} */ (reader.readString());
@@ -1640,7 +1640,7 @@ proto.data.GetBusinessPartnerRequest.deserializeBinaryFromReader = function(msg,
       break;
     case 8:
       var value = /** @type {string} */ (reader.readString());
-      msg.setPostalcode(value);
+      msg.setPostalCode(value);
       break;
     case 9:
       var value = /** @type {string} */ (reader.readString());
@@ -1680,7 +1680,7 @@ proto.data.GetBusinessPartnerRequest.prototype.serializeBinary = function() {
  */
 proto.data.GetBusinessPartnerRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getClientrequest();
+  f = message.getClientRequest();
   if (f != null) {
     writer.writeMessage(
       1,
@@ -1688,7 +1688,7 @@ proto.data.GetBusinessPartnerRequest.serializeBinaryToWriter = function(message,
       proto_client_pb.ClientRequest.serializeBinaryToWriter
     );
   }
-  f = message.getSearchvalue();
+  f = message.getSearchValue();
   if (f.length > 0) {
     writer.writeString(
       2,
@@ -1709,7 +1709,7 @@ proto.data.GetBusinessPartnerRequest.serializeBinaryToWriter = function(message,
       f
     );
   }
-  f = message.getContactname();
+  f = message.getContactName();
   if (f.length > 0) {
     writer.writeString(
       6,
@@ -1723,7 +1723,7 @@ proto.data.GetBusinessPartnerRequest.serializeBinaryToWriter = function(message,
       f
     );
   }
-  f = message.getPostalcode();
+  f = message.getPostalCode();
   if (f.length > 0) {
     writer.writeString(
       8,
@@ -1749,10 +1749,10 @@ proto.data.GetBusinessPartnerRequest.serializeBinaryToWriter = function(message,
 
 
 /**
- * optional ClientRequest clientRequest = 1;
+ * optional ClientRequest client_request = 1;
  * @return {?proto.data.ClientRequest}
  */
-proto.data.GetBusinessPartnerRequest.prototype.getClientrequest = function() {
+proto.data.GetBusinessPartnerRequest.prototype.getClientRequest = function() {
   return /** @type{?proto.data.ClientRequest} */ (
     jspb.Message.getWrapperField(this, proto_client_pb.ClientRequest, 1));
 };
@@ -1762,7 +1762,7 @@ proto.data.GetBusinessPartnerRequest.prototype.getClientrequest = function() {
  * @param {?proto.data.ClientRequest|undefined} value
  * @return {!proto.data.GetBusinessPartnerRequest} returns this
 */
-proto.data.GetBusinessPartnerRequest.prototype.setClientrequest = function(value) {
+proto.data.GetBusinessPartnerRequest.prototype.setClientRequest = function(value) {
   return jspb.Message.setWrapperField(this, 1, value);
 };
 
@@ -1771,8 +1771,8 @@ proto.data.GetBusinessPartnerRequest.prototype.setClientrequest = function(value
  * Clears the message field making it undefined.
  * @return {!proto.data.GetBusinessPartnerRequest} returns this
  */
-proto.data.GetBusinessPartnerRequest.prototype.clearClientrequest = function() {
-  return this.setClientrequest(undefined);
+proto.data.GetBusinessPartnerRequest.prototype.clearClientRequest = function() {
+  return this.setClientRequest(undefined);
 };
 
 
@@ -1780,16 +1780,16 @@ proto.data.GetBusinessPartnerRequest.prototype.clearClientrequest = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.data.GetBusinessPartnerRequest.prototype.hasClientrequest = function() {
+proto.data.GetBusinessPartnerRequest.prototype.hasClientRequest = function() {
   return jspb.Message.getField(this, 1) != null;
 };
 
 
 /**
- * optional string searchValue = 2;
+ * optional string search_value = 2;
  * @return {string}
  */
-proto.data.GetBusinessPartnerRequest.prototype.getSearchvalue = function() {
+proto.data.GetBusinessPartnerRequest.prototype.getSearchValue = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
@@ -1798,7 +1798,7 @@ proto.data.GetBusinessPartnerRequest.prototype.getSearchvalue = function() {
  * @param {string} value
  * @return {!proto.data.GetBusinessPartnerRequest} returns this
  */
-proto.data.GetBusinessPartnerRequest.prototype.setSearchvalue = function(value) {
+proto.data.GetBusinessPartnerRequest.prototype.setSearchValue = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
 };
 
@@ -1840,10 +1840,10 @@ proto.data.GetBusinessPartnerRequest.prototype.setName = function(value) {
 
 
 /**
- * optional string contactName = 6;
+ * optional string contact_name = 6;
  * @return {string}
  */
-proto.data.GetBusinessPartnerRequest.prototype.getContactname = function() {
+proto.data.GetBusinessPartnerRequest.prototype.getContactName = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
 };
 
@@ -1852,13 +1852,13 @@ proto.data.GetBusinessPartnerRequest.prototype.getContactname = function() {
  * @param {string} value
  * @return {!proto.data.GetBusinessPartnerRequest} returns this
  */
-proto.data.GetBusinessPartnerRequest.prototype.setContactname = function(value) {
+proto.data.GetBusinessPartnerRequest.prototype.setContactName = function(value) {
   return jspb.Message.setProto3StringField(this, 6, value);
 };
 
 
 /**
- * optional string eMail = 7;
+ * optional string email = 7;
  * @return {string}
  */
 proto.data.GetBusinessPartnerRequest.prototype.getEmail = function() {
@@ -1876,10 +1876,10 @@ proto.data.GetBusinessPartnerRequest.prototype.setEmail = function(value) {
 
 
 /**
- * optional string postalCode = 8;
+ * optional string postal_code = 8;
  * @return {string}
  */
-proto.data.GetBusinessPartnerRequest.prototype.getPostalcode = function() {
+proto.data.GetBusinessPartnerRequest.prototype.getPostalCode = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 8, ""));
 };
 
@@ -1888,7 +1888,7 @@ proto.data.GetBusinessPartnerRequest.prototype.getPostalcode = function() {
  * @param {string} value
  * @return {!proto.data.GetBusinessPartnerRequest} returns this
  */
-proto.data.GetBusinessPartnerRequest.prototype.setPostalcode = function(value) {
+proto.data.GetBusinessPartnerRequest.prototype.setPostalCode = function(value) {
   return jspb.Message.setProto3StringField(this, 8, value);
 };
 
@@ -1980,29 +1980,29 @@ proto.data.CreateBusinessPartnerRequest.prototype.toObject = function(opt_includ
  */
 proto.data.CreateBusinessPartnerRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    clientrequest: (f = msg.getClientrequest()) && proto_client_pb.ClientRequest.toObject(includeInstance, f),
+    clientRequest: (f = msg.getClientRequest()) && proto_client_pb.ClientRequest.toObject(includeInstance, f),
     value: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    taxid: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    taxId: jspb.Message.getFieldWithDefault(msg, 3, ""),
     duns: jspb.Message.getFieldWithDefault(msg, 4, ""),
     naics: jspb.Message.getFieldWithDefault(msg, 5, ""),
     name: jspb.Message.getFieldWithDefault(msg, 6, ""),
-    lastname: jspb.Message.getFieldWithDefault(msg, 7, ""),
+    lastName: jspb.Message.getFieldWithDefault(msg, 7, ""),
     description: jspb.Message.getFieldWithDefault(msg, 8, ""),
-    contactname: jspb.Message.getFieldWithDefault(msg, 9, ""),
+    contactName: jspb.Message.getFieldWithDefault(msg, 9, ""),
     email: jspb.Message.getFieldWithDefault(msg, 10, ""),
     phone: jspb.Message.getFieldWithDefault(msg, 11, ""),
-    businesspartnergroupuuid: jspb.Message.getFieldWithDefault(msg, 12, ""),
+    businessPartnerGroupUuid: jspb.Message.getFieldWithDefault(msg, 12, ""),
     address1: jspb.Message.getFieldWithDefault(msg, 13, ""),
     address2: jspb.Message.getFieldWithDefault(msg, 14, ""),
     address3: jspb.Message.getFieldWithDefault(msg, 15, ""),
     address4: jspb.Message.getFieldWithDefault(msg, 16, ""),
-    cityuuid: jspb.Message.getFieldWithDefault(msg, 17, ""),
-    cityname: jspb.Message.getFieldWithDefault(msg, 18, ""),
-    postalcode: jspb.Message.getFieldWithDefault(msg, 19, ""),
-    regionuuid: jspb.Message.getFieldWithDefault(msg, 20, ""),
-    regionname: jspb.Message.getFieldWithDefault(msg, 21, ""),
-    countryuuid: jspb.Message.getFieldWithDefault(msg, 22, ""),
-    posuuid: jspb.Message.getFieldWithDefault(msg, 23, "")
+    cityUuid: jspb.Message.getFieldWithDefault(msg, 17, ""),
+    cityName: jspb.Message.getFieldWithDefault(msg, 18, ""),
+    postalCode: jspb.Message.getFieldWithDefault(msg, 19, ""),
+    regionUuid: jspb.Message.getFieldWithDefault(msg, 20, ""),
+    regionName: jspb.Message.getFieldWithDefault(msg, 21, ""),
+    countryUuid: jspb.Message.getFieldWithDefault(msg, 22, ""),
+    posUuid: jspb.Message.getFieldWithDefault(msg, 23, "")
   };
 
   if (includeInstance) {
@@ -2042,7 +2042,7 @@ proto.data.CreateBusinessPartnerRequest.deserializeBinaryFromReader = function(m
     case 1:
       var value = new proto_client_pb.ClientRequest;
       reader.readMessage(value,proto_client_pb.ClientRequest.deserializeBinaryFromReader);
-      msg.setClientrequest(value);
+      msg.setClientRequest(value);
       break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
@@ -2050,7 +2050,7 @@ proto.data.CreateBusinessPartnerRequest.deserializeBinaryFromReader = function(m
       break;
     case 3:
       var value = /** @type {string} */ (reader.readString());
-      msg.setTaxid(value);
+      msg.setTaxId(value);
       break;
     case 4:
       var value = /** @type {string} */ (reader.readString());
@@ -2066,7 +2066,7 @@ proto.data.CreateBusinessPartnerRequest.deserializeBinaryFromReader = function(m
       break;
     case 7:
       var value = /** @type {string} */ (reader.readString());
-      msg.setLastname(value);
+      msg.setLastName(value);
       break;
     case 8:
       var value = /** @type {string} */ (reader.readString());
@@ -2074,7 +2074,7 @@ proto.data.CreateBusinessPartnerRequest.deserializeBinaryFromReader = function(m
       break;
     case 9:
       var value = /** @type {string} */ (reader.readString());
-      msg.setContactname(value);
+      msg.setContactName(value);
       break;
     case 10:
       var value = /** @type {string} */ (reader.readString());
@@ -2086,7 +2086,7 @@ proto.data.CreateBusinessPartnerRequest.deserializeBinaryFromReader = function(m
       break;
     case 12:
       var value = /** @type {string} */ (reader.readString());
-      msg.setBusinesspartnergroupuuid(value);
+      msg.setBusinessPartnerGroupUuid(value);
       break;
     case 13:
       var value = /** @type {string} */ (reader.readString());
@@ -2106,31 +2106,31 @@ proto.data.CreateBusinessPartnerRequest.deserializeBinaryFromReader = function(m
       break;
     case 17:
       var value = /** @type {string} */ (reader.readString());
-      msg.setCityuuid(value);
+      msg.setCityUuid(value);
       break;
     case 18:
       var value = /** @type {string} */ (reader.readString());
-      msg.setCityname(value);
+      msg.setCityName(value);
       break;
     case 19:
       var value = /** @type {string} */ (reader.readString());
-      msg.setPostalcode(value);
+      msg.setPostalCode(value);
       break;
     case 20:
       var value = /** @type {string} */ (reader.readString());
-      msg.setRegionuuid(value);
+      msg.setRegionUuid(value);
       break;
     case 21:
       var value = /** @type {string} */ (reader.readString());
-      msg.setRegionname(value);
+      msg.setRegionName(value);
       break;
     case 22:
       var value = /** @type {string} */ (reader.readString());
-      msg.setCountryuuid(value);
+      msg.setCountryUuid(value);
       break;
     case 23:
       var value = /** @type {string} */ (reader.readString());
-      msg.setPosuuid(value);
+      msg.setPosUuid(value);
       break;
     default:
       reader.skipField();
@@ -2161,7 +2161,7 @@ proto.data.CreateBusinessPartnerRequest.prototype.serializeBinary = function() {
  */
 proto.data.CreateBusinessPartnerRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getClientrequest();
+  f = message.getClientRequest();
   if (f != null) {
     writer.writeMessage(
       1,
@@ -2176,7 +2176,7 @@ proto.data.CreateBusinessPartnerRequest.serializeBinaryToWriter = function(messa
       f
     );
   }
-  f = message.getTaxid();
+  f = message.getTaxId();
   if (f.length > 0) {
     writer.writeString(
       3,
@@ -2204,7 +2204,7 @@ proto.data.CreateBusinessPartnerRequest.serializeBinaryToWriter = function(messa
       f
     );
   }
-  f = message.getLastname();
+  f = message.getLastName();
   if (f.length > 0) {
     writer.writeString(
       7,
@@ -2218,7 +2218,7 @@ proto.data.CreateBusinessPartnerRequest.serializeBinaryToWriter = function(messa
       f
     );
   }
-  f = message.getContactname();
+  f = message.getContactName();
   if (f.length > 0) {
     writer.writeString(
       9,
@@ -2239,7 +2239,7 @@ proto.data.CreateBusinessPartnerRequest.serializeBinaryToWriter = function(messa
       f
     );
   }
-  f = message.getBusinesspartnergroupuuid();
+  f = message.getBusinessPartnerGroupUuid();
   if (f.length > 0) {
     writer.writeString(
       12,
@@ -2274,49 +2274,49 @@ proto.data.CreateBusinessPartnerRequest.serializeBinaryToWriter = function(messa
       f
     );
   }
-  f = message.getCityuuid();
+  f = message.getCityUuid();
   if (f.length > 0) {
     writer.writeString(
       17,
       f
     );
   }
-  f = message.getCityname();
+  f = message.getCityName();
   if (f.length > 0) {
     writer.writeString(
       18,
       f
     );
   }
-  f = message.getPostalcode();
+  f = message.getPostalCode();
   if (f.length > 0) {
     writer.writeString(
       19,
       f
     );
   }
-  f = message.getRegionuuid();
+  f = message.getRegionUuid();
   if (f.length > 0) {
     writer.writeString(
       20,
       f
     );
   }
-  f = message.getRegionname();
+  f = message.getRegionName();
   if (f.length > 0) {
     writer.writeString(
       21,
       f
     );
   }
-  f = message.getCountryuuid();
+  f = message.getCountryUuid();
   if (f.length > 0) {
     writer.writeString(
       22,
       f
     );
   }
-  f = message.getPosuuid();
+  f = message.getPosUuid();
   if (f.length > 0) {
     writer.writeString(
       23,
@@ -2327,10 +2327,10 @@ proto.data.CreateBusinessPartnerRequest.serializeBinaryToWriter = function(messa
 
 
 /**
- * optional ClientRequest clientRequest = 1;
+ * optional ClientRequest client_request = 1;
  * @return {?proto.data.ClientRequest}
  */
-proto.data.CreateBusinessPartnerRequest.prototype.getClientrequest = function() {
+proto.data.CreateBusinessPartnerRequest.prototype.getClientRequest = function() {
   return /** @type{?proto.data.ClientRequest} */ (
     jspb.Message.getWrapperField(this, proto_client_pb.ClientRequest, 1));
 };
@@ -2340,7 +2340,7 @@ proto.data.CreateBusinessPartnerRequest.prototype.getClientrequest = function() 
  * @param {?proto.data.ClientRequest|undefined} value
  * @return {!proto.data.CreateBusinessPartnerRequest} returns this
 */
-proto.data.CreateBusinessPartnerRequest.prototype.setClientrequest = function(value) {
+proto.data.CreateBusinessPartnerRequest.prototype.setClientRequest = function(value) {
   return jspb.Message.setWrapperField(this, 1, value);
 };
 
@@ -2349,8 +2349,8 @@ proto.data.CreateBusinessPartnerRequest.prototype.setClientrequest = function(va
  * Clears the message field making it undefined.
  * @return {!proto.data.CreateBusinessPartnerRequest} returns this
  */
-proto.data.CreateBusinessPartnerRequest.prototype.clearClientrequest = function() {
-  return this.setClientrequest(undefined);
+proto.data.CreateBusinessPartnerRequest.prototype.clearClientRequest = function() {
+  return this.setClientRequest(undefined);
 };
 
 
@@ -2358,7 +2358,7 @@ proto.data.CreateBusinessPartnerRequest.prototype.clearClientrequest = function(
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.data.CreateBusinessPartnerRequest.prototype.hasClientrequest = function() {
+proto.data.CreateBusinessPartnerRequest.prototype.hasClientRequest = function() {
   return jspb.Message.getField(this, 1) != null;
 };
 
@@ -2382,10 +2382,10 @@ proto.data.CreateBusinessPartnerRequest.prototype.setValue = function(value) {
 
 
 /**
- * optional string taxId = 3;
+ * optional string tax_id = 3;
  * @return {string}
  */
-proto.data.CreateBusinessPartnerRequest.prototype.getTaxid = function() {
+proto.data.CreateBusinessPartnerRequest.prototype.getTaxId = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
 
@@ -2394,7 +2394,7 @@ proto.data.CreateBusinessPartnerRequest.prototype.getTaxid = function() {
  * @param {string} value
  * @return {!proto.data.CreateBusinessPartnerRequest} returns this
  */
-proto.data.CreateBusinessPartnerRequest.prototype.setTaxid = function(value) {
+proto.data.CreateBusinessPartnerRequest.prototype.setTaxId = function(value) {
   return jspb.Message.setProto3StringField(this, 3, value);
 };
 
@@ -2454,10 +2454,10 @@ proto.data.CreateBusinessPartnerRequest.prototype.setName = function(value) {
 
 
 /**
- * optional string lastName = 7;
+ * optional string last_name = 7;
  * @return {string}
  */
-proto.data.CreateBusinessPartnerRequest.prototype.getLastname = function() {
+proto.data.CreateBusinessPartnerRequest.prototype.getLastName = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 7, ""));
 };
 
@@ -2466,7 +2466,7 @@ proto.data.CreateBusinessPartnerRequest.prototype.getLastname = function() {
  * @param {string} value
  * @return {!proto.data.CreateBusinessPartnerRequest} returns this
  */
-proto.data.CreateBusinessPartnerRequest.prototype.setLastname = function(value) {
+proto.data.CreateBusinessPartnerRequest.prototype.setLastName = function(value) {
   return jspb.Message.setProto3StringField(this, 7, value);
 };
 
@@ -2490,10 +2490,10 @@ proto.data.CreateBusinessPartnerRequest.prototype.setDescription = function(valu
 
 
 /**
- * optional string contactName = 9;
+ * optional string contact_name = 9;
  * @return {string}
  */
-proto.data.CreateBusinessPartnerRequest.prototype.getContactname = function() {
+proto.data.CreateBusinessPartnerRequest.prototype.getContactName = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 9, ""));
 };
 
@@ -2502,13 +2502,13 @@ proto.data.CreateBusinessPartnerRequest.prototype.getContactname = function() {
  * @param {string} value
  * @return {!proto.data.CreateBusinessPartnerRequest} returns this
  */
-proto.data.CreateBusinessPartnerRequest.prototype.setContactname = function(value) {
+proto.data.CreateBusinessPartnerRequest.prototype.setContactName = function(value) {
   return jspb.Message.setProto3StringField(this, 9, value);
 };
 
 
 /**
- * optional string eMail = 10;
+ * optional string email = 10;
  * @return {string}
  */
 proto.data.CreateBusinessPartnerRequest.prototype.getEmail = function() {
@@ -2544,10 +2544,10 @@ proto.data.CreateBusinessPartnerRequest.prototype.setPhone = function(value) {
 
 
 /**
- * optional string businessPartnerGroupUuid = 12;
+ * optional string business_partner_group_uuid = 12;
  * @return {string}
  */
-proto.data.CreateBusinessPartnerRequest.prototype.getBusinesspartnergroupuuid = function() {
+proto.data.CreateBusinessPartnerRequest.prototype.getBusinessPartnerGroupUuid = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 12, ""));
 };
 
@@ -2556,7 +2556,7 @@ proto.data.CreateBusinessPartnerRequest.prototype.getBusinesspartnergroupuuid = 
  * @param {string} value
  * @return {!proto.data.CreateBusinessPartnerRequest} returns this
  */
-proto.data.CreateBusinessPartnerRequest.prototype.setBusinesspartnergroupuuid = function(value) {
+proto.data.CreateBusinessPartnerRequest.prototype.setBusinessPartnerGroupUuid = function(value) {
   return jspb.Message.setProto3StringField(this, 12, value);
 };
 
@@ -2634,10 +2634,10 @@ proto.data.CreateBusinessPartnerRequest.prototype.setAddress4 = function(value) 
 
 
 /**
- * optional string cityUuid = 17;
+ * optional string city_uuid = 17;
  * @return {string}
  */
-proto.data.CreateBusinessPartnerRequest.prototype.getCityuuid = function() {
+proto.data.CreateBusinessPartnerRequest.prototype.getCityUuid = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 17, ""));
 };
 
@@ -2646,16 +2646,16 @@ proto.data.CreateBusinessPartnerRequest.prototype.getCityuuid = function() {
  * @param {string} value
  * @return {!proto.data.CreateBusinessPartnerRequest} returns this
  */
-proto.data.CreateBusinessPartnerRequest.prototype.setCityuuid = function(value) {
+proto.data.CreateBusinessPartnerRequest.prototype.setCityUuid = function(value) {
   return jspb.Message.setProto3StringField(this, 17, value);
 };
 
 
 /**
- * optional string cityName = 18;
+ * optional string city_name = 18;
  * @return {string}
  */
-proto.data.CreateBusinessPartnerRequest.prototype.getCityname = function() {
+proto.data.CreateBusinessPartnerRequest.prototype.getCityName = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 18, ""));
 };
 
@@ -2664,16 +2664,16 @@ proto.data.CreateBusinessPartnerRequest.prototype.getCityname = function() {
  * @param {string} value
  * @return {!proto.data.CreateBusinessPartnerRequest} returns this
  */
-proto.data.CreateBusinessPartnerRequest.prototype.setCityname = function(value) {
+proto.data.CreateBusinessPartnerRequest.prototype.setCityName = function(value) {
   return jspb.Message.setProto3StringField(this, 18, value);
 };
 
 
 /**
- * optional string postalCode = 19;
+ * optional string postal_code = 19;
  * @return {string}
  */
-proto.data.CreateBusinessPartnerRequest.prototype.getPostalcode = function() {
+proto.data.CreateBusinessPartnerRequest.prototype.getPostalCode = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 19, ""));
 };
 
@@ -2682,16 +2682,16 @@ proto.data.CreateBusinessPartnerRequest.prototype.getPostalcode = function() {
  * @param {string} value
  * @return {!proto.data.CreateBusinessPartnerRequest} returns this
  */
-proto.data.CreateBusinessPartnerRequest.prototype.setPostalcode = function(value) {
+proto.data.CreateBusinessPartnerRequest.prototype.setPostalCode = function(value) {
   return jspb.Message.setProto3StringField(this, 19, value);
 };
 
 
 /**
- * optional string regionUuid = 20;
+ * optional string region_uuid = 20;
  * @return {string}
  */
-proto.data.CreateBusinessPartnerRequest.prototype.getRegionuuid = function() {
+proto.data.CreateBusinessPartnerRequest.prototype.getRegionUuid = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 20, ""));
 };
 
@@ -2700,16 +2700,16 @@ proto.data.CreateBusinessPartnerRequest.prototype.getRegionuuid = function() {
  * @param {string} value
  * @return {!proto.data.CreateBusinessPartnerRequest} returns this
  */
-proto.data.CreateBusinessPartnerRequest.prototype.setRegionuuid = function(value) {
+proto.data.CreateBusinessPartnerRequest.prototype.setRegionUuid = function(value) {
   return jspb.Message.setProto3StringField(this, 20, value);
 };
 
 
 /**
- * optional string regionName = 21;
+ * optional string region_name = 21;
  * @return {string}
  */
-proto.data.CreateBusinessPartnerRequest.prototype.getRegionname = function() {
+proto.data.CreateBusinessPartnerRequest.prototype.getRegionName = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 21, ""));
 };
 
@@ -2718,16 +2718,16 @@ proto.data.CreateBusinessPartnerRequest.prototype.getRegionname = function() {
  * @param {string} value
  * @return {!proto.data.CreateBusinessPartnerRequest} returns this
  */
-proto.data.CreateBusinessPartnerRequest.prototype.setRegionname = function(value) {
+proto.data.CreateBusinessPartnerRequest.prototype.setRegionName = function(value) {
   return jspb.Message.setProto3StringField(this, 21, value);
 };
 
 
 /**
- * optional string countryUuid = 22;
+ * optional string country_uuid = 22;
  * @return {string}
  */
-proto.data.CreateBusinessPartnerRequest.prototype.getCountryuuid = function() {
+proto.data.CreateBusinessPartnerRequest.prototype.getCountryUuid = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 22, ""));
 };
 
@@ -2736,16 +2736,16 @@ proto.data.CreateBusinessPartnerRequest.prototype.getCountryuuid = function() {
  * @param {string} value
  * @return {!proto.data.CreateBusinessPartnerRequest} returns this
  */
-proto.data.CreateBusinessPartnerRequest.prototype.setCountryuuid = function(value) {
+proto.data.CreateBusinessPartnerRequest.prototype.setCountryUuid = function(value) {
   return jspb.Message.setProto3StringField(this, 22, value);
 };
 
 
 /**
- * optional string posUuid = 23;
+ * optional string pos_uuid = 23;
  * @return {string}
  */
-proto.data.CreateBusinessPartnerRequest.prototype.getPosuuid = function() {
+proto.data.CreateBusinessPartnerRequest.prototype.getPosUuid = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 23, ""));
 };
 
@@ -2754,7 +2754,7 @@ proto.data.CreateBusinessPartnerRequest.prototype.getPosuuid = function() {
  * @param {string} value
  * @return {!proto.data.CreateBusinessPartnerRequest} returns this
  */
-proto.data.CreateBusinessPartnerRequest.prototype.setPosuuid = function(value) {
+proto.data.CreateBusinessPartnerRequest.prototype.setPosUuid = function(value) {
   return jspb.Message.setProto3StringField(this, 23, value);
 };
 
@@ -2791,7 +2791,7 @@ proto.data.ListLanguagesRequest.prototype.toObject = function(opt_includeInstanc
  */
 proto.data.ListLanguagesRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    clientrequest: (f = msg.getClientrequest()) && proto_client_pb.ClientRequest.toObject(includeInstance, f),
+    clientRequest: (f = msg.getClientRequest()) && proto_client_pb.ClientRequest.toObject(includeInstance, f),
     pageSize: jspb.Message.getFieldWithDefault(msg, 2, 0),
     pageToken: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
@@ -2833,7 +2833,7 @@ proto.data.ListLanguagesRequest.deserializeBinaryFromReader = function(msg, read
     case 1:
       var value = new proto_client_pb.ClientRequest;
       reader.readMessage(value,proto_client_pb.ClientRequest.deserializeBinaryFromReader);
-      msg.setClientrequest(value);
+      msg.setClientRequest(value);
       break;
     case 2:
       var value = /** @type {number} */ (reader.readInt32());
@@ -2872,7 +2872,7 @@ proto.data.ListLanguagesRequest.prototype.serializeBinary = function() {
  */
 proto.data.ListLanguagesRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getClientrequest();
+  f = message.getClientRequest();
   if (f != null) {
     writer.writeMessage(
       1,
@@ -2898,10 +2898,10 @@ proto.data.ListLanguagesRequest.serializeBinaryToWriter = function(message, writ
 
 
 /**
- * optional ClientRequest clientRequest = 1;
+ * optional ClientRequest client_request = 1;
  * @return {?proto.data.ClientRequest}
  */
-proto.data.ListLanguagesRequest.prototype.getClientrequest = function() {
+proto.data.ListLanguagesRequest.prototype.getClientRequest = function() {
   return /** @type{?proto.data.ClientRequest} */ (
     jspb.Message.getWrapperField(this, proto_client_pb.ClientRequest, 1));
 };
@@ -2911,7 +2911,7 @@ proto.data.ListLanguagesRequest.prototype.getClientrequest = function() {
  * @param {?proto.data.ClientRequest|undefined} value
  * @return {!proto.data.ListLanguagesRequest} returns this
 */
-proto.data.ListLanguagesRequest.prototype.setClientrequest = function(value) {
+proto.data.ListLanguagesRequest.prototype.setClientRequest = function(value) {
   return jspb.Message.setWrapperField(this, 1, value);
 };
 
@@ -2920,8 +2920,8 @@ proto.data.ListLanguagesRequest.prototype.setClientrequest = function(value) {
  * Clears the message field making it undefined.
  * @return {!proto.data.ListLanguagesRequest} returns this
  */
-proto.data.ListLanguagesRequest.prototype.clearClientrequest = function() {
-  return this.setClientrequest(undefined);
+proto.data.ListLanguagesRequest.prototype.clearClientRequest = function() {
+  return this.setClientRequest(undefined);
 };
 
 
@@ -2929,7 +2929,7 @@ proto.data.ListLanguagesRequest.prototype.clearClientrequest = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.data.ListLanguagesRequest.prototype.hasClientrequest = function() {
+proto.data.ListLanguagesRequest.prototype.hasClientRequest = function() {
   return jspb.Message.getField(this, 1) != null;
 };
 
@@ -3009,7 +3009,7 @@ proto.data.ListLanguagesResponse.prototype.toObject = function(opt_includeInstan
  */
 proto.data.ListLanguagesResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    recordcount: jspb.Message.getFieldWithDefault(msg, 1, 0),
+    recordCount: jspb.Message.getFieldWithDefault(msg, 1, 0),
     languagesList: jspb.Message.toObjectList(msg.getLanguagesList(),
     proto.data.Language.toObject, includeInstance),
     nextPageToken: jspb.Message.getFieldWithDefault(msg, 3, "")
@@ -3051,7 +3051,7 @@ proto.data.ListLanguagesResponse.deserializeBinaryFromReader = function(msg, rea
     switch (field) {
     case 1:
       var value = /** @type {number} */ (reader.readInt64());
-      msg.setRecordcount(value);
+      msg.setRecordCount(value);
       break;
     case 2:
       var value = new proto.data.Language;
@@ -3091,7 +3091,7 @@ proto.data.ListLanguagesResponse.prototype.serializeBinary = function() {
  */
 proto.data.ListLanguagesResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getRecordcount();
+  f = message.getRecordCount();
   if (f !== 0) {
     writer.writeInt64(
       1,
@@ -3117,10 +3117,10 @@ proto.data.ListLanguagesResponse.serializeBinaryToWriter = function(message, wri
 
 
 /**
- * optional int64 recordCount = 1;
+ * optional int64 record_count = 1;
  * @return {number}
  */
-proto.data.ListLanguagesResponse.prototype.getRecordcount = function() {
+proto.data.ListLanguagesResponse.prototype.getRecordCount = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
 };
 
@@ -3129,7 +3129,7 @@ proto.data.ListLanguagesResponse.prototype.getRecordcount = function() {
  * @param {number} value
  * @return {!proto.data.ListLanguagesResponse} returns this
  */
-proto.data.ListLanguagesResponse.prototype.setRecordcount = function(value) {
+proto.data.ListLanguagesResponse.prototype.setRecordCount = function(value) {
   return jspb.Message.setProto3IntField(this, 1, value);
 };
 
@@ -4003,11 +4003,11 @@ proto.data.GetConversionRateRequest.prototype.toObject = function(opt_includeIns
  */
 proto.data.GetConversionRateRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    clientrequest: (f = msg.getClientrequest()) && proto_client_pb.ClientRequest.toObject(includeInstance, f),
-    conversiontypeuuid: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    currencyfromuuid: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    currencytouuid: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    conversiondate: jspb.Message.getFieldWithDefault(msg, 5, 0)
+    clientRequest: (f = msg.getClientRequest()) && proto_client_pb.ClientRequest.toObject(includeInstance, f),
+    conversionTypeUuid: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    currencyFromUuid: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    currencyToUuid: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    conversionDate: jspb.Message.getFieldWithDefault(msg, 5, 0)
   };
 
   if (includeInstance) {
@@ -4047,23 +4047,23 @@ proto.data.GetConversionRateRequest.deserializeBinaryFromReader = function(msg, 
     case 1:
       var value = new proto_client_pb.ClientRequest;
       reader.readMessage(value,proto_client_pb.ClientRequest.deserializeBinaryFromReader);
-      msg.setClientrequest(value);
+      msg.setClientRequest(value);
       break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
-      msg.setConversiontypeuuid(value);
+      msg.setConversionTypeUuid(value);
       break;
     case 3:
       var value = /** @type {string} */ (reader.readString());
-      msg.setCurrencyfromuuid(value);
+      msg.setCurrencyFromUuid(value);
       break;
     case 4:
       var value = /** @type {string} */ (reader.readString());
-      msg.setCurrencytouuid(value);
+      msg.setCurrencyToUuid(value);
       break;
     case 5:
       var value = /** @type {number} */ (reader.readInt64());
-      msg.setConversiondate(value);
+      msg.setConversionDate(value);
       break;
     default:
       reader.skipField();
@@ -4094,7 +4094,7 @@ proto.data.GetConversionRateRequest.prototype.serializeBinary = function() {
  */
 proto.data.GetConversionRateRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getClientrequest();
+  f = message.getClientRequest();
   if (f != null) {
     writer.writeMessage(
       1,
@@ -4102,28 +4102,28 @@ proto.data.GetConversionRateRequest.serializeBinaryToWriter = function(message, 
       proto_client_pb.ClientRequest.serializeBinaryToWriter
     );
   }
-  f = message.getConversiontypeuuid();
+  f = message.getConversionTypeUuid();
   if (f.length > 0) {
     writer.writeString(
       2,
       f
     );
   }
-  f = message.getCurrencyfromuuid();
+  f = message.getCurrencyFromUuid();
   if (f.length > 0) {
     writer.writeString(
       3,
       f
     );
   }
-  f = message.getCurrencytouuid();
+  f = message.getCurrencyToUuid();
   if (f.length > 0) {
     writer.writeString(
       4,
       f
     );
   }
-  f = message.getConversiondate();
+  f = message.getConversionDate();
   if (f !== 0) {
     writer.writeInt64(
       5,
@@ -4134,10 +4134,10 @@ proto.data.GetConversionRateRequest.serializeBinaryToWriter = function(message, 
 
 
 /**
- * optional ClientRequest clientRequest = 1;
+ * optional ClientRequest client_request = 1;
  * @return {?proto.data.ClientRequest}
  */
-proto.data.GetConversionRateRequest.prototype.getClientrequest = function() {
+proto.data.GetConversionRateRequest.prototype.getClientRequest = function() {
   return /** @type{?proto.data.ClientRequest} */ (
     jspb.Message.getWrapperField(this, proto_client_pb.ClientRequest, 1));
 };
@@ -4147,7 +4147,7 @@ proto.data.GetConversionRateRequest.prototype.getClientrequest = function() {
  * @param {?proto.data.ClientRequest|undefined} value
  * @return {!proto.data.GetConversionRateRequest} returns this
 */
-proto.data.GetConversionRateRequest.prototype.setClientrequest = function(value) {
+proto.data.GetConversionRateRequest.prototype.setClientRequest = function(value) {
   return jspb.Message.setWrapperField(this, 1, value);
 };
 
@@ -4156,8 +4156,8 @@ proto.data.GetConversionRateRequest.prototype.setClientrequest = function(value)
  * Clears the message field making it undefined.
  * @return {!proto.data.GetConversionRateRequest} returns this
  */
-proto.data.GetConversionRateRequest.prototype.clearClientrequest = function() {
-  return this.setClientrequest(undefined);
+proto.data.GetConversionRateRequest.prototype.clearClientRequest = function() {
+  return this.setClientRequest(undefined);
 };
 
 
@@ -4165,16 +4165,16 @@ proto.data.GetConversionRateRequest.prototype.clearClientrequest = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.data.GetConversionRateRequest.prototype.hasClientrequest = function() {
+proto.data.GetConversionRateRequest.prototype.hasClientRequest = function() {
   return jspb.Message.getField(this, 1) != null;
 };
 
 
 /**
- * optional string conversionTypeUuid = 2;
+ * optional string conversion_type_uuid = 2;
  * @return {string}
  */
-proto.data.GetConversionRateRequest.prototype.getConversiontypeuuid = function() {
+proto.data.GetConversionRateRequest.prototype.getConversionTypeUuid = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
@@ -4183,16 +4183,16 @@ proto.data.GetConversionRateRequest.prototype.getConversiontypeuuid = function()
  * @param {string} value
  * @return {!proto.data.GetConversionRateRequest} returns this
  */
-proto.data.GetConversionRateRequest.prototype.setConversiontypeuuid = function(value) {
+proto.data.GetConversionRateRequest.prototype.setConversionTypeUuid = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
 /**
- * optional string currencyFromUuid = 3;
+ * optional string currency_from_uuid = 3;
  * @return {string}
  */
-proto.data.GetConversionRateRequest.prototype.getCurrencyfromuuid = function() {
+proto.data.GetConversionRateRequest.prototype.getCurrencyFromUuid = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
 
@@ -4201,16 +4201,16 @@ proto.data.GetConversionRateRequest.prototype.getCurrencyfromuuid = function() {
  * @param {string} value
  * @return {!proto.data.GetConversionRateRequest} returns this
  */
-proto.data.GetConversionRateRequest.prototype.setCurrencyfromuuid = function(value) {
+proto.data.GetConversionRateRequest.prototype.setCurrencyFromUuid = function(value) {
   return jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
 /**
- * optional string currencyToUuid = 4;
+ * optional string currency_to_uuid = 4;
  * @return {string}
  */
-proto.data.GetConversionRateRequest.prototype.getCurrencytouuid = function() {
+proto.data.GetConversionRateRequest.prototype.getCurrencyToUuid = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
 };
 
@@ -4219,16 +4219,16 @@ proto.data.GetConversionRateRequest.prototype.getCurrencytouuid = function() {
  * @param {string} value
  * @return {!proto.data.GetConversionRateRequest} returns this
  */
-proto.data.GetConversionRateRequest.prototype.setCurrencytouuid = function(value) {
+proto.data.GetConversionRateRequest.prototype.setCurrencyToUuid = function(value) {
   return jspb.Message.setProto3StringField(this, 4, value);
 };
 
 
 /**
- * optional int64 conversionDate = 5;
+ * optional int64 conversion_date = 5;
  * @return {number}
  */
-proto.data.GetConversionRateRequest.prototype.getConversiondate = function() {
+proto.data.GetConversionRateRequest.prototype.getConversionDate = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 5, 0));
 };
 
@@ -4237,7 +4237,7 @@ proto.data.GetConversionRateRequest.prototype.getConversiondate = function() {
  * @param {number} value
  * @return {!proto.data.GetConversionRateRequest} returns this
  */
-proto.data.GetConversionRateRequest.prototype.setConversiondate = function(value) {
+proto.data.GetConversionRateRequest.prototype.setConversionDate = function(value) {
   return jspb.Message.setProto3IntField(this, 5, value);
 };
 
@@ -4279,7 +4279,7 @@ proto.data.Currency.toObject = function(includeInstance, msg) {
     isoCode: jspb.Message.getFieldWithDefault(msg, 3, ""),
     curSymbol: jspb.Message.getFieldWithDefault(msg, 4, ""),
     description: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    stdPrecision: jspb.Message.getFieldWithDefault(msg, 6, 0),
+    standardPrecision: jspb.Message.getFieldWithDefault(msg, 6, 0),
     costingPrecision: jspb.Message.getFieldWithDefault(msg, 7, 0)
   };
 
@@ -4339,7 +4339,7 @@ proto.data.Currency.deserializeBinaryFromReader = function(msg, reader) {
       break;
     case 6:
       var value = /** @type {number} */ (reader.readInt32());
-      msg.setStdPrecision(value);
+      msg.setStandardPrecision(value);
       break;
     case 7:
       var value = /** @type {number} */ (reader.readInt32());
@@ -4409,7 +4409,7 @@ proto.data.Currency.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-  f = message.getStdPrecision();
+  f = message.getStandardPrecision();
   if (f !== 0) {
     writer.writeInt32(
       6,
@@ -4463,7 +4463,7 @@ proto.data.Currency.prototype.setId = function(value) {
 
 
 /**
- * optional string iSO_code = 3;
+ * optional string iso_code = 3;
  * @return {string}
  */
 proto.data.Currency.prototype.getIsoCode = function() {
@@ -4517,10 +4517,10 @@ proto.data.Currency.prototype.setDescription = function(value) {
 
 
 /**
- * optional int32 std_precision = 6;
+ * optional int32 standard_precision = 6;
  * @return {number}
  */
-proto.data.Currency.prototype.getStdPrecision = function() {
+proto.data.Currency.prototype.getStandardPrecision = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 6, 0));
 };
 
@@ -4529,7 +4529,7 @@ proto.data.Currency.prototype.getStdPrecision = function() {
  * @param {number} value
  * @return {!proto.data.Currency} returns this
  */
-proto.data.Currency.prototype.setStdPrecision = function(value) {
+proto.data.Currency.prototype.setStandardPrecision = function(value) {
   return jspb.Message.setProto3IntField(this, 6, value);
 };
 
@@ -4586,13 +4586,13 @@ proto.data.ConversionRate.toObject = function(includeInstance, msg) {
   var f, obj = {
     uuid: jspb.Message.getFieldWithDefault(msg, 1, ""),
     id: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    conversiontypeuuid: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    validfrom: jspb.Message.getFieldWithDefault(msg, 4, 0),
-    validto: jspb.Message.getFieldWithDefault(msg, 5, 0),
-    currencyfrom: (f = msg.getCurrencyfrom()) && proto.data.Currency.toObject(includeInstance, f),
-    currencyto: (f = msg.getCurrencyto()) && proto.data.Currency.toObject(includeInstance, f),
-    multiplyrate: (f = msg.getMultiplyrate()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
-    dividerate: (f = msg.getDividerate()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f)
+    conversionTypeUuid: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    validFrom: jspb.Message.getFieldWithDefault(msg, 4, 0),
+    validTo: jspb.Message.getFieldWithDefault(msg, 5, 0),
+    currencyFrom: (f = msg.getCurrencyFrom()) && proto.data.Currency.toObject(includeInstance, f),
+    currencyTo: (f = msg.getCurrencyTo()) && proto.data.Currency.toObject(includeInstance, f),
+    multiplyRate: (f = msg.getMultiplyRate()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
+    divideRate: (f = msg.getDivideRate()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -4639,35 +4639,35 @@ proto.data.ConversionRate.deserializeBinaryFromReader = function(msg, reader) {
       break;
     case 3:
       var value = /** @type {string} */ (reader.readString());
-      msg.setConversiontypeuuid(value);
+      msg.setConversionTypeUuid(value);
       break;
     case 4:
       var value = /** @type {number} */ (reader.readInt64());
-      msg.setValidfrom(value);
+      msg.setValidFrom(value);
       break;
     case 5:
       var value = /** @type {number} */ (reader.readInt64());
-      msg.setValidto(value);
+      msg.setValidTo(value);
       break;
     case 6:
       var value = new proto.data.Currency;
       reader.readMessage(value,proto.data.Currency.deserializeBinaryFromReader);
-      msg.setCurrencyfrom(value);
+      msg.setCurrencyFrom(value);
       break;
     case 7:
       var value = new proto.data.Currency;
       reader.readMessage(value,proto.data.Currency.deserializeBinaryFromReader);
-      msg.setCurrencyto(value);
+      msg.setCurrencyTo(value);
       break;
     case 8:
       var value = new proto_base_data_type_pb.Decimal;
       reader.readMessage(value,proto_base_data_type_pb.Decimal.deserializeBinaryFromReader);
-      msg.setMultiplyrate(value);
+      msg.setMultiplyRate(value);
       break;
     case 9:
       var value = new proto_base_data_type_pb.Decimal;
       reader.readMessage(value,proto_base_data_type_pb.Decimal.deserializeBinaryFromReader);
-      msg.setDividerate(value);
+      msg.setDivideRate(value);
       break;
     default:
       reader.skipField();
@@ -4712,28 +4712,28 @@ proto.data.ConversionRate.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-  f = message.getConversiontypeuuid();
+  f = message.getConversionTypeUuid();
   if (f.length > 0) {
     writer.writeString(
       3,
       f
     );
   }
-  f = message.getValidfrom();
+  f = message.getValidFrom();
   if (f !== 0) {
     writer.writeInt64(
       4,
       f
     );
   }
-  f = message.getValidto();
+  f = message.getValidTo();
   if (f !== 0) {
     writer.writeInt64(
       5,
       f
     );
   }
-  f = message.getCurrencyfrom();
+  f = message.getCurrencyFrom();
   if (f != null) {
     writer.writeMessage(
       6,
@@ -4741,7 +4741,7 @@ proto.data.ConversionRate.serializeBinaryToWriter = function(message, writer) {
       proto.data.Currency.serializeBinaryToWriter
     );
   }
-  f = message.getCurrencyto();
+  f = message.getCurrencyTo();
   if (f != null) {
     writer.writeMessage(
       7,
@@ -4749,7 +4749,7 @@ proto.data.ConversionRate.serializeBinaryToWriter = function(message, writer) {
       proto.data.Currency.serializeBinaryToWriter
     );
   }
-  f = message.getMultiplyrate();
+  f = message.getMultiplyRate();
   if (f != null) {
     writer.writeMessage(
       8,
@@ -4757,7 +4757,7 @@ proto.data.ConversionRate.serializeBinaryToWriter = function(message, writer) {
       proto_base_data_type_pb.Decimal.serializeBinaryToWriter
     );
   }
-  f = message.getDividerate();
+  f = message.getDivideRate();
   if (f != null) {
     writer.writeMessage(
       9,
@@ -4805,10 +4805,10 @@ proto.data.ConversionRate.prototype.setId = function(value) {
 
 
 /**
- * optional string conversionTypeUuid = 3;
+ * optional string conversion_type_uuid = 3;
  * @return {string}
  */
-proto.data.ConversionRate.prototype.getConversiontypeuuid = function() {
+proto.data.ConversionRate.prototype.getConversionTypeUuid = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
 
@@ -4817,16 +4817,16 @@ proto.data.ConversionRate.prototype.getConversiontypeuuid = function() {
  * @param {string} value
  * @return {!proto.data.ConversionRate} returns this
  */
-proto.data.ConversionRate.prototype.setConversiontypeuuid = function(value) {
+proto.data.ConversionRate.prototype.setConversionTypeUuid = function(value) {
   return jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
 /**
- * optional int64 validFrom = 4;
+ * optional int64 valid_from = 4;
  * @return {number}
  */
-proto.data.ConversionRate.prototype.getValidfrom = function() {
+proto.data.ConversionRate.prototype.getValidFrom = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
 };
 
@@ -4835,16 +4835,16 @@ proto.data.ConversionRate.prototype.getValidfrom = function() {
  * @param {number} value
  * @return {!proto.data.ConversionRate} returns this
  */
-proto.data.ConversionRate.prototype.setValidfrom = function(value) {
+proto.data.ConversionRate.prototype.setValidFrom = function(value) {
   return jspb.Message.setProto3IntField(this, 4, value);
 };
 
 
 /**
- * optional int64 validTo = 5;
+ * optional int64 valid_to = 5;
  * @return {number}
  */
-proto.data.ConversionRate.prototype.getValidto = function() {
+proto.data.ConversionRate.prototype.getValidTo = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 5, 0));
 };
 
@@ -4853,16 +4853,16 @@ proto.data.ConversionRate.prototype.getValidto = function() {
  * @param {number} value
  * @return {!proto.data.ConversionRate} returns this
  */
-proto.data.ConversionRate.prototype.setValidto = function(value) {
+proto.data.ConversionRate.prototype.setValidTo = function(value) {
   return jspb.Message.setProto3IntField(this, 5, value);
 };
 
 
 /**
- * optional Currency currencyFrom = 6;
+ * optional Currency currency_from = 6;
  * @return {?proto.data.Currency}
  */
-proto.data.ConversionRate.prototype.getCurrencyfrom = function() {
+proto.data.ConversionRate.prototype.getCurrencyFrom = function() {
   return /** @type{?proto.data.Currency} */ (
     jspb.Message.getWrapperField(this, proto.data.Currency, 6));
 };
@@ -4872,7 +4872,7 @@ proto.data.ConversionRate.prototype.getCurrencyfrom = function() {
  * @param {?proto.data.Currency|undefined} value
  * @return {!proto.data.ConversionRate} returns this
 */
-proto.data.ConversionRate.prototype.setCurrencyfrom = function(value) {
+proto.data.ConversionRate.prototype.setCurrencyFrom = function(value) {
   return jspb.Message.setWrapperField(this, 6, value);
 };
 
@@ -4881,8 +4881,8 @@ proto.data.ConversionRate.prototype.setCurrencyfrom = function(value) {
  * Clears the message field making it undefined.
  * @return {!proto.data.ConversionRate} returns this
  */
-proto.data.ConversionRate.prototype.clearCurrencyfrom = function() {
-  return this.setCurrencyfrom(undefined);
+proto.data.ConversionRate.prototype.clearCurrencyFrom = function() {
+  return this.setCurrencyFrom(undefined);
 };
 
 
@@ -4890,16 +4890,16 @@ proto.data.ConversionRate.prototype.clearCurrencyfrom = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.data.ConversionRate.prototype.hasCurrencyfrom = function() {
+proto.data.ConversionRate.prototype.hasCurrencyFrom = function() {
   return jspb.Message.getField(this, 6) != null;
 };
 
 
 /**
- * optional Currency currencyTo = 7;
+ * optional Currency currency_to = 7;
  * @return {?proto.data.Currency}
  */
-proto.data.ConversionRate.prototype.getCurrencyto = function() {
+proto.data.ConversionRate.prototype.getCurrencyTo = function() {
   return /** @type{?proto.data.Currency} */ (
     jspb.Message.getWrapperField(this, proto.data.Currency, 7));
 };
@@ -4909,7 +4909,7 @@ proto.data.ConversionRate.prototype.getCurrencyto = function() {
  * @param {?proto.data.Currency|undefined} value
  * @return {!proto.data.ConversionRate} returns this
 */
-proto.data.ConversionRate.prototype.setCurrencyto = function(value) {
+proto.data.ConversionRate.prototype.setCurrencyTo = function(value) {
   return jspb.Message.setWrapperField(this, 7, value);
 };
 
@@ -4918,8 +4918,8 @@ proto.data.ConversionRate.prototype.setCurrencyto = function(value) {
  * Clears the message field making it undefined.
  * @return {!proto.data.ConversionRate} returns this
  */
-proto.data.ConversionRate.prototype.clearCurrencyto = function() {
-  return this.setCurrencyto(undefined);
+proto.data.ConversionRate.prototype.clearCurrencyTo = function() {
+  return this.setCurrencyTo(undefined);
 };
 
 
@@ -4927,16 +4927,16 @@ proto.data.ConversionRate.prototype.clearCurrencyto = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.data.ConversionRate.prototype.hasCurrencyto = function() {
+proto.data.ConversionRate.prototype.hasCurrencyTo = function() {
   return jspb.Message.getField(this, 7) != null;
 };
 
 
 /**
- * optional Decimal multiplyRate = 8;
+ * optional Decimal multiply_rate = 8;
  * @return {?proto.data.Decimal}
  */
-proto.data.ConversionRate.prototype.getMultiplyrate = function() {
+proto.data.ConversionRate.prototype.getMultiplyRate = function() {
   return /** @type{?proto.data.Decimal} */ (
     jspb.Message.getWrapperField(this, proto_base_data_type_pb.Decimal, 8));
 };
@@ -4946,7 +4946,7 @@ proto.data.ConversionRate.prototype.getMultiplyrate = function() {
  * @param {?proto.data.Decimal|undefined} value
  * @return {!proto.data.ConversionRate} returns this
 */
-proto.data.ConversionRate.prototype.setMultiplyrate = function(value) {
+proto.data.ConversionRate.prototype.setMultiplyRate = function(value) {
   return jspb.Message.setWrapperField(this, 8, value);
 };
 
@@ -4955,8 +4955,8 @@ proto.data.ConversionRate.prototype.setMultiplyrate = function(value) {
  * Clears the message field making it undefined.
  * @return {!proto.data.ConversionRate} returns this
  */
-proto.data.ConversionRate.prototype.clearMultiplyrate = function() {
-  return this.setMultiplyrate(undefined);
+proto.data.ConversionRate.prototype.clearMultiplyRate = function() {
+  return this.setMultiplyRate(undefined);
 };
 
 
@@ -4964,16 +4964,16 @@ proto.data.ConversionRate.prototype.clearMultiplyrate = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.data.ConversionRate.prototype.hasMultiplyrate = function() {
+proto.data.ConversionRate.prototype.hasMultiplyRate = function() {
   return jspb.Message.getField(this, 8) != null;
 };
 
 
 /**
- * optional Decimal divideRate = 9;
+ * optional Decimal divide_rate = 9;
  * @return {?proto.data.Decimal}
  */
-proto.data.ConversionRate.prototype.getDividerate = function() {
+proto.data.ConversionRate.prototype.getDivideRate = function() {
   return /** @type{?proto.data.Decimal} */ (
     jspb.Message.getWrapperField(this, proto_base_data_type_pb.Decimal, 9));
 };
@@ -4983,7 +4983,7 @@ proto.data.ConversionRate.prototype.getDividerate = function() {
  * @param {?proto.data.Decimal|undefined} value
  * @return {!proto.data.ConversionRate} returns this
 */
-proto.data.ConversionRate.prototype.setDividerate = function(value) {
+proto.data.ConversionRate.prototype.setDivideRate = function(value) {
   return jspb.Message.setWrapperField(this, 9, value);
 };
 
@@ -4992,8 +4992,8 @@ proto.data.ConversionRate.prototype.setDividerate = function(value) {
  * Clears the message field making it undefined.
  * @return {!proto.data.ConversionRate} returns this
  */
-proto.data.ConversionRate.prototype.clearDividerate = function() {
-  return this.setDividerate(undefined);
+proto.data.ConversionRate.prototype.clearDivideRate = function() {
+  return this.setDivideRate(undefined);
 };
 
 
@@ -5001,7 +5001,7 @@ proto.data.ConversionRate.prototype.clearDividerate = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.data.ConversionRate.prototype.hasDividerate = function() {
+proto.data.ConversionRate.prototype.hasDivideRate = function() {
   return jspb.Message.getField(this, 9) != null;
 };
 
@@ -5042,9 +5042,9 @@ proto.data.Organization.toObject = function(includeInstance, msg) {
     id: jspb.Message.getFieldWithDefault(msg, 2, 0),
     name: jspb.Message.getFieldWithDefault(msg, 3, ""),
     description: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    isreadonly: jspb.Message.getBooleanFieldWithDefault(msg, 5, false),
+    isReadOnly: jspb.Message.getBooleanFieldWithDefault(msg, 5, false),
     duns: jspb.Message.getFieldWithDefault(msg, 6, ""),
-    taxid: jspb.Message.getFieldWithDefault(msg, 7, ""),
+    taxId: jspb.Message.getFieldWithDefault(msg, 7, ""),
     phone: jspb.Message.getFieldWithDefault(msg, 8, ""),
     phone2: jspb.Message.getFieldWithDefault(msg, 9, ""),
     fax: jspb.Message.getFieldWithDefault(msg, 10, "")
@@ -5102,7 +5102,7 @@ proto.data.Organization.deserializeBinaryFromReader = function(msg, reader) {
       break;
     case 5:
       var value = /** @type {boolean} */ (reader.readBool());
-      msg.setIsreadonly(value);
+      msg.setIsReadOnly(value);
       break;
     case 6:
       var value = /** @type {string} */ (reader.readString());
@@ -5110,7 +5110,7 @@ proto.data.Organization.deserializeBinaryFromReader = function(msg, reader) {
       break;
     case 7:
       var value = /** @type {string} */ (reader.readString());
-      msg.setTaxid(value);
+      msg.setTaxId(value);
       break;
     case 8:
       var value = /** @type {string} */ (reader.readString());
@@ -5181,7 +5181,7 @@ proto.data.Organization.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-  f = message.getIsreadonly();
+  f = message.getIsReadOnly();
   if (f) {
     writer.writeBool(
       5,
@@ -5195,7 +5195,7 @@ proto.data.Organization.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-  f = message.getTaxid();
+  f = message.getTaxId();
   if (f.length > 0) {
     writer.writeString(
       7,
@@ -5299,10 +5299,10 @@ proto.data.Organization.prototype.setDescription = function(value) {
 
 
 /**
- * optional bool isReadOnly = 5;
+ * optional bool is_read_only = 5;
  * @return {boolean}
  */
-proto.data.Organization.prototype.getIsreadonly = function() {
+proto.data.Organization.prototype.getIsReadOnly = function() {
   return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 5, false));
 };
 
@@ -5311,7 +5311,7 @@ proto.data.Organization.prototype.getIsreadonly = function() {
  * @param {boolean} value
  * @return {!proto.data.Organization} returns this
  */
-proto.data.Organization.prototype.setIsreadonly = function(value) {
+proto.data.Organization.prototype.setIsReadOnly = function(value) {
   return jspb.Message.setProto3BooleanField(this, 5, value);
 };
 
@@ -5335,10 +5335,10 @@ proto.data.Organization.prototype.setDuns = function(value) {
 
 
 /**
- * optional string taxId = 7;
+ * optional string tax_id = 7;
  * @return {string}
  */
-proto.data.Organization.prototype.getTaxid = function() {
+proto.data.Organization.prototype.getTaxId = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 7, ""));
 };
 
@@ -5347,7 +5347,7 @@ proto.data.Organization.prototype.getTaxid = function() {
  * @param {string} value
  * @return {!proto.data.Organization} returns this
  */
-proto.data.Organization.prototype.setTaxid = function(value) {
+proto.data.Organization.prototype.setTaxId = function(value) {
   return jspb.Message.setProto3StringField(this, 7, value);
 };
 
@@ -5445,7 +5445,7 @@ proto.data.ListOrganizationsResponse.prototype.toObject = function(opt_includeIn
  */
 proto.data.ListOrganizationsResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    recordcount: jspb.Message.getFieldWithDefault(msg, 1, 0),
+    recordCount: jspb.Message.getFieldWithDefault(msg, 1, 0),
     organizationsList: jspb.Message.toObjectList(msg.getOrganizationsList(),
     proto.data.Organization.toObject, includeInstance),
     nextPageToken: jspb.Message.getFieldWithDefault(msg, 4, "")
@@ -5487,7 +5487,7 @@ proto.data.ListOrganizationsResponse.deserializeBinaryFromReader = function(msg,
     switch (field) {
     case 1:
       var value = /** @type {number} */ (reader.readInt64());
-      msg.setRecordcount(value);
+      msg.setRecordCount(value);
       break;
     case 2:
       var value = new proto.data.Organization;
@@ -5527,7 +5527,7 @@ proto.data.ListOrganizationsResponse.prototype.serializeBinary = function() {
  */
 proto.data.ListOrganizationsResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getRecordcount();
+  f = message.getRecordCount();
   if (f !== 0) {
     writer.writeInt64(
       1,
@@ -5553,10 +5553,10 @@ proto.data.ListOrganizationsResponse.serializeBinaryToWriter = function(message,
 
 
 /**
- * optional int64 recordCount = 1;
+ * optional int64 record_count = 1;
  * @return {number}
  */
-proto.data.ListOrganizationsResponse.prototype.getRecordcount = function() {
+proto.data.ListOrganizationsResponse.prototype.getRecordCount = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
 };
 
@@ -5565,7 +5565,7 @@ proto.data.ListOrganizationsResponse.prototype.getRecordcount = function() {
  * @param {number} value
  * @return {!proto.data.ListOrganizationsResponse} returns this
  */
-proto.data.ListOrganizationsResponse.prototype.setRecordcount = function(value) {
+proto.data.ListOrganizationsResponse.prototype.setRecordCount = function(value) {
   return jspb.Message.setProto3IntField(this, 1, value);
 };
 
@@ -5658,9 +5658,9 @@ proto.data.ListOrganizationsRequest.prototype.toObject = function(opt_includeIns
  */
 proto.data.ListOrganizationsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    clientrequest: (f = msg.getClientrequest()) && proto_client_pb.ClientRequest.toObject(includeInstance, f),
-    roleid: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    roleuuid: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    clientRequest: (f = msg.getClientRequest()) && proto_client_pb.ClientRequest.toObject(includeInstance, f),
+    roleId: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    roleUuid: jspb.Message.getFieldWithDefault(msg, 3, ""),
     pageSize: jspb.Message.getFieldWithDefault(msg, 4, 0),
     pageToken: jspb.Message.getFieldWithDefault(msg, 5, "")
   };
@@ -5702,15 +5702,15 @@ proto.data.ListOrganizationsRequest.deserializeBinaryFromReader = function(msg, 
     case 1:
       var value = new proto_client_pb.ClientRequest;
       reader.readMessage(value,proto_client_pb.ClientRequest.deserializeBinaryFromReader);
-      msg.setClientrequest(value);
+      msg.setClientRequest(value);
       break;
     case 2:
       var value = /** @type {number} */ (reader.readInt32());
-      msg.setRoleid(value);
+      msg.setRoleId(value);
       break;
     case 3:
       var value = /** @type {string} */ (reader.readString());
-      msg.setRoleuuid(value);
+      msg.setRoleUuid(value);
       break;
     case 4:
       var value = /** @type {number} */ (reader.readInt32());
@@ -5749,7 +5749,7 @@ proto.data.ListOrganizationsRequest.prototype.serializeBinary = function() {
  */
 proto.data.ListOrganizationsRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getClientrequest();
+  f = message.getClientRequest();
   if (f != null) {
     writer.writeMessage(
       1,
@@ -5757,14 +5757,14 @@ proto.data.ListOrganizationsRequest.serializeBinaryToWriter = function(message, 
       proto_client_pb.ClientRequest.serializeBinaryToWriter
     );
   }
-  f = message.getRoleid();
+  f = message.getRoleId();
   if (f !== 0) {
     writer.writeInt32(
       2,
       f
     );
   }
-  f = message.getRoleuuid();
+  f = message.getRoleUuid();
   if (f.length > 0) {
     writer.writeString(
       3,
@@ -5789,10 +5789,10 @@ proto.data.ListOrganizationsRequest.serializeBinaryToWriter = function(message, 
 
 
 /**
- * optional ClientRequest clientRequest = 1;
+ * optional ClientRequest client_request = 1;
  * @return {?proto.data.ClientRequest}
  */
-proto.data.ListOrganizationsRequest.prototype.getClientrequest = function() {
+proto.data.ListOrganizationsRequest.prototype.getClientRequest = function() {
   return /** @type{?proto.data.ClientRequest} */ (
     jspb.Message.getWrapperField(this, proto_client_pb.ClientRequest, 1));
 };
@@ -5802,7 +5802,7 @@ proto.data.ListOrganizationsRequest.prototype.getClientrequest = function() {
  * @param {?proto.data.ClientRequest|undefined} value
  * @return {!proto.data.ListOrganizationsRequest} returns this
 */
-proto.data.ListOrganizationsRequest.prototype.setClientrequest = function(value) {
+proto.data.ListOrganizationsRequest.prototype.setClientRequest = function(value) {
   return jspb.Message.setWrapperField(this, 1, value);
 };
 
@@ -5811,8 +5811,8 @@ proto.data.ListOrganizationsRequest.prototype.setClientrequest = function(value)
  * Clears the message field making it undefined.
  * @return {!proto.data.ListOrganizationsRequest} returns this
  */
-proto.data.ListOrganizationsRequest.prototype.clearClientrequest = function() {
-  return this.setClientrequest(undefined);
+proto.data.ListOrganizationsRequest.prototype.clearClientRequest = function() {
+  return this.setClientRequest(undefined);
 };
 
 
@@ -5820,16 +5820,16 @@ proto.data.ListOrganizationsRequest.prototype.clearClientrequest = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.data.ListOrganizationsRequest.prototype.hasClientrequest = function() {
+proto.data.ListOrganizationsRequest.prototype.hasClientRequest = function() {
   return jspb.Message.getField(this, 1) != null;
 };
 
 
 /**
- * optional int32 roleId = 2;
+ * optional int32 role_id = 2;
  * @return {number}
  */
-proto.data.ListOrganizationsRequest.prototype.getRoleid = function() {
+proto.data.ListOrganizationsRequest.prototype.getRoleId = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
 };
 
@@ -5838,16 +5838,16 @@ proto.data.ListOrganizationsRequest.prototype.getRoleid = function() {
  * @param {number} value
  * @return {!proto.data.ListOrganizationsRequest} returns this
  */
-proto.data.ListOrganizationsRequest.prototype.setRoleid = function(value) {
+proto.data.ListOrganizationsRequest.prototype.setRoleId = function(value) {
   return jspb.Message.setProto3IntField(this, 2, value);
 };
 
 
 /**
- * optional string roleUuid = 3;
+ * optional string role_uuid = 3;
  * @return {string}
  */
-proto.data.ListOrganizationsRequest.prototype.getRoleuuid = function() {
+proto.data.ListOrganizationsRequest.prototype.getRoleUuid = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
 
@@ -5856,7 +5856,7 @@ proto.data.ListOrganizationsRequest.prototype.getRoleuuid = function() {
  * @param {string} value
  * @return {!proto.data.ListOrganizationsRequest} returns this
  */
-proto.data.ListOrganizationsRequest.prototype.setRoleuuid = function(value) {
+proto.data.ListOrganizationsRequest.prototype.setRoleUuid = function(value) {
   return jspb.Message.setProto3StringField(this, 3, value);
 };
 
@@ -6156,7 +6156,7 @@ proto.data.ListWarehousesResponse.prototype.toObject = function(opt_includeInsta
  */
 proto.data.ListWarehousesResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    recordcount: jspb.Message.getFieldWithDefault(msg, 1, 0),
+    recordCount: jspb.Message.getFieldWithDefault(msg, 1, 0),
     warehousesList: jspb.Message.toObjectList(msg.getWarehousesList(),
     proto.data.Warehouse.toObject, includeInstance),
     nextPageToken: jspb.Message.getFieldWithDefault(msg, 4, "")
@@ -6198,7 +6198,7 @@ proto.data.ListWarehousesResponse.deserializeBinaryFromReader = function(msg, re
     switch (field) {
     case 1:
       var value = /** @type {number} */ (reader.readInt64());
-      msg.setRecordcount(value);
+      msg.setRecordCount(value);
       break;
     case 2:
       var value = new proto.data.Warehouse;
@@ -6238,7 +6238,7 @@ proto.data.ListWarehousesResponse.prototype.serializeBinary = function() {
  */
 proto.data.ListWarehousesResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getRecordcount();
+  f = message.getRecordCount();
   if (f !== 0) {
     writer.writeInt64(
       1,
@@ -6264,10 +6264,10 @@ proto.data.ListWarehousesResponse.serializeBinaryToWriter = function(message, wr
 
 
 /**
- * optional int64 recordCount = 1;
+ * optional int64 record_count = 1;
  * @return {number}
  */
-proto.data.ListWarehousesResponse.prototype.getRecordcount = function() {
+proto.data.ListWarehousesResponse.prototype.getRecordCount = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
 };
 
@@ -6276,7 +6276,7 @@ proto.data.ListWarehousesResponse.prototype.getRecordcount = function() {
  * @param {number} value
  * @return {!proto.data.ListWarehousesResponse} returns this
  */
-proto.data.ListWarehousesResponse.prototype.setRecordcount = function(value) {
+proto.data.ListWarehousesResponse.prototype.setRecordCount = function(value) {
   return jspb.Message.setProto3IntField(this, 1, value);
 };
 
@@ -6369,9 +6369,9 @@ proto.data.ListWarehousesRequest.prototype.toObject = function(opt_includeInstan
  */
 proto.data.ListWarehousesRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    clientrequest: (f = msg.getClientrequest()) && proto_client_pb.ClientRequest.toObject(includeInstance, f),
-    organizationid: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    organizationuuid: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    clientRequest: (f = msg.getClientRequest()) && proto_client_pb.ClientRequest.toObject(includeInstance, f),
+    organizationId: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    organizationUuid: jspb.Message.getFieldWithDefault(msg, 3, ""),
     pageSize: jspb.Message.getFieldWithDefault(msg, 4, 0),
     pageToken: jspb.Message.getFieldWithDefault(msg, 5, "")
   };
@@ -6413,15 +6413,15 @@ proto.data.ListWarehousesRequest.deserializeBinaryFromReader = function(msg, rea
     case 1:
       var value = new proto_client_pb.ClientRequest;
       reader.readMessage(value,proto_client_pb.ClientRequest.deserializeBinaryFromReader);
-      msg.setClientrequest(value);
+      msg.setClientRequest(value);
       break;
     case 2:
       var value = /** @type {number} */ (reader.readInt32());
-      msg.setOrganizationid(value);
+      msg.setOrganizationId(value);
       break;
     case 3:
       var value = /** @type {string} */ (reader.readString());
-      msg.setOrganizationuuid(value);
+      msg.setOrganizationUuid(value);
       break;
     case 4:
       var value = /** @type {number} */ (reader.readInt32());
@@ -6460,7 +6460,7 @@ proto.data.ListWarehousesRequest.prototype.serializeBinary = function() {
  */
 proto.data.ListWarehousesRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getClientrequest();
+  f = message.getClientRequest();
   if (f != null) {
     writer.writeMessage(
       1,
@@ -6468,14 +6468,14 @@ proto.data.ListWarehousesRequest.serializeBinaryToWriter = function(message, wri
       proto_client_pb.ClientRequest.serializeBinaryToWriter
     );
   }
-  f = message.getOrganizationid();
+  f = message.getOrganizationId();
   if (f !== 0) {
     writer.writeInt32(
       2,
       f
     );
   }
-  f = message.getOrganizationuuid();
+  f = message.getOrganizationUuid();
   if (f.length > 0) {
     writer.writeString(
       3,
@@ -6500,10 +6500,10 @@ proto.data.ListWarehousesRequest.serializeBinaryToWriter = function(message, wri
 
 
 /**
- * optional ClientRequest clientRequest = 1;
+ * optional ClientRequest client_request = 1;
  * @return {?proto.data.ClientRequest}
  */
-proto.data.ListWarehousesRequest.prototype.getClientrequest = function() {
+proto.data.ListWarehousesRequest.prototype.getClientRequest = function() {
   return /** @type{?proto.data.ClientRequest} */ (
     jspb.Message.getWrapperField(this, proto_client_pb.ClientRequest, 1));
 };
@@ -6513,7 +6513,7 @@ proto.data.ListWarehousesRequest.prototype.getClientrequest = function() {
  * @param {?proto.data.ClientRequest|undefined} value
  * @return {!proto.data.ListWarehousesRequest} returns this
 */
-proto.data.ListWarehousesRequest.prototype.setClientrequest = function(value) {
+proto.data.ListWarehousesRequest.prototype.setClientRequest = function(value) {
   return jspb.Message.setWrapperField(this, 1, value);
 };
 
@@ -6522,8 +6522,8 @@ proto.data.ListWarehousesRequest.prototype.setClientrequest = function(value) {
  * Clears the message field making it undefined.
  * @return {!proto.data.ListWarehousesRequest} returns this
  */
-proto.data.ListWarehousesRequest.prototype.clearClientrequest = function() {
-  return this.setClientrequest(undefined);
+proto.data.ListWarehousesRequest.prototype.clearClientRequest = function() {
+  return this.setClientRequest(undefined);
 };
 
 
@@ -6531,16 +6531,16 @@ proto.data.ListWarehousesRequest.prototype.clearClientrequest = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.data.ListWarehousesRequest.prototype.hasClientrequest = function() {
+proto.data.ListWarehousesRequest.prototype.hasClientRequest = function() {
   return jspb.Message.getField(this, 1) != null;
 };
 
 
 /**
- * optional int32 organizationId = 2;
+ * optional int32 organization_id = 2;
  * @return {number}
  */
-proto.data.ListWarehousesRequest.prototype.getOrganizationid = function() {
+proto.data.ListWarehousesRequest.prototype.getOrganizationId = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
 };
 
@@ -6549,16 +6549,16 @@ proto.data.ListWarehousesRequest.prototype.getOrganizationid = function() {
  * @param {number} value
  * @return {!proto.data.ListWarehousesRequest} returns this
  */
-proto.data.ListWarehousesRequest.prototype.setOrganizationid = function(value) {
+proto.data.ListWarehousesRequest.prototype.setOrganizationId = function(value) {
   return jspb.Message.setProto3IntField(this, 2, value);
 };
 
 
 /**
- * optional string organizationUuid = 3;
+ * optional string organization_uuid = 3;
  * @return {string}
  */
-proto.data.ListWarehousesRequest.prototype.getOrganizationuuid = function() {
+proto.data.ListWarehousesRequest.prototype.getOrganizationUuid = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
 
@@ -6567,7 +6567,7 @@ proto.data.ListWarehousesRequest.prototype.getOrganizationuuid = function() {
  * @param {string} value
  * @return {!proto.data.ListWarehousesRequest} returns this
  */
-proto.data.ListWarehousesRequest.prototype.setOrganizationuuid = function(value) {
+proto.data.ListWarehousesRequest.prototype.setOrganizationUuid = function(value) {
   return jspb.Message.setProto3StringField(this, 3, value);
 };
 
@@ -6646,8 +6646,8 @@ proto.data.UnitOfMeasure.toObject = function(includeInstance, msg) {
     symbol: jspb.Message.getFieldWithDefault(msg, 4, ""),
     name: jspb.Message.getFieldWithDefault(msg, 5, ""),
     description: jspb.Message.getFieldWithDefault(msg, 6, ""),
-    stdprecision: jspb.Message.getFieldWithDefault(msg, 7, 0),
-    costingprecision: jspb.Message.getFieldWithDefault(msg, 8, 0)
+    standardPrecision: jspb.Message.getFieldWithDefault(msg, 7, 0),
+    costingPrecision: jspb.Message.getFieldWithDefault(msg, 8, 0)
   };
 
   if (includeInstance) {
@@ -6710,11 +6710,11 @@ proto.data.UnitOfMeasure.deserializeBinaryFromReader = function(msg, reader) {
       break;
     case 7:
       var value = /** @type {number} */ (reader.readInt32());
-      msg.setStdprecision(value);
+      msg.setStandardPrecision(value);
       break;
     case 8:
       var value = /** @type {number} */ (reader.readInt32());
-      msg.setCostingprecision(value);
+      msg.setCostingPrecision(value);
       break;
     default:
       reader.skipField();
@@ -6787,14 +6787,14 @@ proto.data.UnitOfMeasure.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-  f = message.getStdprecision();
+  f = message.getStandardPrecision();
   if (f !== 0) {
     writer.writeInt32(
       7,
       f
     );
   }
-  f = message.getCostingprecision();
+  f = message.getCostingPrecision();
   if (f !== 0) {
     writer.writeInt32(
       8,
@@ -6913,10 +6913,10 @@ proto.data.UnitOfMeasure.prototype.setDescription = function(value) {
 
 
 /**
- * optional int32 stdPrecision = 7;
+ * optional int32 standard_precision = 7;
  * @return {number}
  */
-proto.data.UnitOfMeasure.prototype.getStdprecision = function() {
+proto.data.UnitOfMeasure.prototype.getStandardPrecision = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 7, 0));
 };
 
@@ -6925,16 +6925,16 @@ proto.data.UnitOfMeasure.prototype.getStdprecision = function() {
  * @param {number} value
  * @return {!proto.data.UnitOfMeasure} returns this
  */
-proto.data.UnitOfMeasure.prototype.setStdprecision = function(value) {
+proto.data.UnitOfMeasure.prototype.setStandardPrecision = function(value) {
   return jspb.Message.setProto3IntField(this, 7, value);
 };
 
 
 /**
- * optional int32 costingPrecision = 8;
+ * optional int32 costing_precision = 8;
  * @return {number}
  */
-proto.data.UnitOfMeasure.prototype.getCostingprecision = function() {
+proto.data.UnitOfMeasure.prototype.getCostingPrecision = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 8, 0));
 };
 
@@ -6943,7 +6943,7 @@ proto.data.UnitOfMeasure.prototype.getCostingprecision = function() {
  * @param {number} value
  * @return {!proto.data.UnitOfMeasure} returns this
  */
-proto.data.UnitOfMeasure.prototype.setCostingprecision = function(value) {
+proto.data.UnitOfMeasure.prototype.setCostingPrecision = function(value) {
   return jspb.Message.setProto3IntField(this, 8, value);
 };
 
@@ -7203,11 +7203,11 @@ proto.data.BusinessPartner.toObject = function(includeInstance, msg) {
     uuid: jspb.Message.getFieldWithDefault(msg, 1, ""),
     id: jspb.Message.getFieldWithDefault(msg, 2, 0),
     value: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    taxid: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    taxId: jspb.Message.getFieldWithDefault(msg, 4, ""),
     duns: jspb.Message.getFieldWithDefault(msg, 5, ""),
     naics: jspb.Message.getFieldWithDefault(msg, 6, ""),
     name: jspb.Message.getFieldWithDefault(msg, 7, ""),
-    lastname: jspb.Message.getFieldWithDefault(msg, 8, ""),
+    lastName: jspb.Message.getFieldWithDefault(msg, 8, ""),
     description: jspb.Message.getFieldWithDefault(msg, 9, "")
   };
 
@@ -7259,7 +7259,7 @@ proto.data.BusinessPartner.deserializeBinaryFromReader = function(msg, reader) {
       break;
     case 4:
       var value = /** @type {string} */ (reader.readString());
-      msg.setTaxid(value);
+      msg.setTaxId(value);
       break;
     case 5:
       var value = /** @type {string} */ (reader.readString());
@@ -7275,7 +7275,7 @@ proto.data.BusinessPartner.deserializeBinaryFromReader = function(msg, reader) {
       break;
     case 8:
       var value = /** @type {string} */ (reader.readString());
-      msg.setLastname(value);
+      msg.setLastName(value);
       break;
     case 9:
       var value = /** @type {string} */ (reader.readString());
@@ -7331,7 +7331,7 @@ proto.data.BusinessPartner.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-  f = message.getTaxid();
+  f = message.getTaxId();
   if (f.length > 0) {
     writer.writeString(
       4,
@@ -7359,7 +7359,7 @@ proto.data.BusinessPartner.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-  f = message.getLastname();
+  f = message.getLastName();
   if (f.length > 0) {
     writer.writeString(
       8,
@@ -7431,10 +7431,10 @@ proto.data.BusinessPartner.prototype.setValue = function(value) {
 
 
 /**
- * optional string taxId = 4;
+ * optional string tax_id = 4;
  * @return {string}
  */
-proto.data.BusinessPartner.prototype.getTaxid = function() {
+proto.data.BusinessPartner.prototype.getTaxId = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
 };
 
@@ -7443,7 +7443,7 @@ proto.data.BusinessPartner.prototype.getTaxid = function() {
  * @param {string} value
  * @return {!proto.data.BusinessPartner} returns this
  */
-proto.data.BusinessPartner.prototype.setTaxid = function(value) {
+proto.data.BusinessPartner.prototype.setTaxId = function(value) {
   return jspb.Message.setProto3StringField(this, 4, value);
 };
 
@@ -7503,10 +7503,10 @@ proto.data.BusinessPartner.prototype.setName = function(value) {
 
 
 /**
- * optional string lastName = 8;
+ * optional string last_name = 8;
  * @return {string}
  */
-proto.data.BusinessPartner.prototype.getLastname = function() {
+proto.data.BusinessPartner.prototype.getLastName = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 8, ""));
 };
 
@@ -7515,7 +7515,7 @@ proto.data.BusinessPartner.prototype.getLastname = function() {
  * @param {string} value
  * @return {!proto.data.BusinessPartner} returns this
  */
-proto.data.BusinessPartner.prototype.setLastname = function(value) {
+proto.data.BusinessPartner.prototype.setLastName = function(value) {
   return jspb.Message.setProto3StringField(this, 8, value);
 };
 
@@ -7573,7 +7573,7 @@ proto.data.DocumentType.toObject = function(includeInstance, msg) {
     uuid: jspb.Message.getFieldWithDefault(msg, 1, ""),
     id: jspb.Message.getFieldWithDefault(msg, 2, 0),
     name: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    printname: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    printName: jspb.Message.getFieldWithDefault(msg, 4, ""),
     description: jspb.Message.getFieldWithDefault(msg, 5, "")
   };
 
@@ -7625,7 +7625,7 @@ proto.data.DocumentType.deserializeBinaryFromReader = function(msg, reader) {
       break;
     case 4:
       var value = /** @type {string} */ (reader.readString());
-      msg.setPrintname(value);
+      msg.setPrintName(value);
       break;
     case 5:
       var value = /** @type {string} */ (reader.readString());
@@ -7681,7 +7681,7 @@ proto.data.DocumentType.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-  f = message.getPrintname();
+  f = message.getPrintName();
   if (f.length > 0) {
     writer.writeString(
       4,
@@ -7753,10 +7753,10 @@ proto.data.DocumentType.prototype.setName = function(value) {
 
 
 /**
- * optional string printName = 4;
+ * optional string print_name = 4;
  * @return {string}
  */
-proto.data.DocumentType.prototype.getPrintname = function() {
+proto.data.DocumentType.prototype.getPrintName = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
 };
 
@@ -7765,7 +7765,7 @@ proto.data.DocumentType.prototype.getPrintname = function() {
  * @param {string} value
  * @return {!proto.data.DocumentType} returns this
  */
-proto.data.DocumentType.prototype.setPrintname = function(value) {
+proto.data.DocumentType.prototype.setPrintName = function(value) {
   return jspb.Message.setProto3StringField(this, 4, value);
 };
 
@@ -8045,31 +8045,31 @@ proto.data.Product.toObject = function(includeInstance, msg) {
     value: jspb.Message.getFieldWithDefault(msg, 3, ""),
     name: jspb.Message.getFieldWithDefault(msg, 4, ""),
     help: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    documentnote: jspb.Message.getFieldWithDefault(msg, 6, ""),
-    uomname: jspb.Message.getFieldWithDefault(msg, 7, ""),
-    producttype: jspb.Message.getFieldWithDefault(msg, 8, ""),
-    isstocked: jspb.Message.getBooleanFieldWithDefault(msg, 9, false),
-    isdropship: jspb.Message.getBooleanFieldWithDefault(msg, 10, false),
-    ispurchased: jspb.Message.getBooleanFieldWithDefault(msg, 11, false),
-    issold: jspb.Message.getBooleanFieldWithDefault(msg, 12, false),
-    imageurl: jspb.Message.getFieldWithDefault(msg, 13, ""),
-    productcategoryname: jspb.Message.getFieldWithDefault(msg, 14, ""),
-    productgroupname: jspb.Message.getFieldWithDefault(msg, 15, ""),
-    productclassname: jspb.Message.getFieldWithDefault(msg, 16, ""),
-    productclassificationname: jspb.Message.getFieldWithDefault(msg, 17, ""),
+    documentNote: jspb.Message.getFieldWithDefault(msg, 6, ""),
+    uomName: jspb.Message.getFieldWithDefault(msg, 7, ""),
+    productType: jspb.Message.getFieldWithDefault(msg, 8, ""),
+    isStocked: jspb.Message.getBooleanFieldWithDefault(msg, 9, false),
+    isDropShip: jspb.Message.getBooleanFieldWithDefault(msg, 10, false),
+    isPurchased: jspb.Message.getBooleanFieldWithDefault(msg, 11, false),
+    isSold: jspb.Message.getBooleanFieldWithDefault(msg, 12, false),
+    imageUrl: jspb.Message.getFieldWithDefault(msg, 13, ""),
+    productCategoryName: jspb.Message.getFieldWithDefault(msg, 14, ""),
+    productGroupName: jspb.Message.getFieldWithDefault(msg, 15, ""),
+    productClassName: jspb.Message.getFieldWithDefault(msg, 16, ""),
+    productClassificationName: jspb.Message.getFieldWithDefault(msg, 17, ""),
     weight: (f = msg.getWeight()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
     volume: (f = msg.getVolume()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
     upc: jspb.Message.getFieldWithDefault(msg, 20, ""),
     sku: jspb.Message.getFieldWithDefault(msg, 21, ""),
-    shelfwidth: jspb.Message.getFieldWithDefault(msg, 22, 0),
-    shelfheight: (f = msg.getShelfheight()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
-    shelfdepth: jspb.Message.getFieldWithDefault(msg, 24, 0),
-    unitsperpack: jspb.Message.getFieldWithDefault(msg, 25, 0),
-    unitsperpallet: (f = msg.getUnitsperpallet()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
-    guaranteedays: jspb.Message.getFieldWithDefault(msg, 27, 0),
-    descriptionurl: jspb.Message.getFieldWithDefault(msg, 28, ""),
-    versionno: jspb.Message.getFieldWithDefault(msg, 29, ""),
-    taxcategory: jspb.Message.getFieldWithDefault(msg, 30, ""),
+    shelfWidth: jspb.Message.getFieldWithDefault(msg, 22, 0),
+    shelfHeight: (f = msg.getShelfHeight()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
+    shelfDepth: jspb.Message.getFieldWithDefault(msg, 24, 0),
+    unitsPerPack: jspb.Message.getFieldWithDefault(msg, 25, 0),
+    unitsPerPallet: (f = msg.getUnitsPerPallet()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
+    guaranteeDays: jspb.Message.getFieldWithDefault(msg, 27, 0),
+    descriptionUrl: jspb.Message.getFieldWithDefault(msg, 28, ""),
+    versionNo: jspb.Message.getFieldWithDefault(msg, 29, ""),
+    taxCategory: jspb.Message.getFieldWithDefault(msg, 30, ""),
     description: jspb.Message.getFieldWithDefault(msg, 31, "")
   };
 
@@ -8129,51 +8129,51 @@ proto.data.Product.deserializeBinaryFromReader = function(msg, reader) {
       break;
     case 6:
       var value = /** @type {string} */ (reader.readString());
-      msg.setDocumentnote(value);
+      msg.setDocumentNote(value);
       break;
     case 7:
       var value = /** @type {string} */ (reader.readString());
-      msg.setUomname(value);
+      msg.setUomName(value);
       break;
     case 8:
       var value = /** @type {string} */ (reader.readString());
-      msg.setProducttype(value);
+      msg.setProductType(value);
       break;
     case 9:
       var value = /** @type {boolean} */ (reader.readBool());
-      msg.setIsstocked(value);
+      msg.setIsStocked(value);
       break;
     case 10:
       var value = /** @type {boolean} */ (reader.readBool());
-      msg.setIsdropship(value);
+      msg.setIsDropShip(value);
       break;
     case 11:
       var value = /** @type {boolean} */ (reader.readBool());
-      msg.setIspurchased(value);
+      msg.setIsPurchased(value);
       break;
     case 12:
       var value = /** @type {boolean} */ (reader.readBool());
-      msg.setIssold(value);
+      msg.setIsSold(value);
       break;
     case 13:
       var value = /** @type {string} */ (reader.readString());
-      msg.setImageurl(value);
+      msg.setImageUrl(value);
       break;
     case 14:
       var value = /** @type {string} */ (reader.readString());
-      msg.setProductcategoryname(value);
+      msg.setProductCategoryName(value);
       break;
     case 15:
       var value = /** @type {string} */ (reader.readString());
-      msg.setProductgroupname(value);
+      msg.setProductGroupName(value);
       break;
     case 16:
       var value = /** @type {string} */ (reader.readString());
-      msg.setProductclassname(value);
+      msg.setProductClassName(value);
       break;
     case 17:
       var value = /** @type {string} */ (reader.readString());
-      msg.setProductclassificationname(value);
+      msg.setProductClassificationName(value);
       break;
     case 18:
       var value = new proto_base_data_type_pb.Decimal;
@@ -8195,41 +8195,41 @@ proto.data.Product.deserializeBinaryFromReader = function(msg, reader) {
       break;
     case 22:
       var value = /** @type {number} */ (reader.readInt32());
-      msg.setShelfwidth(value);
+      msg.setShelfWidth(value);
       break;
     case 23:
       var value = new proto_base_data_type_pb.Decimal;
       reader.readMessage(value,proto_base_data_type_pb.Decimal.deserializeBinaryFromReader);
-      msg.setShelfheight(value);
+      msg.setShelfHeight(value);
       break;
     case 24:
       var value = /** @type {number} */ (reader.readInt32());
-      msg.setShelfdepth(value);
+      msg.setShelfDepth(value);
       break;
     case 25:
       var value = /** @type {number} */ (reader.readInt32());
-      msg.setUnitsperpack(value);
+      msg.setUnitsPerPack(value);
       break;
     case 26:
       var value = new proto_base_data_type_pb.Decimal;
       reader.readMessage(value,proto_base_data_type_pb.Decimal.deserializeBinaryFromReader);
-      msg.setUnitsperpallet(value);
+      msg.setUnitsPerPallet(value);
       break;
     case 27:
       var value = /** @type {number} */ (reader.readInt32());
-      msg.setGuaranteedays(value);
+      msg.setGuaranteeDays(value);
       break;
     case 28:
       var value = /** @type {string} */ (reader.readString());
-      msg.setDescriptionurl(value);
+      msg.setDescriptionUrl(value);
       break;
     case 29:
       var value = /** @type {string} */ (reader.readString());
-      msg.setVersionno(value);
+      msg.setVersionNo(value);
       break;
     case 30:
       var value = /** @type {string} */ (reader.readString());
-      msg.setTaxcategory(value);
+      msg.setTaxCategory(value);
       break;
     case 31:
       var value = /** @type {string} */ (reader.readString());
@@ -8299,84 +8299,84 @@ proto.data.Product.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-  f = message.getDocumentnote();
+  f = message.getDocumentNote();
   if (f.length > 0) {
     writer.writeString(
       6,
       f
     );
   }
-  f = message.getUomname();
+  f = message.getUomName();
   if (f.length > 0) {
     writer.writeString(
       7,
       f
     );
   }
-  f = message.getProducttype();
+  f = message.getProductType();
   if (f.length > 0) {
     writer.writeString(
       8,
       f
     );
   }
-  f = message.getIsstocked();
+  f = message.getIsStocked();
   if (f) {
     writer.writeBool(
       9,
       f
     );
   }
-  f = message.getIsdropship();
+  f = message.getIsDropShip();
   if (f) {
     writer.writeBool(
       10,
       f
     );
   }
-  f = message.getIspurchased();
+  f = message.getIsPurchased();
   if (f) {
     writer.writeBool(
       11,
       f
     );
   }
-  f = message.getIssold();
+  f = message.getIsSold();
   if (f) {
     writer.writeBool(
       12,
       f
     );
   }
-  f = message.getImageurl();
+  f = message.getImageUrl();
   if (f.length > 0) {
     writer.writeString(
       13,
       f
     );
   }
-  f = message.getProductcategoryname();
+  f = message.getProductCategoryName();
   if (f.length > 0) {
     writer.writeString(
       14,
       f
     );
   }
-  f = message.getProductgroupname();
+  f = message.getProductGroupName();
   if (f.length > 0) {
     writer.writeString(
       15,
       f
     );
   }
-  f = message.getProductclassname();
+  f = message.getProductClassName();
   if (f.length > 0) {
     writer.writeString(
       16,
       f
     );
   }
-  f = message.getProductclassificationname();
+  f = message.getProductClassificationName();
   if (f.length > 0) {
     writer.writeString(
       17,
@@ -8413,14 +8413,14 @@ proto.data.Product.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-  f = message.getShelfwidth();
+  f = message.getShelfWidth();
   if (f !== 0) {
     writer.writeInt32(
       22,
       f
     );
   }
-  f = message.getShelfheight();
+  f = message.getShelfHeight();
   if (f != null) {
     writer.writeMessage(
       23,
@@ -8428,21 +8428,21 @@ proto.data.Product.serializeBinaryToWriter = function(message, writer) {
       proto_base_data_type_pb.Decimal.serializeBinaryToWriter
     );
   }
-  f = message.getShelfdepth();
+  f = message.getShelfDepth();
   if (f !== 0) {
     writer.writeInt32(
       24,
       f
     );
   }
-  f = message.getUnitsperpack();
+  f = message.getUnitsPerPack();
   if (f !== 0) {
     writer.writeInt32(
       25,
       f
     );
   }
-  f = message.getUnitsperpallet();
+  f = message.getUnitsPerPallet();
   if (f != null) {
     writer.writeMessage(
       26,
@@ -8450,28 +8450,28 @@ proto.data.Product.serializeBinaryToWriter = function(message, writer) {
       proto_base_data_type_pb.Decimal.serializeBinaryToWriter
     );
   }
-  f = message.getGuaranteedays();
+  f = message.getGuaranteeDays();
   if (f !== 0) {
     writer.writeInt32(
       27,
       f
     );
   }
-  f = message.getDescriptionurl();
+  f = message.getDescriptionUrl();
   if (f.length > 0) {
     writer.writeString(
       28,
       f
     );
   }
-  f = message.getVersionno();
+  f = message.getVersionNo();
   if (f.length > 0) {
     writer.writeString(
       29,
       f
     );
   }
-  f = message.getTaxcategory();
+  f = message.getTaxCategory();
   if (f.length > 0) {
     writer.writeString(
       30,
@@ -8579,10 +8579,10 @@ proto.data.Product.prototype.setHelp = function(value) {
 
 
 /**
- * optional string documentNote = 6;
+ * optional string document_note = 6;
  * @return {string}
  */
-proto.data.Product.prototype.getDocumentnote = function() {
+proto.data.Product.prototype.getDocumentNote = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
 };
 
@@ -8591,16 +8591,16 @@ proto.data.Product.prototype.getDocumentnote = function() {
  * @param {string} value
  * @return {!proto.data.Product} returns this
  */
-proto.data.Product.prototype.setDocumentnote = function(value) {
+proto.data.Product.prototype.setDocumentNote = function(value) {
   return jspb.Message.setProto3StringField(this, 6, value);
 };
 
 
 /**
- * optional string uomName = 7;
+ * optional string uom_name = 7;
  * @return {string}
  */
-proto.data.Product.prototype.getUomname = function() {
+proto.data.Product.prototype.getUomName = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 7, ""));
 };
 
@@ -8609,16 +8609,16 @@ proto.data.Product.prototype.getUomname = function() {
  * @param {string} value
  * @return {!proto.data.Product} returns this
  */
-proto.data.Product.prototype.setUomname = function(value) {
+proto.data.Product.prototype.setUomName = function(value) {
   return jspb.Message.setProto3StringField(this, 7, value);
 };
 
 
 /**
- * optional string productType = 8;
+ * optional string product_type = 8;
  * @return {string}
  */
-proto.data.Product.prototype.getProducttype = function() {
+proto.data.Product.prototype.getProductType = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 8, ""));
 };
 
@@ -8627,16 +8627,16 @@ proto.data.Product.prototype.getProducttype = function() {
  * @param {string} value
  * @return {!proto.data.Product} returns this
  */
-proto.data.Product.prototype.setProducttype = function(value) {
+proto.data.Product.prototype.setProductType = function(value) {
   return jspb.Message.setProto3StringField(this, 8, value);
 };
 
 
 /**
- * optional bool isStocked = 9;
+ * optional bool is_stocked = 9;
  * @return {boolean}
  */
-proto.data.Product.prototype.getIsstocked = function() {
+proto.data.Product.prototype.getIsStocked = function() {
   return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 9, false));
 };
 
@@ -8645,16 +8645,16 @@ proto.data.Product.prototype.getIsstocked = function() {
  * @param {boolean} value
  * @return {!proto.data.Product} returns this
  */
-proto.data.Product.prototype.setIsstocked = function(value) {
+proto.data.Product.prototype.setIsStocked = function(value) {
   return jspb.Message.setProto3BooleanField(this, 9, value);
 };
 
 
 /**
- * optional bool isDropShip = 10;
+ * optional bool is_drop_ship = 10;
  * @return {boolean}
  */
-proto.data.Product.prototype.getIsdropship = function() {
+proto.data.Product.prototype.getIsDropShip = function() {
   return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 10, false));
 };
 
@@ -8663,16 +8663,16 @@ proto.data.Product.prototype.getIsdropship = function() {
  * @param {boolean} value
  * @return {!proto.data.Product} returns this
  */
-proto.data.Product.prototype.setIsdropship = function(value) {
+proto.data.Product.prototype.setIsDropShip = function(value) {
   return jspb.Message.setProto3BooleanField(this, 10, value);
 };
 
 
 /**
- * optional bool isPurchased = 11;
+ * optional bool is_purchased = 11;
  * @return {boolean}
  */
-proto.data.Product.prototype.getIspurchased = function() {
+proto.data.Product.prototype.getIsPurchased = function() {
   return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 11, false));
 };
 
@@ -8681,16 +8681,16 @@ proto.data.Product.prototype.getIspurchased = function() {
  * @param {boolean} value
  * @return {!proto.data.Product} returns this
  */
-proto.data.Product.prototype.setIspurchased = function(value) {
+proto.data.Product.prototype.setIsPurchased = function(value) {
   return jspb.Message.setProto3BooleanField(this, 11, value);
 };
 
 
 /**
- * optional bool isSold = 12;
+ * optional bool is_sold = 12;
  * @return {boolean}
  */
-proto.data.Product.prototype.getIssold = function() {
+proto.data.Product.prototype.getIsSold = function() {
   return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 12, false));
 };
 
@@ -8699,16 +8699,16 @@ proto.data.Product.prototype.getIssold = function() {
  * @param {boolean} value
  * @return {!proto.data.Product} returns this
  */
-proto.data.Product.prototype.setIssold = function(value) {
+proto.data.Product.prototype.setIsSold = function(value) {
   return jspb.Message.setProto3BooleanField(this, 12, value);
 };
 
 
 /**
- * optional string imageURL = 13;
+ * optional string image_url = 13;
  * @return {string}
  */
-proto.data.Product.prototype.getImageurl = function() {
+proto.data.Product.prototype.getImageUrl = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 13, ""));
 };
 
@@ -8717,16 +8717,16 @@ proto.data.Product.prototype.getImageurl = function() {
  * @param {string} value
  * @return {!proto.data.Product} returns this
  */
-proto.data.Product.prototype.setImageurl = function(value) {
+proto.data.Product.prototype.setImageUrl = function(value) {
   return jspb.Message.setProto3StringField(this, 13, value);
 };
 
 
 /**
- * optional string productCategoryName = 14;
+ * optional string product_category_name = 14;
  * @return {string}
  */
-proto.data.Product.prototype.getProductcategoryname = function() {
+proto.data.Product.prototype.getProductCategoryName = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 14, ""));
 };
 
@@ -8735,16 +8735,16 @@ proto.data.Product.prototype.getProductcategoryname = function() {
  * @param {string} value
  * @return {!proto.data.Product} returns this
  */
-proto.data.Product.prototype.setProductcategoryname = function(value) {
+proto.data.Product.prototype.setProductCategoryName = function(value) {
   return jspb.Message.setProto3StringField(this, 14, value);
 };
 
 
 /**
- * optional string productGroupName = 15;
+ * optional string product_group_name = 15;
  * @return {string}
  */
-proto.data.Product.prototype.getProductgroupname = function() {
+proto.data.Product.prototype.getProductGroupName = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 15, ""));
 };
 
@@ -8753,16 +8753,16 @@ proto.data.Product.prototype.getProductgroupname = function() {
  * @param {string} value
  * @return {!proto.data.Product} returns this
  */
-proto.data.Product.prototype.setProductgroupname = function(value) {
+proto.data.Product.prototype.setProductGroupName = function(value) {
   return jspb.Message.setProto3StringField(this, 15, value);
 };
 
 
 /**
- * optional string productClassName = 16;
+ * optional string product_class_name = 16;
  * @return {string}
  */
-proto.data.Product.prototype.getProductclassname = function() {
+proto.data.Product.prototype.getProductClassName = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 16, ""));
 };
 
@@ -8771,16 +8771,16 @@ proto.data.Product.prototype.getProductclassname = function() {
  * @param {string} value
  * @return {!proto.data.Product} returns this
  */
-proto.data.Product.prototype.setProductclassname = function(value) {
+proto.data.Product.prototype.setProductClassName = function(value) {
   return jspb.Message.setProto3StringField(this, 16, value);
 };
 
 
 /**
- * optional string productClassificationName = 17;
+ * optional string product_classification_name = 17;
  * @return {string}
  */
-proto.data.Product.prototype.getProductclassificationname = function() {
+proto.data.Product.prototype.getProductClassificationName = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 17, ""));
 };
 
@@ -8789,7 +8789,7 @@ proto.data.Product.prototype.getProductclassificationname = function() {
  * @param {string} value
  * @return {!proto.data.Product} returns this
  */
-proto.data.Product.prototype.setProductclassificationname = function(value) {
+proto.data.Product.prototype.setProductClassificationName = function(value) {
   return jspb.Message.setProto3StringField(this, 17, value);
 };
 
@@ -8905,10 +8905,10 @@ proto.data.Product.prototype.setSku = function(value) {
 
 
 /**
- * optional int32 shelfWidth = 22;
+ * optional int32 shelf_width = 22;
  * @return {number}
  */
-proto.data.Product.prototype.getShelfwidth = function() {
+proto.data.Product.prototype.getShelfWidth = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 22, 0));
 };
 
@@ -8917,16 +8917,16 @@ proto.data.Product.prototype.getShelfwidth = function() {
  * @param {number} value
  * @return {!proto.data.Product} returns this
  */
-proto.data.Product.prototype.setShelfwidth = function(value) {
+proto.data.Product.prototype.setShelfWidth = function(value) {
   return jspb.Message.setProto3IntField(this, 22, value);
 };
 
 
 /**
- * optional Decimal shelfHeight = 23;
+ * optional Decimal shelf_height = 23;
  * @return {?proto.data.Decimal}
  */
-proto.data.Product.prototype.getShelfheight = function() {
+proto.data.Product.prototype.getShelfHeight = function() {
   return /** @type{?proto.data.Decimal} */ (
     jspb.Message.getWrapperField(this, proto_base_data_type_pb.Decimal, 23));
 };
@@ -8936,7 +8936,7 @@ proto.data.Product.prototype.getShelfheight = function() {
  * @param {?proto.data.Decimal|undefined} value
  * @return {!proto.data.Product} returns this
 */
-proto.data.Product.prototype.setShelfheight = function(value) {
+proto.data.Product.prototype.setShelfHeight = function(value) {
   return jspb.Message.setWrapperField(this, 23, value);
 };
 
@@ -8945,8 +8945,8 @@ proto.data.Product.prototype.setShelfheight = function(value) {
  * Clears the message field making it undefined.
  * @return {!proto.data.Product} returns this
  */
-proto.data.Product.prototype.clearShelfheight = function() {
-  return this.setShelfheight(undefined);
+proto.data.Product.prototype.clearShelfHeight = function() {
+  return this.setShelfHeight(undefined);
 };
 
 
@@ -8954,16 +8954,16 @@ proto.data.Product.prototype.clearShelfheight = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.data.Product.prototype.hasShelfheight = function() {
+proto.data.Product.prototype.hasShelfHeight = function() {
   return jspb.Message.getField(this, 23) != null;
 };
 
 
 /**
- * optional int32 shelfDepth = 24;
+ * optional int32 shelf_depth = 24;
  * @return {number}
  */
-proto.data.Product.prototype.getShelfdepth = function() {
+proto.data.Product.prototype.getShelfDepth = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 24, 0));
 };
 
@@ -8972,16 +8972,16 @@ proto.data.Product.prototype.getShelfdepth = function() {
  * @param {number} value
  * @return {!proto.data.Product} returns this
  */
-proto.data.Product.prototype.setShelfdepth = function(value) {
+proto.data.Product.prototype.setShelfDepth = function(value) {
   return jspb.Message.setProto3IntField(this, 24, value);
 };
 
 
 /**
- * optional int32 unitsPerPack = 25;
+ * optional int32 units_per_pack = 25;
  * @return {number}
  */
-proto.data.Product.prototype.getUnitsperpack = function() {
+proto.data.Product.prototype.getUnitsPerPack = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 25, 0));
 };
 
@@ -8990,16 +8990,16 @@ proto.data.Product.prototype.getUnitsperpack = function() {
  * @param {number} value
  * @return {!proto.data.Product} returns this
  */
-proto.data.Product.prototype.setUnitsperpack = function(value) {
+proto.data.Product.prototype.setUnitsPerPack = function(value) {
   return jspb.Message.setProto3IntField(this, 25, value);
 };
 
 
 /**
- * optional Decimal unitsPerPallet = 26;
+ * optional Decimal units_per_pallet = 26;
  * @return {?proto.data.Decimal}
  */
-proto.data.Product.prototype.getUnitsperpallet = function() {
+proto.data.Product.prototype.getUnitsPerPallet = function() {
   return /** @type{?proto.data.Decimal} */ (
     jspb.Message.getWrapperField(this, proto_base_data_type_pb.Decimal, 26));
 };
@@ -9009,7 +9009,7 @@ proto.data.Product.prototype.getUnitsperpallet = function() {
  * @param {?proto.data.Decimal|undefined} value
  * @return {!proto.data.Product} returns this
 */
-proto.data.Product.prototype.setUnitsperpallet = function(value) {
+proto.data.Product.prototype.setUnitsPerPallet = function(value) {
   return jspb.Message.setWrapperField(this, 26, value);
 };
 
@@ -9018,8 +9018,8 @@ proto.data.Product.prototype.setUnitsperpallet = function(value) {
  * Clears the message field making it undefined.
  * @return {!proto.data.Product} returns this
  */
-proto.data.Product.prototype.clearUnitsperpallet = function() {
-  return this.setUnitsperpallet(undefined);
+proto.data.Product.prototype.clearUnitsPerPallet = function() {
+  return this.setUnitsPerPallet(undefined);
 };
 
 
@@ -9027,16 +9027,16 @@ proto.data.Product.prototype.clearUnitsperpallet = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.data.Product.prototype.hasUnitsperpallet = function() {
+proto.data.Product.prototype.hasUnitsPerPallet = function() {
   return jspb.Message.getField(this, 26) != null;
 };
 
 
 /**
- * optional int32 guaranteeDays = 27;
+ * optional int32 guarantee_days = 27;
  * @return {number}
  */
-proto.data.Product.prototype.getGuaranteedays = function() {
+proto.data.Product.prototype.getGuaranteeDays = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 27, 0));
 };
 
@@ -9045,16 +9045,16 @@ proto.data.Product.prototype.getGuaranteedays = function() {
  * @param {number} value
  * @return {!proto.data.Product} returns this
  */
-proto.data.Product.prototype.setGuaranteedays = function(value) {
+proto.data.Product.prototype.setGuaranteeDays = function(value) {
   return jspb.Message.setProto3IntField(this, 27, value);
 };
 
 
 /**
- * optional string descriptionURL = 28;
+ * optional string description_url = 28;
  * @return {string}
  */
-proto.data.Product.prototype.getDescriptionurl = function() {
+proto.data.Product.prototype.getDescriptionUrl = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 28, ""));
 };
 
@@ -9063,16 +9063,16 @@ proto.data.Product.prototype.getDescriptionurl = function() {
  * @param {string} value
  * @return {!proto.data.Product} returns this
  */
-proto.data.Product.prototype.setDescriptionurl = function(value) {
+proto.data.Product.prototype.setDescriptionUrl = function(value) {
   return jspb.Message.setProto3StringField(this, 28, value);
 };
 
 
 /**
- * optional string versionNo = 29;
+ * optional string version_no = 29;
  * @return {string}
  */
-proto.data.Product.prototype.getVersionno = function() {
+proto.data.Product.prototype.getVersionNo = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 29, ""));
 };
 
@@ -9081,16 +9081,16 @@ proto.data.Product.prototype.getVersionno = function() {
  * @param {string} value
  * @return {!proto.data.Product} returns this
  */
-proto.data.Product.prototype.setVersionno = function(value) {
+proto.data.Product.prototype.setVersionNo = function(value) {
   return jspb.Message.setProto3StringField(this, 29, value);
 };
 
 
 /**
- * optional string taxCategory = 30;
+ * optional string tax_category = 30;
  * @return {string}
  */
-proto.data.Product.prototype.getTaxcategory = function() {
+proto.data.Product.prototype.getTaxCategory = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 30, ""));
 };
 
@@ -9099,7 +9099,7 @@ proto.data.Product.prototype.getTaxcategory = function() {
  * @param {string} value
  * @return {!proto.data.Product} returns this
  */
-proto.data.Product.prototype.setTaxcategory = function(value) {
+proto.data.Product.prototype.setTaxCategory = function(value) {
   return jspb.Message.setProto3StringField(this, 30, value);
 };
 
@@ -9158,7 +9158,7 @@ proto.data.TaxRate.toObject = function(includeInstance, msg) {
     id: jspb.Message.getFieldWithDefault(msg, 2, 0),
     name: jspb.Message.getFieldWithDefault(msg, 3, ""),
     description: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    taxindicator: jspb.Message.getFieldWithDefault(msg, 5, ""),
+    taxIndicator: jspb.Message.getFieldWithDefault(msg, 5, ""),
     rate: (f = msg.getRate()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f)
   };
 
@@ -9214,7 +9214,7 @@ proto.data.TaxRate.deserializeBinaryFromReader = function(msg, reader) {
       break;
     case 5:
       var value = /** @type {string} */ (reader.readString());
-      msg.setTaxindicator(value);
+      msg.setTaxIndicator(value);
       break;
     case 6:
       var value = new proto_base_data_type_pb.Decimal;
@@ -9278,7 +9278,7 @@ proto.data.TaxRate.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-  f = message.getTaxindicator();
+  f = message.getTaxIndicator();
   if (f.length > 0) {
     writer.writeString(
       5,
@@ -9369,10 +9369,10 @@ proto.data.TaxRate.prototype.setDescription = function(value) {
 
 
 /**
- * optional string taxIndicator = 5;
+ * optional string tax_indicator = 5;
  * @return {string}
  */
-proto.data.TaxRate.prototype.getTaxindicator = function() {
+proto.data.TaxRate.prototype.getTaxIndicator = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
 };
 
@@ -9381,7 +9381,7 @@ proto.data.TaxRate.prototype.getTaxindicator = function() {
  * @param {string} value
  * @return {!proto.data.TaxRate} returns this
  */
-proto.data.TaxRate.prototype.setTaxindicator = function(value) {
+proto.data.TaxRate.prototype.setTaxIndicator = function(value) {
   return jspb.Message.setProto3StringField(this, 5, value);
 };
 
@@ -9456,19 +9456,19 @@ proto.data.ProductPrice.prototype.toObject = function(opt_includeInstance) {
 proto.data.ProductPrice.toObject = function(includeInstance, msg) {
   var f, obj = {
     product: (f = msg.getProduct()) && proto.data.Product.toObject(includeInstance, f),
-    pricelist: (f = msg.getPricelist()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
-    pricestd: (f = msg.getPricestd()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
-    pricelimit: (f = msg.getPricelimit()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
-    pricelistname: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    istaxincluded: jspb.Message.getBooleanFieldWithDefault(msg, 6, false),
-    validfrom: jspb.Message.getFieldWithDefault(msg, 7, 0),
+    priceList: (f = msg.getPriceList()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
+    priceStandard: (f = msg.getPriceStandard()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
+    priceLimit: (f = msg.getPriceLimit()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
+    priceListName: jspb.Message.getFieldWithDefault(msg, 5, ""),
+    isTaxIncluded: jspb.Message.getBooleanFieldWithDefault(msg, 6, false),
+    validFrom: jspb.Message.getFieldWithDefault(msg, 7, 0),
     currency: (f = msg.getCurrency()) && proto.data.Currency.toObject(includeInstance, f),
-    taxrate: (f = msg.getTaxrate()) && proto.data.TaxRate.toObject(includeInstance, f),
-    priceprecision: jspb.Message.getFieldWithDefault(msg, 10, 0),
-    quantityonhand: (f = msg.getQuantityonhand()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
-    quantityreserved: (f = msg.getQuantityreserved()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
-    quantityordered: (f = msg.getQuantityordered()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
-    quantityavailable: (f = msg.getQuantityavailable()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f)
+    taxRate: (f = msg.getTaxRate()) && proto.data.TaxRate.toObject(includeInstance, f),
+    pricePrecision: jspb.Message.getFieldWithDefault(msg, 10, 0),
+    quantityOnHand: (f = msg.getQuantityOnHand()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
+    quantityReserved: (f = msg.getQuantityReserved()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
+    quantityOrdered: (f = msg.getQuantityOrdered()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
+    quantityAvailable: (f = msg.getQuantityAvailable()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -9513,29 +9513,29 @@ proto.data.ProductPrice.deserializeBinaryFromReader = function(msg, reader) {
     case 2:
       var value = new proto_base_data_type_pb.Decimal;
       reader.readMessage(value,proto_base_data_type_pb.Decimal.deserializeBinaryFromReader);
-      msg.setPricelist(value);
+      msg.setPriceList(value);
       break;
     case 3:
       var value = new proto_base_data_type_pb.Decimal;
       reader.readMessage(value,proto_base_data_type_pb.Decimal.deserializeBinaryFromReader);
-      msg.setPricestd(value);
+      msg.setPriceStandard(value);
       break;
     case 4:
       var value = new proto_base_data_type_pb.Decimal;
       reader.readMessage(value,proto_base_data_type_pb.Decimal.deserializeBinaryFromReader);
-      msg.setPricelimit(value);
+      msg.setPriceLimit(value);
       break;
     case 5:
       var value = /** @type {string} */ (reader.readString());
-      msg.setPricelistname(value);
+      msg.setPriceListName(value);
       break;
     case 6:
       var value = /** @type {boolean} */ (reader.readBool());
-      msg.setIstaxincluded(value);
+      msg.setIsTaxIncluded(value);
       break;
     case 7:
       var value = /** @type {number} */ (reader.readInt64());
-      msg.setValidfrom(value);
+      msg.setValidFrom(value);
       break;
     case 8:
       var value = new proto.data.Currency;
@@ -9545,31 +9545,31 @@ proto.data.ProductPrice.deserializeBinaryFromReader = function(msg, reader) {
     case 9:
       var value = new proto.data.TaxRate;
       reader.readMessage(value,proto.data.TaxRate.deserializeBinaryFromReader);
-      msg.setTaxrate(value);
+      msg.setTaxRate(value);
       break;
     case 10:
       var value = /** @type {number} */ (reader.readInt32());
-      msg.setPriceprecision(value);
+      msg.setPricePrecision(value);
       break;
     case 11:
       var value = new proto_base_data_type_pb.Decimal;
       reader.readMessage(value,proto_base_data_type_pb.Decimal.deserializeBinaryFromReader);
-      msg.setQuantityonhand(value);
+      msg.setQuantityOnHand(value);
       break;
     case 12:
       var value = new proto_base_data_type_pb.Decimal;
       reader.readMessage(value,proto_base_data_type_pb.Decimal.deserializeBinaryFromReader);
-      msg.setQuantityreserved(value);
+      msg.setQuantityReserved(value);
       break;
     case 13:
       var value = new proto_base_data_type_pb.Decimal;
       reader.readMessage(value,proto_base_data_type_pb.Decimal.deserializeBinaryFromReader);
-      msg.setQuantityordered(value);
+      msg.setQuantityOrdered(value);
       break;
     case 14:
       var value = new proto_base_data_type_pb.Decimal;
       reader.readMessage(value,proto_base_data_type_pb.Decimal.deserializeBinaryFromReader);
-      msg.setQuantityavailable(value);
+      msg.setQuantityAvailable(value);
       break;
     default:
       reader.skipField();
@@ -9608,7 +9608,7 @@ proto.data.ProductPrice.serializeBinaryToWriter = function(message, writer) {
       proto.data.Product.serializeBinaryToWriter
     );
   }
-  f = message.getPricelist();
+  f = message.getPriceList();
   if (f != null) {
     writer.writeMessage(
       2,
@@ -9616,7 +9616,7 @@ proto.data.ProductPrice.serializeBinaryToWriter = function(message, writer) {
       proto_base_data_type_pb.Decimal.serializeBinaryToWriter
     );
   }
-  f = message.getPricestd();
+  f = message.getPriceStandard();
   if (f != null) {
     writer.writeMessage(
       3,
@@ -9624,7 +9624,7 @@ proto.data.ProductPrice.serializeBinaryToWriter = function(message, writer) {
       proto_base_data_type_pb.Decimal.serializeBinaryToWriter
     );
   }
-  f = message.getPricelimit();
+  f = message.getPriceLimit();
   if (f != null) {
     writer.writeMessage(
       4,
@@ -9632,21 +9632,21 @@ proto.data.ProductPrice.serializeBinaryToWriter = function(message, writer) {
       proto_base_data_type_pb.Decimal.serializeBinaryToWriter
     );
   }
-  f = message.getPricelistname();
+  f = message.getPriceListName();
   if (f.length > 0) {
     writer.writeString(
       5,
       f
     );
   }
-  f = message.getIstaxincluded();
+  f = message.getIsTaxIncluded();
   if (f) {
     writer.writeBool(
       6,
       f
     );
   }
-  f = message.getValidfrom();
+  f = message.getValidFrom();
   if (f !== 0) {
     writer.writeInt64(
       7,
@@ -9661,7 +9661,7 @@ proto.data.ProductPrice.serializeBinaryToWriter = function(message, writer) {
       proto.data.Currency.serializeBinaryToWriter
     );
   }
-  f = message.getTaxrate();
+  f = message.getTaxRate();
   if (f != null) {
     writer.writeMessage(
       9,
@@ -9669,14 +9669,14 @@ proto.data.ProductPrice.serializeBinaryToWriter = function(message, writer) {
       proto.data.TaxRate.serializeBinaryToWriter
     );
   }
-  f = message.getPriceprecision();
+  f = message.getPricePrecision();
   if (f !== 0) {
     writer.writeInt32(
       10,
       f
     );
   }
-  f = message.getQuantityonhand();
+  f = message.getQuantityOnHand();
   if (f != null) {
     writer.writeMessage(
       11,
@@ -9684,7 +9684,7 @@ proto.data.ProductPrice.serializeBinaryToWriter = function(message, writer) {
       proto_base_data_type_pb.Decimal.serializeBinaryToWriter
     );
   }
-  f = message.getQuantityreserved();
+  f = message.getQuantityReserved();
   if (f != null) {
     writer.writeMessage(
       12,
@@ -9692,7 +9692,7 @@ proto.data.ProductPrice.serializeBinaryToWriter = function(message, writer) {
       proto_base_data_type_pb.Decimal.serializeBinaryToWriter
     );
   }
-  f = message.getQuantityordered();
+  f = message.getQuantityOrdered();
   if (f != null) {
     writer.writeMessage(
       13,
@@ -9700,7 +9700,7 @@ proto.data.ProductPrice.serializeBinaryToWriter = function(message, writer) {
       proto_base_data_type_pb.Decimal.serializeBinaryToWriter
     );
   }
-  f = message.getQuantityavailable();
+  f = message.getQuantityAvailable();
   if (f != null) {
     writer.writeMessage(
       14,
@@ -9749,10 +9749,10 @@ proto.data.ProductPrice.prototype.hasProduct = function() {
 
 
 /**
- * optional Decimal priceList = 2;
+ * optional Decimal price_list = 2;
  * @return {?proto.data.Decimal}
  */
-proto.data.ProductPrice.prototype.getPricelist = function() {
+proto.data.ProductPrice.prototype.getPriceList = function() {
   return /** @type{?proto.data.Decimal} */ (
     jspb.Message.getWrapperField(this, proto_base_data_type_pb.Decimal, 2));
 };
@@ -9762,7 +9762,7 @@ proto.data.ProductPrice.prototype.getPricelist = function() {
  * @param {?proto.data.Decimal|undefined} value
  * @return {!proto.data.ProductPrice} returns this
 */
-proto.data.ProductPrice.prototype.setPricelist = function(value) {
+proto.data.ProductPrice.prototype.setPriceList = function(value) {
   return jspb.Message.setWrapperField(this, 2, value);
 };
 
@@ -9771,8 +9771,8 @@ proto.data.ProductPrice.prototype.setPricelist = function(value) {
  * Clears the message field making it undefined.
  * @return {!proto.data.ProductPrice} returns this
  */
-proto.data.ProductPrice.prototype.clearPricelist = function() {
-  return this.setPricelist(undefined);
+proto.data.ProductPrice.prototype.clearPriceList = function() {
+  return this.setPriceList(undefined);
 };
 
 
@@ -9780,16 +9780,16 @@ proto.data.ProductPrice.prototype.clearPricelist = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.data.ProductPrice.prototype.hasPricelist = function() {
+proto.data.ProductPrice.prototype.hasPriceList = function() {
   return jspb.Message.getField(this, 2) != null;
 };
 
 
 /**
- * optional Decimal priceStd = 3;
+ * optional Decimal price_standard = 3;
  * @return {?proto.data.Decimal}
  */
-proto.data.ProductPrice.prototype.getPricestd = function() {
+proto.data.ProductPrice.prototype.getPriceStandard = function() {
   return /** @type{?proto.data.Decimal} */ (
     jspb.Message.getWrapperField(this, proto_base_data_type_pb.Decimal, 3));
 };
@@ -9799,7 +9799,7 @@ proto.data.ProductPrice.prototype.getPricestd = function() {
  * @param {?proto.data.Decimal|undefined} value
  * @return {!proto.data.ProductPrice} returns this
 */
-proto.data.ProductPrice.prototype.setPricestd = function(value) {
+proto.data.ProductPrice.prototype.setPriceStandard = function(value) {
   return jspb.Message.setWrapperField(this, 3, value);
 };
 
@@ -9808,8 +9808,8 @@ proto.data.ProductPrice.prototype.setPricestd = function(value) {
  * Clears the message field making it undefined.
  * @return {!proto.data.ProductPrice} returns this
  */
-proto.data.ProductPrice.prototype.clearPricestd = function() {
-  return this.setPricestd(undefined);
+proto.data.ProductPrice.prototype.clearPriceStandard = function() {
+  return this.setPriceStandard(undefined);
 };
 
 
@@ -9817,16 +9817,16 @@ proto.data.ProductPrice.prototype.clearPricestd = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.data.ProductPrice.prototype.hasPricestd = function() {
+proto.data.ProductPrice.prototype.hasPriceStandard = function() {
   return jspb.Message.getField(this, 3) != null;
 };
 
 
 /**
- * optional Decimal priceLimit = 4;
+ * optional Decimal price_limit = 4;
  * @return {?proto.data.Decimal}
  */
-proto.data.ProductPrice.prototype.getPricelimit = function() {
+proto.data.ProductPrice.prototype.getPriceLimit = function() {
   return /** @type{?proto.data.Decimal} */ (
     jspb.Message.getWrapperField(this, proto_base_data_type_pb.Decimal, 4));
 };
@@ -9836,7 +9836,7 @@ proto.data.ProductPrice.prototype.getPricelimit = function() {
  * @param {?proto.data.Decimal|undefined} value
  * @return {!proto.data.ProductPrice} returns this
 */
-proto.data.ProductPrice.prototype.setPricelimit = function(value) {
+proto.data.ProductPrice.prototype.setPriceLimit = function(value) {
   return jspb.Message.setWrapperField(this, 4, value);
 };
 
@@ -9845,8 +9845,8 @@ proto.data.ProductPrice.prototype.setPricelimit = function(value) {
  * Clears the message field making it undefined.
  * @return {!proto.data.ProductPrice} returns this
  */
-proto.data.ProductPrice.prototype.clearPricelimit = function() {
-  return this.setPricelimit(undefined);
+proto.data.ProductPrice.prototype.clearPriceLimit = function() {
+  return this.setPriceLimit(undefined);
 };
 
 
@@ -9854,16 +9854,16 @@ proto.data.ProductPrice.prototype.clearPricelimit = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.data.ProductPrice.prototype.hasPricelimit = function() {
+proto.data.ProductPrice.prototype.hasPriceLimit = function() {
   return jspb.Message.getField(this, 4) != null;
 };
 
 
 /**
- * optional string priceListName = 5;
+ * optional string price_list_name = 5;
  * @return {string}
  */
-proto.data.ProductPrice.prototype.getPricelistname = function() {
+proto.data.ProductPrice.prototype.getPriceListName = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
 };
 
@@ -9872,16 +9872,16 @@ proto.data.ProductPrice.prototype.getPricelistname = function() {
  * @param {string} value
  * @return {!proto.data.ProductPrice} returns this
  */
-proto.data.ProductPrice.prototype.setPricelistname = function(value) {
+proto.data.ProductPrice.prototype.setPriceListName = function(value) {
   return jspb.Message.setProto3StringField(this, 5, value);
 };
 
 
 /**
- * optional bool isTaxIncluded = 6;
+ * optional bool is_tax_included = 6;
  * @return {boolean}
  */
-proto.data.ProductPrice.prototype.getIstaxincluded = function() {
+proto.data.ProductPrice.prototype.getIsTaxIncluded = function() {
   return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 6, false));
 };
 
@@ -9890,16 +9890,16 @@ proto.data.ProductPrice.prototype.getIstaxincluded = function() {
  * @param {boolean} value
  * @return {!proto.data.ProductPrice} returns this
  */
-proto.data.ProductPrice.prototype.setIstaxincluded = function(value) {
+proto.data.ProductPrice.prototype.setIsTaxIncluded = function(value) {
   return jspb.Message.setProto3BooleanField(this, 6, value);
 };
 
 
 /**
- * optional int64 validFrom = 7;
+ * optional int64 valid_from = 7;
  * @return {number}
  */
-proto.data.ProductPrice.prototype.getValidfrom = function() {
+proto.data.ProductPrice.prototype.getValidFrom = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 7, 0));
 };
 
@@ -9908,7 +9908,7 @@ proto.data.ProductPrice.prototype.getValidfrom = function() {
  * @param {number} value
  * @return {!proto.data.ProductPrice} returns this
  */
-proto.data.ProductPrice.prototype.setValidfrom = function(value) {
+proto.data.ProductPrice.prototype.setValidFrom = function(value) {
   return jspb.Message.setProto3IntField(this, 7, value);
 };
 
@@ -9951,10 +9951,10 @@ proto.data.ProductPrice.prototype.hasCurrency = function() {
 
 
 /**
- * optional TaxRate taxRate = 9;
+ * optional TaxRate tax_rate = 9;
  * @return {?proto.data.TaxRate}
  */
-proto.data.ProductPrice.prototype.getTaxrate = function() {
+proto.data.ProductPrice.prototype.getTaxRate = function() {
   return /** @type{?proto.data.TaxRate} */ (
     jspb.Message.getWrapperField(this, proto.data.TaxRate, 9));
 };
@@ -9964,7 +9964,7 @@ proto.data.ProductPrice.prototype.getTaxrate = function() {
  * @param {?proto.data.TaxRate|undefined} value
  * @return {!proto.data.ProductPrice} returns this
 */
-proto.data.ProductPrice.prototype.setTaxrate = function(value) {
+proto.data.ProductPrice.prototype.setTaxRate = function(value) {
   return jspb.Message.setWrapperField(this, 9, value);
 };
 
@@ -9973,8 +9973,8 @@ proto.data.ProductPrice.prototype.setTaxrate = function(value) {
  * Clears the message field making it undefined.
  * @return {!proto.data.ProductPrice} returns this
  */
-proto.data.ProductPrice.prototype.clearTaxrate = function() {
-  return this.setTaxrate(undefined);
+proto.data.ProductPrice.prototype.clearTaxRate = function() {
+  return this.setTaxRate(undefined);
 };
 
 
@@ -9982,16 +9982,16 @@ proto.data.ProductPrice.prototype.clearTaxrate = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.data.ProductPrice.prototype.hasTaxrate = function() {
+proto.data.ProductPrice.prototype.hasTaxRate = function() {
   return jspb.Message.getField(this, 9) != null;
 };
 
 
 /**
- * optional int32 pricePrecision = 10;
+ * optional int32 price_precision = 10;
  * @return {number}
  */
-proto.data.ProductPrice.prototype.getPriceprecision = function() {
+proto.data.ProductPrice.prototype.getPricePrecision = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 10, 0));
 };
 
@@ -10000,16 +10000,16 @@ proto.data.ProductPrice.prototype.getPriceprecision = function() {
  * @param {number} value
  * @return {!proto.data.ProductPrice} returns this
  */
-proto.data.ProductPrice.prototype.setPriceprecision = function(value) {
+proto.data.ProductPrice.prototype.setPricePrecision = function(value) {
   return jspb.Message.setProto3IntField(this, 10, value);
 };
 
 
 /**
- * optional Decimal quantityOnHand = 11;
+ * optional Decimal quantity_on_hand = 11;
  * @return {?proto.data.Decimal}
  */
-proto.data.ProductPrice.prototype.getQuantityonhand = function() {
+proto.data.ProductPrice.prototype.getQuantityOnHand = function() {
   return /** @type{?proto.data.Decimal} */ (
     jspb.Message.getWrapperField(this, proto_base_data_type_pb.Decimal, 11));
 };
@@ -10019,7 +10019,7 @@ proto.data.ProductPrice.prototype.getQuantityonhand = function() {
  * @param {?proto.data.Decimal|undefined} value
  * @return {!proto.data.ProductPrice} returns this
 */
-proto.data.ProductPrice.prototype.setQuantityonhand = function(value) {
+proto.data.ProductPrice.prototype.setQuantityOnHand = function(value) {
   return jspb.Message.setWrapperField(this, 11, value);
 };
 
@@ -10028,8 +10028,8 @@ proto.data.ProductPrice.prototype.setQuantityonhand = function(value) {
  * Clears the message field making it undefined.
  * @return {!proto.data.ProductPrice} returns this
  */
-proto.data.ProductPrice.prototype.clearQuantityonhand = function() {
-  return this.setQuantityonhand(undefined);
+proto.data.ProductPrice.prototype.clearQuantityOnHand = function() {
+  return this.setQuantityOnHand(undefined);
 };
 
 
@@ -10037,16 +10037,16 @@ proto.data.ProductPrice.prototype.clearQuantityonhand = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.data.ProductPrice.prototype.hasQuantityonhand = function() {
+proto.data.ProductPrice.prototype.hasQuantityOnHand = function() {
   return jspb.Message.getField(this, 11) != null;
 };
 
 
 /**
- * optional Decimal quantityReserved = 12;
+ * optional Decimal quantity_reserved = 12;
  * @return {?proto.data.Decimal}
  */
-proto.data.ProductPrice.prototype.getQuantityreserved = function() {
+proto.data.ProductPrice.prototype.getQuantityReserved = function() {
   return /** @type{?proto.data.Decimal} */ (
     jspb.Message.getWrapperField(this, proto_base_data_type_pb.Decimal, 12));
 };
@@ -10056,7 +10056,7 @@ proto.data.ProductPrice.prototype.getQuantityreserved = function() {
  * @param {?proto.data.Decimal|undefined} value
  * @return {!proto.data.ProductPrice} returns this
 */
-proto.data.ProductPrice.prototype.setQuantityreserved = function(value) {
+proto.data.ProductPrice.prototype.setQuantityReserved = function(value) {
   return jspb.Message.setWrapperField(this, 12, value);
 };
 
@@ -10065,8 +10065,8 @@ proto.data.ProductPrice.prototype.setQuantityreserved = function(value) {
  * Clears the message field making it undefined.
  * @return {!proto.data.ProductPrice} returns this
  */
-proto.data.ProductPrice.prototype.clearQuantityreserved = function() {
-  return this.setQuantityreserved(undefined);
+proto.data.ProductPrice.prototype.clearQuantityReserved = function() {
+  return this.setQuantityReserved(undefined);
 };
 
 
@@ -10074,16 +10074,16 @@ proto.data.ProductPrice.prototype.clearQuantityreserved = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.data.ProductPrice.prototype.hasQuantityreserved = function() {
+proto.data.ProductPrice.prototype.hasQuantityReserved = function() {
   return jspb.Message.getField(this, 12) != null;
 };
 
 
 /**
- * optional Decimal quantityOrdered = 13;
+ * optional Decimal quantity_ordered = 13;
  * @return {?proto.data.Decimal}
  */
-proto.data.ProductPrice.prototype.getQuantityordered = function() {
+proto.data.ProductPrice.prototype.getQuantityOrdered = function() {
   return /** @type{?proto.data.Decimal} */ (
     jspb.Message.getWrapperField(this, proto_base_data_type_pb.Decimal, 13));
 };
@@ -10093,7 +10093,7 @@ proto.data.ProductPrice.prototype.getQuantityordered = function() {
  * @param {?proto.data.Decimal|undefined} value
  * @return {!proto.data.ProductPrice} returns this
 */
-proto.data.ProductPrice.prototype.setQuantityordered = function(value) {
+proto.data.ProductPrice.prototype.setQuantityOrdered = function(value) {
   return jspb.Message.setWrapperField(this, 13, value);
 };
 
@@ -10102,8 +10102,8 @@ proto.data.ProductPrice.prototype.setQuantityordered = function(value) {
  * Clears the message field making it undefined.
  * @return {!proto.data.ProductPrice} returns this
  */
-proto.data.ProductPrice.prototype.clearQuantityordered = function() {
-  return this.setQuantityordered(undefined);
+proto.data.ProductPrice.prototype.clearQuantityOrdered = function() {
+  return this.setQuantityOrdered(undefined);
 };
 
 
@@ -10111,16 +10111,16 @@ proto.data.ProductPrice.prototype.clearQuantityordered = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.data.ProductPrice.prototype.hasQuantityordered = function() {
+proto.data.ProductPrice.prototype.hasQuantityOrdered = function() {
   return jspb.Message.getField(this, 13) != null;
 };
 
 
 /**
- * optional Decimal quantityAvailable = 14;
+ * optional Decimal quantity_available = 14;
  * @return {?proto.data.Decimal}
  */
-proto.data.ProductPrice.prototype.getQuantityavailable = function() {
+proto.data.ProductPrice.prototype.getQuantityAvailable = function() {
   return /** @type{?proto.data.Decimal} */ (
     jspb.Message.getWrapperField(this, proto_base_data_type_pb.Decimal, 14));
 };
@@ -10130,7 +10130,7 @@ proto.data.ProductPrice.prototype.getQuantityavailable = function() {
  * @param {?proto.data.Decimal|undefined} value
  * @return {!proto.data.ProductPrice} returns this
 */
-proto.data.ProductPrice.prototype.setQuantityavailable = function(value) {
+proto.data.ProductPrice.prototype.setQuantityAvailable = function(value) {
   return jspb.Message.setWrapperField(this, 14, value);
 };
 
@@ -10139,8 +10139,8 @@ proto.data.ProductPrice.prototype.setQuantityavailable = function(value) {
  * Clears the message field making it undefined.
  * @return {!proto.data.ProductPrice} returns this
  */
-proto.data.ProductPrice.prototype.clearQuantityavailable = function() {
-  return this.setQuantityavailable(undefined);
+proto.data.ProductPrice.prototype.clearQuantityAvailable = function() {
+  return this.setQuantityAvailable(undefined);
 };
 
 
@@ -10148,7 +10148,7 @@ proto.data.ProductPrice.prototype.clearQuantityavailable = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.data.ProductPrice.prototype.hasQuantityavailable = function() {
+proto.data.ProductPrice.prototype.hasQuantityAvailable = function() {
   return jspb.Message.getField(this, 14) != null;
 };
 
@@ -10186,14 +10186,14 @@ proto.data.Language.prototype.toObject = function(opt_includeInstance) {
 proto.data.Language.toObject = function(includeInstance, msg) {
   var f, obj = {
     language: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    languagename: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    languageiso: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    countrycode: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    isbaselanguage: jspb.Message.getBooleanFieldWithDefault(msg, 5, false),
-    issystemlanguage: jspb.Message.getBooleanFieldWithDefault(msg, 6, false),
-    isdecimalpoint: jspb.Message.getBooleanFieldWithDefault(msg, 7, false),
-    datepattern: jspb.Message.getFieldWithDefault(msg, 8, ""),
-    timepattern: jspb.Message.getFieldWithDefault(msg, 9, "")
+    languageName: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    languageIso: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    countryCode: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    isBaseLanguage: jspb.Message.getBooleanFieldWithDefault(msg, 5, false),
+    isSystemLanguage: jspb.Message.getBooleanFieldWithDefault(msg, 6, false),
+    isDecimalPoint: jspb.Message.getBooleanFieldWithDefault(msg, 7, false),
+    datePattern: jspb.Message.getFieldWithDefault(msg, 8, ""),
+    timePattern: jspb.Message.getFieldWithDefault(msg, 9, "")
   };
 
   if (includeInstance) {
@@ -10236,35 +10236,35 @@ proto.data.Language.deserializeBinaryFromReader = function(msg, reader) {
       break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
-      msg.setLanguagename(value);
+      msg.setLanguageName(value);
       break;
     case 3:
       var value = /** @type {string} */ (reader.readString());
-      msg.setLanguageiso(value);
+      msg.setLanguageIso(value);
       break;
     case 4:
       var value = /** @type {string} */ (reader.readString());
-      msg.setCountrycode(value);
+      msg.setCountryCode(value);
       break;
     case 5:
       var value = /** @type {boolean} */ (reader.readBool());
-      msg.setIsbaselanguage(value);
+      msg.setIsBaseLanguage(value);
       break;
     case 6:
       var value = /** @type {boolean} */ (reader.readBool());
-      msg.setIssystemlanguage(value);
+      msg.setIsSystemLanguage(value);
       break;
     case 7:
       var value = /** @type {boolean} */ (reader.readBool());
-      msg.setIsdecimalpoint(value);
+      msg.setIsDecimalPoint(value);
       break;
     case 8:
       var value = /** @type {string} */ (reader.readString());
-      msg.setDatepattern(value);
+      msg.setDatePattern(value);
       break;
     case 9:
       var value = /** @type {string} */ (reader.readString());
-      msg.setTimepattern(value);
+      msg.setTimePattern(value);
       break;
     default:
       reader.skipField();
@@ -10302,56 +10302,56 @@ proto.data.Language.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-  f = message.getLanguagename();
+  f = message.getLanguageName();
   if (f.length > 0) {
     writer.writeString(
       2,
       f
     );
   }
-  f = message.getLanguageiso();
+  f = message.getLanguageIso();
   if (f.length > 0) {
     writer.writeString(
       3,
       f
     );
   }
-  f = message.getCountrycode();
+  f = message.getCountryCode();
   if (f.length > 0) {
     writer.writeString(
       4,
       f
     );
   }
-  f = message.getIsbaselanguage();
+  f = message.getIsBaseLanguage();
   if (f) {
     writer.writeBool(
       5,
       f
     );
   }
-  f = message.getIssystemlanguage();
+  f = message.getIsSystemLanguage();
   if (f) {
     writer.writeBool(
       6,
       f
     );
   }
-  f = message.getIsdecimalpoint();
+  f = message.getIsDecimalPoint();
   if (f) {
     writer.writeBool(
       7,
       f
     );
   }
-  f = message.getDatepattern();
+  f = message.getDatePattern();
   if (f.length > 0) {
     writer.writeString(
       8,
       f
     );
   }
-  f = message.getTimepattern();
+  f = message.getTimePattern();
   if (f.length > 0) {
     writer.writeString(
       9,
@@ -10380,10 +10380,10 @@ proto.data.Language.prototype.setLanguage = function(value) {
 
 
 /**
- * optional string languageName = 2;
+ * optional string language_name = 2;
  * @return {string}
  */
-proto.data.Language.prototype.getLanguagename = function() {
+proto.data.Language.prototype.getLanguageName = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
@@ -10392,16 +10392,16 @@ proto.data.Language.prototype.getLanguagename = function() {
  * @param {string} value
  * @return {!proto.data.Language} returns this
  */
-proto.data.Language.prototype.setLanguagename = function(value) {
+proto.data.Language.prototype.setLanguageName = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
 /**
- * optional string languageISO = 3;
+ * optional string language_iso = 3;
  * @return {string}
  */
-proto.data.Language.prototype.getLanguageiso = function() {
+proto.data.Language.prototype.getLanguageIso = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
 
@@ -10410,16 +10410,16 @@ proto.data.Language.prototype.getLanguageiso = function() {
  * @param {string} value
  * @return {!proto.data.Language} returns this
  */
-proto.data.Language.prototype.setLanguageiso = function(value) {
+proto.data.Language.prototype.setLanguageIso = function(value) {
   return jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
 /**
- * optional string countryCode = 4;
+ * optional string country_code = 4;
  * @return {string}
  */
-proto.data.Language.prototype.getCountrycode = function() {
+proto.data.Language.prototype.getCountryCode = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
 };
 
@@ -10428,16 +10428,16 @@ proto.data.Language.prototype.getCountrycode = function() {
  * @param {string} value
  * @return {!proto.data.Language} returns this
  */
-proto.data.Language.prototype.setCountrycode = function(value) {
+proto.data.Language.prototype.setCountryCode = function(value) {
   return jspb.Message.setProto3StringField(this, 4, value);
 };
 
 
 /**
- * optional bool isBaseLanguage = 5;
+ * optional bool is_base_language = 5;
  * @return {boolean}
  */
-proto.data.Language.prototype.getIsbaselanguage = function() {
+proto.data.Language.prototype.getIsBaseLanguage = function() {
   return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 5, false));
 };
 
@@ -10446,16 +10446,16 @@ proto.data.Language.prototype.getIsbaselanguage = function() {
  * @param {boolean} value
  * @return {!proto.data.Language} returns this
  */
-proto.data.Language.prototype.setIsbaselanguage = function(value) {
+proto.data.Language.prototype.setIsBaseLanguage = function(value) {
   return jspb.Message.setProto3BooleanField(this, 5, value);
 };
 
 
 /**
- * optional bool isSystemLanguage = 6;
+ * optional bool is_system_language = 6;
  * @return {boolean}
  */
-proto.data.Language.prototype.getIssystemlanguage = function() {
+proto.data.Language.prototype.getIsSystemLanguage = function() {
   return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 6, false));
 };
 
@@ -10464,16 +10464,16 @@ proto.data.Language.prototype.getIssystemlanguage = function() {
  * @param {boolean} value
  * @return {!proto.data.Language} returns this
  */
-proto.data.Language.prototype.setIssystemlanguage = function(value) {
+proto.data.Language.prototype.setIsSystemLanguage = function(value) {
   return jspb.Message.setProto3BooleanField(this, 6, value);
 };
 
 
 /**
- * optional bool isDecimalPoint = 7;
+ * optional bool is_decimal_point = 7;
  * @return {boolean}
  */
-proto.data.Language.prototype.getIsdecimalpoint = function() {
+proto.data.Language.prototype.getIsDecimalPoint = function() {
   return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 7, false));
 };
 
@@ -10482,16 +10482,16 @@ proto.data.Language.prototype.getIsdecimalpoint = function() {
  * @param {boolean} value
  * @return {!proto.data.Language} returns this
  */
-proto.data.Language.prototype.setIsdecimalpoint = function(value) {
+proto.data.Language.prototype.setIsDecimalPoint = function(value) {
   return jspb.Message.setProto3BooleanField(this, 7, value);
 };
 
 
 /**
- * optional string datePattern = 8;
+ * optional string date_pattern = 8;
  * @return {string}
  */
-proto.data.Language.prototype.getDatepattern = function() {
+proto.data.Language.prototype.getDatePattern = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 8, ""));
 };
 
@@ -10500,16 +10500,16 @@ proto.data.Language.prototype.getDatepattern = function() {
  * @param {string} value
  * @return {!proto.data.Language} returns this
  */
-proto.data.Language.prototype.setDatepattern = function(value) {
+proto.data.Language.prototype.setDatePattern = function(value) {
   return jspb.Message.setProto3StringField(this, 8, value);
 };
 
 
 /**
- * optional string timePattern = 9;
+ * optional string time_pattern = 9;
  * @return {string}
  */
-proto.data.Language.prototype.getTimepattern = function() {
+proto.data.Language.prototype.getTimePattern = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 9, ""));
 };
 
@@ -10518,7 +10518,7 @@ proto.data.Language.prototype.getTimepattern = function() {
  * @param {string} value
  * @return {!proto.data.Language} returns this
  */
-proto.data.Language.prototype.setTimepattern = function(value) {
+proto.data.Language.prototype.setTimePattern = function(value) {
   return jspb.Message.setProto3StringField(this, 9, value);
 };
 
@@ -10560,11 +10560,11 @@ proto.data.PriceList.toObject = function(includeInstance, msg) {
     name: jspb.Message.getFieldWithDefault(msg, 3, ""),
     description: jspb.Message.getFieldWithDefault(msg, 4, ""),
     currency: (f = msg.getCurrency()) && proto.data.Currency.toObject(includeInstance, f),
-    isdefault: jspb.Message.getBooleanFieldWithDefault(msg, 6, false),
-    istaxincluded: jspb.Message.getBooleanFieldWithDefault(msg, 7, false),
-    isenforcepricelimit: jspb.Message.getBooleanFieldWithDefault(msg, 8, false),
-    isnetprice: jspb.Message.getBooleanFieldWithDefault(msg, 9, false),
-    priceprecision: jspb.Message.getFieldWithDefault(msg, 10, 0)
+    isDefault: jspb.Message.getBooleanFieldWithDefault(msg, 6, false),
+    isTaxIncluded: jspb.Message.getBooleanFieldWithDefault(msg, 7, false),
+    isEnforcePriceLimit: jspb.Message.getBooleanFieldWithDefault(msg, 8, false),
+    isNetPrice: jspb.Message.getBooleanFieldWithDefault(msg, 9, false),
+    pricePrecision: jspb.Message.getFieldWithDefault(msg, 10, 0)
   };
 
   if (includeInstance) {
@@ -10624,23 +10624,23 @@ proto.data.PriceList.deserializeBinaryFromReader = function(msg, reader) {
       break;
     case 6:
       var value = /** @type {boolean} */ (reader.readBool());
-      msg.setIsdefault(value);
+      msg.setIsDefault(value);
       break;
     case 7:
       var value = /** @type {boolean} */ (reader.readBool());
-      msg.setIstaxincluded(value);
+      msg.setIsTaxIncluded(value);
       break;
     case 8:
       var value = /** @type {boolean} */ (reader.readBool());
-      msg.setIsenforcepricelimit(value);
+      msg.setIsEnforcePriceLimit(value);
       break;
     case 9:
       var value = /** @type {boolean} */ (reader.readBool());
-      msg.setIsnetprice(value);
+      msg.setIsNetPrice(value);
       break;
     case 10:
       var value = /** @type {number} */ (reader.readInt32());
-      msg.setPriceprecision(value);
+      msg.setPricePrecision(value);
       break;
     default:
       reader.skipField();
@@ -10707,35 +10707,35 @@ proto.data.PriceList.serializeBinaryToWriter = function(message, writer) {
       proto.data.Currency.serializeBinaryToWriter
     );
   }
-  f = message.getIsdefault();
+  f = message.getIsDefault();
   if (f) {
     writer.writeBool(
       6,
       f
     );
   }
-  f = message.getIstaxincluded();
+  f = message.getIsTaxIncluded();
   if (f) {
     writer.writeBool(
       7,
       f
     );
   }
-  f = message.getIsenforcepricelimit();
+  f = message.getIsEnforcePriceLimit();
   if (f) {
     writer.writeBool(
       8,
       f
     );
   }
-  f = message.getIsnetprice();
+  f = message.getIsNetPrice();
   if (f) {
     writer.writeBool(
       9,
       f
     );
   }
-  f = message.getPriceprecision();
+  f = message.getPricePrecision();
   if (f !== 0) {
     writer.writeInt32(
       10,
@@ -10855,10 +10855,10 @@ proto.data.PriceList.prototype.hasCurrency = function() {
 
 
 /**
- * optional bool isDefault = 6;
+ * optional bool is_default = 6;
  * @return {boolean}
  */
-proto.data.PriceList.prototype.getIsdefault = function() {
+proto.data.PriceList.prototype.getIsDefault = function() {
   return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 6, false));
 };
 
@@ -10867,16 +10867,16 @@ proto.data.PriceList.prototype.getIsdefault = function() {
  * @param {boolean} value
  * @return {!proto.data.PriceList} returns this
  */
-proto.data.PriceList.prototype.setIsdefault = function(value) {
+proto.data.PriceList.prototype.setIsDefault = function(value) {
   return jspb.Message.setProto3BooleanField(this, 6, value);
 };
 
 
 /**
- * optional bool isTaxIncluded = 7;
+ * optional bool is_tax_included = 7;
  * @return {boolean}
  */
-proto.data.PriceList.prototype.getIstaxincluded = function() {
+proto.data.PriceList.prototype.getIsTaxIncluded = function() {
   return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 7, false));
 };
 
@@ -10885,16 +10885,16 @@ proto.data.PriceList.prototype.getIstaxincluded = function() {
  * @param {boolean} value
  * @return {!proto.data.PriceList} returns this
  */
-proto.data.PriceList.prototype.setIstaxincluded = function(value) {
+proto.data.PriceList.prototype.setIsTaxIncluded = function(value) {
   return jspb.Message.setProto3BooleanField(this, 7, value);
 };
 
 
 /**
- * optional bool isEnforcePriceLimit = 8;
+ * optional bool is_enforce_price_limit = 8;
  * @return {boolean}
  */
-proto.data.PriceList.prototype.getIsenforcepricelimit = function() {
+proto.data.PriceList.prototype.getIsEnforcePriceLimit = function() {
   return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 8, false));
 };
 
@@ -10903,16 +10903,16 @@ proto.data.PriceList.prototype.getIsenforcepricelimit = function() {
  * @param {boolean} value
  * @return {!proto.data.PriceList} returns this
  */
-proto.data.PriceList.prototype.setIsenforcepricelimit = function(value) {
+proto.data.PriceList.prototype.setIsEnforcePriceLimit = function(value) {
   return jspb.Message.setProto3BooleanField(this, 8, value);
 };
 
 
 /**
- * optional bool isNetPrice = 9;
+ * optional bool is_net_price = 9;
  * @return {boolean}
  */
-proto.data.PriceList.prototype.getIsnetprice = function() {
+proto.data.PriceList.prototype.getIsNetPrice = function() {
   return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 9, false));
 };
 
@@ -10921,16 +10921,16 @@ proto.data.PriceList.prototype.getIsnetprice = function() {
  * @param {boolean} value
  * @return {!proto.data.PriceList} returns this
  */
-proto.data.PriceList.prototype.setIsnetprice = function(value) {
+proto.data.PriceList.prototype.setIsNetPrice = function(value) {
   return jspb.Message.setProto3BooleanField(this, 9, value);
 };
 
 
 /**
- * optional int32 pricePrecision = 10;
+ * optional int32 price_precision = 10;
  * @return {number}
  */
-proto.data.PriceList.prototype.getPriceprecision = function() {
+proto.data.PriceList.prototype.getPricePrecision = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 10, 0));
 };
 
@@ -10939,7 +10939,7 @@ proto.data.PriceList.prototype.getPriceprecision = function() {
  * @param {number} value
  * @return {!proto.data.PriceList} returns this
  */
-proto.data.PriceList.prototype.setPriceprecision = function(value) {
+proto.data.PriceList.prototype.setPricePrecision = function(value) {
   return jspb.Message.setProto3IntField(this, 10, value);
 };
 
@@ -10979,16 +10979,16 @@ proto.data.BankAccount.toObject = function(includeInstance, msg) {
     uuid: jspb.Message.getFieldWithDefault(msg, 1, ""),
     id: jspb.Message.getFieldWithDefault(msg, 2, 0),
     name: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    accountno: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    accountNo: jspb.Message.getFieldWithDefault(msg, 4, ""),
     description: jspb.Message.getFieldWithDefault(msg, 5, ""),
     currency: (f = msg.getCurrency()) && proto.data.Currency.toObject(includeInstance, f),
     bban: jspb.Message.getFieldWithDefault(msg, 7, ""),
     iban: jspb.Message.getFieldWithDefault(msg, 8, ""),
-    creditlimit: (f = msg.getCreditlimit()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
-    currentbalance: (f = msg.getCurrentbalance()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
-    isdefault: jspb.Message.getBooleanFieldWithDefault(msg, 11, false),
-    businesspartner: (f = msg.getBusinesspartner()) && proto.data.BusinessPartner.toObject(includeInstance, f),
-    bankaccounttype: jspb.Message.getFieldWithDefault(msg, 13, 0)
+    creditLimit: (f = msg.getCreditLimit()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
+    currentBalance: (f = msg.getCurrentBalance()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
+    isDefault: jspb.Message.getBooleanFieldWithDefault(msg, 11, false),
+    businessPartner: (f = msg.getBusinessPartner()) && proto.data.BusinessPartner.toObject(includeInstance, f),
+    bankAccountType: jspb.Message.getFieldWithDefault(msg, 13, 0)
   };
 
   if (includeInstance) {
@@ -11039,7 +11039,7 @@ proto.data.BankAccount.deserializeBinaryFromReader = function(msg, reader) {
       break;
     case 4:
       var value = /** @type {string} */ (reader.readString());
-      msg.setAccountno(value);
+      msg.setAccountNo(value);
       break;
     case 5:
       var value = /** @type {string} */ (reader.readString());
@@ -11061,25 +11061,25 @@ proto.data.BankAccount.deserializeBinaryFromReader = function(msg, reader) {
     case 9:
       var value = new proto_base_data_type_pb.Decimal;
       reader.readMessage(value,proto_base_data_type_pb.Decimal.deserializeBinaryFromReader);
-      msg.setCreditlimit(value);
+      msg.setCreditLimit(value);
       break;
     case 10:
       var value = new proto_base_data_type_pb.Decimal;
       reader.readMessage(value,proto_base_data_type_pb.Decimal.deserializeBinaryFromReader);
-      msg.setCurrentbalance(value);
+      msg.setCurrentBalance(value);
       break;
     case 11:
       var value = /** @type {boolean} */ (reader.readBool());
-      msg.setIsdefault(value);
+      msg.setIsDefault(value);
       break;
     case 12:
       var value = new proto.data.BusinessPartner;
       reader.readMessage(value,proto.data.BusinessPartner.deserializeBinaryFromReader);
-      msg.setBusinesspartner(value);
+      msg.setBusinessPartner(value);
       break;
     case 13:
       var value = /** @type {!proto.data.BankAccount.BankAccountType} */ (reader.readEnum());
-      msg.setBankaccounttype(value);
+      msg.setBankAccountType(value);
       break;
     default:
       reader.skipField();
@@ -11131,7 +11131,7 @@ proto.data.BankAccount.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-  f = message.getAccountno();
+  f = message.getAccountNo();
   if (f.length > 0) {
     writer.writeString(
       4,
@@ -11167,7 +11167,7 @@ proto.data.BankAccount.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-  f = message.getCreditlimit();
+  f = message.getCreditLimit();
   if (f != null) {
     writer.writeMessage(
       9,
@@ -11175,7 +11175,7 @@ proto.data.BankAccount.serializeBinaryToWriter = function(message, writer) {
       proto_base_data_type_pb.Decimal.serializeBinaryToWriter
     );
   }
-  f = message.getCurrentbalance();
+  f = message.getCurrentBalance();
   if (f != null) {
     writer.writeMessage(
       10,
@@ -11183,14 +11183,14 @@ proto.data.BankAccount.serializeBinaryToWriter = function(message, writer) {
       proto_base_data_type_pb.Decimal.serializeBinaryToWriter
     );
   }
-  f = message.getIsdefault();
+  f = message.getIsDefault();
   if (f) {
     writer.writeBool(
       11,
       f
     );
   }
-  f = message.getBusinesspartner();
+  f = message.getBusinessPartner();
   if (f != null) {
     writer.writeMessage(
       12,
@@ -11198,7 +11198,7 @@ proto.data.BankAccount.serializeBinaryToWriter = function(message, writer) {
       proto.data.BusinessPartner.serializeBinaryToWriter
     );
   }
-  f = message.getBankaccounttype();
+  f = message.getBankAccountType();
   if (f !== 0.0) {
     writer.writeEnum(
       13,
@@ -11271,10 +11271,10 @@ proto.data.BankAccount.prototype.setName = function(value) {
 
 
 /**
- * optional string accountNo = 4;
+ * optional string account_no = 4;
  * @return {string}
  */
-proto.data.BankAccount.prototype.getAccountno = function() {
+proto.data.BankAccount.prototype.getAccountNo = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
 };
 
@@ -11283,7 +11283,7 @@ proto.data.BankAccount.prototype.getAccountno = function() {
  * @param {string} value
  * @return {!proto.data.BankAccount} returns this
  */
-proto.data.BankAccount.prototype.setAccountno = function(value) {
+proto.data.BankAccount.prototype.setAccountNo = function(value) {
   return jspb.Message.setProto3StringField(this, 4, value);
 };
 
@@ -11380,10 +11380,10 @@ proto.data.BankAccount.prototype.setIban = function(value) {
 
 
 /**
- * optional Decimal creditLimit = 9;
+ * optional Decimal credit_limit = 9;
  * @return {?proto.data.Decimal}
  */
-proto.data.BankAccount.prototype.getCreditlimit = function() {
+proto.data.BankAccount.prototype.getCreditLimit = function() {
   return /** @type{?proto.data.Decimal} */ (
     jspb.Message.getWrapperField(this, proto_base_data_type_pb.Decimal, 9));
 };
@@ -11393,7 +11393,7 @@ proto.data.BankAccount.prototype.getCreditlimit = function() {
  * @param {?proto.data.Decimal|undefined} value
  * @return {!proto.data.BankAccount} returns this
 */
-proto.data.BankAccount.prototype.setCreditlimit = function(value) {
+proto.data.BankAccount.prototype.setCreditLimit = function(value) {
   return jspb.Message.setWrapperField(this, 9, value);
 };
 
@@ -11402,8 +11402,8 @@ proto.data.BankAccount.prototype.setCreditlimit = function(value) {
  * Clears the message field making it undefined.
  * @return {!proto.data.BankAccount} returns this
  */
-proto.data.BankAccount.prototype.clearCreditlimit = function() {
-  return this.setCreditlimit(undefined);
+proto.data.BankAccount.prototype.clearCreditLimit = function() {
+  return this.setCreditLimit(undefined);
 };
 
 
@@ -11411,16 +11411,16 @@ proto.data.BankAccount.prototype.clearCreditlimit = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.data.BankAccount.prototype.hasCreditlimit = function() {
+proto.data.BankAccount.prototype.hasCreditLimit = function() {
   return jspb.Message.getField(this, 9) != null;
 };
 
 
 /**
- * optional Decimal currentBalance = 10;
+ * optional Decimal current_balance = 10;
  * @return {?proto.data.Decimal}
  */
-proto.data.BankAccount.prototype.getCurrentbalance = function() {
+proto.data.BankAccount.prototype.getCurrentBalance = function() {
   return /** @type{?proto.data.Decimal} */ (
     jspb.Message.getWrapperField(this, proto_base_data_type_pb.Decimal, 10));
 };
@@ -11430,7 +11430,7 @@ proto.data.BankAccount.prototype.getCurrentbalance = function() {
  * @param {?proto.data.Decimal|undefined} value
  * @return {!proto.data.BankAccount} returns this
 */
-proto.data.BankAccount.prototype.setCurrentbalance = function(value) {
+proto.data.BankAccount.prototype.setCurrentBalance = function(value) {
   return jspb.Message.setWrapperField(this, 10, value);
 };
 
@@ -11439,8 +11439,8 @@ proto.data.BankAccount.prototype.setCurrentbalance = function(value) {
  * Clears the message field making it undefined.
  * @return {!proto.data.BankAccount} returns this
  */
-proto.data.BankAccount.prototype.clearCurrentbalance = function() {
-  return this.setCurrentbalance(undefined);
+proto.data.BankAccount.prototype.clearCurrentBalance = function() {
+  return this.setCurrentBalance(undefined);
 };
 
 
@@ -11448,16 +11448,16 @@ proto.data.BankAccount.prototype.clearCurrentbalance = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.data.BankAccount.prototype.hasCurrentbalance = function() {
+proto.data.BankAccount.prototype.hasCurrentBalance = function() {
   return jspb.Message.getField(this, 10) != null;
 };
 
 
 /**
- * optional bool isDefault = 11;
+ * optional bool is_default = 11;
  * @return {boolean}
  */
-proto.data.BankAccount.prototype.getIsdefault = function() {
+proto.data.BankAccount.prototype.getIsDefault = function() {
   return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 11, false));
 };
 
@@ -11466,16 +11466,16 @@ proto.data.BankAccount.prototype.getIsdefault = function() {
  * @param {boolean} value
  * @return {!proto.data.BankAccount} returns this
  */
-proto.data.BankAccount.prototype.setIsdefault = function(value) {
+proto.data.BankAccount.prototype.setIsDefault = function(value) {
   return jspb.Message.setProto3BooleanField(this, 11, value);
 };
 
 
 /**
- * optional BusinessPartner businessPartner = 12;
+ * optional BusinessPartner business_partner = 12;
  * @return {?proto.data.BusinessPartner}
  */
-proto.data.BankAccount.prototype.getBusinesspartner = function() {
+proto.data.BankAccount.prototype.getBusinessPartner = function() {
   return /** @type{?proto.data.BusinessPartner} */ (
     jspb.Message.getWrapperField(this, proto.data.BusinessPartner, 12));
 };
@@ -11485,7 +11485,7 @@ proto.data.BankAccount.prototype.getBusinesspartner = function() {
  * @param {?proto.data.BusinessPartner|undefined} value
  * @return {!proto.data.BankAccount} returns this
 */
-proto.data.BankAccount.prototype.setBusinesspartner = function(value) {
+proto.data.BankAccount.prototype.setBusinessPartner = function(value) {
   return jspb.Message.setWrapperField(this, 12, value);
 };
 
@@ -11494,8 +11494,8 @@ proto.data.BankAccount.prototype.setBusinesspartner = function(value) {
  * Clears the message field making it undefined.
  * @return {!proto.data.BankAccount} returns this
  */
-proto.data.BankAccount.prototype.clearBusinesspartner = function() {
-  return this.setBusinesspartner(undefined);
+proto.data.BankAccount.prototype.clearBusinessPartner = function() {
+  return this.setBusinessPartner(undefined);
 };
 
 
@@ -11503,16 +11503,16 @@ proto.data.BankAccount.prototype.clearBusinesspartner = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.data.BankAccount.prototype.hasBusinesspartner = function() {
+proto.data.BankAccount.prototype.hasBusinessPartner = function() {
   return jspb.Message.getField(this, 12) != null;
 };
 
 
 /**
- * optional BankAccountType bankAccountType = 13;
+ * optional BankAccountType bank_account_type = 13;
  * @return {!proto.data.BankAccount.BankAccountType}
  */
-proto.data.BankAccount.prototype.getBankaccounttype = function() {
+proto.data.BankAccount.prototype.getBankAccountType = function() {
   return /** @type {!proto.data.BankAccount.BankAccountType} */ (jspb.Message.getFieldWithDefault(this, 13, 0));
 };
 
@@ -11521,7 +11521,7 @@ proto.data.BankAccount.prototype.getBankaccounttype = function() {
  * @param {!proto.data.BankAccount.BankAccountType} value
  * @return {!proto.data.BankAccount} returns this
  */
-proto.data.BankAccount.prototype.setBankaccounttype = function(value) {
+proto.data.BankAccount.prototype.setBankAccountType = function(value) {
   return jspb.Message.setProto3EnumField(this, 13, value);
 };
 

@@ -18,7 +18,6 @@
 'use strict';
 var grpc = require('grpc');
 var proto_business_pb = require('../proto/business_pb.js');
-var proto_core_functionality_pb = require('../proto/core_functionality_pb.js');
 var proto_base_data_type_pb = require('../proto/base_data_type_pb.js');
 var proto_client_pb = require('../proto/client_pb.js');
 
