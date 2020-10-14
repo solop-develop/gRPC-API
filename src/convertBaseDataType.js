@@ -276,7 +276,7 @@ const convertBaseDataType = {
             log
           );
         }),
-        parameter: convertValuesMapFromGRPC({
+        parameters: convertValuesMapFromGRPC({
           mapToConvert: processLogToConvert.getParametersMap(),
           returnType: 'object'
         }),
