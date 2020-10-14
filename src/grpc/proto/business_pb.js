@@ -557,7 +557,7 @@ if (goog.DEBUG && !COMPILED) {
  * @constructor
  */
 proto.data.ListEntitiesRequest = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.data.ListEntitiesRequest.repeatedFields_, null);
 };
 goog.inherits(proto.data.ListEntitiesRequest, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -6671,6 +6671,13 @@ proto.data.ListLookupItemsResponse.prototype.setNextPageToken = function(value) 
 
 
 
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.data.ListEntitiesRequest.repeatedFields_ = [5];
+
 
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
@@ -6704,8 +6711,9 @@ proto.data.ListEntitiesRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     clientRequest: (f = msg.getClientRequest()) && proto_client_pb.ClientRequest.toObject(includeInstance, f),
     criteria: (f = msg.getCriteria()) && proto_base_data_type_pb.Criteria.toObject(includeInstance, f),
-    pageSize: jspb.Message.getFieldWithDefault(msg, 5, 0),
-    pageToken: jspb.Message.getFieldWithDefault(msg, 6, "")
+    columnsList: (f = jspb.Message.getRepeatedField(msg, 5)) == null ? undefined : f,
+    pageSize: jspb.Message.getFieldWithDefault(msg, 6, 0),
+    pageToken: jspb.Message.getFieldWithDefault(msg, 7, "")
   };
 
   if (includeInstance) {
@@ -6753,10 +6761,14 @@ proto.data.ListEntitiesRequest.deserializeBinaryFromReader = function(msg, reade
       msg.setCriteria(value);
       break;
     case 5:
+      var value = /** @type {string} */ (reader.readString());
+      msg.addColumns(value);
+      break;
+    case 6:
       var value = /** @type {number} */ (reader.readInt32());
       msg.setPageSize(value);
       break;
-    case 6:
+    case 7:
       var value = /** @type {string} */ (reader.readString());
       msg.setPageToken(value);
       break;
@@ -6805,17 +6817,24 @@ proto.data.ListEntitiesRequest.serializeBinaryToWriter = function(message, write
       proto_base_data_type_pb.Criteria.serializeBinaryToWriter
     );
   }
+  f = message.getColumnsList();
+  if (f.length > 0) {
+    writer.writeRepeatedString(
+      5,
+      f
+    );
+  }
   f = message.getPageSize();
   if (f !== 0) {
     writer.writeInt32(
-      5,
+      6,
       f
     );
   }
   f = message.getPageToken();
   if (f.length > 0) {
     writer.writeString(
-      6,
+      7,
       f
     );
   }
@@ -6897,11 +6916,48 @@ proto.data.ListEntitiesRequest.prototype.hasCriteria = function() {
 
 
 /**
- * optional int32 page_size = 5;
+ * repeated string columns = 5;
+ * @return {!Array<string>}
+ */
+proto.data.ListEntitiesRequest.prototype.getColumnsList = function() {
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 5));
+};
+
+
+/**
+ * @param {!Array<string>} value
+ * @return {!proto.data.ListEntitiesRequest} returns this
+ */
+proto.data.ListEntitiesRequest.prototype.setColumnsList = function(value) {
+  return jspb.Message.setField(this, 5, value || []);
+};
+
+
+/**
+ * @param {string} value
+ * @param {number=} opt_index
+ * @return {!proto.data.ListEntitiesRequest} returns this
+ */
+proto.data.ListEntitiesRequest.prototype.addColumns = function(value, opt_index) {
+  return jspb.Message.addToRepeatedField(this, 5, value, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.data.ListEntitiesRequest} returns this
+ */
+proto.data.ListEntitiesRequest.prototype.clearColumnsList = function() {
+  return this.setColumnsList([]);
+};
+
+
+/**
+ * optional int32 page_size = 6;
  * @return {number}
  */
 proto.data.ListEntitiesRequest.prototype.getPageSize = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 5, 0));
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 6, 0));
 };
 
 
@@ -6910,16 +6966,16 @@ proto.data.ListEntitiesRequest.prototype.getPageSize = function() {
  * @return {!proto.data.ListEntitiesRequest} returns this
  */
 proto.data.ListEntitiesRequest.prototype.setPageSize = function(value) {
-  return jspb.Message.setProto3IntField(this, 5, value);
+  return jspb.Message.setProto3IntField(this, 6, value);
 };
 
 
 /**
- * optional string page_token = 6;
+ * optional string page_token = 7;
  * @return {string}
  */
 proto.data.ListEntitiesRequest.prototype.getPageToken = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 7, ""));
 };
 
 
@@ -6928,7 +6984,7 @@ proto.data.ListEntitiesRequest.prototype.getPageToken = function() {
  * @return {!proto.data.ListEntitiesRequest} returns this
  */
 proto.data.ListEntitiesRequest.prototype.setPageToken = function(value) {
-  return jspb.Message.setProto3StringField(this, 6, value);
+  return jspb.Message.setProto3StringField(this, 7, value);
 };
 
 
@@ -7814,7 +7870,7 @@ proto.data.Callout.prototype.clearValuesMap = function() {
  * @private {!Array<number>}
  * @const
  */
-proto.data.RunBusinessProcessRequest.repeatedFields_ = [10,11];
+proto.data.RunBusinessProcessRequest.repeatedFields_ = [11,12];
 
 
 
@@ -7849,13 +7905,14 @@ proto.data.RunBusinessProcessRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     clientRequest: (f = msg.getClientRequest()) && proto_client_pb.ClientRequest.toObject(includeInstance, f),
     tableName: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    uuid: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    recordId: jspb.Message.getFieldWithDefault(msg, 4, 0),
-    tableSelectedId: jspb.Message.getFieldWithDefault(msg, 5, 0),
-    reportType: jspb.Message.getFieldWithDefault(msg, 6, ""),
-    printFormatUuid: jspb.Message.getFieldWithDefault(msg, 7, ""),
-    reportViewUuid: jspb.Message.getFieldWithDefault(msg, 8, ""),
-    isSummary: jspb.Message.getBooleanFieldWithDefault(msg, 9, false),
+    processUuid: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    uuid: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    id: jspb.Message.getFieldWithDefault(msg, 5, 0),
+    tableSelectedId: jspb.Message.getFieldWithDefault(msg, 6, 0),
+    reportType: jspb.Message.getFieldWithDefault(msg, 7, ""),
+    printFormatUuid: jspb.Message.getFieldWithDefault(msg, 8, ""),
+    reportViewUuid: jspb.Message.getFieldWithDefault(msg, 9, ""),
+    isSummary: jspb.Message.getBooleanFieldWithDefault(msg, 10, false),
     parametersList: jspb.Message.toObjectList(msg.getParametersList(),
     proto_base_data_type_pb.KeyValue.toObject, includeInstance),
     selectionsList: jspb.Message.toObjectList(msg.getSelectionsList(),
@@ -7907,38 +7964,42 @@ proto.data.RunBusinessProcessRequest.deserializeBinaryFromReader = function(msg,
       break;
     case 3:
       var value = /** @type {string} */ (reader.readString());
-      msg.setUuid(value);
+      msg.setProcessUuid(value);
       break;
     case 4:
-      var value = /** @type {number} */ (reader.readInt32());
-      msg.setRecordId(value);
+      var value = /** @type {string} */ (reader.readString());
+      msg.setUuid(value);
       break;
     case 5:
       var value = /** @type {number} */ (reader.readInt32());
-      msg.setTableSelectedId(value);
+      msg.setId(value);
       break;
     case 6:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setReportType(value);
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setTableSelectedId(value);
       break;
     case 7:
       var value = /** @type {string} */ (reader.readString());
-      msg.setPrintFormatUuid(value);
+      msg.setReportType(value);
       break;
     case 8:
       var value = /** @type {string} */ (reader.readString());
-      msg.setReportViewUuid(value);
+      msg.setPrintFormatUuid(value);
       break;
     case 9:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setReportViewUuid(value);
+      break;
+    case 10:
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setIsSummary(value);
       break;
-    case 10:
+    case 11:
       var value = new proto_base_data_type_pb.KeyValue;
       reader.readMessage(value,proto_base_data_type_pb.KeyValue.deserializeBinaryFromReader);
       msg.addParameters(value);
       break;
-    case 11:
+    case 12:
       var value = new proto_base_data_type_pb.KeyValueSelection;
       reader.readMessage(value,proto_base_data_type_pb.KeyValueSelection.deserializeBinaryFromReader);
       msg.addSelections(value);
@@ -7987,59 +8048,66 @@ proto.data.RunBusinessProcessRequest.serializeBinaryToWriter = function(message,
       f
     );
   }
-  f = message.getUuid();
+  f = message.getProcessUuid();
   if (f.length > 0) {
     writer.writeString(
       3,
       f
     );
   }
-  f = message.getRecordId();
-  if (f !== 0) {
-    writer.writeInt32(
+  f = message.getUuid();
+  if (f.length > 0) {
+    writer.writeString(
       4,
       f
     );
   }
-  f = message.getTableSelectedId();
+  f = message.getId();
   if (f !== 0) {
     writer.writeInt32(
       5,
       f
     );
   }
-  f = message.getReportType();
-  if (f.length > 0) {
-    writer.writeString(
+  f = message.getTableSelectedId();
+  if (f !== 0) {
+    writer.writeInt32(
       6,
       f
     );
   }
-  f = message.getPrintFormatUuid();
+  f = message.getReportType();
   if (f.length > 0) {
     writer.writeString(
       7,
       f
     );
   }
-  f = message.getReportViewUuid();
+  f = message.getPrintFormatUuid();
   if (f.length > 0) {
     writer.writeString(
       8,
       f
     );
   }
+  f = message.getReportViewUuid();
+  if (f.length > 0) {
+    writer.writeString(
+      9,
+      f
+    );
+  }
   f = message.getIsSummary();
   if (f) {
     writer.writeBool(
-      9,
+      10,
       f
     );
   }
   f = message.getParametersList();
   if (f.length > 0) {
     writer.writeRepeatedMessage(
-      10,
+      11,
       f,
       proto_base_data_type_pb.KeyValue.serializeBinaryToWriter
     );
@@ -8047,7 +8115,7 @@ proto.data.RunBusinessProcessRequest.serializeBinaryToWriter = function(message,
   f = message.getSelectionsList();
   if (f.length > 0) {
     writer.writeRepeatedMessage(
-      11,
+      12,
       f,
       proto_base_data_type_pb.KeyValueSelection.serializeBinaryToWriter
     );
@@ -8111,10 +8179,10 @@ proto.data.RunBusinessProcessRequest.prototype.setTableName = function(value) {
 
 
 /**
- * optional string uuid = 3;
+ * optional string process_uuid = 3;
  * @return {string}
  */
-proto.data.RunBusinessProcessRequest.prototype.getUuid = function() {
+proto.data.RunBusinessProcessRequest.prototype.getProcessUuid = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
 
@@ -8123,34 +8191,34 @@ proto.data.RunBusinessProcessRequest.prototype.getUuid = function() {
  * @param {string} value
  * @return {!proto.data.RunBusinessProcessRequest} returns this
  */
-proto.data.RunBusinessProcessRequest.prototype.setUuid = function(value) {
+proto.data.RunBusinessProcessRequest.prototype.setProcessUuid = function(value) {
   return jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
 /**
- * optional int32 record_id = 4;
- * @return {number}
+ * optional string uuid = 4;
+ * @return {string}
  */
-proto.data.RunBusinessProcessRequest.prototype.getRecordId = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
+proto.data.RunBusinessProcessRequest.prototype.getUuid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
 };
 
 
 /**
- * @param {number} value
+ * @param {string} value
  * @return {!proto.data.RunBusinessProcessRequest} returns this
  */
-proto.data.RunBusinessProcessRequest.prototype.setRecordId = function(value) {
-  return jspb.Message.setProto3IntField(this, 4, value);
+proto.data.RunBusinessProcessRequest.prototype.setUuid = function(value) {
+  return jspb.Message.setProto3StringField(this, 4, value);
 };
 
 
 /**
- * optional int32 table_selected_id = 5;
+ * optional int32 id = 5;
  * @return {number}
  */
-proto.data.RunBusinessProcessRequest.prototype.getTableSelectedId = function() {
+proto.data.RunBusinessProcessRequest.prototype.getId = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 5, 0));
 };
 
@@ -8159,34 +8227,34 @@ proto.data.RunBusinessProcessRequest.prototype.getTableSelectedId = function() {
  * @param {number} value
  * @return {!proto.data.RunBusinessProcessRequest} returns this
  */
-proto.data.RunBusinessProcessRequest.prototype.setTableSelectedId = function(value) {
+proto.data.RunBusinessProcessRequest.prototype.setId = function(value) {
   return jspb.Message.setProto3IntField(this, 5, value);
 };
 
 
 /**
- * optional string report_type = 6;
+ * optional int32 table_selected_id = 6;
+ * @return {number}
+ */
+proto.data.RunBusinessProcessRequest.prototype.getTableSelectedId = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 6, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.data.RunBusinessProcessRequest} returns this
+ */
+proto.data.RunBusinessProcessRequest.prototype.setTableSelectedId = function(value) {
+  return jspb.Message.setProto3IntField(this, 6, value);
+};
+
+
+/**
+ * optional string report_type = 7;
  * @return {string}
  */
 proto.data.RunBusinessProcessRequest.prototype.getReportType = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.data.RunBusinessProcessRequest} returns this
- */
-proto.data.RunBusinessProcessRequest.prototype.setReportType = function(value) {
-  return jspb.Message.setProto3StringField(this, 6, value);
-};
-
-
-/**
- * optional string print_format_uuid = 7;
- * @return {string}
- */
-proto.data.RunBusinessProcessRequest.prototype.getPrintFormatUuid = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 7, ""));
 };
 
@@ -8195,16 +8263,16 @@ proto.data.RunBusinessProcessRequest.prototype.getPrintFormatUuid = function() {
  * @param {string} value
  * @return {!proto.data.RunBusinessProcessRequest} returns this
  */
-proto.data.RunBusinessProcessRequest.prototype.setPrintFormatUuid = function(value) {
+proto.data.RunBusinessProcessRequest.prototype.setReportType = function(value) {
   return jspb.Message.setProto3StringField(this, 7, value);
 };
 
 
 /**
- * optional string report_view_uuid = 8;
+ * optional string print_format_uuid = 8;
  * @return {string}
  */
-proto.data.RunBusinessProcessRequest.prototype.getReportViewUuid = function() {
+proto.data.RunBusinessProcessRequest.prototype.getPrintFormatUuid = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 8, ""));
 };
 
@@ -8213,17 +8281,35 @@ proto.data.RunBusinessProcessRequest.prototype.getReportViewUuid = function() {
  * @param {string} value
  * @return {!proto.data.RunBusinessProcessRequest} returns this
  */
-proto.data.RunBusinessProcessRequest.prototype.setReportViewUuid = function(value) {
+proto.data.RunBusinessProcessRequest.prototype.setPrintFormatUuid = function(value) {
   return jspb.Message.setProto3StringField(this, 8, value);
 };
 
 
 /**
- * optional bool is_summary = 9;
+ * optional string report_view_uuid = 9;
+ * @return {string}
+ */
+proto.data.RunBusinessProcessRequest.prototype.getReportViewUuid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 9, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.data.RunBusinessProcessRequest} returns this
+ */
+proto.data.RunBusinessProcessRequest.prototype.setReportViewUuid = function(value) {
+  return jspb.Message.setProto3StringField(this, 9, value);
+};
+
+
+/**
+ * optional bool is_summary = 10;
  * @return {boolean}
  */
 proto.data.RunBusinessProcessRequest.prototype.getIsSummary = function() {
-  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 9, false));
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 10, false));
 };
 
 
@@ -8232,17 +8318,17 @@ proto.data.RunBusinessProcessRequest.prototype.getIsSummary = function() {
  * @return {!proto.data.RunBusinessProcessRequest} returns this
  */
 proto.data.RunBusinessProcessRequest.prototype.setIsSummary = function(value) {
-  return jspb.Message.setProto3BooleanField(this, 9, value);
+  return jspb.Message.setProto3BooleanField(this, 10, value);
 };
 
 
 /**
- * repeated KeyValue parameters = 10;
+ * repeated KeyValue parameters = 11;
  * @return {!Array<!proto.data.KeyValue>}
  */
 proto.data.RunBusinessProcessRequest.prototype.getParametersList = function() {
   return /** @type{!Array<!proto.data.KeyValue>} */ (
-    jspb.Message.getRepeatedWrapperField(this, proto_base_data_type_pb.KeyValue, 10));
+    jspb.Message.getRepeatedWrapperField(this, proto_base_data_type_pb.KeyValue, 11));
 };
 
 
@@ -8251,7 +8337,7 @@ proto.data.RunBusinessProcessRequest.prototype.getParametersList = function() {
  * @return {!proto.data.RunBusinessProcessRequest} returns this
 */
 proto.data.RunBusinessProcessRequest.prototype.setParametersList = function(value) {
-  return jspb.Message.setRepeatedWrapperField(this, 10, value);
+  return jspb.Message.setRepeatedWrapperField(this, 11, value);
 };
 
 
@@ -8261,7 +8347,7 @@ proto.data.RunBusinessProcessRequest.prototype.setParametersList = function(valu
  * @return {!proto.data.KeyValue}
  */
 proto.data.RunBusinessProcessRequest.prototype.addParameters = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(this, 10, opt_value, proto.data.KeyValue, opt_index);
+  return jspb.Message.addToRepeatedWrapperField(this, 11, opt_value, proto.data.KeyValue, opt_index);
 };
 
 
@@ -8275,12 +8361,12 @@ proto.data.RunBusinessProcessRequest.prototype.clearParametersList = function() 
 
 
 /**
- * repeated KeyValueSelection selections = 11;
+ * repeated KeyValueSelection selections = 12;
  * @return {!Array<!proto.data.KeyValueSelection>}
  */
 proto.data.RunBusinessProcessRequest.prototype.getSelectionsList = function() {
   return /** @type{!Array<!proto.data.KeyValueSelection>} */ (
-    jspb.Message.getRepeatedWrapperField(this, proto_base_data_type_pb.KeyValueSelection, 11));
+    jspb.Message.getRepeatedWrapperField(this, proto_base_data_type_pb.KeyValueSelection, 12));
 };
 
 
@@ -8289,7 +8375,7 @@ proto.data.RunBusinessProcessRequest.prototype.getSelectionsList = function() {
  * @return {!proto.data.RunBusinessProcessRequest} returns this
 */
 proto.data.RunBusinessProcessRequest.prototype.setSelectionsList = function(value) {
-  return jspb.Message.setRepeatedWrapperField(this, 11, value);
+  return jspb.Message.setRepeatedWrapperField(this, 12, value);
 };
 
 
@@ -8299,7 +8385,7 @@ proto.data.RunBusinessProcessRequest.prototype.setSelectionsList = function(valu
  * @return {!proto.data.KeyValueSelection}
  */
 proto.data.RunBusinessProcessRequest.prototype.addSelections = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(this, 11, opt_value, proto.data.KeyValueSelection, opt_index);
+  return jspb.Message.addToRepeatedWrapperField(this, 12, opt_value, proto.data.KeyValueSelection, opt_index);
 };
 
 

@@ -4147,12 +4147,12 @@ proto.data.ProcessLog.prototype.toObject = function(opt_includeInstance) {
 proto.data.ProcessLog.toObject = function(includeInstance, msg) {
   var f, obj = {
     uuid: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    instanceuuid: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    iserror: jspb.Message.getBooleanFieldWithDefault(msg, 3, false),
+    instanceUuid: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    isError: jspb.Message.getBooleanFieldWithDefault(msg, 3, false),
     summary: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    resulttablename: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    isprocessing: jspb.Message.getBooleanFieldWithDefault(msg, 6, false),
-    lastrun: jspb.Message.getFieldWithDefault(msg, 7, 0),
+    resultTableName: jspb.Message.getFieldWithDefault(msg, 5, ""),
+    isProcessing: jspb.Message.getBooleanFieldWithDefault(msg, 6, false),
+    lastRun: jspb.Message.getFieldWithDefault(msg, 7, 0),
     logsList: jspb.Message.toObjectList(msg.getLogsList(),
     proto.data.ProcessInfoLog.toObject, includeInstance),
     parametersMap: (f = msg.getParametersMap()) ? f.toObject(includeInstance, proto.data.Value.toObject) : [],
@@ -4199,11 +4199,11 @@ proto.data.ProcessLog.deserializeBinaryFromReader = function(msg, reader) {
       break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
-      msg.setInstanceuuid(value);
+      msg.setInstanceUuid(value);
       break;
     case 3:
       var value = /** @type {boolean} */ (reader.readBool());
-      msg.setIserror(value);
+      msg.setIsError(value);
       break;
     case 4:
       var value = /** @type {string} */ (reader.readString());
@@ -4211,15 +4211,15 @@ proto.data.ProcessLog.deserializeBinaryFromReader = function(msg, reader) {
       break;
     case 5:
       var value = /** @type {string} */ (reader.readString());
-      msg.setResulttablename(value);
+      msg.setResultTableName(value);
       break;
     case 6:
       var value = /** @type {boolean} */ (reader.readBool());
-      msg.setIsprocessing(value);
+      msg.setIsProcessing(value);
       break;
     case 7:
       var value = /** @type {number} */ (reader.readInt64());
-      msg.setLastrun(value);
+      msg.setLastRun(value);
       break;
     case 8:
       var value = new proto.data.ProcessInfoLog;
@@ -4273,14 +4273,14 @@ proto.data.ProcessLog.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-  f = message.getInstanceuuid();
+  f = message.getInstanceUuid();
   if (f.length > 0) {
     writer.writeString(
       2,
       f
     );
   }
-  f = message.getIserror();
+  f = message.getIsError();
   if (f) {
     writer.writeBool(
       3,
@@ -4294,21 +4294,21 @@ proto.data.ProcessLog.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-  f = message.getResulttablename();
+  f = message.getResultTableName();
   if (f.length > 0) {
     writer.writeString(
       5,
       f
     );
   }
-  f = message.getIsprocessing();
+  f = message.getIsProcessing();
   if (f) {
     writer.writeBool(
       6,
       f
     );
   }
-  f = message.getLastrun();
+  f = message.getLastRun();
   if (f !== 0) {
     writer.writeInt64(
       7,
@@ -4357,10 +4357,10 @@ proto.data.ProcessLog.prototype.setUuid = function(value) {
 
 
 /**
- * optional string instanceUuid = 2;
+ * optional string instance_uuid = 2;
  * @return {string}
  */
-proto.data.ProcessLog.prototype.getInstanceuuid = function() {
+proto.data.ProcessLog.prototype.getInstanceUuid = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
@@ -4369,16 +4369,16 @@ proto.data.ProcessLog.prototype.getInstanceuuid = function() {
  * @param {string} value
  * @return {!proto.data.ProcessLog} returns this
  */
-proto.data.ProcessLog.prototype.setInstanceuuid = function(value) {
+proto.data.ProcessLog.prototype.setInstanceUuid = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
 /**
- * optional bool isError = 3;
+ * optional bool is_error = 3;
  * @return {boolean}
  */
-proto.data.ProcessLog.prototype.getIserror = function() {
+proto.data.ProcessLog.prototype.getIsError = function() {
   return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 3, false));
 };
 
@@ -4387,7 +4387,7 @@ proto.data.ProcessLog.prototype.getIserror = function() {
  * @param {boolean} value
  * @return {!proto.data.ProcessLog} returns this
  */
-proto.data.ProcessLog.prototype.setIserror = function(value) {
+proto.data.ProcessLog.prototype.setIsError = function(value) {
   return jspb.Message.setProto3BooleanField(this, 3, value);
 };
 
@@ -4411,10 +4411,10 @@ proto.data.ProcessLog.prototype.setSummary = function(value) {
 
 
 /**
- * optional string resultTableName = 5;
+ * optional string result_table_name = 5;
  * @return {string}
  */
-proto.data.ProcessLog.prototype.getResulttablename = function() {
+proto.data.ProcessLog.prototype.getResultTableName = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
 };
 
@@ -4423,16 +4423,16 @@ proto.data.ProcessLog.prototype.getResulttablename = function() {
  * @param {string} value
  * @return {!proto.data.ProcessLog} returns this
  */
-proto.data.ProcessLog.prototype.setResulttablename = function(value) {
+proto.data.ProcessLog.prototype.setResultTableName = function(value) {
   return jspb.Message.setProto3StringField(this, 5, value);
 };
 
 
 /**
- * optional bool isProcessing = 6;
+ * optional bool is_processing = 6;
  * @return {boolean}
  */
-proto.data.ProcessLog.prototype.getIsprocessing = function() {
+proto.data.ProcessLog.prototype.getIsProcessing = function() {
   return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 6, false));
 };
 
@@ -4441,16 +4441,16 @@ proto.data.ProcessLog.prototype.getIsprocessing = function() {
  * @param {boolean} value
  * @return {!proto.data.ProcessLog} returns this
  */
-proto.data.ProcessLog.prototype.setIsprocessing = function(value) {
+proto.data.ProcessLog.prototype.setIsProcessing = function(value) {
   return jspb.Message.setProto3BooleanField(this, 6, value);
 };
 
 
 /**
- * optional int64 lastRun = 7;
+ * optional int64 last_run = 7;
  * @return {number}
  */
-proto.data.ProcessLog.prototype.getLastrun = function() {
+proto.data.ProcessLog.prototype.getLastRun = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 7, 0));
 };
 
@@ -4459,7 +4459,7 @@ proto.data.ProcessLog.prototype.getLastrun = function() {
  * @param {number} value
  * @return {!proto.data.ProcessLog} returns this
  */
-proto.data.ProcessLog.prototype.setLastrun = function(value) {
+proto.data.ProcessLog.prototype.setLastRun = function(value) {
   return jspb.Message.setProto3IntField(this, 7, value);
 };
 
@@ -4754,7 +4754,7 @@ proto.data.Translation.prototype.toObject = function(opt_includeInstance) {
 proto.data.Translation.toObject = function(includeInstance, msg) {
   var f, obj = {
     language: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    translationuuid: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    translationUuid: jspb.Message.getFieldWithDefault(msg, 2, ""),
     valuesMap: (f = msg.getValuesMap()) ? f.toObject(includeInstance, proto.data.Value.toObject) : []
   };
 
@@ -4798,7 +4798,7 @@ proto.data.Translation.deserializeBinaryFromReader = function(msg, reader) {
       break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
-      msg.setTranslationuuid(value);
+      msg.setTranslationUuid(value);
       break;
     case 3:
       var value = msg.getValuesMap();
@@ -4842,7 +4842,7 @@ proto.data.Translation.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-  f = message.getTranslationuuid();
+  f = message.getTranslationUuid();
   if (f.length > 0) {
     writer.writeString(
       2,
@@ -4875,10 +4875,10 @@ proto.data.Translation.prototype.setLanguage = function(value) {
 
 
 /**
- * optional string translationUuid = 2;
+ * optional string translation_uuid = 2;
  * @return {string}
  */
-proto.data.Translation.prototype.getTranslationuuid = function() {
+proto.data.Translation.prototype.getTranslationUuid = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
@@ -4887,7 +4887,7 @@ proto.data.Translation.prototype.getTranslationuuid = function() {
  * @param {string} value
  * @return {!proto.data.Translation} returns this
  */
-proto.data.Translation.prototype.setTranslationuuid = function(value) {
+proto.data.Translation.prototype.setTranslationUuid = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
 };
 
