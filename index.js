@@ -64,11 +64,11 @@ class Api {
   }
 
   //  Create Client request from token
-  createClientRequest(token) {
+  createClientRequest(token, language) {
     const { ClientRequest } = require('./src/grpc/proto/client_pb.js')
     const client = new ClientRequest()
     client.setSessionUuid(token)
-    client.setLanguage(this.language)
+    client.setLanguage(language)
     return client
   }
 
@@ -135,7 +135,8 @@ class Api {
     user,
     password,
     roleUuid,
-    organizationUuid
+    organizationUuid,
+    language
   }, callback) {
     const { LoginRequest } = require('./src/grpc/proto/access_pb.js')
     const request = new LoginRequest()
@@ -143,55 +144,59 @@ class Api {
     request.setUserPass(password)
     request.setRoleUuid(roleUuid)
     request.setOrganizationUuid(organizationUuid)
-    request.setLanguage(this.language)
+    request.setLanguage(language)
     request.setClientVersion(this.version)
     this.getAccessService().runLogin(request, callback)
   }
 
   //  Get User Information
   getUserInfo({
-    token
+    token,
+    language
   }, callback) {
     const { UserInfoRequest } = require('./src/grpc/proto/access_pb.js')
     const request = new UserInfoRequest()
     request.setSessionUuid(token)
-    request.setLanguage(this.language)
+    request.setLanguage(language)
     request.setClientVersion(this.version)
     this.getAccessService().getUserInfo(request, callback)
   }
 
   //  Get User Information
   getUserRoles({
-    token
+    token,
+    language
   }, callback) {
     const { ListRolesRequest } = require('./src/grpc/proto/access_pb.js')
     const request = new ListRolesRequest()
     request.setSessionUuid(token)
-    request.setLanguage(this.language)
+    request.setLanguage(language)
     request.setClientVersion(this.version)
     this.getAccessService().listRoles(request, callback)
   }
 
   //  Get User Menu
   getMenu({
-    token
+    token,
+    language
   }, callback) {
     const { MenuRequest } = require('./src/grpc/proto/access_pb.js')
     const request = new MenuRequest()
     request.setSessionUuid(token)
-    request.setLanguage(this.language)
+    request.setLanguage(language)
     request.setClientVersion(this.version)
     this.getAccessService().getMenu(request, callback)
   }
 
   //  Get User Menu
   getSessionInfo({
-    token
+    token,
+    language
   }, callback) {
     const { SessionRequest } = require('./src/grpc/proto/access_pb.js')
     const request = new SessionRequest()
     request.setSessionUuid(token)
-    request.setLanguage(this.language)
+    request.setLanguage(language)
     request.setClientVersion(this.version)
     this.getAccessService().getSession(request, callback)
   }
@@ -201,7 +206,8 @@ class Api {
     token,
     role,
     organization,
-    warehouse
+    warehouse,
+    language
   }, callback) {
     const { ChangeRoleRequest } = require('./src/grpc/proto/access_pb.js')
     const request = new ChangeRoleRequest()
@@ -209,19 +215,20 @@ class Api {
     request.setRoleUuid(role)
     request.setOrganizationUuid(organization)
     request.setWarehouseUuid(warehouse)
-    request.setLanguage(this.language)
+    request.setLanguage(language)
     request.setClientVersion(this.version)
     this.getAccessService().runChangeRole(request, callback)
   }
 
   //  Login with a user
   logout({
-    token
+    token,
+    language
   }, callback) {
     const { LogoutRequest } = require('./src/grpc/proto/access_pb.js')
     const request = new LogoutRequest()
     request.setSessionUuid(token)
-    request.setLanguage(this.language)
+    request.setLanguage(language)
     request.setClientVersion(this.version)
     this.getAccessService().runLogout(request, callback)
   }
@@ -229,7 +236,8 @@ class Api {
   //  Get Resource Image from name
   getResource({
     resourceName,
-    resourceUuid
+    resourceUuid,
+    language
   }, callback) {
     const { GetResourceRequest } = require('./src/grpc/proto/business_pb.js')
     const request = new GetResourceRequest()
@@ -305,45 +313,50 @@ class Api {
   getWindow({
     token,
     id,
-    uuid
+    uuid,
+    language
   }, callback) {
-    this.getDictionaryService().getWindow(this.getDictionaryRequest(token, id, uuid), callback)
+    this.getDictionaryService().getWindow(this.getDictionaryRequest(token, id, uuid, language), callback)
   }
 
   //  Get Process
   getProcess({
     token,
     id,
-    uuid
+    uuid,
+    language
   }, callback) {
-    this.getDictionaryService().getProcess(this.getDictionaryRequest(token, id, uuid), callback)
+    this.getDictionaryService().getProcess(this.getDictionaryRequest(token, id, uuid, language), callback)
   }
 
   //  Get Browser
   getBrowser({
     token,
     id,
-    uuid
+    uuid,
+    language
   }, callback) {
-    this.getDictionaryService().getBrowser(this.getDictionaryRequest(token, id, uuid), callback)
+    this.getDictionaryService().getBrowser(this.getDictionaryRequest(token, id, uuid, language), callback)
   }
 
   //  Get Form
   getForm({
     token,
     id,
-    uuid
+    uuid,
+    language
   }, callback) {
-    this.getDictionaryService().getForm(this.getDictionaryRequest(token, id, uuid), callback)
+    this.getDictionaryService().getForm(this.getDictionaryRequest(token, id, uuid, language), callback)
   }
 
   //  Get Form
   getValidationRule({
     token,
     id,
-    uuid
+    uuid,
+    language
   }, callback) {
-    this.getDictionaryService().getValidationRule(this.getDictionaryRequest(token, id, uuid), callback)
+    this.getDictionaryService().getValidationRule(this.getDictionaryRequest(token, id, uuid, language), callback)
   }
 
   //  Get Field
@@ -352,9 +365,11 @@ class Api {
     uuid,
     columnUuid,
     elementUuid,
+    fieldUuid,
     tableName,
     columnName,
-    elementNolumnName
+    elementNolumnName,
+    language
   }, callback) {
     const { FieldRequest, ApplicationRequest } = require('./src/grpc/proto/dictionary_pb.js')
     const request = new FieldRequest()
@@ -362,11 +377,12 @@ class Api {
     request.setFieldUuid(uuid)
     request.setColumnUuid(columnUuid)
     request.setElementUuid(elementUuid)
-    request.setFieldUuid(tableName)
+    request.setFieldUuid(fieldUuid)
     request.setColumnName(columnName)
+    request.setTableName(tableName)
     request.setElementColumnName(elementNolumnName)
     applicationRequest.setSessionUuid(token)
-    applicationRequest.setLanguage(this.language)
+    applicationRequest.setLanguage(language)
     request.setApplicationRequest(applicationRequest)
     this.getDictionaryService().getField(request, callback)
   }
@@ -375,7 +391,8 @@ class Api {
   getReference({
     token,
     uuid,
-    columnName
+    columnName,
+    language
   }, callback) {
     const { ReferenceRequest, ApplicationRequest } = require('./src/grpc/proto/dictionary_pb.js')
     const request = new ReferenceRequest()
@@ -383,7 +400,7 @@ class Api {
     request.setReferenceUuid(uuid)
     request.setColumnName(columnName)
     applicationRequest.setSessionUuid(token)
-    applicationRequest.setLanguage(this.language)
+    applicationRequest.setLanguage(language)
     request.setApplicationRequest(applicationRequest)
     this.getDictionaryService().getReference(request, callback)
   }
@@ -392,14 +409,15 @@ class Api {
   getDictionaryRequest(
     token,
     id,
-    uuid) {
+    uuid,
+    language) {
     const { EntityRequest, ApplicationRequest } = require('./src/grpc/proto/dictionary_pb.js')
     const request = new EntityRequest()
     const applicationRequest = new ApplicationRequest()
     request.setId(id)
     request.setUuid(uuid)
     applicationRequest.setSessionUuid(token)
-    applicationRequest.setLanguage(this.language)
+    applicationRequest.setLanguage(language)
     request.setApplicationRequest(applicationRequest)
     return request
   }
@@ -410,14 +428,15 @@ class Api {
     token,
     id,
     uuid,
-    tableName
+    tableName,
+    language
   }, callback) {
     const { GetEntityRequest } = require('./src/grpc/proto/business_pb.js')
     const request = new GetEntityRequest()
     request.setRecordId(id)
     request.setUuid(uuid)
     request.setTableName(tableName)
-    request.setClientRequest(this.createClientRequest(token))
+    request.setClientRequest(this.createClientRequest(token, language))
     this.getBusinessService().getEntity(request, callback)
   }
 
@@ -425,7 +444,8 @@ class Api {
   createEntity({
     token,
     tableName,
-    attributes
+    attributes,
+    language
   }, callback) {
     const { CreateEntityRequest } = require('./src/grpc/proto/business_pb.js')
     const { convertParameterToGRPC } = require('./src/convertValues.js');
@@ -439,7 +459,7 @@ class Api {
         }))
       })
     }
-    request.setClientRequest(this.createClientRequest(token))
+    request.setClientRequest(this.createClientRequest(token, language))
     this.getBusinessService().createEntity(request, callback)
   }
 
@@ -449,7 +469,8 @@ class Api {
     tableName,
     id,
     uuid,
-    attributes
+    attributes,
+    language
   }, callback) {
     const { UpdateEntityRequest } = require('./src/grpc/proto/business_pb.js')
     const { convertParameterToGRPC } = require('./src/convertValues.js');
@@ -465,29 +486,53 @@ class Api {
         }))
       })
     }
-    request.setClientRequest(this.createClientRequest(token))
+    request.setClientRequest(this.createClientRequest(token, language))
     this.getBusinessService().updateEntity(request, callback)
   }
 
-  //  Convert business values from gRPC
-  convertBusinessValuesFromGRPC(value) {
-    const { convertValueFromGRPC } = require('./src/convertBaseDataType.js');
-    return convertValueFromGRPC(value)
+  //  Create a Entity
+  createEntity({
+    token,
+    tableName,
+    attributes,
+    language
+  }, callback) {
+    const { CreateEntityRequest } = require('./src/grpc/proto/business_pb.js')
+    const { convertParameterToGRPC } = require('./src/convertValues.js');
+    const request = new CreateEntityRequest()
+    request.setTableName(tableName)
+    if(attributes) {
+      attributes.forEach(attribute => {
+        request.addAttributes(convertParameterToGRPC({
+          columnName: attribute.key,
+          value: attribute.value
+        }))
+      })
+    }
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getBusinessService().createEntity(request, callback)
   }
+
+  // //  Convert business values from gRPC
+  // convertBusinessValuesFromGRPC(value) {
+  //   const { convertValueFromGRPC } = require('./src/convertBaseDataType.js');
+  //   return convertValueFromGRPC(value)
+  // }
 
   //  Delete a Entity
   deleteEntity({
     token,
     id,
     uuid,
-    tableName
+    tableName,
+    language
   }, callback) {
     const { DeleteEntityRequest } = require('./src/grpc/proto/business_pb.js')
     const request = new DeleteEntityRequest()
     request.setRecordId(id)
     request.setUuid(uuid)
     request.setTableName(tableName)
-    request.setClientRequest(this.createClientRequest(token))
+    request.setClientRequest(this.createClientRequest(token, language))
     this.getBusinessService().deleteEntity(request, callback)
   }
 
@@ -495,6 +540,9 @@ class Api {
   listEntities({
     token,
     tableName,
+    //  DSL
+    filters,
+    columns,
     //  Custom Query
     query,
     whereClause,
@@ -502,7 +550,8 @@ class Api {
     limit,
     //  Page Data
     pageSize,
-    pageToken
+    pageToken,
+    language
   }, callback) {
     const { ListEntitiesRequest } = require('./src/grpc/proto/business_pb.js')
     const request = new ListEntitiesRequest()
@@ -510,14 +559,60 @@ class Api {
     //  TODO: Add support to all parameters
     request.setCriteria(convertCriteriaToGRPC({
       tableName,
+      filters,
       query,
       whereClause,
       orderByClause,
       limit
     }))
+    //  For columns
+    if(columns) {
+      request.setColumns(columns)
+    }
     //  TODO: Add Criteria
-    request.setClientRequest(this.createClientRequest(token))
+    request.setClientRequest(this.createClientRequest(token, language))
     this.getBusinessService().listEntities(request, callback)
+  }
+
+  //  Run a business process
+  runProcess({
+    token,
+    tableName,
+    processUuid,
+    id,
+    uuid,
+    tableSelectedId,
+    reportType,
+    printFormatUuid,
+    reportViewUuid,
+    isSummary,
+    parameters,
+    selections,
+    language
+  }, callback) {
+    const { RunBusinessProcessRequest } = require('./src/grpc/proto/business_pb.js')
+    const { convertParameterToGRPC } = require('./src/convertValues.js');
+    const request = new RunBusinessProcessRequest()
+    request.setTableName(tableName)
+    request.setId(id)
+    request.setUuid(uuid)
+    request.setProcessUuid(processUuid)
+    request.setTableSelectedId(tableSelectedId)
+    request.setReportType(reportType)
+    request.setPrintFormatUuid(printFormatUuid)
+    request.setReportViewUuid(reportViewUuid)
+    request.setIsSummary(isSummary)
+    // selections
+    if(parameters) {
+      parameters.forEach(parameter => {
+        request.addParameters(convertParameterToGRPC({
+          columnName: parameter.key,
+          value: parameter.value
+        }))
+      })
+    }
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getBusinessService().runBusinessProcess(request, callback)
   }
 }
 module.exports = Api;

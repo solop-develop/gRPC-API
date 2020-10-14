@@ -397,7 +397,6 @@ const convertValues = {
     const { Condition } = require('./grpc/proto/base_data_type_pb.js');
     const { Operator } = Condition;
     const conditionInstance = new Condition();
-
     conditionInstance.setColumnName(columnName);
 
     // set operator
@@ -428,7 +427,6 @@ const convertValues = {
         conditionInstance.addValues(convertedValue);
       });
     }
-
     //  Return converted condition
     return conditionInstance;
   },
@@ -455,10 +453,11 @@ const convertValues = {
   /**
    * Get Criteria from Table Name
    * @param {string} tableName
+   * @param {string} filters
    * @param {string} query
    * @param {string} whereClause
    * @param {string} referenceUuid
-   * @param {array}  conditionsList [{ columnName: String, value: Mixed, valueTo: Mixed, values: Array, operator: String}]
+   * @param {array}  filters [{ columnName: String, value: Mixed, valueTo: Mixed, values: Array, operator: String}]
    * @param {array}  valuesList mixed values
    * @param {array}  orderByColumnsList [{ columnName: String, orderType: Number }]
    * @param {string} orderByClause
@@ -470,52 +469,56 @@ const convertValues = {
     query,
     whereClause,
     referenceUuid,
-    conditionsList = [],
+    filters = [],
     orderByClause,
     valuesList = [],
     orderByColumnsList = [],
     limit
   }) {
     const { Criteria } = require('./grpc/proto/base_data_type_pb.js')
-    const criteria = new Criteria();
+    const criteria = new Criteria()
 
-    criteria.setTableName(tableName);
-    criteria.setQuery(query);
-    criteria.setWhereClause(whereClause);
-    criteria.setReferenceUuid(referenceUuid);
+    criteria.setTableName(tableName)
+    criteria.setQuery(query)
+    criteria.setWhereClause(whereClause)
+    criteria.setReferenceUuid(referenceUuid)
 
     // add values
     if (!convertValues.isEmptyValue(valuesList)) {
       valuesList.forEach(itemValue => {
         const value = convertValues.convertValueToGRPC({
           value: itemValue
-        });
-        criteria.addValues(value);
-      });
+        })
+        criteria.addValues(value)
+      })
     }
 
     // add conditions
-    if (!convertValues.isEmptyValue(conditionsList)) {
-      conditionsList.forEach(itemCondition => {
-        const convertCondition = convertValues.convertConditionToGRPC(itemCondition);
-        criteria.addConditions(convertCondition);
-      });
+    if (!convertValues.isEmptyValue(filters)) {
+      filters.forEach(condition => {
+        criteria.addConditions(convertValues.convertConditionToGRPC({
+          columnName: condition.column_name,
+          value: condition.value,
+          valueTo: condition.value_to,
+          values: condition.values,
+          operator: condition.operator
+        }))
+
+      })
     }
 
     // set order by clause
     if (!convertValues.isEmptyValue(orderByColumnsList)) {
       orderByColumnsList.forEach(itemOrderBy => {
         const orderBy = convertValues.convertOrderByPropertyToGRPC({
-          columnName: itemOrderBy.columnName,
-          orderType: itemOrderBy.orderType
+          columnName: itemOrderBy.column_name,
+          orderType: itemOrderBy.order_type
         });
-        criteria.addOrderByColumn(orderBy);
+        criteria.addOrderByColumn(orderBy)
       })
     }
-    criteria.setOrderByClause(orderByClause);
-
-    criteria.setLimit(limit);
-
+    criteria.setOrderByClause(orderByClause)
+    criteria.setLimit(limit)
     //  Return criteria
     return criteria;
   }

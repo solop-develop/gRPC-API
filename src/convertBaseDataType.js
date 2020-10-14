@@ -265,18 +265,18 @@ const convertBaseDataType = {
 
       return {
         uuid: processLogToConvert.getUuid(),
-        instanceUuid: processLogToConvert.getInstanceuuid(),
-        isError: processLogToConvert.getIsError(),
+        instance_uuid: processLogToConvert.getInstanceUuid(),
+        is_error: processLogToConvert.getIsError(),
         summary: processLogToConvert.getSummary(),
-        resultTableName: processLogToConvert.getResultTableName(),
-        isProcessing: processLogToConvert.getIsProcessing(),
-        lastRun: processLogToConvert.getLastRun(),
-        logsList: processLogToConvert.getLogsList().map(log => {
+        result_table_name: processLogToConvert.getResultTableName(),
+        is_processing: processLogToConvert.getIsProcessing(),
+        last_run: processLogToConvert.getLastRun(),
+        logs_list: processLogToConvert.getLogsList().map(log => {
           return convertBaseDataType.convertProcessInfoLogFromGRPC(
             log
           );
         }),
-        parametersList: convertValuesMapFromGRPC({
+        parameter: convertValuesMapFromGRPC({
           mapToConvert: processLogToConvert.getParametersMap(),
           returnType: 'object'
         }),
@@ -417,20 +417,20 @@ const convertBaseDataType = {
         uuid: reportOutputToConvert.getUuid(),
         name: reportOutputToConvert.getName(),
         description: reportOutputToConvert.getDescription(),
-        fileName: reportOutputToConvert.getFilename(),
+        file_name: reportOutputToConvert.getFileName(),
         output: reportOutputToConvert.getOutput(),
-        mimeType: reportOutputToConvert.getMimetype(),
-        dataCols: reportOutputToConvert.getDatacols(),
-        dataRows: reportOutputToConvert.getDatarows(),
-        headerName: reportOutputToConvert.getHeadername(),
-        footerName: reportOutputToConvert.getFootername(),
-        printFormatUuid: reportOutputToConvert.getPrintformatuuid(),
-        reportViewUuid: reportOutputToConvert.getReportviewuuid(),
-        tableName: reportOutputToConvert.getTableName(),
-        outputStream: reportOutputToConvert.getOutputstream(),
-        outputStream_asB64: reportOutputToConvert.getOutputstream_asB64(),
-        outputStream_asU8: reportOutputToConvert.getOutputstream_asU8(),
-        reportType: reportOutputToConvert.getReporttype()
+        mime_type: reportOutputToConvert.getMimeType(),
+        data_cols: reportOutputToConvert.getDataCols(),
+        data_rows: reportOutputToConvert.getDataRows(),
+        header_name: reportOutputToConvert.getHeaderName(),
+        footer_name: reportOutputToConvert.getFooterName(),
+        print_format_uuid: reportOutputToConvert.getPrintFormatUuid(),
+        report_view_uuid: reportOutputToConvert.getReportViewUuid(),
+        table_name: reportOutputToConvert.getTableName(),
+        output_stream: reportOutputToConvert.getOutputStream(),
+        output_stream_asB64: reportOutputToConvert.getOutputStream_asB64(),
+        output_stream_asU8: reportOutputToConvert.getOutputStream_asU8(),
+        report_type: reportOutputToConvert.getReportType()
       };
     }
     return undefined;

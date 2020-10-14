@@ -170,12 +170,12 @@ message Entity {
 //	Response with log and values from server
 message ProcessLog {
 	string uuid = 1;
-	string instanceUuid = 2;
-	bool isError = 3;
+	string instance_uuid = 2;
+	bool is_error = 3;
 	string summary = 4;
-	string resultTableName = 5;
-	bool isProcessing = 6;
-	int64 lastRun = 7;
+	string result_table_name = 5;
+	bool is_processing = 6;
+	int64 last_run = 7;
 	repeated ProcessInfoLog logs = 8;
 	map<string, Value> parameters = 9;
 	ReportOutput output = 10;
@@ -190,7 +190,7 @@ message ProcessInfoLog {
 // Translations Item
 message Translation {
 	string language = 1;
-	string translationUuid = 2;
+	string translation_uuid = 2;
 	map<string, Value> values = 3;
 }
 

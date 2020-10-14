@@ -305,8 +305,9 @@ message ListEntitiesRequest {
 	ClientRequest client_request = 3;
 	// Query
 	Criteria criteria = 4;
-	int32 page_size = 5;
-	string page_token = 6;
+	repeated string columns = 5;
+	int32 page_size = 6;
+	string page_token = 7;
 }
 
 // List Entities Response
@@ -340,15 +341,16 @@ message Callout {
 message RunBusinessProcessRequest {
 	ClientRequest client_request = 1;
 	string table_name = 2;
-	string uuid = 3;
-	int32 record_id = 4;
-	int32 table_selected_id = 5;
-	string report_type = 6;
-	string print_format_uuid = 7;
-	string report_view_uuid = 8;
-	bool is_summary = 9;
-	repeated KeyValue parameters = 10;
-	repeated KeyValueSelection selections = 11;
+	string process_uuid = 3;
+	string uuid = 4;
+	int32 id = 5;
+	int32 table_selected_id = 6;
+	string report_type = 7;
+	string print_format_uuid = 8;
+	string report_view_uuid = 9;
+	bool is_summary = 10;
+	repeated KeyValue parameters = 11;
+	repeated KeyValueSelection selections = 12;
 }
 
 // BusinessProcess Activity Request
