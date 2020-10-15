@@ -1,4 +1,4 @@
-# ADempiere Web Store backend API for gRPC
+# ADempiere Web backend API for gRPC
 [![npm version](https://img.shields.io/npm/v/@adempiere/grpc-api.svg)](https://www.npmjs.com/package/@adempiere/grpc-api)
 [![License](https://img.shields.io/npm/l/@adempiere/grpc-api.svg)](https://github.com/erpcya/adempiere-web-store/blob/master/LICENSE)
 [![Downloads](https://img.shields.io/npm/dm/@adempiere/grpc-api.svg)](https://www.npmjs.com/package/@adempiere/grpc-api)
@@ -9,6 +9,9 @@ ADempiere Client write in Javascript for gRPC service, use it for connect with
 [ADempiere-gRPC-Server](https://github.com/erpcya/adempiere-gRPC-Server).
 ## Requirements
 - [ADempiere-gRPC-Server](https://github.com/erpcya/adempiere-gRPC-Server)
+
+## See also:
+You can get a image from Backend using it: https://hub.docker.com/repository/docker/erpya/adempiere-grpc-all-in-one
 ## Using it
 
 ``` bash
