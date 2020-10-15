@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/erpcya/gRPC-API.git"
+    "url": "git+https://github.com/adempiere/gRPC-API.git"
   },
   "author": "Yamel Senih",
   "license": "GPL-3.0-or-later",
