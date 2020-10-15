@@ -237,11 +237,16 @@ class Api {
   getResource({
     resourceName,
     resourceUuid,
-    language
+    language,
+    token
   }, callback) {
     const { GetResourceRequest } = require('./src/grpc/proto/business_pb.js')
     const request = new GetResourceRequest()
-    request.setClientRequest(this.getClientContext())
+    if(token) {
+      request.setClientRequest(this.createClientRequest(token, language))
+    } else {
+      request.setClientRequest(this.getClientContext())
+    }
     request.setResourceName(resourceName)
     request.setResourceUuid(resourceUuid)
     const stream = this.getUIService().getResource(request)
@@ -433,7 +438,7 @@ class Api {
   }, callback) {
     const { GetEntityRequest } = require('./src/grpc/proto/business_pb.js')
     const request = new GetEntityRequest()
-    request.setRecordId(id)
+    request.setId(id)
     request.setUuid(uuid)
     request.setTableName(tableName)
     request.setClientRequest(this.createClientRequest(token, language))
@@ -448,7 +453,7 @@ class Api {
     language
   }, callback) {
     const { CreateEntityRequest } = require('./src/grpc/proto/business_pb.js')
-    const { convertParameterToGRPC } = require('./src/convertValues.js');
+    const { convertParameterToGRPC } = require('./lib/convertValues.js');
     const request = new CreateEntityRequest()
     request.setTableName(tableName)
     if(attributes) {
@@ -473,10 +478,10 @@ class Api {
     language
   }, callback) {
     const { UpdateEntityRequest } = require('./src/grpc/proto/business_pb.js')
-    const { convertParameterToGRPC } = require('./src/convertValues.js');
+    const { convertParameterToGRPC } = require('./lib/convertValues.js');
     const request = new UpdateEntityRequest()
     request.setTableName(tableName)
-    request.setRecordId(id)
+    request.setId(id)
     request.setUuid(uuid)
     if(attributes) {
       attributes.forEach(attribute => {
@@ -498,7 +503,7 @@ class Api {
     language
   }, callback) {
     const { CreateEntityRequest } = require('./src/grpc/proto/business_pb.js')
-    const { convertParameterToGRPC } = require('./src/convertValues.js');
+    const { convertParameterToGRPC } = require('./lib/convertValues.js');
     const request = new CreateEntityRequest()
     request.setTableName(tableName)
     if(attributes) {
@@ -515,7 +520,7 @@ class Api {
 
   // //  Convert business values from gRPC
   // convertBusinessValuesFromGRPC(value) {
-  //   const { convertValueFromGRPC } = require('./src/convertBaseDataType.js');
+  //   const { convertValueFromGRPC } = require('./lib/convertBaseDataType.js');
   //   return convertValueFromGRPC(value)
   // }
 
@@ -529,7 +534,7 @@ class Api {
   }, callback) {
     const { DeleteEntityRequest } = require('./src/grpc/proto/business_pb.js')
     const request = new DeleteEntityRequest()
-    request.setRecordId(id)
+    request.setId(id)
     request.setUuid(uuid)
     request.setTableName(tableName)
     request.setClientRequest(this.createClientRequest(token, language))
@@ -555,7 +560,7 @@ class Api {
   }, callback) {
     const { ListEntitiesRequest } = require('./src/grpc/proto/business_pb.js')
     const request = new ListEntitiesRequest()
-    const { convertCriteriaToGRPC } = require('./src/convertValues.js');
+    const { convertCriteriaToGRPC } = require('./lib/convertValues.js');
     //  TODO: Add support to all parameters
     request.setCriteria(convertCriteriaToGRPC({
       tableName,
@@ -591,7 +596,7 @@ class Api {
     language
   }, callback) {
     const { RunBusinessProcessRequest } = require('./src/grpc/proto/business_pb.js')
-    const { convertParameterToGRPC } = require('./src/convertValues.js');
+    const { convertParameterToGRPC } = require('./lib/convertValues.js');
     const request = new RunBusinessProcessRequest()
     request.setTableName(tableName)
     request.setId(id)
@@ -613,6 +618,37 @@ class Api {
     }
     request.setClientRequest(this.createClientRequest(token, language))
     this.getBusinessService().runBusinessProcess(request, callback)
+  }
+
+  //  User Interface
+  //  Get Attachment information
+  getAttachment({
+    token,
+    id,
+    uuid,
+    tableName,
+    language
+  }, callback) {
+    const { GetAttachmentRequest } = require('./src/grpc/proto/business_pb.js')
+    const request = new GetAttachmentRequest()
+    request.setId(id)
+    request.setUuid(uuid)
+    request.setTableName(tableName)
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getUIService().getAttachment(request, callback)
+  }
+
+  //  Get Resource information
+  getResourceReference({
+    token,
+    imageId,
+    language
+  }, callback) {
+    const { GetResourceReferenceRequest } = require('./src/grpc/proto/business_pb.js')
+    const request = new GetResourceReferenceRequest()
+    request.setImageId(imageId)
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getUIService().getResourceReference(request, callback)
   }
 }
 module.exports = Api;

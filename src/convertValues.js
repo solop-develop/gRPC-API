@@ -135,7 +135,7 @@ const convertValues = {
   },
 
   convertValueToGRPCWithValueType({ value, valueType }) {
-    const { Value } = require('./grpc/proto/base_data_type_pb.js');
+    const { Value } = require('@adempiere/grpc-api/src/grpc/proto/base_data_type_pb.js');
     const { ValueType } = Value;
     let convertedValue;
 
@@ -174,7 +174,7 @@ const convertValues = {
    * @return
    */
   getValueFromInteger(value) {
-    const { Value } = require('./grpc/proto/base_data_type_pb.js');
+    const { Value } = require('@adempiere/grpc-api/src/grpc/proto/base_data_type_pb.js');
     const { ValueType } = Value;
     let convertedValue = new Value();
 
@@ -195,7 +195,7 @@ const convertValues = {
    * @return
    */
   getValueFromString(value) {
-    const { Value } = require('./grpc/proto/base_data_type_pb.js');
+    const { Value } = require('@adempiere/grpc-api/src/grpc/proto/base_data_type_pb.js');
     const { ValueType } = Value;
     const convertedValue = new Value();
 
@@ -212,7 +212,7 @@ const convertValues = {
    * @return
    */
   getValueFromBoolean(value) {
-    const { Value } = require('./grpc/proto/base_data_type_pb.js');
+    const { Value } = require('@adempiere/grpc-api/src/grpc/proto/base_data_type_pb.js');
     const { ValueType } = Value;
     const convertedValue = new Value();
     convertedValue.setValueType(ValueType.BOOLEAN);
@@ -233,7 +233,7 @@ const convertValues = {
    * @return
    */
   getValueFromDate(value) {
-    const { Value } = require('./grpc/proto/base_data_type_pb.js');
+    const { Value } = require('@adempiere/grpc-api/src/grpc/proto/base_data_type_pb.js');
     const { ValueType } = Value;
     const convertedValue = new Value();
 
@@ -251,7 +251,7 @@ const convertValues = {
    * @return
    */
   getValueFromDecimal(value) {
-    const { Value } = require('./grpc/proto/base_data_type_pb.js');
+    const { Value } = require('@adempiere/grpc-api/src/grpc/proto/base_data_type_pb.js');
     const { ValueType } = Value;
     const convertedValue = new Value();
 
@@ -269,7 +269,7 @@ const convertValues = {
    * @return
    */
   getDecimalFromNumber(numberValue) {
-    const { Decimal } = require('./grpc/proto/base_data_type_pb.js');
+    const { Decimal } = require('@adempiere/grpc-api/src/grpc/proto/base_data_type_pb.js');
     const convertedDecimalValue = new Decimal();
 
     if (!convertValues.isEmptyValue(numberValue)) {
@@ -307,7 +307,7 @@ const convertValues = {
    * @returns KeyValue Object
    */
   convertParameterToGRPC({ columnName, value, valueType }) {
-    const { KeyValue } = require('./grpc/proto/base_data_type_pb.js');
+    const { KeyValue } = require('@adempiere/grpc-api/src/grpc/proto/base_data_type_pb.js');
     const keyValue = new KeyValue();
     keyValue.setKey(columnName);
     keyValue.setValue(
@@ -328,7 +328,7 @@ const convertValues = {
    * Return a list of KeyValue Object
    */
   convertSelectionToGRPC({ selectionId, selectionUuid, selectionValues = [] }) {
-    const { KeyValueSelection } = require('./grpc/proto/base_data_type_pb.js');
+    const { KeyValueSelection } = require('@adempiere/grpc-api/src/grpc/proto/base_data_type_pb.js');
     const selectionInstance = new KeyValueSelection();
 
     // set selection id from record
@@ -394,7 +394,7 @@ const convertValues = {
    * @returns Object
    */
   convertConditionToGRPC({ columnName, value, valueTo, values = [], operator = 'EQUAL' }) {
-    const { Condition } = require('./grpc/proto/base_data_type_pb.js');
+    const { Condition } = require('@adempiere/grpc-api/src/grpc/proto/base_data_type_pb.js');
     const { Operator } = Condition;
     const conditionInstance = new Condition();
     conditionInstance.setColumnName(columnName);
@@ -437,7 +437,7 @@ const convertValues = {
    * @param {string} orderType 'ASCENDING' or 'DESCENDING'
    */
   convertOrderByPropertyToGRPC({ columnName, orderType }) {
-    const { OrderByProperty } = require('./grpc/proto/base_data_type_pb.js');
+    const { OrderByProperty } = require('@adempiere/grpc-api/src/grpc/proto/base_data_type_pb.js');
     const { OrderType } = OrderByProperty;
     const orderByInstance = new OrderByProperty;
 
@@ -475,7 +475,7 @@ const convertValues = {
     orderByColumnsList = [],
     limit
   }) {
-    const { Criteria } = require('./grpc/proto/base_data_type_pb.js')
+    const { Criteria } = require('@adempiere/grpc-api/src/grpc/proto/base_data_type_pb.js')
     const criteria = new Criteria()
 
     criteria.setTableName(tableName)

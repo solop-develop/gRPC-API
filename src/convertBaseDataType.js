@@ -21,7 +21,7 @@ const convertBaseDataType = {
    * @returns {mixed}
    */
   convertValueFromGRPC(value) {
-    const { Value } = require('./grpc/proto/base_data_type_pb.js');
+    const { Value } = require('@adempiere/grpc-api/src/grpc/proto/base_data_type_pb.js');
     const { ValueType } = Value;
     const { isEmptyValue } = require('./convertValues.js');
 
@@ -446,10 +446,10 @@ const convertBaseDataType = {
   convertAttachmentFromGRPC(attachmentToConvert) {
     if (attachmentToConvert) {
       return {
-        attachmentUuid: attachmentToConvert.getAttachmentuuid(),
+        attachment_uuid: attachmentToConvert.getAttachmentUuid(),
         title: attachmentToConvert.getTitle(),
-        textMsg: attachmentToConvert.getTextmsg(),
-        resourceReferencesList: attachmentToConvert.getResourcereferencesList().map(itemResourceReference => {
+        text_msg: attachmentToConvert.getTextMsg(),
+        resource_references_list: attachmentToConvert.getResourceReferencesList().map(itemResourceReference => {
           return convertBaseDataType.convertResourceReferenceFromGRPC(
             itemResourceReference
           );
@@ -462,14 +462,14 @@ const convertBaseDataType = {
   convertResourceReferenceFromGRPC(resourceReferenceToConvert) {
     if (resourceReferenceToConvert) {
       return {
-        resourceUuid: resourceReferenceToConvert.getResourceuuid(),
-        fileName: resourceReferenceToConvert.getFilename(),
-        fileSize: convertBaseDataType.getDecimalFromGRPC(
-          resourceReferenceToConvert.getFilesize()
+        resource_uuid: resourceReferenceToConvert.getResourceUuid(),
+        file_name: resourceReferenceToConvert.getFileName(),
+        file_size: convertBaseDataType.getDecimalFromGRPC(
+          resourceReferenceToConvert.getFileSize()
         ),
         description: resourceReferenceToConvert.getDescription(),
-        textMsg: resourceReferenceToConvert.getTextmsg(),
-        contentType: resourceReferenceToConvert.getContenttype()
+        text_msg: resourceReferenceToConvert.getTextMsg(),
+        content_type: resourceReferenceToConvert.getContentType()
       }
     }
     return undefined;

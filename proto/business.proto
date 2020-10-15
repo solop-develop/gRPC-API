@@ -124,7 +124,8 @@ service EntityLog {
 message GetAttachmentRequest {
 	ClientRequest client_request = 1;
 	string table_name = 2;
-	string record_uuid = 3;
+	int32 id = 3;
+	string uuid = 4;
 }
 
 // Request for download resource
@@ -179,7 +180,7 @@ message LockPrivateAccessRequest {
 // Get Entity Request
 message GetEntityRequest {
 	string uuid = 1;
-	int32 record_id = 2;
+	int32 id = 2;
 	string table_name = 3;
 	ClientRequest client_request = 4;
 	// Query
@@ -227,7 +228,7 @@ message UpdateEntityRequest {
 	ClientRequest client_request = 1;
 	string table_name = 2;
 	string uuid = 3;
-	int32 record_id = 4;
+	int32 id = 4;
 	repeated KeyValue attributes = 5;
 }
 
@@ -236,7 +237,7 @@ message DeleteEntityRequest {
 	ClientRequest client_request = 1;
 	string table_name = 2;
 	string uuid = 3;
-	int32 record_id = 4;
+	int32 id = 4;
 }
 
 // Browsers List

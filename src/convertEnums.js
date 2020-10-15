@@ -45,7 +45,7 @@ const convertEnums = {
       DATE = 5;
    */
   getValue_ValueType({ key, value }) {
-    const { Value } = require('./grpc/proto/base_data_type_pb.js');
+    const { Value } = require('@adempiere/grpc-api/src/grpc/proto/base_data_type_pb.js');
     const { ValueType } = Value;
 
     return convertEnums.getValueOrKey({
@@ -75,7 +75,7 @@ const convertEnums = {
       NOT_IN = 12;
    */
   getCondition_Operator({ key, value }) {
-    const { Condition } = require('./grpc/proto/base_data_type_pb.js');
+    const { Condition } = require('@adempiere/grpc-api/src/grpc/proto/base_data_type_pb.js');
     const { Operator } = Condition;
 
     return convertEnums.getValueOrKey({
@@ -93,7 +93,7 @@ const convertEnums = {
       DESCENDING = 1;
   */
   getOrderByProperty_OrderType({ key, value }) {
-    const { OrderByProperty } = require('./grpc/proto/base_data_type_pb.js');
+    const { OrderByProperty } = require('@adempiere/grpc-api/src/grpc/proto/base_data_type_pb.js');
     const { OrderType } = OrderByProperty;
 
     return convertEnums.getValueOrKey({
@@ -113,7 +113,7 @@ const convertEnums = {
       DELETE = 2;
   */
   getRecordLog_EventType({ key, value }) {
-    const { RecordLog } = require('./grpc/proto/base_data_type_pb.js');
+    const { RecordLog } = require('@adempiere/grpc-api/src/grpc/proto/base_data_type_pb.js');
     const { EventType } = RecordLog;
 
     return convertEnums.getValueOrKey({
@@ -129,7 +129,7 @@ const convertEnums = {
       SAVINGS = 1;
    */
   getBankAccount_BankAccountType({ key, value }) {
-    const { BankAccount } = require('./grpc/proto/core_functionality_pb');
+    const { BankAccount } = require('@adempiere/grpc-api/src/grpc/proto/core_functionality_pb');
     const { BankAccountType } = BankAccount;
 
     return convertEnums.getValueOrKey({
