@@ -4,13 +4,11 @@
 [![Downloads](https://img.shields.io/npm/dm/@adempiere/grpc-api.svg)](https://www.npmjs.com/package/@adempiere/grpc-api)
 [![Dependencies](https://img.shields.io/librariesio/github/erpcya/grpc-api.svg)](https://www.npmjs.com/package/@adempiere/grpc-api)
 
-ADempiere Web Store Client write in Javascript for gRPC service, use it for connect with
+ADempiere Client write in Javascript for gRPC service, use it for connect with
+
 [ADempiere-gRPC-Server](https://github.com/erpcya/adempiere-gRPC-Server).
-
 ## Requirements
-- [Envoy Proxy](https://www.envoyproxy.io/)
-- [Envoy Pre-configured Proxy](https://github.com/erpcya/gRPC-Envoy-Proxy)
-
+- [ADempiere-gRPC-Server](https://github.com/erpcya/adempiere-gRPC-Server)
 ## Using it
 
 ``` bash
@@ -23,65 +21,7 @@ yarn add @adempiere/grpc-api
 ```
 
 ## A Example
-### Declare Data
-```javascript
-const Access = require('@adempiere/grpc-api');
-// URL, Version
-let access = new Access(GRPC_HOST, 'Version Epale');
-```
-### Declare Data with specific language
-```javascript
-const Access = require('@adempiere/grpc-api');
-let access = new Access(GRPC_HOST, 'Version Epale');
-```
-
-### Request Roles for a user
-```javascript
-//  Request User Roles
-//  UserName, UserPass
-access.requestUserRoles('SuperUser', 'System')
-.then(userRoles => {
-  console.log('Object with Role List' + userRoles);
-})
-.catch(err => console.log("Error: " + err.message));
-```
-
-Output
-```
-Hola
-```
-
-### Request Login
-```javascript
-//  Request Login for User
-//  UserName, UserPass, Language
-access.requestUserLogin('SuperUser', 'System', 'es_VE')
-.then(session => {
-  console.log('Object with Session values' + session);
-})
-.catch(err => console.log("Error: " + err.message));
-```
-
-Output
-```
-None
-```
-
-### Request Logout
-```javascript
-//  Request Logout for User
-//  SessionUuid
-access.requestUserLogout('8cc49692-fb40-11e8-a479-7a0060f0aa01')
-.then(session => {
-  console.log('Object with Logout Session' + session);
-})
-.catch(err => console.log("Error: " + err.message));
-```
-
-Output
-```
-None
-```
+Here a example for it using from Proxy of ADempiere API: https://github.com/adempiere/proxy-adempiere-api/blob/master/src/modules/adempiere-api/index.ts#L17
 
 ## Recreate proto stub class (only for contribute to project)
 For recreate stub class you must have follow:
@@ -117,7 +57,16 @@ sh generate-stub.sh
 The result is generated on: src/grpc folder
 - `access_grpc_web_pb.js`
 - `access_pb.js`
-
+- `client_pb.js`
+- `client_grpc_web_pb.js`
+- `base_data_type_pb.js`
+- `base_data_type_grpc_web_pb.js`
+- `core_functionality_pb.js`
+- `core_functionality_grpc_web_pb.js`
+- `dictionary_pb.js`
+- `dictionary_grpc_web_pb.js`
+- `business_pb.js`
+- `business_grpc_web_pb.js`
 
 ## Sponsors
 
