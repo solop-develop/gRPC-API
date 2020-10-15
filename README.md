@@ -117,3 +117,10 @@ sh generate-stub.sh
 The result is generated on: src/grpc folder
 - `access_grpc_web_pb.js`
 - `access_pb.js`
+
+
+## Sponsors
+
+Become a sponsor and get your logo on our README on GitHub with a link to your site. [Become a sponsor](https://www.paypal.com/paypalme/YamelSenih)
+
+<a href="http://erpya.com/"><img width="250px" src="https://erpya.com/wp-content/uploads/2017/11/ERP-logotipo-H-color.png" /></a>
