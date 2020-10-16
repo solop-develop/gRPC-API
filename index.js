@@ -574,6 +574,8 @@ class Api {
     if(columns) {
       request.setColumns(columns)
     }
+    request.setPageSize(pageSize)
+    request.setPageToken(pageToken)
     //  TODO: Add Criteria
     request.setClientRequest(this.createClientRequest(token, language))
     this.getBusinessService().listEntities(request, callback)
@@ -649,6 +651,105 @@ class Api {
     request.setImageId(imageId)
     request.setClientRequest(this.createClientRequest(token, language))
     this.getUIService().getResourceReference(request, callback)
+  }
+
+  //  Create Chat Entry
+  createChatEntry({
+    token,
+    language,
+    tableName,
+    id,
+    uuid,
+    comment
+  }, callback) {
+    const { CreateChatEntryRequest } = require('./src/grpc/proto/business_pb.js')
+    const request = new CreateChatEntryRequest()
+    request.setTableName(tableName)
+    request.setId(id)
+    request.setUuid(uuid)
+    request.setComment(comment)
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getUIService().createChatEntry(request, callback)
+  }
+
+  //  Get Report Output
+  getReportOutput({
+    token,
+    tableName,
+    //  Reference
+    printFormatUuid,
+    reportViewUuid,
+    isSummary,
+    reportName,
+    reportType,
+    //  DSL
+    filters,
+    //  Custom Query
+    query,
+    whereClause,
+    orderByClause,
+    limit,
+    language
+  }, callback) {
+    const { GetReportOutputRequest } = require('./src/grpc/proto/business_pb.js')
+    const request = new GetReportOutputRequest()
+    const { convertCriteriaToGRPC } = require('./lib/convertValues.js');
+    //  TODO: Add support to all parameters
+    request.setCriteria(convertCriteriaToGRPC({
+      tableName,
+      filters,
+      query,
+      whereClause,
+      orderByClause,
+      limit
+    }))
+    //
+    request.setPrintFormatUuid(printFormatUuid)
+    request.setReportViewUuid(reportViewUuid)
+    request.setIsSummary(isSummary)
+    request.setReportName(reportName)
+    request.setReportType(reportType)
+    request.setTableName(tableName)
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getUIService().getReportOutput(request, callback)
+  }
+
+  //  List Drill Tables
+  listDrillTables({
+    token,
+    tableName,
+    pageSize,
+    pageToken,
+    language
+  }, callback) {
+    const { ListDrillTablesRequest } = require('./src/grpc/proto/business_pb.js')
+    const request = new ListDrillTablesRequest()
+    request.setTableName(tableName)
+    request.setPageSize(pageSize)
+    request.setPageToken(pageToken)
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getUIService().listDrillTables(request, callback)
+  }
+
+  //  List Print Formats
+  listPrintFormats({
+    token,
+    tableName,
+    reportViewUuid,
+    processUuid,
+    pageSize,
+    pageToken,
+    language
+  }, callback) {
+    const { ListPrintFormatsRequest } = require('./src/grpc/proto/business_pb.js')
+    const request = new ListPrintFormatsRequest()
+    request.setTableName(tableName)
+    request.setReportViewUuid(reportViewUuid)
+    request.setProcessUuid(processUuid)
+    request.setPageSize(pageSize)
+    request.setPageToken(pageToken)
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getUIService().listPrintFormats(request, callback)
   }
 }
 module.exports = Api;
