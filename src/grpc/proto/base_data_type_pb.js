@@ -3258,7 +3258,7 @@ proto.data.RecordReferenceInfo.toObject = function(includeInstance, msg) {
   var f, obj = {
     uuid: jspb.Message.getFieldWithDefault(msg, 1, ""),
     windowUuid: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    displayname: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    displayName: jspb.Message.getFieldWithDefault(msg, 3, ""),
     tableName: jspb.Message.getFieldWithDefault(msg, 4, ""),
     whereClause: jspb.Message.getFieldWithDefault(msg, 5, ""),
     recordCount: jspb.Message.getFieldWithDefault(msg, 6, 0)
@@ -3308,7 +3308,7 @@ proto.data.RecordReferenceInfo.deserializeBinaryFromReader = function(msg, reade
       break;
     case 3:
       var value = /** @type {string} */ (reader.readString());
-      msg.setDisplayname(value);
+      msg.setDisplayName(value);
       break;
     case 4:
       var value = /** @type {string} */ (reader.readString());
@@ -3365,7 +3365,7 @@ proto.data.RecordReferenceInfo.serializeBinaryToWriter = function(message, write
       f
     );
   }
-  f = message.getDisplayname();
+  f = message.getDisplayName();
   if (f.length > 0) {
     writer.writeString(
       3,
@@ -3433,10 +3433,10 @@ proto.data.RecordReferenceInfo.prototype.setWindowUuid = function(value) {
 
 
 /**
- * optional string displayName = 3;
+ * optional string display_name = 3;
  * @return {string}
  */
-proto.data.RecordReferenceInfo.prototype.getDisplayname = function() {
+proto.data.RecordReferenceInfo.prototype.getDisplayName = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
 
@@ -3445,7 +3445,7 @@ proto.data.RecordReferenceInfo.prototype.getDisplayname = function() {
  * @param {string} value
  * @return {!proto.data.RecordReferenceInfo} returns this
  */
-proto.data.RecordReferenceInfo.prototype.setDisplayname = function(value) {
+proto.data.RecordReferenceInfo.prototype.setDisplayName = function(value) {
   return jspb.Message.setProto3StringField(this, 3, value);
 };
 

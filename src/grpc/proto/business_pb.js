@@ -2998,8 +2998,8 @@ proto.data.LockPrivateAccessRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     clientRequest: (f = msg.getClientRequest()) && proto_client_pb.ClientRequest.toObject(includeInstance, f),
     tableName: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    recordId: jspb.Message.getFieldWithDefault(msg, 3, 0),
-    userUuid: jspb.Message.getFieldWithDefault(msg, 4, "")
+    id: jspb.Message.getFieldWithDefault(msg, 3, 0),
+    uuid: jspb.Message.getFieldWithDefault(msg, 4, "")
   };
 
   if (includeInstance) {
@@ -3047,11 +3047,11 @@ proto.data.LockPrivateAccessRequest.deserializeBinaryFromReader = function(msg, 
       break;
     case 3:
       var value = /** @type {number} */ (reader.readInt32());
-      msg.setRecordId(value);
+      msg.setId(value);
       break;
     case 4:
       var value = /** @type {string} */ (reader.readString());
-      msg.setUserUuid(value);
+      msg.setUuid(value);
       break;
     default:
       reader.skipField();
@@ -3097,14 +3097,14 @@ proto.data.LockPrivateAccessRequest.serializeBinaryToWriter = function(message, 
       f
     );
   }
-  f = message.getRecordId();
+  f = message.getId();
   if (f !== 0) {
     writer.writeInt32(
       3,
       f
     );
   }
-  f = message.getUserUuid();
+  f = message.getUuid();
   if (f.length > 0) {
     writer.writeString(
       4,
@@ -3170,10 +3170,10 @@ proto.data.LockPrivateAccessRequest.prototype.setTableName = function(value) {
 
 
 /**
- * optional int32 record_id = 3;
+ * optional int32 id = 3;
  * @return {number}
  */
-proto.data.LockPrivateAccessRequest.prototype.getRecordId = function() {
+proto.data.LockPrivateAccessRequest.prototype.getId = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
 };
 
@@ -3182,16 +3182,16 @@ proto.data.LockPrivateAccessRequest.prototype.getRecordId = function() {
  * @param {number} value
  * @return {!proto.data.LockPrivateAccessRequest} returns this
  */
-proto.data.LockPrivateAccessRequest.prototype.setRecordId = function(value) {
+proto.data.LockPrivateAccessRequest.prototype.setId = function(value) {
   return jspb.Message.setProto3IntField(this, 3, value);
 };
 
 
 /**
- * optional string user_uuid = 4;
+ * optional string uuid = 4;
  * @return {string}
  */
-proto.data.LockPrivateAccessRequest.prototype.getUserUuid = function() {
+proto.data.LockPrivateAccessRequest.prototype.getUuid = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
 };
 
@@ -3200,7 +3200,7 @@ proto.data.LockPrivateAccessRequest.prototype.getUserUuid = function() {
  * @param {string} value
  * @return {!proto.data.LockPrivateAccessRequest} returns this
  */
-proto.data.LockPrivateAccessRequest.prototype.setUserUuid = function(value) {
+proto.data.LockPrivateAccessRequest.prototype.setUuid = function(value) {
   return jspb.Message.setProto3StringField(this, 4, value);
 };
 
@@ -3531,8 +3531,8 @@ proto.data.GetPrivateAccessRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     clientRequest: (f = msg.getClientRequest()) && proto_client_pb.ClientRequest.toObject(includeInstance, f),
     tableName: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    recordId: jspb.Message.getFieldWithDefault(msg, 3, 0),
-    userUuid: jspb.Message.getFieldWithDefault(msg, 4, "")
+    id: jspb.Message.getFieldWithDefault(msg, 3, 0),
+    uuid: jspb.Message.getFieldWithDefault(msg, 4, "")
   };
 
   if (includeInstance) {
@@ -3580,11 +3580,11 @@ proto.data.GetPrivateAccessRequest.deserializeBinaryFromReader = function(msg, r
       break;
     case 3:
       var value = /** @type {number} */ (reader.readInt32());
-      msg.setRecordId(value);
+      msg.setId(value);
       break;
     case 4:
       var value = /** @type {string} */ (reader.readString());
-      msg.setUserUuid(value);
+      msg.setUuid(value);
       break;
     default:
       reader.skipField();
@@ -3630,14 +3630,14 @@ proto.data.GetPrivateAccessRequest.serializeBinaryToWriter = function(message, w
       f
     );
   }
-  f = message.getRecordId();
+  f = message.getId();
   if (f !== 0) {
     writer.writeInt32(
       3,
       f
     );
   }
-  f = message.getUserUuid();
+  f = message.getUuid();
   if (f.length > 0) {
     writer.writeString(
       4,
@@ -3703,10 +3703,10 @@ proto.data.GetPrivateAccessRequest.prototype.setTableName = function(value) {
 
 
 /**
- * optional int32 record_id = 3;
+ * optional int32 id = 3;
  * @return {number}
  */
-proto.data.GetPrivateAccessRequest.prototype.getRecordId = function() {
+proto.data.GetPrivateAccessRequest.prototype.getId = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
 };
 
@@ -3715,16 +3715,16 @@ proto.data.GetPrivateAccessRequest.prototype.getRecordId = function() {
  * @param {number} value
  * @return {!proto.data.GetPrivateAccessRequest} returns this
  */
-proto.data.GetPrivateAccessRequest.prototype.setRecordId = function(value) {
+proto.data.GetPrivateAccessRequest.prototype.setId = function(value) {
   return jspb.Message.setProto3IntField(this, 3, value);
 };
 
 
 /**
- * optional string user_uuid = 4;
+ * optional string uuid = 4;
  * @return {string}
  */
-proto.data.GetPrivateAccessRequest.prototype.getUserUuid = function() {
+proto.data.GetPrivateAccessRequest.prototype.getUuid = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
 };
 
@@ -3733,7 +3733,7 @@ proto.data.GetPrivateAccessRequest.prototype.getUserUuid = function() {
  * @param {string} value
  * @return {!proto.data.GetPrivateAccessRequest} returns this
  */
-proto.data.GetPrivateAccessRequest.prototype.setUserUuid = function(value) {
+proto.data.GetPrivateAccessRequest.prototype.setUuid = function(value) {
   return jspb.Message.setProto3StringField(this, 4, value);
 };
 
@@ -3772,8 +3772,8 @@ proto.data.UnlockPrivateAccessRequest.toObject = function(includeInstance, msg) 
   var f, obj = {
     clientRequest: (f = msg.getClientRequest()) && proto_client_pb.ClientRequest.toObject(includeInstance, f),
     tableName: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    recordId: jspb.Message.getFieldWithDefault(msg, 3, 0),
-    userUuid: jspb.Message.getFieldWithDefault(msg, 4, "")
+    id: jspb.Message.getFieldWithDefault(msg, 3, 0),
+    uuid: jspb.Message.getFieldWithDefault(msg, 4, "")
   };
 
   if (includeInstance) {
@@ -3821,11 +3821,11 @@ proto.data.UnlockPrivateAccessRequest.deserializeBinaryFromReader = function(msg
       break;
     case 3:
       var value = /** @type {number} */ (reader.readInt32());
-      msg.setRecordId(value);
+      msg.setId(value);
       break;
     case 4:
       var value = /** @type {string} */ (reader.readString());
-      msg.setUserUuid(value);
+      msg.setUuid(value);
       break;
     default:
       reader.skipField();
@@ -3871,14 +3871,14 @@ proto.data.UnlockPrivateAccessRequest.serializeBinaryToWriter = function(message
       f
     );
   }
-  f = message.getRecordId();
+  f = message.getId();
   if (f !== 0) {
     writer.writeInt32(
       3,
       f
     );
   }
-  f = message.getUserUuid();
+  f = message.getUuid();
   if (f.length > 0) {
     writer.writeString(
       4,
@@ -3944,10 +3944,10 @@ proto.data.UnlockPrivateAccessRequest.prototype.setTableName = function(value) {
 
 
 /**
- * optional int32 record_id = 3;
+ * optional int32 id = 3;
  * @return {number}
  */
-proto.data.UnlockPrivateAccessRequest.prototype.getRecordId = function() {
+proto.data.UnlockPrivateAccessRequest.prototype.getId = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
 };
 
@@ -3956,16 +3956,16 @@ proto.data.UnlockPrivateAccessRequest.prototype.getRecordId = function() {
  * @param {number} value
  * @return {!proto.data.UnlockPrivateAccessRequest} returns this
  */
-proto.data.UnlockPrivateAccessRequest.prototype.setRecordId = function(value) {
+proto.data.UnlockPrivateAccessRequest.prototype.setId = function(value) {
   return jspb.Message.setProto3IntField(this, 3, value);
 };
 
 
 /**
- * optional string user_uuid = 4;
+ * optional string uuid = 4;
  * @return {string}
  */
-proto.data.UnlockPrivateAccessRequest.prototype.getUserUuid = function() {
+proto.data.UnlockPrivateAccessRequest.prototype.getUuid = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
 };
 
@@ -3974,7 +3974,7 @@ proto.data.UnlockPrivateAccessRequest.prototype.getUserUuid = function() {
  * @param {string} value
  * @return {!proto.data.UnlockPrivateAccessRequest} returns this
  */
-proto.data.UnlockPrivateAccessRequest.prototype.setUserUuid = function(value) {
+proto.data.UnlockPrivateAccessRequest.prototype.setUuid = function(value) {
   return jspb.Message.setProto3StringField(this, 4, value);
 };
 
@@ -4011,9 +4011,9 @@ proto.data.PrivateAccess.prototype.toObject = function(opt_includeInstance) {
  */
 proto.data.PrivateAccess.toObject = function(includeInstance, msg) {
   var f, obj = {
-    tableName: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    recordId: jspb.Message.getFieldWithDefault(msg, 3, 0),
-    userUuid: jspb.Message.getFieldWithDefault(msg, 4, "")
+    tableName: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    id: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    uuid: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
 
   if (includeInstance) {
@@ -4050,17 +4050,17 @@ proto.data.PrivateAccess.deserializeBinaryFromReader = function(msg, reader) {
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 2:
+    case 1:
       var value = /** @type {string} */ (reader.readString());
       msg.setTableName(value);
       break;
-    case 3:
+    case 2:
       var value = /** @type {number} */ (reader.readInt32());
-      msg.setRecordId(value);
+      msg.setId(value);
       break;
-    case 4:
+    case 3:
       var value = /** @type {string} */ (reader.readString());
-      msg.setUserUuid(value);
+      msg.setUuid(value);
       break;
     default:
       reader.skipField();
@@ -4094,21 +4094,21 @@ proto.data.PrivateAccess.serializeBinaryToWriter = function(message, writer) {
   f = message.getTableName();
   if (f.length > 0) {
     writer.writeString(
+      1,
+      f
+    );
+  }
+  f = message.getId();
+  if (f !== 0) {
+    writer.writeInt32(
       2,
       f
     );
   }
-  f = message.getRecordId();
-  if (f !== 0) {
-    writer.writeInt32(
-      3,
-      f
-    );
-  }
-  f = message.getUserUuid();
+  f = message.getUuid();
   if (f.length > 0) {
     writer.writeString(
-      4,
+      3,
       f
     );
   }
@@ -4116,11 +4116,11 @@ proto.data.PrivateAccess.serializeBinaryToWriter = function(message, writer) {
 
 
 /**
- * optional string table_name = 2;
+ * optional string table_name = 1;
  * @return {string}
  */
 proto.data.PrivateAccess.prototype.getTableName = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
@@ -4129,16 +4129,16 @@ proto.data.PrivateAccess.prototype.getTableName = function() {
  * @return {!proto.data.PrivateAccess} returns this
  */
 proto.data.PrivateAccess.prototype.setTableName = function(value) {
-  return jspb.Message.setProto3StringField(this, 2, value);
+  return jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
 /**
- * optional int32 record_id = 3;
+ * optional int32 id = 2;
  * @return {number}
  */
-proto.data.PrivateAccess.prototype.getRecordId = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
+proto.data.PrivateAccess.prototype.getId = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
 };
 
 
@@ -4146,17 +4146,17 @@ proto.data.PrivateAccess.prototype.getRecordId = function() {
  * @param {number} value
  * @return {!proto.data.PrivateAccess} returns this
  */
-proto.data.PrivateAccess.prototype.setRecordId = function(value) {
-  return jspb.Message.setProto3IntField(this, 3, value);
+proto.data.PrivateAccess.prototype.setId = function(value) {
+  return jspb.Message.setProto3IntField(this, 2, value);
 };
 
 
 /**
- * optional string user_uuid = 4;
+ * optional string uuid = 3;
  * @return {string}
  */
-proto.data.PrivateAccess.prototype.getUserUuid = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+proto.data.PrivateAccess.prototype.getUuid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
 
 
@@ -4164,8 +4164,8 @@ proto.data.PrivateAccess.prototype.getUserUuid = function() {
  * @param {string} value
  * @return {!proto.data.PrivateAccess} returns this
  */
-proto.data.PrivateAccess.prototype.setUserUuid = function(value) {
-  return jspb.Message.setProto3StringField(this, 4, value);
+proto.data.PrivateAccess.prototype.setUuid = function(value) {
+  return jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
@@ -5817,8 +5817,9 @@ proto.data.GetContextInfoValueRequest.prototype.toObject = function(opt_includeI
 proto.data.GetContextInfoValueRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     clientRequest: (f = msg.getClientRequest()) && proto_client_pb.ClientRequest.toObject(includeInstance, f),
-    uuid: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    query: jspb.Message.getFieldWithDefault(msg, 3, "")
+    id: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    uuid: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    query: jspb.Message.getFieldWithDefault(msg, 4, "")
   };
 
   if (includeInstance) {
@@ -5861,10 +5862,14 @@ proto.data.GetContextInfoValueRequest.deserializeBinaryFromReader = function(msg
       msg.setClientRequest(value);
       break;
     case 2:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setId(value);
+      break;
+    case 3:
       var value = /** @type {string} */ (reader.readString());
       msg.setUuid(value);
       break;
-    case 3:
+    case 4:
       var value = /** @type {string} */ (reader.readString());
       msg.setQuery(value);
       break;
@@ -5905,17 +5910,24 @@ proto.data.GetContextInfoValueRequest.serializeBinaryToWriter = function(message
       proto_client_pb.ClientRequest.serializeBinaryToWriter
     );
   }
+  f = message.getId();
+  if (f !== 0) {
+    writer.writeInt32(
+      2,
+      f
+    );
+  }
   f = message.getUuid();
   if (f.length > 0) {
     writer.writeString(
-      2,
+      3,
       f
     );
   }
   f = message.getQuery();
   if (f.length > 0) {
     writer.writeString(
-      3,
+      4,
       f
     );
   }
@@ -5960,28 +5972,28 @@ proto.data.GetContextInfoValueRequest.prototype.hasClientRequest = function() {
 
 
 /**
- * optional string uuid = 2;
+ * optional int32 id = 2;
+ * @return {number}
+ */
+proto.data.GetContextInfoValueRequest.prototype.getId = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.data.GetContextInfoValueRequest} returns this
+ */
+proto.data.GetContextInfoValueRequest.prototype.setId = function(value) {
+  return jspb.Message.setProto3IntField(this, 2, value);
+};
+
+
+/**
+ * optional string uuid = 3;
  * @return {string}
  */
 proto.data.GetContextInfoValueRequest.prototype.getUuid = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.data.GetContextInfoValueRequest} returns this
- */
-proto.data.GetContextInfoValueRequest.prototype.setUuid = function(value) {
-  return jspb.Message.setProto3StringField(this, 2, value);
-};
-
-
-/**
- * optional string query = 3;
- * @return {string}
- */
-proto.data.GetContextInfoValueRequest.prototype.getQuery = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
 
@@ -5990,8 +6002,26 @@ proto.data.GetContextInfoValueRequest.prototype.getQuery = function() {
  * @param {string} value
  * @return {!proto.data.GetContextInfoValueRequest} returns this
  */
-proto.data.GetContextInfoValueRequest.prototype.setQuery = function(value) {
+proto.data.GetContextInfoValueRequest.prototype.setUuid = function(value) {
   return jspb.Message.setProto3StringField(this, 3, value);
+};
+
+
+/**
+ * optional string query = 4;
+ * @return {string}
+ */
+proto.data.GetContextInfoValueRequest.prototype.getQuery = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.data.GetContextInfoValueRequest} returns this
+ */
+proto.data.GetContextInfoValueRequest.prototype.setQuery = function(value) {
+  return jspb.Message.setProto3StringField(this, 4, value);
 };
 
 
@@ -15069,8 +15099,9 @@ proto.data.CreateChatEntryRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     clientRequest: (f = msg.getClientRequest()) && proto_client_pb.ClientRequest.toObject(includeInstance, f),
     tableName: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    recordId: jspb.Message.getFieldWithDefault(msg, 3, 0),
-    comment: jspb.Message.getFieldWithDefault(msg, 4, "")
+    id: jspb.Message.getFieldWithDefault(msg, 3, 0),
+    uuid: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    comment: jspb.Message.getFieldWithDefault(msg, 5, "")
   };
 
   if (includeInstance) {
@@ -15118,9 +15149,13 @@ proto.data.CreateChatEntryRequest.deserializeBinaryFromReader = function(msg, re
       break;
     case 3:
       var value = /** @type {number} */ (reader.readInt32());
-      msg.setRecordId(value);
+      msg.setId(value);
       break;
     case 4:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setUuid(value);
+      break;
+    case 5:
       var value = /** @type {string} */ (reader.readString());
       msg.setComment(value);
       break;
@@ -15168,17 +15203,24 @@ proto.data.CreateChatEntryRequest.serializeBinaryToWriter = function(message, wr
       f
     );
   }
-  f = message.getRecordId();
+  f = message.getId();
   if (f !== 0) {
     writer.writeInt32(
       3,
       f
     );
   }
-  f = message.getComment();
+  f = message.getUuid();
   if (f.length > 0) {
     writer.writeString(
       4,
+      f
+    );
+  }
+  f = message.getComment();
+  if (f.length > 0) {
+    writer.writeString(
+      5,
       f
     );
   }
@@ -15241,10 +15283,10 @@ proto.data.CreateChatEntryRequest.prototype.setTableName = function(value) {
 
 
 /**
- * optional int32 record_id = 3;
+ * optional int32 id = 3;
  * @return {number}
  */
-proto.data.CreateChatEntryRequest.prototype.getRecordId = function() {
+proto.data.CreateChatEntryRequest.prototype.getId = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
 };
 
@@ -15253,16 +15295,16 @@ proto.data.CreateChatEntryRequest.prototype.getRecordId = function() {
  * @param {number} value
  * @return {!proto.data.CreateChatEntryRequest} returns this
  */
-proto.data.CreateChatEntryRequest.prototype.setRecordId = function(value) {
+proto.data.CreateChatEntryRequest.prototype.setId = function(value) {
   return jspb.Message.setProto3IntField(this, 3, value);
 };
 
 
 /**
- * optional string comment = 4;
+ * optional string uuid = 4;
  * @return {string}
  */
-proto.data.CreateChatEntryRequest.prototype.getComment = function() {
+proto.data.CreateChatEntryRequest.prototype.getUuid = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
 };
 
@@ -15271,8 +15313,26 @@ proto.data.CreateChatEntryRequest.prototype.getComment = function() {
  * @param {string} value
  * @return {!proto.data.CreateChatEntryRequest} returns this
  */
-proto.data.CreateChatEntryRequest.prototype.setComment = function(value) {
+proto.data.CreateChatEntryRequest.prototype.setUuid = function(value) {
   return jspb.Message.setProto3StringField(this, 4, value);
+};
+
+
+/**
+ * optional string comment = 5;
+ * @return {string}
+ */
+proto.data.CreateChatEntryRequest.prototype.getComment = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.data.CreateChatEntryRequest} returns this
+ */
+proto.data.CreateChatEntryRequest.prototype.setComment = function(value) {
+  return jspb.Message.setProto3StringField(this, 5, value);
 };
 
 
@@ -21888,7 +21948,7 @@ proto.data.ListReferencesRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     uuid: jspb.Message.getFieldWithDefault(msg, 1, ""),
     tableName: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    recordId: jspb.Message.getFieldWithDefault(msg, 3, 0),
+    id: jspb.Message.getFieldWithDefault(msg, 3, 0),
     windowUuid: jspb.Message.getFieldWithDefault(msg, 4, ""),
     clientRequest: (f = msg.getClientRequest()) && proto_client_pb.ClientRequest.toObject(includeInstance, f),
     pageSize: jspb.Message.getFieldWithDefault(msg, 6, 0),
@@ -21939,7 +21999,7 @@ proto.data.ListReferencesRequest.deserializeBinaryFromReader = function(msg, rea
       break;
     case 3:
       var value = /** @type {number} */ (reader.readInt32());
-      msg.setRecordId(value);
+      msg.setId(value);
       break;
     case 4:
       var value = /** @type {string} */ (reader.readString());
@@ -22001,7 +22061,7 @@ proto.data.ListReferencesRequest.serializeBinaryToWriter = function(message, wri
       f
     );
   }
-  f = message.getRecordId();
+  f = message.getId();
   if (f !== 0) {
     writer.writeInt32(
       3,
@@ -22077,10 +22137,10 @@ proto.data.ListReferencesRequest.prototype.setTableName = function(value) {
 
 
 /**
- * optional int32 record_id = 3;
+ * optional int32 id = 3;
  * @return {number}
  */
-proto.data.ListReferencesRequest.prototype.getRecordId = function() {
+proto.data.ListReferencesRequest.prototype.getId = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
 };
 
@@ -22089,7 +22149,7 @@ proto.data.ListReferencesRequest.prototype.getRecordId = function() {
  * @param {number} value
  * @return {!proto.data.ListReferencesRequest} returns this
  */
-proto.data.ListReferencesRequest.prototype.setRecordId = function(value) {
+proto.data.ListReferencesRequest.prototype.setId = function(value) {
   return jspb.Message.setProto3IntField(this, 3, value);
 };
 

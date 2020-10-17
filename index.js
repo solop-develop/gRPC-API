@@ -751,5 +751,180 @@ class Api {
     request.setClientRequest(this.createClientRequest(token, language))
     this.getUIService().listPrintFormats(request, callback)
   }
+
+  //  List Print Formats
+  listPrintFormats({
+    token,
+    tableName,
+    reportViewUuid,
+    processUuid,
+    pageSize,
+    pageToken,
+    language
+  }, callback) {
+    const { ListPrintFormatsRequest } = require('./src/grpc/proto/business_pb.js')
+    const request = new ListPrintFormatsRequest()
+    request.setTableName(tableName)
+    request.setReportViewUuid(reportViewUuid)
+    request.setProcessUuid(processUuid)
+    request.setPageSize(pageSize)
+    request.setPageToken(pageToken)
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getUIService().listPrintFormats(request, callback)
+  }
+
+  //  List Report Views
+  listReportViews({
+    token,
+    tableName,
+    processUuid,
+    pageSize,
+    pageToken,
+    language
+  }, callback) {
+    const { ListReportViewsRequest } = require('./src/grpc/proto/business_pb.js')
+    const request = new ListReportViewsRequest()
+    request.setTableName(tableName)
+    request.setProcessUuid(processUuid)
+    request.setPageSize(pageSize)
+    request.setPageToken(pageToken)
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getUIService().listReportViews(request, callback)
+  }
+
+  //  Unlock Private Access
+  unlockPrivateAccess({
+    token,
+    tableName,
+    id,
+    uuid,
+    language
+  }, callback) {
+    const { UnlockPrivateAccessRequest } = require('./src/grpc/proto/business_pb.js')
+    const request = new UnlockPrivateAccessRequest()
+    request.setTableName(tableName)
+    request.setId(id)
+    request.setUuid(uuid)
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getUIService().unlockPrivateAccess(request, callback)
+  }
+
+  //  Lock Private Access
+  lockPrivateAccess({
+    token,
+    tableName,
+    id,
+    uuid,
+    language
+  }, callback) {
+    const { LockPrivateAccessRequest } = require('./src/grpc/proto/business_pb.js')
+    const request = new LockPrivateAccessRequest()
+    request.setTableName(tableName)
+    request.setId(id)
+    request.setUuid(uuid)
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getUIService().lockPrivateAccess(request, callback)
+  }
+
+  //  Get Private Access
+  getPrivateAccess({
+    token,
+    tableName,
+    id,
+    uuid,
+    language
+  }, callback) {
+    const { GetPrivateAccessRequest } = require('./src/grpc/proto/business_pb.js')
+    const request = new GetPrivateAccessRequest()
+    request.setTableName(tableName)
+    request.setId(id)
+    request.setUuid(uuid)
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getUIService().getPrivateAccess(request, callback)
+  }
+
+  //  Get Context Information Value
+  getContextInfoValue({
+    token,
+    query,
+    uuid,
+    id,
+    language
+  }, callback) {
+    const { GetContextInfoValueRequest } = require('./src/grpc/proto/business_pb.js')
+    const request = new GetContextInfoValueRequest()
+    request.setQuery(query)
+    request.setUuid(uuid)
+    request.setId(id)
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getUIService().getContextInfoValue(request, callback)
+  }
+
+  //  List references of record
+  listReferences({
+    token,
+    tableName,
+    windowUuid,
+    id,
+    uuid,
+    pageSize,
+    pageToken,
+    language
+  }, callback) {
+    const { ListReferencesRequest } = require('./src/grpc/proto/business_pb.js')
+    const request = new ListReferencesRequest()
+    request.setTableName(tableName)
+    request.setUuid(uuid)
+    request.setId(id)
+    request.setWindowUuid(windowUuid)
+    request.setPageSize(pageSize)
+    request.setPageToken(pageToken)
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getUIService().listReferences(request, callback)
+  }
+
+  //  List Browser Items
+  listBrowserItems({
+    token,
+    uuid,
+    parameters,
+    tableName,
+    //  DSL
+    filters,
+    //  Custom Query
+    query,
+    whereClause,
+    orderByClause,
+    limit,
+    pageSize,
+    pageToken,
+    language
+  }, callback) {
+    const { ListBrowserItemsRequest } = require('./src/grpc/proto/business_pb.js')
+    const request = new ListBrowserItemsRequest()
+    const { convertCriteriaToGRPC } = require('./lib/convertValues.js');
+    request.setCriteria(convertCriteriaToGRPC({
+      tableName,
+      filters,
+      query,
+      whereClause,
+      orderByClause,
+      limit
+    }))
+    // selections
+    if(parameters) {
+      parameters.forEach(parameter => {
+        request.addParameters(convertParameterToGRPC({
+          columnName: parameter.key,
+          value: parameter.value
+        }))
+      })
+    }
+    request.setUuid(uuid)
+    request.setPageSize(pageSize)
+    request.setPageToken(pageToken)
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getUIService().listBrowserItems(request, callback)
+  }
 }
 module.exports = Api;
