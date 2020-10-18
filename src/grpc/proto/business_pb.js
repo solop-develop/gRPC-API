@@ -85,7 +85,6 @@ goog.exportSymbol('proto.data.RecordChat', null, global);
 goog.exportSymbol('proto.data.RecordChat.ConfidentialType', null, global);
 goog.exportSymbol('proto.data.RecordChat.ModerationType', null, global);
 goog.exportSymbol('proto.data.RollbackEntityRequest', null, global);
-goog.exportSymbol('proto.data.RollbackEntityRequest.EventType', null, global);
 goog.exportSymbol('proto.data.RunBusinessProcessRequest', null, global);
 goog.exportSymbol('proto.data.RunCalloutRequest', null, global);
 goog.exportSymbol('proto.data.UnlockPrivateAccessRequest', null, global);
@@ -4203,8 +4202,9 @@ proto.data.RollbackEntityRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     clientRequest: (f = msg.getClientRequest()) && proto_client_pb.ClientRequest.toObject(includeInstance, f),
     tableName: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    recordId: jspb.Message.getFieldWithDefault(msg, 3, 0),
-    eventType: jspb.Message.getFieldWithDefault(msg, 4, 0)
+    uuid: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    id: jspb.Message.getFieldWithDefault(msg, 4, 0),
+    logId: jspb.Message.getFieldWithDefault(msg, 5, 0)
   };
 
   if (includeInstance) {
@@ -4251,12 +4251,16 @@ proto.data.RollbackEntityRequest.deserializeBinaryFromReader = function(msg, rea
       msg.setTableName(value);
       break;
     case 3:
-      var value = /** @type {number} */ (reader.readInt32());
-      msg.setRecordId(value);
+      var value = /** @type {string} */ (reader.readString());
+      msg.setUuid(value);
       break;
     case 4:
-      var value = /** @type {!proto.data.RollbackEntityRequest.EventType} */ (reader.readEnum());
-      msg.setEventType(value);
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setId(value);
+      break;
+    case 5:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setLogId(value);
       break;
     default:
       reader.skipField();
@@ -4302,31 +4306,29 @@ proto.data.RollbackEntityRequest.serializeBinaryToWriter = function(message, wri
       f
     );
   }
-  f = message.getRecordId();
-  if (f !== 0) {
-    writer.writeInt32(
+  f = message.getUuid();
+  if (f.length > 0) {
+    writer.writeString(
       3,
       f
     );
   }
-  f = message.getEventType();
-  if (f !== 0.0) {
-    writer.writeEnum(
+  f = message.getId();
+  if (f !== 0) {
+    writer.writeInt32(
       4,
+      f
+    );
+  }
+  f = message.getLogId();
+  if (f !== 0) {
+    writer.writeInt32(
+      5,
       f
     );
   }
 };
 
-
-/**
- * @enum {number}
- */
-proto.data.RollbackEntityRequest.EventType = {
-  INSERT: 0,
-  UPDATE: 1,
-  DELETE: 2
-};
 
 /**
  * optional ClientRequest client_request = 1;
@@ -4384,11 +4386,29 @@ proto.data.RollbackEntityRequest.prototype.setTableName = function(value) {
 
 
 /**
- * optional int32 record_id = 3;
+ * optional string uuid = 3;
+ * @return {string}
+ */
+proto.data.RollbackEntityRequest.prototype.getUuid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.data.RollbackEntityRequest} returns this
+ */
+proto.data.RollbackEntityRequest.prototype.setUuid = function(value) {
+  return jspb.Message.setProto3StringField(this, 3, value);
+};
+
+
+/**
+ * optional int32 id = 4;
  * @return {number}
  */
-proto.data.RollbackEntityRequest.prototype.getRecordId = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
+proto.data.RollbackEntityRequest.prototype.getId = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
 };
 
 
@@ -4396,26 +4416,26 @@ proto.data.RollbackEntityRequest.prototype.getRecordId = function() {
  * @param {number} value
  * @return {!proto.data.RollbackEntityRequest} returns this
  */
-proto.data.RollbackEntityRequest.prototype.setRecordId = function(value) {
-  return jspb.Message.setProto3IntField(this, 3, value);
+proto.data.RollbackEntityRequest.prototype.setId = function(value) {
+  return jspb.Message.setProto3IntField(this, 4, value);
 };
 
 
 /**
- * optional EventType event_type = 4;
- * @return {!proto.data.RollbackEntityRequest.EventType}
+ * optional int32 log_id = 5;
+ * @return {number}
  */
-proto.data.RollbackEntityRequest.prototype.getEventType = function() {
-  return /** @type {!proto.data.RollbackEntityRequest.EventType} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
+proto.data.RollbackEntityRequest.prototype.getLogId = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 5, 0));
 };
 
 
 /**
- * @param {!proto.data.RollbackEntityRequest.EventType} value
+ * @param {number} value
  * @return {!proto.data.RollbackEntityRequest} returns this
  */
-proto.data.RollbackEntityRequest.prototype.setEventType = function(value) {
-  return jspb.Message.setProto3EnumField(this, 4, value);
+proto.data.RollbackEntityRequest.prototype.setLogId = function(value) {
+  return jspb.Message.setProto3IntField(this, 5, value);
 };
 
 
@@ -10735,8 +10755,8 @@ proto.data.ListTranslationsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     clientRequest: (f = msg.getClientRequest()) && proto_client_pb.ClientRequest.toObject(includeInstance, f),
     tableName: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    recordUuid: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    recordId: jspb.Message.getFieldWithDefault(msg, 4, 0),
+    uuid: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    id: jspb.Message.getFieldWithDefault(msg, 4, 0),
     language: jspb.Message.getFieldWithDefault(msg, 5, ""),
     pageSize: jspb.Message.getFieldWithDefault(msg, 6, 0),
     pageToken: jspb.Message.getFieldWithDefault(msg, 7, "")
@@ -10787,11 +10807,11 @@ proto.data.ListTranslationsRequest.deserializeBinaryFromReader = function(msg, r
       break;
     case 3:
       var value = /** @type {string} */ (reader.readString());
-      msg.setRecordUuid(value);
+      msg.setUuid(value);
       break;
     case 4:
       var value = /** @type {number} */ (reader.readInt32());
-      msg.setRecordId(value);
+      msg.setId(value);
       break;
     case 5:
       var value = /** @type {string} */ (reader.readString());
@@ -10849,14 +10869,14 @@ proto.data.ListTranslationsRequest.serializeBinaryToWriter = function(message, w
       f
     );
   }
-  f = message.getRecordUuid();
+  f = message.getUuid();
   if (f.length > 0) {
     writer.writeString(
       3,
       f
     );
   }
-  f = message.getRecordId();
+  f = message.getId();
   if (f !== 0) {
     writer.writeInt32(
       4,
@@ -10943,10 +10963,10 @@ proto.data.ListTranslationsRequest.prototype.setTableName = function(value) {
 
 
 /**
- * optional string record_uuid = 3;
+ * optional string uuid = 3;
  * @return {string}
  */
-proto.data.ListTranslationsRequest.prototype.getRecordUuid = function() {
+proto.data.ListTranslationsRequest.prototype.getUuid = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
 
@@ -10955,16 +10975,16 @@ proto.data.ListTranslationsRequest.prototype.getRecordUuid = function() {
  * @param {string} value
  * @return {!proto.data.ListTranslationsRequest} returns this
  */
-proto.data.ListTranslationsRequest.prototype.setRecordUuid = function(value) {
+proto.data.ListTranslationsRequest.prototype.setUuid = function(value) {
   return jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
 /**
- * optional int32 record_id = 4;
+ * optional int32 id = 4;
  * @return {number}
  */
-proto.data.ListTranslationsRequest.prototype.getRecordId = function() {
+proto.data.ListTranslationsRequest.prototype.getId = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
 };
 
@@ -10973,7 +10993,7 @@ proto.data.ListTranslationsRequest.prototype.getRecordId = function() {
  * @param {number} value
  * @return {!proto.data.ListTranslationsRequest} returns this
  */
-proto.data.ListTranslationsRequest.prototype.setRecordId = function(value) {
+proto.data.ListTranslationsRequest.prototype.setId = function(value) {
   return jspb.Message.setProto3IntField(this, 4, value);
 };
 

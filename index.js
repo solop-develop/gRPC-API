@@ -281,37 +281,37 @@ class Api {
     )
   }
 
-  //  Convert value from gRPC
-  convertAccessValuesFromGRPC(value) {
-    const { ContextValue } = require('./src/grpc/proto/access_pb.js')
-    const { ValueType } = ContextValue
-
-    if (!value) {
-      return undefined
-    }
-    let returnValue
-    switch (value.getValueType()) {
-      case ValueType.INTEGER:
-        returnValue = value.getIntValue()
-        break
-      // data type Boolean
-      case ValueType.BOOLEAN:
-        returnValue = value.getBooleanValue()
-        break
-      // data type Boolean
-      case ValueType.DATE:
-        returnValue = new Date(value.getLongValue())
-        break
-      // data type String
-      case ValueType.STRING:
-        returnValue = value.getStringValue()
-        break
-      case ValueType.UNKNOWN:
-        returnValue = undefined;
-        break
-    }
-    return returnValue
-  }
+  // //  Convert value from gRPC
+  // convertAccessValuesFromGRPC(value) {
+  //   const { ContextValue } = require('./src/grpc/proto/access_pb.js')
+  //   const { ValueType } = ContextValue
+  //
+  //   if (!value) {
+  //     return undefined
+  //   }
+  //   let returnValue
+  //   switch (value.getValueType()) {
+  //     case ValueType.INTEGER:
+  //       returnValue = value.getIntValue()
+  //       break
+  //     // data type Boolean
+  //     case ValueType.BOOLEAN:
+  //       returnValue = value.getBooleanValue()
+  //       break
+  //     // data type Boolean
+  //     case ValueType.DATE:
+  //       returnValue = new Date(value.getLongValue())
+  //       break
+  //     // data type String
+  //     case ValueType.STRING:
+  //       returnValue = value.getStringValue()
+  //       break
+  //     case ValueType.UNKNOWN:
+  //       returnValue = undefined;
+  //       break
+  //   }
+  //   return returnValue
+  // }
 
   //  Dictionary
   //  Get Window
@@ -925,6 +925,132 @@ class Api {
     request.setPageToken(pageToken)
     request.setClientRequest(this.createClientRequest(token, language))
     this.getUIService().listBrowserItems(request, callback)
+  }
+
+  //  List Lookup Items
+  listLookupItems({
+    token,
+    tableName,
+    //  DSL
+    filters,
+    //  Custom Query
+    query,
+    whereClause,
+    orderByClause,
+    limit,
+    pageSize,
+    pageToken,
+    language
+  }, callback) {
+    const { ListLookupItemsRequest } = require('./src/grpc/proto/business_pb.js')
+    const request = new ListLookupItemsRequest()
+    const { convertCriteriaToGRPC } = require('./lib/convertValues.js');
+    request.setCriteria(convertCriteriaToGRPC({
+      tableName,
+      filters,
+      query,
+      whereClause,
+      orderByClause,
+      limit
+    }))
+    request.setPageSize(pageSize)
+    request.setPageToken(pageToken)
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getUIService().listLookupItems(request, callback)
+  }
+
+  //  List translations
+  listTranslations({
+    token,
+    tableName,
+    uuid,
+    id,
+    pageSize,
+    pageToken,
+    language
+  }, callback) {
+    const { ListTranslationsRequest } = require('./src/grpc/proto/business_pb.js')
+    const request = new ListTranslationsRequest()
+    request.setTableName(tableName)
+    request.setUuid(uuid)
+    request.setId(id)
+    request.setPageSize(pageSize)
+    request.setPageToken(pageToken)
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getUIService().listTranslations(request, callback)
+  }
+
+  //  Get Default Value
+  getDefaultValue({
+    token,
+    query,
+    language
+  }, callback) {
+    const { GetDefaultValueRequest } = require('./src/grpc/proto/business_pb.js')
+    const request = new GetDefaultValueRequest()
+    request.setQuery(query)
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getUIService().getDefaultValue(request, callback)
+  }
+
+  //  Run a callout to server
+  runCallout({
+    token,
+    language,
+    tableName,
+    windowUuid,
+    tabUuid,
+    callout,
+    columnName,
+    oldValue,
+    value,
+    windowNo,
+    attributes
+  }, callback) {
+    const { RunCalloutRequest } = require('./src/grpc/proto/business_pb.js')
+    const { convertParameterToGRPC, convertValueToGRPC } = require('./lib/convertValues.js');
+    const request = new RunCalloutRequest()
+    request.setTableName(tableName)
+    request.setWindowUuid(windowUuid)
+    request.setTabUuid(tabUuid)
+    request.setCallout(callout)
+    request.setColumnName(columnName)
+    request.setOldValue(convertValueToGRPC({
+      value: oldValue
+    }))
+    request.setValue(convertValueToGRPC({
+      value
+    }))
+    request.setWindowNo(windowNo)
+    if(attributes) {
+      attributes.forEach(attribute => {
+        request.addAttributes(convertParameterToGRPC({
+          columnName: attribute.key,
+          value: attribute.value
+        }))
+      })
+    }
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getUIService().runCallout(request, callback)
+  }
+
+  //  Rollback a value from entity
+  rollbackEntity({
+    token,
+    language,
+    tableName,
+    id,
+    uuid,
+    logId
+  }, callback) {
+    const { RollbackEntityRequest } = require('./src/grpc/proto/business_pb.js')
+    const request = new RollbackEntityRequest()
+    request.setTableName(tableName)
+    request.setId(id)
+    request.setUuid(uuid)
+    request.setLogId(logId)
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getUIService().rollbackEntity(request, callback)
   }
 }
 module.exports = Api;
