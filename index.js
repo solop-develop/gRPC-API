@@ -531,12 +531,6 @@ class Api {
     this.getBusinessService().createEntity(request, callback)
   }
 
-  // //  Convert business values from gRPC
-  // convertBusinessValuesFromGRPC(value) {
-  //   const { convertValueFromGRPC } = require('./lib/convertBaseDataType.js');
-  //   return convertValueFromGRPC(value)
-  // }
-
   //  Delete a Entity
   deleteEntity({
     token,
@@ -585,7 +579,7 @@ class Api {
     }))
     //  For columns
     if(columns) {
-      request.setColumns(columns)
+      columns.forEach(column => request.addColumns(column))
     }
     request.setPageSize(pageSize)
     request.setPageToken(pageToken)
