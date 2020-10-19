@@ -37,6 +37,7 @@ class Api {
     this.initUIService()
     this.initBusinessService()
     this.initDictionaryService()
+    this.initLogService()
   }
 
   //  Init service
@@ -94,6 +95,13 @@ class Api {
   }
 
   // Init connection
+  initLogService() {
+    var grpc = require('grpc');
+    var services = require('./src/grpc/proto/business_grpc_pb');
+    this.entityLog = new services.LogsClient(this.businessHost, grpc.credentials.createInsecure());
+  }
+
+  // Init connection
   initBusinessService() {
     var grpc = require('grpc');
     var services = require('./src/grpc/proto/business_grpc_pb');
@@ -108,6 +116,11 @@ class Api {
   //  Get UI Service
   getUIService() {
     return this.ui
+  }
+
+  //  Get Log Service
+  getLogService() {
+    return this.entityLog
   }
 
   //  Get Business Service
@@ -1052,5 +1065,137 @@ class Api {
     request.setClientRequest(this.createClientRequest(token, language))
     this.getUIService().rollbackEntity(request, callback)
   }
+
+  //  Logs
+  //  List process logs
+  listProcessLogs({
+    token,
+    tableName,
+    uuid,
+    id,
+    userUuid,
+    instanceUuid,
+    pageSize,
+    pageToken,
+    language
+  }, callback) {
+    const { ListProcessLogsRequest } = require('./src/grpc/proto/business_pb.js')
+    const request = new ListProcessLogsRequest()
+    request.setTableName(tableName)
+    request.setUuid(uuid)
+    request.setId(id)
+    request.setUserUuid(userUuid)
+    request.setInstanceUuid(instanceUuid)
+    request.setPageSize(pageSize)
+    request.setPageToken(pageToken)
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getLogService().listProcessLogs(request, callback)
+  }
+
+  //  List record logs
+  listEntityLogs({
+    token,
+    tableName,
+    uuid,
+    id,
+    pageSize,
+    pageToken,
+    language
+  }, callback) {
+    const { ListEntityLogsRequest } = require('./src/grpc/proto/business_pb.js')
+    const request = new ListEntityLogsRequest()
+    request.setTableName(tableName)
+    request.setUuid(uuid)
+    request.setId(id)
+    request.setPageSize(pageSize)
+    request.setPageToken(pageToken)
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getLogService().listEntityLogs(request, callback)
+  }
+
+  //  List entity chats
+  listEntityChats({
+    token,
+    tableName,
+    uuid,
+    id,
+    pageSize,
+    pageToken,
+    language
+  }, callback) {
+    const { ListEntityChatsRequest } = require('./src/grpc/proto/business_pb.js')
+    const request = new ListEntityChatsRequest()
+    request.setTableName(tableName)
+    request.setUuid(uuid)
+    request.setId(id)
+    request.setPageSize(pageSize)
+    request.setPageToken(pageToken)
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getLogService().listEntityChats(request, callback)
+  }
+
+  //  List chats entries
+  listChatEntries({
+    token,
+    id,
+    uuid,
+    pageSize,
+    pageToken,
+    language
+  }, callback) {
+    const { ListChatEntriesRequest } = require('./src/grpc/proto/business_pb.js')
+    const request = new ListChatEntriesRequest()
+    request.setUuid(uuid)
+    request.setId(id)
+    request.setPageSize(pageSize)
+    request.setPageToken(pageToken)
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getLogService().listChatEntries(request, callback)
+  }
+
+  //  List workflow logs
+  listWorkflowLogs({
+    token,
+    tableName,
+    uuid,
+    id,
+    pageSize,
+    pageToken,
+    language
+  }, callback) {
+    const { ListWorkflowLogsRequest } = require('./src/grpc/proto/business_pb.js')
+    const request = new ListWorkflowLogsRequest()
+    request.setTableName(tableName)
+    request.setUuid(uuid)
+    request.setId(id)
+    request.setPageSize(pageSize)
+    request.setPageToken(pageToken)
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getLogService().listWorkflowLogs(request, callback)
+  }
+
+  //  List recent items
+  listRecentItems({
+    token,
+    userUuid,
+    roleUuid,
+    currentSession,
+    pageSize,
+    pageToken,
+    language
+  }, callback) {
+    const { ListRecentItemsRequest } = require('./src/grpc/proto/business_pb.js')
+    const request = new ListRecentItemsRequest()
+    request.setUserUuid(userUuid)
+    request.setRoleUuid(roleUuid)
+    request.setCurrentSession(currentSession)
+    request.setPageSize(pageSize)
+    request.setPageToken(pageToken)
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getLogService().listRecentItems(request, callback)
+  }
+
+
+
 }
 module.exports = Api;
