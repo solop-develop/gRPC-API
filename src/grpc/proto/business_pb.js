@@ -1585,7 +1585,7 @@ if (goog.DEBUG && !COMPILED) {
  * @constructor
  */
 proto.data.ListBrowserItemsRequest = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, proto.data.ListBrowserItemsRequest.repeatedFields_, null);
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
 goog.inherits(proto.data.ListBrowserItemsRequest, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -6756,7 +6756,7 @@ proto.data.ListLookupItemsResponse.prototype.setNextPageToken = function(value) 
  * @private {!Array<number>}
  * @const
  */
-proto.data.ListEntitiesRequest.repeatedFields_ = [5];
+proto.data.ListEntitiesRequest.repeatedFields_ = [3];
 
 
 
@@ -6791,9 +6791,9 @@ proto.data.ListEntitiesRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     clientRequest: (f = msg.getClientRequest()) && proto_client_pb.ClientRequest.toObject(includeInstance, f),
     criteria: (f = msg.getCriteria()) && proto_base_data_type_pb.Criteria.toObject(includeInstance, f),
-    columnsList: (f = jspb.Message.getRepeatedField(msg, 5)) == null ? undefined : f,
-    pageSize: jspb.Message.getFieldWithDefault(msg, 6, 0),
-    pageToken: jspb.Message.getFieldWithDefault(msg, 7, "")
+    columnsList: (f = jspb.Message.getRepeatedField(msg, 3)) == null ? undefined : f,
+    pageSize: jspb.Message.getFieldWithDefault(msg, 4, 0),
+    pageToken: jspb.Message.getFieldWithDefault(msg, 5, "")
   };
 
   if (includeInstance) {
@@ -6830,25 +6830,25 @@ proto.data.ListEntitiesRequest.deserializeBinaryFromReader = function(msg, reade
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 3:
+    case 1:
       var value = new proto_client_pb.ClientRequest;
       reader.readMessage(value,proto_client_pb.ClientRequest.deserializeBinaryFromReader);
       msg.setClientRequest(value);
       break;
-    case 4:
+    case 2:
       var value = new proto_base_data_type_pb.Criteria;
       reader.readMessage(value,proto_base_data_type_pb.Criteria.deserializeBinaryFromReader);
       msg.setCriteria(value);
       break;
-    case 5:
+    case 3:
       var value = /** @type {string} */ (reader.readString());
       msg.addColumns(value);
       break;
-    case 6:
+    case 4:
       var value = /** @type {number} */ (reader.readInt32());
       msg.setPageSize(value);
       break;
-    case 7:
+    case 5:
       var value = /** @type {string} */ (reader.readString());
       msg.setPageToken(value);
       break;
@@ -6884,7 +6884,7 @@ proto.data.ListEntitiesRequest.serializeBinaryToWriter = function(message, write
   f = message.getClientRequest();
   if (f != null) {
     writer.writeMessage(
-      3,
+      1,
       f,
       proto_client_pb.ClientRequest.serializeBinaryToWriter
     );
@@ -6892,7 +6892,7 @@ proto.data.ListEntitiesRequest.serializeBinaryToWriter = function(message, write
   f = message.getCriteria();
   if (f != null) {
     writer.writeMessage(
-      4,
+      2,
       f,
       proto_base_data_type_pb.Criteria.serializeBinaryToWriter
     );
@@ -6900,21 +6900,21 @@ proto.data.ListEntitiesRequest.serializeBinaryToWriter = function(message, write
   f = message.getColumnsList();
   if (f.length > 0) {
     writer.writeRepeatedString(
-      5,
+      3,
       f
     );
   }
   f = message.getPageSize();
   if (f !== 0) {
     writer.writeInt32(
-      6,
+      4,
       f
     );
   }
   f = message.getPageToken();
   if (f.length > 0) {
     writer.writeString(
-      7,
+      5,
       f
     );
   }
@@ -6922,12 +6922,12 @@ proto.data.ListEntitiesRequest.serializeBinaryToWriter = function(message, write
 
 
 /**
- * optional ClientRequest client_request = 3;
+ * optional ClientRequest client_request = 1;
  * @return {?proto.data.ClientRequest}
  */
 proto.data.ListEntitiesRequest.prototype.getClientRequest = function() {
   return /** @type{?proto.data.ClientRequest} */ (
-    jspb.Message.getWrapperField(this, proto_client_pb.ClientRequest, 3));
+    jspb.Message.getWrapperField(this, proto_client_pb.ClientRequest, 1));
 };
 
 
@@ -6936,7 +6936,7 @@ proto.data.ListEntitiesRequest.prototype.getClientRequest = function() {
  * @return {!proto.data.ListEntitiesRequest} returns this
 */
 proto.data.ListEntitiesRequest.prototype.setClientRequest = function(value) {
-  return jspb.Message.setWrapperField(this, 3, value);
+  return jspb.Message.setWrapperField(this, 1, value);
 };
 
 
@@ -6954,17 +6954,17 @@ proto.data.ListEntitiesRequest.prototype.clearClientRequest = function() {
  * @return {boolean}
  */
 proto.data.ListEntitiesRequest.prototype.hasClientRequest = function() {
-  return jspb.Message.getField(this, 3) != null;
+  return jspb.Message.getField(this, 1) != null;
 };
 
 
 /**
- * optional Criteria criteria = 4;
+ * optional Criteria criteria = 2;
  * @return {?proto.data.Criteria}
  */
 proto.data.ListEntitiesRequest.prototype.getCriteria = function() {
   return /** @type{?proto.data.Criteria} */ (
-    jspb.Message.getWrapperField(this, proto_base_data_type_pb.Criteria, 4));
+    jspb.Message.getWrapperField(this, proto_base_data_type_pb.Criteria, 2));
 };
 
 
@@ -6973,7 +6973,7 @@ proto.data.ListEntitiesRequest.prototype.getCriteria = function() {
  * @return {!proto.data.ListEntitiesRequest} returns this
 */
 proto.data.ListEntitiesRequest.prototype.setCriteria = function(value) {
-  return jspb.Message.setWrapperField(this, 4, value);
+  return jspb.Message.setWrapperField(this, 2, value);
 };
 
 
@@ -6991,16 +6991,16 @@ proto.data.ListEntitiesRequest.prototype.clearCriteria = function() {
  * @return {boolean}
  */
 proto.data.ListEntitiesRequest.prototype.hasCriteria = function() {
-  return jspb.Message.getField(this, 4) != null;
+  return jspb.Message.getField(this, 2) != null;
 };
 
 
 /**
- * repeated string columns = 5;
+ * repeated string columns = 3;
  * @return {!Array<string>}
  */
 proto.data.ListEntitiesRequest.prototype.getColumnsList = function() {
-  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 5));
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 3));
 };
 
 
@@ -7009,7 +7009,7 @@ proto.data.ListEntitiesRequest.prototype.getColumnsList = function() {
  * @return {!proto.data.ListEntitiesRequest} returns this
  */
 proto.data.ListEntitiesRequest.prototype.setColumnsList = function(value) {
-  return jspb.Message.setField(this, 5, value || []);
+  return jspb.Message.setField(this, 3, value || []);
 };
 
 
@@ -7019,7 +7019,7 @@ proto.data.ListEntitiesRequest.prototype.setColumnsList = function(value) {
  * @return {!proto.data.ListEntitiesRequest} returns this
  */
 proto.data.ListEntitiesRequest.prototype.addColumns = function(value, opt_index) {
-  return jspb.Message.addToRepeatedField(this, 5, value, opt_index);
+  return jspb.Message.addToRepeatedField(this, 3, value, opt_index);
 };
 
 
@@ -7033,11 +7033,11 @@ proto.data.ListEntitiesRequest.prototype.clearColumnsList = function() {
 
 
 /**
- * optional int32 page_size = 6;
+ * optional int32 page_size = 4;
  * @return {number}
  */
 proto.data.ListEntitiesRequest.prototype.getPageSize = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 6, 0));
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
 };
 
 
@@ -7046,16 +7046,16 @@ proto.data.ListEntitiesRequest.prototype.getPageSize = function() {
  * @return {!proto.data.ListEntitiesRequest} returns this
  */
 proto.data.ListEntitiesRequest.prototype.setPageSize = function(value) {
-  return jspb.Message.setProto3IntField(this, 6, value);
+  return jspb.Message.setProto3IntField(this, 4, value);
 };
 
 
 /**
- * optional string page_token = 7;
+ * optional string page_token = 5;
  * @return {string}
  */
 proto.data.ListEntitiesRequest.prototype.getPageToken = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 7, ""));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
 };
 
 
@@ -7064,7 +7064,7 @@ proto.data.ListEntitiesRequest.prototype.getPageToken = function() {
  * @return {!proto.data.ListEntitiesRequest} returns this
  */
 proto.data.ListEntitiesRequest.prototype.setPageToken = function(value) {
-  return jspb.Message.setProto3StringField(this, 7, value);
+  return jspb.Message.setProto3StringField(this, 5, value);
 };
 
 
@@ -21883,13 +21883,6 @@ proto.data.ListDrillTablesResponse.prototype.setNextPageToken = function(value) 
 
 
 
-/**
- * List of repeated fields within this message type.
- * @private {!Array<number>}
- * @const
- */
-proto.data.ListBrowserItemsRequest.repeatedFields_ = [4];
-
 
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
@@ -21924,8 +21917,6 @@ proto.data.ListBrowserItemsRequest.toObject = function(includeInstance, msg) {
     uuid: jspb.Message.getFieldWithDefault(msg, 1, ""),
     clientRequest: (f = msg.getClientRequest()) && proto_client_pb.ClientRequest.toObject(includeInstance, f),
     criteria: (f = msg.getCriteria()) && proto_base_data_type_pb.Criteria.toObject(includeInstance, f),
-    parametersList: jspb.Message.toObjectList(msg.getParametersList(),
-    proto_base_data_type_pb.KeyValue.toObject, includeInstance),
     pageSize: jspb.Message.getFieldWithDefault(msg, 5, 0),
     pageToken: jspb.Message.getFieldWithDefault(msg, 6, "")
   };
@@ -21977,11 +21968,6 @@ proto.data.ListBrowserItemsRequest.deserializeBinaryFromReader = function(msg, r
       var value = new proto_base_data_type_pb.Criteria;
       reader.readMessage(value,proto_base_data_type_pb.Criteria.deserializeBinaryFromReader);
       msg.setCriteria(value);
-      break;
-    case 4:
-      var value = new proto_base_data_type_pb.KeyValue;
-      reader.readMessage(value,proto_base_data_type_pb.KeyValue.deserializeBinaryFromReader);
-      msg.addParameters(value);
       break;
     case 5:
       var value = /** @type {number} */ (reader.readInt32());
@@ -22041,14 +22027,6 @@ proto.data.ListBrowserItemsRequest.serializeBinaryToWriter = function(message, w
       3,
       f,
       proto_base_data_type_pb.Criteria.serializeBinaryToWriter
-    );
-  }
-  f = message.getParametersList();
-  if (f.length > 0) {
-    writer.writeRepeatedMessage(
-      4,
-      f,
-      proto_base_data_type_pb.KeyValue.serializeBinaryToWriter
     );
   }
   f = message.getPageSize();
@@ -22157,44 +22135,6 @@ proto.data.ListBrowserItemsRequest.prototype.clearCriteria = function() {
  */
 proto.data.ListBrowserItemsRequest.prototype.hasCriteria = function() {
   return jspb.Message.getField(this, 3) != null;
-};
-
-
-/**
- * repeated KeyValue parameters = 4;
- * @return {!Array<!proto.data.KeyValue>}
- */
-proto.data.ListBrowserItemsRequest.prototype.getParametersList = function() {
-  return /** @type{!Array<!proto.data.KeyValue>} */ (
-    jspb.Message.getRepeatedWrapperField(this, proto_base_data_type_pb.KeyValue, 4));
-};
-
-
-/**
- * @param {!Array<!proto.data.KeyValue>} value
- * @return {!proto.data.ListBrowserItemsRequest} returns this
-*/
-proto.data.ListBrowserItemsRequest.prototype.setParametersList = function(value) {
-  return jspb.Message.setRepeatedWrapperField(this, 4, value);
-};
-
-
-/**
- * @param {!proto.data.KeyValue=} opt_value
- * @param {number=} opt_index
- * @return {!proto.data.KeyValue}
- */
-proto.data.ListBrowserItemsRequest.prototype.addParameters = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(this, 4, opt_value, proto.data.KeyValue, opt_index);
-};
-
-
-/**
- * Clears the list making it empty but non-null.
- * @return {!proto.data.ListBrowserItemsRequest} returns this
- */
-proto.data.ListBrowserItemsRequest.prototype.clearParametersList = function() {
-  return this.setParametersList([]);
 };
 
 
