@@ -966,6 +966,34 @@ class Api {
     this.getUIService().listLookupItems(request, callback)
   }
 
+  //  Get Lookup
+  getLookupItem({
+    token,
+    tableName,
+    //  DSL
+    filters,
+    //  Custom Query
+    query,
+    whereClause,
+    orderByClause,
+    limit,
+    language
+  }, callback) {
+    const { GetLookupItemRequest } = require('./src/grpc/proto/business_pb.js')
+    const request = new GetLookupItemRequest()
+    const { convertCriteriaToGRPC } = require('./lib/convertValues.js');
+    request.setCriteria(convertCriteriaToGRPC({
+      tableName,
+      filters,
+      query,
+      whereClause,
+      orderByClause,
+      limit
+    }))
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getUIService().getLookupItem(request, callback)
+  }
+
   //  List translations
   listTranslations({
     token,
