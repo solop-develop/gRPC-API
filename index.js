@@ -38,6 +38,8 @@ class Api {
     this.initBusinessService()
     this.initDictionaryService()
     this.initLogService()
+    this.initWorkflowService()
+    this.initWDashboardService()
   }
 
   //  Init service
@@ -108,6 +110,20 @@ class Api {
     this.business = new services.BusinessDataClient(this.businessHost, grpc.credentials.createInsecure());
   }
 
+  // Init connection
+  initWorkflowService() {
+    var grpc = require('grpc');
+    var services = require('./src/grpc/proto/business_grpc_pb');
+    this.workflow = new services.WorkflowClient(this.businessHost, grpc.credentials.createInsecure());
+  }
+
+  // Init connection
+  initWDashboardService() {
+    var grpc = require('grpc');
+    var services = require('./src/grpc/proto/business_grpc_pb');
+    this.dashboard = new services.DashboardingClient(this.businessHost, grpc.credentials.createInsecure());
+  }
+
   //  Get Access Service
   getAccessService() {
     return this.access
@@ -121,6 +137,15 @@ class Api {
   //  Get Log Service
   getLogService() {
     return this.entityLog
+  }
+
+  //  Get Workflow
+  getWorkflowService() {
+    return this.workflow
+  }
+
+  getDashboardService() {
+    return this.dashboard
   }
 
   //  Get Business Service
@@ -1217,7 +1242,131 @@ class Api {
     this.getLogService().listRecentItems(request, callback)
   }
 
+  //  Workflow service
+  //  List workflow
+  listWorkflows({
+    token,
+    tableName,
+    pageSize,
+    pageToken,
+    language
+  }, callback) {
+    const { ListWorkflowsRequest } = require('./src/grpc/proto/business_pb.js')
+    const request = new ListWorkflowsRequest()
+    request.setTableName(tableName)
+    request.setPageSize(pageSize)
+    request.setPageToken(pageToken)
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getWorkflowService().listWorkflows(request, callback)
+  }
 
+  //  List workflow
+  listDocumentActions({
+    token,
+    tableName,
+    id,
+    uuid,
+    documentStatus,
+    documentAction,
+    pageSize,
+    pageToken,
+    language
+  }, callback) {
+    const { ListDocumentActionsRequest } = require('./src/grpc/proto/business_pb.js')
+    const request = new ListDocumentActionsRequest()
+    request.setTableName(tableName)
+    request.setId(id)
+    request.setUuid(uuid)
+    request.setDocumentStatus(documentStatus)
+    request.setDocumentAction(documentAction)
+    request.setPageSize(pageSize)
+    request.setPageToken(pageToken)
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getWorkflowService().listDocumentActions(request, callback)
+  }
 
+  //  List Document Statuses
+  listDocumentStatuses({
+    token,
+    tableName,
+    id,
+    uuid,
+    documentStatus,
+    pageSize,
+    pageToken,
+    language
+  }, callback) {
+    const { ListDocumentStatusesRequest } = require('./src/grpc/proto/business_pb.js')
+    const request = new ListDocumentStatusesRequest()
+    request.setTableName(tableName)
+    request.setId(id)
+    request.setUuid(uuid)
+    request.setDocumentStatus(documentStatus)
+    request.setPageSize(pageSize)
+    request.setPageToken(pageToken)
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getWorkflowService().listDocumentStatuses(request, callback)
+  }
+
+  //  List Document Statuses
+  listDashboards({
+    token,
+    roleUuid,
+    roleId,
+    pageSize,
+    pageToken,
+    language
+  }, callback) {
+    const { ListDashboardsRequest } = require('./src/grpc/proto/business_pb.js')
+    const request = new ListDashboardsRequest()
+    request.setRoleUuid(roleUuid)
+    request.setRoleId(roleId)
+    request.setPageSize(pageSize)
+    request.setPageToken(pageToken)
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getDashboardService().listDashboards(request, callback)
+  }
+
+  //  List Document Statuses
+  listFavorites({
+    token,
+    userUuid,
+    userId,
+    pageSize,
+    pageToken,
+    language
+  }, callback) {
+    const { ListFavoritesRequest } = require('./src/grpc/proto/business_pb.js')
+    const request = new ListFavoritesRequest()
+    request.setUserUuid(userUuid)
+    request.setUserId(userId)
+    request.setPageSize(pageSize)
+    request.setPageToken(pageToken)
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getDashboardService().listFavorites(request, callback)
+  }
+
+  //  List Document Statuses
+  listPendingDocuments({
+    token,
+    userUuid,
+    userId,
+    roleUuid,
+    roleId,
+    pageSize,
+    pageToken,
+    language
+  }, callback) {
+    const { ListPendingDocumentsRequest } = require('./src/grpc/proto/business_pb.js')
+    const request = new ListPendingDocumentsRequest()
+    request.setUserUuid(userUuid)
+    request.setUserId(userId)
+    request.setRoleUuid(roleUuid)
+    request.setRoleId(roleId)
+    request.setPageSize(pageSize)
+    request.setPageToken(pageToken)
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getDashboardService().listPendingDocuments(request, callback)
+  }
 }
 module.exports = Api;

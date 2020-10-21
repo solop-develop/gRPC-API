@@ -4754,7 +4754,7 @@ proto.data.Translation.prototype.toObject = function(opt_includeInstance) {
 proto.data.Translation.toObject = function(includeInstance, msg) {
   var f, obj = {
     language: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    translationUuid: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    uuid: jspb.Message.getFieldWithDefault(msg, 2, ""),
     valuesMap: (f = msg.getValuesMap()) ? f.toObject(includeInstance, proto.data.Value.toObject) : []
   };
 
@@ -4798,7 +4798,7 @@ proto.data.Translation.deserializeBinaryFromReader = function(msg, reader) {
       break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
-      msg.setTranslationUuid(value);
+      msg.setUuid(value);
       break;
     case 3:
       var value = msg.getValuesMap();
@@ -4842,7 +4842,7 @@ proto.data.Translation.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-  f = message.getTranslationUuid();
+  f = message.getUuid();
   if (f.length > 0) {
     writer.writeString(
       2,
@@ -4875,10 +4875,10 @@ proto.data.Translation.prototype.setLanguage = function(value) {
 
 
 /**
- * optional string translation_uuid = 2;
+ * optional string uuid = 2;
  * @return {string}
  */
-proto.data.Translation.prototype.getTranslationUuid = function() {
+proto.data.Translation.prototype.getUuid = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
@@ -4887,7 +4887,7 @@ proto.data.Translation.prototype.getTranslationUuid = function() {
  * @param {string} value
  * @return {!proto.data.Translation} returns this
  */
-proto.data.Translation.prototype.setTranslationUuid = function(value) {
+proto.data.Translation.prototype.setUuid = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
 };
 

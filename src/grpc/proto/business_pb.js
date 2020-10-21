@@ -10104,8 +10104,9 @@ proto.data.ListFavoritesRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     clientRequest: (f = msg.getClientRequest()) && proto_client_pb.ClientRequest.toObject(includeInstance, f),
     userUuid: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    pageSize: jspb.Message.getFieldWithDefault(msg, 3, 0),
-    pageToken: jspb.Message.getFieldWithDefault(msg, 4, "")
+    userId: jspb.Message.getFieldWithDefault(msg, 3, 0),
+    pageSize: jspb.Message.getFieldWithDefault(msg, 4, 0),
+    pageToken: jspb.Message.getFieldWithDefault(msg, 5, "")
   };
 
   if (includeInstance) {
@@ -10153,9 +10154,13 @@ proto.data.ListFavoritesRequest.deserializeBinaryFromReader = function(msg, read
       break;
     case 3:
       var value = /** @type {number} */ (reader.readInt32());
-      msg.setPageSize(value);
+      msg.setUserId(value);
       break;
     case 4:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setPageSize(value);
+      break;
+    case 5:
       var value = /** @type {string} */ (reader.readString());
       msg.setPageToken(value);
       break;
@@ -10203,17 +10208,24 @@ proto.data.ListFavoritesRequest.serializeBinaryToWriter = function(message, writ
       f
     );
   }
-  f = message.getPageSize();
+  f = message.getUserId();
   if (f !== 0) {
     writer.writeInt32(
       3,
       f
     );
   }
+  f = message.getPageSize();
+  if (f !== 0) {
+    writer.writeInt32(
+      4,
+      f
+    );
+  }
   f = message.getPageToken();
   if (f.length > 0) {
     writer.writeString(
-      4,
+      5,
       f
     );
   }
@@ -10276,10 +10288,10 @@ proto.data.ListFavoritesRequest.prototype.setUserUuid = function(value) {
 
 
 /**
- * optional int32 page_size = 3;
+ * optional int32 user_id = 3;
  * @return {number}
  */
-proto.data.ListFavoritesRequest.prototype.getPageSize = function() {
+proto.data.ListFavoritesRequest.prototype.getUserId = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
 };
 
@@ -10288,17 +10300,35 @@ proto.data.ListFavoritesRequest.prototype.getPageSize = function() {
  * @param {number} value
  * @return {!proto.data.ListFavoritesRequest} returns this
  */
-proto.data.ListFavoritesRequest.prototype.setPageSize = function(value) {
+proto.data.ListFavoritesRequest.prototype.setUserId = function(value) {
   return jspb.Message.setProto3IntField(this, 3, value);
 };
 
 
 /**
- * optional string page_token = 4;
+ * optional int32 page_size = 4;
+ * @return {number}
+ */
+proto.data.ListFavoritesRequest.prototype.getPageSize = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.data.ListFavoritesRequest} returns this
+ */
+proto.data.ListFavoritesRequest.prototype.setPageSize = function(value) {
+  return jspb.Message.setProto3IntField(this, 4, value);
+};
+
+
+/**
+ * optional string page_token = 5;
  * @return {string}
  */
 proto.data.ListFavoritesRequest.prototype.getPageToken = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
 };
 
 
@@ -10307,7 +10337,7 @@ proto.data.ListFavoritesRequest.prototype.getPageToken = function() {
  * @return {!proto.data.ListFavoritesRequest} returns this
  */
 proto.data.ListFavoritesRequest.prototype.setPageToken = function(value) {
-  return jspb.Message.setProto3StringField(this, 4, value);
+  return jspb.Message.setProto3StringField(this, 5, value);
 };
 
 
@@ -11366,9 +11396,11 @@ proto.data.ListPendingDocumentsRequest.toObject = function(includeInstance, msg)
   var f, obj = {
     clientRequest: (f = msg.getClientRequest()) && proto_client_pb.ClientRequest.toObject(includeInstance, f),
     userUuid: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    roleUuid: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    pageSize: jspb.Message.getFieldWithDefault(msg, 4, 0),
-    pageToken: jspb.Message.getFieldWithDefault(msg, 5, "")
+    userId: jspb.Message.getFieldWithDefault(msg, 3, 0),
+    roleUuid: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    roleId: jspb.Message.getFieldWithDefault(msg, 5, 0),
+    pageSize: jspb.Message.getFieldWithDefault(msg, 6, 0),
+    pageToken: jspb.Message.getFieldWithDefault(msg, 7, "")
   };
 
   if (includeInstance) {
@@ -11415,14 +11447,22 @@ proto.data.ListPendingDocumentsRequest.deserializeBinaryFromReader = function(ms
       msg.setUserUuid(value);
       break;
     case 3:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setUserId(value);
+      break;
+    case 4:
       var value = /** @type {string} */ (reader.readString());
       msg.setRoleUuid(value);
       break;
-    case 4:
+    case 5:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setRoleId(value);
+      break;
+    case 6:
       var value = /** @type {number} */ (reader.readInt32());
       msg.setPageSize(value);
       break;
-    case 5:
+    case 7:
       var value = /** @type {string} */ (reader.readString());
       msg.setPageToken(value);
       break;
@@ -11470,24 +11510,38 @@ proto.data.ListPendingDocumentsRequest.serializeBinaryToWriter = function(messag
       f
     );
   }
+  f = message.getUserId();
+  if (f !== 0) {
+    writer.writeInt32(
+      3,
+      f
+    );
+  }
   f = message.getRoleUuid();
   if (f.length > 0) {
     writer.writeString(
-      3,
+      4,
+      f
+    );
+  }
+  f = message.getRoleId();
+  if (f !== 0) {
+    writer.writeInt32(
+      5,
       f
     );
   }
   f = message.getPageSize();
   if (f !== 0) {
     writer.writeInt32(
-      4,
+      6,
       f
     );
   }
   f = message.getPageToken();
   if (f.length > 0) {
     writer.writeString(
-      5,
+      7,
       f
     );
   }
@@ -11550,11 +11604,29 @@ proto.data.ListPendingDocumentsRequest.prototype.setUserUuid = function(value) {
 
 
 /**
- * optional string role_uuid = 3;
+ * optional int32 user_id = 3;
+ * @return {number}
+ */
+proto.data.ListPendingDocumentsRequest.prototype.getUserId = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.data.ListPendingDocumentsRequest} returns this
+ */
+proto.data.ListPendingDocumentsRequest.prototype.setUserId = function(value) {
+  return jspb.Message.setProto3IntField(this, 3, value);
+};
+
+
+/**
+ * optional string role_uuid = 4;
  * @return {string}
  */
 proto.data.ListPendingDocumentsRequest.prototype.getRoleUuid = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
 };
 
 
@@ -11563,16 +11635,34 @@ proto.data.ListPendingDocumentsRequest.prototype.getRoleUuid = function() {
  * @return {!proto.data.ListPendingDocumentsRequest} returns this
  */
 proto.data.ListPendingDocumentsRequest.prototype.setRoleUuid = function(value) {
-  return jspb.Message.setProto3StringField(this, 3, value);
+  return jspb.Message.setProto3StringField(this, 4, value);
 };
 
 
 /**
- * optional int32 page_size = 4;
+ * optional int32 role_id = 5;
+ * @return {number}
+ */
+proto.data.ListPendingDocumentsRequest.prototype.getRoleId = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 5, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.data.ListPendingDocumentsRequest} returns this
+ */
+proto.data.ListPendingDocumentsRequest.prototype.setRoleId = function(value) {
+  return jspb.Message.setProto3IntField(this, 5, value);
+};
+
+
+/**
+ * optional int32 page_size = 6;
  * @return {number}
  */
 proto.data.ListPendingDocumentsRequest.prototype.getPageSize = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 6, 0));
 };
 
 
@@ -11581,16 +11671,16 @@ proto.data.ListPendingDocumentsRequest.prototype.getPageSize = function() {
  * @return {!proto.data.ListPendingDocumentsRequest} returns this
  */
 proto.data.ListPendingDocumentsRequest.prototype.setPageSize = function(value) {
-  return jspb.Message.setProto3IntField(this, 4, value);
+  return jspb.Message.setProto3IntField(this, 6, value);
 };
 
 
 /**
- * optional string page_token = 5;
+ * optional string page_token = 7;
  * @return {string}
  */
 proto.data.ListPendingDocumentsRequest.prototype.getPageToken = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 7, ""));
 };
 
 
@@ -11599,7 +11689,7 @@ proto.data.ListPendingDocumentsRequest.prototype.getPageToken = function() {
  * @return {!proto.data.ListPendingDocumentsRequest} returns this
  */
 proto.data.ListPendingDocumentsRequest.prototype.setPageToken = function(value) {
-  return jspb.Message.setProto3StringField(this, 5, value);
+  return jspb.Message.setProto3StringField(this, 7, value);
 };
 
 
@@ -12188,8 +12278,9 @@ proto.data.ListDashboardsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     clientRequest: (f = msg.getClientRequest()) && proto_client_pb.ClientRequest.toObject(includeInstance, f),
     roleUuid: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    pageSize: jspb.Message.getFieldWithDefault(msg, 3, 0),
-    pageToken: jspb.Message.getFieldWithDefault(msg, 4, "")
+    roleId: jspb.Message.getFieldWithDefault(msg, 3, 0),
+    pageSize: jspb.Message.getFieldWithDefault(msg, 4, 0),
+    pageToken: jspb.Message.getFieldWithDefault(msg, 5, "")
   };
 
   if (includeInstance) {
@@ -12237,9 +12328,13 @@ proto.data.ListDashboardsRequest.deserializeBinaryFromReader = function(msg, rea
       break;
     case 3:
       var value = /** @type {number} */ (reader.readInt32());
-      msg.setPageSize(value);
+      msg.setRoleId(value);
       break;
     case 4:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setPageSize(value);
+      break;
+    case 5:
       var value = /** @type {string} */ (reader.readString());
       msg.setPageToken(value);
       break;
@@ -12287,17 +12382,24 @@ proto.data.ListDashboardsRequest.serializeBinaryToWriter = function(message, wri
       f
     );
   }
-  f = message.getPageSize();
+  f = message.getRoleId();
   if (f !== 0) {
     writer.writeInt32(
       3,
       f
     );
   }
+  f = message.getPageSize();
+  if (f !== 0) {
+    writer.writeInt32(
+      4,
+      f
+    );
+  }
   f = message.getPageToken();
   if (f.length > 0) {
     writer.writeString(
-      4,
+      5,
       f
     );
   }
@@ -12360,10 +12462,10 @@ proto.data.ListDashboardsRequest.prototype.setRoleUuid = function(value) {
 
 
 /**
- * optional int32 page_size = 3;
+ * optional int32 role_id = 3;
  * @return {number}
  */
-proto.data.ListDashboardsRequest.prototype.getPageSize = function() {
+proto.data.ListDashboardsRequest.prototype.getRoleId = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
 };
 
@@ -12372,17 +12474,35 @@ proto.data.ListDashboardsRequest.prototype.getPageSize = function() {
  * @param {number} value
  * @return {!proto.data.ListDashboardsRequest} returns this
  */
-proto.data.ListDashboardsRequest.prototype.setPageSize = function(value) {
+proto.data.ListDashboardsRequest.prototype.setRoleId = function(value) {
   return jspb.Message.setProto3IntField(this, 3, value);
 };
 
 
 /**
- * optional string page_token = 4;
+ * optional int32 page_size = 4;
+ * @return {number}
+ */
+proto.data.ListDashboardsRequest.prototype.getPageSize = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.data.ListDashboardsRequest} returns this
+ */
+proto.data.ListDashboardsRequest.prototype.setPageSize = function(value) {
+  return jspb.Message.setProto3IntField(this, 4, value);
+};
+
+
+/**
+ * optional string page_token = 5;
  * @return {string}
  */
 proto.data.ListDashboardsRequest.prototype.getPageToken = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
 };
 
 
@@ -12391,7 +12511,7 @@ proto.data.ListDashboardsRequest.prototype.getPageToken = function() {
  * @return {!proto.data.ListDashboardsRequest} returns this
  */
 proto.data.ListDashboardsRequest.prototype.setPageToken = function(value) {
-  return jspb.Message.setProto3StringField(this, 4, value);
+  return jspb.Message.setProto3StringField(this, 5, value);
 };
 
 
@@ -17996,10 +18116,10 @@ proto.data.ListDocumentActionsRequest.toObject = function(includeInstance, msg) 
   var f, obj = {
     clientRequest: (f = msg.getClientRequest()) && proto_client_pb.ClientRequest.toObject(includeInstance, f),
     tableName: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    recordId: jspb.Message.getFieldWithDefault(msg, 3, 0),
-    recordUuid: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    id: jspb.Message.getFieldWithDefault(msg, 3, 0),
+    uuid: jspb.Message.getFieldWithDefault(msg, 4, ""),
     documentStatus: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    documentaction: jspb.Message.getFieldWithDefault(msg, 6, ""),
+    documentAction: jspb.Message.getFieldWithDefault(msg, 6, ""),
     pageSize: jspb.Message.getFieldWithDefault(msg, 7, 0),
     pageToken: jspb.Message.getFieldWithDefault(msg, 8, "")
   };
@@ -18049,11 +18169,11 @@ proto.data.ListDocumentActionsRequest.deserializeBinaryFromReader = function(msg
       break;
     case 3:
       var value = /** @type {number} */ (reader.readInt32());
-      msg.setRecordId(value);
+      msg.setId(value);
       break;
     case 4:
       var value = /** @type {string} */ (reader.readString());
-      msg.setRecordUuid(value);
+      msg.setUuid(value);
       break;
     case 5:
       var value = /** @type {string} */ (reader.readString());
@@ -18061,7 +18181,7 @@ proto.data.ListDocumentActionsRequest.deserializeBinaryFromReader = function(msg
       break;
     case 6:
       var value = /** @type {string} */ (reader.readString());
-      msg.setDocumentaction(value);
+      msg.setDocumentAction(value);
       break;
     case 7:
       var value = /** @type {number} */ (reader.readInt32());
@@ -18115,14 +18235,14 @@ proto.data.ListDocumentActionsRequest.serializeBinaryToWriter = function(message
       f
     );
   }
-  f = message.getRecordId();
+  f = message.getId();
   if (f !== 0) {
     writer.writeInt32(
       3,
       f
     );
   }
-  f = message.getRecordUuid();
+  f = message.getUuid();
   if (f.length > 0) {
     writer.writeString(
       4,
@@ -18136,7 +18256,7 @@ proto.data.ListDocumentActionsRequest.serializeBinaryToWriter = function(message
       f
     );
   }
-  f = message.getDocumentaction();
+  f = message.getDocumentAction();
   if (f.length > 0) {
     writer.writeString(
       6,
@@ -18216,10 +18336,10 @@ proto.data.ListDocumentActionsRequest.prototype.setTableName = function(value) {
 
 
 /**
- * optional int32 record_id = 3;
+ * optional int32 id = 3;
  * @return {number}
  */
-proto.data.ListDocumentActionsRequest.prototype.getRecordId = function() {
+proto.data.ListDocumentActionsRequest.prototype.getId = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
 };
 
@@ -18228,16 +18348,16 @@ proto.data.ListDocumentActionsRequest.prototype.getRecordId = function() {
  * @param {number} value
  * @return {!proto.data.ListDocumentActionsRequest} returns this
  */
-proto.data.ListDocumentActionsRequest.prototype.setRecordId = function(value) {
+proto.data.ListDocumentActionsRequest.prototype.setId = function(value) {
   return jspb.Message.setProto3IntField(this, 3, value);
 };
 
 
 /**
- * optional string record_uuid = 4;
+ * optional string uuid = 4;
  * @return {string}
  */
-proto.data.ListDocumentActionsRequest.prototype.getRecordUuid = function() {
+proto.data.ListDocumentActionsRequest.prototype.getUuid = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
 };
 
@@ -18246,7 +18366,7 @@ proto.data.ListDocumentActionsRequest.prototype.getRecordUuid = function() {
  * @param {string} value
  * @return {!proto.data.ListDocumentActionsRequest} returns this
  */
-proto.data.ListDocumentActionsRequest.prototype.setRecordUuid = function(value) {
+proto.data.ListDocumentActionsRequest.prototype.setUuid = function(value) {
   return jspb.Message.setProto3StringField(this, 4, value);
 };
 
@@ -18270,10 +18390,10 @@ proto.data.ListDocumentActionsRequest.prototype.setDocumentStatus = function(val
 
 
 /**
- * optional string documentAction = 6;
+ * optional string document_action = 6;
  * @return {string}
  */
-proto.data.ListDocumentActionsRequest.prototype.getDocumentaction = function() {
+proto.data.ListDocumentActionsRequest.prototype.getDocumentAction = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
 };
 
@@ -18282,7 +18402,7 @@ proto.data.ListDocumentActionsRequest.prototype.getDocumentaction = function() {
  * @param {string} value
  * @return {!proto.data.ListDocumentActionsRequest} returns this
  */
-proto.data.ListDocumentActionsRequest.prototype.setDocumentaction = function(value) {
+proto.data.ListDocumentActionsRequest.prototype.setDocumentAction = function(value) {
   return jspb.Message.setProto3StringField(this, 6, value);
 };
 
@@ -18363,9 +18483,9 @@ proto.data.ListDocumentActionsResponse.prototype.toObject = function(opt_include
 proto.data.ListDocumentActionsResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
     recordCount: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    documentactionsList: jspb.Message.toObjectList(msg.getDocumentactionsList(),
+    documentActionsList: jspb.Message.toObjectList(msg.getDocumentActionsList(),
     proto_base_data_type_pb.DocumentAction.toObject, includeInstance),
-    defaultdocumentaction: (f = msg.getDefaultdocumentaction()) && proto_base_data_type_pb.DocumentAction.toObject(includeInstance, f),
+    defaultDocumentAction: (f = msg.getDefaultDocumentAction()) && proto_base_data_type_pb.DocumentAction.toObject(includeInstance, f),
     nextPageToken: jspb.Message.getFieldWithDefault(msg, 4, "")
   };
 
@@ -18410,12 +18530,12 @@ proto.data.ListDocumentActionsResponse.deserializeBinaryFromReader = function(ms
     case 2:
       var value = new proto_base_data_type_pb.DocumentAction;
       reader.readMessage(value,proto_base_data_type_pb.DocumentAction.deserializeBinaryFromReader);
-      msg.addDocumentactions(value);
+      msg.addDocumentActions(value);
       break;
     case 3:
       var value = new proto_base_data_type_pb.DocumentAction;
       reader.readMessage(value,proto_base_data_type_pb.DocumentAction.deserializeBinaryFromReader);
-      msg.setDefaultdocumentaction(value);
+      msg.setDefaultDocumentAction(value);
       break;
     case 4:
       var value = /** @type {string} */ (reader.readString());
@@ -18457,7 +18577,7 @@ proto.data.ListDocumentActionsResponse.serializeBinaryToWriter = function(messag
       f
     );
   }
-  f = message.getDocumentactionsList();
+  f = message.getDocumentActionsList();
   if (f.length > 0) {
     writer.writeRepeatedMessage(
       2,
@@ -18465,7 +18585,7 @@ proto.data.ListDocumentActionsResponse.serializeBinaryToWriter = function(messag
       proto_base_data_type_pb.DocumentAction.serializeBinaryToWriter
     );
   }
-  f = message.getDefaultdocumentaction();
+  f = message.getDefaultDocumentAction();
   if (f != null) {
     writer.writeMessage(
       3,
@@ -18502,10 +18622,10 @@ proto.data.ListDocumentActionsResponse.prototype.setRecordCount = function(value
 
 
 /**
- * repeated DocumentAction documentActions = 2;
+ * repeated DocumentAction document_actions = 2;
  * @return {!Array<!proto.data.DocumentAction>}
  */
-proto.data.ListDocumentActionsResponse.prototype.getDocumentactionsList = function() {
+proto.data.ListDocumentActionsResponse.prototype.getDocumentActionsList = function() {
   return /** @type{!Array<!proto.data.DocumentAction>} */ (
     jspb.Message.getRepeatedWrapperField(this, proto_base_data_type_pb.DocumentAction, 2));
 };
@@ -18515,7 +18635,7 @@ proto.data.ListDocumentActionsResponse.prototype.getDocumentactionsList = functi
  * @param {!Array<!proto.data.DocumentAction>} value
  * @return {!proto.data.ListDocumentActionsResponse} returns this
 */
-proto.data.ListDocumentActionsResponse.prototype.setDocumentactionsList = function(value) {
+proto.data.ListDocumentActionsResponse.prototype.setDocumentActionsList = function(value) {
   return jspb.Message.setRepeatedWrapperField(this, 2, value);
 };
 
@@ -18525,7 +18645,7 @@ proto.data.ListDocumentActionsResponse.prototype.setDocumentactionsList = functi
  * @param {number=} opt_index
  * @return {!proto.data.DocumentAction}
  */
-proto.data.ListDocumentActionsResponse.prototype.addDocumentactions = function(opt_value, opt_index) {
+proto.data.ListDocumentActionsResponse.prototype.addDocumentActions = function(opt_value, opt_index) {
   return jspb.Message.addToRepeatedWrapperField(this, 2, opt_value, proto.data.DocumentAction, opt_index);
 };
 
@@ -18534,16 +18654,16 @@ proto.data.ListDocumentActionsResponse.prototype.addDocumentactions = function(o
  * Clears the list making it empty but non-null.
  * @return {!proto.data.ListDocumentActionsResponse} returns this
  */
-proto.data.ListDocumentActionsResponse.prototype.clearDocumentactionsList = function() {
-  return this.setDocumentactionsList([]);
+proto.data.ListDocumentActionsResponse.prototype.clearDocumentActionsList = function() {
+  return this.setDocumentActionsList([]);
 };
 
 
 /**
- * optional DocumentAction defaultDocumentAction = 3;
+ * optional DocumentAction default_document_action = 3;
  * @return {?proto.data.DocumentAction}
  */
-proto.data.ListDocumentActionsResponse.prototype.getDefaultdocumentaction = function() {
+proto.data.ListDocumentActionsResponse.prototype.getDefaultDocumentAction = function() {
   return /** @type{?proto.data.DocumentAction} */ (
     jspb.Message.getWrapperField(this, proto_base_data_type_pb.DocumentAction, 3));
 };
@@ -18553,7 +18673,7 @@ proto.data.ListDocumentActionsResponse.prototype.getDefaultdocumentaction = func
  * @param {?proto.data.DocumentAction|undefined} value
  * @return {!proto.data.ListDocumentActionsResponse} returns this
 */
-proto.data.ListDocumentActionsResponse.prototype.setDefaultdocumentaction = function(value) {
+proto.data.ListDocumentActionsResponse.prototype.setDefaultDocumentAction = function(value) {
   return jspb.Message.setWrapperField(this, 3, value);
 };
 
@@ -18562,8 +18682,8 @@ proto.data.ListDocumentActionsResponse.prototype.setDefaultdocumentaction = func
  * Clears the message field making it undefined.
  * @return {!proto.data.ListDocumentActionsResponse} returns this
  */
-proto.data.ListDocumentActionsResponse.prototype.clearDefaultdocumentaction = function() {
-  return this.setDefaultdocumentaction(undefined);
+proto.data.ListDocumentActionsResponse.prototype.clearDefaultDocumentAction = function() {
+  return this.setDefaultDocumentAction(undefined);
 };
 
 
@@ -18571,7 +18691,7 @@ proto.data.ListDocumentActionsResponse.prototype.clearDefaultdocumentaction = fu
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.data.ListDocumentActionsResponse.prototype.hasDefaultdocumentaction = function() {
+proto.data.ListDocumentActionsResponse.prototype.hasDefaultDocumentAction = function() {
   return jspb.Message.getField(this, 3) != null;
 };
 
@@ -18628,8 +18748,8 @@ proto.data.ListDocumentStatusesRequest.toObject = function(includeInstance, msg)
   var f, obj = {
     clientRequest: (f = msg.getClientRequest()) && proto_client_pb.ClientRequest.toObject(includeInstance, f),
     tableName: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    recordId: jspb.Message.getFieldWithDefault(msg, 3, 0),
-    recordUuid: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    id: jspb.Message.getFieldWithDefault(msg, 3, 0),
+    uuid: jspb.Message.getFieldWithDefault(msg, 4, ""),
     documentStatus: jspb.Message.getFieldWithDefault(msg, 5, ""),
     pageSize: jspb.Message.getFieldWithDefault(msg, 6, 0),
     pageToken: jspb.Message.getFieldWithDefault(msg, 7, "")
@@ -18680,11 +18800,11 @@ proto.data.ListDocumentStatusesRequest.deserializeBinaryFromReader = function(ms
       break;
     case 3:
       var value = /** @type {number} */ (reader.readInt32());
-      msg.setRecordId(value);
+      msg.setId(value);
       break;
     case 4:
       var value = /** @type {string} */ (reader.readString());
-      msg.setRecordUuid(value);
+      msg.setUuid(value);
       break;
     case 5:
       var value = /** @type {string} */ (reader.readString());
@@ -18742,14 +18862,14 @@ proto.data.ListDocumentStatusesRequest.serializeBinaryToWriter = function(messag
       f
     );
   }
-  f = message.getRecordId();
+  f = message.getId();
   if (f !== 0) {
     writer.writeInt32(
       3,
       f
     );
   }
-  f = message.getRecordUuid();
+  f = message.getUuid();
   if (f.length > 0) {
     writer.writeString(
       4,
@@ -18836,10 +18956,10 @@ proto.data.ListDocumentStatusesRequest.prototype.setTableName = function(value) 
 
 
 /**
- * optional int32 record_id = 3;
+ * optional int32 id = 3;
  * @return {number}
  */
-proto.data.ListDocumentStatusesRequest.prototype.getRecordId = function() {
+proto.data.ListDocumentStatusesRequest.prototype.getId = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
 };
 
@@ -18848,16 +18968,16 @@ proto.data.ListDocumentStatusesRequest.prototype.getRecordId = function() {
  * @param {number} value
  * @return {!proto.data.ListDocumentStatusesRequest} returns this
  */
-proto.data.ListDocumentStatusesRequest.prototype.setRecordId = function(value) {
+proto.data.ListDocumentStatusesRequest.prototype.setId = function(value) {
   return jspb.Message.setProto3IntField(this, 3, value);
 };
 
 
 /**
- * optional string record_uuid = 4;
+ * optional string uuid = 4;
  * @return {string}
  */
-proto.data.ListDocumentStatusesRequest.prototype.getRecordUuid = function() {
+proto.data.ListDocumentStatusesRequest.prototype.getUuid = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
 };
 
@@ -18866,7 +18986,7 @@ proto.data.ListDocumentStatusesRequest.prototype.getRecordUuid = function() {
  * @param {string} value
  * @return {!proto.data.ListDocumentStatusesRequest} returns this
  */
-proto.data.ListDocumentStatusesRequest.prototype.setRecordUuid = function(value) {
+proto.data.ListDocumentStatusesRequest.prototype.setUuid = function(value) {
   return jspb.Message.setProto3StringField(this, 4, value);
 };
 
