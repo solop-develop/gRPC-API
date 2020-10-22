@@ -39,7 +39,8 @@ class Api {
     this.initDictionaryService()
     this.initLogService()
     this.initWorkflowService()
-    this.initWDashboardService()
+    this.initDashboardService()
+    this.initCoreService()
   }
 
   //  Init service
@@ -118,10 +119,17 @@ class Api {
   }
 
   // Init connection
-  initWDashboardService() {
+  initDashboardService() {
     var grpc = require('grpc');
     var services = require('./src/grpc/proto/business_grpc_pb');
     this.dashboard = new services.DashboardingClient(this.businessHost, grpc.credentials.createInsecure());
+  }
+
+  // Init connection
+  initCoreService() {
+    var grpc = require('grpc');
+    var services = require('./src/grpc/proto/core_functionality_grpc_pb');
+    this.core = new services.CoreFunctionalityClient(this.businessHost, grpc.credentials.createInsecure());
   }
 
   //  Get Access Service
@@ -144,8 +152,14 @@ class Api {
     return this.workflow
   }
 
+  //  Get Dashboard
   getDashboardService() {
     return this.dashboard
+  }
+
+  //  Get Core
+  getCoreService() {
+    return this.core
   }
 
   //  Get Business Service
@@ -1367,6 +1381,239 @@ class Api {
     request.setPageToken(pageToken)
     request.setClientRequest(this.createClientRequest(token, language))
     this.getDashboardService().listPendingDocuments(request, callback)
+  }
+
+  //  Core Functionality
+  //  Get Country
+  getCountry({
+    token,
+    uuid,
+    id,
+    language
+  }, callback) {
+    const { GetCountryRequest } = require('./src/grpc/proto/core_functionality_pb.js')
+    const request = new GetCountryRequest()
+    request.setUuid(uuid)
+    request.setId(id)
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getCoreService().getCountry(request, callback)
+  }
+
+  //  List Organizations
+  listOrganizations({
+    token,
+    roleUuid,
+    roleId,
+    pageSize,
+    pageToken,
+    language
+  }, callback) {
+    const { ListOrganizationsRequest } = require('./src/grpc/proto/core_functionality_pb.js')
+    const request = new ListOrganizationsRequest()
+    request.setRoleUuid(roleUuid)
+    request.setRoleId(roleId)
+    request.setPageSize(pageSize)
+    request.setPageToken(pageToken)
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getCoreService().listOrganizations(request, callback)
+  }
+
+  //  List Warehouses
+  listWarehouses({
+    token,
+    organizationUuid,
+    organizationId,
+    pageSize,
+    pageToken,
+    language
+  }, callback) {
+    const { ListWarehousesRequest } = require('./src/grpc/proto/core_functionality_pb.js')
+    const request = new ListWarehousesRequest()
+    request.setOrganizationUuid(organizationUuid)
+    request.setOrganizationId(organizationId)
+    request.setPageSize(pageSize)
+    request.setPageToken(pageToken)
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getCoreService().listWarehouses(request, callback)
+  }
+
+  //  List Languages
+  listLanguages({
+    token,
+    pageSize,
+    pageToken,
+    language
+  }, callback) {
+    const { ListLanguagesRequest } = require('./src/grpc/proto/core_functionality_pb.js')
+    const request = new ListLanguagesRequest()
+    request.setPageSize(pageSize)
+    request.setPageToken(pageToken)
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getCoreService().listLanguages(request, callback)
+  }
+
+  //  Get Business Partner
+  getBusinessPartner({
+    token,
+    searchValue,
+    value,
+    name,
+    contactName,
+    email,
+    postalCode,
+    phone,
+    tableName,
+    //  DSL
+    filters,
+    //  Custom Query
+    query,
+    whereClause,
+    orderByClause,
+    limit,
+    language
+  }, callback) {
+    const { GetBusinessPartnerRequest } = require('./src/grpc/proto/core_functionality_pb.js')
+    const request = new GetBusinessPartnerRequest()
+    const { convertCriteriaToGRPC } = require('./lib/convertValues.js');
+    //  TODO: Add support to all parameters
+    request.setCriteria(convertCriteriaToGRPC({
+      tableName,
+      filters,
+      query,
+      whereClause,
+      orderByClause,
+      limit
+    }))
+    request.setSearchValue(searchValue)
+    request.setValue(value)
+    request.setName(name)
+    request.setContactName(contactName)
+    request.setEmail(email)
+    request.setPostalCode(postalCode)
+    request.setPhone(phone)
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getCoreService().getBusinessPartner(request, callback)
+  }
+
+  //  Create Business Partner
+  createBusinessPartner({
+    token,
+    value,
+    taxId,
+    duns,
+    naics,
+    name,
+    lastName,
+    description,
+    contactName,
+    email,
+    phone,
+    businessPartnerGroupUuid,
+    address1,
+    address2,
+    address3,
+    address4,
+    cityUuid,
+    cityName,
+    postalCode,
+    regionUuid,
+    regionName,
+    countryUuid,
+    posUuid,
+    language
+  }, callback) {
+    const { CreateBusinessPartnerRequest } = require('./src/grpc/proto/core_functionality_pb.js')
+    const request = new CreateBusinessPartnerRequest()
+    request.setValue(value)
+    request.setTaxId(taxId)
+    request.setDuns(duns)
+    request.setNaics(naics)
+    request.setName(name)
+    request.setLastName(lastName)
+    request.setDescription(description)
+    request.setContactName(contactName)
+    request.setEmail(email)
+    request.setPhone(phone)
+    request.setBusinessPartnerGroupUuid(businessPartnerGroupUuid)
+    request.setAddress1(address1)
+    request.setAddress2(address2)
+    request.setAddress3(address3)
+    request.setAddress4(address4)
+    request.setCityUuid(cityUuid)
+    request.setCityName(cityName)
+    request.setPostalCode(postalCode)
+    request.setRegionUuid(regionUuid)
+    request.setRegionName(regionName)
+    request.setCountryUuid(countryUuid)
+    request.setPosUuid(posUuid)
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getCoreService().createBusinessPartner(request, callback)
+  }
+
+  //  List Business Partner
+  listBusinessPartners({
+    token,
+    searchValue,
+    value,
+    name,
+    contactName,
+    email,
+    postalCode,
+    phone,
+    tableName,
+    //  DSL
+    filters,
+    //  Custom Query
+    query,
+    whereClause,
+    orderByClause,
+    limit,
+    pageSize,
+    pageToken,
+    language
+  }, callback) {
+    const { ListBusinessPartnersRequest } = require('./src/grpc/proto/core_functionality_pb.js')
+    const request = new ListBusinessPartnersRequest()
+    const { convertCriteriaToGRPC } = require('./lib/convertValues.js');
+    //  TODO: Add support to all parameters
+    request.setCriteria(convertCriteriaToGRPC({
+      tableName,
+      filters,
+      query,
+      whereClause,
+      orderByClause,
+      limit
+    }))
+    request.setSearchValue(searchValue)
+    request.setValue(value)
+    request.setName(name)
+    request.setContactName(contactName)
+    request.setEmail(email)
+    request.setPostalCode(postalCode)
+    request.setPhone(phone)
+    request.setPageSize(pageSize)
+    request.setPageToken(pageToken)
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getCoreService().listBusinessPartners(request, callback)
+  }
+
+  //  Get Conversion Rate
+  getConversionRate({
+    token,
+    conversionTypeUuid,
+    currencyFromUuid,
+    currencyToUuid,
+    conversionDate,
+    language
+  }, callback) {
+    const { GetConversionRateRequest } = require('./src/grpc/proto/core_functionality_pb.js')
+    const request = new GetConversionRateRequest()
+    request.setConversionTypeUuid(conversionTypeUuid)
+    request.setCurrencyFromUuid(currencyFromUuid)
+    request.setCurrencyToUuid(currencyToUuid)
+    request.setConversionDate(conversionDate)
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getCoreService().getConversionRate(request, callback)
   }
 }
 module.exports = Api;

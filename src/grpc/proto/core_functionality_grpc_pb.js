@@ -98,26 +98,26 @@ function deserialize_data_GetCountryRequest(buffer_arg) {
   return proto_core_functionality_pb.GetCountryRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_data_ListBusinessPartnerRequest(arg) {
-  if (!(arg instanceof proto_core_functionality_pb.ListBusinessPartnerRequest)) {
-    throw new Error('Expected argument of type data.ListBusinessPartnerRequest');
+function serialize_data_ListBusinessPartnersRequest(arg) {
+  if (!(arg instanceof proto_core_functionality_pb.ListBusinessPartnersRequest)) {
+    throw new Error('Expected argument of type data.ListBusinessPartnersRequest');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_data_ListBusinessPartnerRequest(buffer_arg) {
-  return proto_core_functionality_pb.ListBusinessPartnerRequest.deserializeBinary(new Uint8Array(buffer_arg));
+function deserialize_data_ListBusinessPartnersRequest(buffer_arg) {
+  return proto_core_functionality_pb.ListBusinessPartnersRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_data_ListBusinessPartnerResponse(arg) {
-  if (!(arg instanceof proto_core_functionality_pb.ListBusinessPartnerResponse)) {
-    throw new Error('Expected argument of type data.ListBusinessPartnerResponse');
+function serialize_data_ListBusinessPartnersResponse(arg) {
+  if (!(arg instanceof proto_core_functionality_pb.ListBusinessPartnersResponse)) {
+    throw new Error('Expected argument of type data.ListBusinessPartnersResponse');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_data_ListBusinessPartnerResponse(buffer_arg) {
-  return proto_core_functionality_pb.ListBusinessPartnerResponse.deserializeBinary(new Uint8Array(buffer_arg));
+function deserialize_data_ListBusinessPartnersResponse(buffer_arg) {
+  return proto_core_functionality_pb.ListBusinessPartnersResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_data_ListLanguagesRequest(arg) {
@@ -261,16 +261,16 @@ createBusinessPartner: {
     responseDeserialize: deserialize_data_BusinessPartner,
   },
   // 	List Business Partner
-listBusinessPartner: {
-    path: '/data.CoreFunctionality/ListBusinessPartner',
+listBusinessPartners: {
+    path: '/data.CoreFunctionality/ListBusinessPartners',
     requestStream: false,
     responseStream: false,
-    requestType: proto_core_functionality_pb.ListBusinessPartnerRequest,
-    responseType: proto_core_functionality_pb.ListBusinessPartnerResponse,
-    requestSerialize: serialize_data_ListBusinessPartnerRequest,
-    requestDeserialize: deserialize_data_ListBusinessPartnerRequest,
-    responseSerialize: serialize_data_ListBusinessPartnerResponse,
-    responseDeserialize: deserialize_data_ListBusinessPartnerResponse,
+    requestType: proto_core_functionality_pb.ListBusinessPartnersRequest,
+    responseType: proto_core_functionality_pb.ListBusinessPartnersResponse,
+    requestSerialize: serialize_data_ListBusinessPartnersRequest,
+    requestDeserialize: deserialize_data_ListBusinessPartnersRequest,
+    responseSerialize: serialize_data_ListBusinessPartnersResponse,
+    responseDeserialize: deserialize_data_ListBusinessPartnersResponse,
   },
   // 	Get Currency Rate
 getConversionRate: {
