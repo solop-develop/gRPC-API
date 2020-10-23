@@ -41,6 +41,7 @@ class Api {
     this.initWorkflowService()
     this.initDashboardService()
     this.initCoreService()
+    this.initPosService()
   }
 
   //  Init service
@@ -132,6 +133,13 @@ class Api {
     this.core = new services.CoreFunctionalityClient(this.businessHost, grpc.credentials.createInsecure());
   }
 
+  // Init connection
+  initPosService() {
+    var grpc = require('grpc');
+    var services = require('./src/grpc/proto/point_of_sales_grpc_pb');
+    this.pos = new services.StoreClient(this.businessHost, grpc.credentials.createInsecure());
+  }
+
   //  Get Access Service
   getAccessService() {
     return this.access
@@ -160,6 +168,11 @@ class Api {
   //  Get Core
   getCoreService() {
     return this.core
+  }
+
+  //  Get POS
+  getPosService() {
+    return this.pos
   }
 
   //  Get Business Service
@@ -332,38 +345,6 @@ class Api {
       )
     )
   }
-
-  // //  Convert value from gRPC
-  // convertAccessValuesFromGRPC(value) {
-  //   const { ContextValue } = require('./src/grpc/proto/access_pb.js')
-  //   const { ValueType } = ContextValue
-  //
-  //   if (!value) {
-  //     return undefined
-  //   }
-  //   let returnValue
-  //   switch (value.getValueType()) {
-  //     case ValueType.INTEGER:
-  //       returnValue = value.getIntValue()
-  //       break
-  //     // data type Boolean
-  //     case ValueType.BOOLEAN:
-  //       returnValue = value.getBooleanValue()
-  //       break
-  //     // data type Boolean
-  //     case ValueType.DATE:
-  //       returnValue = new Date(value.getLongValue())
-  //       break
-  //     // data type String
-  //     case ValueType.STRING:
-  //       returnValue = value.getStringValue()
-  //       break
-  //     case ValueType.UNKNOWN:
-  //       returnValue = undefined;
-  //       break
-  //   }
-  //   return returnValue
-  // }
 
   //  Dictionary
   //  Get Window
@@ -1614,6 +1595,25 @@ class Api {
     request.setConversionDate(conversionDate)
     request.setClientRequest(this.createClientRequest(token, language))
     this.getCoreService().getConversionRate(request, callback)
+  }
+
+  //  POS Service
+  //  List Point of Sales
+  listPointOfSales({
+    token,
+    userUuid,
+    //  Page Data
+    pageSize,
+    pageToken,
+    language
+  }, callback) {
+    const { ListPointOfSalesRequest } = require('./src/grpc/proto/point_of_sales_pb.js')
+    const request = new ListPointOfSalesRequest()
+    request.setUserUuid(userUuid)
+    request.setPageSize(pageSize)
+    request.setPageToken(pageToken)
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getPosService().listPointOfSales(request, callback)
   }
 }
 module.exports = Api;
