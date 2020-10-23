@@ -34,6 +34,7 @@ class Api {
       this.password = adempiereConfig.password
     }
     this.initAccessService()
+    this.initEnrollmentService()
     this.initUIService()
     this.initBusinessService()
     this.initDictionaryService()
@@ -82,6 +83,13 @@ class Api {
     var grpc = require('grpc');
     var services = require('./src/grpc/proto/access_grpc_pb');
     this.access = new services.SecurityClient(this.accessHost, grpc.credentials.createInsecure());
+  }
+
+  //  Init Enrollment
+  initEnrollmentService() {
+    var grpc = require('grpc');
+    var services = require('./src/grpc/proto/enrollment_grpc_pb');
+    this.enrollment = new services.RegisterClient(this.accessHost, grpc.credentials.createInsecure());
   }
 
   // Init connection
@@ -143,6 +151,11 @@ class Api {
   //  Get Access Service
   getAccessService() {
     return this.access
+  }
+
+  //  Get Enrollment Service
+  getEnrollmentService() {
+    return this.enrollment
   }
 
   //  Get UI Service
@@ -1614,6 +1627,399 @@ class Api {
     request.setPageToken(pageToken)
     request.setClientRequest(this.createClientRequest(token, language))
     this.getPosService().listPointOfSales(request, callback)
+  }
+
+  //  Get Point of Sales
+  getPointOfSales({
+    token,
+    pointOfSalesUuid,
+    language
+  }, callback) {
+    const { PointOfSalesRequest } = require('./src/grpc/proto/point_of_sales_pb.js')
+    const request = new PointOfSalesRequest()
+    request.setPointOfSalesUuid(pointOfSalesUuid)
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getPosService().getPointOfSales(request, callback)
+  }
+
+  //  Get Point of Sales
+  getPointOfSales({
+    token,
+    posUuid,
+    language
+  }, callback) {
+    const { PointOfSalesRequest } = require('./src/grpc/proto/point_of_sales_pb.js')
+    const request = new PointOfSalesRequest()
+    request.setPosUuid(posUuid)
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getPosService().getPointOfSales(request, callback)
+  }
+
+  //  Get Product Price
+  getProductPrice({
+    token,
+    searchValue,
+    upc,
+    value,
+    name,
+    priceListUuid,
+    businessPartnerUuid,
+    warehouseUuid,
+    validFrom,
+    language
+  }, callback) {
+    const { GetProductPriceRequest } = require('./src/grpc/proto/point_of_sales_pb.js')
+    const request = new GetProductPriceRequest()
+    request.setSearchValue(searchValue)
+    request.setUpc(upc)
+    request.setValue(value)
+    request.setName(name)
+    request.setPriceListUuid(priceListUuid)
+    request.setBusinessPartnerUuid(businessPartnerUuid)
+    request.setWarehouseUuid(warehouseUuid)
+    request.setValidFrom(validFrom)
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getPosService().getProductPrice(request, callback)
+  }
+
+  //  List Product Price
+  listProductPrice({
+    token,
+    searchValue,
+    priceListUuid,
+    businessPartnerUuid,
+    warehouseUuid,
+    validFrom,
+    tableName,
+    //  DSL
+    filters,
+    //  Custom Query
+    query,
+    whereClause,
+    orderByClause,
+    limit,
+    pageSize,
+    pageToken,
+    language
+  }, callback) {
+    const { ListProductPriceRequest } = require('./src/grpc/proto/point_of_sales_pb.js')
+    const request = new ListProductPriceRequest()
+    request.setSearchValue(searchValue)
+    request.setPriceListUuid(priceListUuid)
+    request.setBusinessPartnerUuid(businessPartnerUuid)
+    request.setWarehouseUuid(warehouseUuid)
+    request.setValidFrom(validFrom)
+    //
+    const { convertCriteriaToGRPC } = require('./lib/convertValues.js');
+    //  TODO: Add support to all parameters
+    request.setCriteria(convertCriteriaToGRPC({
+      tableName,
+      filters,
+      query,
+      whereClause,
+      orderByClause,
+      limit
+    }))
+    request.setPageSize(pageSize)
+    request.setPageToken(pageToken)
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getPosService().listProductPrice(request, callback)
+  }
+
+  //  Create Sales Order
+  createOrder({
+    token,
+    posUuid,
+    customerUuid,
+    documentTypeUuid,
+    salesRepresentativeUuid,
+    language
+  }, callback) {
+    const { CreateOrderRequest } = require('./src/grpc/proto/point_of_sales_pb.js')
+    const request = new CreateOrderRequest()
+    request.setPosUuid(posUuid)
+    request.setCustomerUuid(customerUuid)
+    request.setDocumentTypeUuid(documentTypeUuid)
+    request.setSalesRepresentativeUuid(salesRepresentativeUuid)
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getPosService().createOrder(request, callback)
+  }
+
+  //  Delete Sales Order
+  deleteOrder({
+    token,
+    orderUuid,
+    language
+  }, callback) {
+    const { DeleteOrderRequest } = require('./src/grpc/proto/point_of_sales_pb.js')
+    const request = new DeleteOrderRequest()
+    request.setOrderUuid(orderUuid)
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getPosService().deleteOrder(request, callback)
+  }
+
+  //  Create Sales Order Line
+  createOrderLine({
+    token,
+    orderUuid,
+    productUuid,
+    chargeUuid,
+    description,
+    quantity,
+    price,
+    discountRate,
+    warehouseUuid,
+    language
+  }, callback) {
+    const { CreateOrderLineRequest } = require('./src/grpc/proto/point_of_sales_pb.js')
+    const request = new CreateOrderLineRequest()
+    const { getDecimalFromNumber } = require('./lib/convertValues.js')
+    request.setOrderUuid(orderUuid)
+    request.setProductUuid(productUuid)
+    request.setChargeUuid(chargeUuid)
+    request.setDescription(description)
+    if(quantity) {
+      request.setQuantity(getDecimalFromNumber(quantity))
+    }
+    if(price) {
+      request.setPrice(getDecimalFromNumber(price))
+    }
+    if(discountRate) {
+      request.setDiscountRate(getDecimalFromNumber(discountRate))
+    }
+    request.setWarehouseUuid(warehouseUuid)
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getPosService().createOrderLine(request, callback)
+  }
+
+  //  Delete Sales Order Line
+  deleteOrderLine({
+    token,
+    orderLineUuid,
+    language
+  }, callback) {
+    const { DeleteOrderLineRequest } = require('./src/grpc/proto/point_of_sales_pb.js')
+    const request = new DeleteOrderLineRequest()
+    request.setOrderLineUuid(orderLineUuid)
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getPosService().deleteOrderLine(request, callback)
+  }
+
+  //  Update Sales Order
+  updateOrder({
+    token,
+    orderUuid,
+    posUuid,
+    customerUuid,
+    documentTypeUuid,
+    salesRepresentativeUuid,
+    description,
+    language
+  }, callback) {
+    const { UpdateOrderRequest } = require('./src/grpc/proto/point_of_sales_pb.js')
+    const request = new UpdateOrderRequest()
+    request.setOrderUuid(orderUuid)
+    request.setPosUuid(posUuid)
+    request.setCustomerUuid(customerUuid)
+    request.setDocumentTypeUuid(documentTypeUuid)
+    request.setDescription(description)
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getPosService().updateOrder(request, callback)
+  }
+
+  //  Update Sales Order Line
+  updateOrderLine({
+    token,
+    orderLineUuid,
+    description,
+    quantity,
+    price,
+    discountRate,
+    isAddQuantity,
+    language
+  }, callback) {
+    const { UpdateOrderLineRequest } = require('./src/grpc/proto/point_of_sales_pb.js')
+    const request = new UpdateOrderLineRequest()
+    const { getDecimalFromNumber } = require('./lib/convertValues.js')
+    request.setOrderLineUuid(orderLineUuid)
+    request.setDescription(description)
+    if(quantity) {
+      request.setQuantity(getDecimalFromNumber(quantity))
+    }
+    if(price) {
+      request.setPrice(getDecimalFromNumber(price))
+    }
+    if(discountRate) {
+      request.setDiscountRate(getDecimalFromNumber(discountRate))
+    }
+    request.setIsAddQuantity(isAddQuantity)
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getPosService().updateOrderLine(request, callback)
+  }
+
+  //  Get Sales Order
+  getOrder({
+    token,
+    orderUuid,
+    language
+  }, callback) {
+    const { GetOrderRequest } = require('./src/grpc/proto/point_of_sales_pb.js')
+    const request = new GetOrderRequest()
+    request.setOrderUuid(orderUuid)
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getPosService().getOrder(request, callback)
+  }
+
+  //  List Orders
+  listOrders({
+    token,
+    posUuid,
+    documentNo,
+    businessPartnerUuid,
+    grandTotal,
+    openAmount,
+    isPaid,
+    isProcessed,
+    isAisleSeller,
+    isInvoiced,
+    dateOrderedFrom,
+    dateOrderedTo,
+    salesRepresentativeUuid,
+    tableName,
+    //  DSL
+    filters,
+    //  Custom Query
+    query,
+    whereClause,
+    orderByClause,
+    limit,
+    pageSize,
+    pageToken,
+    language
+  }, callback) {
+    const { ListOrdersRequest } = require('./src/grpc/proto/point_of_sales_pb.js')
+    const request = new ListOrdersRequest()
+    const { convertCriteriaToGRPC } = require('./lib/convertValues.js')
+    const { getDecimalFromNumber } = require('./lib/convertValues.js')
+    request.setCriteria(convertCriteriaToGRPC({
+      tableName,
+      filters,
+      query,
+      whereClause,
+      orderByClause,
+      limit
+    }))
+    request.setPosUuid(posUuid)
+    request.setDocumentNo(documentNo)
+    request.setBusinessPartnerUuid(businessPartnerUuid)
+    if(grandTotal) {
+      request.setGrandTotal(getDecimalFromNumber(grandTotal))
+    }
+    if(openAmount) {
+      request.setOpenAmount(getDecimalFromNumber(openAmount))
+    }
+    request.setIsPaid(isPaid)
+    request.setIsProcessed(isProcessed)
+    request.setIsAisleSeller(isAisleSeller)
+    request.setIsInvoiced(isInvoiced)
+    request.setDateOrderedFrom(dateOrderedFrom)
+    request.setDateOrderedTo(dateOrderedTo)
+    request.setSalesRepresentativeUuid(salesRepresentativeUuid)
+    request.setPageSize(pageSize)
+    request.setPageToken(pageToken)
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getPosService().listOrders(request, callback)
+  }
+
+  //  List Sales Order Lines
+  listOrderLines({
+    token,
+    orderUuid,
+    pageSize,
+    pageToken,
+    language
+  }, callback) {
+    const { ListOrderLinesRequest } = require('./src/grpc/proto/point_of_sales_pb.js')
+    const request = new ListOrderLinesRequest()
+    request.setOrderUuid(orderUuid)
+    request.setPageSize(pageSize)
+    request.setPageToken(pageToken)
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getPosService().listOrderLines(request, callback)
+  }
+
+  //  Get Sales Order
+  getKeyLayout({
+    token,
+    keyLayoutUuid,
+    language
+  }, callback) {
+    const { GetKeyLayoutRequest } = require('./src/grpc/proto/point_of_sales_pb.js')
+    const request = new GetKeyLayoutRequest()
+    request.setKeyLayoutUuid(keyLayoutUuid)
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getPosService().getKeyLayout(request, callback)
+  }
+
+  //  Enrollment service
+  //  Enroll User
+  enrollUser({
+    userName,
+    name,
+    email,
+    clientVersion,
+    applicationType,
+    password
+  }, callback) {
+    const { EnrollUserRequest } = require('./src/grpc/proto/enrollment_pb.js')
+    const request = new EnrollUserRequest()
+    request.setUserName(userName)
+    request.setName(name)
+    request.setEmail(email)
+    request.setClientVersion(clientVersion)
+    request.setApplicationType(applicationType)
+    request.setPassword(password)
+    this.getEnrollmentService().enrollUser(request, callback)
+  }
+
+  //  Reset Password
+  resetPassword({
+    userName,
+    email,
+    clientVersion
+  }, callback) {
+    const { ResetPasswordRequest } = require('./src/grpc/proto/enrollment_pb.js')
+    const request = new ResetPasswordRequest()
+    request.setUserName(userName)
+    request.setEmail(email)
+    request.setClientVersion(clientVersion)
+    this.getEnrollmentService().resetPassword(request, callback)
+  }
+
+  //  Reset Password from Token
+  resetPasswordFromToken({
+    token,
+    password,
+    clientVersion
+  }, callback) {
+    const { ResetPasswordTokenRequest } = require('./src/grpc/proto/enrollment_pb.js')
+    const request = new ResetPasswordTokenRequest()
+    request.setToken(token)
+    request.setPassword(password)
+    request.setClientVersion(clientVersion)
+    this.getEnrollmentService().resetPasswordFromToken(request, callback)
+  }
+
+  //  Activate User
+  activateUser({
+    token,
+    clientVersion
+  }, callback) {
+    const { ActivateUserRequest } = require('./src/grpc/proto/enrollment_pb.js')
+    const request = new ActivateUserRequest()
+    request.setToken(token)
+    request.setClientVersion(clientVersion)
+    this.getEnrollmentService().activateUser(request, callback)
   }
 }
 module.exports = Api;
