@@ -5047,7 +5047,8 @@ proto.data.Organization.toObject = function(includeInstance, msg) {
     taxId: jspb.Message.getFieldWithDefault(msg, 7, ""),
     phone: jspb.Message.getFieldWithDefault(msg, 8, ""),
     phone2: jspb.Message.getFieldWithDefault(msg, 9, ""),
-    fax: jspb.Message.getFieldWithDefault(msg, 10, "")
+    fax: jspb.Message.getFieldWithDefault(msg, 10, ""),
+    corporateBrandingImage: jspb.Message.getFieldWithDefault(msg, 11, "")
   };
 
   if (includeInstance) {
@@ -5123,6 +5124,10 @@ proto.data.Organization.deserializeBinaryFromReader = function(msg, reader) {
     case 10:
       var value = /** @type {string} */ (reader.readString());
       msg.setFax(value);
+      break;
+    case 11:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setCorporateBrandingImage(value);
       break;
     default:
       reader.skipField();
@@ -5220,6 +5225,13 @@ proto.data.Organization.serializeBinaryToWriter = function(message, writer) {
   if (f.length > 0) {
     writer.writeString(
       10,
+      f
+    );
+  }
+  f = message.getCorporateBrandingImage();
+  if (f.length > 0) {
+    writer.writeString(
+      11,
       f
     );
   }
@@ -5403,6 +5415,24 @@ proto.data.Organization.prototype.getFax = function() {
  */
 proto.data.Organization.prototype.setFax = function(value) {
   return jspb.Message.setProto3StringField(this, 10, value);
+};
+
+
+/**
+ * optional string corporate_branding_image = 11;
+ * @return {string}
+ */
+proto.data.Organization.prototype.getCorporateBrandingImage = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 11, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.data.Organization} returns this
+ */
+proto.data.Organization.prototype.setCorporateBrandingImage = function(value) {
+  return jspb.Message.setProto3StringField(this, 11, value);
 };
 
 

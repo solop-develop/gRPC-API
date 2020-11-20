@@ -2995,7 +2995,7 @@ proto.data.PointOfSalesRequest.prototype.toObject = function(opt_includeInstance
 proto.data.PointOfSalesRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     clientRequest: (f = msg.getClientRequest()) && proto_client_pb.ClientRequest.toObject(includeInstance, f),
-    pointOfSalesUuid: jspb.Message.getFieldWithDefault(msg, 2, "")
+    posUuid: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -3039,7 +3039,7 @@ proto.data.PointOfSalesRequest.deserializeBinaryFromReader = function(msg, reade
       break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
-      msg.setPointOfSalesUuid(value);
+      msg.setPosUuid(value);
       break;
     default:
       reader.skipField();
@@ -3078,7 +3078,7 @@ proto.data.PointOfSalesRequest.serializeBinaryToWriter = function(message, write
       proto_client_pb.ClientRequest.serializeBinaryToWriter
     );
   }
-  f = message.getPointOfSalesUuid();
+  f = message.getPosUuid();
   if (f.length > 0) {
     writer.writeString(
       2,
@@ -3126,10 +3126,10 @@ proto.data.PointOfSalesRequest.prototype.hasClientRequest = function() {
 
 
 /**
- * optional string point_of_sales_uuid = 2;
+ * optional string pos_uuid = 2;
  * @return {string}
  */
-proto.data.PointOfSalesRequest.prototype.getPointOfSalesUuid = function() {
+proto.data.PointOfSalesRequest.prototype.getPosUuid = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
@@ -3138,7 +3138,7 @@ proto.data.PointOfSalesRequest.prototype.getPointOfSalesUuid = function() {
  * @param {string} value
  * @return {!proto.data.PointOfSalesRequest} returns this
  */
-proto.data.PointOfSalesRequest.prototype.setPointOfSalesUuid = function(value) {
+proto.data.PointOfSalesRequest.prototype.setPosUuid = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
 };
 
@@ -6585,7 +6585,7 @@ proto.data.OrderLine.toObject = function(includeInstance, msg) {
     orderUuid: jspb.Message.getFieldWithDefault(msg, 2, ""),
     product: (f = msg.getProduct()) && proto_core_functionality_pb.Product.toObject(includeInstance, f),
     charge: (f = msg.getCharge()) && proto_core_functionality_pb.Charge.toObject(includeInstance, f),
-    linedescription: jspb.Message.getFieldWithDefault(msg, 5, ""),
+    lineDescription: jspb.Message.getFieldWithDefault(msg, 5, ""),
     description: jspb.Message.getFieldWithDefault(msg, 6, ""),
     warehouse: (f = msg.getWarehouse()) && proto_core_functionality_pb.Warehouse.toObject(includeInstance, f),
     quantity: (f = msg.getQuantity()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
@@ -6650,7 +6650,7 @@ proto.data.OrderLine.deserializeBinaryFromReader = function(msg, reader) {
       break;
     case 5:
       var value = /** @type {string} */ (reader.readString());
-      msg.setLinedescription(value);
+      msg.setLineDescription(value);
       break;
     case 6:
       var value = /** @type {string} */ (reader.readString());
@@ -6749,7 +6749,7 @@ proto.data.OrderLine.serializeBinaryToWriter = function(message, writer) {
       proto_core_functionality_pb.Charge.serializeBinaryToWriter
     );
   }
-  f = message.getLinedescription();
+  f = message.getLineDescription();
   if (f.length > 0) {
     writer.writeString(
       5,
@@ -6932,10 +6932,10 @@ proto.data.OrderLine.prototype.hasCharge = function() {
 
 
 /**
- * optional string lineDescription = 5;
+ * optional string line_description = 5;
  * @return {string}
  */
-proto.data.OrderLine.prototype.getLinedescription = function() {
+proto.data.OrderLine.prototype.getLineDescription = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
 };
 
@@ -6944,7 +6944,7 @@ proto.data.OrderLine.prototype.getLinedescription = function() {
  * @param {string} value
  * @return {!proto.data.OrderLine} returns this
  */
-proto.data.OrderLine.prototype.setLinedescription = function(value) {
+proto.data.OrderLine.prototype.setLineDescription = function(value) {
   return jspb.Message.setProto3StringField(this, 5, value);
 };
 
