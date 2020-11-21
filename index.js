@@ -30,8 +30,7 @@ class Api {
       this.dictionaryHost = adempiereConfig.dictionaryHost
       this.version = adempiereConfig.version
       this.language = adempiereConfig.language
-      this.user = adempiereConfig.user
-      this.password = adempiereConfig.password
+      this.token = adempiereConfig.token
     }
     this.initAccessService()
     this.initEnrollmentService()
@@ -53,8 +52,7 @@ class Api {
     const current = this
     const language = this.language
     this.login({
-      user: this.user,
-      password: this.password
+      token: this.token
     }, function(err, response) {
       if(response) {
         const { ClientRequest } = require('./src/grpc/proto/client_pb.js')
@@ -212,16 +210,20 @@ class Api {
   login({
     user,
     password,
+    token,
     roleUuid,
     organizationUuid,
+    warehouseUuid,
     language
   }, callback) {
     const { LoginRequest } = require('./src/grpc/proto/access_pb.js')
     const request = new LoginRequest()
     request.setUserName(user)
     request.setUserPass(password)
+    request.setToken(token)
     request.setRoleUuid(roleUuid)
     request.setOrganizationUuid(organizationUuid)
+    request.setWarehouseUuid(warehouseUuid)
     request.setLanguage(language)
     request.setClientVersion(this.version)
     this.getAccessService().runLogin(request, callback)
