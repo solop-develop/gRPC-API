@@ -44,6 +44,17 @@ function deserialize_data_CreateOrderRequest(buffer_arg) {
   return proto_point_of_sales_pb.CreateOrderRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_data_CreatePaymentRequest(arg) {
+  if (!(arg instanceof proto_point_of_sales_pb.CreatePaymentRequest)) {
+    throw new Error('Expected argument of type data.CreatePaymentRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_CreatePaymentRequest(buffer_arg) {
+  return proto_point_of_sales_pb.CreatePaymentRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_data_DeleteOrderLineRequest(arg) {
   if (!(arg instanceof proto_point_of_sales_pb.DeleteOrderLineRequest)) {
     throw new Error('Expected argument of type data.DeleteOrderLineRequest');
@@ -64,6 +75,17 @@ function serialize_data_DeleteOrderRequest(arg) {
 
 function deserialize_data_DeleteOrderRequest(buffer_arg) {
   return proto_point_of_sales_pb.DeleteOrderRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_data_DeletePaymentRequest(arg) {
+  if (!(arg instanceof proto_point_of_sales_pb.DeletePaymentRequest)) {
+    throw new Error('Expected argument of type data.DeletePaymentRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_DeletePaymentRequest(buffer_arg) {
+  return proto_point_of_sales_pb.DeletePaymentRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_data_Empty(arg) {
@@ -165,6 +187,28 @@ function deserialize_data_ListOrdersResponse(buffer_arg) {
   return proto_point_of_sales_pb.ListOrdersResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_data_ListPaymentsRequest(arg) {
+  if (!(arg instanceof proto_point_of_sales_pb.ListPaymentsRequest)) {
+    throw new Error('Expected argument of type data.ListPaymentsRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_ListPaymentsRequest(buffer_arg) {
+  return proto_point_of_sales_pb.ListPaymentsRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_data_ListPaymentsResponse(arg) {
+  if (!(arg instanceof proto_point_of_sales_pb.ListPaymentsResponse)) {
+    throw new Error('Expected argument of type data.ListPaymentsResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_ListPaymentsResponse(buffer_arg) {
+  return proto_point_of_sales_pb.ListPaymentsResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_data_ListPointOfSalesRequest(arg) {
   if (!(arg instanceof proto_point_of_sales_pb.ListPointOfSalesRequest)) {
     throw new Error('Expected argument of type data.ListPointOfSalesRequest');
@@ -231,6 +275,17 @@ function deserialize_data_OrderLine(buffer_arg) {
   return proto_point_of_sales_pb.OrderLine.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_data_Payment(arg) {
+  if (!(arg instanceof proto_point_of_sales_pb.Payment)) {
+    throw new Error('Expected argument of type data.Payment');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_Payment(buffer_arg) {
+  return proto_point_of_sales_pb.Payment.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_data_PointOfSales(arg) {
   if (!(arg instanceof proto_point_of_sales_pb.PointOfSales)) {
     throw new Error('Expected argument of type data.PointOfSales');
@@ -284,6 +339,17 @@ function serialize_data_UpdateOrderRequest(arg) {
 
 function deserialize_data_UpdateOrderRequest(buffer_arg) {
   return proto_point_of_sales_pb.UpdateOrderRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_data_UpdatePaymentRequest(arg) {
+  if (!(arg instanceof proto_point_of_sales_pb.UpdatePaymentRequest)) {
+    throw new Error('Expected argument of type data.UpdatePaymentRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_UpdatePaymentRequest(buffer_arg) {
+  return proto_point_of_sales_pb.UpdatePaymentRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 
@@ -456,6 +522,55 @@ getKeyLayout: {
     requestDeserialize: deserialize_data_GetKeyLayoutRequest,
     responseSerialize: serialize_data_KeyLayout,
     responseDeserialize: deserialize_data_KeyLayout,
+  },
+  // 	Payments
+// 	Create Payment
+createPayment: {
+    path: '/data.Store/CreatePayment',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_point_of_sales_pb.CreatePaymentRequest,
+    responseType: proto_point_of_sales_pb.Payment,
+    requestSerialize: serialize_data_CreatePaymentRequest,
+    requestDeserialize: deserialize_data_CreatePaymentRequest,
+    responseSerialize: serialize_data_Payment,
+    responseDeserialize: deserialize_data_Payment,
+  },
+  // 	Update Payment
+updatePayment: {
+    path: '/data.Store/UpdatePayment',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_point_of_sales_pb.UpdatePaymentRequest,
+    responseType: proto_point_of_sales_pb.Payment,
+    requestSerialize: serialize_data_UpdatePaymentRequest,
+    requestDeserialize: deserialize_data_UpdatePaymentRequest,
+    responseSerialize: serialize_data_Payment,
+    responseDeserialize: deserialize_data_Payment,
+  },
+  // 	Delete Payment
+deletePayment: {
+    path: '/data.Store/DeletePayment',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_point_of_sales_pb.DeletePaymentRequest,
+    responseType: proto_base_data_type_pb.Empty,
+    requestSerialize: serialize_data_DeletePaymentRequest,
+    requestDeserialize: deserialize_data_DeletePaymentRequest,
+    responseSerialize: serialize_data_Empty,
+    responseDeserialize: deserialize_data_Empty,
+  },
+  // 	List Payments
+listPayments: {
+    path: '/data.Store/ListPayments',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_point_of_sales_pb.ListPaymentsRequest,
+    responseType: proto_point_of_sales_pb.ListPaymentsResponse,
+    requestSerialize: serialize_data_ListPaymentsRequest,
+    requestDeserialize: deserialize_data_ListPaymentsRequest,
+    responseSerialize: serialize_data_ListPaymentsResponse,
+    responseDeserialize: deserialize_data_ListPaymentsResponse,
   },
 };
 

@@ -1901,8 +1901,7 @@ class Api {
   }, callback) {
     const { ListOrdersRequest } = require('./src/grpc/proto/point_of_sales_pb.js')
     const request = new ListOrdersRequest()
-    const { convertCriteriaToGRPC } = require('./lib/convertValues.js')
-    const { getDecimalFromNumber } = require('./lib/convertValues.js')
+    const { convertCriteriaToGRPC, getDecimalFromNumber } = require('./lib/convertValues.js')
     request.setCriteria(convertCriteriaToGRPC({
       tableName,
       filters,
@@ -1948,6 +1947,110 @@ class Api {
     request.setPageToken(pageToken)
     request.setClientRequest(this.createClientRequest(token, language))
     this.getPosService().listOrderLines(request, callback)
+  }
+
+  //  Payments
+  //  Create Payment
+  createPayment({
+    token,
+    posUuid,
+    orderUuid,
+    invoiceUuid,
+    bankUuid,
+    referenceNo,
+    description,
+    amount,
+    paymentDate,
+    tenderTypeCode,
+    currencyUuid,
+    language
+  }, callback) {
+    const { CreatePaymentRequest } = require('./src/grpc/proto/point_of_sales_pb.js')
+    const { convertValueToGRPC, getDecimalFromNumber } = require('./lib/convertValues.js')
+    const request = new CreatePaymentRequest()
+    request.setPosUuid(posUuid)
+    request.setOrderUuid(orderUuid)
+    if (bankUuid) {
+      request.setBankUuid(bankUuid)
+    }
+    if (invoiceUuid) {
+      request.setInvoiceUuid(invoiceUuid)
+    }
+    if (referenceNo) {
+      request.setReferenceNo(referenceNo)
+    }
+    if (description) {
+      request.setDescription(description)
+    }
+    if (tenderTypeCode) {
+      request.setTenderTypeCode(tenderTypeCode)
+    }
+    if (currencyUuid) {
+      request.setCurrencyUuid(currencyUuid)
+    }
+    if(amount) {
+      request.setAmount(getDecimalFromNumber(amount))
+    }
+    if (paymentDate) {
+      request.setPaymentDate(convertValueToGRPC({
+        value: paymentDate
+      }))
+    }
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getPosService().createPayment(request, callback)
+  }
+
+  //  Update Payment
+  updatePayment({
+    token,
+    paymentUuid,
+    bankUuid,
+    referenceNo,
+    description,
+    amount,
+    paymentDate,
+    tenderTypeCode,
+    language
+  }, callback) {
+    const { UpdatePaymentRequest } = require('./src/grpc/proto/point_of_sales_pb.js')
+    const { convertValueToGRPC, getDecimalFromNumber } = require('./lib/convertValues.js')
+    const request = new UpdatePaymentRequest()
+    request.setPaymentUuid(paymentUuid)
+    if (bankUuid) {
+      request.setBankUuid(bankUuid)
+    }
+    if (referenceNo) {
+      request.setReferenceNo(referenceNo)
+    }
+    if (description) {
+      request.setDescription(description)
+    }
+    if (tenderTypeCode) {
+      request.setTenderTypeCode(tenderTypeCode)
+    }
+    if(amount) {
+      request.setAmount(getDecimalFromNumber(amount))
+    }
+    if (paymentDate) {
+      request.setPaymentDate(convertValueToGRPC({
+        value: paymentDate
+      }))
+    }
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getPosService().updatePayment(request, callback)
+  }
+
+  //  Delete Payment
+  deletePayment({
+    token,
+    paymentUuid,
+    language
+  }, callback) {
+    const { DeletePaymentRequest } = require('./src/grpc/proto/point_of_sales_pb.js')
+    const request = new DeletePaymentRequest()
+    request.setPaymentUuid(paymentUuid)
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getPosService().deletePayment(request, callback)
   }
 
   //  Get Sales Order
