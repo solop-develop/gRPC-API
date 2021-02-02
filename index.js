@@ -2053,6 +2053,46 @@ class Api {
     this.getPosService().deletePayment(request, callback)
   }
 
+  //  List Payments
+  listPayments({
+    token,
+    posUuid,
+    orderUuid,
+    tableName,
+    //  DSL
+    filters,
+    //  Custom Query
+    query,
+    whereClause,
+    orderByClause,
+    limit,
+    pageSize,
+    pageToken,
+    language
+  }, callback) {
+    const { ListPaymentsRequest } = require('./src/grpc/proto/point_of_sales_pb.js')
+    const { convertCriteriaToGRPC } = require('./lib/convertValues.js')
+    const request = new ListPaymentsRequest()
+    request.setCriteria(convertCriteriaToGRPC({
+      tableName,
+      filters,
+      query,
+      whereClause,
+      orderByClause,
+      limit
+    }))
+    if (posUuid) {
+      request.setPosUuid(posUuid)
+    }
+    if (orderUuid) {
+      request.setOrderUuid(orderUuid)
+    }
+    request.setPageSize(pageSize)
+    request.setPageToken(pageToken)
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getPosService().listPayments(request, callback)
+  }
+
   //  Get Sales Order
   getKeyLayout({
     token,
