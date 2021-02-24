@@ -1,7 +1,8 @@
 /*************************************************************************************
- * Product: ADempiere gRPC Dictionary Client                       		               *
+ * Product: ADempiere gRPC Dictionary Client                                         *
  * Copyright (C) 2012-2018 E.R.P. Consultores y Asociados, C.A.                      *
- * Contributor(s): Yamel Senih ysenih@erpya.com				  		                         *
+ * Contributor(s): Yamel Senih ysenih@erpya.com                                      *
+ * Contributor(s): Edwin Betanourt EdwinBetanc0urt@outlook.com                       *
  * This program is free software: you can redistribute it and/or modify              *
  * it under the terms of the GNU General Public License as published by              *
  * the Free Software Foundation, either version 3 of the License, or                 *
@@ -639,29 +640,46 @@ class Api {
     selections,
     language
   }, callback) {
-    const { RunBusinessProcessRequest } = require('./src/grpc/proto/business_pb.js')
-    const { convertParameterToGRPC } = require('./lib/convertValues.js');
-    const request = new RunBusinessProcessRequest()
-    request.setTableName(tableName)
-    request.setId(id)
-    request.setUuid(uuid)
-    request.setProcessUuid(processUuid)
-    request.setTableSelectedId(tableSelectedId)
-    request.setReportType(reportType)
-    request.setPrintFormatUuid(printFormatUuid)
-    request.setReportViewUuid(reportViewUuid)
-    request.setIsSummary(isSummary)
-    // selections
-    if(parameters) {
+    const { RunBusinessProcessRequest } = require('./src/grpc/proto/business_pb.js');
+    const request = new RunBusinessProcessRequest();
+
+    request.setTableName(tableName);
+    request.setId(id);
+    request.setUuid(uuid);
+    request.setProcessUuid(processUuid);
+    request.setTableSelectedId(tableSelectedId);
+    request.setReportType(reportType);
+    request.setPrintFormatUuid(printFormatUuid);
+    request.setReportViewUuid(reportViewUuid);
+    request.setIsSummary(isSummary);
+
+    // set process parameters list
+    if (parameters && parameters.length) {
+      const { convertParameterToGRPC } = require('./lib/convertValues.js');
       parameters.forEach(parameter => {
-        request.addParameters(convertParameterToGRPC({
-          columnName: parameter.key,
-          value: parameter.value
-        }))
-      })
+        // parameter format = { columName, value }
+        request.addParameters(
+          convertParameterToGRPC({
+            columnName: parameter.key,
+            value: parameter.value
+          })
+        );
+      });
     }
-    request.setClientRequest(this.createClientRequest(token, language))
-    this.getBusinessService().runBusinessProcess(request, callback)
+
+    // browser records selections list
+    if (selections && selections.length) {
+      const { convertSelectionToGRPC } = require('./lib/convertValues.js');
+
+      selections.forEach(record => {
+        // selection format = { selectionId: number, selectionValues: [{ columName, value }] }
+        const convertedRecord = convertSelectionToGRPC(record);
+        processRequest.addSelections(convertedRecord);
+      });
+    }
+
+    request.setClientRequest(this.createClientRequest(token, language));
+    this.getBusinessService().runBusinessProcess(request, callback);
   }
 
   //  User Interface
