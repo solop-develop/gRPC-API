@@ -1,7 +1,15 @@
 {
   "name": "@adempiere/grpc-api",
-  "version": "1.3.5",
+  "version": "1.3.6",
   "description": "ADempiere Web Store write in Javascript for a node service",
+  "author": "Yamel Senih",
+  "contributors": [
+    {
+      "name": "Edwin Betancourt",
+      "email": "EdwinBetanc0urt@outlook.com",
+      "url": "https://github.com/EdwinBetanc0urt/"
+    }
+  ],
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,7 +18,6 @@
     "type": "git",
     "url": "git+https://github.com/adempiere/gRPC-API.git"
   },
-  "author": "Yamel Senih",
   "license": "GPL-3.0-or-later",
   "bugs": {
     "url": "https://github.com/erpcya/gRPC-API/issues"
