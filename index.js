@@ -2,6 +2,7 @@
  * Product: ADempiere gRPC Dictionary Client                                         *
  * Copyright (C) 2012-2018 E.R.P. Consultores y Asociados, C.A.                      *
  * Contributor(s): Yamel Senih ysenih@erpya.com                                      *
+ * Contributor(s): Edwin Betancourt <EdwinBetanc0urt@outlook.com>                    *
  * This program is free software: you can redistribute it and/or modify              *
  * it under the terms of the GNU General Public License as published by              *
  * the Free Software Foundation, either version 3 of the License, or                 *
@@ -625,7 +626,6 @@ class Api {
 
   /**
    * Run a business process
-   * @author Edwin Betancourt <EdwinBetanc0urt@outlook.com>
    */
   runProcess({
     token,
