@@ -308,6 +308,17 @@ function deserialize_data_PointOfSalesRequest(buffer_arg) {
   return proto_point_of_sales_pb.PointOfSalesRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_data_ProcessOrderRequest(arg) {
+  if (!(arg instanceof proto_point_of_sales_pb.ProcessOrderRequest)) {
+    throw new Error('Expected argument of type data.ProcessOrderRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_ProcessOrderRequest(buffer_arg) {
+  return proto_point_of_sales_pb.ProcessOrderRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_data_ProductPrice(arg) {
   if (!(arg instanceof proto_core_functionality_pb.ProductPrice)) {
     throw new Error('Expected argument of type data.ProductPrice');
@@ -571,6 +582,18 @@ listPayments: {
     requestDeserialize: deserialize_data_ListPaymentsRequest,
     responseSerialize: serialize_data_ListPaymentsResponse,
     responseDeserialize: deserialize_data_ListPaymentsResponse,
+  },
+  // 	Process Order
+processOrder: {
+    path: '/data.Store/ProcessOrder',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_point_of_sales_pb.ProcessOrderRequest,
+    responseType: proto_point_of_sales_pb.Order,
+    requestSerialize: serialize_data_ProcessOrderRequest,
+    requestDeserialize: deserialize_data_ProcessOrderRequest,
+    responseSerialize: serialize_data_Order,
+    responseDeserialize: deserialize_data_Order,
   },
 };
 

@@ -2113,6 +2113,54 @@ class Api {
     this.getPosService().listPayments(request, callback)
   }
 
+  //  Create Payment
+  processOrder({
+    token,
+    posUuid,
+    orderUuid,
+    payments,
+    language
+  }, callback) {
+    const { CreatePaymentRequest, ProcessOrderRequest } = require('./src/grpc/proto/point_of_sales_pb.js')
+    const { convertValueToGRPC, getDecimalFromNumber } = require('./lib/convertValues.js')
+    const request = new ProcessOrderRequest()
+    request.setPosUuid(posUuid)
+    request.setOrderUuid(orderUuid)
+    //  Set payment data
+    payments.forEach(payment => {
+      const paymentRequest = new CreatePaymentRequest()
+      if (payment.bankUuid) {
+        paymentRequest.setBankUuid(payment.bankUuid)
+      }
+      if (payment.invoiceUuid) {
+        paymentRequest.setInvoiceUuid(payment.invoiceUuid)
+      }
+      if (payment.referenceNo) {
+        paymentRequest.setReferenceNo(payment.referenceNo)
+      }
+      if (payment.description) {
+        paymentRequest.setDescription(payment.description)
+      }
+      if (payment.tenderTypeCode) {
+        paymentRequest.setTenderTypeCode(payment.tenderTypeCode)
+      }
+      if (payment.currencyUuid) {
+        paymentRequest.setCurrencyUuid(payment.currencyUuid)
+      }
+      if(payment.amount) {
+        paymentRequest.setAmount(getDecimalFromNumber(payment.amount))
+      }
+      if (payment.paymentDate) {
+        paymentRequest.setPaymentDate(convertValueToGRPC({
+          value: payment.paymentDate
+        }))
+      }
+      request.addPayments(paymentRequest)
+    })
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getPosService().processOrder(request, callback)
+  }
+
   //  Get Sales Order
   getKeyLayout({
     token,

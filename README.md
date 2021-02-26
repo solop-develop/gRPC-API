@@ -95,18 +95,22 @@ sh generate-stub.sh
 ```
 
 The result is generated on: src/grpc folder
-- `access_grpc_web_pb.js`
+- `access_grpc_pb.js`
 - `access_pb.js`
-- `client_pb.js`
-- `client_grpc_web_pb.js`
 - `base_data_type_pb.js`
 - `base_data_type_grpc_web_pb.js`
+- `business_pb.js`
+- `business_grpc_web_pb.js`
+- `client_pb.js`
+- `client_grpc_web_pb.js`
 - `core_functionality_pb.js`
 - `core_functionality_grpc_web_pb.js`
 - `dictionary_pb.js`
 - `dictionary_grpc_web_pb.js`
-- `business_pb.js`
-- `business_grpc_web_pb.js`
+- `enrollment_grpc_pb.js`
+- `enrollment_pb.js`
+- `point_of_sales_grpc_pb.js`
+- `point_of_sales_pb.js`
 
 ## Sponsors
 
