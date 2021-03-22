@@ -10735,7 +10735,7 @@ proto.data.Key.toObject = function(includeInstance, msg) {
     sequence: jspb.Message.getFieldWithDefault(msg, 7, 0),
     spanX: jspb.Message.getFieldWithDefault(msg, 8, 0),
     spanY: jspb.Message.getFieldWithDefault(msg, 9, 0),
-    productUuid: jspb.Message.getFieldWithDefault(msg, 10, ""),
+    productValue: jspb.Message.getFieldWithDefault(msg, 10, ""),
     quantity: (f = msg.getQuantity()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
     resourceReference: (f = msg.getResourceReference()) && proto_base_data_type_pb.ResourceReference.toObject(includeInstance, f)
   };
@@ -10812,7 +10812,7 @@ proto.data.Key.deserializeBinaryFromReader = function(msg, reader) {
       break;
     case 10:
       var value = /** @type {string} */ (reader.readString());
-      msg.setProductUuid(value);
+      msg.setProductValue(value);
       break;
     case 11:
       var value = new proto_base_data_type_pb.Decimal;
@@ -10916,7 +10916,7 @@ proto.data.Key.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-  f = message.getProductUuid();
+  f = message.getProductValue();
   if (f.length > 0) {
     writer.writeString(
       10,
@@ -11105,10 +11105,10 @@ proto.data.Key.prototype.setSpanY = function(value) {
 
 
 /**
- * optional string product_uuid = 10;
+ * optional string product_value = 10;
  * @return {string}
  */
-proto.data.Key.prototype.getProductUuid = function() {
+proto.data.Key.prototype.getProductValue = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 10, ""));
 };
 
@@ -11117,7 +11117,7 @@ proto.data.Key.prototype.getProductUuid = function() {
  * @param {string} value
  * @return {!proto.data.Key} returns this
  */
-proto.data.Key.prototype.setProductUuid = function(value) {
+proto.data.Key.prototype.setProductValue = function(value) {
   return jspb.Message.setProto3StringField(this, 10, value);
 };
 
