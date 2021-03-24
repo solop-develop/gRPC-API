@@ -98,6 +98,17 @@ function deserialize_data_DeleteEntityRequest(buffer_arg) {
   return proto_business_pb.DeleteEntityRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_data_DeletePreferenceRequest(arg) {
+  if (!(arg instanceof proto_business_pb.DeletePreferenceRequest)) {
+    throw new Error('Expected argument of type data.DeletePreferenceRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_DeletePreferenceRequest(buffer_arg) {
+  return proto_business_pb.DeletePreferenceRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_data_Empty(arg) {
   if (!(arg instanceof proto_base_data_type_pb.Empty)) {
     throw new Error('Expected argument of type data.Empty');
@@ -681,6 +692,17 @@ function deserialize_data_LookupItem(buffer_arg) {
   return proto_business_pb.LookupItem.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_data_Preference(arg) {
+  if (!(arg instanceof proto_business_pb.Preference)) {
+    throw new Error('Expected argument of type data.Preference');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_Preference(buffer_arg) {
+  return proto_business_pb.Preference.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_data_PrivateAccess(arg) {
   if (!(arg instanceof proto_business_pb.PrivateAccess)) {
     throw new Error('Expected argument of type data.PrivateAccess');
@@ -767,6 +789,17 @@ function serialize_data_RunCalloutRequest(arg) {
 
 function deserialize_data_RunCalloutRequest(buffer_arg) {
   return proto_business_pb.RunCalloutRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_data_SetPreferenceRequest(arg) {
+  if (!(arg instanceof proto_business_pb.SetPreferenceRequest)) {
+    throw new Error('Expected argument of type data.SetPreferenceRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_SetPreferenceRequest(buffer_arg) {
+  return proto_business_pb.SetPreferenceRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_data_UnlockPrivateAccessRequest(arg) {
@@ -1121,6 +1154,30 @@ getAttachment: {
     requestDeserialize: deserialize_data_GetAttachmentRequest,
     responseSerialize: serialize_data_Attachment,
     responseDeserialize: deserialize_data_Attachment,
+  },
+  // 	Set Preference from field
+setPreference: {
+    path: '/data.UserInterface/SetPreference',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_business_pb.SetPreferenceRequest,
+    responseType: proto_business_pb.Preference,
+    requestSerialize: serialize_data_SetPreferenceRequest,
+    requestDeserialize: deserialize_data_SetPreferenceRequest,
+    responseSerialize: serialize_data_Preference,
+    responseDeserialize: deserialize_data_Preference,
+  },
+  // 	Delete Preference from field
+deletePreference: {
+    path: '/data.UserInterface/DeletePreference',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_business_pb.DeletePreferenceRequest,
+    responseType: proto_base_data_type_pb.Empty,
+    requestSerialize: serialize_data_DeletePreferenceRequest,
+    requestDeserialize: deserialize_data_DeletePreferenceRequest,
+    responseSerialize: serialize_data_Empty,
+    responseDeserialize: deserialize_data_Empty,
   },
 };
 

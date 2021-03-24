@@ -905,6 +905,59 @@ class Api {
     this.getUIService().getPrivateAccess(request, callback)
   }
 
+  // Set preference value for a attribute
+  setPreference({
+    token,
+    containerUuid,
+    columnName,
+    isForCurrentUser,
+    isForCurrentClient,
+    isForCurrentOrganization,
+    isForCurrentContainer,
+    value,
+    language
+  }, callback) {
+    const { SetPreferenceRequest } = require('./src/grpc/proto/business_pb.js')
+    const request = new SetPreferenceRequest()
+    if(containerUuid) {
+      request.setContainerUuid(containerUuid)
+    }
+    request.setColumnName(columnName)
+    request.setValue(value)
+    request.setIsForCurrentUser(isForCurrentUser)
+    request.setIsForCurrentClient(isForCurrentClient)
+    request.setIsForCurrentOrganization(isForCurrentOrganization)
+    request.setIsForCurrentContainer(isForCurrentContainer)
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getUIService().setPreference(request, callback)
+  }
+
+  // Delete preference based on criteria for it
+  deletePreference({
+    token,
+    containerUuid,
+    columnName,
+    isForCurrentUser,
+    isForCurrentClient,
+    isForCurrentOrganization,
+    isForCurrentContainer,
+    value,
+    language
+  }, callback) {
+    const { DeletePreferenceRequest } = require('./src/grpc/proto/business_pb.js')
+    const request = new DeletePreferenceRequest()
+    if(containerUuid) {
+      request.setContainerUuid(containerUuid)
+    }
+    request.setColumnName(columnName)
+    request.setIsForCurrentUser(isForCurrentUser)
+    request.setIsForCurrentClient(isForCurrentClient)
+    request.setIsForCurrentOrganization(isForCurrentOrganization)
+    request.setIsForCurrentContainer(isForCurrentContainer)
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getUIService().deletePreference(request, callback)
+  }
+
   //  Get Context Information Value
   getContextInfoValue({
     token,
