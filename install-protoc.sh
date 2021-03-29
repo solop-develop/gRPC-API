@@ -99,21 +99,20 @@ if echo "$answer" | grep -iq "^y" ;then
     installGrpcWeb $VERSION_GRPC_WEB
 else
     echo "No"
-    exit 0
 fi
 
 
 ###         GRPC-TOOLS-NODE-PROTOC
 
-echo -n "Install 'grpc-tools (grpc_tools_node_protoc)' as global package (y/n)? "
+echo -n "Install 'grpc-tools (grpc_tools_node_protoc)' as global npm package (y/n)? "
 old_stty_cfg=$(stty -g)
 stty raw -echo
 answer=$( while ! head -c 1 | grep -i '[ny]' ;do true ;done )
 stty $old_stty_cfg
 if echo "$answer" | grep -iq "^y" ;then
     echo "Yes"
-    npm install -g grpc-tools
+    sudo npm install -g grpc-tools
+    echo "The new version of grpc-tools has been installed."
 else
     echo "No"
-    exit 0
 fi
