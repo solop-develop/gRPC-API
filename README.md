@@ -70,7 +70,7 @@ For recreate stub class you must have follow:
 - Also you can see it: [gRPC-web](https://github.com/grpc/grpc-web)
 - [gRPC](https://grpc.io/docs/tutorials/basic/web.html)
 
-Note: You can also install `protoc` and `protoc-gen-grpc-web` by going to the repository directory and run the command:
+Note: You can also install `protoc`, `grpc-tools` and `protoc-gen-grpc-web` (optionally) by going to the repository directory and run the command:
 ```Shell
 sh install-protoc.sh
 ```
@@ -82,10 +82,10 @@ protoc --version
 
 After installed it just go to source code folder an run it:
 
-Run Access gRPC
+* Run gRPC:
 ```sh
-cd ../../protos
 yarn global add grpc-tools
+
 grpc_tools_node_protoc --js_out=import_style=commonjs,binary:src/grpc --grpc_out=src/grpc --plugin=protoc-gen-grpc=`which grpc_tools_node_protoc_plugin` proto/access.proto proto/client.proto proto/base_data_type.proto proto/core_functionality.proto proto/dictionary.proto proto/business.proto proto/point_of_sales.proto proto/enrollment.proto
 ```
 
@@ -94,19 +94,38 @@ Or run:
 sh generate-stub.sh
 ```
 
+Generate with npm (Recommended):
+```
+# install dependecies and dev dependencies
+npm i
+
+# generate all stub
+npm run stub
+```
+Note to generate specific proto definition:
+* To access: `npm run stub:access`
+* To base data type: `npm run stub:base_data_type`
+* To business: `npm run stub:business`
+* To client: `npm run stub:client`
+* To core functionality: `npm run stub:core_functionality`
+* To dictionary: `npm run stub:dictionary`
+* To enrollment: `npm run stub:enrollment`
+* To point of sales: `npm run stub:point_of_sales`
+
+
 The result is generated on: src/grpc folder
 - `access_grpc_pb.js`
 - `access_pb.js`
+- `base_data_type_grpc_pb.js`
 - `base_data_type_pb.js`
-- `base_data_type_grpc_web_pb.js`
+- `business_grpc_pb.js`
 - `business_pb.js`
-- `business_grpc_web_pb.js`
+- `client_grpc_pb.js`
 - `client_pb.js`
-- `client_grpc_web_pb.js`
+- `core_functionality_grpc_pb.js`
 - `core_functionality_pb.js`
-- `core_functionality_grpc_web_pb.js`
+- `dictionary_grpc_pb.js`
 - `dictionary_pb.js`
-- `dictionary_grpc_web_pb.js`
 - `enrollment_grpc_pb.js`
 - `enrollment_pb.js`
 - `point_of_sales_grpc_pb.js`

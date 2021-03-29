@@ -16,7 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.            *
 // **********************************************************************************
 'use strict';
-var grpc = require('grpc');
+var grpc = require('@grpc/grpc-js');
 var proto_enrollment_pb = require('../proto/enrollment_pb.js');
 
 function serialize_enrollment_ActivateUserRequest(arg) {
