@@ -106,7 +106,7 @@ sudo chmod 755 /usr/local/bin/$FILE
 It can be installed as a global dependency although it is already managed as a project dependency.
 
 Via npm:
-``shell
+```shell
 sudo npm install -g grpc-tools
 ```
 
