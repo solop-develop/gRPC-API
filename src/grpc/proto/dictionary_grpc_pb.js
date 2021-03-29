@@ -16,7 +16,7 @@
 // along with this program.	If not, see <https://www.gnu.org/licenses/>.            *
 // **********************************************************************************
 'use strict';
-var grpc = require('grpc');
+var grpc = require('@grpc/grpc-js');
 var proto_dictionary_pb = require('../proto/dictionary_pb.js');
 
 function serialize_dictionary_Browser(arg) {
