@@ -1,23 +1,33 @@
-# ADempiere Web backend API for gRPC
+ADempiere gRPC-API library to Node.js
+==============
+
+<div align="center">
+	<img src="https://camo.githubusercontent.com/911c5d54ded447403e56de3f96f332c06bceb8bd/68747470733a2f2f75706c6f61642e77696b696d656469612e6f72672f77696b6970656469612f636f6d6d6f6e732f622f62312f4164656d70696572652d6c6f676f2e706e67" style="text-align:center;" width="400" />
+</div>
+
+![node version](https://img.shields.io/badge/node-v10.x-blue.svg)
 [![npm version](https://img.shields.io/npm/v/@adempiere/grpc-api.svg)](https://www.npmjs.com/package/@adempiere/grpc-api)
 [![License](https://img.shields.io/npm/l/@adempiere/grpc-api.svg)](https://github.com/adempiere/gRPC-API/blob/master/LICENSE)
 [![Downloads](https://img.shields.io/npm/dm/@adempiere/grpc-api.svg)](https://www.npmjs.com/package/@adempiere/grpc-api)
 [![Dependencies](https://img.shields.io/librariesio/github/@adempiere/grpc-api.svg)](https://www.npmjs.com/package/@adempiere/grpc-api)
 
-ADempiere Client write in Javascript for gRPC service, use it for connect with:
+ADempiere node.js write in JavaScript for gRPC service, use it for connect with:
 
-- [Proxy-Adempiere-API](https://github.com/adempiere/proxy-adempiere-api), docker image [erpya/proxy-adempiere-api](https://hub.docker.com/r/erpya/proxy-adempiere-api).
 - [ADempiere-gRPC-Server](https://github.com/adempiere/adempiere-gRPC-Server), docker image [erpya/adempiere-grpc-all-in-one](https://hub.docker.com/r/erpya/adempiere-grpc-all-in-one).
+
+See also:
 - [ADempiere-Vue](https://github.com/adempiere/adempiere-vue), docker image [erpya/adempiere-vue](https://hub.docker.com/r/erpya/adempiere-vue).
+ service, use it for connect with:
+- [Proxy-Adempiere-API](https://github.com/adempiere/proxy-adempiere-api), docker image [erpya/proxy-adempiere-api](https://hub.docker.com/r/erpya/proxy-adempiere-api).
 
 
 ## Using it
 
-``` bash
+```shell
 # installing via NPM
 npm install @adempiere/grpc-api --save
 ```
-``` bash
+```shell
 # installing via Yarn
 yarn add @adempiere/grpc-api
 ```
@@ -101,14 +111,14 @@ sudo npm install -g grpc-tools
 ```
 
 Via yarn:
-```sh
+```shell
 yarn global add grpc-tools
 ```
 
 ## Generate Proto Stub:
 
 ### Generate with npm (Recommended):
-```
+```shell
 # install dependecies and dev dependencies
 npm i
 
