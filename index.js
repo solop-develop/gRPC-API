@@ -15,7 +15,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.            *
  ************************************************************************************/
 
-class Api {
+ class Api {
 
   /**
    * Constructor, No authentication required
@@ -903,6 +903,59 @@ class Api {
     request.setUuid(uuid)
     request.setClientRequest(this.createClientRequest(token, language))
     this.getUIService().getPrivateAccess(request, callback)
+  }
+
+  //  Get Record Access for current role
+  getRecordAccess({
+    token,
+    tableName,
+    id,
+    uuid,
+    language
+  }, callback) {
+    const { GetRecordAccessRequest } = require('./src/grpc/proto/business_pb.js')
+    const request = new GetRecordAccessRequest()
+    request.setTableName(tableName)
+    request.setId(id)
+    request.setUuid(uuid)
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getUIService().getRecordAccess(request, callback)
+  }
+
+  // Set Record Access for current role
+  setRecordAccess({
+    token,
+    tableName,
+    id,
+    uuid,
+    recordAccesses,
+    language
+  }, callback) {
+    const { SetRecordAccessRequest, RecordAccessRole } = require('./src/grpc/proto/business_pb.js')
+    const request = new SetRecordAccessRequest()
+    request.setTableName(tableName)
+    request.setId(id)
+    request.setUuid(uuid)
+    //  Set access for role
+    if(recordAccesses) {
+      recordAccesses.forEach(record => {
+        const recordAccessRole = new RecordAccessRole()
+        recordAccessRole.setRoleId(record.roleId)
+        if(record.roleUuid) {
+          recordAccessRole.setRoleUuid(record.roleUuid)
+        }
+        if(record.roleName) {
+          recordAccessRole.setRoleName(record.roleName)
+        }
+        recordAccessRole.setIsActive(record.isActive)
+        recordAccessRole.setIsExclude(record.isExclude)
+        recordAccessRole.setIsReadOnly(record.isReadOnly)
+        recordAccessRole.setIsDependentEntities(record.isDependentEntities)
+        request.addRecordAccesses(recordAccessRole)
+      })
+    }
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getUIService().setRecordAccess(request, callback)
   }
 
   // Set preference value for a attribute

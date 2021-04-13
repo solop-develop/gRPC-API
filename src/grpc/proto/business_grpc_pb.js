@@ -197,6 +197,17 @@ function deserialize_data_GetPrivateAccessRequest(buffer_arg) {
   return proto_business_pb.GetPrivateAccessRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_data_GetRecordAccessRequest(arg) {
+  if (!(arg instanceof proto_business_pb.GetRecordAccessRequest)) {
+    throw new Error('Expected argument of type data.GetRecordAccessRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_GetRecordAccessRequest(buffer_arg) {
+  return proto_business_pb.GetRecordAccessRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_data_GetReportOutputRequest(arg) {
   if (!(arg instanceof proto_business_pb.GetReportOutputRequest)) {
     throw new Error('Expected argument of type data.GetReportOutputRequest');
@@ -725,6 +736,17 @@ function deserialize_data_ProcessLog(buffer_arg) {
   return proto_base_data_type_pb.ProcessLog.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_data_RecordAccess(arg) {
+  if (!(arg instanceof proto_business_pb.RecordAccess)) {
+    throw new Error('Expected argument of type data.RecordAccess');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_RecordAccess(buffer_arg) {
+  return proto_business_pb.RecordAccess.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_data_ReportOutput(arg) {
   if (!(arg instanceof proto_base_data_type_pb.ReportOutput)) {
     throw new Error('Expected argument of type data.ReportOutput');
@@ -800,6 +822,17 @@ function serialize_data_SetPreferenceRequest(arg) {
 
 function deserialize_data_SetPreferenceRequest(buffer_arg) {
   return proto_business_pb.SetPreferenceRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_data_SetRecordAccessRequest(arg) {
+  if (!(arg instanceof proto_business_pb.SetRecordAccessRequest)) {
+    throw new Error('Expected argument of type data.SetRecordAccessRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_SetRecordAccessRequest(buffer_arg) {
+  return proto_business_pb.SetRecordAccessRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_data_UnlockPrivateAccessRequest(arg) {
@@ -1058,6 +1091,30 @@ unlockPrivateAccess: {
     requestDeserialize: deserialize_data_UnlockPrivateAccessRequest,
     responseSerialize: serialize_data_PrivateAccess,
     responseDeserialize: deserialize_data_PrivateAccess,
+  },
+  // Get Record Access
+getRecordAccess: {
+    path: '/data.UserInterface/GetRecordAccess',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_business_pb.GetRecordAccessRequest,
+    responseType: proto_business_pb.RecordAccess,
+    requestSerialize: serialize_data_GetRecordAccessRequest,
+    requestDeserialize: deserialize_data_GetRecordAccessRequest,
+    responseSerialize: serialize_data_RecordAccess,
+    responseDeserialize: deserialize_data_RecordAccess,
+  },
+  // Set Record Access
+setRecordAccess: {
+    path: '/data.UserInterface/SetRecordAccess',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_business_pb.SetRecordAccessRequest,
+    responseType: proto_business_pb.RecordAccess,
+    requestSerialize: serialize_data_SetRecordAccessRequest,
+    requestDeserialize: deserialize_data_SetRecordAccessRequest,
+    responseSerialize: serialize_data_RecordAccess,
+    responseDeserialize: deserialize_data_RecordAccess,
   },
   // 	Request Print Format List
 listPrintFormats: {
