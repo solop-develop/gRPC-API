@@ -11,7 +11,7 @@ ADempiere gRPC-API library to Node.js
 [![Downloads](https://img.shields.io/npm/dm/@adempiere/grpc-api.svg)](https://www.npmjs.com/package/@adempiere/grpc-api)
 [![Dependencies](https://img.shields.io/librariesio/github/@adempiere/grpc-api.svg)](https://www.npmjs.com/package/@adempiere/grpc-api)
 
-ADempiere node.js write in JavaScript for gRPC service, use it for connect with:
+ADempiere node.js write in JavaScript for gRPC service, currently is used as library of proxy ADempiere service and is published as NPM
 
 - [ADempiere-gRPC-Server](https://github.com/adempiere/adempiere-gRPC-Server), docker image [erpya/adempiere-grpc-all-in-one](https://hub.docker.com/r/erpya/adempiere-grpc-all-in-one).
 
