@@ -79,70 +79,70 @@
 
   // Init connection
   initAccessService() {
-    var grpc = require('grpc');
+    var grpc = require('@grpc/grpc-js');
     var services = require('./src/grpc/proto/access_grpc_pb');
     this.access = new services.SecurityClient(this.accessHost, grpc.credentials.createInsecure());
   }
 
   //  Init Enrollment
   initEnrollmentService() {
-    var grpc = require('grpc');
+    var grpc = require('@grpc/grpc-js');
     var services = require('./src/grpc/proto/enrollment_grpc_pb');
     this.enrollment = new services.RegisterClient(this.accessHost, grpc.credentials.createInsecure());
   }
 
   // Init connection
   initDictionaryService() {
-    var grpc = require('grpc');
+    var grpc = require('@grpc/grpc-js');
     var services = require('./src/grpc/proto/dictionary_grpc_pb');
     this.dictionary = new services.DictionaryClient(this.dictionaryHost, grpc.credentials.createInsecure());
   }
 
   // Init connection
   initUIService() {
-    var grpc = require('grpc');
+    var grpc = require('@grpc/grpc-js');
     var services = require('./src/grpc/proto/business_grpc_pb');
     this.ui = new services.UserInterfaceClient(this.businessHost, grpc.credentials.createInsecure());
   }
 
   // Init connection
   initLogService() {
-    var grpc = require('grpc');
+    var grpc = require('@grpc/grpc-js');
     var services = require('./src/grpc/proto/business_grpc_pb');
     this.entityLog = new services.LogsClient(this.businessHost, grpc.credentials.createInsecure());
   }
 
   // Init connection
   initBusinessService() {
-    var grpc = require('grpc');
+    var grpc = require('@grpc/grpc-js');
     var services = require('./src/grpc/proto/business_grpc_pb');
     this.business = new services.BusinessDataClient(this.businessHost, grpc.credentials.createInsecure());
   }
 
   // Init connection
   initWorkflowService() {
-    var grpc = require('grpc');
+    var grpc = require('@grpc/grpc-js');
     var services = require('./src/grpc/proto/business_grpc_pb');
     this.workflow = new services.WorkflowClient(this.businessHost, grpc.credentials.createInsecure());
   }
 
   // Init connection
   initDashboardService() {
-    var grpc = require('grpc');
+    var grpc = require('@grpc/grpc-js');
     var services = require('./src/grpc/proto/business_grpc_pb');
     this.dashboard = new services.DashboardingClient(this.businessHost, grpc.credentials.createInsecure());
   }
 
   // Init connection
   initCoreService() {
-    var grpc = require('grpc');
+    var grpc = require('@grpc/grpc-js');
     var services = require('./src/grpc/proto/core_functionality_grpc_pb');
     this.core = new services.CoreFunctionalityClient(this.businessHost, grpc.credentials.createInsecure());
   }
 
   // Init connection
   initPosService() {
-    var grpc = require('grpc');
+    var grpc = require('@grpc/grpc-js');
     var services = require('./src/grpc/proto/point_of_sales_grpc_pb');
     this.pos = new services.StoreClient(this.businessHost, grpc.credentials.createInsecure());
   }
