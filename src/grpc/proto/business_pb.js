@@ -6416,7 +6416,8 @@ proto.data.PrivateAccess.toObject = function(includeInstance, msg) {
   var f, obj = {
     tableName: jspb.Message.getFieldWithDefault(msg, 1, ""),
     id: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    uuid: jspb.Message.getFieldWithDefault(msg, 3, "")
+    uuid: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    isLocked: jspb.Message.getBooleanFieldWithDefault(msg, 4, false)
   };
 
   if (includeInstance) {
@@ -6465,6 +6466,10 @@ proto.data.PrivateAccess.deserializeBinaryFromReader = function(msg, reader) {
       var value = /** @type {string} */ (reader.readString());
       msg.setUuid(value);
       break;
+    case 4:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setIsLocked(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -6512,6 +6517,13 @@ proto.data.PrivateAccess.serializeBinaryToWriter = function(message, writer) {
   if (f.length > 0) {
     writer.writeString(
       3,
+      f
+    );
+  }
+  f = message.getIsLocked();
+  if (f) {
+    writer.writeBool(
+      4,
       f
     );
   }
@@ -6569,6 +6581,24 @@ proto.data.PrivateAccess.prototype.getUuid = function() {
  */
 proto.data.PrivateAccess.prototype.setUuid = function(value) {
   return jspb.Message.setProto3StringField(this, 3, value);
+};
+
+
+/**
+ * optional bool is_locked = 4;
+ * @return {boolean}
+ */
+proto.data.PrivateAccess.prototype.getIsLocked = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 4, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.data.PrivateAccess} returns this
+ */
+proto.data.PrivateAccess.prototype.setIsLocked = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 4, value);
 };
 
 
