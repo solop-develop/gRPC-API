@@ -2050,12 +2050,24 @@
     if(openAmount) {
       request.setOpenAmount(getDecimalFromNumber(openAmount))
     }
+    //  Date Order From
+    if (dateOrderedFrom) {
+      let parsedValue = Date.parse(dateOrderedFrom)
+      if (parsedValue && parsedValue > 0) {
+        request.setDateOrderedFrom(parsedValue)
+      }
+    }
+    //  Date Order To
+    if (dateOrderedTo) {
+      let parsedValue = Date.parse(dateOrderedTo)
+      if (parsedValue && parsedValue > 0) {
+        request.setDateOrderedTo(parsedValue)
+      }
+    }
     request.setIsPaid(isPaid)
     request.setIsProcessed(isProcessed)
     request.setIsAisleSeller(isAisleSeller)
     request.setIsInvoiced(isInvoiced)
-    request.setDateOrderedFrom(dateOrderedFrom)
-    request.setDateOrderedTo(dateOrderedTo)
     request.setSalesRepresentativeUuid(salesRepresentativeUuid)
     request.setPageSize(pageSize)
     request.setPageToken(pageToken)
@@ -2122,10 +2134,12 @@
     if(amount) {
       request.setAmount(getDecimalFromNumber(amount))
     }
+    //  Date of Payment
     if (paymentDate) {
-      request.setPaymentDate(convertValueToGRPC({
-        value: paymentDate
-      }))
+      let parsedValue = Date.parse(paymentDate)
+      if (parsedValue && parsedValue > 0) {
+        request.setPaymentDate(parsedValue)
+      }
     }
     request.setClientRequest(this.createClientRequest(token, language))
     this.getPosService().createPayment(request, callback)
@@ -2162,10 +2176,12 @@
     if(amount) {
       request.setAmount(getDecimalFromNumber(amount))
     }
+    //  Date of Payment
     if (paymentDate) {
-      request.setPaymentDate(convertValueToGRPC({
-        value: paymentDate
-      }))
+      let parsedValue = Date.parse(paymentDate)
+      if (parsedValue && parsedValue > 0) {
+        request.setPaymentDate(parsedValue)
+      }
     }
     request.setClientRequest(this.createClientRequest(token, language))
     this.getPosService().updatePayment(request, callback)
