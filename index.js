@@ -422,7 +422,7 @@
     fieldUuid,
     tableName,
     columnName,
-    elementNolumnName,
+    elementColumnName,
     language
   }, callback) {
     const { FieldRequest, ApplicationRequest } = require('./src/grpc/proto/dictionary_pb.js')
@@ -434,7 +434,7 @@
     request.setFieldUuid(fieldUuid)
     request.setColumnName(columnName)
     request.setTableName(tableName)
-    request.setElementColumnName(elementNolumnName)
+    request.setElementColumnName(elementColumnName)
     applicationRequest.setSessionUuid(token)
     applicationRequest.setLanguage(language)
     request.setApplicationRequest(applicationRequest)
