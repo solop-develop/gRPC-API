@@ -1734,10 +1734,7 @@
     request.setCurrencyFromUuid(currencyFromUuid)
     request.setCurrencyToUuid(currencyToUuid)
     if (conversionDate) {
-      let parsedValue = Date.parse(conversionDate)
-      if (parsedValue && parsedValue > 0) {
-        request.setConversionDate(parsedValue)
-      }
+      request.setConversionDate(conversionDate)
     }
     request.setClientRequest(this.createClientRequest(token, language))
     this.getCoreService().getConversionRate(request, callback)

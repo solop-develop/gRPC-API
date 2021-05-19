@@ -4010,7 +4010,7 @@ proto.data.GetConversionRateRequest.toObject = function(includeInstance, msg) {
     conversionTypeUuid: jspb.Message.getFieldWithDefault(msg, 2, ""),
     currencyFromUuid: jspb.Message.getFieldWithDefault(msg, 3, ""),
     currencyToUuid: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    conversionDate: jspb.Message.getFieldWithDefault(msg, 5, 0)
+    conversionDate: jspb.Message.getFieldWithDefault(msg, 5, "")
   };
 
   if (includeInstance) {
@@ -4065,7 +4065,7 @@ proto.data.GetConversionRateRequest.deserializeBinaryFromReader = function(msg, 
       msg.setCurrencyToUuid(value);
       break;
     case 5:
-      var value = /** @type {number} */ (reader.readInt64());
+      var value = /** @type {string} */ (reader.readString());
       msg.setConversionDate(value);
       break;
     default:
@@ -4127,8 +4127,8 @@ proto.data.GetConversionRateRequest.serializeBinaryToWriter = function(message, 
     );
   }
   f = message.getConversionDate();
-  if (f !== 0) {
-    writer.writeInt64(
+  if (f.length > 0) {
+    writer.writeString(
       5,
       f
     );
@@ -4228,20 +4228,20 @@ proto.data.GetConversionRateRequest.prototype.setCurrencyToUuid = function(value
 
 
 /**
- * optional int64 conversion_date = 5;
- * @return {number}
+ * optional string conversion_date = 5;
+ * @return {string}
  */
 proto.data.GetConversionRateRequest.prototype.getConversionDate = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 5, 0));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
 };
 
 
 /**
- * @param {number} value
+ * @param {string} value
  * @return {!proto.data.GetConversionRateRequest} returns this
  */
 proto.data.GetConversionRateRequest.prototype.setConversionDate = function(value) {
-  return jspb.Message.setProto3IntField(this, 5, value);
+  return jspb.Message.setProto3StringField(this, 5, value);
 };
 
 
@@ -4590,8 +4590,8 @@ proto.data.ConversionRate.toObject = function(includeInstance, msg) {
     uuid: jspb.Message.getFieldWithDefault(msg, 1, ""),
     id: jspb.Message.getFieldWithDefault(msg, 2, 0),
     conversionTypeUuid: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    validFrom: jspb.Message.getFieldWithDefault(msg, 4, 0),
-    validTo: jspb.Message.getFieldWithDefault(msg, 5, 0),
+    validFrom: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    validTo: jspb.Message.getFieldWithDefault(msg, 5, ""),
     currencyFrom: (f = msg.getCurrencyFrom()) && proto.data.Currency.toObject(includeInstance, f),
     currencyTo: (f = msg.getCurrencyTo()) && proto.data.Currency.toObject(includeInstance, f),
     multiplyRate: (f = msg.getMultiplyRate()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
@@ -4645,11 +4645,11 @@ proto.data.ConversionRate.deserializeBinaryFromReader = function(msg, reader) {
       msg.setConversionTypeUuid(value);
       break;
     case 4:
-      var value = /** @type {number} */ (reader.readInt64());
+      var value = /** @type {string} */ (reader.readString());
       msg.setValidFrom(value);
       break;
     case 5:
-      var value = /** @type {number} */ (reader.readInt64());
+      var value = /** @type {string} */ (reader.readString());
       msg.setValidTo(value);
       break;
     case 6:
@@ -4723,15 +4723,15 @@ proto.data.ConversionRate.serializeBinaryToWriter = function(message, writer) {
     );
   }
   f = message.getValidFrom();
-  if (f !== 0) {
-    writer.writeInt64(
+  if (f.length > 0) {
+    writer.writeString(
       4,
       f
     );
   }
   f = message.getValidTo();
-  if (f !== 0) {
-    writer.writeInt64(
+  if (f.length > 0) {
+    writer.writeString(
       5,
       f
     );
@@ -4826,38 +4826,38 @@ proto.data.ConversionRate.prototype.setConversionTypeUuid = function(value) {
 
 
 /**
- * optional int64 valid_from = 4;
- * @return {number}
+ * optional string valid_from = 4;
+ * @return {string}
  */
 proto.data.ConversionRate.prototype.getValidFrom = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
 };
 
 
 /**
- * @param {number} value
+ * @param {string} value
  * @return {!proto.data.ConversionRate} returns this
  */
 proto.data.ConversionRate.prototype.setValidFrom = function(value) {
-  return jspb.Message.setProto3IntField(this, 4, value);
+  return jspb.Message.setProto3StringField(this, 4, value);
 };
 
 
 /**
- * optional int64 valid_to = 5;
- * @return {number}
+ * optional string valid_to = 5;
+ * @return {string}
  */
 proto.data.ConversionRate.prototype.getValidTo = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 5, 0));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
 };
 
 
 /**
- * @param {number} value
+ * @param {string} value
  * @return {!proto.data.ConversionRate} returns this
  */
 proto.data.ConversionRate.prototype.setValidTo = function(value) {
-  return jspb.Message.setProto3IntField(this, 5, value);
+  return jspb.Message.setProto3StringField(this, 5, value);
 };
 
 
@@ -9494,7 +9494,7 @@ proto.data.ProductPrice.toObject = function(includeInstance, msg) {
     priceLimit: (f = msg.getPriceLimit()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
     priceListName: jspb.Message.getFieldWithDefault(msg, 5, ""),
     isTaxIncluded: jspb.Message.getBooleanFieldWithDefault(msg, 6, false),
-    validFrom: jspb.Message.getFieldWithDefault(msg, 7, 0),
+    validFrom: jspb.Message.getFieldWithDefault(msg, 7, ""),
     currency: (f = msg.getCurrency()) && proto.data.Currency.toObject(includeInstance, f),
     taxRate: (f = msg.getTaxRate()) && proto.data.TaxRate.toObject(includeInstance, f),
     pricePrecision: jspb.Message.getFieldWithDefault(msg, 10, 0),
@@ -9571,7 +9571,7 @@ proto.data.ProductPrice.deserializeBinaryFromReader = function(msg, reader) {
       msg.setIsTaxIncluded(value);
       break;
     case 7:
-      var value = /** @type {number} */ (reader.readInt64());
+      var value = /** @type {string} */ (reader.readString());
       msg.setValidFrom(value);
       break;
     case 8:
@@ -9704,8 +9704,8 @@ proto.data.ProductPrice.serializeBinaryToWriter = function(message, writer) {
     );
   }
   f = message.getValidFrom();
-  if (f !== 0) {
-    writer.writeInt64(
+  if (f.length > 0) {
+    writer.writeString(
       7,
       f
     );
@@ -9985,20 +9985,20 @@ proto.data.ProductPrice.prototype.setIsTaxIncluded = function(value) {
 
 
 /**
- * optional int64 valid_from = 7;
- * @return {number}
+ * optional string valid_from = 7;
+ * @return {string}
  */
 proto.data.ProductPrice.prototype.getValidFrom = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 7, 0));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 7, ""));
 };
 
 
 /**
- * @param {number} value
+ * @param {string} value
  * @return {!proto.data.ProductPrice} returns this
  */
 proto.data.ProductPrice.prototype.setValidFrom = function(value) {
-  return jspb.Message.setProto3IntField(this, 7, value);
+  return jspb.Message.setProto3StringField(this, 7, value);
 };
 
 
