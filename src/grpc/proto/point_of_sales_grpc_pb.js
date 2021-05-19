@@ -364,7 +364,7 @@ function deserialize_data_UpdatePaymentRequest(buffer_arg) {
 }
 
 
-// 	POS Service used for ADempiere integration
+// 	POS Service used for ADempiere integration 
 var StoreService = exports.StoreService = {
   // 	Get POS Definition
 getPointOfSales: {

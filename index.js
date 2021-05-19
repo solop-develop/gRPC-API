@@ -2052,17 +2052,11 @@
     }
     //  Date Order From
     if (dateOrderedFrom) {
-      let parsedValue = Date.parse(dateOrderedFrom)
-      if (parsedValue && parsedValue > 0) {
-        request.setDateOrderedFrom(parsedValue)
-      }
+      request.setDateOrderedFrom(dateOrderedFrom)
     }
     //  Date Order To
     if (dateOrderedTo) {
-      let parsedValue = Date.parse(dateOrderedTo)
-      if (parsedValue && parsedValue > 0) {
-        request.setDateOrderedTo(parsedValue)
-      }
+      request.setDateOrderedTo(dateOrderedTo)
     }
     request.setIsPaid(isPaid)
     request.setIsProcessed(isProcessed)
@@ -2136,10 +2130,7 @@
     }
     //  Date of Payment
     if (paymentDate) {
-      let parsedValue = Date.parse(paymentDate)
-      if (parsedValue && parsedValue > 0) {
-        request.setPaymentDate(parsedValue)
-      }
+      request.setPaymentDate(paymentDate)
     }
     request.setClientRequest(this.createClientRequest(token, language))
     this.getPosService().createPayment(request, callback)
@@ -2178,10 +2169,7 @@
     }
     //  Date of Payment
     if (paymentDate) {
-      let parsedValue = Date.parse(paymentDate)
-      if (parsedValue && parsedValue > 0) {
-        request.setPaymentDate(parsedValue)
-      }
+      request.setPaymentDate(paymentDate)
     }
     request.setClientRequest(this.createClientRequest(token, language))
     this.getPosService().updatePayment(request, callback)

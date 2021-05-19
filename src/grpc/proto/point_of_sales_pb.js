@@ -1383,8 +1383,8 @@ proto.data.ListOrdersRequest.toObject = function(includeInstance, msg) {
     isProcessed: jspb.Message.getBooleanFieldWithDefault(msg, 8, false),
     isAisleSeller: jspb.Message.getBooleanFieldWithDefault(msg, 9, false),
     isInvoiced: jspb.Message.getBooleanFieldWithDefault(msg, 10, false),
-    dateOrderedFrom: jspb.Message.getFieldWithDefault(msg, 11, 0),
-    dateOrderedTo: jspb.Message.getFieldWithDefault(msg, 12, 0),
+    dateOrderedFrom: jspb.Message.getFieldWithDefault(msg, 11, ""),
+    dateOrderedTo: jspb.Message.getFieldWithDefault(msg, 12, ""),
     salesRepresentativeUuid: jspb.Message.getFieldWithDefault(msg, 13, ""),
     pageSize: jspb.Message.getFieldWithDefault(msg, 14, 0),
     pageToken: jspb.Message.getFieldWithDefault(msg, 15, ""),
@@ -1469,11 +1469,11 @@ proto.data.ListOrdersRequest.deserializeBinaryFromReader = function(msg, reader)
       msg.setIsInvoiced(value);
       break;
     case 11:
-      var value = /** @type {number} */ (reader.readInt64());
+      var value = /** @type {string} */ (reader.readString());
       msg.setDateOrderedFrom(value);
       break;
     case 12:
-      var value = /** @type {number} */ (reader.readInt64());
+      var value = /** @type {string} */ (reader.readString());
       msg.setDateOrderedTo(value);
       break;
     case 13:
@@ -1596,15 +1596,15 @@ proto.data.ListOrdersRequest.serializeBinaryToWriter = function(message, writer)
     );
   }
   f = message.getDateOrderedFrom();
-  if (f !== 0) {
-    writer.writeInt64(
+  if (f.length > 0) {
+    writer.writeString(
       11,
       f
     );
   }
   f = message.getDateOrderedTo();
-  if (f !== 0) {
-    writer.writeInt64(
+  if (f.length > 0) {
+    writer.writeString(
       12,
       f
     );
@@ -1879,38 +1879,38 @@ proto.data.ListOrdersRequest.prototype.setIsInvoiced = function(value) {
 
 
 /**
- * optional int64 date_ordered_from = 11;
- * @return {number}
+ * optional string date_ordered_from = 11;
+ * @return {string}
  */
 proto.data.ListOrdersRequest.prototype.getDateOrderedFrom = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 11, 0));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 11, ""));
 };
 
 
 /**
- * @param {number} value
+ * @param {string} value
  * @return {!proto.data.ListOrdersRequest} returns this
  */
 proto.data.ListOrdersRequest.prototype.setDateOrderedFrom = function(value) {
-  return jspb.Message.setProto3IntField(this, 11, value);
+  return jspb.Message.setProto3StringField(this, 11, value);
 };
 
 
 /**
- * optional int64 date_ordered_to = 12;
- * @return {number}
+ * optional string date_ordered_to = 12;
+ * @return {string}
  */
 proto.data.ListOrdersRequest.prototype.getDateOrderedTo = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 12, 0));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 12, ""));
 };
 
 
 /**
- * @param {number} value
+ * @param {string} value
  * @return {!proto.data.ListOrdersRequest} returns this
  */
 proto.data.ListOrdersRequest.prototype.setDateOrderedTo = function(value) {
-  return jspb.Message.setProto3IntField(this, 12, value);
+  return jspb.Message.setProto3StringField(this, 12, value);
 };
 
 
@@ -2503,7 +2503,7 @@ proto.data.ListProductPriceRequest.toObject = function(includeInstance, msg) {
     priceListUuid: jspb.Message.getFieldWithDefault(msg, 3, ""),
     businessPartnerUuid: jspb.Message.getFieldWithDefault(msg, 4, ""),
     warehouseUuid: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    validFrom: jspb.Message.getFieldWithDefault(msg, 6, 0),
+    validFrom: jspb.Message.getFieldWithDefault(msg, 6, ""),
     criteria: (f = msg.getCriteria()) && proto_base_data_type_pb.Criteria.toObject(includeInstance, f),
     pageSize: jspb.Message.getFieldWithDefault(msg, 8, 0),
     pageToken: jspb.Message.getFieldWithDefault(msg, 9, "")
@@ -2565,7 +2565,7 @@ proto.data.ListProductPriceRequest.deserializeBinaryFromReader = function(msg, r
       msg.setWarehouseUuid(value);
       break;
     case 6:
-      var value = /** @type {number} */ (reader.readInt64());
+      var value = /** @type {string} */ (reader.readString());
       msg.setValidFrom(value);
       break;
     case 7:
@@ -2647,8 +2647,8 @@ proto.data.ListProductPriceRequest.serializeBinaryToWriter = function(message, w
     );
   }
   f = message.getValidFrom();
-  if (f !== 0) {
-    writer.writeInt64(
+  if (f.length > 0) {
+    writer.writeString(
       6,
       f
     );
@@ -2788,20 +2788,20 @@ proto.data.ListProductPriceRequest.prototype.setWarehouseUuid = function(value) 
 
 
 /**
- * optional int64 valid_from = 6;
- * @return {number}
+ * optional string valid_from = 6;
+ * @return {string}
  */
 proto.data.ListProductPriceRequest.prototype.getValidFrom = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 6, 0));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
 };
 
 
 /**
- * @param {number} value
+ * @param {string} value
  * @return {!proto.data.ListProductPriceRequest} returns this
  */
 proto.data.ListProductPriceRequest.prototype.setValidFrom = function(value) {
-  return jspb.Message.setProto3IntField(this, 6, value);
+  return jspb.Message.setProto3StringField(this, 6, value);
 };
 
 
@@ -4648,7 +4648,7 @@ proto.data.CreatePaymentRequest.toObject = function(includeInstance, msg) {
     referenceNo: jspb.Message.getFieldWithDefault(msg, 6, ""),
     description: jspb.Message.getFieldWithDefault(msg, 7, ""),
     amount: (f = msg.getAmount()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
-    paymentDate: jspb.Message.getFieldWithDefault(msg, 9, 0),
+    paymentDate: jspb.Message.getFieldWithDefault(msg, 9, ""),
     tenderTypeCode: jspb.Message.getFieldWithDefault(msg, 10, ""),
     currencyUuid: jspb.Message.getFieldWithDefault(msg, 11, "")
   };
@@ -4722,7 +4722,7 @@ proto.data.CreatePaymentRequest.deserializeBinaryFromReader = function(msg, read
       msg.setAmount(value);
       break;
     case 9:
-      var value = /** @type {number} */ (reader.readInt64());
+      var value = /** @type {string} */ (reader.readString());
       msg.setPaymentDate(value);
       break;
     case 10:
@@ -4821,8 +4821,8 @@ proto.data.CreatePaymentRequest.serializeBinaryToWriter = function(message, writ
     );
   }
   f = message.getPaymentDate();
-  if (f !== 0) {
-    writer.writeInt64(
+  if (f.length > 0) {
+    writer.writeString(
       9,
       f
     );
@@ -5027,20 +5027,20 @@ proto.data.CreatePaymentRequest.prototype.hasAmount = function() {
 
 
 /**
- * optional int64 payment_date = 9;
- * @return {number}
+ * optional string payment_date = 9;
+ * @return {string}
  */
 proto.data.CreatePaymentRequest.prototype.getPaymentDate = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 9, 0));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 9, ""));
 };
 
 
 /**
- * @param {number} value
+ * @param {string} value
  * @return {!proto.data.CreatePaymentRequest} returns this
  */
 proto.data.CreatePaymentRequest.prototype.setPaymentDate = function(value) {
-  return jspb.Message.setProto3IntField(this, 9, value);
+  return jspb.Message.setProto3StringField(this, 9, value);
 };
 
 
@@ -5118,7 +5118,7 @@ proto.data.UpdatePaymentRequest.toObject = function(includeInstance, msg) {
     referenceNo: jspb.Message.getFieldWithDefault(msg, 4, ""),
     description: jspb.Message.getFieldWithDefault(msg, 5, ""),
     amount: (f = msg.getAmount()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
-    paymentDate: jspb.Message.getFieldWithDefault(msg, 7, 0),
+    paymentDate: jspb.Message.getFieldWithDefault(msg, 7, ""),
     tenderTypeCode: jspb.Message.getFieldWithDefault(msg, 8, "")
   };
 
@@ -5183,7 +5183,7 @@ proto.data.UpdatePaymentRequest.deserializeBinaryFromReader = function(msg, read
       msg.setAmount(value);
       break;
     case 7:
-      var value = /** @type {number} */ (reader.readInt64());
+      var value = /** @type {string} */ (reader.readString());
       msg.setPaymentDate(value);
       break;
     case 8:
@@ -5264,8 +5264,8 @@ proto.data.UpdatePaymentRequest.serializeBinaryToWriter = function(message, writ
     );
   }
   f = message.getPaymentDate();
-  if (f !== 0) {
-    writer.writeInt64(
+  if (f.length > 0) {
+    writer.writeString(
       7,
       f
     );
@@ -5427,20 +5427,20 @@ proto.data.UpdatePaymentRequest.prototype.hasAmount = function() {
 
 
 /**
- * optional int64 payment_date = 7;
- * @return {number}
+ * optional string payment_date = 7;
+ * @return {string}
  */
 proto.data.UpdatePaymentRequest.prototype.getPaymentDate = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 7, 0));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 7, ""));
 };
 
 
 /**
- * @param {number} value
+ * @param {string} value
  * @return {!proto.data.UpdatePaymentRequest} returns this
  */
 proto.data.UpdatePaymentRequest.prototype.setPaymentDate = function(value) {
-  return jspb.Message.setProto3IntField(this, 7, value);
+  return jspb.Message.setProto3StringField(this, 7, value);
 };
 
 
@@ -6230,7 +6230,7 @@ proto.data.Payment.toObject = function(includeInstance, msg) {
     referenceNo: jspb.Message.getFieldWithDefault(msg, 11, ""),
     description: jspb.Message.getFieldWithDefault(msg, 12, ""),
     amount: (f = msg.getAmount()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
-    paymentDate: jspb.Message.getFieldWithDefault(msg, 14, 0),
+    paymentDate: jspb.Message.getFieldWithDefault(msg, 14, ""),
     tenderTypeCode: jspb.Message.getFieldWithDefault(msg, 15, ""),
     currencyUuid: jspb.Message.getFieldWithDefault(msg, 16, "")
   };
@@ -6326,7 +6326,7 @@ proto.data.Payment.deserializeBinaryFromReader = function(msg, reader) {
       msg.setAmount(value);
       break;
     case 14:
-      var value = /** @type {number} */ (reader.readInt64());
+      var value = /** @type {string} */ (reader.readString());
       msg.setPaymentDate(value);
       break;
     case 15:
@@ -6462,8 +6462,8 @@ proto.data.Payment.serializeBinaryToWriter = function(message, writer) {
     );
   }
   f = message.getPaymentDate();
-  if (f !== 0) {
-    writer.writeInt64(
+  if (f.length > 0) {
+    writer.writeString(
       14,
       f
     );
@@ -6796,20 +6796,20 @@ proto.data.Payment.prototype.hasAmount = function() {
 
 
 /**
- * optional int64 payment_date = 14;
- * @return {number}
+ * optional string payment_date = 14;
+ * @return {string}
  */
 proto.data.Payment.prototype.getPaymentDate = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 14, 0));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 14, ""));
 };
 
 
 /**
- * @param {number} value
+ * @param {string} value
  * @return {!proto.data.Payment} returns this
  */
 proto.data.Payment.prototype.setPaymentDate = function(value) {
-  return jspb.Message.setProto3IntField(this, 14, value);
+  return jspb.Message.setProto3StringField(this, 14, value);
 };
 
 
@@ -8762,7 +8762,7 @@ proto.data.Order.toObject = function(includeInstance, msg) {
     documentStatus: (f = msg.getDocumentStatus()) && proto_base_data_type_pb.DocumentStatus.toObject(includeInstance, f),
     totalLines: (f = msg.getTotalLines()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
     grandTotal: (f = msg.getGrandTotal()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
-    dateOrdered: jspb.Message.getFieldWithDefault(msg, 9, 0),
+    dateOrdered: jspb.Message.getFieldWithDefault(msg, 9, ""),
     businessPartner: (f = msg.getBusinessPartner()) && proto_core_functionality_pb.BusinessPartner.toObject(includeInstance, f)
   };
 
@@ -8838,7 +8838,7 @@ proto.data.Order.deserializeBinaryFromReader = function(msg, reader) {
       msg.setGrandTotal(value);
       break;
     case 9:
-      var value = /** @type {number} */ (reader.readInt64());
+      var value = /** @type {string} */ (reader.readString());
       msg.setDateOrdered(value);
       break;
     case 10:
@@ -8937,8 +8937,8 @@ proto.data.Order.serializeBinaryToWriter = function(message, writer) {
     );
   }
   f = message.getDateOrdered();
-  if (f !== 0) {
-    writer.writeInt64(
+  if (f.length > 0) {
+    writer.writeString(
       9,
       f
     );
@@ -9194,20 +9194,20 @@ proto.data.Order.prototype.hasGrandTotal = function() {
 
 
 /**
- * optional int64 date_ordered = 9;
- * @return {number}
+ * optional string date_ordered = 9;
+ * @return {string}
  */
 proto.data.Order.prototype.getDateOrdered = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 9, 0));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 9, ""));
 };
 
 
 /**
- * @param {number} value
+ * @param {string} value
  * @return {!proto.data.Order} returns this
  */
 proto.data.Order.prototype.setDateOrdered = function(value) {
-  return jspb.Message.setProto3IntField(this, 9, value);
+  return jspb.Message.setProto3StringField(this, 9, value);
 };
 
 
@@ -9946,7 +9946,7 @@ proto.data.GetProductPriceRequest.toObject = function(includeInstance, msg) {
     priceListUuid: jspb.Message.getFieldWithDefault(msg, 6, ""),
     businessPartnerUuid: jspb.Message.getFieldWithDefault(msg, 7, ""),
     warehouseUuid: jspb.Message.getFieldWithDefault(msg, 8, ""),
-    validFrom: jspb.Message.getFieldWithDefault(msg, 9, 0)
+    validFrom: jspb.Message.getFieldWithDefault(msg, 9, "")
   };
 
   if (includeInstance) {
@@ -10017,7 +10017,7 @@ proto.data.GetProductPriceRequest.deserializeBinaryFromReader = function(msg, re
       msg.setWarehouseUuid(value);
       break;
     case 9:
-      var value = /** @type {number} */ (reader.readInt64());
+      var value = /** @type {string} */ (reader.readString());
       msg.setValidFrom(value);
       break;
     default:
@@ -10107,8 +10107,8 @@ proto.data.GetProductPriceRequest.serializeBinaryToWriter = function(message, wr
     );
   }
   f = message.getValidFrom();
-  if (f !== 0) {
-    writer.writeInt64(
+  if (f.length > 0) {
+    writer.writeString(
       9,
       f
     );
@@ -10280,20 +10280,20 @@ proto.data.GetProductPriceRequest.prototype.setWarehouseUuid = function(value) {
 
 
 /**
- * optional int64 valid_from = 9;
- * @return {number}
+ * optional string valid_from = 9;
+ * @return {string}
  */
 proto.data.GetProductPriceRequest.prototype.getValidFrom = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 9, 0));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 9, ""));
 };
 
 
 /**
- * @param {number} value
+ * @param {string} value
  * @return {!proto.data.GetProductPriceRequest} returns this
  */
 proto.data.GetProductPriceRequest.prototype.setValidFrom = function(value) {
-  return jspb.Message.setProto3IntField(this, 9, value);
+  return jspb.Message.setProto3StringField(this, 9, value);
 };
 
 
