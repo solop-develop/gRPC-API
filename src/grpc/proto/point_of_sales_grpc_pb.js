@@ -363,6 +363,17 @@ function deserialize_data_UpdatePaymentRequest(buffer_arg) {
   return proto_point_of_sales_pb.UpdatePaymentRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_data_ValidatePINRequest(arg) {
+  if (!(arg instanceof proto_point_of_sales_pb.ValidatePINRequest)) {
+    throw new Error('Expected argument of type data.ValidatePINRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_ValidatePINRequest(buffer_arg) {
+  return proto_point_of_sales_pb.ValidatePINRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 
 // 	POS Service used for ADempiere integration 
 var StoreService = exports.StoreService = {
@@ -594,6 +605,18 @@ processOrder: {
     requestDeserialize: deserialize_data_ProcessOrderRequest,
     responseSerialize: serialize_data_Order,
     responseDeserialize: deserialize_data_Order,
+  },
+  // 	Validate PIN
+validatePIN: {
+    path: '/data.Store/ValidatePIN',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_point_of_sales_pb.ValidatePINRequest,
+    responseType: proto_base_data_type_pb.Empty,
+    requestSerialize: serialize_data_ValidatePINRequest,
+    requestDeserialize: deserialize_data_ValidatePINRequest,
+    responseSerialize: serialize_data_Empty,
+    responseDeserialize: deserialize_data_Empty,
   },
 };
 

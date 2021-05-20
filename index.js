@@ -2286,6 +2286,21 @@
     this.getPosService().getKeyLayout(request, callback)
   }
 
+  //  Validate User PIN
+  validatePIN({
+    token,
+    posUuid,
+    pin,
+    language
+  }, callback) {
+    const { ValidatePINRequest } = require('./src/grpc/proto/point_of_sales_pb.js')
+    const request = new ValidatePINRequest()
+    request.setPin(pin)
+    request.setPosUuid(posUuid)
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getPosService().validatePIN(request, callback)
+  }
+
   //  Enrollment service
   //  Enroll User
   enrollUser({
