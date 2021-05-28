@@ -1132,6 +1132,8 @@
     token,
     tableName,
     //  DSL
+    value,
+    valuesList,
     filters,
     //  Custom Query
     query,
@@ -1143,14 +1145,17 @@
     const { GetLookupItemRequest } = require('./src/grpc/proto/business_pb.js')
     const request = new GetLookupItemRequest()
     const { convertCriteriaToGRPC } = require('./lib/convertValues.js');
-    request.setCriteria(convertCriteriaToGRPC({
+    const criteriaGrpc = convertCriteriaToGRPC({
       tableName,
+      value,
+      valuesList,
       filters,
       query,
       whereClause,
       orderByClause,
       limit
-    }))
+    })
+    request.setCriteria(criteriaGrpc)
     request.setClientRequest(this.createClientRequest(token, language))
     this.getUIService().getLookupItem(request, callback)
   }
@@ -2362,4 +2367,5 @@
     this.getEnrollmentService().activateUser(request, callback)
   }
 }
+
 module.exports = Api;
