@@ -1132,30 +1132,24 @@
     token,
     tableName,
     //  DSL
-    value,
     filters,
     //  Custom Query
     query,
-    whereClause,
-    orderByClause,
-    limit,
     language
   }, callback) {
-    const { GetLookupItemRequest } = require('./src/grpc/proto/business_pb.js')
-    const request = new GetLookupItemRequest()
+    const { GetLookupItemRequest } = require('./src/grpc/proto/business_pb.js');
+    const request = new GetLookupItemRequest();
     const { convertCriteriaToGRPC } = require('./lib/convertValues.js');
+
     const criteriaGrpc = convertCriteriaToGRPC({
       tableName,
-      value,
       filters,
-      query,
-      whereClause,
-      orderByClause,
-      limit
-    })
-    request.setCriteria(criteriaGrpc)
-    request.setClientRequest(this.createClientRequest(token, language))
-    this.getUIService().getLookupItem(request, callback)
+      query
+    });
+
+    request.setCriteria(criteriaGrpc);
+    request.setClientRequest(this.createClientRequest(token, language));
+    this.getUIService().getLookupItem(request, callback);
   }
 
   //  List translations
