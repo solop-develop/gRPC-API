@@ -1133,7 +1133,6 @@
     tableName,
     //  DSL
     value,
-    valuesList,
     filters,
     //  Custom Query
     query,
@@ -1148,7 +1147,6 @@
     const criteriaGrpc = convertCriteriaToGRPC({
       tableName,
       value,
-      valuesList,
       filters,
       query,
       whereClause,
