@@ -1135,24 +1135,21 @@
     filters,
     //  Custom Query
     query,
-    whereClause,
-    orderByClause,
-    limit,
     language
   }, callback) {
-    const { GetLookupItemRequest } = require('./src/grpc/proto/business_pb.js')
-    const request = new GetLookupItemRequest()
+    const { GetLookupItemRequest } = require('./src/grpc/proto/business_pb.js');
+    const request = new GetLookupItemRequest();
     const { convertCriteriaToGRPC } = require('./lib/convertValues.js');
-    request.setCriteria(convertCriteriaToGRPC({
+
+    const criteriaGrpc = convertCriteriaToGRPC({
       tableName,
       filters,
-      query,
-      whereClause,
-      orderByClause,
-      limit
-    }))
-    request.setClientRequest(this.createClientRequest(token, language))
-    this.getUIService().getLookupItem(request, callback)
+      query
+    });
+
+    request.setCriteria(criteriaGrpc);
+    request.setClientRequest(this.createClientRequest(token, language));
+    this.getUIService().getLookupItem(request, callback);
   }
 
   //  List translations
@@ -2362,4 +2359,5 @@
     this.getEnrollmentService().activateUser(request, callback)
   }
 }
+
 module.exports = Api;
