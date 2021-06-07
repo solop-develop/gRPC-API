@@ -1055,7 +1055,6 @@
   listBrowserItems({
     token,
     uuid,
-    parameters,
     tableName,
     //  DSL
     filters,
@@ -1068,31 +1067,25 @@
     pageToken,
     language
   }, callback) {
-    const { ListBrowserItemsRequest } = require('./src/grpc/proto/business_pb.js')
-    const request = new ListBrowserItemsRequest()
+    const { ListBrowserItemsRequest } = require('./src/grpc/proto/business_pb.js');
+    const request = new ListBrowserItemsRequest();
     const { convertCriteriaToGRPC } = require('./lib/convertValues.js');
-    request.setCriteria(convertCriteriaToGRPC({
+
+    const criteriaGrpc = convertCriteriaToGRPC({
       tableName,
       filters,
       query,
       whereClause,
       orderByClause,
       limit
-    }))
-    // selections
-    if(parameters) {
-      parameters.forEach(parameter => {
-        request.addParameters(convertParameterToGRPC({
-          columnName: parameter.key,
-          value: parameter.value
-        }))
-      })
-    }
-    request.setUuid(uuid)
-    request.setPageSize(pageSize)
-    request.setPageToken(pageToken)
-    request.setClientRequest(this.createClientRequest(token, language))
-    this.getUIService().listBrowserItems(request, callback)
+    });
+    request.setCriteria(criteriaGrpc);
+
+    request.setUuid(uuid);
+    request.setPageSize(pageSize);
+    request.setPageToken(pageToken);
+    request.setClientRequest(this.createClientRequest(token, language));
+    this.getUIService().listBrowserItems(request, callback);
   }
 
   //  List Lookup Items
@@ -2358,6 +2351,12 @@
     request.setClientVersion(clientVersion)
     this.getEnrollmentService().activateUser(request, callback)
   }
+
+  isEmptyValue(value) {
+    const { isEmptyValue } = require('./lib/convertValues.js');
+    return isEmptyValue(value);
+  }
+
 }
 
 module.exports = Api;
