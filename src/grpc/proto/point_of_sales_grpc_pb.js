@@ -143,6 +143,94 @@ function deserialize_data_KeyLayout(buffer_arg) {
   return proto_point_of_sales_pb.KeyLayout.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_data_ListAvailableCurrenciesRequest(arg) {
+  if (!(arg instanceof proto_point_of_sales_pb.ListAvailableCurrenciesRequest)) {
+    throw new Error('Expected argument of type data.ListAvailableCurrenciesRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_ListAvailableCurrenciesRequest(buffer_arg) {
+  return proto_point_of_sales_pb.ListAvailableCurrenciesRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_data_ListAvailableCurrenciesResponse(arg) {
+  if (!(arg instanceof proto_point_of_sales_pb.ListAvailableCurrenciesResponse)) {
+    throw new Error('Expected argument of type data.ListAvailableCurrenciesResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_ListAvailableCurrenciesResponse(buffer_arg) {
+  return proto_point_of_sales_pb.ListAvailableCurrenciesResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_data_ListAvailablePriceListRequest(arg) {
+  if (!(arg instanceof proto_point_of_sales_pb.ListAvailablePriceListRequest)) {
+    throw new Error('Expected argument of type data.ListAvailablePriceListRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_ListAvailablePriceListRequest(buffer_arg) {
+  return proto_point_of_sales_pb.ListAvailablePriceListRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_data_ListAvailablePriceListResponse(arg) {
+  if (!(arg instanceof proto_point_of_sales_pb.ListAvailablePriceListResponse)) {
+    throw new Error('Expected argument of type data.ListAvailablePriceListResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_ListAvailablePriceListResponse(buffer_arg) {
+  return proto_point_of_sales_pb.ListAvailablePriceListResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_data_ListAvailableTenderTypesRequest(arg) {
+  if (!(arg instanceof proto_point_of_sales_pb.ListAvailableTenderTypesRequest)) {
+    throw new Error('Expected argument of type data.ListAvailableTenderTypesRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_ListAvailableTenderTypesRequest(buffer_arg) {
+  return proto_point_of_sales_pb.ListAvailableTenderTypesRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_data_ListAvailableTenderTypesResponse(arg) {
+  if (!(arg instanceof proto_point_of_sales_pb.ListAvailableTenderTypesResponse)) {
+    throw new Error('Expected argument of type data.ListAvailableTenderTypesResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_ListAvailableTenderTypesResponse(buffer_arg) {
+  return proto_point_of_sales_pb.ListAvailableTenderTypesResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_data_ListAvailableWarehousesRequest(arg) {
+  if (!(arg instanceof proto_point_of_sales_pb.ListAvailableWarehousesRequest)) {
+    throw new Error('Expected argument of type data.ListAvailableWarehousesRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_ListAvailableWarehousesRequest(buffer_arg) {
+  return proto_point_of_sales_pb.ListAvailableWarehousesRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_data_ListAvailableWarehousesResponse(arg) {
+  if (!(arg instanceof proto_point_of_sales_pb.ListAvailableWarehousesResponse)) {
+    throw new Error('Expected argument of type data.ListAvailableWarehousesResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_ListAvailableWarehousesResponse(buffer_arg) {
+  return proto_point_of_sales_pb.ListAvailableWarehousesResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_data_ListOrderLinesRequest(arg) {
   if (!(arg instanceof proto_point_of_sales_pb.ListOrderLinesRequest)) {
     throw new Error('Expected argument of type data.ListOrderLinesRequest');
@@ -617,6 +705,54 @@ validatePIN: {
     requestDeserialize: deserialize_data_ValidatePINRequest,
     responseSerialize: serialize_data_Empty,
     responseDeserialize: deserialize_data_Empty,
+  },
+  // 	List of Available Warehouses
+listAvailableWarehouses: {
+    path: '/data.Store/ListAvailableWarehouses',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_point_of_sales_pb.ListAvailableWarehousesRequest,
+    responseType: proto_point_of_sales_pb.ListAvailableWarehousesResponse,
+    requestSerialize: serialize_data_ListAvailableWarehousesRequest,
+    requestDeserialize: deserialize_data_ListAvailableWarehousesRequest,
+    responseSerialize: serialize_data_ListAvailableWarehousesResponse,
+    responseDeserialize: deserialize_data_ListAvailableWarehousesResponse,
+  },
+  // 	List of Available Tender Types
+listAvailableTenderTypes: {
+    path: '/data.Store/ListAvailableTenderTypes',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_point_of_sales_pb.ListAvailableTenderTypesRequest,
+    responseType: proto_point_of_sales_pb.ListAvailableTenderTypesResponse,
+    requestSerialize: serialize_data_ListAvailableTenderTypesRequest,
+    requestDeserialize: deserialize_data_ListAvailableTenderTypesRequest,
+    responseSerialize: serialize_data_ListAvailableTenderTypesResponse,
+    responseDeserialize: deserialize_data_ListAvailableTenderTypesResponse,
+  },
+  // 	List of Available Price List
+listAvailablePriceList: {
+    path: '/data.Store/ListAvailablePriceList',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_point_of_sales_pb.ListAvailablePriceListRequest,
+    responseType: proto_point_of_sales_pb.ListAvailablePriceListResponse,
+    requestSerialize: serialize_data_ListAvailablePriceListRequest,
+    requestDeserialize: deserialize_data_ListAvailablePriceListRequest,
+    responseSerialize: serialize_data_ListAvailablePriceListResponse,
+    responseDeserialize: deserialize_data_ListAvailablePriceListResponse,
+  },
+  // 	List of Available Currencies
+listAvailableCurrencies: {
+    path: '/data.Store/ListAvailableCurrencies',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_point_of_sales_pb.ListAvailableCurrenciesRequest,
+    responseType: proto_point_of_sales_pb.ListAvailableCurrenciesResponse,
+    requestSerialize: serialize_data_ListAvailableCurrenciesRequest,
+    requestDeserialize: deserialize_data_ListAvailableCurrenciesRequest,
+    responseSerialize: serialize_data_ListAvailableCurrenciesResponse,
+    responseDeserialize: deserialize_data_ListAvailableCurrenciesResponse,
   },
 };
 

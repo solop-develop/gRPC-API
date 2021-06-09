@@ -2291,6 +2291,82 @@
     this.getPosService().validatePIN(request, callback)
   }
 
+  //  List Available Warehouses
+  listAvailableWarehouses({
+    token,
+    posUuid,
+    pageSize,
+    pageToken,
+    language
+  }, callback) {
+    const { ListAvailableWarehousesRequest } = require('./src/grpc/proto/point_of_sales_pb.js')
+    const request = new ListAvailableWarehousesRequest()
+    if (posUuid) {
+      request.setPosUuid(posUuid)
+    }
+    request.setPageSize(pageSize)
+    request.setPageToken(pageToken)
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getPosService().listAvailableWarehouses(request, callback)
+  }
+
+  //  List Available Tender Types
+  listAvailableTenderTypes({
+    token,
+    posUuid,
+    pageSize,
+    pageToken,
+    language
+  }, callback) {
+    const { ListAvailableTenderTypesRequest } = require('./src/grpc/proto/point_of_sales_pb.js')
+    const request = new ListAvailableTenderTypesRequest()
+    if (posUuid) {
+      request.setPosUuid(posUuid)
+    }
+    request.setPageSize(pageSize)
+    request.setPageToken(pageToken)
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getPosService().listAvailableTenderTypes(request, callback)
+  }
+  
+  //  List Available Price List
+  listAvailablePriceList({
+    token,
+    posUuid,
+    pageSize,
+    pageToken,
+    language
+  }, callback) {
+    const { ListAvailablePriceListRequest } = require('./src/grpc/proto/point_of_sales_pb.js')
+    const request = new ListAvailablePriceListRequest()
+    if (posUuid) {
+      request.setPosUuid(posUuid)
+    }
+    request.setPageSize(pageSize)
+    request.setPageToken(pageToken)
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getPosService().listAvailablePriceList(request, callback)
+  }
+
+  //  List Available Price List
+  listAvailableCurrencies({
+    token,
+    posUuid,
+    pageSize,
+    pageToken,
+    language
+  }, callback) {
+    const { ListAvailableCurrenciesRequest } = require('./src/grpc/proto/point_of_sales_pb.js')
+    const request = new ListAvailableCurrenciesRequest()
+    if (posUuid) {
+      request.setPosUuid(posUuid)
+    }
+    request.setPageSize(pageSize)
+    request.setPageToken(pageToken)
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getPosService().listAvailableCurrencies(request, callback)
+  }
+
   //  Enrollment service
   //  Enroll User
   enrollUser({
@@ -2356,6 +2432,8 @@
     const { isEmptyValue } = require('./lib/convertValues.js');
     return isEmptyValue(value);
   }
+
+
 
 }
 
