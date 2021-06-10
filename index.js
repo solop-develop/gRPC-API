@@ -1784,6 +1784,7 @@
     name,
     priceListUuid,
     businessPartnerUuid,
+    displayCurrencyUuid,
     warehouseUuid,
     validFrom,
     language
@@ -1798,6 +1799,9 @@
     request.setBusinessPartnerUuid(businessPartnerUuid)
     request.setWarehouseUuid(warehouseUuid)
     request.setValidFrom(validFrom)
+    if(displayCurrencyUuid) {
+      request.setDisplayCurrencyUuid(displayCurrencyUuid)
+    }
     request.setClientRequest(this.createClientRequest(token, language))
     this.getPosService().getProductPrice(request, callback)
   }
@@ -1808,6 +1812,7 @@
     searchValue,
     priceListUuid,
     businessPartnerUuid,
+    displayCurrencyUuid,
     warehouseUuid,
     validFrom,
     tableName,
@@ -1829,6 +1834,9 @@
     request.setBusinessPartnerUuid(businessPartnerUuid)
     request.setWarehouseUuid(warehouseUuid)
     request.setValidFrom(validFrom)
+    if(displayCurrencyUuid) {
+      request.setDisplayCurrencyUuid(displayCurrencyUuid)
+    }
     //
     const { convertCriteriaToGRPC } = require('./lib/convertValues.js');
     //  TODO: Add support to all parameters
@@ -1852,6 +1860,8 @@
     posUuid,
     customerUuid,
     documentTypeUuid,
+    warehouseUuid,
+    priceListUuid,
     salesRepresentativeUuid,
     language
   }, callback) {
@@ -1861,6 +1871,12 @@
     request.setCustomerUuid(customerUuid)
     request.setDocumentTypeUuid(documentTypeUuid)
     request.setSalesRepresentativeUuid(salesRepresentativeUuid)
+    if(warehouseUuid) {
+      request.setWarehouseUuid(warehouseUuid)
+    }
+    if(priceListUuid) {
+      request.setPriceListUuid(priceListUuid)
+    }
     request.setClientRequest(this.createClientRequest(token, language))
     this.getPosService().createOrder(request, callback)
   }
@@ -1907,7 +1923,9 @@
     if(discountRate) {
       request.setDiscountRate(getDecimalFromNumber(discountRate))
     }
-    request.setWarehouseUuid(warehouseUuid)
+    if(warehouseUuid) {
+      request.setWarehouseUuid(warehouseUuid)
+    }
     request.setClientRequest(this.createClientRequest(token, language))
     this.getPosService().createOrderLine(request, callback)
   }
@@ -1932,7 +1950,8 @@
     posUuid,
     customerUuid,
     documentTypeUuid,
-    salesRepresentativeUuid,
+    warehouseUuid,
+    priceListUuid,
     description,
     language
   }, callback) {
@@ -1943,6 +1962,12 @@
     request.setCustomerUuid(customerUuid)
     request.setDocumentTypeUuid(documentTypeUuid)
     request.setDescription(description)
+    if(warehouseUuid) {
+      request.setWarehouseUuid(warehouseUuid)
+    }
+    if(priceListUuid) {
+      request.setPriceListUuid(priceListUuid)
+    }
     request.setClientRequest(this.createClientRequest(token, language))
     this.getPosService().updateOrder(request, callback)
   }
@@ -1956,6 +1981,7 @@
     price,
     discountRate,
     isAddQuantity,
+    warehouseUuid,
     language
   }, callback) {
     const { UpdateOrderLineRequest } = require('./src/grpc/proto/point_of_sales_pb.js')
@@ -1971,6 +1997,9 @@
     }
     if(discountRate) {
       request.setDiscountRate(getDecimalFromNumber(discountRate))
+    }
+    if(warehouseUuid) {
+      request.setWarehouseUuid(warehouseUuid)
     }
     request.setIsAddQuantity(isAddQuantity)
     request.setClientRequest(this.createClientRequest(token, language))
