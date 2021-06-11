@@ -9502,10 +9502,10 @@ proto.data.ProductPrice.toObject = function(includeInstance, msg) {
     quantityReserved: (f = msg.getQuantityReserved()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
     quantityOrdered: (f = msg.getQuantityOrdered()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
     quantityAvailable: (f = msg.getQuantityAvailable()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
-    schemaCurrency: (f = msg.getSchemaCurrency()) && proto.data.Currency.toObject(includeInstance, f),
-    schemaPriceList: (f = msg.getSchemaPriceList()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
-    schemaPriceStandard: (f = msg.getSchemaPriceStandard()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
-    schemaPriceLimit: (f = msg.getSchemaPriceLimit()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f)
+    displayCurrency: (f = msg.getDisplayCurrency()) && proto.data.Currency.toObject(includeInstance, f),
+    displayPriceList: (f = msg.getDisplayPriceList()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
+    displayPriceStandard: (f = msg.getDisplayPriceStandard()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
+    displayPriceLimit: (f = msg.getDisplayPriceLimit()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -9611,22 +9611,22 @@ proto.data.ProductPrice.deserializeBinaryFromReader = function(msg, reader) {
     case 15:
       var value = new proto.data.Currency;
       reader.readMessage(value,proto.data.Currency.deserializeBinaryFromReader);
-      msg.setSchemaCurrency(value);
+      msg.setDisplayCurrency(value);
       break;
     case 16:
       var value = new proto_base_data_type_pb.Decimal;
       reader.readMessage(value,proto_base_data_type_pb.Decimal.deserializeBinaryFromReader);
-      msg.setSchemaPriceList(value);
+      msg.setDisplayPriceList(value);
       break;
     case 17:
       var value = new proto_base_data_type_pb.Decimal;
       reader.readMessage(value,proto_base_data_type_pb.Decimal.deserializeBinaryFromReader);
-      msg.setSchemaPriceStandard(value);
+      msg.setDisplayPriceStandard(value);
       break;
     case 18:
       var value = new proto_base_data_type_pb.Decimal;
       reader.readMessage(value,proto_base_data_type_pb.Decimal.deserializeBinaryFromReader);
-      msg.setSchemaPriceLimit(value);
+      msg.setDisplayPriceLimit(value);
       break;
     default:
       reader.skipField();
@@ -9765,7 +9765,7 @@ proto.data.ProductPrice.serializeBinaryToWriter = function(message, writer) {
       proto_base_data_type_pb.Decimal.serializeBinaryToWriter
     );
   }
-  f = message.getSchemaCurrency();
+  f = message.getDisplayCurrency();
   if (f != null) {
     writer.writeMessage(
       15,
@@ -9773,7 +9773,7 @@ proto.data.ProductPrice.serializeBinaryToWriter = function(message, writer) {
       proto.data.Currency.serializeBinaryToWriter
     );
   }
-  f = message.getSchemaPriceList();
+  f = message.getDisplayPriceList();
   if (f != null) {
     writer.writeMessage(
       16,
@@ -9781,7 +9781,7 @@ proto.data.ProductPrice.serializeBinaryToWriter = function(message, writer) {
       proto_base_data_type_pb.Decimal.serializeBinaryToWriter
     );
   }
-  f = message.getSchemaPriceStandard();
+  f = message.getDisplayPriceStandard();
   if (f != null) {
     writer.writeMessage(
       17,
@@ -9789,7 +9789,7 @@ proto.data.ProductPrice.serializeBinaryToWriter = function(message, writer) {
       proto_base_data_type_pb.Decimal.serializeBinaryToWriter
     );
   }
-  f = message.getSchemaPriceLimit();
+  f = message.getDisplayPriceLimit();
   if (f != null) {
     writer.writeMessage(
       18,
@@ -10243,10 +10243,10 @@ proto.data.ProductPrice.prototype.hasQuantityAvailable = function() {
 
 
 /**
- * optional Currency schema_currency = 15;
+ * optional Currency display_currency = 15;
  * @return {?proto.data.Currency}
  */
-proto.data.ProductPrice.prototype.getSchemaCurrency = function() {
+proto.data.ProductPrice.prototype.getDisplayCurrency = function() {
   return /** @type{?proto.data.Currency} */ (
     jspb.Message.getWrapperField(this, proto.data.Currency, 15));
 };
@@ -10256,7 +10256,7 @@ proto.data.ProductPrice.prototype.getSchemaCurrency = function() {
  * @param {?proto.data.Currency|undefined} value
  * @return {!proto.data.ProductPrice} returns this
 */
-proto.data.ProductPrice.prototype.setSchemaCurrency = function(value) {
+proto.data.ProductPrice.prototype.setDisplayCurrency = function(value) {
   return jspb.Message.setWrapperField(this, 15, value);
 };
 
@@ -10265,8 +10265,8 @@ proto.data.ProductPrice.prototype.setSchemaCurrency = function(value) {
  * Clears the message field making it undefined.
  * @return {!proto.data.ProductPrice} returns this
  */
-proto.data.ProductPrice.prototype.clearSchemaCurrency = function() {
-  return this.setSchemaCurrency(undefined);
+proto.data.ProductPrice.prototype.clearDisplayCurrency = function() {
+  return this.setDisplayCurrency(undefined);
 };
 
 
@@ -10274,16 +10274,16 @@ proto.data.ProductPrice.prototype.clearSchemaCurrency = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.data.ProductPrice.prototype.hasSchemaCurrency = function() {
+proto.data.ProductPrice.prototype.hasDisplayCurrency = function() {
   return jspb.Message.getField(this, 15) != null;
 };
 
 
 /**
- * optional Decimal schema_price_list = 16;
+ * optional Decimal display_price_list = 16;
  * @return {?proto.data.Decimal}
  */
-proto.data.ProductPrice.prototype.getSchemaPriceList = function() {
+proto.data.ProductPrice.prototype.getDisplayPriceList = function() {
   return /** @type{?proto.data.Decimal} */ (
     jspb.Message.getWrapperField(this, proto_base_data_type_pb.Decimal, 16));
 };
@@ -10293,7 +10293,7 @@ proto.data.ProductPrice.prototype.getSchemaPriceList = function() {
  * @param {?proto.data.Decimal|undefined} value
  * @return {!proto.data.ProductPrice} returns this
 */
-proto.data.ProductPrice.prototype.setSchemaPriceList = function(value) {
+proto.data.ProductPrice.prototype.setDisplayPriceList = function(value) {
   return jspb.Message.setWrapperField(this, 16, value);
 };
 
@@ -10302,8 +10302,8 @@ proto.data.ProductPrice.prototype.setSchemaPriceList = function(value) {
  * Clears the message field making it undefined.
  * @return {!proto.data.ProductPrice} returns this
  */
-proto.data.ProductPrice.prototype.clearSchemaPriceList = function() {
-  return this.setSchemaPriceList(undefined);
+proto.data.ProductPrice.prototype.clearDisplayPriceList = function() {
+  return this.setDisplayPriceList(undefined);
 };
 
 
@@ -10311,16 +10311,16 @@ proto.data.ProductPrice.prototype.clearSchemaPriceList = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.data.ProductPrice.prototype.hasSchemaPriceList = function() {
+proto.data.ProductPrice.prototype.hasDisplayPriceList = function() {
   return jspb.Message.getField(this, 16) != null;
 };
 
 
 /**
- * optional Decimal schema_price_standard = 17;
+ * optional Decimal display_price_standard = 17;
  * @return {?proto.data.Decimal}
  */
-proto.data.ProductPrice.prototype.getSchemaPriceStandard = function() {
+proto.data.ProductPrice.prototype.getDisplayPriceStandard = function() {
   return /** @type{?proto.data.Decimal} */ (
     jspb.Message.getWrapperField(this, proto_base_data_type_pb.Decimal, 17));
 };
@@ -10330,7 +10330,7 @@ proto.data.ProductPrice.prototype.getSchemaPriceStandard = function() {
  * @param {?proto.data.Decimal|undefined} value
  * @return {!proto.data.ProductPrice} returns this
 */
-proto.data.ProductPrice.prototype.setSchemaPriceStandard = function(value) {
+proto.data.ProductPrice.prototype.setDisplayPriceStandard = function(value) {
   return jspb.Message.setWrapperField(this, 17, value);
 };
 
@@ -10339,8 +10339,8 @@ proto.data.ProductPrice.prototype.setSchemaPriceStandard = function(value) {
  * Clears the message field making it undefined.
  * @return {!proto.data.ProductPrice} returns this
  */
-proto.data.ProductPrice.prototype.clearSchemaPriceStandard = function() {
-  return this.setSchemaPriceStandard(undefined);
+proto.data.ProductPrice.prototype.clearDisplayPriceStandard = function() {
+  return this.setDisplayPriceStandard(undefined);
 };
 
 
@@ -10348,16 +10348,16 @@ proto.data.ProductPrice.prototype.clearSchemaPriceStandard = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.data.ProductPrice.prototype.hasSchemaPriceStandard = function() {
+proto.data.ProductPrice.prototype.hasDisplayPriceStandard = function() {
   return jspb.Message.getField(this, 17) != null;
 };
 
 
 /**
- * optional Decimal schema_price_limit = 18;
+ * optional Decimal display_price_limit = 18;
  * @return {?proto.data.Decimal}
  */
-proto.data.ProductPrice.prototype.getSchemaPriceLimit = function() {
+proto.data.ProductPrice.prototype.getDisplayPriceLimit = function() {
   return /** @type{?proto.data.Decimal} */ (
     jspb.Message.getWrapperField(this, proto_base_data_type_pb.Decimal, 18));
 };
@@ -10367,7 +10367,7 @@ proto.data.ProductPrice.prototype.getSchemaPriceLimit = function() {
  * @param {?proto.data.Decimal|undefined} value
  * @return {!proto.data.ProductPrice} returns this
 */
-proto.data.ProductPrice.prototype.setSchemaPriceLimit = function(value) {
+proto.data.ProductPrice.prototype.setDisplayPriceLimit = function(value) {
   return jspb.Message.setWrapperField(this, 18, value);
 };
 
@@ -10376,8 +10376,8 @@ proto.data.ProductPrice.prototype.setSchemaPriceLimit = function(value) {
  * Clears the message field making it undefined.
  * @return {!proto.data.ProductPrice} returns this
  */
-proto.data.ProductPrice.prototype.clearSchemaPriceLimit = function() {
-  return this.setSchemaPriceLimit(undefined);
+proto.data.ProductPrice.prototype.clearDisplayPriceLimit = function() {
+  return this.setDisplayPriceLimit(undefined);
 };
 
 
@@ -10385,7 +10385,7 @@ proto.data.ProductPrice.prototype.clearSchemaPriceLimit = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.data.ProductPrice.prototype.hasSchemaPriceLimit = function() {
+proto.data.ProductPrice.prototype.hasDisplayPriceLimit = function() {
   return jspb.Message.getField(this, 18) != null;
 };
 
