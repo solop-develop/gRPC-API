@@ -1782,10 +1782,8 @@
     upc,
     value,
     name,
-    priceListUuid,
+    posUuid,
     businessPartnerUuid,
-    displayCurrencyUuid,
-    warehouseUuid,
     validFrom,
     language
   }, callback) {
@@ -1795,13 +1793,9 @@
     request.setUpc(upc)
     request.setValue(value)
     request.setName(name)
-    request.setPriceListUuid(priceListUuid)
+    request.setPosUuid(posUuid)
     request.setBusinessPartnerUuid(businessPartnerUuid)
-    request.setWarehouseUuid(warehouseUuid)
     request.setValidFrom(validFrom)
-    if(displayCurrencyUuid) {
-      request.setDisplayCurrencyUuid(displayCurrencyUuid)
-    }
     request.setClientRequest(this.createClientRequest(token, language))
     this.getPosService().getProductPrice(request, callback)
   }
@@ -1810,10 +1804,8 @@
   listProductPrice({
     token,
     searchValue,
-    priceListUuid,
+    posUuid,
     businessPartnerUuid,
-    displayCurrencyUuid,
-    warehouseUuid,
     validFrom,
     tableName,
     //  DSL
@@ -1830,13 +1822,9 @@
     const { ListProductPriceRequest } = require('./src/grpc/proto/point_of_sales_pb.js')
     const request = new ListProductPriceRequest()
     request.setSearchValue(searchValue)
-    request.setPriceListUuid(priceListUuid)
+    request.setPosUuid(posUuid)
     request.setBusinessPartnerUuid(businessPartnerUuid)
-    request.setWarehouseUuid(warehouseUuid)
     request.setValidFrom(validFrom)
-    if(displayCurrencyUuid) {
-      request.setDisplayCurrencyUuid(displayCurrencyUuid)
-    }
     //
     const { convertCriteriaToGRPC } = require('./lib/convertValues.js');
     //  TODO: Add support to all parameters
@@ -2461,9 +2449,6 @@
     const { isEmptyValue } = require('./lib/convertValues.js');
     return isEmptyValue(value);
   }
-
-
-
 }
 
 module.exports = Api;

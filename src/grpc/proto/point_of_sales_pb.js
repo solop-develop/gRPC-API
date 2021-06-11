@@ -4542,14 +4542,12 @@ proto.data.ListProductPriceRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     clientRequest: (f = msg.getClientRequest()) && proto_client_pb.ClientRequest.toObject(includeInstance, f),
     searchValue: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    priceListUuid: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    businessPartnerUuid: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    warehouseUuid: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    validFrom: jspb.Message.getFieldWithDefault(msg, 6, ""),
-    displayCurrencyUuid: jspb.Message.getFieldWithDefault(msg, 7, ""),
+    businessPartnerUuid: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    validFrom: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    posUuid: jspb.Message.getFieldWithDefault(msg, 5, ""),
     criteria: (f = msg.getCriteria()) && proto_base_data_type_pb.Criteria.toObject(includeInstance, f),
-    pageSize: jspb.Message.getFieldWithDefault(msg, 9, 0),
-    pageToken: jspb.Message.getFieldWithDefault(msg, 10, "")
+    pageSize: jspb.Message.getFieldWithDefault(msg, 7, 0),
+    pageToken: jspb.Message.getFieldWithDefault(msg, 8, "")
   };
 
   if (includeInstance) {
@@ -4597,34 +4595,26 @@ proto.data.ListProductPriceRequest.deserializeBinaryFromReader = function(msg, r
       break;
     case 3:
       var value = /** @type {string} */ (reader.readString());
-      msg.setPriceListUuid(value);
+      msg.setBusinessPartnerUuid(value);
       break;
     case 4:
       var value = /** @type {string} */ (reader.readString());
-      msg.setBusinessPartnerUuid(value);
+      msg.setValidFrom(value);
       break;
     case 5:
       var value = /** @type {string} */ (reader.readString());
-      msg.setWarehouseUuid(value);
+      msg.setPosUuid(value);
       break;
     case 6:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setValidFrom(value);
-      break;
-    case 7:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setDisplayCurrencyUuid(value);
-      break;
-    case 8:
       var value = new proto_base_data_type_pb.Criteria;
       reader.readMessage(value,proto_base_data_type_pb.Criteria.deserializeBinaryFromReader);
       msg.setCriteria(value);
       break;
-    case 9:
+    case 7:
       var value = /** @type {number} */ (reader.readInt32());
       msg.setPageSize(value);
       break;
-    case 10:
+    case 8:
       var value = /** @type {string} */ (reader.readString());
       msg.setPageToken(value);
       break;
@@ -4672,45 +4662,31 @@ proto.data.ListProductPriceRequest.serializeBinaryToWriter = function(message, w
       f
     );
   }
-  f = message.getPriceListUuid();
+  f = message.getBusinessPartnerUuid();
   if (f.length > 0) {
     writer.writeString(
       3,
       f
     );
   }
-  f = message.getBusinessPartnerUuid();
+  f = message.getValidFrom();
   if (f.length > 0) {
     writer.writeString(
       4,
       f
     );
   }
-  f = message.getWarehouseUuid();
+  f = message.getPosUuid();
   if (f.length > 0) {
     writer.writeString(
       5,
       f
     );
   }
-  f = message.getValidFrom();
-  if (f.length > 0) {
-    writer.writeString(
-      6,
-      f
-    );
-  }
-  f = message.getDisplayCurrencyUuid();
-  if (f.length > 0) {
-    writer.writeString(
-      7,
-      f
-    );
-  }
   f = message.getCriteria();
   if (f != null) {
     writer.writeMessage(
-      8,
+      6,
       f,
       proto_base_data_type_pb.Criteria.serializeBinaryToWriter
     );
@@ -4718,14 +4694,14 @@ proto.data.ListProductPriceRequest.serializeBinaryToWriter = function(message, w
   f = message.getPageSize();
   if (f !== 0) {
     writer.writeInt32(
-      9,
+      7,
       f
     );
   }
   f = message.getPageToken();
   if (f.length > 0) {
     writer.writeString(
-      10,
+      8,
       f
     );
   }
@@ -4788,10 +4764,10 @@ proto.data.ListProductPriceRequest.prototype.setSearchValue = function(value) {
 
 
 /**
- * optional string price_list_uuid = 3;
+ * optional string business_partner_uuid = 3;
  * @return {string}
  */
-proto.data.ListProductPriceRequest.prototype.getPriceListUuid = function() {
+proto.data.ListProductPriceRequest.prototype.getBusinessPartnerUuid = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
 
@@ -4800,16 +4776,16 @@ proto.data.ListProductPriceRequest.prototype.getPriceListUuid = function() {
  * @param {string} value
  * @return {!proto.data.ListProductPriceRequest} returns this
  */
-proto.data.ListProductPriceRequest.prototype.setPriceListUuid = function(value) {
+proto.data.ListProductPriceRequest.prototype.setBusinessPartnerUuid = function(value) {
   return jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
 /**
- * optional string business_partner_uuid = 4;
+ * optional string valid_from = 4;
  * @return {string}
  */
-proto.data.ListProductPriceRequest.prototype.getBusinessPartnerUuid = function() {
+proto.data.ListProductPriceRequest.prototype.getValidFrom = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
 };
 
@@ -4818,16 +4794,16 @@ proto.data.ListProductPriceRequest.prototype.getBusinessPartnerUuid = function()
  * @param {string} value
  * @return {!proto.data.ListProductPriceRequest} returns this
  */
-proto.data.ListProductPriceRequest.prototype.setBusinessPartnerUuid = function(value) {
+proto.data.ListProductPriceRequest.prototype.setValidFrom = function(value) {
   return jspb.Message.setProto3StringField(this, 4, value);
 };
 
 
 /**
- * optional string warehouse_uuid = 5;
+ * optional string pos_uuid = 5;
  * @return {string}
  */
-proto.data.ListProductPriceRequest.prototype.getWarehouseUuid = function() {
+proto.data.ListProductPriceRequest.prototype.getPosUuid = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
 };
 
@@ -4836,54 +4812,18 @@ proto.data.ListProductPriceRequest.prototype.getWarehouseUuid = function() {
  * @param {string} value
  * @return {!proto.data.ListProductPriceRequest} returns this
  */
-proto.data.ListProductPriceRequest.prototype.setWarehouseUuid = function(value) {
+proto.data.ListProductPriceRequest.prototype.setPosUuid = function(value) {
   return jspb.Message.setProto3StringField(this, 5, value);
 };
 
 
 /**
- * optional string valid_from = 6;
- * @return {string}
- */
-proto.data.ListProductPriceRequest.prototype.getValidFrom = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.data.ListProductPriceRequest} returns this
- */
-proto.data.ListProductPriceRequest.prototype.setValidFrom = function(value) {
-  return jspb.Message.setProto3StringField(this, 6, value);
-};
-
-
-/**
- * optional string display_currency_uuid = 7;
- * @return {string}
- */
-proto.data.ListProductPriceRequest.prototype.getDisplayCurrencyUuid = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 7, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.data.ListProductPriceRequest} returns this
- */
-proto.data.ListProductPriceRequest.prototype.setDisplayCurrencyUuid = function(value) {
-  return jspb.Message.setProto3StringField(this, 7, value);
-};
-
-
-/**
- * optional Criteria criteria = 8;
+ * optional Criteria criteria = 6;
  * @return {?proto.data.Criteria}
  */
 proto.data.ListProductPriceRequest.prototype.getCriteria = function() {
   return /** @type{?proto.data.Criteria} */ (
-    jspb.Message.getWrapperField(this, proto_base_data_type_pb.Criteria, 8));
+    jspb.Message.getWrapperField(this, proto_base_data_type_pb.Criteria, 6));
 };
 
 
@@ -4892,7 +4832,7 @@ proto.data.ListProductPriceRequest.prototype.getCriteria = function() {
  * @return {!proto.data.ListProductPriceRequest} returns this
 */
 proto.data.ListProductPriceRequest.prototype.setCriteria = function(value) {
-  return jspb.Message.setWrapperField(this, 8, value);
+  return jspb.Message.setWrapperField(this, 6, value);
 };
 
 
@@ -4910,16 +4850,16 @@ proto.data.ListProductPriceRequest.prototype.clearCriteria = function() {
  * @return {boolean}
  */
 proto.data.ListProductPriceRequest.prototype.hasCriteria = function() {
-  return jspb.Message.getField(this, 8) != null;
+  return jspb.Message.getField(this, 6) != null;
 };
 
 
 /**
- * optional int32 page_size = 9;
+ * optional int32 page_size = 7;
  * @return {number}
  */
 proto.data.ListProductPriceRequest.prototype.getPageSize = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 9, 0));
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 7, 0));
 };
 
 
@@ -4928,16 +4868,16 @@ proto.data.ListProductPriceRequest.prototype.getPageSize = function() {
  * @return {!proto.data.ListProductPriceRequest} returns this
  */
 proto.data.ListProductPriceRequest.prototype.setPageSize = function(value) {
-  return jspb.Message.setProto3IntField(this, 9, value);
+  return jspb.Message.setProto3IntField(this, 7, value);
 };
 
 
 /**
- * optional string page_token = 10;
+ * optional string page_token = 8;
  * @return {string}
  */
 proto.data.ListProductPriceRequest.prototype.getPageToken = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 10, ""));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 8, ""));
 };
 
 
@@ -4946,7 +4886,7 @@ proto.data.ListProductPriceRequest.prototype.getPageToken = function() {
  * @return {!proto.data.ListProductPriceRequest} returns this
  */
 proto.data.ListProductPriceRequest.prototype.setPageToken = function(value) {
-  return jspb.Message.setProto3StringField(this, 10, value);
+  return jspb.Message.setProto3StringField(this, 8, value);
 };
 
 
@@ -12478,11 +12418,9 @@ proto.data.GetProductPriceRequest.toObject = function(includeInstance, msg) {
     upc: jspb.Message.getFieldWithDefault(msg, 3, ""),
     value: jspb.Message.getFieldWithDefault(msg, 4, ""),
     name: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    priceListUuid: jspb.Message.getFieldWithDefault(msg, 6, ""),
-    businessPartnerUuid: jspb.Message.getFieldWithDefault(msg, 7, ""),
-    warehouseUuid: jspb.Message.getFieldWithDefault(msg, 8, ""),
-    validFrom: jspb.Message.getFieldWithDefault(msg, 9, ""),
-    displayCurrencyUuid: jspb.Message.getFieldWithDefault(msg, 10, "")
+    businessPartnerUuid: jspb.Message.getFieldWithDefault(msg, 6, ""),
+    validFrom: jspb.Message.getFieldWithDefault(msg, 7, ""),
+    posUuid: jspb.Message.getFieldWithDefault(msg, 8, "")
   };
 
   if (includeInstance) {
@@ -12542,23 +12480,15 @@ proto.data.GetProductPriceRequest.deserializeBinaryFromReader = function(msg, re
       break;
     case 6:
       var value = /** @type {string} */ (reader.readString());
-      msg.setPriceListUuid(value);
+      msg.setBusinessPartnerUuid(value);
       break;
     case 7:
       var value = /** @type {string} */ (reader.readString());
-      msg.setBusinessPartnerUuid(value);
+      msg.setValidFrom(value);
       break;
     case 8:
       var value = /** @type {string} */ (reader.readString());
-      msg.setWarehouseUuid(value);
-      break;
-    case 9:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setValidFrom(value);
-      break;
-    case 10:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setDisplayCurrencyUuid(value);
+      msg.setPosUuid(value);
       break;
     default:
       reader.skipField();
@@ -12625,38 +12555,24 @@ proto.data.GetProductPriceRequest.serializeBinaryToWriter = function(message, wr
       f
     );
   }
-  f = message.getPriceListUuid();
+  f = message.getBusinessPartnerUuid();
   if (f.length > 0) {
     writer.writeString(
       6,
       f
     );
   }
-  f = message.getBusinessPartnerUuid();
+  f = message.getValidFrom();
   if (f.length > 0) {
     writer.writeString(
       7,
       f
     );
   }
-  f = message.getWarehouseUuid();
+  f = message.getPosUuid();
   if (f.length > 0) {
     writer.writeString(
       8,
-      f
-    );
-  }
-  f = message.getValidFrom();
-  if (f.length > 0) {
-    writer.writeString(
-      9,
-      f
-    );
-  }
-  f = message.getDisplayCurrencyUuid();
-  if (f.length > 0) {
-    writer.writeString(
-      10,
       f
     );
   }
@@ -12773,10 +12689,10 @@ proto.data.GetProductPriceRequest.prototype.setName = function(value) {
 
 
 /**
- * optional string price_list_uuid = 6;
+ * optional string business_partner_uuid = 6;
  * @return {string}
  */
-proto.data.GetProductPriceRequest.prototype.getPriceListUuid = function() {
+proto.data.GetProductPriceRequest.prototype.getBusinessPartnerUuid = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
 };
 
@@ -12785,16 +12701,16 @@ proto.data.GetProductPriceRequest.prototype.getPriceListUuid = function() {
  * @param {string} value
  * @return {!proto.data.GetProductPriceRequest} returns this
  */
-proto.data.GetProductPriceRequest.prototype.setPriceListUuid = function(value) {
+proto.data.GetProductPriceRequest.prototype.setBusinessPartnerUuid = function(value) {
   return jspb.Message.setProto3StringField(this, 6, value);
 };
 
 
 /**
- * optional string business_partner_uuid = 7;
+ * optional string valid_from = 7;
  * @return {string}
  */
-proto.data.GetProductPriceRequest.prototype.getBusinessPartnerUuid = function() {
+proto.data.GetProductPriceRequest.prototype.getValidFrom = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 7, ""));
 };
 
@@ -12803,16 +12719,16 @@ proto.data.GetProductPriceRequest.prototype.getBusinessPartnerUuid = function() 
  * @param {string} value
  * @return {!proto.data.GetProductPriceRequest} returns this
  */
-proto.data.GetProductPriceRequest.prototype.setBusinessPartnerUuid = function(value) {
+proto.data.GetProductPriceRequest.prototype.setValidFrom = function(value) {
   return jspb.Message.setProto3StringField(this, 7, value);
 };
 
 
 /**
- * optional string warehouse_uuid = 8;
+ * optional string pos_uuid = 8;
  * @return {string}
  */
-proto.data.GetProductPriceRequest.prototype.getWarehouseUuid = function() {
+proto.data.GetProductPriceRequest.prototype.getPosUuid = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 8, ""));
 };
 
@@ -12821,44 +12737,8 @@ proto.data.GetProductPriceRequest.prototype.getWarehouseUuid = function() {
  * @param {string} value
  * @return {!proto.data.GetProductPriceRequest} returns this
  */
-proto.data.GetProductPriceRequest.prototype.setWarehouseUuid = function(value) {
+proto.data.GetProductPriceRequest.prototype.setPosUuid = function(value) {
   return jspb.Message.setProto3StringField(this, 8, value);
-};
-
-
-/**
- * optional string valid_from = 9;
- * @return {string}
- */
-proto.data.GetProductPriceRequest.prototype.getValidFrom = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 9, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.data.GetProductPriceRequest} returns this
- */
-proto.data.GetProductPriceRequest.prototype.setValidFrom = function(value) {
-  return jspb.Message.setProto3StringField(this, 9, value);
-};
-
-
-/**
- * optional string display_currency_uuid = 10;
- * @return {string}
- */
-proto.data.GetProductPriceRequest.prototype.getDisplayCurrencyUuid = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 10, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.data.GetProductPriceRequest} returns this
- */
-proto.data.GetProductPriceRequest.prototype.setDisplayCurrencyUuid = function(value) {
-  return jspb.Message.setProto3StringField(this, 10, value);
 };
 
 
