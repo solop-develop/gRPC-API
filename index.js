@@ -1782,9 +1782,8 @@
     upc,
     value,
     name,
-    priceListUuid,
+    posUuid,
     businessPartnerUuid,
-    warehouseUuid,
     validFrom,
     language
   }, callback) {
@@ -1794,9 +1793,8 @@
     request.setUpc(upc)
     request.setValue(value)
     request.setName(name)
-    request.setPriceListUuid(priceListUuid)
+    request.setPosUuid(posUuid)
     request.setBusinessPartnerUuid(businessPartnerUuid)
-    request.setWarehouseUuid(warehouseUuid)
     request.setValidFrom(validFrom)
     request.setClientRequest(this.createClientRequest(token, language))
     this.getPosService().getProductPrice(request, callback)
@@ -1806,9 +1804,8 @@
   listProductPrice({
     token,
     searchValue,
-    priceListUuid,
+    posUuid,
     businessPartnerUuid,
-    warehouseUuid,
     validFrom,
     tableName,
     //  DSL
@@ -1825,9 +1822,8 @@
     const { ListProductPriceRequest } = require('./src/grpc/proto/point_of_sales_pb.js')
     const request = new ListProductPriceRequest()
     request.setSearchValue(searchValue)
-    request.setPriceListUuid(priceListUuid)
+    request.setPosUuid(posUuid)
     request.setBusinessPartnerUuid(businessPartnerUuid)
-    request.setWarehouseUuid(warehouseUuid)
     request.setValidFrom(validFrom)
     //
     const { convertCriteriaToGRPC } = require('./lib/convertValues.js');
@@ -1852,6 +1848,8 @@
     posUuid,
     customerUuid,
     documentTypeUuid,
+    warehouseUuid,
+    priceListUuid,
     salesRepresentativeUuid,
     language
   }, callback) {
@@ -1861,6 +1859,12 @@
     request.setCustomerUuid(customerUuid)
     request.setDocumentTypeUuid(documentTypeUuid)
     request.setSalesRepresentativeUuid(salesRepresentativeUuid)
+    if(warehouseUuid) {
+      request.setWarehouseUuid(warehouseUuid)
+    }
+    if(priceListUuid) {
+      request.setPriceListUuid(priceListUuid)
+    }
     request.setClientRequest(this.createClientRequest(token, language))
     this.getPosService().createOrder(request, callback)
   }
@@ -1907,7 +1911,9 @@
     if(discountRate) {
       request.setDiscountRate(getDecimalFromNumber(discountRate))
     }
-    request.setWarehouseUuid(warehouseUuid)
+    if(warehouseUuid) {
+      request.setWarehouseUuid(warehouseUuid)
+    }
     request.setClientRequest(this.createClientRequest(token, language))
     this.getPosService().createOrderLine(request, callback)
   }
@@ -1932,7 +1938,8 @@
     posUuid,
     customerUuid,
     documentTypeUuid,
-    salesRepresentativeUuid,
+    warehouseUuid,
+    priceListUuid,
     description,
     language
   }, callback) {
@@ -1943,6 +1950,12 @@
     request.setCustomerUuid(customerUuid)
     request.setDocumentTypeUuid(documentTypeUuid)
     request.setDescription(description)
+    if(warehouseUuid) {
+      request.setWarehouseUuid(warehouseUuid)
+    }
+    if(priceListUuid) {
+      request.setPriceListUuid(priceListUuid)
+    }
     request.setClientRequest(this.createClientRequest(token, language))
     this.getPosService().updateOrder(request, callback)
   }
@@ -1956,6 +1969,7 @@
     price,
     discountRate,
     isAddQuantity,
+    warehouseUuid,
     language
   }, callback) {
     const { UpdateOrderLineRequest } = require('./src/grpc/proto/point_of_sales_pb.js')
@@ -1971,6 +1985,9 @@
     }
     if(discountRate) {
       request.setDiscountRate(getDecimalFromNumber(discountRate))
+    }
+    if(warehouseUuid) {
+      request.setWarehouseUuid(warehouseUuid)
     }
     request.setIsAddQuantity(isAddQuantity)
     request.setClientRequest(this.createClientRequest(token, language))
@@ -2291,6 +2308,82 @@
     this.getPosService().validatePIN(request, callback)
   }
 
+  //  List Available Warehouses
+  listAvailableWarehouses({
+    token,
+    posUuid,
+    pageSize,
+    pageToken,
+    language
+  }, callback) {
+    const { ListAvailableWarehousesRequest } = require('./src/grpc/proto/point_of_sales_pb.js')
+    const request = new ListAvailableWarehousesRequest()
+    if (posUuid) {
+      request.setPosUuid(posUuid)
+    }
+    request.setPageSize(pageSize)
+    request.setPageToken(pageToken)
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getPosService().listAvailableWarehouses(request, callback)
+  }
+
+  //  List Available Tender Types
+  listAvailableTenderTypes({
+    token,
+    posUuid,
+    pageSize,
+    pageToken,
+    language
+  }, callback) {
+    const { ListAvailableTenderTypesRequest } = require('./src/grpc/proto/point_of_sales_pb.js')
+    const request = new ListAvailableTenderTypesRequest()
+    if (posUuid) {
+      request.setPosUuid(posUuid)
+    }
+    request.setPageSize(pageSize)
+    request.setPageToken(pageToken)
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getPosService().listAvailableTenderTypes(request, callback)
+  }
+  
+  //  List Available Price List
+  listAvailablePriceList({
+    token,
+    posUuid,
+    pageSize,
+    pageToken,
+    language
+  }, callback) {
+    const { ListAvailablePriceListRequest } = require('./src/grpc/proto/point_of_sales_pb.js')
+    const request = new ListAvailablePriceListRequest()
+    if (posUuid) {
+      request.setPosUuid(posUuid)
+    }
+    request.setPageSize(pageSize)
+    request.setPageToken(pageToken)
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getPosService().listAvailablePriceList(request, callback)
+  }
+
+  //  List Available Price List
+  listAvailableCurrencies({
+    token,
+    posUuid,
+    pageSize,
+    pageToken,
+    language
+  }, callback) {
+    const { ListAvailableCurrenciesRequest } = require('./src/grpc/proto/point_of_sales_pb.js')
+    const request = new ListAvailableCurrenciesRequest()
+    if (posUuid) {
+      request.setPosUuid(posUuid)
+    }
+    request.setPageSize(pageSize)
+    request.setPageToken(pageToken)
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getPosService().listAvailableCurrencies(request, callback)
+  }
+
   //  Enrollment service
   //  Enroll User
   enrollUser({
@@ -2356,7 +2449,6 @@
     const { isEmptyValue } = require('./lib/convertValues.js');
     return isEmptyValue(value);
   }
-
 }
 
 module.exports = Api;
