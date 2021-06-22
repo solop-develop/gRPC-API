@@ -1,8 +1,7 @@
 /*************************************************************************************
  * Product: ADempiere gRPC Dictionary Client                                         *
  * Copyright (C) 2012-2018 E.R.P. Consultores y Asociados, C.A.                      *
- * Contributor(s): Yamel Senih ysenih@erpya.com                                      *
- * Contributor(s): Edwin Betancourt <EdwinBetanc0urt@outlook.com>                    *
+ * Contributor(s): Yamel Senih ysenih@erpya.com                                       *
  * This program is free software: you can redistribute it and/or modify              *
  * it under the terms of the GNU General Public License as published by              *
  * the Free Software Foundation, either version 3 of the License, or                 *
@@ -1494,6 +1493,21 @@
     request.setClientRequest(this.createClientRequest(token, language))
     this.getDashboardService().listPendingDocuments(request, callback)
   }
+
+    //  Get Chart Data
+    getChart({
+      token,
+      uuid,
+      id,
+      language
+    }, callback) {
+      const { GetChartRequest } = require('./src/grpc/proto/business_pb.js')
+      const request = new GetChartRequest()
+      request.setUuid(uuid)
+      request.setId(id)
+      request.setClientRequest(this.createClientRequest(token, language))
+      this.getDashboardService().getChart(request, callback)
+    }
 
   //  Core Functionality
   //  Get Country

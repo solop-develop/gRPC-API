@@ -43,6 +43,17 @@ function deserialize_data_Callout(buffer_arg) {
   return proto_business_pb.Callout.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_data_Chart(arg) {
+  if (!(arg instanceof proto_business_pb.Chart)) {
+    throw new Error('Expected argument of type data.Chart');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_Chart(buffer_arg) {
+  return proto_business_pb.Chart.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_data_ChatEntry(arg) {
   if (!(arg instanceof proto_business_pb.ChatEntry)) {
     throw new Error('Expected argument of type data.ChatEntry');
@@ -140,6 +151,17 @@ function serialize_data_GetAttachmentRequest(arg) {
 
 function deserialize_data_GetAttachmentRequest(buffer_arg) {
   return proto_business_pb.GetAttachmentRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_data_GetChartRequest(arg) {
+  if (!(arg instanceof proto_business_pb.GetChartRequest)) {
+    throw new Error('Expected argument of type data.GetChartRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_GetChartRequest(buffer_arg) {
+  return proto_business_pb.GetChartRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_data_GetContextInfoValueRequest(arg) {
@@ -1317,6 +1339,18 @@ listPendingDocuments: {
     requestDeserialize: deserialize_data_ListPendingDocumentsRequest,
     responseSerialize: serialize_data_ListPendingDocumentsResponse,
     responseDeserialize: deserialize_data_ListPendingDocumentsResponse,
+  },
+  // 	Get Chart
+getChart: {
+    path: '/data.Dashboarding/GetChart',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_business_pb.GetChartRequest,
+    responseType: proto_business_pb.Chart,
+    requestSerialize: serialize_data_GetChartRequest,
+    requestDeserialize: deserialize_data_GetChartRequest,
+    responseSerialize: serialize_data_Chart,
+    responseDeserialize: deserialize_data_Chart,
   },
 };
 
