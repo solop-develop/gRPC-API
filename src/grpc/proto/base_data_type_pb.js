@@ -5193,15 +5193,19 @@ proto.data.Dashboard.toObject = function(includeInstance, msg) {
   var f, obj = {
     windowUuid: jspb.Message.getFieldWithDefault(msg, 1, ""),
     browserUuid: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    dashboardName: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    dashboardDescription: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    dashboardHtml: jspb.Message.getFieldWithDefault(msg, 5, ""),
+    name: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    description: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    html: jspb.Message.getFieldWithDefault(msg, 5, ""),
     columnNo: jspb.Message.getFieldWithDefault(msg, 6, 0),
     lineNo: jspb.Message.getFieldWithDefault(msg, 7, 0),
     isCollapsible: jspb.Message.getBooleanFieldWithDefault(msg, 8, false),
     isOpenByDefault: jspb.Message.getBooleanFieldWithDefault(msg, 9, false),
     isEventRequired: jspb.Message.getBooleanFieldWithDefault(msg, 10, false),
-    fileName: jspb.Message.getFieldWithDefault(msg, 11, "")
+    fileName: jspb.Message.getFieldWithDefault(msg, 11, ""),
+    dashboardType: jspb.Message.getFieldWithDefault(msg, 12, ""),
+    chartType: jspb.Message.getFieldWithDefault(msg, 13, ""),
+    id: jspb.Message.getFieldWithDefault(msg, 14, 0),
+    uuid: jspb.Message.getFieldWithDefault(msg, 15, "")
   };
 
   if (includeInstance) {
@@ -5248,15 +5252,15 @@ proto.data.Dashboard.deserializeBinaryFromReader = function(msg, reader) {
       break;
     case 3:
       var value = /** @type {string} */ (reader.readString());
-      msg.setDashboardName(value);
+      msg.setName(value);
       break;
     case 4:
       var value = /** @type {string} */ (reader.readString());
-      msg.setDashboardDescription(value);
+      msg.setDescription(value);
       break;
     case 5:
       var value = /** @type {string} */ (reader.readString());
-      msg.setDashboardHtml(value);
+      msg.setHtml(value);
       break;
     case 6:
       var value = /** @type {number} */ (reader.readInt32());
@@ -5281,6 +5285,22 @@ proto.data.Dashboard.deserializeBinaryFromReader = function(msg, reader) {
     case 11:
       var value = /** @type {string} */ (reader.readString());
       msg.setFileName(value);
+      break;
+    case 12:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setDashboardType(value);
+      break;
+    case 13:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setChartType(value);
+      break;
+    case 14:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setId(value);
+      break;
+    case 15:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setUuid(value);
       break;
     default:
       reader.skipField();
@@ -5325,21 +5345,21 @@ proto.data.Dashboard.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-  f = message.getDashboardName();
+  f = message.getName();
   if (f.length > 0) {
     writer.writeString(
       3,
       f
     );
   }
-  f = message.getDashboardDescription();
+  f = message.getDescription();
   if (f.length > 0) {
     writer.writeString(
       4,
       f
     );
   }
-  f = message.getDashboardHtml();
+  f = message.getHtml();
   if (f.length > 0) {
     writer.writeString(
       5,
@@ -5388,6 +5408,34 @@ proto.data.Dashboard.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
+  f = message.getDashboardType();
+  if (f.length > 0) {
+    writer.writeString(
+      12,
+      f
+    );
+  }
+  f = message.getChartType();
+  if (f.length > 0) {
+    writer.writeString(
+      13,
+      f
+    );
+  }
+  f = message.getId();
+  if (f !== 0) {
+    writer.writeInt32(
+      14,
+      f
+    );
+  }
+  f = message.getUuid();
+  if (f.length > 0) {
+    writer.writeString(
+      15,
+      f
+    );
+  }
 };
 
 
@@ -5428,10 +5476,10 @@ proto.data.Dashboard.prototype.setBrowserUuid = function(value) {
 
 
 /**
- * optional string dashboard_name = 3;
+ * optional string name = 3;
  * @return {string}
  */
-proto.data.Dashboard.prototype.getDashboardName = function() {
+proto.data.Dashboard.prototype.getName = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
 
@@ -5440,16 +5488,16 @@ proto.data.Dashboard.prototype.getDashboardName = function() {
  * @param {string} value
  * @return {!proto.data.Dashboard} returns this
  */
-proto.data.Dashboard.prototype.setDashboardName = function(value) {
+proto.data.Dashboard.prototype.setName = function(value) {
   return jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
 /**
- * optional string dashboard_description = 4;
+ * optional string description = 4;
  * @return {string}
  */
-proto.data.Dashboard.prototype.getDashboardDescription = function() {
+proto.data.Dashboard.prototype.getDescription = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
 };
 
@@ -5458,16 +5506,16 @@ proto.data.Dashboard.prototype.getDashboardDescription = function() {
  * @param {string} value
  * @return {!proto.data.Dashboard} returns this
  */
-proto.data.Dashboard.prototype.setDashboardDescription = function(value) {
+proto.data.Dashboard.prototype.setDescription = function(value) {
   return jspb.Message.setProto3StringField(this, 4, value);
 };
 
 
 /**
- * optional string dashboard_html = 5;
+ * optional string html = 5;
  * @return {string}
  */
-proto.data.Dashboard.prototype.getDashboardHtml = function() {
+proto.data.Dashboard.prototype.getHtml = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
 };
 
@@ -5476,7 +5524,7 @@ proto.data.Dashboard.prototype.getDashboardHtml = function() {
  * @param {string} value
  * @return {!proto.data.Dashboard} returns this
  */
-proto.data.Dashboard.prototype.setDashboardHtml = function(value) {
+proto.data.Dashboard.prototype.setHtml = function(value) {
   return jspb.Message.setProto3StringField(this, 5, value);
 };
 
@@ -5586,6 +5634,78 @@ proto.data.Dashboard.prototype.getFileName = function() {
  */
 proto.data.Dashboard.prototype.setFileName = function(value) {
   return jspb.Message.setProto3StringField(this, 11, value);
+};
+
+
+/**
+ * optional string dashboard_type = 12;
+ * @return {string}
+ */
+proto.data.Dashboard.prototype.getDashboardType = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 12, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.data.Dashboard} returns this
+ */
+proto.data.Dashboard.prototype.setDashboardType = function(value) {
+  return jspb.Message.setProto3StringField(this, 12, value);
+};
+
+
+/**
+ * optional string chart_type = 13;
+ * @return {string}
+ */
+proto.data.Dashboard.prototype.getChartType = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 13, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.data.Dashboard} returns this
+ */
+proto.data.Dashboard.prototype.setChartType = function(value) {
+  return jspb.Message.setProto3StringField(this, 13, value);
+};
+
+
+/**
+ * optional int32 id = 14;
+ * @return {number}
+ */
+proto.data.Dashboard.prototype.getId = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 14, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.data.Dashboard} returns this
+ */
+proto.data.Dashboard.prototype.setId = function(value) {
+  return jspb.Message.setProto3IntField(this, 14, value);
+};
+
+
+/**
+ * optional string uuid = 15;
+ * @return {string}
+ */
+proto.data.Dashboard.prototype.getUuid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 15, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.data.Dashboard} returns this
+ */
+proto.data.Dashboard.prototype.setUuid = function(value) {
+  return jspb.Message.setProto3StringField(this, 15, value);
 };
 
 

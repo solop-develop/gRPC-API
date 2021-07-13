@@ -1,8 +1,7 @@
 /*************************************************************************************
  * Product: ADempiere gRPC Dictionary Client                                         *
  * Copyright (C) 2012-2018 E.R.P. Consultores y Asociados, C.A.                      *
- * Contributor(s): Yamel Senih ysenih@erpya.com                                      *
- * Contributor(s): Edwin Betancourt <EdwinBetanc0urt@outlook.com>                    *
+ * Contributor(s): Yamel Senih ysenih@erpya.com                                       *
  * This program is free software: you can redistribute it and/or modify              *
  * it under the terms of the GNU General Public License as published by              *
  * the Free Software Foundation, either version 3 of the License, or                 *
@@ -1495,6 +1494,21 @@
     this.getDashboardService().listPendingDocuments(request, callback)
   }
 
+    //  Get Chart Data
+    getChart({
+      token,
+      uuid,
+      id,
+      language
+    }, callback) {
+      const { GetChartRequest } = require('./src/grpc/proto/business_pb.js')
+      const request = new GetChartRequest()
+      request.setUuid(uuid)
+      request.setId(id)
+      request.setClientRequest(this.createClientRequest(token, language))
+      this.getDashboardService().getChart(request, callback)
+    }
+
   //  Core Functionality
   //  Get Country
   getCountry({
@@ -2382,6 +2396,25 @@
     request.setPageToken(pageToken)
     request.setClientRequest(this.createClientRequest(token, language))
     this.getPosService().listAvailableCurrencies(request, callback)
+  }
+
+  //  List Available Document Types
+  listAvailableDocumentTypes({
+    token,
+    posUuid,
+    pageSize,
+    pageToken,
+    language
+  }, callback) {
+    const { ListAvailableDocumentTypesRequest } = require('./src/grpc/proto/point_of_sales_pb.js')
+    const request = new ListAvailableDocumentTypesRequest()
+    if (posUuid) {
+      request.setPosUuid(posUuid)
+    }
+    request.setPageSize(pageSize)
+    request.setPageToken(pageToken)
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getPosService().listAvailableDocumentTypes(request, callback)
   }
 
   //  Enrollment service

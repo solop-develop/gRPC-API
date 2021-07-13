@@ -165,6 +165,28 @@ function deserialize_data_ListAvailableCurrenciesResponse(buffer_arg) {
   return proto_point_of_sales_pb.ListAvailableCurrenciesResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_data_ListAvailableDocumentTypesRequest(arg) {
+  if (!(arg instanceof proto_point_of_sales_pb.ListAvailableDocumentTypesRequest)) {
+    throw new Error('Expected argument of type data.ListAvailableDocumentTypesRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_ListAvailableDocumentTypesRequest(buffer_arg) {
+  return proto_point_of_sales_pb.ListAvailableDocumentTypesRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_data_ListAvailableDocumentTypesResponse(arg) {
+  if (!(arg instanceof proto_point_of_sales_pb.ListAvailableDocumentTypesResponse)) {
+    throw new Error('Expected argument of type data.ListAvailableDocumentTypesResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_ListAvailableDocumentTypesResponse(buffer_arg) {
+  return proto_point_of_sales_pb.ListAvailableDocumentTypesResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_data_ListAvailablePriceListRequest(arg) {
   if (!(arg instanceof proto_point_of_sales_pb.ListAvailablePriceListRequest)) {
     throw new Error('Expected argument of type data.ListAvailablePriceListRequest');
@@ -753,6 +775,18 @@ listAvailableCurrencies: {
     requestDeserialize: deserialize_data_ListAvailableCurrenciesRequest,
     responseSerialize: serialize_data_ListAvailableCurrenciesResponse,
     responseDeserialize: deserialize_data_ListAvailableCurrenciesResponse,
+  },
+  // 	List of Available Document Types
+listAvailableDocumentTypes: {
+    path: '/data.Store/ListAvailableDocumentTypes',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_point_of_sales_pb.ListAvailableDocumentTypesRequest,
+    responseType: proto_point_of_sales_pb.ListAvailableDocumentTypesResponse,
+    requestSerialize: serialize_data_ListAvailableDocumentTypesRequest,
+    requestDeserialize: deserialize_data_ListAvailableDocumentTypesRequest,
+    responseSerialize: serialize_data_ListAvailableDocumentTypesResponse,
+    responseDeserialize: deserialize_data_ListAvailableDocumentTypesResponse,
   },
 };
 
