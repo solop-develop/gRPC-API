@@ -2398,6 +2398,25 @@
     this.getPosService().listAvailableCurrencies(request, callback)
   }
 
+  //  List Available Document Types
+  listAvailableDocumentTypes({
+    token,
+    posUuid,
+    pageSize,
+    pageToken,
+    language
+  }, callback) {
+    const { ListAvailableDocumentTypesRequest } = require('./src/grpc/proto/point_of_sales_pb.js')
+    const request = new ListAvailableDocumentTypesRequest()
+    if (posUuid) {
+      request.setPosUuid(posUuid)
+    }
+    request.setPageSize(pageSize)
+    request.setPageToken(pageToken)
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getPosService().listAvailableDocumentTypes(request, callback)
+  }
+
   //  Enrollment service
   //  Enroll User
   enrollUser({
