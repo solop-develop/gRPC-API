@@ -659,6 +659,28 @@ function deserialize_data_ListTranslationsResponse(buffer_arg) {
   return proto_business_pb.ListTranslationsResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_data_ListWorkflowActivitiesRequest(arg) {
+  if (!(arg instanceof proto_business_pb.ListWorkflowActivitiesRequest)) {
+    throw new Error('Expected argument of type data.ListWorkflowActivitiesRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_ListWorkflowActivitiesRequest(buffer_arg) {
+  return proto_business_pb.ListWorkflowActivitiesRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_data_ListWorkflowActivitiesResponse(arg) {
+  if (!(arg instanceof proto_business_pb.ListWorkflowActivitiesResponse)) {
+    throw new Error('Expected argument of type data.ListWorkflowActivitiesResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_ListWorkflowActivitiesResponse(buffer_arg) {
+  return proto_business_pb.ListWorkflowActivitiesResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_data_ListWorkflowLogsRequest(arg) {
   if (!(arg instanceof proto_business_pb.ListWorkflowLogsRequest)) {
     throw new Error('Expected argument of type data.ListWorkflowLogsRequest');
@@ -1298,6 +1320,18 @@ listDocumentStatuses: {
     requestDeserialize: deserialize_data_ListDocumentStatusesRequest,
     responseSerialize: serialize_data_ListDocumentStatusesResponse,
     responseDeserialize: deserialize_data_ListDocumentStatusesResponse,
+  },
+  // 	List Workflow Activities
+listWorkflowActivities: {
+    path: '/data.Workflow/ListWorkflowActivities',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_business_pb.ListWorkflowActivitiesRequest,
+    responseType: proto_business_pb.ListWorkflowActivitiesResponse,
+    requestSerialize: serialize_data_ListWorkflowActivitiesRequest,
+    requestDeserialize: deserialize_data_ListWorkflowActivitiesRequest,
+    responseSerialize: serialize_data_ListWorkflowActivitiesResponse,
+    responseDeserialize: deserialize_data_ListWorkflowActivitiesResponse,
   },
 };
 
