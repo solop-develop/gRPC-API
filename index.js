@@ -1346,6 +1346,23 @@
     this.getLogService().listWorkflowLogs(request, callback)
   }
 
+  //  List workflow Activities
+  listWorkflowActivities({
+    token,
+    userUuid,
+    pageSize,
+    pageToken,
+    language
+  }, callback) {
+    const { ListWorkflowActivitiesRequest } = require('./src/grpc/proto/business_pb.js')
+    const request = new ListWorkflowActivitiesRequest()
+    request.setUserUuid(userUuid)
+    request.setPageSize(pageSize)
+    request.setPageToken(pageToken)
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getWorkflowService().listWorkflowActivities(request, callback)
+  }
+
   //  List recent items
   listRecentItems({
     token,
