@@ -13922,11 +13922,12 @@ proto.data.OrderLine.toObject = function(includeInstance, msg) {
     description: jspb.Message.getFieldWithDefault(msg, 6, ""),
     warehouse: (f = msg.getWarehouse()) && proto_core_functionality_pb.Warehouse.toObject(includeInstance, f),
     quantity: (f = msg.getQuantity()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
+    priceList: (f = msg.getPriceList()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
     price: (f = msg.getPrice()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
     discountRate: (f = msg.getDiscountRate()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
     taxRate: (f = msg.getTaxRate()) && proto_core_functionality_pb.TaxRate.toObject(includeInstance, f),
     lineNetAmount: (f = msg.getLineNetAmount()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
-    line: jspb.Message.getFieldWithDefault(msg, 13, 0)
+    line: jspb.Message.getFieldWithDefault(msg, 14, 0)
   };
 
   if (includeInstance) {
@@ -14002,24 +14003,29 @@ proto.data.OrderLine.deserializeBinaryFromReader = function(msg, reader) {
     case 9:
       var value = new proto_base_data_type_pb.Decimal;
       reader.readMessage(value,proto_base_data_type_pb.Decimal.deserializeBinaryFromReader);
-      msg.setPrice(value);
+      msg.setPriceList(value);
       break;
     case 10:
       var value = new proto_base_data_type_pb.Decimal;
       reader.readMessage(value,proto_base_data_type_pb.Decimal.deserializeBinaryFromReader);
-      msg.setDiscountRate(value);
+      msg.setPrice(value);
       break;
     case 11:
+      var value = new proto_base_data_type_pb.Decimal;
+      reader.readMessage(value,proto_base_data_type_pb.Decimal.deserializeBinaryFromReader);
+      msg.setDiscountRate(value);
+      break;
+    case 12:
       var value = new proto_core_functionality_pb.TaxRate;
       reader.readMessage(value,proto_core_functionality_pb.TaxRate.deserializeBinaryFromReader);
       msg.setTaxRate(value);
       break;
-    case 12:
+    case 13:
       var value = new proto_base_data_type_pb.Decimal;
       reader.readMessage(value,proto_base_data_type_pb.Decimal.deserializeBinaryFromReader);
       msg.setLineNetAmount(value);
       break;
-    case 13:
+    case 14:
       var value = /** @type {number} */ (reader.readInt32());
       msg.setLine(value);
       break;
@@ -14112,7 +14118,7 @@ proto.data.OrderLine.serializeBinaryToWriter = function(message, writer) {
       proto_base_data_type_pb.Decimal.serializeBinaryToWriter
     );
   }
-  f = message.getPrice();
+  f = message.getPriceList();
   if (f != null) {
     writer.writeMessage(
       9,
@@ -14120,7 +14126,7 @@ proto.data.OrderLine.serializeBinaryToWriter = function(message, writer) {
       proto_base_data_type_pb.Decimal.serializeBinaryToWriter
     );
   }
-  f = message.getDiscountRate();
+  f = message.getPrice();
   if (f != null) {
     writer.writeMessage(
       10,
@@ -14128,10 +14134,18 @@ proto.data.OrderLine.serializeBinaryToWriter = function(message, writer) {
       proto_base_data_type_pb.Decimal.serializeBinaryToWriter
     );
   }
-  f = message.getTaxRate();
+  f = message.getDiscountRate();
   if (f != null) {
     writer.writeMessage(
       11,
+      f,
+      proto_base_data_type_pb.Decimal.serializeBinaryToWriter
+    );
+  }
+  f = message.getTaxRate();
+  if (f != null) {
+    writer.writeMessage(
+      12,
       f,
       proto_core_functionality_pb.TaxRate.serializeBinaryToWriter
     );
@@ -14139,7 +14153,7 @@ proto.data.OrderLine.serializeBinaryToWriter = function(message, writer) {
   f = message.getLineNetAmount();
   if (f != null) {
     writer.writeMessage(
-      12,
+      13,
       f,
       proto_base_data_type_pb.Decimal.serializeBinaryToWriter
     );
@@ -14147,7 +14161,7 @@ proto.data.OrderLine.serializeBinaryToWriter = function(message, writer) {
   f = message.getLine();
   if (f !== 0) {
     writer.writeInt32(
-      13,
+      14,
       f
     );
   }
@@ -14375,10 +14389,10 @@ proto.data.OrderLine.prototype.hasQuantity = function() {
 
 
 /**
- * optional Decimal price = 9;
+ * optional Decimal price_list = 9;
  * @return {?proto.data.Decimal}
  */
-proto.data.OrderLine.prototype.getPrice = function() {
+proto.data.OrderLine.prototype.getPriceList = function() {
   return /** @type{?proto.data.Decimal} */ (
     jspb.Message.getWrapperField(this, proto_base_data_type_pb.Decimal, 9));
 };
@@ -14388,8 +14402,45 @@ proto.data.OrderLine.prototype.getPrice = function() {
  * @param {?proto.data.Decimal|undefined} value
  * @return {!proto.data.OrderLine} returns this
 */
-proto.data.OrderLine.prototype.setPrice = function(value) {
+proto.data.OrderLine.prototype.setPriceList = function(value) {
   return jspb.Message.setWrapperField(this, 9, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.data.OrderLine} returns this
+ */
+proto.data.OrderLine.prototype.clearPriceList = function() {
+  return this.setPriceList(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.data.OrderLine.prototype.hasPriceList = function() {
+  return jspb.Message.getField(this, 9) != null;
+};
+
+
+/**
+ * optional Decimal price = 10;
+ * @return {?proto.data.Decimal}
+ */
+proto.data.OrderLine.prototype.getPrice = function() {
+  return /** @type{?proto.data.Decimal} */ (
+    jspb.Message.getWrapperField(this, proto_base_data_type_pb.Decimal, 10));
+};
+
+
+/**
+ * @param {?proto.data.Decimal|undefined} value
+ * @return {!proto.data.OrderLine} returns this
+*/
+proto.data.OrderLine.prototype.setPrice = function(value) {
+  return jspb.Message.setWrapperField(this, 10, value);
 };
 
 
@@ -14407,17 +14458,17 @@ proto.data.OrderLine.prototype.clearPrice = function() {
  * @return {boolean}
  */
 proto.data.OrderLine.prototype.hasPrice = function() {
-  return jspb.Message.getField(this, 9) != null;
+  return jspb.Message.getField(this, 10) != null;
 };
 
 
 /**
- * optional Decimal discount_rate = 10;
+ * optional Decimal discount_rate = 11;
  * @return {?proto.data.Decimal}
  */
 proto.data.OrderLine.prototype.getDiscountRate = function() {
   return /** @type{?proto.data.Decimal} */ (
-    jspb.Message.getWrapperField(this, proto_base_data_type_pb.Decimal, 10));
+    jspb.Message.getWrapperField(this, proto_base_data_type_pb.Decimal, 11));
 };
 
 
@@ -14426,7 +14477,7 @@ proto.data.OrderLine.prototype.getDiscountRate = function() {
  * @return {!proto.data.OrderLine} returns this
 */
 proto.data.OrderLine.prototype.setDiscountRate = function(value) {
-  return jspb.Message.setWrapperField(this, 10, value);
+  return jspb.Message.setWrapperField(this, 11, value);
 };
 
 
@@ -14444,17 +14495,17 @@ proto.data.OrderLine.prototype.clearDiscountRate = function() {
  * @return {boolean}
  */
 proto.data.OrderLine.prototype.hasDiscountRate = function() {
-  return jspb.Message.getField(this, 10) != null;
+  return jspb.Message.getField(this, 11) != null;
 };
 
 
 /**
- * optional TaxRate tax_rate = 11;
+ * optional TaxRate tax_rate = 12;
  * @return {?proto.data.TaxRate}
  */
 proto.data.OrderLine.prototype.getTaxRate = function() {
   return /** @type{?proto.data.TaxRate} */ (
-    jspb.Message.getWrapperField(this, proto_core_functionality_pb.TaxRate, 11));
+    jspb.Message.getWrapperField(this, proto_core_functionality_pb.TaxRate, 12));
 };
 
 
@@ -14463,7 +14514,7 @@ proto.data.OrderLine.prototype.getTaxRate = function() {
  * @return {!proto.data.OrderLine} returns this
 */
 proto.data.OrderLine.prototype.setTaxRate = function(value) {
-  return jspb.Message.setWrapperField(this, 11, value);
+  return jspb.Message.setWrapperField(this, 12, value);
 };
 
 
@@ -14481,17 +14532,17 @@ proto.data.OrderLine.prototype.clearTaxRate = function() {
  * @return {boolean}
  */
 proto.data.OrderLine.prototype.hasTaxRate = function() {
-  return jspb.Message.getField(this, 11) != null;
+  return jspb.Message.getField(this, 12) != null;
 };
 
 
 /**
- * optional Decimal line_net_amount = 12;
+ * optional Decimal line_net_amount = 13;
  * @return {?proto.data.Decimal}
  */
 proto.data.OrderLine.prototype.getLineNetAmount = function() {
   return /** @type{?proto.data.Decimal} */ (
-    jspb.Message.getWrapperField(this, proto_base_data_type_pb.Decimal, 12));
+    jspb.Message.getWrapperField(this, proto_base_data_type_pb.Decimal, 13));
 };
 
 
@@ -14500,7 +14551,7 @@ proto.data.OrderLine.prototype.getLineNetAmount = function() {
  * @return {!proto.data.OrderLine} returns this
 */
 proto.data.OrderLine.prototype.setLineNetAmount = function(value) {
-  return jspb.Message.setWrapperField(this, 12, value);
+  return jspb.Message.setWrapperField(this, 13, value);
 };
 
 
@@ -14518,16 +14569,16 @@ proto.data.OrderLine.prototype.clearLineNetAmount = function() {
  * @return {boolean}
  */
 proto.data.OrderLine.prototype.hasLineNetAmount = function() {
-  return jspb.Message.getField(this, 12) != null;
+  return jspb.Message.getField(this, 13) != null;
 };
 
 
 /**
- * optional int32 line = 13;
+ * optional int32 line = 14;
  * @return {number}
  */
 proto.data.OrderLine.prototype.getLine = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 13, 0));
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 14, 0));
 };
 
 
@@ -14536,7 +14587,7 @@ proto.data.OrderLine.prototype.getLine = function() {
  * @return {!proto.data.OrderLine} returns this
  */
 proto.data.OrderLine.prototype.setLine = function(value) {
-  return jspb.Message.setProto3IntField(this, 13, value);
+  return jspb.Message.setProto3IntField(this, 14, value);
 };
 
 

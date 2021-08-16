@@ -497,11 +497,12 @@ message OrderLine {
 	string description = 6;
 	Warehouse warehouse = 7;
 	Decimal quantity = 8;
-	Decimal price = 9;
-	Decimal discount_rate = 10;
-	TaxRate tax_rate = 11;
-	Decimal line_net_amount = 12;
-	int32 line = 13;
+	Decimal price_list = 9;
+	Decimal price = 10;
+	Decimal discount_rate = 11;
+	TaxRate tax_rate = 12;
+	Decimal line_net_amount = 13;
+	int32 line = 14;
 }
 
 // Request Product Price
