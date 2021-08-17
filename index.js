@@ -1219,6 +1219,60 @@
     this.getUIService().runCallout(request, callback)
   }
 
+    //  List Tab Entities
+  listTabEntities({
+    token,
+    windowUuid,
+    tabUuid,
+    windowNo,
+    //  DSL
+    filters,
+    columns,
+    attributes,
+    sorting,
+    //  Page Data
+    pageSize,
+    pageToken,
+    language
+  }, callback) {
+    const { ListTabEntitiesRequest } = require('./src/grpc/proto/business_pb.js')
+    const request = new ListTabEntitiesRequest()
+    const { convertCriteriaToGRPC } = require('./lib/convertValues.js');
+    const { convertParameterToGRPC } = require('./lib/convertValues.js');
+    //  TODO: Add support to all parameters
+    request.setFilters(convertCriteriaToGRPC({
+      filters,
+      orderByClause: sorting
+    }))
+    request.setWindowNo(windowNo)
+    if(windowUuid) {
+      request.setWindowUuid(windowUuid)
+    }
+    if(tabUuid) {
+      request.setTabUuid(tabUuid)
+    }
+    if(attributes) {
+      attributes.forEach(attribute => {
+        request.addAttributes(convertParameterToGRPC({
+          columnName: attribute.key,
+          value: attribute.value
+        }))
+      })
+    }
+    //  For columns
+    if(columns) {
+      columns.forEach(column => request.addColumns(column))
+    }
+    if(pageSize) {
+      request.setPageSize(pageSize)
+    }
+    if(pageToken) {
+      request.setPageToken(pageToken)
+    }
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getUIService().listTabEntities(request, callback)
+  }
+
   //  Rollback a value from entity
   rollbackEntity({
     token,
