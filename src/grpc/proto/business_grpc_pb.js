@@ -637,6 +637,28 @@ function deserialize_data_ListReportViewsResponse(buffer_arg) {
   return proto_business_pb.ListReportViewsResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_data_ListTabEntitiesRequest(arg) {
+  if (!(arg instanceof proto_business_pb.ListTabEntitiesRequest)) {
+    throw new Error('Expected argument of type data.ListTabEntitiesRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_ListTabEntitiesRequest(buffer_arg) {
+  return proto_business_pb.ListTabEntitiesRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_data_ListTabEntitiesResponse(arg) {
+  if (!(arg instanceof proto_business_pb.ListTabEntitiesResponse)) {
+    throw new Error('Expected argument of type data.ListTabEntitiesResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_ListTabEntitiesResponse(buffer_arg) {
+  return proto_business_pb.ListTabEntitiesResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_data_ListTranslationsRequest(arg) {
   if (!(arg instanceof proto_business_pb.ListTranslationsRequest)) {
     throw new Error('Expected argument of type data.ListTranslationsRequest');
@@ -1279,6 +1301,18 @@ deletePreference: {
     requestDeserialize: deserialize_data_DeletePreferenceRequest,
     responseSerialize: serialize_data_Empty,
     responseDeserialize: deserialize_data_Empty,
+  },
+  // 	List tab Entities
+listTabEntities: {
+    path: '/data.UserInterface/ListTabEntities',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_business_pb.ListTabEntitiesRequest,
+    responseType: proto_business_pb.ListTabEntitiesResponse,
+    requestSerialize: serialize_data_ListTabEntitiesRequest,
+    requestDeserialize: deserialize_data_ListTabEntitiesRequest,
+    responseSerialize: serialize_data_ListTabEntitiesResponse,
+    responseDeserialize: deserialize_data_ListTabEntitiesResponse,
   },
 };
 
