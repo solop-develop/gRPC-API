@@ -138,6 +138,7 @@ message UpdateCustomerRequest {
 	string region_uuid = 20;
 	string region_name = 21;
 	string country_uuid = 22;
+	string pos_uuid = 23;
 }
 
 // Customer

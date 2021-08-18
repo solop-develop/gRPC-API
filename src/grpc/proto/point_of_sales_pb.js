@@ -1963,7 +1963,8 @@ proto.data.UpdateCustomerRequest.toObject = function(includeInstance, msg) {
     postalCode: jspb.Message.getFieldWithDefault(msg, 19, ""),
     regionUuid: jspb.Message.getFieldWithDefault(msg, 20, ""),
     regionName: jspb.Message.getFieldWithDefault(msg, 21, ""),
-    countryUuid: jspb.Message.getFieldWithDefault(msg, 22, "")
+    countryUuid: jspb.Message.getFieldWithDefault(msg, 22, ""),
+    posUuid: jspb.Message.getFieldWithDefault(msg, 23, "")
   };
 
   if (includeInstance) {
@@ -2088,6 +2089,10 @@ proto.data.UpdateCustomerRequest.deserializeBinaryFromReader = function(msg, rea
     case 22:
       var value = /** @type {string} */ (reader.readString());
       msg.setCountryUuid(value);
+      break;
+    case 23:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setPosUuid(value);
       break;
     default:
       reader.skipField();
@@ -2270,6 +2275,13 @@ proto.data.UpdateCustomerRequest.serializeBinaryToWriter = function(message, wri
   if (f.length > 0) {
     writer.writeString(
       22,
+      f
+    );
+  }
+  f = message.getPosUuid();
+  if (f.length > 0) {
+    writer.writeString(
+      23,
       f
     );
   }
@@ -2688,6 +2700,24 @@ proto.data.UpdateCustomerRequest.prototype.getCountryUuid = function() {
  */
 proto.data.UpdateCustomerRequest.prototype.setCountryUuid = function(value) {
   return jspb.Message.setProto3StringField(this, 22, value);
+};
+
+
+/**
+ * optional string pos_uuid = 23;
+ * @return {string}
+ */
+proto.data.UpdateCustomerRequest.prototype.getPosUuid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 23, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.data.UpdateCustomerRequest} returns this
+ */
+proto.data.UpdateCustomerRequest.prototype.setPosUuid = function(value) {
+  return jspb.Message.setProto3StringField(this, 23, value);
 };
 
 
