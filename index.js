@@ -2488,6 +2488,116 @@
     this.getPosService().listAvailableDocumentTypes(request, callback)
   }
 
+  //  Create Customer from POS
+  createCustomer({
+    token,
+    value,
+    taxId,
+    duns,
+    naics,
+    name,
+    lastName,
+    description,
+    contactName,
+    email,
+    phone,
+    businessPartnerGroupUuid,
+    address1,
+    address2,
+    address3,
+    address4,
+    cityUuid,
+    cityName,
+    postalCode,
+    regionUuid,
+    regionName,
+    countryUuid,
+    posUuid,
+    language
+  }, callback) {
+    const { CreateCustomerRequest } = require('./src/grpc/proto/point_of_sales_pb.js')
+    const request = new CreateCustomerRequest()
+    request.setValue(value)
+    request.setTaxId(taxId)
+    request.setDuns(duns)
+    request.setNaics(naics)
+    request.setName(name)
+    request.setLastName(lastName)
+    request.setDescription(description)
+    request.setContactName(contactName)
+    request.setEmail(email)
+    request.setPhone(phone)
+    request.setBusinessPartnerGroupUuid(businessPartnerGroupUuid)
+    request.setAddress1(address1)
+    request.setAddress2(address2)
+    request.setAddress3(address3)
+    request.setAddress4(address4)
+    request.setCityUuid(cityUuid)
+    request.setCityName(cityName)
+    request.setPostalCode(postalCode)
+    request.setRegionUuid(regionUuid)
+    request.setRegionName(regionName)
+    request.setCountryUuid(countryUuid)
+    request.setPosUuid(posUuid)
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getPosService().createCustomer(request, callback)
+  }
+
+  //  Update Customer from POS
+  updateCustomer({
+    uuid,
+    token,
+    value,
+    taxId,
+    duns,
+    naics,
+    name,
+    lastName,
+    description,
+    contactName,
+    email,
+    phone,
+    address1,
+    address2,
+    address3,
+    address4,
+    cityUuid,
+    cityName,
+    postalCode,
+    regionUuid,
+    regionName,
+    countryUuid,
+    posUuid,
+    language
+  }, callback) {
+    const { UpdateCustomerRequest } = require('./src/grpc/proto/point_of_sales_pb.js')
+    const request = new UpdateCustomerRequest()
+    request.setUuid(uuid)
+    request.setValue(value)
+    request.setTaxId(taxId)
+    request.setDuns(duns)
+    request.setNaics(naics)
+    request.setName(name)
+    request.setLastName(lastName)
+    request.setDescription(description)
+    request.setContactName(contactName)
+    request.setEmail(email)
+    request.setPhone(phone)
+    request.setAddress1(address1)
+    request.setAddress2(address2)
+    request.setAddress3(address3)
+    request.setAddress4(address4)
+    request.setCityUuid(cityUuid)
+    request.setCityName(cityName)
+    request.setPostalCode(postalCode)
+    request.setRegionUuid(regionUuid)
+    request.setRegionName(regionName)
+    request.setCountryUuid(countryUuid)
+    request.setPosUuid(posUuid)
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getPosService().updateCustomer(request, callback)
+  }
+
   //  Enrollment service
   //  Enroll User
   enrollUser({
