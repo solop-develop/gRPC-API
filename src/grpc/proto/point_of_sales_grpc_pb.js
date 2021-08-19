@@ -22,6 +22,17 @@ var proto_core_functionality_pb = require('../proto/core_functionality_pb.js');
 var proto_base_data_type_pb = require('../proto/base_data_type_pb.js');
 var proto_client_pb = require('../proto/client_pb.js');
 
+function serialize_data_CreateCustomerRequest(arg) {
+  if (!(arg instanceof proto_point_of_sales_pb.CreateCustomerRequest)) {
+    throw new Error('Expected argument of type data.CreateCustomerRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_CreateCustomerRequest(buffer_arg) {
+  return proto_point_of_sales_pb.CreateCustomerRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_data_CreateOrderLineRequest(arg) {
   if (!(arg instanceof proto_point_of_sales_pb.CreateOrderLineRequest)) {
     throw new Error('Expected argument of type data.CreateOrderLineRequest');
@@ -53,6 +64,17 @@ function serialize_data_CreatePaymentRequest(arg) {
 
 function deserialize_data_CreatePaymentRequest(buffer_arg) {
   return proto_point_of_sales_pb.CreatePaymentRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_data_Customer(arg) {
+  if (!(arg instanceof proto_point_of_sales_pb.Customer)) {
+    throw new Error('Expected argument of type data.Customer');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_Customer(buffer_arg) {
+  return proto_point_of_sales_pb.Customer.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_data_DeleteOrderLineRequest(arg) {
@@ -440,6 +462,17 @@ function deserialize_data_ProductPrice(buffer_arg) {
   return proto_core_functionality_pb.ProductPrice.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_data_UpdateCustomerRequest(arg) {
+  if (!(arg instanceof proto_point_of_sales_pb.UpdateCustomerRequest)) {
+    throw new Error('Expected argument of type data.UpdateCustomerRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_UpdateCustomerRequest(buffer_arg) {
+  return proto_point_of_sales_pb.UpdateCustomerRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_data_UpdateOrderLineRequest(arg) {
   if (!(arg instanceof proto_point_of_sales_pb.UpdateOrderLineRequest)) {
     throw new Error('Expected argument of type data.UpdateOrderLineRequest');
@@ -787,6 +820,31 @@ listAvailableDocumentTypes: {
     requestDeserialize: deserialize_data_ListAvailableDocumentTypesRequest,
     responseSerialize: serialize_data_ListAvailableDocumentTypesResponse,
     responseDeserialize: deserialize_data_ListAvailableDocumentTypesResponse,
+  },
+  // 	Customer
+// 	Create Customer
+createCustomer: {
+    path: '/data.Store/CreateCustomer',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_point_of_sales_pb.CreateCustomerRequest,
+    responseType: proto_point_of_sales_pb.Customer,
+    requestSerialize: serialize_data_CreateCustomerRequest,
+    requestDeserialize: deserialize_data_CreateCustomerRequest,
+    responseSerialize: serialize_data_Customer,
+    responseDeserialize: deserialize_data_Customer,
+  },
+  // 	Update Cutomer Info
+updateCustomer: {
+    path: '/data.Store/UpdateCustomer',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_point_of_sales_pb.UpdateCustomerRequest,
+    responseType: proto_point_of_sales_pb.Customer,
+    requestSerialize: serialize_data_UpdateCustomerRequest,
+    requestDeserialize: deserialize_data_UpdateCustomerRequest,
+    responseSerialize: serialize_data_Customer,
+    responseDeserialize: deserialize_data_Customer,
   },
 };
 
