@@ -22,6 +22,17 @@ var proto_core_functionality_pb = require('../proto/core_functionality_pb.js');
 var proto_base_data_type_pb = require('../proto/base_data_type_pb.js');
 var proto_client_pb = require('../proto/client_pb.js');
 
+function serialize_data_AvailableRefund(arg) {
+  if (!(arg instanceof proto_point_of_sales_pb.AvailableRefund)) {
+    throw new Error('Expected argument of type data.AvailableRefund');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_AvailableRefund(buffer_arg) {
+  return proto_point_of_sales_pb.AvailableRefund.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_data_CreateCustomerRequest(arg) {
   if (!(arg instanceof proto_point_of_sales_pb.CreateCustomerRequest)) {
     throw new Error('Expected argument of type data.CreateCustomerRequest');
@@ -119,6 +130,17 @@ function serialize_data_Empty(arg) {
 
 function deserialize_data_Empty(buffer_arg) {
   return proto_base_data_type_pb.Empty.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_data_GetAvailableRefundRequest(arg) {
+  if (!(arg instanceof proto_point_of_sales_pb.GetAvailableRefundRequest)) {
+    throw new Error('Expected argument of type data.GetAvailableRefundRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_GetAvailableRefundRequest(buffer_arg) {
+  return proto_point_of_sales_pb.GetAvailableRefundRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_data_GetCustomerRequest(arg) {
@@ -868,6 +890,18 @@ getCustomer: {
     requestDeserialize: deserialize_data_GetCustomerRequest,
     responseSerialize: serialize_data_Customer,
     responseDeserialize: deserialize_data_Customer,
+  },
+  // 	Get Daily Refund
+getAvailableRefund: {
+    path: '/data.Store/GetAvailableRefund',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_point_of_sales_pb.GetAvailableRefundRequest,
+    responseType: proto_point_of_sales_pb.AvailableRefund,
+    requestSerialize: serialize_data_GetAvailableRefundRequest,
+    requestDeserialize: deserialize_data_GetAvailableRefundRequest,
+    responseSerialize: serialize_data_AvailableRefund,
+    responseDeserialize: deserialize_data_AvailableRefund,
   },
 };
 

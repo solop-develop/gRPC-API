@@ -85,6 +85,27 @@ service Store {
 	rpc UpdateCustomer(UpdateCustomerRequest) returns (Customer) {}
 	//	Get Customer from search
 	rpc GetCustomer(GetCustomerRequest) returns (Customer) {}
+	//	Get Daily Refund
+	rpc GetAvailableRefund(GetAvailableRefundRequest) returns (AvailableRefund) {}
+}
+
+//	Request Daily Refund
+message GetAvailableRefundRequest {
+	ClientRequest client_request = 1;
+	string pos_uuid = 2;
+	string date = 3;
+}
+
+//	Daily Refund
+message AvailableRefund {
+	Decimal refund = 1;
+	repeated TenderTypeRefund tender_type_refunds = 2;
+}
+
+//	Tender Type Refund
+message TenderTypeRefund {
+	string tender_type = 1;
+	Decimal refund = 2;
 }
 
 // Request for create Customer
@@ -222,6 +243,7 @@ message AvailableTenderType {
 	bool is_allowed_to_refund = 7;
 	Decimal maximum_refund_allowed = 8;
 	Decimal maximum_daily_refund_allowed = 9;
+	Currency refund_reference_currency = 10;
 }
 
 // Available Document Type
@@ -436,6 +458,7 @@ message PointOfSales {
 	bool is_allows_create_order = 23;
 	Decimal maximum_refund_allowed = 24;
 	Decimal maximum_daily_refund_allowed = 25;
+	Currency refund_reference_currency = 26;
 }
 
 // Request for create a order

@@ -2625,6 +2625,23 @@
     this.getPosService().getCustomer(request, callback)
   }
 
+  //  Get Available Refund
+  getAvailableRefund({
+    token,
+    posUuid,
+    date,
+    language
+  }, callback) {
+    const { GetAvailableRefundRequest } = require('./src/grpc/proto/point_of_sales_pb.js')
+    const request = new GetAvailableRefundRequest()
+    if (date) {
+      request.setDate(date)
+    }
+    request.setPosUuid(posUuid)
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getPosService().getAvailableRefund(request, callback)
+  }
+
   //  Enrollment service
   //  Enroll User
   enrollUser({
