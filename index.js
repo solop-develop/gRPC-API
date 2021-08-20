@@ -2557,6 +2557,7 @@
     contactName,
     email,
     phone,
+    addressUuid,
     address1,
     address2,
     address3,
@@ -2583,6 +2584,7 @@
     request.setContactName(contactName)
     request.setEmail(email)
     request.setPhone(phone)
+    request.setAddressUuid(addressUuid)
     request.setAddress1(address1)
     request.setAddress2(address2)
     request.setAddress3(address3)
@@ -2596,6 +2598,31 @@
     request.setPosUuid(posUuid)
     request.setClientRequest(this.createClientRequest(token, language))
     this.getPosService().updateCustomer(request, callback)
+  }
+
+  //  Get Customer
+  getCustomer({
+    token,
+    searchValue,
+    value,
+    name,
+    contactName,
+    email,
+    postalCode,
+    phone,
+    language
+  }, callback) {
+    const { GetCustomerRequest } = require('./src/grpc/proto/point_of_sales_pb.js')
+    const request = new GetCustomerRequest()
+    request.setSearchValue(searchValue)
+    request.setValue(value)
+    request.setName(name)
+    request.setContactName(contactName)
+    request.setEmail(email)
+    request.setPostalCode(postalCode)
+    request.setPhone(phone)
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getPosService().getCustomer(request, callback)
   }
 
   //  Enrollment service

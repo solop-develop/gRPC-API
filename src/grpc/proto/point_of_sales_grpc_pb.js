@@ -121,6 +121,17 @@ function deserialize_data_Empty(buffer_arg) {
   return proto_base_data_type_pb.Empty.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_data_GetCustomerRequest(arg) {
+  if (!(arg instanceof proto_point_of_sales_pb.GetCustomerRequest)) {
+    throw new Error('Expected argument of type data.GetCustomerRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_GetCustomerRequest(buffer_arg) {
+  return proto_point_of_sales_pb.GetCustomerRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_data_GetKeyLayoutRequest(arg) {
   if (!(arg instanceof proto_point_of_sales_pb.GetKeyLayoutRequest)) {
     throw new Error('Expected argument of type data.GetKeyLayoutRequest');
@@ -834,7 +845,7 @@ createCustomer: {
     responseSerialize: serialize_data_Customer,
     responseDeserialize: deserialize_data_Customer,
   },
-  // 	Update Cutomer Info
+  // 	Update Customer Info
 updateCustomer: {
     path: '/data.Store/UpdateCustomer',
     requestStream: false,
@@ -843,6 +854,18 @@ updateCustomer: {
     responseType: proto_point_of_sales_pb.Customer,
     requestSerialize: serialize_data_UpdateCustomerRequest,
     requestDeserialize: deserialize_data_UpdateCustomerRequest,
+    responseSerialize: serialize_data_Customer,
+    responseDeserialize: deserialize_data_Customer,
+  },
+  // 	Get Customer from search
+getCustomer: {
+    path: '/data.Store/GetCustomer',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_point_of_sales_pb.GetCustomerRequest,
+    responseType: proto_point_of_sales_pb.Customer,
+    requestSerialize: serialize_data_GetCustomerRequest,
+    requestDeserialize: deserialize_data_GetCustomerRequest,
     responseSerialize: serialize_data_Customer,
     responseDeserialize: deserialize_data_Customer,
   },
