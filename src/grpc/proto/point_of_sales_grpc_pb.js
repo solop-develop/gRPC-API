@@ -242,6 +242,28 @@ function deserialize_data_ListAvailableDocumentTypesResponse(buffer_arg) {
   return proto_point_of_sales_pb.ListAvailableDocumentTypesResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_data_ListAvailablePaymentMethodsRequest(arg) {
+  if (!(arg instanceof proto_point_of_sales_pb.ListAvailablePaymentMethodsRequest)) {
+    throw new Error('Expected argument of type data.ListAvailablePaymentMethodsRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_ListAvailablePaymentMethodsRequest(buffer_arg) {
+  return proto_point_of_sales_pb.ListAvailablePaymentMethodsRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_data_ListAvailablePaymentMethodsResponse(arg) {
+  if (!(arg instanceof proto_point_of_sales_pb.ListAvailablePaymentMethodsResponse)) {
+    throw new Error('Expected argument of type data.ListAvailablePaymentMethodsResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_ListAvailablePaymentMethodsResponse(buffer_arg) {
+  return proto_point_of_sales_pb.ListAvailablePaymentMethodsResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_data_ListAvailablePriceListRequest(arg) {
   if (!(arg instanceof proto_point_of_sales_pb.ListAvailablePriceListRequest)) {
     throw new Error('Expected argument of type data.ListAvailablePriceListRequest');
@@ -262,28 +284,6 @@ function serialize_data_ListAvailablePriceListResponse(arg) {
 
 function deserialize_data_ListAvailablePriceListResponse(buffer_arg) {
   return proto_point_of_sales_pb.ListAvailablePriceListResponse.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
-function serialize_data_ListAvailableTenderTypesRequest(arg) {
-  if (!(arg instanceof proto_point_of_sales_pb.ListAvailableTenderTypesRequest)) {
-    throw new Error('Expected argument of type data.ListAvailableTenderTypesRequest');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_data_ListAvailableTenderTypesRequest(buffer_arg) {
-  return proto_point_of_sales_pb.ListAvailableTenderTypesRequest.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
-function serialize_data_ListAvailableTenderTypesResponse(arg) {
-  if (!(arg instanceof proto_point_of_sales_pb.ListAvailableTenderTypesResponse)) {
-    throw new Error('Expected argument of type data.ListAvailableTenderTypesResponse');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_data_ListAvailableTenderTypesResponse(buffer_arg) {
-  return proto_point_of_sales_pb.ListAvailableTenderTypesResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_data_ListAvailableWarehousesRequest(arg) {
@@ -807,16 +807,16 @@ listAvailableWarehouses: {
     responseDeserialize: deserialize_data_ListAvailableWarehousesResponse,
   },
   // 	List of Available Tender Types
-listAvailableTenderTypes: {
-    path: '/data.Store/ListAvailableTenderTypes',
+listAvailablePaymentMethods: {
+    path: '/data.Store/ListAvailablePaymentMethods',
     requestStream: false,
     responseStream: false,
-    requestType: proto_point_of_sales_pb.ListAvailableTenderTypesRequest,
-    responseType: proto_point_of_sales_pb.ListAvailableTenderTypesResponse,
-    requestSerialize: serialize_data_ListAvailableTenderTypesRequest,
-    requestDeserialize: deserialize_data_ListAvailableTenderTypesRequest,
-    responseSerialize: serialize_data_ListAvailableTenderTypesResponse,
-    responseDeserialize: deserialize_data_ListAvailableTenderTypesResponse,
+    requestType: proto_point_of_sales_pb.ListAvailablePaymentMethodsRequest,
+    responseType: proto_point_of_sales_pb.ListAvailablePaymentMethodsResponse,
+    requestSerialize: serialize_data_ListAvailablePaymentMethodsRequest,
+    requestDeserialize: deserialize_data_ListAvailablePaymentMethodsRequest,
+    responseSerialize: serialize_data_ListAvailablePaymentMethodsResponse,
+    responseDeserialize: deserialize_data_ListAvailablePaymentMethodsResponse,
   },
   // 	List of Available Price List
 listAvailablePriceList: {

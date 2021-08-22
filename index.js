@@ -2413,22 +2413,22 @@
   }
 
   //  List Available Tender Types
-  listAvailableTenderTypes({
+  listAvailablePaymentMethods({
     token,
     posUuid,
     pageSize,
     pageToken,
     language
   }, callback) {
-    const { ListAvailableTenderTypesRequest } = require('./src/grpc/proto/point_of_sales_pb.js')
-    const request = new ListAvailableTenderTypesRequest()
+    const { ListAvailablePaymentMethodsRequest } = require('./src/grpc/proto/point_of_sales_pb.js')
+    const request = new ListAvailablePaymentMethodsRequest()
     if (posUuid) {
       request.setPosUuid(posUuid)
     }
     request.setPageSize(pageSize)
     request.setPageToken(pageToken)
     request.setClientRequest(this.createClientRequest(token, language))
-    this.getPosService().listAvailableTenderTypes(request, callback)
+    this.getPosService().listAvailablePaymentMethods(request, callback)
   }
   
   //  List Available Price List
