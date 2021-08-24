@@ -5500,6 +5500,7 @@ proto.data.AvailablePaymentMethod.toObject = function(includeInstance, msg) {
     tenderType: jspb.Message.getFieldWithDefault(msg, 6, ""),
     isPosRequiredPin: jspb.Message.getBooleanFieldWithDefault(msg, 7, false),
     isAllowedToRefund: jspb.Message.getBooleanFieldWithDefault(msg, 8, false),
+    isAllowedToRefundOpen: jspb.Message.getBooleanFieldWithDefault(msg, 9, false),
     maximumRefundAllowed: (f = msg.getMaximumRefundAllowed()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
     maximumDailyRefundAllowed: (f = msg.getMaximumDailyRefundAllowed()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
     refundReferenceCurrency: (f = msg.getRefundReferenceCurrency()) && proto_core_functionality_pb.Currency.toObject(includeInstance, f)
@@ -5568,16 +5569,20 @@ proto.data.AvailablePaymentMethod.deserializeBinaryFromReader = function(msg, re
       msg.setIsAllowedToRefund(value);
       break;
     case 9:
-      var value = new proto_base_data_type_pb.Decimal;
-      reader.readMessage(value,proto_base_data_type_pb.Decimal.deserializeBinaryFromReader);
-      msg.setMaximumRefundAllowed(value);
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setIsAllowedToRefundOpen(value);
       break;
     case 10:
       var value = new proto_base_data_type_pb.Decimal;
       reader.readMessage(value,proto_base_data_type_pb.Decimal.deserializeBinaryFromReader);
-      msg.setMaximumDailyRefundAllowed(value);
+      msg.setMaximumRefundAllowed(value);
       break;
     case 11:
+      var value = new proto_base_data_type_pb.Decimal;
+      reader.readMessage(value,proto_base_data_type_pb.Decimal.deserializeBinaryFromReader);
+      msg.setMaximumDailyRefundAllowed(value);
+      break;
+    case 12:
       var value = new proto_core_functionality_pb.Currency;
       reader.readMessage(value,proto_core_functionality_pb.Currency.deserializeBinaryFromReader);
       msg.setRefundReferenceCurrency(value);
@@ -5660,15 +5665,14 @@ proto.data.AvailablePaymentMethod.serializeBinaryToWriter = function(message, wr
       f
     );
   }
-  f = message.getMaximumRefundAllowed();
-  if (f != null) {
-    writer.writeMessage(
+  f = message.getIsAllowedToRefundOpen();
+  if (f) {
+    writer.writeBool(
       9,
-      f,
-      proto_base_data_type_pb.Decimal.serializeBinaryToWriter
+      f
     );
   }
-  f = message.getMaximumDailyRefundAllowed();
+  f = message.getMaximumRefundAllowed();
   if (f != null) {
     writer.writeMessage(
       10,
@@ -5676,10 +5680,18 @@ proto.data.AvailablePaymentMethod.serializeBinaryToWriter = function(message, wr
       proto_base_data_type_pb.Decimal.serializeBinaryToWriter
     );
   }
-  f = message.getRefundReferenceCurrency();
+  f = message.getMaximumDailyRefundAllowed();
   if (f != null) {
     writer.writeMessage(
       11,
+      f,
+      proto_base_data_type_pb.Decimal.serializeBinaryToWriter
+    );
+  }
+  f = message.getRefundReferenceCurrency();
+  if (f != null) {
+    writer.writeMessage(
+      12,
       f,
       proto_core_functionality_pb.Currency.serializeBinaryToWriter
     );
@@ -5814,12 +5826,30 @@ proto.data.AvailablePaymentMethod.prototype.setIsAllowedToRefund = function(valu
 
 
 /**
- * optional Decimal maximum_refund_allowed = 9;
+ * optional bool is_allowed_to_refund_open = 9;
+ * @return {boolean}
+ */
+proto.data.AvailablePaymentMethod.prototype.getIsAllowedToRefundOpen = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 9, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.data.AvailablePaymentMethod} returns this
+ */
+proto.data.AvailablePaymentMethod.prototype.setIsAllowedToRefundOpen = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 9, value);
+};
+
+
+/**
+ * optional Decimal maximum_refund_allowed = 10;
  * @return {?proto.data.Decimal}
  */
 proto.data.AvailablePaymentMethod.prototype.getMaximumRefundAllowed = function() {
   return /** @type{?proto.data.Decimal} */ (
-    jspb.Message.getWrapperField(this, proto_base_data_type_pb.Decimal, 9));
+    jspb.Message.getWrapperField(this, proto_base_data_type_pb.Decimal, 10));
 };
 
 
@@ -5828,7 +5858,7 @@ proto.data.AvailablePaymentMethod.prototype.getMaximumRefundAllowed = function()
  * @return {!proto.data.AvailablePaymentMethod} returns this
 */
 proto.data.AvailablePaymentMethod.prototype.setMaximumRefundAllowed = function(value) {
-  return jspb.Message.setWrapperField(this, 9, value);
+  return jspb.Message.setWrapperField(this, 10, value);
 };
 
 
@@ -5846,17 +5876,17 @@ proto.data.AvailablePaymentMethod.prototype.clearMaximumRefundAllowed = function
  * @return {boolean}
  */
 proto.data.AvailablePaymentMethod.prototype.hasMaximumRefundAllowed = function() {
-  return jspb.Message.getField(this, 9) != null;
+  return jspb.Message.getField(this, 10) != null;
 };
 
 
 /**
- * optional Decimal maximum_daily_refund_allowed = 10;
+ * optional Decimal maximum_daily_refund_allowed = 11;
  * @return {?proto.data.Decimal}
  */
 proto.data.AvailablePaymentMethod.prototype.getMaximumDailyRefundAllowed = function() {
   return /** @type{?proto.data.Decimal} */ (
-    jspb.Message.getWrapperField(this, proto_base_data_type_pb.Decimal, 10));
+    jspb.Message.getWrapperField(this, proto_base_data_type_pb.Decimal, 11));
 };
 
 
@@ -5865,7 +5895,7 @@ proto.data.AvailablePaymentMethod.prototype.getMaximumDailyRefundAllowed = funct
  * @return {!proto.data.AvailablePaymentMethod} returns this
 */
 proto.data.AvailablePaymentMethod.prototype.setMaximumDailyRefundAllowed = function(value) {
-  return jspb.Message.setWrapperField(this, 10, value);
+  return jspb.Message.setWrapperField(this, 11, value);
 };
 
 
@@ -5883,17 +5913,17 @@ proto.data.AvailablePaymentMethod.prototype.clearMaximumDailyRefundAllowed = fun
  * @return {boolean}
  */
 proto.data.AvailablePaymentMethod.prototype.hasMaximumDailyRefundAllowed = function() {
-  return jspb.Message.getField(this, 10) != null;
+  return jspb.Message.getField(this, 11) != null;
 };
 
 
 /**
- * optional Currency refund_reference_currency = 11;
+ * optional Currency refund_reference_currency = 12;
  * @return {?proto.data.Currency}
  */
 proto.data.AvailablePaymentMethod.prototype.getRefundReferenceCurrency = function() {
   return /** @type{?proto.data.Currency} */ (
-    jspb.Message.getWrapperField(this, proto_core_functionality_pb.Currency, 11));
+    jspb.Message.getWrapperField(this, proto_core_functionality_pb.Currency, 12));
 };
 
 
@@ -5902,7 +5932,7 @@ proto.data.AvailablePaymentMethod.prototype.getRefundReferenceCurrency = functio
  * @return {!proto.data.AvailablePaymentMethod} returns this
 */
 proto.data.AvailablePaymentMethod.prototype.setRefundReferenceCurrency = function(value) {
-  return jspb.Message.setWrapperField(this, 11, value);
+  return jspb.Message.setWrapperField(this, 12, value);
 };
 
 
@@ -5920,7 +5950,7 @@ proto.data.AvailablePaymentMethod.prototype.clearRefundReferenceCurrency = funct
  * @return {boolean}
  */
 proto.data.AvailablePaymentMethod.prototype.hasRefundReferenceCurrency = function() {
-  return jspb.Message.getField(this, 11) != null;
+  return jspb.Message.getField(this, 12) != null;
 };
 
 
@@ -11593,6 +11623,8 @@ proto.data.PointOfSales.toObject = function(includeInstance, msg) {
     isAllowsReturnOrder: jspb.Message.getBooleanFieldWithDefault(msg, 21, false),
     isAllowsCollectOrder: jspb.Message.getBooleanFieldWithDefault(msg, 22, false),
     isAllowsCreateOrder: jspb.Message.getBooleanFieldWithDefault(msg, 23, false),
+    isDisplayTaxAmount: jspb.Message.getBooleanFieldWithDefault(msg, 24, false),
+    isDisplayDiscount: jspb.Message.getBooleanFieldWithDefault(msg, 25, false),
     maximumRefundAllowed: (f = msg.getMaximumRefundAllowed()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
     maximumDailyRefundAllowed: (f = msg.getMaximumDailyRefundAllowed()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
     refundReferenceCurrency: (f = msg.getRefundReferenceCurrency()) && proto_core_functionality_pb.Currency.toObject(includeInstance, f)
@@ -11733,16 +11765,24 @@ proto.data.PointOfSales.deserializeBinaryFromReader = function(msg, reader) {
       msg.setIsAllowsCreateOrder(value);
       break;
     case 24:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setIsDisplayTaxAmount(value);
+      break;
+    case 25:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setIsDisplayDiscount(value);
+      break;
+    case 26:
       var value = new proto_base_data_type_pb.Decimal;
       reader.readMessage(value,proto_base_data_type_pb.Decimal.deserializeBinaryFromReader);
       msg.setMaximumRefundAllowed(value);
       break;
-    case 25:
+    case 27:
       var value = new proto_base_data_type_pb.Decimal;
       reader.readMessage(value,proto_base_data_type_pb.Decimal.deserializeBinaryFromReader);
       msg.setMaximumDailyRefundAllowed(value);
       break;
-    case 26:
+    case 28:
       var value = new proto_core_functionality_pb.Currency;
       reader.readMessage(value,proto_core_functionality_pb.Currency.deserializeBinaryFromReader);
       msg.setRefundReferenceCurrency(value);
@@ -11945,10 +11985,24 @@ proto.data.PointOfSales.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
+  f = message.getIsDisplayTaxAmount();
+  if (f) {
+    writer.writeBool(
+      24,
+      f
+    );
+  }
+  f = message.getIsDisplayDiscount();
+  if (f) {
+    writer.writeBool(
+      25,
+      f
+    );
+  }
   f = message.getMaximumRefundAllowed();
   if (f != null) {
     writer.writeMessage(
-      24,
+      26,
       f,
       proto_base_data_type_pb.Decimal.serializeBinaryToWriter
     );
@@ -11956,7 +12010,7 @@ proto.data.PointOfSales.serializeBinaryToWriter = function(message, writer) {
   f = message.getMaximumDailyRefundAllowed();
   if (f != null) {
     writer.writeMessage(
-      25,
+      27,
       f,
       proto_base_data_type_pb.Decimal.serializeBinaryToWriter
     );
@@ -11964,7 +12018,7 @@ proto.data.PointOfSales.serializeBinaryToWriter = function(message, writer) {
   f = message.getRefundReferenceCurrency();
   if (f != null) {
     writer.writeMessage(
-      26,
+      28,
       f,
       proto_core_functionality_pb.Currency.serializeBinaryToWriter
     );
@@ -12539,12 +12593,48 @@ proto.data.PointOfSales.prototype.setIsAllowsCreateOrder = function(value) {
 
 
 /**
- * optional Decimal maximum_refund_allowed = 24;
+ * optional bool is_display_tax_amount = 24;
+ * @return {boolean}
+ */
+proto.data.PointOfSales.prototype.getIsDisplayTaxAmount = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 24, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.data.PointOfSales} returns this
+ */
+proto.data.PointOfSales.prototype.setIsDisplayTaxAmount = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 24, value);
+};
+
+
+/**
+ * optional bool is_display_discount = 25;
+ * @return {boolean}
+ */
+proto.data.PointOfSales.prototype.getIsDisplayDiscount = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 25, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.data.PointOfSales} returns this
+ */
+proto.data.PointOfSales.prototype.setIsDisplayDiscount = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 25, value);
+};
+
+
+/**
+ * optional Decimal maximum_refund_allowed = 26;
  * @return {?proto.data.Decimal}
  */
 proto.data.PointOfSales.prototype.getMaximumRefundAllowed = function() {
   return /** @type{?proto.data.Decimal} */ (
-    jspb.Message.getWrapperField(this, proto_base_data_type_pb.Decimal, 24));
+    jspb.Message.getWrapperField(this, proto_base_data_type_pb.Decimal, 26));
 };
 
 
@@ -12553,7 +12643,7 @@ proto.data.PointOfSales.prototype.getMaximumRefundAllowed = function() {
  * @return {!proto.data.PointOfSales} returns this
 */
 proto.data.PointOfSales.prototype.setMaximumRefundAllowed = function(value) {
-  return jspb.Message.setWrapperField(this, 24, value);
+  return jspb.Message.setWrapperField(this, 26, value);
 };
 
 
@@ -12571,17 +12661,17 @@ proto.data.PointOfSales.prototype.clearMaximumRefundAllowed = function() {
  * @return {boolean}
  */
 proto.data.PointOfSales.prototype.hasMaximumRefundAllowed = function() {
-  return jspb.Message.getField(this, 24) != null;
+  return jspb.Message.getField(this, 26) != null;
 };
 
 
 /**
- * optional Decimal maximum_daily_refund_allowed = 25;
+ * optional Decimal maximum_daily_refund_allowed = 27;
  * @return {?proto.data.Decimal}
  */
 proto.data.PointOfSales.prototype.getMaximumDailyRefundAllowed = function() {
   return /** @type{?proto.data.Decimal} */ (
-    jspb.Message.getWrapperField(this, proto_base_data_type_pb.Decimal, 25));
+    jspb.Message.getWrapperField(this, proto_base_data_type_pb.Decimal, 27));
 };
 
 
@@ -12590,7 +12680,7 @@ proto.data.PointOfSales.prototype.getMaximumDailyRefundAllowed = function() {
  * @return {!proto.data.PointOfSales} returns this
 */
 proto.data.PointOfSales.prototype.setMaximumDailyRefundAllowed = function(value) {
-  return jspb.Message.setWrapperField(this, 25, value);
+  return jspb.Message.setWrapperField(this, 27, value);
 };
 
 
@@ -12608,17 +12698,17 @@ proto.data.PointOfSales.prototype.clearMaximumDailyRefundAllowed = function() {
  * @return {boolean}
  */
 proto.data.PointOfSales.prototype.hasMaximumDailyRefundAllowed = function() {
-  return jspb.Message.getField(this, 25) != null;
+  return jspb.Message.getField(this, 27) != null;
 };
 
 
 /**
- * optional Currency refund_reference_currency = 26;
+ * optional Currency refund_reference_currency = 28;
  * @return {?proto.data.Currency}
  */
 proto.data.PointOfSales.prototype.getRefundReferenceCurrency = function() {
   return /** @type{?proto.data.Currency} */ (
-    jspb.Message.getWrapperField(this, proto_core_functionality_pb.Currency, 26));
+    jspb.Message.getWrapperField(this, proto_core_functionality_pb.Currency, 28));
 };
 
 
@@ -12627,7 +12717,7 @@ proto.data.PointOfSales.prototype.getRefundReferenceCurrency = function() {
  * @return {!proto.data.PointOfSales} returns this
 */
 proto.data.PointOfSales.prototype.setRefundReferenceCurrency = function(value) {
-  return jspb.Message.setWrapperField(this, 26, value);
+  return jspb.Message.setWrapperField(this, 28, value);
 };
 
 
@@ -12645,7 +12735,7 @@ proto.data.PointOfSales.prototype.clearRefundReferenceCurrency = function() {
  * @return {boolean}
  */
 proto.data.PointOfSales.prototype.hasRefundReferenceCurrency = function() {
-  return jspb.Message.getField(this, 26) != null;
+  return jspb.Message.getField(this, 28) != null;
 };
 
 
@@ -13323,7 +13413,9 @@ proto.data.CreatePaymentRequest.toObject = function(includeInstance, msg) {
     amount: (f = msg.getAmount()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
     paymentDate: jspb.Message.getFieldWithDefault(msg, 9, ""),
     tenderTypeCode: jspb.Message.getFieldWithDefault(msg, 10, ""),
-    currencyUuid: jspb.Message.getFieldWithDefault(msg, 11, "")
+    currencyUuid: jspb.Message.getFieldWithDefault(msg, 11, ""),
+    paymentMethodUuid: jspb.Message.getFieldWithDefault(msg, 12, ""),
+    paymentAccountDate: jspb.Message.getFieldWithDefault(msg, 13, "")
   };
 
   if (includeInstance) {
@@ -13405,6 +13497,14 @@ proto.data.CreatePaymentRequest.deserializeBinaryFromReader = function(msg, read
     case 11:
       var value = /** @type {string} */ (reader.readString());
       msg.setCurrencyUuid(value);
+      break;
+    case 12:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setPaymentMethodUuid(value);
+      break;
+    case 13:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setPaymentAccountDate(value);
       break;
     default:
       reader.skipField();
@@ -13511,6 +13611,20 @@ proto.data.CreatePaymentRequest.serializeBinaryToWriter = function(message, writ
   if (f.length > 0) {
     writer.writeString(
       11,
+      f
+    );
+  }
+  f = message.getPaymentMethodUuid();
+  if (f.length > 0) {
+    writer.writeString(
+      12,
+      f
+    );
+  }
+  f = message.getPaymentAccountDate();
+  if (f.length > 0) {
+    writer.writeString(
+      13,
       f
     );
   }
@@ -13750,6 +13864,42 @@ proto.data.CreatePaymentRequest.prototype.getCurrencyUuid = function() {
  */
 proto.data.CreatePaymentRequest.prototype.setCurrencyUuid = function(value) {
   return jspb.Message.setProto3StringField(this, 11, value);
+};
+
+
+/**
+ * optional string payment_method_uuid = 12;
+ * @return {string}
+ */
+proto.data.CreatePaymentRequest.prototype.getPaymentMethodUuid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 12, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.data.CreatePaymentRequest} returns this
+ */
+proto.data.CreatePaymentRequest.prototype.setPaymentMethodUuid = function(value) {
+  return jspb.Message.setProto3StringField(this, 12, value);
+};
+
+
+/**
+ * optional string payment_account_date = 13;
+ * @return {string}
+ */
+proto.data.CreatePaymentRequest.prototype.getPaymentAccountDate = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 13, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.data.CreatePaymentRequest} returns this
+ */
+proto.data.CreatePaymentRequest.prototype.setPaymentAccountDate = function(value) {
+  return jspb.Message.setProto3StringField(this, 13, value);
 };
 
 

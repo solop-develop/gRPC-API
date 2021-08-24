@@ -2187,8 +2187,10 @@
     description,
     amount,
     paymentDate,
+    paymentAccountDate,
     tenderTypeCode,
     currencyUuid,
+    paymentMethodUuid,
     language
   }, callback) {
     const { CreatePaymentRequest } = require('./src/grpc/proto/point_of_sales_pb.js')
@@ -2211,6 +2213,9 @@
     if (tenderTypeCode) {
       request.setTenderTypeCode(tenderTypeCode)
     }
+    if(paymentMethodUuid) {
+      request.setPaymentMethodUuid(paymentMethodUuid)
+    }
     if (currencyUuid) {
       request.setCurrencyUuid(currencyUuid)
     }
@@ -2220,6 +2225,9 @@
     //  Date of Payment
     if (paymentDate) {
       request.setPaymentDate(paymentDate)
+    }
+    if (paymentAccountDate) {
+      request.setPaymentDate(paymentAccountDate)
     }
     request.setClientRequest(this.createClientRequest(token, language))
     this.getPosService().createPayment(request, callback)
