@@ -473,6 +473,28 @@ function deserialize_data_PointOfSalesRequest(buffer_arg) {
   return proto_point_of_sales_pb.PointOfSalesRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_data_PrintTicketRequest(arg) {
+  if (!(arg instanceof proto_point_of_sales_pb.PrintTicketRequest)) {
+    throw new Error('Expected argument of type data.PrintTicketRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_PrintTicketRequest(buffer_arg) {
+  return proto_point_of_sales_pb.PrintTicketRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_data_PrintTicketResponse(arg) {
+  if (!(arg instanceof proto_point_of_sales_pb.PrintTicketResponse)) {
+    throw new Error('Expected argument of type data.PrintTicketResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_PrintTicketResponse(buffer_arg) {
+  return proto_point_of_sales_pb.PrintTicketResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_data_ProcessOrderRequest(arg) {
   if (!(arg instanceof proto_point_of_sales_pb.ProcessOrderRequest)) {
     throw new Error('Expected argument of type data.ProcessOrderRequest');
@@ -902,6 +924,18 @@ getAvailableRefund: {
     requestDeserialize: deserialize_data_GetAvailableRefundRequest,
     responseSerialize: serialize_data_AvailableRefund,
     responseDeserialize: deserialize_data_AvailableRefund,
+  },
+  // 	Print Ticket
+printTicket: {
+    path: '/data.Store/PrintTicket',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_point_of_sales_pb.PrintTicketRequest,
+    responseType: proto_point_of_sales_pb.PrintTicketResponse,
+    requestSerialize: serialize_data_PrintTicketRequest,
+    requestDeserialize: deserialize_data_PrintTicketRequest,
+    responseSerialize: serialize_data_PrintTicketResponse,
+    responseDeserialize: deserialize_data_PrintTicketResponse,
   },
 };
 

@@ -2650,6 +2650,21 @@
     this.getPosService().getAvailableRefund(request, callback)
   }
 
+    //  Print Ticket
+    printTicket({
+      token,
+      posUuid,
+      orderUuid,
+      language
+    }, callback) {
+      const { PrintTicketRequest } = require('./src/grpc/proto/point_of_sales_pb.js')
+      const request = new PrintTicketRequest()
+      request.setPosUuid(posUuid)
+      request.setOrderUuid(orderUuid)
+      request.setClientRequest(this.createClientRequest(token, language))
+      this.getPosService().printTicket(request, callback)
+    }
+
   //  Enrollment service
   //  Enroll User
   enrollUser({
