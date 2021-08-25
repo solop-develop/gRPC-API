@@ -2246,7 +2246,7 @@
     language
   }, callback) {
     const { UpdatePaymentRequest } = require('./src/grpc/proto/point_of_sales_pb.js')
-    const { convertValueToGRPC, getDecimalFromNumber } = require('./lib/convertValues.js')
+    const { getDecimalFromNumber } = require('./lib/convertValues.js')
     const request = new UpdatePaymentRequest()
     request.setPaymentUuid(paymentUuid)
     if (bankUuid) {

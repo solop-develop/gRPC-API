@@ -15256,7 +15256,7 @@ proto.data.Payment.toObject = function(includeInstance, msg) {
     documentNo: jspb.Message.getFieldWithDefault(msg, 3, ""),
     collectingAgent: (f = msg.getCollectingAgent()) && proto_core_functionality_pb.SalesRepresentative.toObject(includeInstance, f),
     documentStatus: (f = msg.getDocumentStatus()) && proto_base_data_type_pb.DocumentStatus.toObject(includeInstance, f),
-    businessPartner: (f = msg.getBusinessPartner()) && proto_core_functionality_pb.BusinessPartner.toObject(includeInstance, f),
+    customer: (f = msg.getCustomer()) && proto.data.Customer.toObject(includeInstance, f),
     posUuid: jspb.Message.getFieldWithDefault(msg, 7, ""),
     orderUuid: jspb.Message.getFieldWithDefault(msg, 8, ""),
     invoiceUuid: jspb.Message.getFieldWithDefault(msg, 9, ""),
@@ -15326,9 +15326,9 @@ proto.data.Payment.deserializeBinaryFromReader = function(msg, reader) {
       msg.setDocumentStatus(value);
       break;
     case 6:
-      var value = new proto_core_functionality_pb.BusinessPartner;
-      reader.readMessage(value,proto_core_functionality_pb.BusinessPartner.deserializeBinaryFromReader);
-      msg.setBusinessPartner(value);
+      var value = new proto.data.Customer;
+      reader.readMessage(value,proto.data.Customer.deserializeBinaryFromReader);
+      msg.setCustomer(value);
       break;
     case 7:
       var value = /** @type {string} */ (reader.readString());
@@ -15437,12 +15437,12 @@ proto.data.Payment.serializeBinaryToWriter = function(message, writer) {
       proto_base_data_type_pb.DocumentStatus.serializeBinaryToWriter
     );
   }
-  f = message.getBusinessPartner();
+  f = message.getCustomer();
   if (f != null) {
     writer.writeMessage(
       6,
       f,
-      proto_core_functionality_pb.BusinessPartner.serializeBinaryToWriter
+      proto.data.Customer.serializeBinaryToWriter
     );
   }
   f = message.getPosUuid();
@@ -15648,20 +15648,20 @@ proto.data.Payment.prototype.hasDocumentStatus = function() {
 
 
 /**
- * optional BusinessPartner business_partner = 6;
- * @return {?proto.data.BusinessPartner}
+ * optional Customer customer = 6;
+ * @return {?proto.data.Customer}
  */
-proto.data.Payment.prototype.getBusinessPartner = function() {
-  return /** @type{?proto.data.BusinessPartner} */ (
-    jspb.Message.getWrapperField(this, proto_core_functionality_pb.BusinessPartner, 6));
+proto.data.Payment.prototype.getCustomer = function() {
+  return /** @type{?proto.data.Customer} */ (
+    jspb.Message.getWrapperField(this, proto.data.Customer, 6));
 };
 
 
 /**
- * @param {?proto.data.BusinessPartner|undefined} value
+ * @param {?proto.data.Customer|undefined} value
  * @return {!proto.data.Payment} returns this
 */
-proto.data.Payment.prototype.setBusinessPartner = function(value) {
+proto.data.Payment.prototype.setCustomer = function(value) {
   return jspb.Message.setWrapperField(this, 6, value);
 };
 
@@ -15670,8 +15670,8 @@ proto.data.Payment.prototype.setBusinessPartner = function(value) {
  * Clears the message field making it undefined.
  * @return {!proto.data.Payment} returns this
  */
-proto.data.Payment.prototype.clearBusinessPartner = function() {
-  return this.setBusinessPartner(undefined);
+proto.data.Payment.prototype.clearCustomer = function() {
+  return this.setCustomer(undefined);
 };
 
 
@@ -15679,7 +15679,7 @@ proto.data.Payment.prototype.clearBusinessPartner = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.data.Payment.prototype.hasBusinessPartner = function() {
+proto.data.Payment.prototype.hasCustomer = function() {
   return jspb.Message.getField(this, 6) != null;
 };
 
@@ -17887,7 +17887,7 @@ proto.data.Order.toObject = function(includeInstance, msg) {
     totalLines: (f = msg.getTotalLines()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
     grandTotal: (f = msg.getGrandTotal()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
     dateOrdered: jspb.Message.getFieldWithDefault(msg, 9, ""),
-    businessPartner: (f = msg.getBusinessPartner()) && proto_core_functionality_pb.BusinessPartner.toObject(includeInstance, f)
+    customer: (f = msg.getCustomer()) && proto.data.Customer.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -17966,9 +17966,9 @@ proto.data.Order.deserializeBinaryFromReader = function(msg, reader) {
       msg.setDateOrdered(value);
       break;
     case 10:
-      var value = new proto_core_functionality_pb.BusinessPartner;
-      reader.readMessage(value,proto_core_functionality_pb.BusinessPartner.deserializeBinaryFromReader);
-      msg.setBusinessPartner(value);
+      var value = new proto.data.Customer;
+      reader.readMessage(value,proto.data.Customer.deserializeBinaryFromReader);
+      msg.setCustomer(value);
       break;
     default:
       reader.skipField();
@@ -18067,12 +18067,12 @@ proto.data.Order.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-  f = message.getBusinessPartner();
+  f = message.getCustomer();
   if (f != null) {
     writer.writeMessage(
       10,
       f,
-      proto_core_functionality_pb.BusinessPartner.serializeBinaryToWriter
+      proto.data.Customer.serializeBinaryToWriter
     );
   }
 };
@@ -18336,20 +18336,20 @@ proto.data.Order.prototype.setDateOrdered = function(value) {
 
 
 /**
- * optional BusinessPartner business_partner = 10;
- * @return {?proto.data.BusinessPartner}
+ * optional Customer customer = 10;
+ * @return {?proto.data.Customer}
  */
-proto.data.Order.prototype.getBusinessPartner = function() {
-  return /** @type{?proto.data.BusinessPartner} */ (
-    jspb.Message.getWrapperField(this, proto_core_functionality_pb.BusinessPartner, 10));
+proto.data.Order.prototype.getCustomer = function() {
+  return /** @type{?proto.data.Customer} */ (
+    jspb.Message.getWrapperField(this, proto.data.Customer, 10));
 };
 
 
 /**
- * @param {?proto.data.BusinessPartner|undefined} value
+ * @param {?proto.data.Customer|undefined} value
  * @return {!proto.data.Order} returns this
 */
-proto.data.Order.prototype.setBusinessPartner = function(value) {
+proto.data.Order.prototype.setCustomer = function(value) {
   return jspb.Message.setWrapperField(this, 10, value);
 };
 
@@ -18358,8 +18358,8 @@ proto.data.Order.prototype.setBusinessPartner = function(value) {
  * Clears the message field making it undefined.
  * @return {!proto.data.Order} returns this
  */
-proto.data.Order.prototype.clearBusinessPartner = function() {
-  return this.setBusinessPartner(undefined);
+proto.data.Order.prototype.clearCustomer = function() {
+  return this.setCustomer(undefined);
 };
 
 
@@ -18367,7 +18367,7 @@ proto.data.Order.prototype.clearBusinessPartner = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.data.Order.prototype.hasBusinessPartner = function() {
+proto.data.Order.prototype.hasCustomer = function() {
   return jspb.Message.getField(this, 10) != null;
 };
 
