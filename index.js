@@ -2191,10 +2191,11 @@
     tenderTypeCode,
     currencyUuid,
     paymentMethodUuid,
+    isRefund,
     language
   }, callback) {
     const { CreatePaymentRequest } = require('./src/grpc/proto/point_of_sales_pb.js')
-    const { convertValueToGRPC, getDecimalFromNumber } = require('./lib/convertValues.js')
+    const { getDecimalFromNumber } = require('./lib/convertValues.js')
     const request = new CreatePaymentRequest()
     request.setPosUuid(posUuid)
     request.setOrderUuid(orderUuid)
@@ -2226,8 +2227,9 @@
     if (paymentDate) {
       request.setPaymentDate(paymentDate)
     }
+    request.setIsRefund(isRefund)
     if (paymentAccountDate) {
-      request.setPaymentDate(paymentAccountDate)
+      request.setPaymentAccountDate(paymentAccountDate)
     }
     request.setClientRequest(this.createClientRequest(token, language))
     this.getPosService().createPayment(request, callback)
@@ -2243,6 +2245,8 @@
     amount,
     paymentDate,
     tenderTypeCode,
+    paymentMethodUuid,
+    paymentAccountDate,
     language
   }, callback) {
     const { UpdatePaymentRequest } = require('./src/grpc/proto/point_of_sales_pb.js')
@@ -2261,12 +2265,18 @@
     if (tenderTypeCode) {
       request.setTenderTypeCode(tenderTypeCode)
     }
+    if(paymentMethodUuid) {
+      request.setPaymentMethodUuid(paymentMethodUuid)
+    }
     if(amount) {
       request.setAmount(getDecimalFromNumber(amount))
     }
     //  Date of Payment
     if (paymentDate) {
       request.setPaymentDate(paymentDate)
+    }
+    if (paymentAccountDate) {
+      request.setPaymentAccountDate(paymentAccountDate)
     }
     request.setClientRequest(this.createClientRequest(token, language))
     this.getPosService().updatePayment(request, callback)

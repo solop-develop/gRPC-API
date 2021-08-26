@@ -13558,7 +13558,8 @@ proto.data.CreatePaymentRequest.toObject = function(includeInstance, msg) {
     tenderTypeCode: jspb.Message.getFieldWithDefault(msg, 10, ""),
     currencyUuid: jspb.Message.getFieldWithDefault(msg, 11, ""),
     paymentMethodUuid: jspb.Message.getFieldWithDefault(msg, 12, ""),
-    paymentAccountDate: jspb.Message.getFieldWithDefault(msg, 13, "")
+    paymentAccountDate: jspb.Message.getFieldWithDefault(msg, 13, ""),
+    isRefund: jspb.Message.getBooleanFieldWithDefault(msg, 14, false)
   };
 
   if (includeInstance) {
@@ -13648,6 +13649,10 @@ proto.data.CreatePaymentRequest.deserializeBinaryFromReader = function(msg, read
     case 13:
       var value = /** @type {string} */ (reader.readString());
       msg.setPaymentAccountDate(value);
+      break;
+    case 14:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setIsRefund(value);
       break;
     default:
       reader.skipField();
@@ -13768,6 +13773,13 @@ proto.data.CreatePaymentRequest.serializeBinaryToWriter = function(message, writ
   if (f.length > 0) {
     writer.writeString(
       13,
+      f
+    );
+  }
+  f = message.getIsRefund();
+  if (f) {
+    writer.writeBool(
+      14,
       f
     );
   }
@@ -14046,6 +14058,24 @@ proto.data.CreatePaymentRequest.prototype.setPaymentAccountDate = function(value
 };
 
 
+/**
+ * optional bool is_refund = 14;
+ * @return {boolean}
+ */
+proto.data.CreatePaymentRequest.prototype.getIsRefund = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 14, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.data.CreatePaymentRequest} returns this
+ */
+proto.data.CreatePaymentRequest.prototype.setIsRefund = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 14, value);
+};
+
+
 
 
 
@@ -14085,7 +14115,9 @@ proto.data.UpdatePaymentRequest.toObject = function(includeInstance, msg) {
     description: jspb.Message.getFieldWithDefault(msg, 5, ""),
     amount: (f = msg.getAmount()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
     paymentDate: jspb.Message.getFieldWithDefault(msg, 7, ""),
-    tenderTypeCode: jspb.Message.getFieldWithDefault(msg, 8, "")
+    tenderTypeCode: jspb.Message.getFieldWithDefault(msg, 8, ""),
+    paymentMethodUuid: jspb.Message.getFieldWithDefault(msg, 9, ""),
+    paymentAccountDate: jspb.Message.getFieldWithDefault(msg, 10, "")
   };
 
   if (includeInstance) {
@@ -14155,6 +14187,14 @@ proto.data.UpdatePaymentRequest.deserializeBinaryFromReader = function(msg, read
     case 8:
       var value = /** @type {string} */ (reader.readString());
       msg.setTenderTypeCode(value);
+      break;
+    case 9:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setPaymentMethodUuid(value);
+      break;
+    case 10:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setPaymentAccountDate(value);
       break;
     default:
       reader.skipField();
@@ -14240,6 +14280,20 @@ proto.data.UpdatePaymentRequest.serializeBinaryToWriter = function(message, writ
   if (f.length > 0) {
     writer.writeString(
       8,
+      f
+    );
+  }
+  f = message.getPaymentMethodUuid();
+  if (f.length > 0) {
+    writer.writeString(
+      9,
+      f
+    );
+  }
+  f = message.getPaymentAccountDate();
+  if (f.length > 0) {
+    writer.writeString(
+      10,
       f
     );
   }
@@ -14425,6 +14479,42 @@ proto.data.UpdatePaymentRequest.prototype.getTenderTypeCode = function() {
  */
 proto.data.UpdatePaymentRequest.prototype.setTenderTypeCode = function(value) {
   return jspb.Message.setProto3StringField(this, 8, value);
+};
+
+
+/**
+ * optional string payment_method_uuid = 9;
+ * @return {string}
+ */
+proto.data.UpdatePaymentRequest.prototype.getPaymentMethodUuid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 9, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.data.UpdatePaymentRequest} returns this
+ */
+proto.data.UpdatePaymentRequest.prototype.setPaymentMethodUuid = function(value) {
+  return jspb.Message.setProto3StringField(this, 9, value);
+};
+
+
+/**
+ * optional string payment_account_date = 10;
+ * @return {string}
+ */
+proto.data.UpdatePaymentRequest.prototype.getPaymentAccountDate = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 10, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.data.UpdatePaymentRequest} returns this
+ */
+proto.data.UpdatePaymentRequest.prototype.setPaymentAccountDate = function(value) {
+  return jspb.Message.setProto3StringField(this, 10, value);
 };
 
 
@@ -15408,8 +15498,10 @@ proto.data.Payment.toObject = function(includeInstance, msg) {
     description: jspb.Message.getFieldWithDefault(msg, 12, ""),
     amount: (f = msg.getAmount()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
     paymentDate: jspb.Message.getFieldWithDefault(msg, 14, ""),
-    tenderTypeCode: jspb.Message.getFieldWithDefault(msg, 15, ""),
-    currencyUuid: jspb.Message.getFieldWithDefault(msg, 16, "")
+    paymentAccountDate: jspb.Message.getFieldWithDefault(msg, 15, ""),
+    tenderTypeCode: jspb.Message.getFieldWithDefault(msg, 16, ""),
+    currencyUuid: jspb.Message.getFieldWithDefault(msg, 17, ""),
+    isRefund: jspb.Message.getBooleanFieldWithDefault(msg, 18, false)
   };
 
   if (includeInstance) {
@@ -15508,11 +15600,19 @@ proto.data.Payment.deserializeBinaryFromReader = function(msg, reader) {
       break;
     case 15:
       var value = /** @type {string} */ (reader.readString());
-      msg.setTenderTypeCode(value);
+      msg.setPaymentAccountDate(value);
       break;
     case 16:
       var value = /** @type {string} */ (reader.readString());
+      msg.setTenderTypeCode(value);
+      break;
+    case 17:
+      var value = /** @type {string} */ (reader.readString());
       msg.setCurrencyUuid(value);
+      break;
+    case 18:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setIsRefund(value);
       break;
     default:
       reader.skipField();
@@ -15645,17 +15745,31 @@ proto.data.Payment.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-  f = message.getTenderTypeCode();
+  f = message.getPaymentAccountDate();
   if (f.length > 0) {
     writer.writeString(
       15,
       f
     );
   }
-  f = message.getCurrencyUuid();
+  f = message.getTenderTypeCode();
   if (f.length > 0) {
     writer.writeString(
       16,
+      f
+    );
+  }
+  f = message.getCurrencyUuid();
+  if (f.length > 0) {
+    writer.writeString(
+      17,
+      f
+    );
+  }
+  f = message.getIsRefund();
+  if (f) {
+    writer.writeBool(
+      18,
       f
     );
   }
@@ -15991,10 +16105,10 @@ proto.data.Payment.prototype.setPaymentDate = function(value) {
 
 
 /**
- * optional string tender_type_code = 15;
+ * optional string payment_account_date = 15;
  * @return {string}
  */
-proto.data.Payment.prototype.getTenderTypeCode = function() {
+proto.data.Payment.prototype.getPaymentAccountDate = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 15, ""));
 };
 
@@ -16003,16 +16117,16 @@ proto.data.Payment.prototype.getTenderTypeCode = function() {
  * @param {string} value
  * @return {!proto.data.Payment} returns this
  */
-proto.data.Payment.prototype.setTenderTypeCode = function(value) {
+proto.data.Payment.prototype.setPaymentAccountDate = function(value) {
   return jspb.Message.setProto3StringField(this, 15, value);
 };
 
 
 /**
- * optional string currency_uuid = 16;
+ * optional string tender_type_code = 16;
  * @return {string}
  */
-proto.data.Payment.prototype.getCurrencyUuid = function() {
+proto.data.Payment.prototype.getTenderTypeCode = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 16, ""));
 };
 
@@ -16021,8 +16135,44 @@ proto.data.Payment.prototype.getCurrencyUuid = function() {
  * @param {string} value
  * @return {!proto.data.Payment} returns this
  */
-proto.data.Payment.prototype.setCurrencyUuid = function(value) {
+proto.data.Payment.prototype.setTenderTypeCode = function(value) {
   return jspb.Message.setProto3StringField(this, 16, value);
+};
+
+
+/**
+ * optional string currency_uuid = 17;
+ * @return {string}
+ */
+proto.data.Payment.prototype.getCurrencyUuid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 17, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.data.Payment} returns this
+ */
+proto.data.Payment.prototype.setCurrencyUuid = function(value) {
+  return jspb.Message.setProto3StringField(this, 17, value);
+};
+
+
+/**
+ * optional bool is_refund = 18;
+ * @return {boolean}
+ */
+proto.data.Payment.prototype.getIsRefund = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 18, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.data.Payment} returns this
+ */
+proto.data.Payment.prototype.setIsRefund = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 18, value);
 };
 
 
