@@ -2642,6 +2642,160 @@
     request.setClientRequest(this.createClientRequest(token, language))
     this.getPosService().getCustomer(request, callback)
   }
+  
+  //  Get Customer Bank Account
+  getCustomerBankAccount({
+    token,
+    customerBankAccountUuid,
+    language
+  }, callback) {
+    const { GetCustomerBankAccountRequest } = require('./src/grpc/proto/point_of_sales_pb.js')
+    const request = new GetCustomerBankAccountRequest()
+    request.setCustomerBankAccountUuid(customerBankAccountUuid)
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getPosService().getCustomerBankAccount(request, callback)
+  }
+
+  //  Create Customer Bank Account
+  createCustomerBankAccount({
+    token,
+    customerUuid,
+    posUuid,
+    city,
+    country,
+    email,
+    driverLicense,
+    socialSecurityNumber,
+    name,
+    state,
+    street,
+    zip,
+    bankAccountType,
+    bankUuid,
+    isAch,
+    addressVerified,
+    zipVerified,
+    routingNo,
+    iban,
+    isPayrollAccount,
+    language
+  }, callback) {
+    const { CreateCustomerBankAccountRequest } = require('./src/grpc/proto/point_of_sales_pb.js')
+    const request = new CreateCustomerBankAccountRequest()
+    request.setCustomerUuid(customerUuid)
+    request.setPosUuid(posUuid)
+    request.setCity(city)
+    request.setCountry(country)
+    request.setDriverLicense(driverLicense)
+    request.setSocialSecurityNumber(socialSecurityNumber)
+    request.setName(name)
+    request.setState(state)
+    request.setStreet(street)
+    request.setZip(zip)
+    request.setBankAccountType(bankAccountType)
+    request.setBankUuid(bankUuid)
+    request.setIsAch(isAch)
+    request.setAddressVerified(addressVerified)
+    request.setZipVerified(zipVerified)
+    request.setRoutingNo(routingNo)
+    request.setIban(iban)
+    request.setIsPayrollAccount(isPayrollAccount)
+    request.setEmail(email)
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getPosService().createCustomerBankAccount(request, callback)
+  }
+
+  //  Create Customer Bank Account
+  updateCustomerBankAccount({
+    token,
+    customerBankAccountUuid,
+    posUuid,
+    city,
+    country,
+    email,
+    driverLicense,
+    socialSecurityNumber,
+    name,
+    state,
+    street,
+    zip,
+    bankAccountType,
+    bankUuid,
+    isAch,
+    addressVerified,
+    zipVerified,
+    routingNo,
+    iban,
+    isPayrollAccount,
+    language
+  }, callback) {
+    const { UpdateCustomerBankAccountRequest } = require('./src/grpc/proto/point_of_sales_pb.js')
+    const request = new UpdateCustomerBankAccountRequest()
+    request.setCustomerBankAccountUuid(customerBankAccountUuid)
+    request.setPosUuid(posUuid)
+    request.setCity(city)
+    request.setCountry(country)
+    request.setDriverLicense(driverLicense)
+    request.setSocialSecurityNumber(socialSecurityNumber)
+    request.setName(name)
+    request.setState(state)
+    request.setStreet(street)
+    request.setZip(zip)
+    request.setBankAccountType(bankAccountType)
+    request.setBankUuid(bankUuid)
+    request.setIsAch(isAch)
+    request.setAddressVerified(addressVerified)
+    request.setZipVerified(zipVerified)
+    request.setRoutingNo(routingNo)
+    request.setIban(iban)
+    request.setIsPayrollAccount(isPayrollAccount)
+    request.setEmail(email)
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getPosService().updateCustomerBankAccount(request, callback)
+  }
+
+  //  Get Customer Bank Accoount
+  getCustomerBankAccount({
+    token,
+    customerBankAccountUuid,
+    language
+  }, callback) {
+    const { GetCustomerBankAccountRequest } = require('./src/grpc/proto/point_of_sales_pb.js')
+    const request = new GetCustomerBankAccountRequest()
+    request.setCustomerBankAccountUuid(customerBankAccountUuid)
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getPosService().getCustomerBankAccount(request, callback)
+  }
+
+  //  Delete Customer Bank Accoount
+  deleteCustomerBankAccount({
+    token,
+    customerBankAccountUuid,
+    language
+  }, callback) {
+    const { DeleteCustomerBankAccountRequest } = require('./src/grpc/proto/point_of_sales_pb.js')
+    const request = new DeleteCustomerBankAccountRequest()
+    request.setCustomerBankAccountUuid(customerBankAccountUuid)
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getPosService().deleteCustomerBankAccount(request, callback)
+  }
+
+  //  List Customer Bank Accounts
+  listCustomerBankAccounts({
+    token,
+    customerUuid,
+    pageSize,
+    pageToken,
+    language
+  }, callback) {
+    const { ListCustomerBankAccountsRequest } = require('./src/grpc/proto/point_of_sales_pb.js')
+    const request = new ListCustomerBankAccountsRequest()
+    request.setCustomerUuid(customerUuid)
+    request.setPageSize(pageSize)
+    request.setPageToken(pageToken)
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getPosService().listCustomerBankAccounts(request, callback)
+  }
 
   //  Get Available Refund
   getAvailableRefund({
@@ -2660,20 +2814,20 @@
     this.getPosService().getAvailableRefund(request, callback)
   }
 
-    //  Print Ticket
-    printTicket({
-      token,
-      posUuid,
-      orderUuid,
-      language
-    }, callback) {
-      const { PrintTicketRequest } = require('./src/grpc/proto/point_of_sales_pb.js')
-      const request = new PrintTicketRequest()
-      request.setPosUuid(posUuid)
-      request.setOrderUuid(orderUuid)
-      request.setClientRequest(this.createClientRequest(token, language))
-      this.getPosService().printTicket(request, callback)
-    }
+  //  Print Ticket
+  printTicket({
+    token,
+    posUuid,
+    orderUuid,
+    language
+  }, callback) {
+    const { PrintTicketRequest } = require('./src/grpc/proto/point_of_sales_pb.js')
+    const request = new PrintTicketRequest()
+    request.setPosUuid(posUuid)
+    request.setOrderUuid(orderUuid)
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getPosService().printTicket(request, callback)
+  }
 
   //  Enrollment service
   //  Enroll User

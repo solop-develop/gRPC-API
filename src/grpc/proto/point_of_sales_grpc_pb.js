@@ -33,6 +33,17 @@ function deserialize_data_AvailableRefund(buffer_arg) {
   return proto_point_of_sales_pb.AvailableRefund.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_data_CreateCustomerBankAccountRequest(arg) {
+  if (!(arg instanceof proto_point_of_sales_pb.CreateCustomerBankAccountRequest)) {
+    throw new Error('Expected argument of type data.CreateCustomerBankAccountRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_CreateCustomerBankAccountRequest(buffer_arg) {
+  return proto_point_of_sales_pb.CreateCustomerBankAccountRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_data_CreateCustomerRequest(arg) {
   if (!(arg instanceof proto_point_of_sales_pb.CreateCustomerRequest)) {
     throw new Error('Expected argument of type data.CreateCustomerRequest');
@@ -88,6 +99,28 @@ function deserialize_data_Customer(buffer_arg) {
   return proto_point_of_sales_pb.Customer.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_data_CustomerBankAccount(arg) {
+  if (!(arg instanceof proto_point_of_sales_pb.CustomerBankAccount)) {
+    throw new Error('Expected argument of type data.CustomerBankAccount');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_CustomerBankAccount(buffer_arg) {
+  return proto_point_of_sales_pb.CustomerBankAccount.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_data_DeleteCustomerBankAccountRequest(arg) {
+  if (!(arg instanceof proto_point_of_sales_pb.DeleteCustomerBankAccountRequest)) {
+    throw new Error('Expected argument of type data.DeleteCustomerBankAccountRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_DeleteCustomerBankAccountRequest(buffer_arg) {
+  return proto_point_of_sales_pb.DeleteCustomerBankAccountRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_data_DeleteOrderLineRequest(arg) {
   if (!(arg instanceof proto_point_of_sales_pb.DeleteOrderLineRequest)) {
     throw new Error('Expected argument of type data.DeleteOrderLineRequest');
@@ -141,6 +174,17 @@ function serialize_data_GetAvailableRefundRequest(arg) {
 
 function deserialize_data_GetAvailableRefundRequest(buffer_arg) {
   return proto_point_of_sales_pb.GetAvailableRefundRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_data_GetCustomerBankAccountRequest(arg) {
+  if (!(arg instanceof proto_point_of_sales_pb.GetCustomerBankAccountRequest)) {
+    throw new Error('Expected argument of type data.GetCustomerBankAccountRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_GetCustomerBankAccountRequest(buffer_arg) {
+  return proto_point_of_sales_pb.GetCustomerBankAccountRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_data_GetCustomerRequest(arg) {
@@ -306,6 +350,28 @@ function serialize_data_ListAvailableWarehousesResponse(arg) {
 
 function deserialize_data_ListAvailableWarehousesResponse(buffer_arg) {
   return proto_point_of_sales_pb.ListAvailableWarehousesResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_data_ListCustomerBankAccountsRequest(arg) {
+  if (!(arg instanceof proto_point_of_sales_pb.ListCustomerBankAccountsRequest)) {
+    throw new Error('Expected argument of type data.ListCustomerBankAccountsRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_ListCustomerBankAccountsRequest(buffer_arg) {
+  return proto_point_of_sales_pb.ListCustomerBankAccountsRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_data_ListCustomerBankAccountsResponse(arg) {
+  if (!(arg instanceof proto_point_of_sales_pb.ListCustomerBankAccountsResponse)) {
+    throw new Error('Expected argument of type data.ListCustomerBankAccountsResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_ListCustomerBankAccountsResponse(buffer_arg) {
+  return proto_point_of_sales_pb.ListCustomerBankAccountsResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_data_ListOrderLinesRequest(arg) {
@@ -515,6 +581,17 @@ function serialize_data_ProductPrice(arg) {
 
 function deserialize_data_ProductPrice(buffer_arg) {
   return proto_core_functionality_pb.ProductPrice.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_data_UpdateCustomerBankAccountRequest(arg) {
+  if (!(arg instanceof proto_point_of_sales_pb.UpdateCustomerBankAccountRequest)) {
+    throw new Error('Expected argument of type data.UpdateCustomerBankAccountRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_UpdateCustomerBankAccountRequest(buffer_arg) {
+  return proto_point_of_sales_pb.UpdateCustomerBankAccountRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_data_UpdateCustomerRequest(arg) {
@@ -936,6 +1013,66 @@ printTicket: {
     requestDeserialize: deserialize_data_PrintTicketRequest,
     responseSerialize: serialize_data_PrintTicketResponse,
     responseDeserialize: deserialize_data_PrintTicketResponse,
+  },
+  // 	Create Customer Account
+createCustomerBankAccount: {
+    path: '/data.Store/CreateCustomerBankAccount',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_point_of_sales_pb.CreateCustomerBankAccountRequest,
+    responseType: proto_point_of_sales_pb.CustomerBankAccount,
+    requestSerialize: serialize_data_CreateCustomerBankAccountRequest,
+    requestDeserialize: deserialize_data_CreateCustomerBankAccountRequest,
+    responseSerialize: serialize_data_CustomerBankAccount,
+    responseDeserialize: deserialize_data_CustomerBankAccount,
+  },
+  // 	Update Customer Account
+updateCustomerBankAccount: {
+    path: '/data.Store/UpdateCustomerBankAccount',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_point_of_sales_pb.UpdateCustomerBankAccountRequest,
+    responseType: proto_point_of_sales_pb.CustomerBankAccount,
+    requestSerialize: serialize_data_UpdateCustomerBankAccountRequest,
+    requestDeserialize: deserialize_data_UpdateCustomerBankAccountRequest,
+    responseSerialize: serialize_data_CustomerBankAccount,
+    responseDeserialize: deserialize_data_CustomerBankAccount,
+  },
+  // 	Get Customer Account
+getCustomerBankAccount: {
+    path: '/data.Store/GetCustomerBankAccount',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_point_of_sales_pb.GetCustomerBankAccountRequest,
+    responseType: proto_point_of_sales_pb.CustomerBankAccount,
+    requestSerialize: serialize_data_GetCustomerBankAccountRequest,
+    requestDeserialize: deserialize_data_GetCustomerBankAccountRequest,
+    responseSerialize: serialize_data_CustomerBankAccount,
+    responseDeserialize: deserialize_data_CustomerBankAccount,
+  },
+  // 	Delete Customer Account
+deleteCustomerBankAccount: {
+    path: '/data.Store/DeleteCustomerBankAccount',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_point_of_sales_pb.DeleteCustomerBankAccountRequest,
+    responseType: proto_base_data_type_pb.Empty,
+    requestSerialize: serialize_data_DeleteCustomerBankAccountRequest,
+    requestDeserialize: deserialize_data_DeleteCustomerBankAccountRequest,
+    responseSerialize: serialize_data_Empty,
+    responseDeserialize: deserialize_data_Empty,
+  },
+  // 	List Customer Accounts
+listCustomerBankAccounts: {
+    path: '/data.Store/ListCustomerBankAccounts',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_point_of_sales_pb.ListCustomerBankAccountsRequest,
+    responseType: proto_point_of_sales_pb.ListCustomerBankAccountsResponse,
+    requestSerialize: serialize_data_ListCustomerBankAccountsRequest,
+    requestDeserialize: deserialize_data_ListCustomerBankAccountsRequest,
+    responseSerialize: serialize_data_ListCustomerBankAccountsResponse,
+    responseDeserialize: deserialize_data_ListCustomerBankAccountsResponse,
   },
 };
 
