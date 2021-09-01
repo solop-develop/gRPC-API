@@ -2062,18 +2062,10 @@
     const { getDecimalFromNumber } = require('./lib/convertValues.js')
     request.setOrderLineUuid(orderLineUuid)
     request.setDescription(description)
-    if(quantity) {
-      request.setQuantity(getDecimalFromNumber(quantity))
-    }
-    if(price) {
-      request.setPrice(getDecimalFromNumber(price))
-    }
-    if(discountRate) {
-      request.setDiscountRate(getDecimalFromNumber(discountRate))
-    }
-    if(warehouseUuid) {
-      request.setWarehouseUuid(warehouseUuid)
-    }
+    request.setQuantity(getDecimalFromNumber(quantity))
+    request.setPrice(getDecimalFromNumber(price))
+    request.setDiscountRate(getDecimalFromNumber(discountRate))
+    request.setWarehouseUuid(warehouseUuid)
     request.setIsAddQuantity(isAddQuantity)
     request.setClientRequest(this.createClientRequest(token, language))
     this.getPosService().updateOrderLine(request, callback)
