@@ -8925,7 +8925,8 @@ proto.data.AvailablePaymentMethod.toObject = function(includeInstance, msg) {
     isAllowedToRefundOpen: jspb.Message.getBooleanFieldWithDefault(msg, 9, false),
     maximumRefundAllowed: (f = msg.getMaximumRefundAllowed()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
     maximumDailyRefundAllowed: (f = msg.getMaximumDailyRefundAllowed()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
-    refundReferenceCurrency: (f = msg.getRefundReferenceCurrency()) && proto_core_functionality_pb.Currency.toObject(includeInstance, f)
+    refundReferenceCurrency: (f = msg.getRefundReferenceCurrency()) && proto_core_functionality_pb.Currency.toObject(includeInstance, f),
+    referenceCurrency: (f = msg.getReferenceCurrency()) && proto_core_functionality_pb.Currency.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -9008,6 +9009,11 @@ proto.data.AvailablePaymentMethod.deserializeBinaryFromReader = function(msg, re
       var value = new proto_core_functionality_pb.Currency;
       reader.readMessage(value,proto_core_functionality_pb.Currency.deserializeBinaryFromReader);
       msg.setRefundReferenceCurrency(value);
+      break;
+    case 13:
+      var value = new proto_core_functionality_pb.Currency;
+      reader.readMessage(value,proto_core_functionality_pb.Currency.deserializeBinaryFromReader);
+      msg.setReferenceCurrency(value);
       break;
     default:
       reader.skipField();
@@ -9114,6 +9120,14 @@ proto.data.AvailablePaymentMethod.serializeBinaryToWriter = function(message, wr
   if (f != null) {
     writer.writeMessage(
       12,
+      f,
+      proto_core_functionality_pb.Currency.serializeBinaryToWriter
+    );
+  }
+  f = message.getReferenceCurrency();
+  if (f != null) {
+    writer.writeMessage(
+      13,
       f,
       proto_core_functionality_pb.Currency.serializeBinaryToWriter
     );
@@ -9373,6 +9387,43 @@ proto.data.AvailablePaymentMethod.prototype.clearRefundReferenceCurrency = funct
  */
 proto.data.AvailablePaymentMethod.prototype.hasRefundReferenceCurrency = function() {
   return jspb.Message.getField(this, 12) != null;
+};
+
+
+/**
+ * optional Currency reference_currency = 13;
+ * @return {?proto.data.Currency}
+ */
+proto.data.AvailablePaymentMethod.prototype.getReferenceCurrency = function() {
+  return /** @type{?proto.data.Currency} */ (
+    jspb.Message.getWrapperField(this, proto_core_functionality_pb.Currency, 13));
+};
+
+
+/**
+ * @param {?proto.data.Currency|undefined} value
+ * @return {!proto.data.AvailablePaymentMethod} returns this
+*/
+proto.data.AvailablePaymentMethod.prototype.setReferenceCurrency = function(value) {
+  return jspb.Message.setWrapperField(this, 13, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.data.AvailablePaymentMethod} returns this
+ */
+proto.data.AvailablePaymentMethod.prototype.clearReferenceCurrency = function() {
+  return this.setReferenceCurrency(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.data.AvailablePaymentMethod.prototype.hasReferenceCurrency = function() {
+  return jspb.Message.getField(this, 13) != null;
 };
 
 
