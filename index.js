@@ -1870,6 +1870,8 @@
     posUuid,
     businessPartnerUuid,
     validFrom,
+    priceListUuid,
+    warehouseUuid,
     language
   }, callback) {
     const { GetProductPriceRequest } = require('./src/grpc/proto/point_of_sales_pb.js')
@@ -1880,6 +1882,8 @@
     request.setName(name)
     request.setPosUuid(posUuid)
     request.setBusinessPartnerUuid(businessPartnerUuid)
+    request.setPriceListUuid(priceListUuid)
+    request.setWarehouseUuid(warehouseUuid)
     request.setValidFrom(validFrom)
     request.setClientRequest(this.createClientRequest(token, language))
     this.getPosService().getProductPrice(request, callback)
@@ -1891,6 +1895,8 @@
     searchValue,
     posUuid,
     businessPartnerUuid,
+    priceListUuid,
+    warehouseUuid,
     validFrom,
     tableName,
     //  DSL
@@ -1909,6 +1915,8 @@
     request.setSearchValue(searchValue)
     request.setPosUuid(posUuid)
     request.setBusinessPartnerUuid(businessPartnerUuid)
+    request.setPriceListUuid(priceListUuid)
+    request.setWarehouseUuid(warehouseUuid)
     request.setValidFrom(validFrom)
     //
     const { convertCriteriaToGRPC } = require('./lib/convertValues.js');
