@@ -2551,6 +2551,8 @@
         addressRequest.setRegionUuid(address.regionUuid)
         addressRequest.setRegionName(address.regionName)
         addressRequest.setCountryUuid(address.countryUuid)
+        addressRequest.setIsDefaultBilling(address.isDefaultBilling)
+        addressRequest.setIsDefaultShipping(address.isDefaultShipping)
         request.addAddresses(addressRequest)
       })
     }
@@ -2603,6 +2605,8 @@
         addressRequest.setRegionUuid(address.regionUuid)
         addressRequest.setRegionName(address.regionName)
         addressRequest.setCountryUuid(address.countryUuid)
+        addressRequest.setIsDefaultBilling(address.isDefaultBilling)
+        addressRequest.setIsDefaultShipping(address.isDefaultShipping)
         request.addAddresses(addressRequest)
       })
     }
