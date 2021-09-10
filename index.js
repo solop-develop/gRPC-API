@@ -2516,24 +2516,12 @@
     name,
     lastName,
     description,
-    contactName,
-    email,
-    phone,
-    businessPartnerGroupUuid,
-    address1,
-    address2,
-    address3,
-    address4,
-    cityUuid,
-    cityName,
-    postalCode,
-    regionUuid,
-    regionName,
-    countryUuid,
     posUuid,
+    businessPartnerGroupUuid,
+    addresses,
     language
   }, callback) {
-    const { CreateCustomerRequest } = require('./src/grpc/proto/point_of_sales_pb.js')
+    const { CreateCustomerRequest, AddressRequest } = require('./src/grpc/proto/point_of_sales_pb.js')
     const request = new CreateCustomerRequest()
     request.setValue(value)
     request.setTaxId(taxId)
@@ -2542,21 +2530,30 @@
     request.setName(name)
     request.setLastName(lastName)
     request.setDescription(description)
-    request.setContactName(contactName)
-    request.setEmail(email)
-    request.setPhone(phone)
-    request.setBusinessPartnerGroupUuid(businessPartnerGroupUuid)
-    request.setAddress1(address1)
-    request.setAddress2(address2)
-    request.setAddress3(address3)
-    request.setAddress4(address4)
-    request.setCityUuid(cityUuid)
-    request.setCityName(cityName)
-    request.setPostalCode(postalCode)
-    request.setRegionUuid(regionUuid)
-    request.setRegionName(regionName)
-    request.setCountryUuid(countryUuid)
     request.setPosUuid(posUuid)
+    request.setBusinessPartnerGroupUuid(businessPartnerGroupUuid)
+    if(addresses) {
+      addresses.forEach(address => {
+        const addressRequest = new AddressRequest()
+        addressRequest.setFirstName(address.firstName)
+        addressRequest.setLastName(address.lastName)
+        addressRequest.setDescription(address.description)
+        addressRequest.setContactName(address.contactName)
+        addressRequest.setEmail(address.email)
+        addressRequest.setPhone(address.phone)
+        addressRequest.setAddress1(address.address1)
+        addressRequest.setAddress2(address.address2)
+        addressRequest.setAddress3(address.address3)
+        addressRequest.setAddress4(address.address4)
+        addressRequest.setCityUuid(address.cityUuid)
+        addressRequest.setCityName(address.cityName)
+        addressRequest.setPostalCode(address.postalCode)
+        addressRequest.setRegionUuid(address.regionUuid)
+        addressRequest.setRegionName(address.regionName)
+        addressRequest.setCountryUuid(address.countryUuid)
+        request.addAddresses(addressRequest)
+      })
+    }
     request.setClientRequest(this.createClientRequest(token, language))
     this.getPosService().createCustomer(request, callback)
   }
@@ -2572,24 +2569,11 @@
     name,
     lastName,
     description,
-    contactName,
-    email,
-    phone,
-    addressUuid,
-    address1,
-    address2,
-    address3,
-    address4,
-    cityUuid,
-    cityName,
-    postalCode,
-    regionUuid,
-    regionName,
-    countryUuid,
     posUuid,
+    addresses,
     language
   }, callback) {
-    const { UpdateCustomerRequest } = require('./src/grpc/proto/point_of_sales_pb.js')
+    const { UpdateCustomerRequest, AddressRequest } = require('./src/grpc/proto/point_of_sales_pb.js')
     const request = new UpdateCustomerRequest()
     request.setUuid(uuid)
     request.setValue(value)
@@ -2599,21 +2583,29 @@
     request.setName(name)
     request.setLastName(lastName)
     request.setDescription(description)
-    request.setContactName(contactName)
-    request.setEmail(email)
-    request.setPhone(phone)
-    request.setAddressUuid(addressUuid)
-    request.setAddress1(address1)
-    request.setAddress2(address2)
-    request.setAddress3(address3)
-    request.setAddress4(address4)
-    request.setCityUuid(cityUuid)
-    request.setCityName(cityName)
-    request.setPostalCode(postalCode)
-    request.setRegionUuid(regionUuid)
-    request.setRegionName(regionName)
-    request.setCountryUuid(countryUuid)
     request.setPosUuid(posUuid)
+    if(addresses) {
+      addresses.forEach(address => {
+        const addressRequest = new AddressRequest()
+        addressRequest.setFirstName(address.firstName)
+        addressRequest.setLastName(address.lastName)
+        addressRequest.setDescription(address.description)
+        addressRequest.setContactName(address.contactName)
+        addressRequest.setEmail(address.email)
+        addressRequest.setPhone(address.phone)
+        addressRequest.setAddress1(address.address1)
+        addressRequest.setAddress2(address.address2)
+        addressRequest.setAddress3(address.address3)
+        addressRequest.setAddress4(address.address4)
+        addressRequest.setCityUuid(address.cityUuid)
+        addressRequest.setCityName(address.cityName)
+        addressRequest.setPostalCode(address.postalCode)
+        addressRequest.setRegionUuid(address.regionUuid)
+        addressRequest.setRegionName(address.regionName)
+        addressRequest.setCountryUuid(address.countryUuid)
+        request.addAddresses(addressRequest)
+      })
+    }
     request.setClientRequest(this.createClientRequest(token, language))
     this.getPosService().updateCustomer(request, callback)
   }
