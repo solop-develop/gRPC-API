@@ -2340,6 +2340,7 @@
     token,
     posUuid,
     orderUuid,
+    isOpenRefund,
     payments,
     language
   }, callback) {
@@ -2348,6 +2349,7 @@
     const request = new ProcessOrderRequest()
     request.setPosUuid(posUuid)
     request.setOrderUuid(orderUuid)
+    request.setIsOpenRefund(isOpenRefund)
     //  Set payment data
     payments.forEach(payment => {
       const paymentRequest = new CreatePaymentRequest()

@@ -16541,7 +16541,7 @@ proto.data.CreateOrderRequest.prototype.setSalesRepresentativeUuid = function(va
  * @private {!Array<number>}
  * @const
  */
-proto.data.ProcessOrderRequest.repeatedFields_ = [5];
+proto.data.ProcessOrderRequest.repeatedFields_ = [6];
 
 
 
@@ -16578,6 +16578,7 @@ proto.data.ProcessOrderRequest.toObject = function(includeInstance, msg) {
     posUuid: jspb.Message.getFieldWithDefault(msg, 2, ""),
     orderUuid: jspb.Message.getFieldWithDefault(msg, 3, ""),
     createPayments: jspb.Message.getBooleanFieldWithDefault(msg, 4, false),
+    isOpenRefund: jspb.Message.getBooleanFieldWithDefault(msg, 5, false),
     paymentsList: jspb.Message.toObjectList(msg.getPaymentsList(),
     proto.data.CreatePaymentRequest.toObject, includeInstance)
   };
@@ -16634,6 +16635,10 @@ proto.data.ProcessOrderRequest.deserializeBinaryFromReader = function(msg, reade
       msg.setCreatePayments(value);
       break;
     case 5:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setIsOpenRefund(value);
+      break;
+    case 6:
       var value = new proto.data.CreatePaymentRequest;
       reader.readMessage(value,proto.data.CreatePaymentRequest.deserializeBinaryFromReader);
       msg.addPayments(value);
@@ -16696,10 +16701,17 @@ proto.data.ProcessOrderRequest.serializeBinaryToWriter = function(message, write
       f
     );
   }
+  f = message.getIsOpenRefund();
+  if (f) {
+    writer.writeBool(
+      5,
+      f
+    );
+  }
   f = message.getPaymentsList();
   if (f.length > 0) {
     writer.writeRepeatedMessage(
-      5,
+      6,
       f,
       proto.data.CreatePaymentRequest.serializeBinaryToWriter
     );
@@ -16799,12 +16811,30 @@ proto.data.ProcessOrderRequest.prototype.setCreatePayments = function(value) {
 
 
 /**
- * repeated CreatePaymentRequest payments = 5;
+ * optional bool is_open_refund = 5;
+ * @return {boolean}
+ */
+proto.data.ProcessOrderRequest.prototype.getIsOpenRefund = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 5, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.data.ProcessOrderRequest} returns this
+ */
+proto.data.ProcessOrderRequest.prototype.setIsOpenRefund = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 5, value);
+};
+
+
+/**
+ * repeated CreatePaymentRequest payments = 6;
  * @return {!Array<!proto.data.CreatePaymentRequest>}
  */
 proto.data.ProcessOrderRequest.prototype.getPaymentsList = function() {
   return /** @type{!Array<!proto.data.CreatePaymentRequest>} */ (
-    jspb.Message.getRepeatedWrapperField(this, proto.data.CreatePaymentRequest, 5));
+    jspb.Message.getRepeatedWrapperField(this, proto.data.CreatePaymentRequest, 6));
 };
 
 
@@ -16813,7 +16843,7 @@ proto.data.ProcessOrderRequest.prototype.getPaymentsList = function() {
  * @return {!proto.data.ProcessOrderRequest} returns this
 */
 proto.data.ProcessOrderRequest.prototype.setPaymentsList = function(value) {
-  return jspb.Message.setRepeatedWrapperField(this, 5, value);
+  return jspb.Message.setRepeatedWrapperField(this, 6, value);
 };
 
 
@@ -16823,7 +16853,7 @@ proto.data.ProcessOrderRequest.prototype.setPaymentsList = function(value) {
  * @return {!proto.data.CreatePaymentRequest}
  */
 proto.data.ProcessOrderRequest.prototype.addPayments = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(this, 5, opt_value, proto.data.CreatePaymentRequest, opt_index);
+  return jspb.Message.addToRepeatedWrapperField(this, 6, opt_value, proto.data.CreatePaymentRequest, opt_index);
 };
 
 
