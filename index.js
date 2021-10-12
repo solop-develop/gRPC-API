@@ -2573,7 +2573,6 @@
     name,
     lastName,
     description,
-    posUuid,
     addresses,
     language
   }, callback) {
@@ -2587,7 +2586,6 @@
     request.setName(name)
     request.setLastName(lastName)
     request.setDescription(description)
-    request.setPosUuid(posUuid)
     if(addresses) {
       addresses.forEach(address => {
         const addressRequest = new AddressRequest()
@@ -2609,6 +2607,7 @@
         addressRequest.setCountryUuid(address.countryUuid)
         addressRequest.setIsDefaultBilling(address.isDefaultBilling)
         addressRequest.setIsDefaultShipping(address.isDefaultShipping)
+        addressRequest.setUuid(address.uuid)
         request.addAddresses(addressRequest)
       })
     }
