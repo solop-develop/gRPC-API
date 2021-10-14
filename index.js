@@ -2175,6 +2175,73 @@
     this.getPosService().listOrderLines(request, callback)
   }
 
+  //  Create Shipment
+  createShipment({
+    token,
+    orderUuid,
+    salesRepresentativeUuid,
+    language
+  }, callback) {
+    const { CreateShipmentRequest } = require('./src/grpc/proto/point_of_sales_pb.js')
+    const request = new CreateShipmentRequest()
+    request.setOrderUuid(orderUuid)
+    request.setSalesRepresentativeUuid(salesRepresentativeUuid)
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getPosService().createShipment(request, callback)
+  }
+
+    //  Create Shipment Line
+  createShipmentLine({
+    token,
+    shipmentUuid,
+    orderLineUuid,
+    description,
+    quantity,
+    language
+  }, callback) {
+    const { CreateShipmentLineRequest } = require('./src/grpc/proto/point_of_sales_pb.js')
+    const request = new CreateShipmentLineRequest()
+    const { getDecimalFromNumber } = require('./lib/convertValues.js')
+    request.setShipmentUuid(shipmentUuid)
+    request.setOrderLineUuid(orderLineUuid)
+    request.setDescription(description)
+    if(quantity) {
+      request.setQuantity(getDecimalFromNumber(quantity))
+    }
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getPosService().createShipmentLine(request, callback)
+  }
+
+  //  Delete Shipment Line
+  deleteShipmentLine({
+    token,
+    shipmentLineUuid,
+    language
+  }, callback) {
+    const { DeleteShipmentLineRequest } = require('./src/grpc/proto/point_of_sales_pb.js')
+    const request = new DeleteShipmentLineRequest()
+    request.setShipmentLineUuid(shipmentLineUuid)
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getPosService().deleteShipmentLine(request, callback)
+  }
+
+  //  List Shipment Lines
+  listShipmentLines({
+    token,
+    shipmentUuid,
+    pageSize,
+    pageToken,
+    language
+  }, callback) {
+    const { ListShipmentLinesRequest } = require('./src/grpc/proto/point_of_sales_pb.js')
+    const request = new ListShipmentLinesRequest()
+    request.setShipmentUuid(shipmentUuid)
+    request.setPageSize(pageSize)
+    request.setPageToken(pageToken)
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getPosService().listShipmentLines(request, callback)
+  }
+
   //  Payments
   //  Create Payment
   createPayment({

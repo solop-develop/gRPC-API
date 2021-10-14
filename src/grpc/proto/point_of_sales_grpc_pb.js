@@ -88,6 +88,28 @@ function deserialize_data_CreatePaymentRequest(buffer_arg) {
   return proto_point_of_sales_pb.CreatePaymentRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_data_CreateShipmentLineRequest(arg) {
+  if (!(arg instanceof proto_point_of_sales_pb.CreateShipmentLineRequest)) {
+    throw new Error('Expected argument of type data.CreateShipmentLineRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_CreateShipmentLineRequest(buffer_arg) {
+  return proto_point_of_sales_pb.CreateShipmentLineRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_data_CreateShipmentRequest(arg) {
+  if (!(arg instanceof proto_point_of_sales_pb.CreateShipmentRequest)) {
+    throw new Error('Expected argument of type data.CreateShipmentRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_CreateShipmentRequest(buffer_arg) {
+  return proto_point_of_sales_pb.CreateShipmentRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_data_Customer(arg) {
   if (!(arg instanceof proto_point_of_sales_pb.Customer)) {
     throw new Error('Expected argument of type data.Customer');
@@ -154,6 +176,28 @@ function deserialize_data_DeletePaymentRequest(buffer_arg) {
   return proto_point_of_sales_pb.DeletePaymentRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_data_DeleteShipmentLineRequest(arg) {
+  if (!(arg instanceof proto_point_of_sales_pb.DeleteShipmentLineRequest)) {
+    throw new Error('Expected argument of type data.DeleteShipmentLineRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_DeleteShipmentLineRequest(buffer_arg) {
+  return proto_point_of_sales_pb.DeleteShipmentLineRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_data_DeleteShipmentRequest(arg) {
+  if (!(arg instanceof proto_point_of_sales_pb.DeleteShipmentRequest)) {
+    throw new Error('Expected argument of type data.DeleteShipmentRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_DeleteShipmentRequest(buffer_arg) {
+  return proto_point_of_sales_pb.DeleteShipmentRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_data_Empty(arg) {
   if (!(arg instanceof proto_base_data_type_pb.Empty)) {
     throw new Error('Expected argument of type data.Empty');
@@ -207,6 +251,17 @@ function serialize_data_GetKeyLayoutRequest(arg) {
 
 function deserialize_data_GetKeyLayoutRequest(buffer_arg) {
   return proto_point_of_sales_pb.GetKeyLayoutRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_data_GetOpenShipmentRequest(arg) {
+  if (!(arg instanceof proto_point_of_sales_pb.GetOpenShipmentRequest)) {
+    throw new Error('Expected argument of type data.GetOpenShipmentRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_GetOpenShipmentRequest(buffer_arg) {
+  return proto_point_of_sales_pb.GetOpenShipmentRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_data_GetOrderRequest(arg) {
@@ -484,6 +539,28 @@ function deserialize_data_ListProductPriceResponse(buffer_arg) {
   return proto_point_of_sales_pb.ListProductPriceResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_data_ListShipmentLinesRequest(arg) {
+  if (!(arg instanceof proto_point_of_sales_pb.ListShipmentLinesRequest)) {
+    throw new Error('Expected argument of type data.ListShipmentLinesRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_ListShipmentLinesRequest(buffer_arg) {
+  return proto_point_of_sales_pb.ListShipmentLinesRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_data_ListShipmentLinesResponse(arg) {
+  if (!(arg instanceof proto_point_of_sales_pb.ListShipmentLinesResponse)) {
+    throw new Error('Expected argument of type data.ListShipmentLinesResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_ListShipmentLinesResponse(buffer_arg) {
+  return proto_point_of_sales_pb.ListShipmentLinesResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_data_Order(arg) {
   if (!(arg instanceof proto_point_of_sales_pb.Order)) {
     throw new Error('Expected argument of type data.Order');
@@ -583,6 +660,28 @@ function deserialize_data_ProductPrice(buffer_arg) {
   return proto_core_functionality_pb.ProductPrice.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_data_Shipment(arg) {
+  if (!(arg instanceof proto_point_of_sales_pb.Shipment)) {
+    throw new Error('Expected argument of type data.Shipment');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_Shipment(buffer_arg) {
+  return proto_point_of_sales_pb.Shipment.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_data_ShipmentLine(arg) {
+  if (!(arg instanceof proto_point_of_sales_pb.ShipmentLine)) {
+    throw new Error('Expected argument of type data.ShipmentLine');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_ShipmentLine(buffer_arg) {
+  return proto_point_of_sales_pb.ShipmentLine.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_data_UpdateCustomerBankAccountRequest(arg) {
   if (!(arg instanceof proto_point_of_sales_pb.UpdateCustomerBankAccountRequest)) {
     throw new Error('Expected argument of type data.UpdateCustomerBankAccountRequest');
@@ -636,6 +735,17 @@ function serialize_data_UpdatePaymentRequest(arg) {
 
 function deserialize_data_UpdatePaymentRequest(buffer_arg) {
   return proto_point_of_sales_pb.UpdatePaymentRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_data_UpdateShipmentLineRequest(arg) {
+  if (!(arg instanceof proto_point_of_sales_pb.UpdateShipmentLineRequest)) {
+    throw new Error('Expected argument of type data.UpdateShipmentLineRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_UpdateShipmentLineRequest(buffer_arg) {
+  return proto_point_of_sales_pb.UpdateShipmentLineRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_data_ValidatePINRequest(arg) {
@@ -1073,6 +1183,91 @@ listCustomerBankAccounts: {
     requestDeserialize: deserialize_data_ListCustomerBankAccountsRequest,
     responseSerialize: serialize_data_ListCustomerBankAccountsResponse,
     responseDeserialize: deserialize_data_ListCustomerBankAccountsResponse,
+  },
+  // 	shipment
+// 	Create Shipment
+createShipment: {
+    path: '/data.Store/CreateShipment',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_point_of_sales_pb.CreateShipmentRequest,
+    responseType: proto_point_of_sales_pb.Shipment,
+    requestSerialize: serialize_data_CreateShipmentRequest,
+    requestDeserialize: deserialize_data_CreateShipmentRequest,
+    responseSerialize: serialize_data_Shipment,
+    responseDeserialize: deserialize_data_Shipment,
+  },
+  // 	Delete Shipment
+deleteShipment: {
+    path: '/data.Store/DeleteShipment',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_point_of_sales_pb.DeleteShipmentRequest,
+    responseType: proto_base_data_type_pb.Empty,
+    requestSerialize: serialize_data_DeleteShipmentRequest,
+    requestDeserialize: deserialize_data_DeleteShipmentRequest,
+    responseSerialize: serialize_data_Empty,
+    responseDeserialize: deserialize_data_Empty,
+  },
+  // 	Create Shipment Line
+createShipmentLine: {
+    path: '/data.Store/CreateShipmentLine',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_point_of_sales_pb.CreateShipmentLineRequest,
+    responseType: proto_point_of_sales_pb.ShipmentLine,
+    requestSerialize: serialize_data_CreateShipmentLineRequest,
+    requestDeserialize: deserialize_data_CreateShipmentLineRequest,
+    responseSerialize: serialize_data_ShipmentLine,
+    responseDeserialize: deserialize_data_ShipmentLine,
+  },
+  // 	Delete Shipment Line
+deleteShipmentLine: {
+    path: '/data.Store/DeleteShipmentLine',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_point_of_sales_pb.DeleteShipmentLineRequest,
+    responseType: proto_base_data_type_pb.Empty,
+    requestSerialize: serialize_data_DeleteShipmentLineRequest,
+    requestDeserialize: deserialize_data_DeleteShipmentLineRequest,
+    responseSerialize: serialize_data_Empty,
+    responseDeserialize: deserialize_data_Empty,
+  },
+  // 	Update Order Line
+updateShipmentLine: {
+    path: '/data.Store/UpdateShipmentLine',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_point_of_sales_pb.UpdateShipmentLineRequest,
+    responseType: proto_point_of_sales_pb.ShipmentLine,
+    requestSerialize: serialize_data_UpdateShipmentLineRequest,
+    requestDeserialize: deserialize_data_UpdateShipmentLineRequest,
+    responseSerialize: serialize_data_ShipmentLine,
+    responseDeserialize: deserialize_data_ShipmentLine,
+  },
+  // 	Get a Open Shipment
+getOpenShipment: {
+    path: '/data.Store/GetOpenShipment',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_point_of_sales_pb.GetOpenShipmentRequest,
+    responseType: proto_point_of_sales_pb.Shipment,
+    requestSerialize: serialize_data_GetOpenShipmentRequest,
+    requestDeserialize: deserialize_data_GetOpenShipmentRequest,
+    responseSerialize: serialize_data_Shipment,
+    responseDeserialize: deserialize_data_Shipment,
+  },
+  // 	List Shipment Line
+listShipmentLines: {
+    path: '/data.Store/ListShipmentLines',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_point_of_sales_pb.ListShipmentLinesRequest,
+    responseType: proto_point_of_sales_pb.ListShipmentLinesResponse,
+    requestSerialize: serialize_data_ListShipmentLinesRequest,
+    requestDeserialize: deserialize_data_ListShipmentLinesRequest,
+    responseSerialize: serialize_data_ListShipmentLinesResponse,
+    responseDeserialize: deserialize_data_ListShipmentLinesResponse,
   },
 };
 
