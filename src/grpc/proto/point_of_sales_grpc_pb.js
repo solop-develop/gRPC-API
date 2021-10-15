@@ -649,6 +649,17 @@ function deserialize_data_ProcessOrderRequest(buffer_arg) {
   return proto_point_of_sales_pb.ProcessOrderRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_data_ProcessShipmentRequest(arg) {
+  if (!(arg instanceof proto_point_of_sales_pb.ProcessShipmentRequest)) {
+    throw new Error('Expected argument of type data.ProcessShipmentRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_ProcessShipmentRequest(buffer_arg) {
+  return proto_point_of_sales_pb.ProcessShipmentRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_data_ProductPrice(arg) {
   if (!(arg instanceof proto_core_functionality_pb.ProductPrice)) {
     throw new Error('Expected argument of type data.ProductPrice');
@@ -658,6 +669,17 @@ function serialize_data_ProductPrice(arg) {
 
 function deserialize_data_ProductPrice(buffer_arg) {
   return proto_core_functionality_pb.ProductPrice.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_data_ReverseSalesRequest(arg) {
+  if (!(arg instanceof proto_point_of_sales_pb.ReverseSalesRequest)) {
+    throw new Error('Expected argument of type data.ReverseSalesRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_ReverseSalesRequest(buffer_arg) {
+  return proto_point_of_sales_pb.ReverseSalesRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_data_Shipment(arg) {
@@ -1268,6 +1290,31 @@ listShipmentLines: {
     requestDeserialize: deserialize_data_ListShipmentLinesRequest,
     responseSerialize: serialize_data_ListShipmentLinesResponse,
     responseDeserialize: deserialize_data_ListShipmentLinesResponse,
+  },
+  // 	Process Shipment
+processShipment: {
+    path: '/data.Store/ProcessShipment',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_point_of_sales_pb.ProcessShipmentRequest,
+    responseType: proto_point_of_sales_pb.Shipment,
+    requestSerialize: serialize_data_ProcessShipmentRequest,
+    requestDeserialize: deserialize_data_ProcessShipmentRequest,
+    responseSerialize: serialize_data_Shipment,
+    responseDeserialize: deserialize_data_Shipment,
+  },
+  // 	Return Order
+// 	Reverse Sales Transaction
+reverseSales: {
+    path: '/data.Store/ReverseSales',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_point_of_sales_pb.ReverseSalesRequest,
+    responseType: proto_point_of_sales_pb.Order,
+    requestSerialize: serialize_data_ReverseSalesRequest,
+    requestDeserialize: deserialize_data_ReverseSalesRequest,
+    responseSerialize: serialize_data_Order,
+    responseDeserialize: deserialize_data_Order,
   },
 };
 

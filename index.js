@@ -2242,6 +2242,40 @@
     this.getPosService().listShipmentLines(request, callback)
   }
 
+  //  Process Shipment
+  processShipment({
+    token,
+    shipmentUuid,
+    description, 
+    documentAction,
+    language
+  }, callback) {
+    const { ProcessShipmentRequest } = require('./src/grpc/proto/point_of_sales_pb.js')
+    const request = new ProcessShipmentRequest()
+    request.setShipmentUuid(shipmentUuid)
+    request.setDescription(description)
+    request.setDocumentAction(documentAction)
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getPosService().processShipment(request, callback)
+  }
+
+  //  Reverse Sales transaction
+  reverseSales({
+    token,
+    posUuid,
+    orderUuid,
+    description, 
+    language
+  }, callback) {
+    const { ReverseSalesRequest } = require('./src/grpc/proto/point_of_sales_pb.js')
+    const request = new ReverseSalesRequest()
+    request.setOrderUuid(orderUuid)
+    request.setPosUuid(posUuid)
+    request.setDescription(description)
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getPosService().reverseSales(request, callback)
+  }
+
   //  Payments
   //  Create Payment
   createPayment({
