@@ -1057,11 +1057,7 @@
     tableName,
     //  DSL
     filters,
-    //  Custom Query
-    query,
-    whereClause,
-    orderByClause,
-    limit,
+    contextAttributes,
     pageSize,
     pageToken,
     language
@@ -1072,14 +1068,17 @@
 
     const criteriaGrpc = convertCriteriaToGRPC({
       tableName,
-      filters,
-      query,
-      whereClause,
-      orderByClause,
-      limit
+      filters
     });
     request.setCriteria(criteriaGrpc);
-
+    if(contextAttributes) {
+      contextAttributes.forEach(attribute => {
+        request.addContextAttributes(convertParameterToGRPC({
+          columnName: attribute.key,
+          value: attribute.value
+        }))
+      })
+    }
     request.setUuid(uuid);
     request.setPageSize(pageSize);
     request.setPageToken(pageToken);
@@ -1190,7 +1189,7 @@
     oldValue,
     value,
     windowNo,
-    attributes
+    contextAttributes
   }, callback) {
     const { RunCalloutRequest } = require('./src/grpc/proto/business_pb.js')
     const { convertParameterToGRPC, convertValueToGRPC } = require('./lib/convertValues.js');
@@ -1207,9 +1206,9 @@
       value
     }))
     request.setWindowNo(windowNo)
-    if(attributes) {
-      attributes.forEach(attribute => {
-        request.addAttributes(convertParameterToGRPC({
+    if(contextAttributes) {
+      contextAttributes.forEach(attribute => {
+        request.addContextAttributes(convertParameterToGRPC({
           columnName: attribute.key,
           value: attribute.value
         }))
@@ -1228,7 +1227,7 @@
     //  DSL
     filters,
     columns,
-    attributes,
+    contextAttributes,
     sorting,
     //  Page Data
     pageSize,
@@ -1251,9 +1250,9 @@
     if(tabUuid) {
       request.setTabUuid(tabUuid)
     }
-    if(attributes) {
-      attributes.forEach(attribute => {
-        request.addAttributes(convertParameterToGRPC({
+    if(contextAttributes) {
+      contextAttributes.forEach(attribute => {
+        request.addContextAttributes(convertParameterToGRPC({
           columnName: attribute.key,
           value: attribute.value
         }))

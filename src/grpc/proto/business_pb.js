@@ -1943,7 +1943,7 @@ if (goog.DEBUG && !COMPILED) {
  * @constructor
  */
 proto.data.ListBrowserItemsRequest = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.data.ListBrowserItemsRequest.repeatedFields_, null);
 };
 goog.inherits(proto.data.ListBrowserItemsRequest, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -9426,7 +9426,7 @@ proto.data.ListTabEntitiesRequest.toObject = function(includeInstance, msg) {
     tabUuid: jspb.Message.getFieldWithDefault(msg, 3, ""),
     windowNo: jspb.Message.getFieldWithDefault(msg, 4, 0),
     filters: (f = msg.getFilters()) && proto_base_data_type_pb.Criteria.toObject(includeInstance, f),
-    attributesList: jspb.Message.toObjectList(msg.getAttributesList(),
+    contextAttributesList: jspb.Message.toObjectList(msg.getContextAttributesList(),
     proto_base_data_type_pb.KeyValue.toObject, includeInstance),
     columnsList: (f = jspb.Message.getRepeatedField(msg, 7)) == null ? undefined : f,
     pageSize: jspb.Message.getFieldWithDefault(msg, 8, 0),
@@ -9492,7 +9492,7 @@ proto.data.ListTabEntitiesRequest.deserializeBinaryFromReader = function(msg, re
     case 6:
       var value = new proto_base_data_type_pb.KeyValue;
       reader.readMessage(value,proto_base_data_type_pb.KeyValue.deserializeBinaryFromReader);
-      msg.addAttributes(value);
+      msg.addContextAttributes(value);
       break;
     case 7:
       var value = /** @type {string} */ (reader.readString());
@@ -9572,7 +9572,7 @@ proto.data.ListTabEntitiesRequest.serializeBinaryToWriter = function(message, wr
       proto_base_data_type_pb.Criteria.serializeBinaryToWriter
     );
   }
-  f = message.getAttributesList();
+  f = message.getContextAttributesList();
   if (f.length > 0) {
     writer.writeRepeatedMessage(
       6,
@@ -9733,10 +9733,10 @@ proto.data.ListTabEntitiesRequest.prototype.hasFilters = function() {
 
 
 /**
- * repeated KeyValue attributes = 6;
+ * repeated KeyValue context_attributes = 6;
  * @return {!Array<!proto.data.KeyValue>}
  */
-proto.data.ListTabEntitiesRequest.prototype.getAttributesList = function() {
+proto.data.ListTabEntitiesRequest.prototype.getContextAttributesList = function() {
   return /** @type{!Array<!proto.data.KeyValue>} */ (
     jspb.Message.getRepeatedWrapperField(this, proto_base_data_type_pb.KeyValue, 6));
 };
@@ -9746,7 +9746,7 @@ proto.data.ListTabEntitiesRequest.prototype.getAttributesList = function() {
  * @param {!Array<!proto.data.KeyValue>} value
  * @return {!proto.data.ListTabEntitiesRequest} returns this
 */
-proto.data.ListTabEntitiesRequest.prototype.setAttributesList = function(value) {
+proto.data.ListTabEntitiesRequest.prototype.setContextAttributesList = function(value) {
   return jspb.Message.setRepeatedWrapperField(this, 6, value);
 };
 
@@ -9756,7 +9756,7 @@ proto.data.ListTabEntitiesRequest.prototype.setAttributesList = function(value) 
  * @param {number=} opt_index
  * @return {!proto.data.KeyValue}
  */
-proto.data.ListTabEntitiesRequest.prototype.addAttributes = function(opt_value, opt_index) {
+proto.data.ListTabEntitiesRequest.prototype.addContextAttributes = function(opt_value, opt_index) {
   return jspb.Message.addToRepeatedWrapperField(this, 6, opt_value, proto.data.KeyValue, opt_index);
 };
 
@@ -9765,8 +9765,8 @@ proto.data.ListTabEntitiesRequest.prototype.addAttributes = function(opt_value, 
  * Clears the list making it empty but non-null.
  * @return {!proto.data.ListTabEntitiesRequest} returns this
  */
-proto.data.ListTabEntitiesRequest.prototype.clearAttributesList = function() {
-  return this.setAttributesList([]);
+proto.data.ListTabEntitiesRequest.prototype.clearContextAttributesList = function() {
+  return this.setContextAttributesList([]);
 };
 
 
@@ -10649,7 +10649,7 @@ proto.data.RunCalloutRequest.toObject = function(includeInstance, msg) {
     oldValue: (f = msg.getOldValue()) && proto_base_data_type_pb.Value.toObject(includeInstance, f),
     value: (f = msg.getValue()) && proto_base_data_type_pb.Value.toObject(includeInstance, f),
     windowNo: jspb.Message.getFieldWithDefault(msg, 9, 0),
-    attributesList: jspb.Message.toObjectList(msg.getAttributesList(),
+    contextAttributesList: jspb.Message.toObjectList(msg.getContextAttributesList(),
     proto_base_data_type_pb.KeyValue.toObject, includeInstance)
   };
 
@@ -10729,7 +10729,7 @@ proto.data.RunCalloutRequest.deserializeBinaryFromReader = function(msg, reader)
     case 10:
       var value = new proto_base_data_type_pb.KeyValue;
       reader.readMessage(value,proto_base_data_type_pb.KeyValue.deserializeBinaryFromReader);
-      msg.addAttributes(value);
+      msg.addContextAttributes(value);
       break;
     default:
       reader.skipField();
@@ -10826,7 +10826,7 @@ proto.data.RunCalloutRequest.serializeBinaryToWriter = function(message, writer)
       f
     );
   }
-  f = message.getAttributesList();
+  f = message.getContextAttributesList();
   if (f.length > 0) {
     writer.writeRepeatedMessage(
       10,
@@ -11057,10 +11057,10 @@ proto.data.RunCalloutRequest.prototype.setWindowNo = function(value) {
 
 
 /**
- * repeated KeyValue attributes = 10;
+ * repeated KeyValue context_attributes = 10;
  * @return {!Array<!proto.data.KeyValue>}
  */
-proto.data.RunCalloutRequest.prototype.getAttributesList = function() {
+proto.data.RunCalloutRequest.prototype.getContextAttributesList = function() {
   return /** @type{!Array<!proto.data.KeyValue>} */ (
     jspb.Message.getRepeatedWrapperField(this, proto_base_data_type_pb.KeyValue, 10));
 };
@@ -11070,7 +11070,7 @@ proto.data.RunCalloutRequest.prototype.getAttributesList = function() {
  * @param {!Array<!proto.data.KeyValue>} value
  * @return {!proto.data.RunCalloutRequest} returns this
 */
-proto.data.RunCalloutRequest.prototype.setAttributesList = function(value) {
+proto.data.RunCalloutRequest.prototype.setContextAttributesList = function(value) {
   return jspb.Message.setRepeatedWrapperField(this, 10, value);
 };
 
@@ -11080,7 +11080,7 @@ proto.data.RunCalloutRequest.prototype.setAttributesList = function(value) {
  * @param {number=} opt_index
  * @return {!proto.data.KeyValue}
  */
-proto.data.RunCalloutRequest.prototype.addAttributes = function(opt_value, opt_index) {
+proto.data.RunCalloutRequest.prototype.addContextAttributes = function(opt_value, opt_index) {
   return jspb.Message.addToRepeatedWrapperField(this, 10, opt_value, proto.data.KeyValue, opt_index);
 };
 
@@ -11089,8 +11089,8 @@ proto.data.RunCalloutRequest.prototype.addAttributes = function(opt_value, opt_i
  * Clears the list making it empty but non-null.
  * @return {!proto.data.RunCalloutRequest} returns this
  */
-proto.data.RunCalloutRequest.prototype.clearAttributesList = function() {
-  return this.setAttributesList([]);
+proto.data.RunCalloutRequest.prototype.clearContextAttributesList = function() {
+  return this.setContextAttributesList([]);
 };
 
 
@@ -27342,6 +27342,13 @@ proto.data.ListDrillTablesResponse.prototype.setNextPageToken = function(value) 
 
 
 
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.data.ListBrowserItemsRequest.repeatedFields_ = [4];
+
 
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
@@ -27376,6 +27383,8 @@ proto.data.ListBrowserItemsRequest.toObject = function(includeInstance, msg) {
     uuid: jspb.Message.getFieldWithDefault(msg, 1, ""),
     clientRequest: (f = msg.getClientRequest()) && proto_client_pb.ClientRequest.toObject(includeInstance, f),
     criteria: (f = msg.getCriteria()) && proto_base_data_type_pb.Criteria.toObject(includeInstance, f),
+    contextAttributesList: jspb.Message.toObjectList(msg.getContextAttributesList(),
+    proto_base_data_type_pb.KeyValue.toObject, includeInstance),
     pageSize: jspb.Message.getFieldWithDefault(msg, 5, 0),
     pageToken: jspb.Message.getFieldWithDefault(msg, 6, "")
   };
@@ -27427,6 +27436,11 @@ proto.data.ListBrowserItemsRequest.deserializeBinaryFromReader = function(msg, r
       var value = new proto_base_data_type_pb.Criteria;
       reader.readMessage(value,proto_base_data_type_pb.Criteria.deserializeBinaryFromReader);
       msg.setCriteria(value);
+      break;
+    case 4:
+      var value = new proto_base_data_type_pb.KeyValue;
+      reader.readMessage(value,proto_base_data_type_pb.KeyValue.deserializeBinaryFromReader);
+      msg.addContextAttributes(value);
       break;
     case 5:
       var value = /** @type {number} */ (reader.readInt32());
@@ -27486,6 +27500,14 @@ proto.data.ListBrowserItemsRequest.serializeBinaryToWriter = function(message, w
       3,
       f,
       proto_base_data_type_pb.Criteria.serializeBinaryToWriter
+    );
+  }
+  f = message.getContextAttributesList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      4,
+      f,
+      proto_base_data_type_pb.KeyValue.serializeBinaryToWriter
     );
   }
   f = message.getPageSize();
@@ -27594,6 +27616,44 @@ proto.data.ListBrowserItemsRequest.prototype.clearCriteria = function() {
  */
 proto.data.ListBrowserItemsRequest.prototype.hasCriteria = function() {
   return jspb.Message.getField(this, 3) != null;
+};
+
+
+/**
+ * repeated KeyValue context_attributes = 4;
+ * @return {!Array<!proto.data.KeyValue>}
+ */
+proto.data.ListBrowserItemsRequest.prototype.getContextAttributesList = function() {
+  return /** @type{!Array<!proto.data.KeyValue>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto_base_data_type_pb.KeyValue, 4));
+};
+
+
+/**
+ * @param {!Array<!proto.data.KeyValue>} value
+ * @return {!proto.data.ListBrowserItemsRequest} returns this
+*/
+proto.data.ListBrowserItemsRequest.prototype.setContextAttributesList = function(value) {
+  return jspb.Message.setRepeatedWrapperField(this, 4, value);
+};
+
+
+/**
+ * @param {!proto.data.KeyValue=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.data.KeyValue}
+ */
+proto.data.ListBrowserItemsRequest.prototype.addContextAttributes = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 4, opt_value, proto.data.KeyValue, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.data.ListBrowserItemsRequest} returns this
+ */
+proto.data.ListBrowserItemsRequest.prototype.clearContextAttributesList = function() {
+  return this.setContextAttributesList([]);
 };
 
 
