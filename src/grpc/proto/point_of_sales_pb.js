@@ -16544,15 +16544,16 @@ proto.data.ListOrdersRequest.toObject = function(includeInstance, msg) {
     businessPartnerUuid: jspb.Message.getFieldWithDefault(msg, 4, ""),
     grandTotal: (f = msg.getGrandTotal()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
     openAmount: (f = msg.getOpenAmount()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
-    isPaid: jspb.Message.getBooleanFieldWithDefault(msg, 7, false),
-    isProcessed: jspb.Message.getBooleanFieldWithDefault(msg, 8, false),
-    isAisleSeller: jspb.Message.getBooleanFieldWithDefault(msg, 9, false),
-    isInvoiced: jspb.Message.getBooleanFieldWithDefault(msg, 10, false),
-    dateOrderedFrom: jspb.Message.getFieldWithDefault(msg, 11, ""),
-    dateOrderedTo: jspb.Message.getFieldWithDefault(msg, 12, ""),
-    salesRepresentativeUuid: jspb.Message.getFieldWithDefault(msg, 13, ""),
-    pageSize: jspb.Message.getFieldWithDefault(msg, 14, 0),
-    pageToken: jspb.Message.getFieldWithDefault(msg, 15, ""),
+    isWaitingForPay: jspb.Message.getBooleanFieldWithDefault(msg, 7, false),
+    isOnlyProcessed: jspb.Message.getBooleanFieldWithDefault(msg, 8, false),
+    isOnlyAisleSeller: jspb.Message.getBooleanFieldWithDefault(msg, 9, false),
+    isWaitingForInvoice: jspb.Message.getBooleanFieldWithDefault(msg, 10, false),
+    isWaitingForShipment: jspb.Message.getBooleanFieldWithDefault(msg, 11, false),
+    dateOrderedFrom: jspb.Message.getFieldWithDefault(msg, 12, ""),
+    dateOrderedTo: jspb.Message.getFieldWithDefault(msg, 13, ""),
+    salesRepresentativeUuid: jspb.Message.getFieldWithDefault(msg, 14, ""),
+    pageSize: jspb.Message.getFieldWithDefault(msg, 15, 0),
+    pageToken: jspb.Message.getFieldWithDefault(msg, 16, ""),
     criteria: (f = msg.getCriteria()) && proto_base_data_type_pb.Criteria.toObject(includeInstance, f)
   };
 
@@ -16619,41 +16620,45 @@ proto.data.ListOrdersRequest.deserializeBinaryFromReader = function(msg, reader)
       break;
     case 7:
       var value = /** @type {boolean} */ (reader.readBool());
-      msg.setIsPaid(value);
+      msg.setIsWaitingForPay(value);
       break;
     case 8:
       var value = /** @type {boolean} */ (reader.readBool());
-      msg.setIsProcessed(value);
+      msg.setIsOnlyProcessed(value);
       break;
     case 9:
       var value = /** @type {boolean} */ (reader.readBool());
-      msg.setIsAisleSeller(value);
+      msg.setIsOnlyAisleSeller(value);
       break;
     case 10:
       var value = /** @type {boolean} */ (reader.readBool());
-      msg.setIsInvoiced(value);
+      msg.setIsWaitingForInvoice(value);
       break;
     case 11:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setDateOrderedFrom(value);
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setIsWaitingForShipment(value);
       break;
     case 12:
       var value = /** @type {string} */ (reader.readString());
-      msg.setDateOrderedTo(value);
+      msg.setDateOrderedFrom(value);
       break;
     case 13:
       var value = /** @type {string} */ (reader.readString());
-      msg.setSalesRepresentativeUuid(value);
+      msg.setDateOrderedTo(value);
       break;
     case 14:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setSalesRepresentativeUuid(value);
+      break;
+    case 15:
       var value = /** @type {number} */ (reader.readInt32());
       msg.setPageSize(value);
       break;
-    case 15:
+    case 16:
       var value = /** @type {string} */ (reader.readString());
       msg.setPageToken(value);
       break;
-    case 16:
+    case 17:
       var value = new proto_base_data_type_pb.Criteria;
       reader.readMessage(value,proto_base_data_type_pb.Criteria.deserializeBinaryFromReader);
       msg.setCriteria(value);
@@ -16732,73 +16737,80 @@ proto.data.ListOrdersRequest.serializeBinaryToWriter = function(message, writer)
       proto_base_data_type_pb.Decimal.serializeBinaryToWriter
     );
   }
-  f = message.getIsPaid();
+  f = message.getIsWaitingForPay();
   if (f) {
     writer.writeBool(
       7,
       f
     );
   }
-  f = message.getIsProcessed();
+  f = message.getIsOnlyProcessed();
   if (f) {
     writer.writeBool(
       8,
       f
     );
   }
-  f = message.getIsAisleSeller();
+  f = message.getIsOnlyAisleSeller();
   if (f) {
     writer.writeBool(
       9,
       f
     );
   }
-  f = message.getIsInvoiced();
+  f = message.getIsWaitingForInvoice();
   if (f) {
     writer.writeBool(
       10,
       f
     );
   }
-  f = message.getDateOrderedFrom();
-  if (f.length > 0) {
-    writer.writeString(
+  f = message.getIsWaitingForShipment();
+  if (f) {
+    writer.writeBool(
       11,
       f
     );
   }
-  f = message.getDateOrderedTo();
+  f = message.getDateOrderedFrom();
   if (f.length > 0) {
     writer.writeString(
       12,
       f
     );
   }
-  f = message.getSalesRepresentativeUuid();
+  f = message.getDateOrderedTo();
   if (f.length > 0) {
     writer.writeString(
       13,
       f
     );
   }
+  f = message.getSalesRepresentativeUuid();
+  if (f.length > 0) {
+    writer.writeString(
+      14,
+      f
+    );
+  }
   f = message.getPageSize();
   if (f !== 0) {
     writer.writeInt32(
-      14,
+      15,
       f
     );
   }
   f = message.getPageToken();
   if (f.length > 0) {
     writer.writeString(
-      15,
+      16,
       f
     );
   }
   f = message.getCriteria();
   if (f != null) {
     writer.writeMessage(
-      16,
+      17,
       f,
       proto_base_data_type_pb.Criteria.serializeBinaryToWriter
     );
@@ -16972,10 +16984,10 @@ proto.data.ListOrdersRequest.prototype.hasOpenAmount = function() {
 
 
 /**
- * optional bool is_paid = 7;
+ * optional bool is_waiting_for_pay = 7;
  * @return {boolean}
  */
-proto.data.ListOrdersRequest.prototype.getIsPaid = function() {
+proto.data.ListOrdersRequest.prototype.getIsWaitingForPay = function() {
   return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 7, false));
 };
 
@@ -16984,16 +16996,16 @@ proto.data.ListOrdersRequest.prototype.getIsPaid = function() {
  * @param {boolean} value
  * @return {!proto.data.ListOrdersRequest} returns this
  */
-proto.data.ListOrdersRequest.prototype.setIsPaid = function(value) {
+proto.data.ListOrdersRequest.prototype.setIsWaitingForPay = function(value) {
   return jspb.Message.setProto3BooleanField(this, 7, value);
 };
 
 
 /**
- * optional bool is_processed = 8;
+ * optional bool is_only_processed = 8;
  * @return {boolean}
  */
-proto.data.ListOrdersRequest.prototype.getIsProcessed = function() {
+proto.data.ListOrdersRequest.prototype.getIsOnlyProcessed = function() {
   return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 8, false));
 };
 
@@ -17002,16 +17014,16 @@ proto.data.ListOrdersRequest.prototype.getIsProcessed = function() {
  * @param {boolean} value
  * @return {!proto.data.ListOrdersRequest} returns this
  */
-proto.data.ListOrdersRequest.prototype.setIsProcessed = function(value) {
+proto.data.ListOrdersRequest.prototype.setIsOnlyProcessed = function(value) {
   return jspb.Message.setProto3BooleanField(this, 8, value);
 };
 
 
 /**
- * optional bool is_aisle_seller = 9;
+ * optional bool is_only_aisle_seller = 9;
  * @return {boolean}
  */
-proto.data.ListOrdersRequest.prototype.getIsAisleSeller = function() {
+proto.data.ListOrdersRequest.prototype.getIsOnlyAisleSeller = function() {
   return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 9, false));
 };
 
@@ -17020,16 +17032,16 @@ proto.data.ListOrdersRequest.prototype.getIsAisleSeller = function() {
  * @param {boolean} value
  * @return {!proto.data.ListOrdersRequest} returns this
  */
-proto.data.ListOrdersRequest.prototype.setIsAisleSeller = function(value) {
+proto.data.ListOrdersRequest.prototype.setIsOnlyAisleSeller = function(value) {
   return jspb.Message.setProto3BooleanField(this, 9, value);
 };
 
 
 /**
- * optional bool is_invoiced = 10;
+ * optional bool is_waiting_for_invoice = 10;
  * @return {boolean}
  */
-proto.data.ListOrdersRequest.prototype.getIsInvoiced = function() {
+proto.data.ListOrdersRequest.prototype.getIsWaitingForInvoice = function() {
   return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 10, false));
 };
 
@@ -17038,34 +17050,34 @@ proto.data.ListOrdersRequest.prototype.getIsInvoiced = function() {
  * @param {boolean} value
  * @return {!proto.data.ListOrdersRequest} returns this
  */
-proto.data.ListOrdersRequest.prototype.setIsInvoiced = function(value) {
+proto.data.ListOrdersRequest.prototype.setIsWaitingForInvoice = function(value) {
   return jspb.Message.setProto3BooleanField(this, 10, value);
 };
 
 
 /**
- * optional string date_ordered_from = 11;
+ * optional bool is_waiting_for_shipment = 11;
+ * @return {boolean}
+ */
+proto.data.ListOrdersRequest.prototype.getIsWaitingForShipment = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 11, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.data.ListOrdersRequest} returns this
+ */
+proto.data.ListOrdersRequest.prototype.setIsWaitingForShipment = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 11, value);
+};
+
+
+/**
+ * optional string date_ordered_from = 12;
  * @return {string}
  */
 proto.data.ListOrdersRequest.prototype.getDateOrderedFrom = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 11, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.data.ListOrdersRequest} returns this
- */
-proto.data.ListOrdersRequest.prototype.setDateOrderedFrom = function(value) {
-  return jspb.Message.setProto3StringField(this, 11, value);
-};
-
-
-/**
- * optional string date_ordered_to = 12;
- * @return {string}
- */
-proto.data.ListOrdersRequest.prototype.getDateOrderedTo = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 12, ""));
 };
 
@@ -17074,16 +17086,16 @@ proto.data.ListOrdersRequest.prototype.getDateOrderedTo = function() {
  * @param {string} value
  * @return {!proto.data.ListOrdersRequest} returns this
  */
-proto.data.ListOrdersRequest.prototype.setDateOrderedTo = function(value) {
+proto.data.ListOrdersRequest.prototype.setDateOrderedFrom = function(value) {
   return jspb.Message.setProto3StringField(this, 12, value);
 };
 
 
 /**
- * optional string sales_representative_uuid = 13;
+ * optional string date_ordered_to = 13;
  * @return {string}
  */
-proto.data.ListOrdersRequest.prototype.getSalesRepresentativeUuid = function() {
+proto.data.ListOrdersRequest.prototype.getDateOrderedTo = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 13, ""));
 };
 
@@ -17092,17 +17104,35 @@ proto.data.ListOrdersRequest.prototype.getSalesRepresentativeUuid = function() {
  * @param {string} value
  * @return {!proto.data.ListOrdersRequest} returns this
  */
-proto.data.ListOrdersRequest.prototype.setSalesRepresentativeUuid = function(value) {
+proto.data.ListOrdersRequest.prototype.setDateOrderedTo = function(value) {
   return jspb.Message.setProto3StringField(this, 13, value);
 };
 
 
 /**
- * optional int32 page_size = 14;
+ * optional string sales_representative_uuid = 14;
+ * @return {string}
+ */
+proto.data.ListOrdersRequest.prototype.getSalesRepresentativeUuid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 14, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.data.ListOrdersRequest} returns this
+ */
+proto.data.ListOrdersRequest.prototype.setSalesRepresentativeUuid = function(value) {
+  return jspb.Message.setProto3StringField(this, 14, value);
+};
+
+
+/**
+ * optional int32 page_size = 15;
  * @return {number}
  */
 proto.data.ListOrdersRequest.prototype.getPageSize = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 14, 0));
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 15, 0));
 };
 
 
@@ -17111,16 +17141,16 @@ proto.data.ListOrdersRequest.prototype.getPageSize = function() {
  * @return {!proto.data.ListOrdersRequest} returns this
  */
 proto.data.ListOrdersRequest.prototype.setPageSize = function(value) {
-  return jspb.Message.setProto3IntField(this, 14, value);
+  return jspb.Message.setProto3IntField(this, 15, value);
 };
 
 
 /**
- * optional string page_token = 15;
+ * optional string page_token = 16;
  * @return {string}
  */
 proto.data.ListOrdersRequest.prototype.getPageToken = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 15, ""));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 16, ""));
 };
 
 
@@ -17129,17 +17159,17 @@ proto.data.ListOrdersRequest.prototype.getPageToken = function() {
  * @return {!proto.data.ListOrdersRequest} returns this
  */
 proto.data.ListOrdersRequest.prototype.setPageToken = function(value) {
-  return jspb.Message.setProto3StringField(this, 15, value);
+  return jspb.Message.setProto3StringField(this, 16, value);
 };
 
 
 /**
- * optional Criteria criteria = 16;
+ * optional Criteria criteria = 17;
  * @return {?proto.data.Criteria}
  */
 proto.data.ListOrdersRequest.prototype.getCriteria = function() {
   return /** @type{?proto.data.Criteria} */ (
-    jspb.Message.getWrapperField(this, proto_base_data_type_pb.Criteria, 16));
+    jspb.Message.getWrapperField(this, proto_base_data_type_pb.Criteria, 17));
 };
 
 
@@ -17148,7 +17178,7 @@ proto.data.ListOrdersRequest.prototype.getCriteria = function() {
  * @return {!proto.data.ListOrdersRequest} returns this
 */
 proto.data.ListOrdersRequest.prototype.setCriteria = function(value) {
-  return jspb.Message.setWrapperField(this, 16, value);
+  return jspb.Message.setWrapperField(this, 17, value);
 };
 
 
@@ -17166,7 +17196,7 @@ proto.data.ListOrdersRequest.prototype.clearCriteria = function() {
  * @return {boolean}
  */
 proto.data.ListOrdersRequest.prototype.hasCriteria = function() {
-  return jspb.Message.getField(this, 16) != null;
+  return jspb.Message.getField(this, 17) != null;
 };
 
 
@@ -19785,7 +19815,8 @@ proto.data.CreateOrderRequest.toObject = function(includeInstance, msg) {
     documentTypeUuid: jspb.Message.getFieldWithDefault(msg, 4, ""),
     priceListUuid: jspb.Message.getFieldWithDefault(msg, 5, ""),
     warehouseUuid: jspb.Message.getFieldWithDefault(msg, 6, ""),
-    salesRepresentativeUuid: jspb.Message.getFieldWithDefault(msg, 7, "")
+    salesRepresentativeUuid: jspb.Message.getFieldWithDefault(msg, 7, ""),
+    campaignUuid: jspb.Message.getFieldWithDefault(msg, 8, "")
   };
 
   if (includeInstance) {
@@ -19850,6 +19881,10 @@ proto.data.CreateOrderRequest.deserializeBinaryFromReader = function(msg, reader
     case 7:
       var value = /** @type {string} */ (reader.readString());
       msg.setSalesRepresentativeUuid(value);
+      break;
+    case 8:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setCampaignUuid(value);
       break;
     default:
       reader.skipField();
@@ -19927,6 +19962,13 @@ proto.data.CreateOrderRequest.serializeBinaryToWriter = function(message, writer
   if (f.length > 0) {
     writer.writeString(
       7,
+      f
+    );
+  }
+  f = message.getCampaignUuid();
+  if (f.length > 0) {
+    writer.writeString(
+      8,
       f
     );
   }
@@ -20075,6 +20117,24 @@ proto.data.CreateOrderRequest.prototype.getSalesRepresentativeUuid = function() 
  */
 proto.data.CreateOrderRequest.prototype.setSalesRepresentativeUuid = function(value) {
   return jspb.Message.setProto3StringField(this, 7, value);
+};
+
+
+/**
+ * optional string campaign_uuid = 8;
+ * @return {string}
+ */
+proto.data.CreateOrderRequest.prototype.getCampaignUuid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 8, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.data.CreateOrderRequest} returns this
+ */
+proto.data.CreateOrderRequest.prototype.setCampaignUuid = function(value) {
+  return jspb.Message.setProto3StringField(this, 8, value);
 };
 
 
@@ -22397,7 +22457,8 @@ proto.data.Payment.toObject = function(includeInstance, msg) {
     tenderTypeCode: jspb.Message.getFieldWithDefault(msg, 16, ""),
     currencyUuid: jspb.Message.getFieldWithDefault(msg, 17, ""),
     isRefund: jspb.Message.getBooleanFieldWithDefault(msg, 18, false),
-    paymentMethodUuid: jspb.Message.getFieldWithDefault(msg, 19, "")
+    paymentMethodUuid: jspb.Message.getFieldWithDefault(msg, 19, ""),
+    orderCurrencyRate: (f = msg.getOrderCurrencyRate()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -22513,6 +22574,11 @@ proto.data.Payment.deserializeBinaryFromReader = function(msg, reader) {
     case 19:
       var value = /** @type {string} */ (reader.readString());
       msg.setPaymentMethodUuid(value);
+      break;
+    case 20:
+      var value = new proto_base_data_type_pb.Decimal;
+      reader.readMessage(value,proto_base_data_type_pb.Decimal.deserializeBinaryFromReader);
+      msg.setOrderCurrencyRate(value);
       break;
     default:
       reader.skipField();
@@ -22678,6 +22744,14 @@ proto.data.Payment.serializeBinaryToWriter = function(message, writer) {
     writer.writeString(
       19,
       f
+    );
+  }
+  f = message.getOrderCurrencyRate();
+  if (f != null) {
+    writer.writeMessage(
+      20,
+      f,
+      proto_base_data_type_pb.Decimal.serializeBinaryToWriter
     );
   }
 };
@@ -23098,6 +23172,43 @@ proto.data.Payment.prototype.getPaymentMethodUuid = function() {
  */
 proto.data.Payment.prototype.setPaymentMethodUuid = function(value) {
   return jspb.Message.setProto3StringField(this, 19, value);
+};
+
+
+/**
+ * optional Decimal order_currency_rate = 20;
+ * @return {?proto.data.Decimal}
+ */
+proto.data.Payment.prototype.getOrderCurrencyRate = function() {
+  return /** @type{?proto.data.Decimal} */ (
+    jspb.Message.getWrapperField(this, proto_base_data_type_pb.Decimal, 20));
+};
+
+
+/**
+ * @param {?proto.data.Decimal|undefined} value
+ * @return {!proto.data.Payment} returns this
+*/
+proto.data.Payment.prototype.setOrderCurrencyRate = function(value) {
+  return jspb.Message.setWrapperField(this, 20, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.data.Payment} returns this
+ */
+proto.data.Payment.prototype.clearOrderCurrencyRate = function() {
+  return this.setOrderCurrencyRate(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.data.Payment.prototype.hasOrderCurrencyRate = function() {
+  return jspb.Message.getField(this, 20) != null;
 };
 
 
@@ -23956,7 +24067,8 @@ proto.data.UpdateOrderRequest.toObject = function(includeInstance, msg) {
     documentTypeUuid: jspb.Message.getFieldWithDefault(msg, 5, ""),
     priceListUuid: jspb.Message.getFieldWithDefault(msg, 6, ""),
     warehouseUuid: jspb.Message.getFieldWithDefault(msg, 7, ""),
-    description: jspb.Message.getFieldWithDefault(msg, 8, "")
+    description: jspb.Message.getFieldWithDefault(msg, 8, ""),
+    campaignUuid: jspb.Message.getFieldWithDefault(msg, 9, "")
   };
 
   if (includeInstance) {
@@ -24025,6 +24137,10 @@ proto.data.UpdateOrderRequest.deserializeBinaryFromReader = function(msg, reader
     case 8:
       var value = /** @type {string} */ (reader.readString());
       msg.setDescription(value);
+      break;
+    case 9:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setCampaignUuid(value);
       break;
     default:
       reader.skipField();
@@ -24109,6 +24225,13 @@ proto.data.UpdateOrderRequest.serializeBinaryToWriter = function(message, writer
   if (f.length > 0) {
     writer.writeString(
       8,
+      f
+    );
+  }
+  f = message.getCampaignUuid();
+  if (f.length > 0) {
+    writer.writeString(
+      9,
       f
     );
   }
@@ -24275,6 +24398,24 @@ proto.data.UpdateOrderRequest.prototype.getDescription = function() {
  */
 proto.data.UpdateOrderRequest.prototype.setDescription = function(value) {
   return jspb.Message.setProto3StringField(this, 8, value);
+};
+
+
+/**
+ * optional string campaign_uuid = 9;
+ * @return {string}
+ */
+proto.data.UpdateOrderRequest.prototype.getCampaignUuid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 9, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.data.UpdateOrderRequest} returns this
+ */
+proto.data.UpdateOrderRequest.prototype.setCampaignUuid = function(value) {
+  return jspb.Message.setProto3StringField(this, 9, value);
 };
 
 
@@ -25112,7 +25253,12 @@ proto.data.Order.toObject = function(includeInstance, msg) {
     customer: (f = msg.getCustomer()) && proto.data.Customer.toObject(includeInstance, f),
     isDelivered: jspb.Message.getBooleanFieldWithDefault(msg, 16, false),
     orderReference: jspb.Message.getFieldWithDefault(msg, 17, ""),
-    description: jspb.Message.getFieldWithDefault(msg, 18, "")
+    description: jspb.Message.getFieldWithDefault(msg, 18, ""),
+    campaignUuid: jspb.Message.getFieldWithDefault(msg, 19, ""),
+    displayCurrencyRate: (f = msg.getDisplayCurrencyRate()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
+    openAmount: (f = msg.getOpenAmount()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
+    paymentAmount: (f = msg.getPaymentAmount()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
+    refundAmount: (f = msg.getRefundAmount()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -25226,6 +25372,30 @@ proto.data.Order.deserializeBinaryFromReader = function(msg, reader) {
     case 18:
       var value = /** @type {string} */ (reader.readString());
       msg.setDescription(value);
+      break;
+    case 19:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setCampaignUuid(value);
+      break;
+    case 20:
+      var value = new proto_base_data_type_pb.Decimal;
+      reader.readMessage(value,proto_base_data_type_pb.Decimal.deserializeBinaryFromReader);
+      msg.setDisplayCurrencyRate(value);
+      break;
+    case 21:
+      var value = new proto_base_data_type_pb.Decimal;
+      reader.readMessage(value,proto_base_data_type_pb.Decimal.deserializeBinaryFromReader);
+      msg.setOpenAmount(value);
+      break;
+    case 22:
+      var value = new proto_base_data_type_pb.Decimal;
+      reader.readMessage(value,proto_base_data_type_pb.Decimal.deserializeBinaryFromReader);
+      msg.setPaymentAmount(value);
+      break;
+    case 23:
+      var value = new proto_base_data_type_pb.Decimal;
+      reader.readMessage(value,proto_base_data_type_pb.Decimal.deserializeBinaryFromReader);
+      msg.setRefundAmount(value);
       break;
     default:
       reader.skipField();
@@ -25383,6 +25553,45 @@ proto.data.Order.serializeBinaryToWriter = function(message, writer) {
     writer.writeString(
       18,
       f
+    );
+  }
+  f = message.getCampaignUuid();
+  if (f.length > 0) {
+    writer.writeString(
+      19,
+      f
+    );
+  }
+  f = message.getDisplayCurrencyRate();
+  if (f != null) {
+    writer.writeMessage(
+      20,
+      f,
+      proto_base_data_type_pb.Decimal.serializeBinaryToWriter
+    );
+  }
+  f = message.getOpenAmount();
+  if (f != null) {
+    writer.writeMessage(
+      21,
+      f,
+      proto_base_data_type_pb.Decimal.serializeBinaryToWriter
+    );
+  }
+  f = message.getPaymentAmount();
+  if (f != null) {
+    writer.writeMessage(
+      22,
+      f,
+      proto_base_data_type_pb.Decimal.serializeBinaryToWriter
+    );
+  }
+  f = message.getRefundAmount();
+  if (f != null) {
+    writer.writeMessage(
+      23,
+      f,
+      proto_base_data_type_pb.Decimal.serializeBinaryToWriter
     );
   }
 };
@@ -25881,6 +26090,172 @@ proto.data.Order.prototype.getDescription = function() {
  */
 proto.data.Order.prototype.setDescription = function(value) {
   return jspb.Message.setProto3StringField(this, 18, value);
+};
+
+
+/**
+ * optional string campaign_uuid = 19;
+ * @return {string}
+ */
+proto.data.Order.prototype.getCampaignUuid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 19, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.data.Order} returns this
+ */
+proto.data.Order.prototype.setCampaignUuid = function(value) {
+  return jspb.Message.setProto3StringField(this, 19, value);
+};
+
+
+/**
+ * optional Decimal display_currency_rate = 20;
+ * @return {?proto.data.Decimal}
+ */
+proto.data.Order.prototype.getDisplayCurrencyRate = function() {
+  return /** @type{?proto.data.Decimal} */ (
+    jspb.Message.getWrapperField(this, proto_base_data_type_pb.Decimal, 20));
+};
+
+
+/**
+ * @param {?proto.data.Decimal|undefined} value
+ * @return {!proto.data.Order} returns this
+*/
+proto.data.Order.prototype.setDisplayCurrencyRate = function(value) {
+  return jspb.Message.setWrapperField(this, 20, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.data.Order} returns this
+ */
+proto.data.Order.prototype.clearDisplayCurrencyRate = function() {
+  return this.setDisplayCurrencyRate(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.data.Order.prototype.hasDisplayCurrencyRate = function() {
+  return jspb.Message.getField(this, 20) != null;
+};
+
+
+/**
+ * optional Decimal open_amount = 21;
+ * @return {?proto.data.Decimal}
+ */
+proto.data.Order.prototype.getOpenAmount = function() {
+  return /** @type{?proto.data.Decimal} */ (
+    jspb.Message.getWrapperField(this, proto_base_data_type_pb.Decimal, 21));
+};
+
+
+/**
+ * @param {?proto.data.Decimal|undefined} value
+ * @return {!proto.data.Order} returns this
+*/
+proto.data.Order.prototype.setOpenAmount = function(value) {
+  return jspb.Message.setWrapperField(this, 21, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.data.Order} returns this
+ */
+proto.data.Order.prototype.clearOpenAmount = function() {
+  return this.setOpenAmount(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.data.Order.prototype.hasOpenAmount = function() {
+  return jspb.Message.getField(this, 21) != null;
+};
+
+
+/**
+ * optional Decimal payment_amount = 22;
+ * @return {?proto.data.Decimal}
+ */
+proto.data.Order.prototype.getPaymentAmount = function() {
+  return /** @type{?proto.data.Decimal} */ (
+    jspb.Message.getWrapperField(this, proto_base_data_type_pb.Decimal, 22));
+};
+
+
+/**
+ * @param {?proto.data.Decimal|undefined} value
+ * @return {!proto.data.Order} returns this
+*/
+proto.data.Order.prototype.setPaymentAmount = function(value) {
+  return jspb.Message.setWrapperField(this, 22, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.data.Order} returns this
+ */
+proto.data.Order.prototype.clearPaymentAmount = function() {
+  return this.setPaymentAmount(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.data.Order.prototype.hasPaymentAmount = function() {
+  return jspb.Message.getField(this, 22) != null;
+};
+
+
+/**
+ * optional Decimal refund_amount = 23;
+ * @return {?proto.data.Decimal}
+ */
+proto.data.Order.prototype.getRefundAmount = function() {
+  return /** @type{?proto.data.Decimal} */ (
+    jspb.Message.getWrapperField(this, proto_base_data_type_pb.Decimal, 23));
+};
+
+
+/**
+ * @param {?proto.data.Decimal|undefined} value
+ * @return {!proto.data.Order} returns this
+*/
+proto.data.Order.prototype.setRefundAmount = function(value) {
+  return jspb.Message.setWrapperField(this, 23, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.data.Order} returns this
+ */
+proto.data.Order.prototype.clearRefundAmount = function() {
+  return this.setRefundAmount(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.data.Order.prototype.hasRefundAmount = function() {
+  return jspb.Message.getField(this, 23) != null;
 };
 
 

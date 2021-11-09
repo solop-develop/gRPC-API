@@ -1943,11 +1943,13 @@
     warehouseUuid,
     priceListUuid,
     salesRepresentativeUuid,
+    campaignUuid,
     language
   }, callback) {
     const { CreateOrderRequest } = require('./src/grpc/proto/point_of_sales_pb.js')
     const request = new CreateOrderRequest()
     request.setPosUuid(posUuid)
+    request.setCampaignUuid(campaignUuid)
     request.setCustomerUuid(customerUuid)
     request.setDocumentTypeUuid(documentTypeUuid)
     request.setSalesRepresentativeUuid(salesRepresentativeUuid)
@@ -2033,11 +2035,13 @@
     warehouseUuid,
     priceListUuid,
     description,
+    campaignUuid,
     language
   }, callback) {
     const { UpdateOrderRequest } = require('./src/grpc/proto/point_of_sales_pb.js')
     const request = new UpdateOrderRequest()
     request.setOrderUuid(orderUuid)
+    request.setCampaignUuid(campaignUuid)
     request.setPosUuid(posUuid)
     request.setCustomerUuid(customerUuid)
     request.setDocumentTypeUuid(documentTypeUuid)
@@ -2099,10 +2103,11 @@
     businessPartnerUuid,
     grandTotal,
     openAmount,
-    isPaid,
-    isProcessed,
-    isAisleSeller,
-    isInvoiced,
+    isWaitingForPay,
+    isOnlyProcessed,
+    isOnlyAisleSeller,
+    isWaitingForInvoice,
+    isWaitingForShipment,
     dateOrderedFrom,
     dateOrderedTo,
     salesRepresentativeUuid,
@@ -2146,10 +2151,11 @@
     if (dateOrderedTo) {
       request.setDateOrderedTo(dateOrderedTo)
     }
-    request.setIsPaid(isPaid)
-    request.setIsProcessed(isProcessed)
-    request.setIsAisleSeller(isAisleSeller)
-    request.setIsInvoiced(isInvoiced)
+    request.setIsWaitingForPay(isWaitingForPay)
+    request.setIsOnlyProcessed(isOnlyProcessed)
+    request.setIsOnlyAisleSeller(isOnlyAisleSeller)
+    request.setIsWaitingForInvoice(isWaitingForInvoice)
+    request.setIsWaitingForShipment(isWaitingForShipment)
     request.setSalesRepresentativeUuid(salesRepresentativeUuid)
     request.setPageSize(pageSize)
     request.setPageToken(pageToken)
