@@ -2287,6 +2287,8 @@
     token,
     posUuid,
     orderUuid,
+    chargeUuid,
+    collectingAgentUuid,
     invoiceUuid,
     bankUuid,
     referenceNo,
@@ -2304,7 +2306,15 @@
     const { getDecimalFromNumber } = require('./lib/convertValues.js')
     const request = new CreatePaymentRequest()
     request.setPosUuid(posUuid)
-    request.setOrderUuid(orderUuid)
+    if(orderUuid) {
+      request.setOrderUuid(orderUuid)
+    }
+    if(chargeUuid) {
+      request.setChargeUuid(chargeUuid)
+    }
+    if(collectingAgentUuid) {
+      request.setCollectingAgentUuid(collectingAgentUuid)
+    }
     if (bankUuid) {
       request.setBankUuid(bankUuid)
     }
@@ -2388,6 +2398,128 @@
     this.getPosService().updatePayment(request, callback)
   }
 
+  //  Cash Opening service
+  cashOpening({
+    token,
+    posUuid,
+    collectingAgentUuid,
+    description,
+    payments,
+    language
+  }, callback) {
+    const { CashOpeningRequest, CreatePaymentRequest } = require('./src/grpc/proto/point_of_sales_pb.js')
+    const { convertValueToGRPC, getDecimalFromNumber } = require('./lib/convertValues.js')
+    const request = new CashOpeningRequest()
+    request.setPosUuid(posUuid)
+    request.setCollectingAgentUuid(collectingAgentUuid)
+    request.setDescription(description)
+      //  Set payment data
+    payments.forEach(payment => {
+      const paymentRequest = new CreatePaymentRequest()
+      if (payment.uuid) {
+        paymentRequest.setUuid(payment.uuid)
+      }
+      paymentRequest.setId(payment.id)
+      if(payment.chargeUuid) {
+        paymentRequest.setChargeUuid(payment.chargeUuid)
+      }
+      if (payment.bankUuid) {
+        paymentRequest.setBankUuid(payment.bankUuid)
+      }
+      if (payment.collectingAgentUuid) {
+        paymentRequest.setCollectingAgentUuid(payment.collectingAgentUuid)
+      }
+      paymentRequest.setIsRefund(false)
+      if (payment.invoiceUuid) {
+        paymentRequest.setInvoiceUuid(payment.invoiceUuid)
+      }
+      if (payment.referenceNo) {
+        paymentRequest.setReferenceNo(payment.referenceNo)
+      }
+      if (payment.description) {
+        paymentRequest.setDescription(payment.description)
+      }
+      if (payment.tenderTypeCode) {
+        paymentRequest.setTenderTypeCode(payment.tenderTypeCode)
+      }
+      if (payment.currencyUuid) {
+        paymentRequest.setCurrencyUuid(payment.currencyUuid)
+      }
+      if(payment.amount) {
+        paymentRequest.setAmount(getDecimalFromNumber(payment.amount))
+      }
+      if (payment.paymentDate) {
+        paymentRequest.setPaymentDate(convertValueToGRPC({
+          value: payment.paymentDate
+        }))
+      }
+      request.addPayments(paymentRequest)
+    })
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getPosService().cashOpening(request, callback)
+  }
+
+    //  Cash Withdrawal service
+  cashWithdrawal({
+    token,
+    posUuid,
+    collectingAgentUuid,
+    description,
+    payments,
+    language
+  }, callback) {
+    const { CashWithdrawalRequest, CreatePaymentRequest } = require('./src/grpc/proto/point_of_sales_pb.js')
+    const { convertValueToGRPC, getDecimalFromNumber } = require('./lib/convertValues.js')
+    const request = new CashWithdrawalRequest()
+    request.setPosUuid(posUuid)
+    request.setCollectingAgentUuid(collectingAgentUuid)
+    request.setDescription(description)
+      //  Set payment data
+    payments.forEach(payment => {
+      const paymentRequest = new CreatePaymentRequest()
+      if (payment.uuid) {
+        paymentRequest.setUuid(payment.uuid)
+      }
+      paymentRequest.setId(payment.id)
+      if(payment.chargeUuid) {
+        paymentRequest.setChargeUuid(payment.chargeUuid)
+      }
+      if (payment.bankUuid) {
+        paymentRequest.setBankUuid(payment.bankUuid)
+      }
+      if (payment.collectingAgentUuid) {
+        paymentRequest.setCollectingAgentUuid(payment.collectingAgentUuid)
+      }
+      paymentRequest.setIsRefund(true)
+      if (payment.invoiceUuid) {
+        paymentRequest.setInvoiceUuid(payment.invoiceUuid)
+      }
+      if (payment.referenceNo) {
+        paymentRequest.setReferenceNo(payment.referenceNo)
+      }
+      if (payment.description) {
+        paymentRequest.setDescription(payment.description)
+      }
+      if (payment.tenderTypeCode) {
+        paymentRequest.setTenderTypeCode(payment.tenderTypeCode)
+      }
+      if (payment.currencyUuid) {
+        paymentRequest.setCurrencyUuid(payment.currencyUuid)
+      }
+      if(payment.amount) {
+        paymentRequest.setAmount(getDecimalFromNumber(payment.amount))
+      }
+      if (payment.paymentDate) {
+        paymentRequest.setPaymentDate(convertValueToGRPC({
+          value: payment.paymentDate
+        }))
+      }
+      request.addPayments(paymentRequest)
+    })
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getPosService().cashWithdrawal(request, callback)
+  }
+
   //  Delete Payment
   deletePayment({
     token,
@@ -2406,6 +2538,8 @@
     token,
     posUuid,
     orderUuid,
+    isOnlyRefund,
+    isOnlyReceipt,
     tableName,
     //  DSL
     filters,
@@ -2435,6 +2569,8 @@
     if (orderUuid) {
       request.setOrderUuid(orderUuid)
     }
+    request.setIsOnlyRefund(isOnlyRefund)
+    request.setIsOnlyReceipt(isOnlyReceipt)
     request.setPageSize(pageSize)
     request.setPageToken(pageToken)
     request.setClientRequest(this.createClientRequest(token, language))
@@ -2459,8 +2595,19 @@
     //  Set payment data
     payments.forEach(payment => {
       const paymentRequest = new CreatePaymentRequest()
+      if (payment.uuid) {
+        paymentRequest.setUuid(payment.uuid)
+      }
+      paymentRequest.setId(payment.id)
+      if (payment.orderUuid) {
+        paymentRequest.setOrderUuid(payment.orderUuid)
+      }
       if (payment.bankUuid) {
         paymentRequest.setBankUuid(payment.bankUuid)
+      }
+      paymentRequest.setIsRefund(payment.isRefund)
+      if (payment.collectingAgentUuid) {
+        paymentRequest.setCollectingAgentUuid(payment.collectingAgentUuid)
       }
       if (payment.invoiceUuid) {
         paymentRequest.setInvoiceUuid(payment.invoiceUuid)
