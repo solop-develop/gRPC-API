@@ -1405,8 +1405,8 @@ reverseSales: {
     responseDeserialize: deserialize_data_Order,
   },
   // 	Cash Management
-cashOpening: {
-    path: '/data.Store/cashOpening',
+processCashOpening: {
+    path: '/data.Store/ProcessCashOpening',
     requestStream: false,
     responseStream: false,
     requestType: proto_point_of_sales_pb.CashOpeningRequest,
@@ -1417,8 +1417,8 @@ cashOpening: {
     responseDeserialize: deserialize_data_Empty,
   },
   // 	Cash Withdrawal
-cashWithdrawal: {
-    path: '/data.Store/cashWithdrawal',
+processCashWithdrawal: {
+    path: '/data.Store/ProcessCashWithdrawal',
     requestStream: false,
     responseStream: false,
     requestType: proto_point_of_sales_pb.CashWithdrawalRequest,
@@ -1429,8 +1429,8 @@ cashWithdrawal: {
     responseDeserialize: deserialize_data_Empty,
   },
   // 	Cash Closing
-cashClosing: {
-    path: '/data.Store/cashClosing',
+processCashClosing: {
+    path: '/data.Store/ProcessCashClosing',
     requestStream: false,
     responseStream: false,
     requestType: proto_point_of_sales_pb.CashClosingRequest,

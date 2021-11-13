@@ -427,10 +427,14 @@
     const { FieldRequest, ApplicationRequest } = require('./src/grpc/proto/dictionary_pb.js')
     const request = new FieldRequest()
     const applicationRequest = new ApplicationRequest()
-    request.setFieldUuid(uuid)
+    if(uuid) {
+      request.setFieldUuid(uuid)
+    }
     request.setColumnUuid(columnUuid)
     request.setElementUuid(elementUuid)
-    request.setFieldUuid(fieldUuid)
+    if(fieldUuid) {
+      request.setFieldUuid(fieldUuid)
+    }
     request.setColumnName(columnName)
     request.setTableName(tableName)
     request.setElementColumnName(elementColumnName)
@@ -2398,8 +2402,48 @@
     this.getPosService().updatePayment(request, callback)
   }
 
+  //  List Cash summary movements
+  listCashSummaryMovements({
+    token,
+    posUuid,
+    pageSize,
+    pageToken,
+    language
+  }, callback) {
+    const { ListCashSummaryMovementsRequest } = require('./src/grpc/proto/point_of_sales_pb.js')
+    const request = new ListCashSummaryMovementsRequest()
+    if (posUuid) {
+      request.setPosUuid(posUuid)
+    }
+    request.setPageSize(pageSize)
+    request.setPageToken(pageToken)
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getPosService().listCashSummaryMovements(request, callback)
+  }
+
+  //  Cash Closing
+  processCashClosing({
+    token,
+    posUuid,
+    uuid,
+    id,
+    language
+  }, callback) {
+    const { CashClosingRequest } = require('./src/grpc/proto/point_of_sales_pb.js')
+    const request = new CashClosingRequest()
+    if (posUuid) {
+      request.setPosUuid(posUuid)
+    }
+    if (uuid) {
+      request.setUuid(uuid)
+    }
+    request.setId(id)
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getPosService().processCashClosing(request, callback)
+  }
+
   //  Cash Opening service
-  cashOpening({
+  processCashOpening({
     token,
     posUuid,
     collectingAgentUuid,
@@ -2456,11 +2500,11 @@
       request.addPayments(paymentRequest)
     })
     request.setClientRequest(this.createClientRequest(token, language))
-    this.getPosService().cashOpening(request, callback)
+    this.getPosService().processCashOpening(request, callback)
   }
 
     //  Cash Withdrawal service
-  cashWithdrawal({
+  processCashWithdrawal({
     token,
     posUuid,
     collectingAgentUuid,
@@ -2517,7 +2561,7 @@
       request.addPayments(paymentRequest)
     })
     request.setClientRequest(this.createClientRequest(token, language))
-    this.getPosService().cashWithdrawal(request, callback)
+    this.getPosService().processCashWithdrawal(request, callback)
   }
 
   //  Delete Payment

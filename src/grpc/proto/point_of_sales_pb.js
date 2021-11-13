@@ -1946,9 +1946,10 @@ proto.data.PaymentSummary.prototype.toObject = function(opt_includeInstance) {
 proto.data.PaymentSummary.toObject = function(includeInstance, msg) {
   var f, obj = {
     paymentMethodUuid: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    tenderTypeCode: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    currencyUuid: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    isRefund: jspb.Message.getBooleanFieldWithDefault(msg, 4, false),
+    paymentMethodName: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    tenderTypeCode: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    currency: (f = msg.getCurrency()) && proto_core_functionality_pb.Currency.toObject(includeInstance, f),
+    isRefund: jspb.Message.getBooleanFieldWithDefault(msg, 5, false),
     amount: (f = msg.getAmount()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f)
   };
 
@@ -1992,17 +1993,22 @@ proto.data.PaymentSummary.deserializeBinaryFromReader = function(msg, reader) {
       break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
-      msg.setTenderTypeCode(value);
+      msg.setPaymentMethodName(value);
       break;
     case 3:
       var value = /** @type {string} */ (reader.readString());
-      msg.setCurrencyUuid(value);
+      msg.setTenderTypeCode(value);
       break;
     case 4:
+      var value = new proto_core_functionality_pb.Currency;
+      reader.readMessage(value,proto_core_functionality_pb.Currency.deserializeBinaryFromReader);
+      msg.setCurrency(value);
+      break;
+    case 5:
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setIsRefund(value);
       break;
-    case 5:
+    case 6:
       var value = new proto_base_data_type_pb.Decimal;
       reader.readMessage(value,proto_base_data_type_pb.Decimal.deserializeBinaryFromReader);
       msg.setAmount(value);
@@ -2043,31 +2049,39 @@ proto.data.PaymentSummary.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-  f = message.getTenderTypeCode();
+  f = message.getPaymentMethodName();
   if (f.length > 0) {
     writer.writeString(
       2,
       f
     );
   }
-  f = message.getCurrencyUuid();
+  f = message.getTenderTypeCode();
   if (f.length > 0) {
     writer.writeString(
       3,
       f
     );
   }
+  f = message.getCurrency();
+  if (f != null) {
+    writer.writeMessage(
+      4,
+      f,
+      proto_core_functionality_pb.Currency.serializeBinaryToWriter
+    );
+  }
   f = message.getIsRefund();
   if (f) {
     writer.writeBool(
-      4,
+      5,
       f
     );
   }
   f = message.getAmount();
   if (f != null) {
     writer.writeMessage(
-      5,
+      6,
       f,
       proto_base_data_type_pb.Decimal.serializeBinaryToWriter
     );
@@ -2094,10 +2108,10 @@ proto.data.PaymentSummary.prototype.setPaymentMethodUuid = function(value) {
 
 
 /**
- * optional string tender_type_code = 2;
+ * optional string payment_method_name = 2;
  * @return {string}
  */
-proto.data.PaymentSummary.prototype.getTenderTypeCode = function() {
+proto.data.PaymentSummary.prototype.getPaymentMethodName = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
@@ -2106,16 +2120,16 @@ proto.data.PaymentSummary.prototype.getTenderTypeCode = function() {
  * @param {string} value
  * @return {!proto.data.PaymentSummary} returns this
  */
-proto.data.PaymentSummary.prototype.setTenderTypeCode = function(value) {
+proto.data.PaymentSummary.prototype.setPaymentMethodName = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
 /**
- * optional string currency_uuid = 3;
+ * optional string tender_type_code = 3;
  * @return {string}
  */
-proto.data.PaymentSummary.prototype.getCurrencyUuid = function() {
+proto.data.PaymentSummary.prototype.getTenderTypeCode = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
 
@@ -2124,17 +2138,54 @@ proto.data.PaymentSummary.prototype.getCurrencyUuid = function() {
  * @param {string} value
  * @return {!proto.data.PaymentSummary} returns this
  */
-proto.data.PaymentSummary.prototype.setCurrencyUuid = function(value) {
+proto.data.PaymentSummary.prototype.setTenderTypeCode = function(value) {
   return jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
 /**
- * optional bool is_refund = 4;
+ * optional Currency currency = 4;
+ * @return {?proto.data.Currency}
+ */
+proto.data.PaymentSummary.prototype.getCurrency = function() {
+  return /** @type{?proto.data.Currency} */ (
+    jspb.Message.getWrapperField(this, proto_core_functionality_pb.Currency, 4));
+};
+
+
+/**
+ * @param {?proto.data.Currency|undefined} value
+ * @return {!proto.data.PaymentSummary} returns this
+*/
+proto.data.PaymentSummary.prototype.setCurrency = function(value) {
+  return jspb.Message.setWrapperField(this, 4, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.data.PaymentSummary} returns this
+ */
+proto.data.PaymentSummary.prototype.clearCurrency = function() {
+  return this.setCurrency(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.data.PaymentSummary.prototype.hasCurrency = function() {
+  return jspb.Message.getField(this, 4) != null;
+};
+
+
+/**
+ * optional bool is_refund = 5;
  * @return {boolean}
  */
 proto.data.PaymentSummary.prototype.getIsRefund = function() {
-  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 4, false));
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 5, false));
 };
 
 
@@ -2143,17 +2194,17 @@ proto.data.PaymentSummary.prototype.getIsRefund = function() {
  * @return {!proto.data.PaymentSummary} returns this
  */
 proto.data.PaymentSummary.prototype.setIsRefund = function(value) {
-  return jspb.Message.setProto3BooleanField(this, 4, value);
+  return jspb.Message.setProto3BooleanField(this, 5, value);
 };
 
 
 /**
- * optional Decimal amount = 5;
+ * optional Decimal amount = 6;
  * @return {?proto.data.Decimal}
  */
 proto.data.PaymentSummary.prototype.getAmount = function() {
   return /** @type{?proto.data.Decimal} */ (
-    jspb.Message.getWrapperField(this, proto_base_data_type_pb.Decimal, 5));
+    jspb.Message.getWrapperField(this, proto_base_data_type_pb.Decimal, 6));
 };
 
 
@@ -2162,7 +2213,7 @@ proto.data.PaymentSummary.prototype.getAmount = function() {
  * @return {!proto.data.PaymentSummary} returns this
 */
 proto.data.PaymentSummary.prototype.setAmount = function(value) {
-  return jspb.Message.setWrapperField(this, 5, value);
+  return jspb.Message.setWrapperField(this, 6, value);
 };
 
 
@@ -2180,7 +2231,7 @@ proto.data.PaymentSummary.prototype.clearAmount = function() {
  * @return {boolean}
  */
 proto.data.PaymentSummary.prototype.hasAmount = function() {
-  return jspb.Message.getField(this, 5) != null;
+  return jspb.Message.getField(this, 6) != null;
 };
 
 
