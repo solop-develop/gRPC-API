@@ -22,6 +22,17 @@ var proto_core_functionality_pb = require('../proto/core_functionality_pb.js');
 var proto_base_data_type_pb = require('../proto/base_data_type_pb.js');
 var proto_client_pb = require('../proto/client_pb.js');
 
+function serialize_data_AllocateSellerRequest(arg) {
+  if (!(arg instanceof proto_point_of_sales_pb.AllocateSellerRequest)) {
+    throw new Error('Expected argument of type data.AllocateSellerRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_AllocateSellerRequest(buffer_arg) {
+  return proto_point_of_sales_pb.AllocateSellerRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_data_AvailableRefund(arg) {
   if (!(arg instanceof proto_point_of_sales_pb.AvailableRefund)) {
     throw new Error('Expected argument of type data.AvailableRefund');
@@ -361,6 +372,28 @@ function serialize_data_ListAvailableCurrenciesResponse(arg) {
 
 function deserialize_data_ListAvailableCurrenciesResponse(buffer_arg) {
   return proto_point_of_sales_pb.ListAvailableCurrenciesResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_data_ListAvailableDiscountsRequest(arg) {
+  if (!(arg instanceof proto_point_of_sales_pb.ListAvailableDiscountsRequest)) {
+    throw new Error('Expected argument of type data.ListAvailableDiscountsRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_ListAvailableDiscountsRequest(buffer_arg) {
+  return proto_point_of_sales_pb.ListAvailableDiscountsRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_data_ListAvailableDiscountsResponse(arg) {
+  if (!(arg instanceof proto_point_of_sales_pb.ListAvailableDiscountsResponse)) {
+    throw new Error('Expected argument of type data.ListAvailableDiscountsResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_ListAvailableDiscountsResponse(buffer_arg) {
+  return proto_point_of_sales_pb.ListAvailableDiscountsResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_data_ListAvailableDocumentTypesRequest(arg) {
@@ -1173,6 +1206,18 @@ listAvailableDocumentTypes: {
     responseSerialize: serialize_data_ListAvailableDocumentTypesResponse,
     responseDeserialize: deserialize_data_ListAvailableDocumentTypesResponse,
   },
+  // 	List of Available Discounts
+listAvailableDiscounts: {
+    path: '/data.Store/ListAvailableDiscounts',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_point_of_sales_pb.ListAvailableDiscountsRequest,
+    responseType: proto_point_of_sales_pb.ListAvailableDiscountsResponse,
+    requestSerialize: serialize_data_ListAvailableDiscountsRequest,
+    requestDeserialize: deserialize_data_ListAvailableDiscountsRequest,
+    responseSerialize: serialize_data_ListAvailableDiscountsResponse,
+    responseDeserialize: deserialize_data_ListAvailableDiscountsResponse,
+  },
   // 	Customer
 // 	Create Customer
 createCustomer: {
@@ -1463,6 +1508,18 @@ listCashSummaryMovements: {
     requestDeserialize: deserialize_data_ListCashSummaryMovementsRequest,
     responseSerialize: serialize_data_ListCashSummaryMovementsResponse,
     responseDeserialize: deserialize_data_ListCashSummaryMovementsResponse,
+  },
+  // 	Allocate Seller
+allocateSeller: {
+    path: '/data.Store/AllocateSeller',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_point_of_sales_pb.AllocateSellerRequest,
+    responseType: proto_base_data_type_pb.Empty,
+    requestSerialize: serialize_data_AllocateSellerRequest,
+    requestDeserialize: deserialize_data_AllocateSellerRequest,
+    responseSerialize: serialize_data_Empty,
+    responseDeserialize: deserialize_data_Empty,
   },
 };
 

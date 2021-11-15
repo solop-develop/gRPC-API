@@ -2564,6 +2564,21 @@
     this.getPosService().processCashWithdrawal(request, callback)
   }
 
+  //  allocate Seller
+  allocateSeller({
+    token,
+    posUuid,
+    salesRepresentativeUuid,
+    language
+  }, callback) {
+    const { AllocateSellerRequest } = require('./src/grpc/proto/point_of_sales_pb.js')
+    const request = new AllocateSellerRequest()
+    request.setPosUuid(posUuid)
+    request.setSalesRepresentativeUuid(salesRepresentativeUuid)
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getPosService().allocateSeller(request, callback)
+  }
+
   //  Delete Payment
   deletePayment({
     token,
