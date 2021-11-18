@@ -143,6 +143,17 @@ function deserialize_data_CreatePaymentRequest(buffer_arg) {
   return proto_point_of_sales_pb.CreatePaymentRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_data_CreateRefundReferenceRequest(arg) {
+  if (!(arg instanceof proto_point_of_sales_pb.CreateRefundReferenceRequest)) {
+    throw new Error('Expected argument of type data.CreateRefundReferenceRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_CreateRefundReferenceRequest(buffer_arg) {
+  return proto_point_of_sales_pb.CreateRefundReferenceRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_data_CreateShipmentLineRequest(arg) {
   if (!(arg instanceof proto_point_of_sales_pb.CreateShipmentLineRequest)) {
     throw new Error('Expected argument of type data.CreateShipmentLineRequest');
@@ -660,6 +671,28 @@ function deserialize_data_ListProductPriceResponse(buffer_arg) {
   return proto_point_of_sales_pb.ListProductPriceResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_data_ListRefundReferencesRequest(arg) {
+  if (!(arg instanceof proto_point_of_sales_pb.ListRefundReferencesRequest)) {
+    throw new Error('Expected argument of type data.ListRefundReferencesRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_ListRefundReferencesRequest(buffer_arg) {
+  return proto_point_of_sales_pb.ListRefundReferencesRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_data_ListRefundReferencesResponse(arg) {
+  if (!(arg instanceof proto_point_of_sales_pb.ListRefundReferencesResponse)) {
+    throw new Error('Expected argument of type data.ListRefundReferencesResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_ListRefundReferencesResponse(buffer_arg) {
+  return proto_point_of_sales_pb.ListRefundReferencesResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_data_ListShipmentLinesRequest(arg) {
   if (!(arg instanceof proto_point_of_sales_pb.ListShipmentLinesRequest)) {
     throw new Error('Expected argument of type data.ListShipmentLinesRequest');
@@ -790,6 +823,17 @@ function serialize_data_ProductPrice(arg) {
 
 function deserialize_data_ProductPrice(buffer_arg) {
   return proto_core_functionality_pb.ProductPrice.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_data_RefundReference(arg) {
+  if (!(arg instanceof proto_point_of_sales_pb.RefundReference)) {
+    throw new Error('Expected argument of type data.RefundReference');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_RefundReference(buffer_arg) {
+  return proto_point_of_sales_pb.RefundReference.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_data_ReverseSalesRequest(arg) {
@@ -1520,6 +1564,30 @@ allocateSeller: {
     requestDeserialize: deserialize_data_AllocateSellerRequest,
     responseSerialize: serialize_data_Empty,
     responseDeserialize: deserialize_data_Empty,
+  },
+  // 	Create Refund Reference
+createRefundReference: {
+    path: '/data.Store/CreateRefundReference',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_point_of_sales_pb.CreateRefundReferenceRequest,
+    responseType: proto_point_of_sales_pb.RefundReference,
+    requestSerialize: serialize_data_CreateRefundReferenceRequest,
+    requestDeserialize: deserialize_data_CreateRefundReferenceRequest,
+    responseSerialize: serialize_data_RefundReference,
+    responseDeserialize: deserialize_data_RefundReference,
+  },
+  // 	List Refund References
+listRefundReferences: {
+    path: '/data.Store/ListRefundReferences',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_point_of_sales_pb.ListRefundReferencesRequest,
+    responseType: proto_point_of_sales_pb.ListRefundReferencesResponse,
+    requestSerialize: serialize_data_ListRefundReferencesRequest,
+    requestDeserialize: deserialize_data_ListRefundReferencesRequest,
+    responseSerialize: serialize_data_ListRefundReferencesResponse,
+    responseDeserialize: deserialize_data_ListRefundReferencesResponse,
   },
 };
 

@@ -2355,6 +2355,63 @@
     this.getPosService().createPayment(request, callback)
   }
 
+  //  Create Payment Refund Reference
+  createRefundReference({
+    token,
+    posUuid,
+    orderUuid,
+    salesRepresentativeUuid,
+    customerBankAccountUuid,
+    description,
+    amount,
+    paymentDate,
+    paymentAccountDate,
+    tenderTypeCode,
+    currencyUuid,
+    conversionTypeUuid,
+    paymentMethodUuid,
+    language
+  }, callback) {
+    const { CreateRefundReferenceRequest } = require('./src/grpc/proto/point_of_sales_pb.js')
+    const { getDecimalFromNumber } = require('./lib/convertValues.js')
+    const request = new CreateRefundReferenceRequest()
+    request.setPosUuid(posUuid)
+    request.setOrderUuid(orderUuid)
+    if(salesRepresentativeUuid) {
+      request.setSalesRepresentativeUuid(salesRepresentativeUuid)
+    }
+    if(customerBankAccountUuid) {
+      request.setCustomerBankAccountUuid(customerBankAccountUuid)
+    }
+    if (description) {
+      request.setDescription(description)
+    }
+    if (tenderTypeCode) {
+      request.setTenderTypeCode(tenderTypeCode)
+    }
+    if(paymentMethodUuid) {
+      request.setPaymentMethodUuid(paymentMethodUuid)
+    }
+    if(conversionTypeUuid) {
+      request.setConversionTypeUuid(conversionTypeUuid)
+    }
+    if (currencyUuid) {
+      request.setCurrencyUuid(currencyUuid)
+    }
+    if(amount) {
+      request.setAmount(getDecimalFromNumber(amount))
+    }
+    //  Date of Payment
+    if (paymentDate) {
+      request.setPaymentDate(paymentDate)
+    }
+    if (paymentAccountDate) {
+      request.setPaymentAccountDate(paymentAccountDate)
+    }
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getPosService().createRefundReference(request, callback)
+  }
+
   //  Update Payment
   updatePayment({
     token,
