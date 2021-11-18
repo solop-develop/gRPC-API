@@ -22561,7 +22561,11 @@ proto.data.PointOfSales.toObject = function(includeInstance, msg) {
     maximumDiscountAllowed: (f = msg.getMaximumDiscountAllowed()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
     writeOffAmountTolerance: (f = msg.getWriteOffAmountTolerance()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
     isAllowsAllocateSeller: jspb.Message.getBooleanFieldWithDefault(msg, 36, false),
-    isAllowsConcurrentUse: jspb.Message.getBooleanFieldWithDefault(msg, 37, false)
+    isAllowsConcurrentUse: jspb.Message.getBooleanFieldWithDefault(msg, 37, false),
+    isConfirmCompleteShipment: jspb.Message.getBooleanFieldWithDefault(msg, 38, false),
+    isAllowsCashClosing: jspb.Message.getBooleanFieldWithDefault(msg, 39, false),
+    isAllowsCashOpening: jspb.Message.getBooleanFieldWithDefault(msg, 40, false),
+    isAllowsCashWithdrawal: jspb.Message.getBooleanFieldWithDefault(msg, 41, false)
   };
 
   if (includeInstance) {
@@ -22759,6 +22763,22 @@ proto.data.PointOfSales.deserializeBinaryFromReader = function(msg, reader) {
     case 37:
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setIsAllowsConcurrentUse(value);
+      break;
+    case 38:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setIsConfirmCompleteShipment(value);
+      break;
+    case 39:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setIsAllowsCashClosing(value);
+      break;
+    case 40:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setIsAllowsCashOpening(value);
+      break;
+    case 41:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setIsAllowsCashWithdrawal(value);
       break;
     default:
       reader.skipField();
@@ -23059,6 +23079,34 @@ proto.data.PointOfSales.serializeBinaryToWriter = function(message, writer) {
   if (f) {
     writer.writeBool(
       37,
+      f
+    );
+  }
+  f = message.getIsConfirmCompleteShipment();
+  if (f) {
+    writer.writeBool(
+      38,
+      f
+    );
+  }
+  f = message.getIsAllowsCashClosing();
+  if (f) {
+    writer.writeBool(
+      39,
+      f
+    );
+  }
+  f = message.getIsAllowsCashOpening();
+  if (f) {
+    writer.writeBool(
+      40,
+      f
+    );
+  }
+  f = message.getIsAllowsCashWithdrawal();
+  if (f) {
+    writer.writeBool(
+      41,
       f
     );
   }
@@ -23994,6 +24042,78 @@ proto.data.PointOfSales.prototype.getIsAllowsConcurrentUse = function() {
  */
 proto.data.PointOfSales.prototype.setIsAllowsConcurrentUse = function(value) {
   return jspb.Message.setProto3BooleanField(this, 37, value);
+};
+
+
+/**
+ * optional bool is_confirm_complete_shipment = 38;
+ * @return {boolean}
+ */
+proto.data.PointOfSales.prototype.getIsConfirmCompleteShipment = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 38, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.data.PointOfSales} returns this
+ */
+proto.data.PointOfSales.prototype.setIsConfirmCompleteShipment = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 38, value);
+};
+
+
+/**
+ * optional bool is_allows_cash_closing = 39;
+ * @return {boolean}
+ */
+proto.data.PointOfSales.prototype.getIsAllowsCashClosing = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 39, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.data.PointOfSales} returns this
+ */
+proto.data.PointOfSales.prototype.setIsAllowsCashClosing = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 39, value);
+};
+
+
+/**
+ * optional bool is_allows_cash_opening = 40;
+ * @return {boolean}
+ */
+proto.data.PointOfSales.prototype.getIsAllowsCashOpening = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 40, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.data.PointOfSales} returns this
+ */
+proto.data.PointOfSales.prototype.setIsAllowsCashOpening = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 40, value);
+};
+
+
+/**
+ * optional bool is_allows_cash_withdrawal = 41;
+ * @return {boolean}
+ */
+proto.data.PointOfSales.prototype.getIsAllowsCashWithdrawal = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 41, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.data.PointOfSales} returns this
+ */
+proto.data.PointOfSales.prototype.setIsAllowsCashWithdrawal = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 41, value);
 };
 
 
