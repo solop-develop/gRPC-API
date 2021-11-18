@@ -3163,6 +3163,27 @@
     this.getPosService().listCustomerBankAccounts(request, callback)
   }
 
+  //  List Customer Refund References
+  listRefundReferences({
+    token,
+    posUuid,
+    orderUuid,
+    customerUuid,
+    pageSize,
+    pageToken,
+    language
+  }, callback) {
+    const { ListRefundReferencesRequest } = require('./src/grpc/proto/point_of_sales_pb.js')
+    const request = new ListRefundReferencesRequest()
+    request.setCustomerUuid(customerUuid)
+    request.setPosUuid(posUuid)
+    request.setOrderUuid(orderUuid)
+    request.setPageSize(pageSize)
+    request.setPageToken(pageToken)
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getPosService().listRefundReferences(request, callback)
+  }
+
   //  Get Available Refund
   getAvailableRefund({
     token,

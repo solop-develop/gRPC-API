@@ -2343,7 +2343,8 @@ proto.data.CreateRefundReferenceRequest.toObject = function(includeInstance, msg
     conversionTypeUuid: jspb.Message.getFieldWithDefault(msg, 9, ""),
     paymentMethodUuid: jspb.Message.getFieldWithDefault(msg, 10, ""),
     paymentAccountDate: jspb.Message.getFieldWithDefault(msg, 11, ""),
-    customerBankAccountUuid: jspb.Message.getFieldWithDefault(msg, 12, "")
+    customerBankAccountUuid: jspb.Message.getFieldWithDefault(msg, 12, ""),
+    orderUuid: jspb.Message.getFieldWithDefault(msg, 13, "")
   };
 
   if (includeInstance) {
@@ -2429,6 +2430,10 @@ proto.data.CreateRefundReferenceRequest.deserializeBinaryFromReader = function(m
     case 12:
       var value = /** @type {string} */ (reader.readString());
       msg.setCustomerBankAccountUuid(value);
+      break;
+    case 13:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setOrderUuid(value);
       break;
     default:
       reader.skipField();
@@ -2542,6 +2547,13 @@ proto.data.CreateRefundReferenceRequest.serializeBinaryToWriter = function(messa
   if (f.length > 0) {
     writer.writeString(
       12,
+      f
+    );
+  }
+  f = message.getOrderUuid();
+  if (f.length > 0) {
+    writer.writeString(
+      13,
       f
     );
   }
@@ -2799,6 +2811,24 @@ proto.data.CreateRefundReferenceRequest.prototype.getCustomerBankAccountUuid = f
  */
 proto.data.CreateRefundReferenceRequest.prototype.setCustomerBankAccountUuid = function(value) {
   return jspb.Message.setProto3StringField(this, 12, value);
+};
+
+
+/**
+ * optional string order_uuid = 13;
+ * @return {string}
+ */
+proto.data.CreateRefundReferenceRequest.prototype.getOrderUuid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 13, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.data.CreateRefundReferenceRequest} returns this
+ */
+proto.data.CreateRefundReferenceRequest.prototype.setOrderUuid = function(value) {
+  return jspb.Message.setProto3StringField(this, 13, value);
 };
 
 
@@ -3419,9 +3449,10 @@ proto.data.ListRefundReferencesRequest.toObject = function(includeInstance, msg)
   var f, obj = {
     clientRequest: (f = msg.getClientRequest()) && proto_client_pb.ClientRequest.toObject(includeInstance, f),
     posUuid: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    businessPartnerUuid: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    pageSize: jspb.Message.getFieldWithDefault(msg, 7, 0),
-    pageToken: jspb.Message.getFieldWithDefault(msg, 8, "")
+    customerUuid: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    orderUuid: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    pageSize: jspb.Message.getFieldWithDefault(msg, 5, 0),
+    pageToken: jspb.Message.getFieldWithDefault(msg, 6, "")
   };
 
   if (includeInstance) {
@@ -3469,13 +3500,17 @@ proto.data.ListRefundReferencesRequest.deserializeBinaryFromReader = function(ms
       break;
     case 3:
       var value = /** @type {string} */ (reader.readString());
-      msg.setBusinessPartnerUuid(value);
+      msg.setCustomerUuid(value);
       break;
-    case 7:
+    case 4:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setOrderUuid(value);
+      break;
+    case 5:
       var value = /** @type {number} */ (reader.readInt32());
       msg.setPageSize(value);
       break;
-    case 8:
+    case 6:
       var value = /** @type {string} */ (reader.readString());
       msg.setPageToken(value);
       break;
@@ -3523,24 +3558,31 @@ proto.data.ListRefundReferencesRequest.serializeBinaryToWriter = function(messag
       f
     );
   }
-  f = message.getBusinessPartnerUuid();
+  f = message.getCustomerUuid();
   if (f.length > 0) {
     writer.writeString(
       3,
       f
     );
   }
+  f = message.getOrderUuid();
+  if (f.length > 0) {
+    writer.writeString(
+      4,
+      f
+    );
+  }
   f = message.getPageSize();
   if (f !== 0) {
     writer.writeInt32(
-      7,
+      5,
       f
     );
   }
   f = message.getPageToken();
   if (f.length > 0) {
     writer.writeString(
-      8,
+      6,
       f
     );
   }
@@ -3603,10 +3645,10 @@ proto.data.ListRefundReferencesRequest.prototype.setPosUuid = function(value) {
 
 
 /**
- * optional string business_partner_uuid = 3;
+ * optional string customer_uuid = 3;
  * @return {string}
  */
-proto.data.ListRefundReferencesRequest.prototype.getBusinessPartnerUuid = function() {
+proto.data.ListRefundReferencesRequest.prototype.getCustomerUuid = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
 
@@ -3615,17 +3657,35 @@ proto.data.ListRefundReferencesRequest.prototype.getBusinessPartnerUuid = functi
  * @param {string} value
  * @return {!proto.data.ListRefundReferencesRequest} returns this
  */
-proto.data.ListRefundReferencesRequest.prototype.setBusinessPartnerUuid = function(value) {
+proto.data.ListRefundReferencesRequest.prototype.setCustomerUuid = function(value) {
   return jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
 /**
- * optional int32 page_size = 7;
+ * optional string order_uuid = 4;
+ * @return {string}
+ */
+proto.data.ListRefundReferencesRequest.prototype.getOrderUuid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.data.ListRefundReferencesRequest} returns this
+ */
+proto.data.ListRefundReferencesRequest.prototype.setOrderUuid = function(value) {
+  return jspb.Message.setProto3StringField(this, 4, value);
+};
+
+
+/**
+ * optional int32 page_size = 5;
  * @return {number}
  */
 proto.data.ListRefundReferencesRequest.prototype.getPageSize = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 7, 0));
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 5, 0));
 };
 
 
@@ -3634,16 +3694,16 @@ proto.data.ListRefundReferencesRequest.prototype.getPageSize = function() {
  * @return {!proto.data.ListRefundReferencesRequest} returns this
  */
 proto.data.ListRefundReferencesRequest.prototype.setPageSize = function(value) {
-  return jspb.Message.setProto3IntField(this, 7, value);
+  return jspb.Message.setProto3IntField(this, 5, value);
 };
 
 
 /**
- * optional string page_token = 8;
+ * optional string page_token = 6;
  * @return {string}
  */
 proto.data.ListRefundReferencesRequest.prototype.getPageToken = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 8, ""));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
 };
 
 
@@ -3652,7 +3712,7 @@ proto.data.ListRefundReferencesRequest.prototype.getPageToken = function() {
  * @return {!proto.data.ListRefundReferencesRequest} returns this
  */
 proto.data.ListRefundReferencesRequest.prototype.setPageToken = function(value) {
-  return jspb.Message.setProto3StringField(this, 8, value);
+  return jspb.Message.setProto3StringField(this, 6, value);
 };
 
 
