@@ -2649,6 +2649,21 @@
     this.getPosService().deletePayment(request, callback)
   }
 
+  //  Delete Refund Reference
+  deleteRefundReference({
+    token,
+    uuid,
+    id,
+    language
+  }, callback) {
+    const { DeleteRefundReferenceRequest } = require('./src/grpc/proto/point_of_sales_pb.js')
+    const request = new DeleteRefundReferenceRequest()
+    request.setUuid(uuid)
+    request.setId(id)
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getPosService().deleteRefundReference(request, callback)
+  }
+
   //  List Payments
   listPayments({
     token,

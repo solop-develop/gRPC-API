@@ -242,6 +242,17 @@ function deserialize_data_DeletePaymentRequest(buffer_arg) {
   return proto_point_of_sales_pb.DeletePaymentRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_data_DeleteRefundReferenceRequest(arg) {
+  if (!(arg instanceof proto_point_of_sales_pb.DeleteRefundReferenceRequest)) {
+    throw new Error('Expected argument of type data.DeleteRefundReferenceRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_DeleteRefundReferenceRequest(buffer_arg) {
+  return proto_point_of_sales_pb.DeleteRefundReferenceRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_data_DeleteShipmentLineRequest(arg) {
   if (!(arg instanceof proto_point_of_sales_pb.DeleteShipmentLineRequest)) {
     throw new Error('Expected argument of type data.DeleteShipmentLineRequest');
@@ -1576,6 +1587,18 @@ createRefundReference: {
     requestDeserialize: deserialize_data_CreateRefundReferenceRequest,
     responseSerialize: serialize_data_RefundReference,
     responseDeserialize: deserialize_data_RefundReference,
+  },
+  // 	Delete Refund Reference
+deleteRefundReference: {
+    path: '/data.Store/DeleteRefundReference',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_point_of_sales_pb.DeleteRefundReferenceRequest,
+    responseType: proto_base_data_type_pb.Empty,
+    requestSerialize: serialize_data_DeleteRefundReferenceRequest,
+    requestDeserialize: deserialize_data_DeleteRefundReferenceRequest,
+    responseSerialize: serialize_data_Empty,
+    responseDeserialize: deserialize_data_Empty,
   },
   // 	List Refund References
 listRefundReferences: {
