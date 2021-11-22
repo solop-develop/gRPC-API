@@ -363,6 +363,17 @@ function deserialize_data_GetProductPriceRequest(buffer_arg) {
   return proto_point_of_sales_pb.GetProductPriceRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_data_HoldOrderRequest(arg) {
+  if (!(arg instanceof proto_point_of_sales_pb.HoldOrderRequest)) {
+    throw new Error('Expected argument of type data.HoldOrderRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_HoldOrderRequest(buffer_arg) {
+  return proto_point_of_sales_pb.HoldOrderRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_data_KeyLayout(arg) {
   if (!(arg instanceof proto_point_of_sales_pb.KeyLayout)) {
     throw new Error('Expected argument of type data.KeyLayout');
@@ -847,6 +858,17 @@ function deserialize_data_RefundReference(buffer_arg) {
   return proto_point_of_sales_pb.RefundReference.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_data_ReleaseOrderRequest(arg) {
+  if (!(arg instanceof proto_point_of_sales_pb.ReleaseOrderRequest)) {
+    throw new Error('Expected argument of type data.ReleaseOrderRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_ReleaseOrderRequest(buffer_arg) {
+  return proto_point_of_sales_pb.ReleaseOrderRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_data_ReverseSalesRequest(arg) {
   if (!(arg instanceof proto_point_of_sales_pb.ReverseSalesRequest)) {
     throw new Error('Expected argument of type data.ReverseSalesRequest');
@@ -1065,6 +1087,30 @@ updateOrder: {
     responseType: proto_point_of_sales_pb.Order,
     requestSerialize: serialize_data_UpdateOrderRequest,
     requestDeserialize: deserialize_data_UpdateOrderRequest,
+    responseSerialize: serialize_data_Order,
+    responseDeserialize: deserialize_data_Order,
+  },
+  // 	Release Order
+releaseOrder: {
+    path: '/data.Store/ReleaseOrder',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_point_of_sales_pb.ReleaseOrderRequest,
+    responseType: proto_point_of_sales_pb.Order,
+    requestSerialize: serialize_data_ReleaseOrderRequest,
+    requestDeserialize: deserialize_data_ReleaseOrderRequest,
+    responseSerialize: serialize_data_Order,
+    responseDeserialize: deserialize_data_Order,
+  },
+  // 	Hold Order
+holdOrder: {
+    path: '/data.Store/HoldOrder',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_point_of_sales_pb.HoldOrderRequest,
+    responseType: proto_point_of_sales_pb.Order,
+    requestSerialize: serialize_data_HoldOrderRequest,
+    requestDeserialize: deserialize_data_HoldOrderRequest,
     responseSerialize: serialize_data_Order,
     responseDeserialize: deserialize_data_Order,
   },

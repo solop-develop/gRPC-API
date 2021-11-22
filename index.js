@@ -1967,6 +1967,40 @@
     this.getPosService().createOrder(request, callback)
   }
 
+  //  Release Sales Order
+  releaseOrder({
+    token,
+    posUuid,
+    orderUuid,
+    salesRepresentativeUuid,
+    language
+  }, callback) {
+    const { ReleaseOrderRequest } = require('./src/grpc/proto/point_of_sales_pb.js')
+    const request = new ReleaseOrderRequest()
+    request.setPosUuid(posUuid)
+    request.setOrderUuid(orderUuid)
+    request.setSalesRepresentativeUuid(salesRepresentativeUuid)
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getPosService().releaseOrder(request, callback)
+  }
+
+  //  Hold Sales Order
+  holdOrder({
+    token,
+    posUuid,
+    orderUuid,
+    salesRepresentativeUuid,
+    language
+  }, callback) {
+    const { HoldOrderRequest } = require('./src/grpc/proto/point_of_sales_pb.js')
+    const request = new HoldOrderRequest()
+    request.setPosUuid(posUuid)
+    request.setOrderUuid(orderUuid)
+    request.setSalesRepresentativeUuid(salesRepresentativeUuid)
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getPosService().holdOrder(request, callback)
+  }
+
   //  Delete Sales Order
   deleteOrder({
     token,
