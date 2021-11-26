@@ -42,29 +42,7 @@
     this.initDashboardService()
     this.initCoreService()
     this.initPosService()
-  }
-
-  //  Init service
-  initService() {
-    if(this.clientContext) {
-      return
-    }
-    const current = this
-    const language = this.language
-    this.login({
-      token: this.token
-    }, function(err, response) {
-      if(response) {
-        const { ClientRequest } = require('./src/grpc/proto/client_pb.js')
-        const client = new ClientRequest()
-        client.setSessionUuid(response.getUuid())
-        client.setLanguage(language)
-        current.setClientContext(client)
-        console.log('ADempiere Api Client Started')
-      } else if(err) {
-        console.log(err)
-      }
-    })
+    console.log('ADempiere Api Client Started')
   }
 
   //  Create Client request from token
@@ -196,16 +174,6 @@
     return this.dictionary
   }
 
-  //  Get Client Context
-  getClientContext() {
-    return this.clientContext
-  }
-
-  //  Set client context
-  setClientContext(context) {
-    this.clientContext = context
-  }
-
   //  Login with a user
   login({
     user,
@@ -322,11 +290,7 @@
   }, callback) {
     const { GetResourceRequest } = require('./src/grpc/proto/business_pb.js')
     const request = new GetResourceRequest()
-    if(token) {
-      request.setClientRequest(this.createClientRequest(token, language))
-    } else {
-      request.setClientRequest(this.getClientContext())
-    }
+    request.setClientRequest(this.createClientRequest(token, language))
     request.setResourceName(resourceName)
     request.setResourceUuid(resourceUuid)
     const stream = this.getUIService().getResource(request)
