@@ -198,6 +198,17 @@ function deserialize_data_CustomerBankAccount(buffer_arg) {
   return proto_point_of_sales_pb.CustomerBankAccount.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_data_DeallocateSellerRequest(arg) {
+  if (!(arg instanceof proto_point_of_sales_pb.DeallocateSellerRequest)) {
+    throw new Error('Expected argument of type data.DeallocateSellerRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_DeallocateSellerRequest(buffer_arg) {
+  return proto_point_of_sales_pb.DeallocateSellerRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_data_DeleteCustomerBankAccountRequest(arg) {
   if (!(arg instanceof proto_point_of_sales_pb.DeleteCustomerBankAccountRequest)) {
     throw new Error('Expected argument of type data.DeleteCustomerBankAccountRequest');
@@ -493,6 +504,28 @@ function serialize_data_ListAvailablePriceListResponse(arg) {
 
 function deserialize_data_ListAvailablePriceListResponse(buffer_arg) {
   return proto_point_of_sales_pb.ListAvailablePriceListResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_data_ListAvailableSellersRequest(arg) {
+  if (!(arg instanceof proto_point_of_sales_pb.ListAvailableSellersRequest)) {
+    throw new Error('Expected argument of type data.ListAvailableSellersRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_ListAvailableSellersRequest(buffer_arg) {
+  return proto_point_of_sales_pb.ListAvailableSellersRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_data_ListAvailableSellersResponse(arg) {
+  if (!(arg instanceof proto_point_of_sales_pb.ListAvailableSellersResponse)) {
+    throw new Error('Expected argument of type data.ListAvailableSellersResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_ListAvailableSellersResponse(buffer_arg) {
+  return proto_point_of_sales_pb.ListAvailableSellersResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_data_ListAvailableWarehousesRequest(arg) {
@@ -1319,6 +1352,18 @@ listAvailableDiscounts: {
     responseSerialize: serialize_data_ListAvailableDiscountsResponse,
     responseDeserialize: deserialize_data_ListAvailableDiscountsResponse,
   },
+  // 	List of Available Sellers
+listAvailableSellers: {
+    path: '/data.Store/ListAvailableSellers',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_point_of_sales_pb.ListAvailableSellersRequest,
+    responseType: proto_point_of_sales_pb.ListAvailableSellersResponse,
+    requestSerialize: serialize_data_ListAvailableSellersRequest,
+    requestDeserialize: deserialize_data_ListAvailableSellersRequest,
+    responseSerialize: serialize_data_ListAvailableSellersResponse,
+    responseDeserialize: deserialize_data_ListAvailableSellersResponse,
+  },
   // 	Customer
 // 	Create Customer
 createCustomer: {
@@ -1619,6 +1664,18 @@ allocateSeller: {
     responseType: proto_base_data_type_pb.Empty,
     requestSerialize: serialize_data_AllocateSellerRequest,
     requestDeserialize: deserialize_data_AllocateSellerRequest,
+    responseSerialize: serialize_data_Empty,
+    responseDeserialize: deserialize_data_Empty,
+  },
+  // 	Allocate Seller
+deallocateSeller: {
+    path: '/data.Store/DeallocateSeller',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_point_of_sales_pb.DeallocateSellerRequest,
+    responseType: proto_base_data_type_pb.Empty,
+    requestSerialize: serialize_data_DeallocateSellerRequest,
+    requestDeserialize: deserialize_data_DeallocateSellerRequest,
     responseSerialize: serialize_data_Empty,
     responseDeserialize: deserialize_data_Empty,
   },
