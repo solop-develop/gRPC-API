@@ -3057,6 +3057,7 @@
     routingNo,
     iban,
     isPayrollAccount,
+    accountNo,
     language
   }, callback) {
     const { CreateCustomerBankAccountRequest } = require('./src/grpc/proto/point_of_sales_pb.js')
@@ -3080,11 +3081,12 @@
     request.setIban(iban)
     request.setIsPayrollAccount(isPayrollAccount)
     request.setEmail(email)
+    request.setAccountNo(accountNo)
     request.setClientRequest(this.createClientRequest(token, language))
     this.getPosService().createCustomerBankAccount(request, callback)
   }
 
-  //  Create Customer Bank Account
+  //  Update Customer Bank Account
   updateCustomerBankAccount({
     token,
     customerBankAccountUuid,
@@ -3106,6 +3108,7 @@
     routingNo,
     iban,
     isPayrollAccount,
+    accountNo,
     language
   }, callback) {
     const { UpdateCustomerBankAccountRequest } = require('./src/grpc/proto/point_of_sales_pb.js')
@@ -3129,6 +3132,7 @@
     request.setIban(iban)
     request.setIsPayrollAccount(isPayrollAccount)
     request.setEmail(email)
+    request.setAccountNo(accountNo)
     request.setClientRequest(this.createClientRequest(token, language))
     this.getPosService().updateCustomerBankAccount(request, callback)
   }

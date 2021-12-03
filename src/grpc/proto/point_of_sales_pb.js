@@ -11753,7 +11753,8 @@ proto.data.CreateCustomerBankAccountRequest.toObject = function(includeInstance,
     zipVerified: jspb.Message.getFieldWithDefault(msg, 17, ""),
     routingNo: jspb.Message.getFieldWithDefault(msg, 18, ""),
     iban: jspb.Message.getFieldWithDefault(msg, 19, ""),
-    isPayrollAccount: jspb.Message.getBooleanFieldWithDefault(msg, 20, false)
+    isPayrollAccount: jspb.Message.getBooleanFieldWithDefault(msg, 20, false),
+    accountNo: jspb.Message.getFieldWithDefault(msg, 21, "")
   };
 
   if (includeInstance) {
@@ -11870,6 +11871,10 @@ proto.data.CreateCustomerBankAccountRequest.deserializeBinaryFromReader = functi
     case 20:
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setIsPayrollAccount(value);
+      break;
+    case 21:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setAccountNo(value);
       break;
     default:
       reader.skipField();
@@ -12038,6 +12043,13 @@ proto.data.CreateCustomerBankAccountRequest.serializeBinaryToWriter = function(m
   if (f) {
     writer.writeBool(
       20,
+      f
+    );
+  }
+  f = message.getAccountNo();
+  if (f.length > 0) {
+    writer.writeString(
+      21,
       f
     );
   }
@@ -12423,6 +12435,24 @@ proto.data.CreateCustomerBankAccountRequest.prototype.setIsPayrollAccount = func
 };
 
 
+/**
+ * optional string account_no = 21;
+ * @return {string}
+ */
+proto.data.CreateCustomerBankAccountRequest.prototype.getAccountNo = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 21, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.data.CreateCustomerBankAccountRequest} returns this
+ */
+proto.data.CreateCustomerBankAccountRequest.prototype.setAccountNo = function(value) {
+  return jspb.Message.setProto3StringField(this, 21, value);
+};
+
+
 
 
 
@@ -12473,7 +12503,8 @@ proto.data.UpdateCustomerBankAccountRequest.toObject = function(includeInstance,
     zipVerified: jspb.Message.getFieldWithDefault(msg, 16, ""),
     routingNo: jspb.Message.getFieldWithDefault(msg, 17, ""),
     iban: jspb.Message.getFieldWithDefault(msg, 18, ""),
-    isPayrollAccount: jspb.Message.getBooleanFieldWithDefault(msg, 19, false)
+    isPayrollAccount: jspb.Message.getBooleanFieldWithDefault(msg, 19, false),
+    accountNo: jspb.Message.getFieldWithDefault(msg, 20, "")
   };
 
   if (includeInstance) {
@@ -12586,6 +12617,10 @@ proto.data.UpdateCustomerBankAccountRequest.deserializeBinaryFromReader = functi
     case 19:
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setIsPayrollAccount(value);
+      break;
+    case 20:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setAccountNo(value);
       break;
     default:
       reader.skipField();
@@ -12747,6 +12782,13 @@ proto.data.UpdateCustomerBankAccountRequest.serializeBinaryToWriter = function(m
   if (f) {
     writer.writeBool(
       19,
+      f
+    );
+  }
+  f = message.getAccountNo();
+  if (f.length > 0) {
+    writer.writeString(
+      20,
       f
     );
   }
@@ -13111,6 +13153,24 @@ proto.data.UpdateCustomerBankAccountRequest.prototype.getIsPayrollAccount = func
  */
 proto.data.UpdateCustomerBankAccountRequest.prototype.setIsPayrollAccount = function(value) {
   return jspb.Message.setProto3BooleanField(this, 19, value);
+};
+
+
+/**
+ * optional string account_no = 20;
+ * @return {string}
+ */
+proto.data.UpdateCustomerBankAccountRequest.prototype.getAccountNo = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 20, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.data.UpdateCustomerBankAccountRequest} returns this
+ */
+proto.data.UpdateCustomerBankAccountRequest.prototype.setAccountNo = function(value) {
+  return jspb.Message.setProto3StringField(this, 20, value);
 };
 
 
@@ -13526,7 +13586,8 @@ proto.data.CustomerBankAccount.toObject = function(includeInstance, msg) {
     zipVerified: jspb.Message.getFieldWithDefault(msg, 16, ""),
     routingNo: jspb.Message.getFieldWithDefault(msg, 17, ""),
     iban: jspb.Message.getFieldWithDefault(msg, 18, ""),
-    isPayrollAccount: jspb.Message.getBooleanFieldWithDefault(msg, 19, false)
+    isPayrollAccount: jspb.Message.getBooleanFieldWithDefault(msg, 19, false),
+    accountNo: jspb.Message.getFieldWithDefault(msg, 20, "")
   };
 
   if (includeInstance) {
@@ -13638,6 +13699,10 @@ proto.data.CustomerBankAccount.deserializeBinaryFromReader = function(msg, reade
     case 19:
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setIsPayrollAccount(value);
+      break;
+    case 20:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setAccountNo(value);
       break;
     default:
       reader.skipField();
@@ -13798,6 +13863,13 @@ proto.data.CustomerBankAccount.serializeBinaryToWriter = function(message, write
   if (f) {
     writer.writeBool(
       19,
+      f
+    );
+  }
+  f = message.getAccountNo();
+  if (f.length > 0) {
+    writer.writeString(
+      20,
       f
     );
   }
@@ -14143,6 +14215,24 @@ proto.data.CustomerBankAccount.prototype.getIsPayrollAccount = function() {
  */
 proto.data.CustomerBankAccount.prototype.setIsPayrollAccount = function(value) {
   return jspb.Message.setProto3BooleanField(this, 19, value);
+};
+
+
+/**
+ * optional string account_no = 20;
+ * @return {string}
+ */
+proto.data.CustomerBankAccount.prototype.getAccountNo = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 20, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.data.CustomerBankAccount} returns this
+ */
+proto.data.CustomerBankAccount.prototype.setAccountNo = function(value) {
+  return jspb.Message.setProto3StringField(this, 20, value);
 };
 
 
