@@ -3218,6 +3218,27 @@
     this.getPosService().getAvailableRefund(request, callback)
   }
 
+  //  List Available Sellers
+  listAvailableSellers({
+    token,
+    posUuid,
+    isOnlyAllocated,
+    pageSize,
+    pageToken,
+    language
+  }, callback) {
+    const { ListAvailableSellersRequest } = require('./src/grpc/proto/point_of_sales_pb.js')
+    const request = new ListAvailableSellersRequest()
+    if (posUuid) {
+      request.setPosUuid(posUuid)
+    }
+    request.setIsOnlyAllocated(isOnlyAllocated)
+    request.setPageSize(pageSize)
+    request.setPageToken(pageToken)
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getPosService().listAvailableSellers(request, callback)
+  }
+
   //  Print Ticket
   printTicket({
     token,
