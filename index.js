@@ -1219,6 +1219,9 @@
       request.setTabUuid(tabUuid)
     }
     if(contextAttributes) {
+      if (contextAttributes.typeOfValue(filters) === 'String') {
+        contextAttributes = JSON.parse(filters);
+      }
       contextAttributes.forEach(attribute => {
         request.addContextAttributes(convertParameterToGRPC({
           columnName: attribute.key,
