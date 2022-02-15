@@ -132,6 +132,17 @@ function deserialize_data_CreateOrderRequest(buffer_arg) {
   return proto_point_of_sales_pb.CreateOrderRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_data_CreatePaymentReferenceRequest(arg) {
+  if (!(arg instanceof proto_point_of_sales_pb.CreatePaymentReferenceRequest)) {
+    throw new Error('Expected argument of type data.CreatePaymentReferenceRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_CreatePaymentReferenceRequest(buffer_arg) {
+  return proto_point_of_sales_pb.CreatePaymentReferenceRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_data_CreatePaymentRequest(arg) {
   if (!(arg instanceof proto_point_of_sales_pb.CreatePaymentRequest)) {
     throw new Error('Expected argument of type data.CreatePaymentRequest');
@@ -141,17 +152,6 @@ function serialize_data_CreatePaymentRequest(arg) {
 
 function deserialize_data_CreatePaymentRequest(buffer_arg) {
   return proto_point_of_sales_pb.CreatePaymentRequest.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
-function serialize_data_CreateRefundReferenceRequest(arg) {
-  if (!(arg instanceof proto_point_of_sales_pb.CreateRefundReferenceRequest)) {
-    throw new Error('Expected argument of type data.CreateRefundReferenceRequest');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_data_CreateRefundReferenceRequest(buffer_arg) {
-  return proto_point_of_sales_pb.CreateRefundReferenceRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_data_CreateShipmentLineRequest(arg) {
@@ -242,6 +242,17 @@ function deserialize_data_DeleteOrderRequest(buffer_arg) {
   return proto_point_of_sales_pb.DeleteOrderRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_data_DeletePaymentReferenceRequest(arg) {
+  if (!(arg instanceof proto_point_of_sales_pb.DeletePaymentReferenceRequest)) {
+    throw new Error('Expected argument of type data.DeletePaymentReferenceRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_DeletePaymentReferenceRequest(buffer_arg) {
+  return proto_point_of_sales_pb.DeletePaymentReferenceRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_data_DeletePaymentRequest(arg) {
   if (!(arg instanceof proto_point_of_sales_pb.DeletePaymentRequest)) {
     throw new Error('Expected argument of type data.DeletePaymentRequest');
@@ -251,17 +262,6 @@ function serialize_data_DeletePaymentRequest(arg) {
 
 function deserialize_data_DeletePaymentRequest(buffer_arg) {
   return proto_point_of_sales_pb.DeletePaymentRequest.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
-function serialize_data_DeleteRefundReferenceRequest(arg) {
-  if (!(arg instanceof proto_point_of_sales_pb.DeleteRefundReferenceRequest)) {
-    throw new Error('Expected argument of type data.DeleteRefundReferenceRequest');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_data_DeleteRefundReferenceRequest(buffer_arg) {
-  return proto_point_of_sales_pb.DeleteRefundReferenceRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_data_DeleteShipmentLineRequest(arg) {
@@ -660,6 +660,28 @@ function deserialize_data_ListOrdersResponse(buffer_arg) {
   return proto_point_of_sales_pb.ListOrdersResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_data_ListPaymentReferencesRequest(arg) {
+  if (!(arg instanceof proto_point_of_sales_pb.ListPaymentReferencesRequest)) {
+    throw new Error('Expected argument of type data.ListPaymentReferencesRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_ListPaymentReferencesRequest(buffer_arg) {
+  return proto_point_of_sales_pb.ListPaymentReferencesRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_data_ListPaymentReferencesResponse(arg) {
+  if (!(arg instanceof proto_point_of_sales_pb.ListPaymentReferencesResponse)) {
+    throw new Error('Expected argument of type data.ListPaymentReferencesResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_ListPaymentReferencesResponse(buffer_arg) {
+  return proto_point_of_sales_pb.ListPaymentReferencesResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_data_ListPaymentsRequest(arg) {
   if (!(arg instanceof proto_point_of_sales_pb.ListPaymentsRequest)) {
     throw new Error('Expected argument of type data.ListPaymentsRequest');
@@ -726,28 +748,6 @@ function deserialize_data_ListProductPriceResponse(buffer_arg) {
   return proto_point_of_sales_pb.ListProductPriceResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_data_ListRefundReferencesRequest(arg) {
-  if (!(arg instanceof proto_point_of_sales_pb.ListRefundReferencesRequest)) {
-    throw new Error('Expected argument of type data.ListRefundReferencesRequest');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_data_ListRefundReferencesRequest(buffer_arg) {
-  return proto_point_of_sales_pb.ListRefundReferencesRequest.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
-function serialize_data_ListRefundReferencesResponse(arg) {
-  if (!(arg instanceof proto_point_of_sales_pb.ListRefundReferencesResponse)) {
-    throw new Error('Expected argument of type data.ListRefundReferencesResponse');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_data_ListRefundReferencesResponse(buffer_arg) {
-  return proto_point_of_sales_pb.ListRefundReferencesResponse.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
 function serialize_data_ListShipmentLinesRequest(arg) {
   if (!(arg instanceof proto_point_of_sales_pb.ListShipmentLinesRequest)) {
     throw new Error('Expected argument of type data.ListShipmentLinesRequest');
@@ -801,6 +801,17 @@ function serialize_data_Payment(arg) {
 
 function deserialize_data_Payment(buffer_arg) {
   return proto_point_of_sales_pb.Payment.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_data_PaymentReference(arg) {
+  if (!(arg instanceof proto_point_of_sales_pb.PaymentReference)) {
+    throw new Error('Expected argument of type data.PaymentReference');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_PaymentReference(buffer_arg) {
+  return proto_point_of_sales_pb.PaymentReference.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_data_PointOfSales(arg) {
@@ -878,17 +889,6 @@ function serialize_data_ProductPrice(arg) {
 
 function deserialize_data_ProductPrice(buffer_arg) {
   return proto_core_functionality_pb.ProductPrice.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
-function serialize_data_RefundReference(arg) {
-  if (!(arg instanceof proto_point_of_sales_pb.RefundReference)) {
-    throw new Error('Expected argument of type data.RefundReference');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_data_RefundReference(buffer_arg) {
-  return proto_point_of_sales_pb.RefundReference.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_data_ReleaseOrderRequest(arg) {
@@ -1680,40 +1680,40 @@ deallocateSeller: {
     responseDeserialize: deserialize_data_Empty,
   },
   // 	Create Refund Reference
-createRefundReference: {
-    path: '/data.Store/CreateRefundReference',
+createPaymentReference: {
+    path: '/data.Store/CreatePaymentReference',
     requestStream: false,
     responseStream: false,
-    requestType: proto_point_of_sales_pb.CreateRefundReferenceRequest,
-    responseType: proto_point_of_sales_pb.RefundReference,
-    requestSerialize: serialize_data_CreateRefundReferenceRequest,
-    requestDeserialize: deserialize_data_CreateRefundReferenceRequest,
-    responseSerialize: serialize_data_RefundReference,
-    responseDeserialize: deserialize_data_RefundReference,
+    requestType: proto_point_of_sales_pb.CreatePaymentReferenceRequest,
+    responseType: proto_point_of_sales_pb.PaymentReference,
+    requestSerialize: serialize_data_CreatePaymentReferenceRequest,
+    requestDeserialize: deserialize_data_CreatePaymentReferenceRequest,
+    responseSerialize: serialize_data_PaymentReference,
+    responseDeserialize: deserialize_data_PaymentReference,
   },
   // 	Delete Refund Reference
-deleteRefundReference: {
-    path: '/data.Store/DeleteRefundReference',
+deletePaymentReference: {
+    path: '/data.Store/DeletePaymentReference',
     requestStream: false,
     responseStream: false,
-    requestType: proto_point_of_sales_pb.DeleteRefundReferenceRequest,
+    requestType: proto_point_of_sales_pb.DeletePaymentReferenceRequest,
     responseType: proto_base_data_type_pb.Empty,
-    requestSerialize: serialize_data_DeleteRefundReferenceRequest,
-    requestDeserialize: deserialize_data_DeleteRefundReferenceRequest,
+    requestSerialize: serialize_data_DeletePaymentReferenceRequest,
+    requestDeserialize: deserialize_data_DeletePaymentReferenceRequest,
     responseSerialize: serialize_data_Empty,
     responseDeserialize: deserialize_data_Empty,
   },
   // 	List Refund References
-listRefundReferences: {
-    path: '/data.Store/ListRefundReferences',
+listPaymentReferences: {
+    path: '/data.Store/ListPaymentReferences',
     requestStream: false,
     responseStream: false,
-    requestType: proto_point_of_sales_pb.ListRefundReferencesRequest,
-    responseType: proto_point_of_sales_pb.ListRefundReferencesResponse,
-    requestSerialize: serialize_data_ListRefundReferencesRequest,
-    requestDeserialize: deserialize_data_ListRefundReferencesRequest,
-    responseSerialize: serialize_data_ListRefundReferencesResponse,
-    responseDeserialize: deserialize_data_ListRefundReferencesResponse,
+    requestType: proto_point_of_sales_pb.ListPaymentReferencesRequest,
+    responseType: proto_point_of_sales_pb.ListPaymentReferencesResponse,
+    requestSerialize: serialize_data_ListPaymentReferencesRequest,
+    requestDeserialize: deserialize_data_ListPaymentReferencesRequest,
+    responseSerialize: serialize_data_ListPaymentReferencesResponse,
+    responseDeserialize: deserialize_data_ListPaymentReferencesResponse,
   },
 };
 

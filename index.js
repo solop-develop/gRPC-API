@@ -2357,14 +2357,17 @@
   }
 
   //  Create Payment Refund Reference
-  createRefundReference({
+  createPaymentReference({
     token,
     posUuid,
     orderUuid,
     salesRepresentativeUuid,
     customerBankAccountUuid,
+    customerUuid,
     description,
     amount,
+    sourceAmount,
+    isReceipt,
     paymentDate,
     paymentAccountDate,
     tenderTypeCode,
@@ -2373,9 +2376,9 @@
     paymentMethodUuid,
     language
   }, callback) {
-    const { CreateRefundReferenceRequest } = require('./src/grpc/proto/point_of_sales_pb.js')
+    const { CreatePaymentReferenceRequest } = require('./src/grpc/proto/point_of_sales_pb.js')
     const { getDecimalFromNumber } = require('./lib/convertValues.js')
-    const request = new CreateRefundReferenceRequest()
+    const request = new CreatePaymentReferenceRequest()
     request.setPosUuid(posUuid)
     request.setOrderUuid(orderUuid)
     if(salesRepresentativeUuid) {
@@ -2384,6 +2387,7 @@
     if(customerBankAccountUuid) {
       request.setCustomerBankAccountUuid(customerBankAccountUuid)
     }
+    request.setCustomerUuid(customerUuid)
     if (description) {
       request.setDescription(description)
     }
@@ -2402,6 +2406,10 @@
     if(amount) {
       request.setAmount(getDecimalFromNumber(amount))
     }
+    if(sourceAmount) {
+      request.setSourceAmount(getDecimalFromNumber(sourceAmount))
+    }
+    request.setIsReceipt(isReceipt)
     //  Date of Payment
     if (paymentDate) {
       request.setPaymentDate(paymentDate)
@@ -2410,7 +2418,7 @@
       request.setPaymentAccountDate(paymentAccountDate)
     }
     request.setClientRequest(this.createClientRequest(token, language))
-    this.getPosService().createRefundReference(request, callback)
+    this.getPosService().createPaymentReference(request, callback)
   }
 
   //  Update Payment
@@ -2637,6 +2645,21 @@
     this.getPosService().allocateSeller(request, callback)
   }
 
+  //  deallocate Seller
+  deallocateSeller({
+    token,
+    posUuid,
+    salesRepresentativeUuid,
+    language
+  }, callback) {
+    const { DeallocateSellerRequest } = require('./src/grpc/proto/point_of_sales_pb.js')
+    const request = new DeallocateSellerRequest()
+    request.setPosUuid(posUuid)
+    request.setSalesRepresentativeUuid(salesRepresentativeUuid)
+    request.setClientRequest(this.createClientRequest(token, language))
+    this.getPosService().allocateSeller(request, callback)
+  }
+
   //  Delete Payment
   deletePayment({
     token,
@@ -2651,18 +2674,18 @@
   }
 
   //  Delete Refund Reference
-  deleteRefundReference({
+  deletePaymentReference({
     token,
     uuid,
     id,
     language
   }, callback) {
-    const { DeleteRefundReferenceRequest } = require('./src/grpc/proto/point_of_sales_pb.js')
-    const request = new DeleteRefundReferenceRequest()
+    const { DeletePaymentReferenceRequest } = require('./src/grpc/proto/point_of_sales_pb.js')
+    const request = new DeletePaymentReferenceRequest()
     request.setUuid(uuid)
     request.setId(id)
     request.setClientRequest(this.createClientRequest(token, language))
-    this.getPosService().deleteRefundReference(request, callback)
+    this.getPosService().deletePaymentReference(request, callback)
   }
 
   //  List Payments
@@ -3184,7 +3207,7 @@
   }
 
   //  List Customer Refund References
-  listRefundReferences({
+  listPaymentReferences({
     token,
     posUuid,
     orderUuid,
@@ -3193,15 +3216,15 @@
     pageToken,
     language
   }, callback) {
-    const { ListRefundReferencesRequest } = require('./src/grpc/proto/point_of_sales_pb.js')
-    const request = new ListRefundReferencesRequest()
+    const { ListPaymentReferencesRequest } = require('./src/grpc/proto/point_of_sales_pb.js')
+    const request = new ListPaymentReferencesRequest()
     request.setCustomerUuid(customerUuid)
     request.setPosUuid(posUuid)
     request.setOrderUuid(orderUuid)
     request.setPageSize(pageSize)
     request.setPageToken(pageToken)
     request.setClientRequest(this.createClientRequest(token, language))
-    this.getPosService().listRefundReferences(request, callback)
+    this.getPosService().listPaymentReferences(request, callback)
   }
 
   //  Get Available Refund
@@ -3235,7 +3258,9 @@
     if (posUuid) {
       request.setPosUuid(posUuid)
     }
-    request.setIsOnlyAllocated(isOnlyAllocated)
+    if(isOnlyAllocated) {
+      request.setIsOnlyAllocated(isOnlyAllocated)
+    }
     request.setPageSize(pageSize)
     request.setPageToken(pageToken)
     request.setClientRequest(this.createClientRequest(token, language))
