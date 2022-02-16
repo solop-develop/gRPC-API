@@ -4116,7 +4116,7 @@ proto.data.Entity.prototype.clearValuesMap = function() {
  * @private {!Array<number>}
  * @const
  */
-proto.data.ProcessLog.repeatedFields_ = [8];
+proto.data.ProcessLog.repeatedFields_ = [10];
 
 
 
@@ -4150,12 +4150,14 @@ proto.data.ProcessLog.prototype.toObject = function(opt_includeInstance) {
 proto.data.ProcessLog.toObject = function(includeInstance, msg) {
   var f, obj = {
     uuid: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    instanceUuid: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    isError: jspb.Message.getBooleanFieldWithDefault(msg, 3, false),
-    summary: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    resultTableName: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    isProcessing: jspb.Message.getBooleanFieldWithDefault(msg, 6, false),
-    lastRun: jspb.Message.getFieldWithDefault(msg, 7, 0),
+    name: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    description: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    instanceUuid: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    isError: jspb.Message.getBooleanFieldWithDefault(msg, 5, false),
+    summary: jspb.Message.getFieldWithDefault(msg, 6, ""),
+    resultTableName: jspb.Message.getFieldWithDefault(msg, 7, ""),
+    isProcessing: jspb.Message.getBooleanFieldWithDefault(msg, 8, false),
+    lastRun: jspb.Message.getFieldWithDefault(msg, 9, 0),
     logsList: jspb.Message.toObjectList(msg.getLogsList(),
     proto.data.ProcessInfoLog.toObject, includeInstance),
     parametersMap: (f = msg.getParametersMap()) ? f.toObject(includeInstance, proto.data.Value.toObject) : [],
@@ -4202,40 +4204,48 @@ proto.data.ProcessLog.deserializeBinaryFromReader = function(msg, reader) {
       break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
-      msg.setInstanceUuid(value);
+      msg.setName(value);
       break;
     case 3:
-      var value = /** @type {boolean} */ (reader.readBool());
-      msg.setIsError(value);
+      var value = /** @type {string} */ (reader.readString());
+      msg.setDescription(value);
       break;
     case 4:
       var value = /** @type {string} */ (reader.readString());
-      msg.setSummary(value);
+      msg.setInstanceUuid(value);
       break;
     case 5:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setIsError(value);
+      break;
+    case 6:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setSummary(value);
+      break;
+    case 7:
       var value = /** @type {string} */ (reader.readString());
       msg.setResultTableName(value);
       break;
-    case 6:
+    case 8:
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setIsProcessing(value);
       break;
-    case 7:
+    case 9:
       var value = /** @type {number} */ (reader.readInt64());
       msg.setLastRun(value);
       break;
-    case 8:
+    case 10:
       var value = new proto.data.ProcessInfoLog;
       reader.readMessage(value,proto.data.ProcessInfoLog.deserializeBinaryFromReader);
       msg.addLogs(value);
       break;
-    case 9:
+    case 11:
       var value = msg.getParametersMap();
       reader.readMessage(value, function(message, reader) {
         jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readMessage, proto.data.Value.deserializeBinaryFromReader, "", new proto.data.Value());
          });
       break;
-    case 10:
+    case 12:
       var value = new proto.data.ReportOutput;
       reader.readMessage(value,proto.data.ReportOutput.deserializeBinaryFromReader);
       msg.setOutput(value);
@@ -4276,64 +4286,78 @@ proto.data.ProcessLog.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-  f = message.getInstanceUuid();
+  f = message.getName();
   if (f.length > 0) {
     writer.writeString(
       2,
       f
     );
   }
-  f = message.getIsError();
-  if (f) {
-    writer.writeBool(
+  f = message.getDescription();
+  if (f.length > 0) {
+    writer.writeString(
       3,
       f
     );
   }
-  f = message.getSummary();
+  f = message.getInstanceUuid();
   if (f.length > 0) {
     writer.writeString(
       4,
       f
     );
   }
+  f = message.getIsError();
+  if (f) {
+    writer.writeBool(
+      5,
+      f
+    );
+  }
+  f = message.getSummary();
+  if (f.length > 0) {
+    writer.writeString(
+      6,
+      f
+    );
+  }
   f = message.getResultTableName();
   if (f.length > 0) {
     writer.writeString(
-      5,
+      7,
       f
     );
   }
   f = message.getIsProcessing();
   if (f) {
     writer.writeBool(
-      6,
+      8,
       f
     );
   }
   f = message.getLastRun();
   if (f !== 0) {
     writer.writeInt64(
-      7,
+      9,
       f
     );
   }
   f = message.getLogsList();
   if (f.length > 0) {
     writer.writeRepeatedMessage(
-      8,
+      10,
       f,
       proto.data.ProcessInfoLog.serializeBinaryToWriter
     );
   }
   f = message.getParametersMap(true);
   if (f && f.getLength() > 0) {
-    f.serializeBinary(9, writer, jspb.BinaryWriter.prototype.writeString, jspb.BinaryWriter.prototype.writeMessage, proto.data.Value.serializeBinaryToWriter);
+    f.serializeBinary(11, writer, jspb.BinaryWriter.prototype.writeString, jspb.BinaryWriter.prototype.writeMessage, proto.data.Value.serializeBinaryToWriter);
   }
   f = message.getOutput();
   if (f != null) {
     writer.writeMessage(
-      10,
+      12,
       f,
       proto.data.ReportOutput.serializeBinaryToWriter
     );
@@ -4360,10 +4384,10 @@ proto.data.ProcessLog.prototype.setUuid = function(value) {
 
 
 /**
- * optional string instance_uuid = 2;
+ * optional string name = 2;
  * @return {string}
  */
-proto.data.ProcessLog.prototype.getInstanceUuid = function() {
+proto.data.ProcessLog.prototype.getName = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
@@ -4372,34 +4396,34 @@ proto.data.ProcessLog.prototype.getInstanceUuid = function() {
  * @param {string} value
  * @return {!proto.data.ProcessLog} returns this
  */
-proto.data.ProcessLog.prototype.setInstanceUuid = function(value) {
+proto.data.ProcessLog.prototype.setName = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
 /**
- * optional bool is_error = 3;
- * @return {boolean}
- */
-proto.data.ProcessLog.prototype.getIsError = function() {
-  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 3, false));
-};
-
-
-/**
- * @param {boolean} value
- * @return {!proto.data.ProcessLog} returns this
- */
-proto.data.ProcessLog.prototype.setIsError = function(value) {
-  return jspb.Message.setProto3BooleanField(this, 3, value);
-};
-
-
-/**
- * optional string summary = 4;
+ * optional string description = 3;
  * @return {string}
  */
-proto.data.ProcessLog.prototype.getSummary = function() {
+proto.data.ProcessLog.prototype.getDescription = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.data.ProcessLog} returns this
+ */
+proto.data.ProcessLog.prototype.setDescription = function(value) {
+  return jspb.Message.setProto3StringField(this, 3, value);
+};
+
+
+/**
+ * optional string instance_uuid = 4;
+ * @return {string}
+ */
+proto.data.ProcessLog.prototype.getInstanceUuid = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
 };
 
@@ -4408,17 +4432,53 @@ proto.data.ProcessLog.prototype.getSummary = function() {
  * @param {string} value
  * @return {!proto.data.ProcessLog} returns this
  */
-proto.data.ProcessLog.prototype.setSummary = function(value) {
+proto.data.ProcessLog.prototype.setInstanceUuid = function(value) {
   return jspb.Message.setProto3StringField(this, 4, value);
 };
 
 
 /**
- * optional string result_table_name = 5;
+ * optional bool is_error = 5;
+ * @return {boolean}
+ */
+proto.data.ProcessLog.prototype.getIsError = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 5, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.data.ProcessLog} returns this
+ */
+proto.data.ProcessLog.prototype.setIsError = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 5, value);
+};
+
+
+/**
+ * optional string summary = 6;
+ * @return {string}
+ */
+proto.data.ProcessLog.prototype.getSummary = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.data.ProcessLog} returns this
+ */
+proto.data.ProcessLog.prototype.setSummary = function(value) {
+  return jspb.Message.setProto3StringField(this, 6, value);
+};
+
+
+/**
+ * optional string result_table_name = 7;
  * @return {string}
  */
 proto.data.ProcessLog.prototype.getResultTableName = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 7, ""));
 };
 
 
@@ -4427,16 +4487,16 @@ proto.data.ProcessLog.prototype.getResultTableName = function() {
  * @return {!proto.data.ProcessLog} returns this
  */
 proto.data.ProcessLog.prototype.setResultTableName = function(value) {
-  return jspb.Message.setProto3StringField(this, 5, value);
+  return jspb.Message.setProto3StringField(this, 7, value);
 };
 
 
 /**
- * optional bool is_processing = 6;
+ * optional bool is_processing = 8;
  * @return {boolean}
  */
 proto.data.ProcessLog.prototype.getIsProcessing = function() {
-  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 6, false));
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 8, false));
 };
 
 
@@ -4445,16 +4505,16 @@ proto.data.ProcessLog.prototype.getIsProcessing = function() {
  * @return {!proto.data.ProcessLog} returns this
  */
 proto.data.ProcessLog.prototype.setIsProcessing = function(value) {
-  return jspb.Message.setProto3BooleanField(this, 6, value);
+  return jspb.Message.setProto3BooleanField(this, 8, value);
 };
 
 
 /**
- * optional int64 last_run = 7;
+ * optional int64 last_run = 9;
  * @return {number}
  */
 proto.data.ProcessLog.prototype.getLastRun = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 7, 0));
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 9, 0));
 };
 
 
@@ -4463,17 +4523,17 @@ proto.data.ProcessLog.prototype.getLastRun = function() {
  * @return {!proto.data.ProcessLog} returns this
  */
 proto.data.ProcessLog.prototype.setLastRun = function(value) {
-  return jspb.Message.setProto3IntField(this, 7, value);
+  return jspb.Message.setProto3IntField(this, 9, value);
 };
 
 
 /**
- * repeated ProcessInfoLog logs = 8;
+ * repeated ProcessInfoLog logs = 10;
  * @return {!Array<!proto.data.ProcessInfoLog>}
  */
 proto.data.ProcessLog.prototype.getLogsList = function() {
   return /** @type{!Array<!proto.data.ProcessInfoLog>} */ (
-    jspb.Message.getRepeatedWrapperField(this, proto.data.ProcessInfoLog, 8));
+    jspb.Message.getRepeatedWrapperField(this, proto.data.ProcessInfoLog, 10));
 };
 
 
@@ -4482,7 +4542,7 @@ proto.data.ProcessLog.prototype.getLogsList = function() {
  * @return {!proto.data.ProcessLog} returns this
 */
 proto.data.ProcessLog.prototype.setLogsList = function(value) {
-  return jspb.Message.setRepeatedWrapperField(this, 8, value);
+  return jspb.Message.setRepeatedWrapperField(this, 10, value);
 };
 
 
@@ -4492,7 +4552,7 @@ proto.data.ProcessLog.prototype.setLogsList = function(value) {
  * @return {!proto.data.ProcessInfoLog}
  */
 proto.data.ProcessLog.prototype.addLogs = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(this, 8, opt_value, proto.data.ProcessInfoLog, opt_index);
+  return jspb.Message.addToRepeatedWrapperField(this, 10, opt_value, proto.data.ProcessInfoLog, opt_index);
 };
 
 
@@ -4506,14 +4566,14 @@ proto.data.ProcessLog.prototype.clearLogsList = function() {
 
 
 /**
- * map<string, Value> parameters = 9;
+ * map<string, Value> parameters = 11;
  * @param {boolean=} opt_noLazyCreate Do not create the map if
  * empty, instead returning `undefined`
  * @return {!jspb.Map<string,!proto.data.Value>}
  */
 proto.data.ProcessLog.prototype.getParametersMap = function(opt_noLazyCreate) {
   return /** @type {!jspb.Map<string,!proto.data.Value>} */ (
-      jspb.Message.getMapField(this, 9, opt_noLazyCreate,
+      jspb.Message.getMapField(this, 11, opt_noLazyCreate,
       proto.data.Value));
 };
 
@@ -4528,12 +4588,12 @@ proto.data.ProcessLog.prototype.clearParametersMap = function() {
 
 
 /**
- * optional ReportOutput output = 10;
+ * optional ReportOutput output = 12;
  * @return {?proto.data.ReportOutput}
  */
 proto.data.ProcessLog.prototype.getOutput = function() {
   return /** @type{?proto.data.ReportOutput} */ (
-    jspb.Message.getWrapperField(this, proto.data.ReportOutput, 10));
+    jspb.Message.getWrapperField(this, proto.data.ReportOutput, 12));
 };
 
 
@@ -4542,7 +4602,7 @@ proto.data.ProcessLog.prototype.getOutput = function() {
  * @return {!proto.data.ProcessLog} returns this
 */
 proto.data.ProcessLog.prototype.setOutput = function(value) {
-  return jspb.Message.setWrapperField(this, 10, value);
+  return jspb.Message.setWrapperField(this, 12, value);
 };
 
 
@@ -4560,7 +4620,7 @@ proto.data.ProcessLog.prototype.clearOutput = function() {
  * @return {boolean}
  */
 proto.data.ProcessLog.prototype.hasOutput = function() {
-  return jspb.Message.getField(this, 10) != null;
+  return jspb.Message.getField(this, 12) != null;
 };
 
 
