@@ -720,27 +720,33 @@
     limit,
     language
   }, callback) {
-    const { GetReportOutputRequest } = require('./src/grpc/proto/business_pb.js')
-    const request = new GetReportOutputRequest()
+    const { GetReportOutputRequest } = require('./src/grpc/proto/business_pb.js');
+    const request = new GetReportOutputRequest();
     const { convertCriteriaToGRPC } = require('./lib/convertValues.js');
-    //  TODO: Add support to all parameters
-    request.setCriteria(convertCriteriaToGRPC({
-      tableName,
-      filters,
-      query,
-      whereClause,
-      orderByClause,
-      limit
-    }))
+
+    request.setCriteria(
+      convertCriteriaToGRPC({
+        tableName,
+        filters,
+        query,
+        whereClause,
+        orderByClause,
+        limit
+      })
+    );
+
     //
-    request.setPrintFormatUuid(printFormatUuid)
-    request.setReportViewUuid(reportViewUuid)
-    request.setIsSummary(isSummary)
-    request.setReportName(reportName)
-    request.setReportType(reportType)
-    request.setTableName(tableName)
-    request.setClientRequest(this.createClientRequest(token, language))
-    this.getUIService().getReportOutput(request, callback)
+    if (!this.isEmptyValue(printFormatUuid)) {
+      request.setPrintFormatUuid(printFormatUuid);
+    }
+    if (!this.isEmptyValue(reportViewUuid)) {
+      request.setReportViewUuid(reportViewUuid);
+    }
+    request.setIsSummary(isSummary);
+    request.setReportName(reportName);
+    request.setReportType(reportType);
+    request.setClientRequest(this.createClientRequest(token, language));
+    this.getUIService().getReportOutput(request, callback);
   }
 
   //  List Drill Tables
@@ -2256,7 +2262,7 @@
   processShipment({
     token,
     shipmentUuid,
-    description, 
+    description,
     documentAction,
     language
   }, callback) {
@@ -2274,7 +2280,7 @@
     token,
     posUuid,
     orderUuid,
-    description, 
+    description,
     language
   }, callback) {
     const { ReverseSalesRequest } = require('./src/grpc/proto/point_of_sales_pb.js')
@@ -2858,7 +2864,7 @@
     request.setClientRequest(this.createClientRequest(token, language))
     this.getPosService().listAvailablePaymentMethods(request, callback)
   }
-  
+
   //  List Available Price List
   listAvailablePriceList({
     token,
@@ -3047,7 +3053,7 @@
     request.setClientRequest(this.createClientRequest(token, language))
     this.getPosService().getCustomer(request, callback)
   }
-  
+
   //  Get Customer Bank Account
   getCustomerBankAccount({
     token,
