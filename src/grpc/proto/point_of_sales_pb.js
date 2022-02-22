@@ -1036,7 +1036,7 @@ if (goog.DEBUG && !COMPILED) {
  * @constructor
  */
 proto.data.AddressRequest = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.data.AddressRequest.repeatedFields_, null);
 };
 goog.inherits(proto.data.AddressRequest, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -4397,7 +4397,9 @@ proto.data.PaymentReference.toObject = function(includeInstance, msg) {
     orderUuid: jspb.Message.getFieldWithDefault(msg, 13, ""),
     isPaid: jspb.Message.getBooleanFieldWithDefault(msg, 14, false),
     isReceipt: jspb.Message.getBooleanFieldWithDefault(msg, 15, false),
-    sourceAmount: (f = msg.getSourceAmount()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f)
+    sourceAmount: (f = msg.getSourceAmount()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
+    isAutomatic: jspb.Message.getBooleanFieldWithDefault(msg, 17, false),
+    isProcessed: jspb.Message.getBooleanFieldWithDefault(msg, 18, false)
   };
 
   if (includeInstance) {
@@ -4501,6 +4503,14 @@ proto.data.PaymentReference.deserializeBinaryFromReader = function(msg, reader) 
       var value = new proto_base_data_type_pb.Decimal;
       reader.readMessage(value,proto_base_data_type_pb.Decimal.deserializeBinaryFromReader);
       msg.setSourceAmount(value);
+      break;
+    case 17:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setIsAutomatic(value);
+      break;
+    case 18:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setIsProcessed(value);
       break;
     default:
       reader.skipField();
@@ -4645,6 +4655,20 @@ proto.data.PaymentReference.serializeBinaryToWriter = function(message, writer) 
       16,
       f,
       proto_base_data_type_pb.Decimal.serializeBinaryToWriter
+    );
+  }
+  f = message.getIsAutomatic();
+  if (f) {
+    writer.writeBool(
+      17,
+      f
+    );
+  }
+  f = message.getIsProcessed();
+  if (f) {
+    writer.writeBool(
+      18,
+      f
     );
   }
 };
@@ -5011,6 +5035,42 @@ proto.data.PaymentReference.prototype.clearSourceAmount = function() {
  */
 proto.data.PaymentReference.prototype.hasSourceAmount = function() {
   return jspb.Message.getField(this, 16) != null;
+};
+
+
+/**
+ * optional bool is_automatic = 17;
+ * @return {boolean}
+ */
+proto.data.PaymentReference.prototype.getIsAutomatic = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 17, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.data.PaymentReference} returns this
+ */
+proto.data.PaymentReference.prototype.setIsAutomatic = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 17, value);
+};
+
+
+/**
+ * optional bool is_processed = 18;
+ * @return {boolean}
+ */
+proto.data.PaymentReference.prototype.getIsProcessed = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 18, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.data.PaymentReference} returns this
+ */
+proto.data.PaymentReference.prototype.setIsProcessed = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 18, value);
 };
 
 
@@ -15373,6 +15433,13 @@ proto.data.TenderTypeRefund.prototype.hasRefund = function() {
 
 
 
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.data.AddressRequest.repeatedFields_ = [21];
+
 
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
@@ -15423,7 +15490,9 @@ proto.data.AddressRequest.toObject = function(includeInstance, msg) {
     isDefaultShipping: jspb.Message.getBooleanFieldWithDefault(msg, 17, false),
     contactName: jspb.Message.getFieldWithDefault(msg, 18, ""),
     email: jspb.Message.getFieldWithDefault(msg, 19, ""),
-    phone: jspb.Message.getFieldWithDefault(msg, 20, "")
+    phone: jspb.Message.getFieldWithDefault(msg, 20, ""),
+    additionalAttributesList: jspb.Message.toObjectList(msg.getAdditionalAttributesList(),
+    proto_base_data_type_pb.KeyValue.toObject, includeInstance)
   };
 
   if (includeInstance) {
@@ -15539,6 +15608,11 @@ proto.data.AddressRequest.deserializeBinaryFromReader = function(msg, reader) {
     case 20:
       var value = /** @type {string} */ (reader.readString());
       msg.setPhone(value);
+      break;
+    case 21:
+      var value = new proto_base_data_type_pb.KeyValue;
+      reader.readMessage(value,proto_base_data_type_pb.KeyValue.deserializeBinaryFromReader);
+      msg.addAdditionalAttributes(value);
       break;
     default:
       reader.skipField();
@@ -15707,6 +15781,14 @@ proto.data.AddressRequest.serializeBinaryToWriter = function(message, writer) {
     writer.writeString(
       20,
       f
+    );
+  }
+  f = message.getAdditionalAttributesList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      21,
+      f,
+      proto_base_data_type_pb.KeyValue.serializeBinaryToWriter
     );
   }
 };
@@ -16072,13 +16154,51 @@ proto.data.AddressRequest.prototype.setPhone = function(value) {
 };
 
 
+/**
+ * repeated KeyValue additional_attributes = 21;
+ * @return {!Array<!proto.data.KeyValue>}
+ */
+proto.data.AddressRequest.prototype.getAdditionalAttributesList = function() {
+  return /** @type{!Array<!proto.data.KeyValue>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto_base_data_type_pb.KeyValue, 21));
+};
+
+
+/**
+ * @param {!Array<!proto.data.KeyValue>} value
+ * @return {!proto.data.AddressRequest} returns this
+*/
+proto.data.AddressRequest.prototype.setAdditionalAttributesList = function(value) {
+  return jspb.Message.setRepeatedWrapperField(this, 21, value);
+};
+
+
+/**
+ * @param {!proto.data.KeyValue=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.data.KeyValue}
+ */
+proto.data.AddressRequest.prototype.addAdditionalAttributes = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 21, opt_value, proto.data.KeyValue, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.data.AddressRequest} returns this
+ */
+proto.data.AddressRequest.prototype.clearAdditionalAttributesList = function() {
+  return this.setAdditionalAttributesList([]);
+};
+
+
 
 /**
  * List of repeated fields within this message type.
  * @private {!Array<number>}
  * @const
  */
-proto.data.CreateCustomerRequest.repeatedFields_ = [14];
+proto.data.CreateCustomerRequest.repeatedFields_ = [14,15];
 
 
 
@@ -16122,7 +16242,9 @@ proto.data.CreateCustomerRequest.toObject = function(includeInstance, msg) {
     businessPartnerGroupUuid: jspb.Message.getFieldWithDefault(msg, 12, ""),
     posUuid: jspb.Message.getFieldWithDefault(msg, 13, ""),
     addressesList: jspb.Message.toObjectList(msg.getAddressesList(),
-    proto.data.AddressRequest.toObject, includeInstance)
+    proto.data.AddressRequest.toObject, includeInstance),
+    additionalAttributesList: jspb.Message.toObjectList(msg.getAdditionalAttributesList(),
+    proto_base_data_type_pb.KeyValue.toObject, includeInstance)
   };
 
   if (includeInstance) {
@@ -16204,6 +16326,11 @@ proto.data.CreateCustomerRequest.deserializeBinaryFromReader = function(msg, rea
       var value = new proto.data.AddressRequest;
       reader.readMessage(value,proto.data.AddressRequest.deserializeBinaryFromReader);
       msg.addAddresses(value);
+      break;
+    case 15:
+      var value = new proto_base_data_type_pb.KeyValue;
+      reader.readMessage(value,proto_base_data_type_pb.KeyValue.deserializeBinaryFromReader);
+      msg.addAdditionalAttributes(value);
       break;
     default:
       reader.skipField();
@@ -16311,6 +16438,14 @@ proto.data.CreateCustomerRequest.serializeBinaryToWriter = function(message, wri
       14,
       f,
       proto.data.AddressRequest.serializeBinaryToWriter
+    );
+  }
+  f = message.getAdditionalAttributesList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      15,
+      f,
+      proto_base_data_type_pb.KeyValue.serializeBinaryToWriter
     );
   }
 };
@@ -16553,13 +16688,51 @@ proto.data.CreateCustomerRequest.prototype.clearAddressesList = function() {
 };
 
 
+/**
+ * repeated KeyValue additional_attributes = 15;
+ * @return {!Array<!proto.data.KeyValue>}
+ */
+proto.data.CreateCustomerRequest.prototype.getAdditionalAttributesList = function() {
+  return /** @type{!Array<!proto.data.KeyValue>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto_base_data_type_pb.KeyValue, 15));
+};
+
+
+/**
+ * @param {!Array<!proto.data.KeyValue>} value
+ * @return {!proto.data.CreateCustomerRequest} returns this
+*/
+proto.data.CreateCustomerRequest.prototype.setAdditionalAttributesList = function(value) {
+  return jspb.Message.setRepeatedWrapperField(this, 15, value);
+};
+
+
+/**
+ * @param {!proto.data.KeyValue=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.data.KeyValue}
+ */
+proto.data.CreateCustomerRequest.prototype.addAdditionalAttributes = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 15, opt_value, proto.data.KeyValue, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.data.CreateCustomerRequest} returns this
+ */
+proto.data.CreateCustomerRequest.prototype.clearAdditionalAttributesList = function() {
+  return this.setAdditionalAttributesList([]);
+};
+
+
 
 /**
  * List of repeated fields within this message type.
  * @private {!Array<number>}
  * @const
  */
-proto.data.UpdateCustomerRequest.repeatedFields_ = [10];
+proto.data.UpdateCustomerRequest.repeatedFields_ = [10,11];
 
 
 
@@ -16602,7 +16775,9 @@ proto.data.UpdateCustomerRequest.toObject = function(includeInstance, msg) {
     lastName: jspb.Message.getFieldWithDefault(msg, 8, ""),
     description: jspb.Message.getFieldWithDefault(msg, 9, ""),
     addressesList: jspb.Message.toObjectList(msg.getAddressesList(),
-    proto.data.AddressRequest.toObject, includeInstance)
+    proto.data.AddressRequest.toObject, includeInstance),
+    additionalAttributesList: jspb.Message.toObjectList(msg.getAdditionalAttributesList(),
+    proto_base_data_type_pb.KeyValue.toObject, includeInstance)
   };
 
   if (includeInstance) {
@@ -16680,6 +16855,11 @@ proto.data.UpdateCustomerRequest.deserializeBinaryFromReader = function(msg, rea
       var value = new proto.data.AddressRequest;
       reader.readMessage(value,proto.data.AddressRequest.deserializeBinaryFromReader);
       msg.addAddresses(value);
+      break;
+    case 11:
+      var value = new proto_base_data_type_pb.KeyValue;
+      reader.readMessage(value,proto_base_data_type_pb.KeyValue.deserializeBinaryFromReader);
+      msg.addAdditionalAttributes(value);
       break;
     default:
       reader.skipField();
@@ -16780,6 +16960,14 @@ proto.data.UpdateCustomerRequest.serializeBinaryToWriter = function(message, wri
       10,
       f,
       proto.data.AddressRequest.serializeBinaryToWriter
+    );
+  }
+  f = message.getAdditionalAttributesList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      11,
+      f,
+      proto_base_data_type_pb.KeyValue.serializeBinaryToWriter
     );
   }
 };
@@ -17001,6 +17189,44 @@ proto.data.UpdateCustomerRequest.prototype.addAddresses = function(opt_value, op
  */
 proto.data.UpdateCustomerRequest.prototype.clearAddressesList = function() {
   return this.setAddressesList([]);
+};
+
+
+/**
+ * repeated KeyValue additional_attributes = 11;
+ * @return {!Array<!proto.data.KeyValue>}
+ */
+proto.data.UpdateCustomerRequest.prototype.getAdditionalAttributesList = function() {
+  return /** @type{!Array<!proto.data.KeyValue>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto_base_data_type_pb.KeyValue, 11));
+};
+
+
+/**
+ * @param {!Array<!proto.data.KeyValue>} value
+ * @return {!proto.data.UpdateCustomerRequest} returns this
+*/
+proto.data.UpdateCustomerRequest.prototype.setAdditionalAttributesList = function(value) {
+  return jspb.Message.setRepeatedWrapperField(this, 11, value);
+};
+
+
+/**
+ * @param {!proto.data.KeyValue=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.data.KeyValue}
+ */
+proto.data.UpdateCustomerRequest.prototype.addAdditionalAttributes = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 11, opt_value, proto.data.KeyValue, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.data.UpdateCustomerRequest} returns this
+ */
+proto.data.UpdateCustomerRequest.prototype.clearAdditionalAttributesList = function() {
+  return this.setAdditionalAttributesList([]);
 };
 
 
@@ -17414,7 +17640,8 @@ proto.data.Customer.toObject = function(includeInstance, msg) {
     lastName: jspb.Message.getFieldWithDefault(msg, 8, ""),
     description: jspb.Message.getFieldWithDefault(msg, 9, ""),
     addressesList: jspb.Message.toObjectList(msg.getAddressesList(),
-    proto.data.Address.toObject, includeInstance)
+    proto.data.Address.toObject, includeInstance),
+    additionalAttributesMap: (f = msg.getAdditionalAttributesMap()) ? f.toObject(includeInstance, proto.data.Value.toObject) : []
   };
 
   if (includeInstance) {
@@ -17491,6 +17718,12 @@ proto.data.Customer.deserializeBinaryFromReader = function(msg, reader) {
       var value = new proto.data.Address;
       reader.readMessage(value,proto.data.Address.deserializeBinaryFromReader);
       msg.addAddresses(value);
+      break;
+    case 11:
+      var value = msg.getAdditionalAttributesMap();
+      reader.readMessage(value, function(message, reader) {
+        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readMessage, proto.data.Value.deserializeBinaryFromReader, "", new proto.data.Value());
+         });
       break;
     default:
       reader.skipField();
@@ -17591,6 +17824,10 @@ proto.data.Customer.serializeBinaryToWriter = function(message, writer) {
       f,
       proto.data.Address.serializeBinaryToWriter
     );
+  }
+  f = message.getAdditionalAttributesMap(true);
+  if (f && f.getLength() > 0) {
+    f.serializeBinary(11, writer, jspb.BinaryWriter.prototype.writeString, jspb.BinaryWriter.prototype.writeMessage, proto.data.Value.serializeBinaryToWriter);
   }
 };
 
@@ -17795,6 +18032,28 @@ proto.data.Customer.prototype.clearAddressesList = function() {
 };
 
 
+/**
+ * map<string, Value> additional_attributes = 11;
+ * @param {boolean=} opt_noLazyCreate Do not create the map if
+ * empty, instead returning `undefined`
+ * @return {!jspb.Map<string,!proto.data.Value>}
+ */
+proto.data.Customer.prototype.getAdditionalAttributesMap = function(opt_noLazyCreate) {
+  return /** @type {!jspb.Map<string,!proto.data.Value>} */ (
+      jspb.Message.getMapField(this, 11, opt_noLazyCreate,
+      proto.data.Value));
+};
+
+
+/**
+ * Clears values from the map. The map will be non-null.
+ * @return {!proto.data.Customer} returns this
+ */
+proto.data.Customer.prototype.clearAdditionalAttributesMap = function() {
+  this.getAdditionalAttributesMap().clear();
+  return this;};
+
+
 
 
 
@@ -17846,7 +18105,8 @@ proto.data.Address.toObject = function(includeInstance, msg) {
     email: jspb.Message.getFieldWithDefault(msg, 18, ""),
     description: jspb.Message.getFieldWithDefault(msg, 19, ""),
     firstName: jspb.Message.getFieldWithDefault(msg, 20, ""),
-    lastName: jspb.Message.getFieldWithDefault(msg, 21, "")
+    lastName: jspb.Message.getFieldWithDefault(msg, 21, ""),
+    additionalAttributesMap: (f = msg.getAdditionalAttributesMap()) ? f.toObject(includeInstance, proto.data.Value.toObject) : []
   };
 
   if (includeInstance) {
@@ -17964,6 +18224,12 @@ proto.data.Address.deserializeBinaryFromReader = function(msg, reader) {
     case 21:
       var value = /** @type {string} */ (reader.readString());
       msg.setLastName(value);
+      break;
+    case 22:
+      var value = msg.getAdditionalAttributesMap();
+      reader.readMessage(value, function(message, reader) {
+        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readMessage, proto.data.Value.deserializeBinaryFromReader, "", new proto.data.Value());
+         });
       break;
     default:
       reader.skipField();
@@ -18135,6 +18401,10 @@ proto.data.Address.serializeBinaryToWriter = function(message, writer) {
       21,
       f
     );
+  }
+  f = message.getAdditionalAttributesMap(true);
+  if (f && f.getLength() > 0) {
+    f.serializeBinary(22, writer, jspb.BinaryWriter.prototype.writeString, jspb.BinaryWriter.prototype.writeMessage, proto.data.Value.serializeBinaryToWriter);
   }
 };
 
@@ -18535,6 +18805,28 @@ proto.data.Address.prototype.getLastName = function() {
 proto.data.Address.prototype.setLastName = function(value) {
   return jspb.Message.setProto3StringField(this, 21, value);
 };
+
+
+/**
+ * map<string, Value> additional_attributes = 22;
+ * @param {boolean=} opt_noLazyCreate Do not create the map if
+ * empty, instead returning `undefined`
+ * @return {!jspb.Map<string,!proto.data.Value>}
+ */
+proto.data.Address.prototype.getAdditionalAttributesMap = function(opt_noLazyCreate) {
+  return /** @type {!jspb.Map<string,!proto.data.Value>} */ (
+      jspb.Message.getMapField(this, 22, opt_noLazyCreate,
+      proto.data.Value));
+};
+
+
+/**
+ * Clears values from the map. The map will be non-null.
+ * @return {!proto.data.Address} returns this
+ */
+proto.data.Address.prototype.clearAdditionalAttributesMap = function() {
+  this.getAdditionalAttributesMap().clear();
+  return this;};
 
 
 
@@ -19210,7 +19502,8 @@ proto.data.AvailablePaymentMethod.toObject = function(includeInstance, msg) {
     maximumRefundAllowed: (f = msg.getMaximumRefundAllowed()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
     maximumDailyRefundAllowed: (f = msg.getMaximumDailyRefundAllowed()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
     refundReferenceCurrency: (f = msg.getRefundReferenceCurrency()) && proto_core_functionality_pb.Currency.toObject(includeInstance, f),
-    referenceCurrency: (f = msg.getReferenceCurrency()) && proto_core_functionality_pb.Currency.toObject(includeInstance, f)
+    referenceCurrency: (f = msg.getReferenceCurrency()) && proto_core_functionality_pb.Currency.toObject(includeInstance, f),
+    isPaymentReference: jspb.Message.getBooleanFieldWithDefault(msg, 14, false)
   };
 
   if (includeInstance) {
@@ -19298,6 +19591,10 @@ proto.data.AvailablePaymentMethod.deserializeBinaryFromReader = function(msg, re
       var value = new proto_core_functionality_pb.Currency;
       reader.readMessage(value,proto_core_functionality_pb.Currency.deserializeBinaryFromReader);
       msg.setReferenceCurrency(value);
+      break;
+    case 14:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setIsPaymentReference(value);
       break;
     default:
       reader.skipField();
@@ -19414,6 +19711,13 @@ proto.data.AvailablePaymentMethod.serializeBinaryToWriter = function(message, wr
       13,
       f,
       proto_core_functionality_pb.Currency.serializeBinaryToWriter
+    );
+  }
+  f = message.getIsPaymentReference();
+  if (f) {
+    writer.writeBool(
+      14,
+      f
     );
   }
 };
@@ -19708,6 +20012,24 @@ proto.data.AvailablePaymentMethod.prototype.clearReferenceCurrency = function() 
  */
 proto.data.AvailablePaymentMethod.prototype.hasReferenceCurrency = function() {
   return jspb.Message.getField(this, 13) != null;
+};
+
+
+/**
+ * optional bool is_payment_reference = 14;
+ * @return {boolean}
+ */
+proto.data.AvailablePaymentMethod.prototype.getIsPaymentReference = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 14, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.data.AvailablePaymentMethod} returns this
+ */
+proto.data.AvailablePaymentMethod.prototype.setIsPaymentReference = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 14, value);
 };
 
 

@@ -2935,6 +2935,7 @@
     posUuid,
     businessPartnerGroupUuid,
     addresses,
+    additionalAttributes,
     language
   }, callback) {
     const { CreateCustomerRequest, AddressRequest } = require('./src/grpc/proto/point_of_sales_pb.js')
@@ -2948,6 +2949,14 @@
     request.setDescription(description)
     request.setPosUuid(posUuid)
     request.setBusinessPartnerGroupUuid(businessPartnerGroupUuid)
+    if(additionalAttributes) {
+      additionalAttributes.forEach(attribute => {
+        request.addAdditionalAttributes(convertParameterToGRPC({
+          columnName: attribute.key,
+          value: attribute.value
+        }))
+      })
+    }
     if(addresses) {
       addresses.forEach(address => {
         const addressRequest = new AddressRequest()
@@ -2969,6 +2978,14 @@
         addressRequest.setCountryUuid(address.countryUuid)
         addressRequest.setIsDefaultBilling(address.isDefaultBilling)
         addressRequest.setIsDefaultShipping(address.isDefaultShipping)
+        if(address.additionalAttributes) {
+          address.additionalAttributes.forEach(attribute => {
+            addressRequest.addAdditionalAttributes(convertParameterToGRPC({
+              columnName: attribute.key,
+              value: attribute.value
+            }))
+          })
+        }
         request.addAddresses(addressRequest)
       })
     }
