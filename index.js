@@ -2047,9 +2047,11 @@
     priceListUuid,
     description,
     campaignUuid,
+    discountRate,
     language
   }, callback) {
     const { UpdateOrderRequest } = require('./src/grpc/proto/point_of_sales_pb.js')
+    const { getDecimalFromNumber } = require('./lib/convertValues.js')
     const request = new UpdateOrderRequest()
     request.setOrderUuid(orderUuid)
     request.setCampaignUuid(campaignUuid)
@@ -2057,6 +2059,7 @@
     request.setCustomerUuid(customerUuid)
     request.setDocumentTypeUuid(documentTypeUuid)
     request.setDescription(description)
+    request.setDiscountRate(getDecimalFromNumber(discountRate))
     if(warehouseUuid) {
       request.setWarehouseUuid(warehouseUuid)
     }
@@ -2939,6 +2942,7 @@
     language
   }, callback) {
     const { CreateCustomerRequest, AddressRequest } = require('./src/grpc/proto/point_of_sales_pb.js')
+    const { convertParameterToGRPC } = require('./lib/convertValues.js');
     const request = new CreateCustomerRequest()
     request.setValue(value)
     request.setTaxId(taxId)
@@ -3005,9 +3009,11 @@
     lastName,
     description,
     addresses,
+    additionalAttributes,
     language
   }, callback) {
     const { UpdateCustomerRequest, AddressRequest } = require('./src/grpc/proto/point_of_sales_pb.js')
+    const { convertParameterToGRPC } = require('./lib/convertValues.js');
     const request = new UpdateCustomerRequest()
     request.setUuid(uuid)
     request.setValue(value)
@@ -3017,6 +3023,14 @@
     request.setName(name)
     request.setLastName(lastName)
     request.setDescription(description)
+    if(additionalAttributes) {
+      additionalAttributes.forEach(attribute => {
+        request.addAdditionalAttributes(convertParameterToGRPC({
+          columnName: attribute.key,
+          value: attribute.value
+        }))
+      })
+    }
     if(addresses) {
       addresses.forEach(address => {
         const addressRequest = new AddressRequest()
@@ -3039,6 +3053,14 @@
         addressRequest.setIsDefaultBilling(address.isDefaultBilling)
         addressRequest.setIsDefaultShipping(address.isDefaultShipping)
         addressRequest.setUuid(address.uuid)
+        if(address.additionalAttributes) {
+          address.additionalAttributes.forEach(attribute => {
+            addressRequest.addAdditionalAttributes(convertParameterToGRPC({
+              columnName: attribute.key,
+              value: attribute.value
+            }))
+          })
+        }
         request.addAddresses(addressRequest)
       })
     }
