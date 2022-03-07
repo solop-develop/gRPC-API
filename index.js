@@ -596,54 +596,58 @@
    */
   runProcess({
     token,
-    tableName,
     processUuid,
+    tableName,
     id,
     uuid,
-    tableSelectedId,
     reportType,
     printFormatUuid,
     reportViewUuid,
     isSummary,
     parameters,
+    tableSelectedId,
     selections,
     language
   }, callback) {
     const { RunBusinessProcessRequest } = require('./src/grpc/proto/business_pb.js');
     const request = new RunBusinessProcessRequest();
 
+    // record of window
     request.setTableName(tableName);
     request.setId(id);
     request.setUuid(uuid);
-    request.setProcessUuid(processUuid);
-    request.setTableSelectedId(tableSelectedId);
+
+    // report values
     request.setReportType(reportType);
     request.setPrintFormatUuid(printFormatUuid);
     request.setReportViewUuid(reportViewUuid);
     request.setIsSummary(isSummary);
 
+    request.setProcessUuid(processUuid);
     // set process parameters list
     if (parameters && parameters.length) {
       const { convertParameterToGRPC } = require('./lib/convertValues.js');
       parameters.forEach(parameter => {
         // parameter format = { columName, value }
-        request.addParameters(
-          convertParameterToGRPC({
-            columnName: parameter.key,
-            value: parameter.value
-          })
-        );
+        const convertedParameter = convertParameterToGRPC({
+          columnName: parameter.key,
+          value: parameter.value
+        });
+
+        request.addParameters(convertedParameter);
       });
     }
 
+    request.setTableSelectedId(tableSelectedId);
     // browser records selections list
     if (selections && selections.length) {
       const { convertSelectionToGRPC } = require('./lib/convertValues.js');
 
-      selections.forEach(record => {
+      selections.forEach(selection => {
         // selection format = { selectionId: number, selectionValues: [{ columName, value }] }
-        const convertedRecord = convertSelectionToGRPC(record);
-        processRequest.addSelections(convertedRecord);
+        const convertedRecord = convertSelectionToGRPC(selection);
+
+        request.addSelections(convertedRecord);
       });
     }
 
