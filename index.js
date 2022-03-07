@@ -2052,6 +2052,7 @@
     description,
     campaignUuid,
     discountRate,
+    discountRateOff,
     language
   }, callback) {
     const { UpdateOrderRequest } = require('./src/grpc/proto/point_of_sales_pb.js')
@@ -2064,6 +2065,7 @@
     request.setDocumentTypeUuid(documentTypeUuid)
     request.setDescription(description)
     request.setDiscountRate(getDecimalFromNumber(discountRate))
+    request.setDiscountRateOff(getDecimalFromNumber(discountRateOff))
     if(warehouseUuid) {
       request.setWarehouseUuid(warehouseUuid)
     }

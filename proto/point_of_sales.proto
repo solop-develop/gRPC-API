@@ -1144,6 +1144,7 @@ message UpdateOrderRequest {
 	string description = 8;
 	string campaign_uuid = 9;
 	Decimal discount_rate = 10;
+	Decimal discount_rate_off = 11;
 }
 
 // Request for update a order line
