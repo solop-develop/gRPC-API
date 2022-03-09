@@ -26300,7 +26300,8 @@ proto.data.PointOfSales.toObject = function(includeInstance, msg) {
     isConfirmCompleteShipment: jspb.Message.getBooleanFieldWithDefault(msg, 38, false),
     isAllowsCashClosing: jspb.Message.getBooleanFieldWithDefault(msg, 39, false),
     isAllowsCashOpening: jspb.Message.getBooleanFieldWithDefault(msg, 40, false),
-    isAllowsCashWithdrawal: jspb.Message.getBooleanFieldWithDefault(msg, 41, false)
+    isAllowsCashWithdrawal: jspb.Message.getBooleanFieldWithDefault(msg, 41, false),
+    isAllowsApplyDiscount: jspb.Message.getBooleanFieldWithDefault(msg, 42, false)
   };
 
   if (includeInstance) {
@@ -26514,6 +26515,10 @@ proto.data.PointOfSales.deserializeBinaryFromReader = function(msg, reader) {
     case 41:
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setIsAllowsCashWithdrawal(value);
+      break;
+    case 42:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setIsAllowsApplyDiscount(value);
       break;
     default:
       reader.skipField();
@@ -26842,6 +26847,13 @@ proto.data.PointOfSales.serializeBinaryToWriter = function(message, writer) {
   if (f) {
     writer.writeBool(
       41,
+      f
+    );
+  }
+  f = message.getIsAllowsApplyDiscount();
+  if (f) {
+    writer.writeBool(
+      42,
       f
     );
   }
@@ -27849,6 +27861,24 @@ proto.data.PointOfSales.prototype.getIsAllowsCashWithdrawal = function() {
  */
 proto.data.PointOfSales.prototype.setIsAllowsCashWithdrawal = function(value) {
   return jspb.Message.setProto3BooleanField(this, 41, value);
+};
+
+
+/**
+ * optional bool is_allows_apply_discount = 42;
+ * @return {boolean}
+ */
+proto.data.PointOfSales.prototype.getIsAllowsApplyDiscount = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 42, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.data.PointOfSales} returns this
+ */
+proto.data.PointOfSales.prototype.setIsAllowsApplyDiscount = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 42, value);
 };
 
 
