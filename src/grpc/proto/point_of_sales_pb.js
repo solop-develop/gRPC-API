@@ -32837,7 +32837,8 @@ proto.data.UpdateOrderRequest.toObject = function(includeInstance, msg) {
     description: jspb.Message.getFieldWithDefault(msg, 8, ""),
     campaignUuid: jspb.Message.getFieldWithDefault(msg, 9, ""),
     discountRate: (f = msg.getDiscountRate()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
-    discountRateOff: (f = msg.getDiscountRateOff()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f)
+    discountRateOff: (f = msg.getDiscountRateOff()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
+    discountAmountOff: (f = msg.getDiscountAmountOff()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -32920,6 +32921,11 @@ proto.data.UpdateOrderRequest.deserializeBinaryFromReader = function(msg, reader
       var value = new proto_base_data_type_pb.Decimal;
       reader.readMessage(value,proto_base_data_type_pb.Decimal.deserializeBinaryFromReader);
       msg.setDiscountRateOff(value);
+      break;
+    case 12:
+      var value = new proto_base_data_type_pb.Decimal;
+      reader.readMessage(value,proto_base_data_type_pb.Decimal.deserializeBinaryFromReader);
+      msg.setDiscountAmountOff(value);
       break;
     default:
       reader.skipField();
@@ -33026,6 +33032,14 @@ proto.data.UpdateOrderRequest.serializeBinaryToWriter = function(message, writer
   if (f != null) {
     writer.writeMessage(
       11,
+      f,
+      proto_base_data_type_pb.Decimal.serializeBinaryToWriter
+    );
+  }
+  f = message.getDiscountAmountOff();
+  if (f != null) {
+    writer.writeMessage(
+      12,
       f,
       proto_base_data_type_pb.Decimal.serializeBinaryToWriter
     );
@@ -33285,6 +33299,43 @@ proto.data.UpdateOrderRequest.prototype.clearDiscountRateOff = function() {
  */
 proto.data.UpdateOrderRequest.prototype.hasDiscountRateOff = function() {
   return jspb.Message.getField(this, 11) != null;
+};
+
+
+/**
+ * optional Decimal discount_amount_off = 12;
+ * @return {?proto.data.Decimal}
+ */
+proto.data.UpdateOrderRequest.prototype.getDiscountAmountOff = function() {
+  return /** @type{?proto.data.Decimal} */ (
+    jspb.Message.getWrapperField(this, proto_base_data_type_pb.Decimal, 12));
+};
+
+
+/**
+ * @param {?proto.data.Decimal|undefined} value
+ * @return {!proto.data.UpdateOrderRequest} returns this
+*/
+proto.data.UpdateOrderRequest.prototype.setDiscountAmountOff = function(value) {
+  return jspb.Message.setWrapperField(this, 12, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.data.UpdateOrderRequest} returns this
+ */
+proto.data.UpdateOrderRequest.prototype.clearDiscountAmountOff = function() {
+  return this.setDiscountAmountOff(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.data.UpdateOrderRequest.prototype.hasDiscountAmountOff = function() {
+  return jspb.Message.getField(this, 12) != null;
 };
 
 
