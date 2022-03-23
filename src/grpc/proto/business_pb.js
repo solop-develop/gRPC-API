@@ -684,7 +684,7 @@ if (goog.DEBUG && !COMPILED) {
  * @constructor
  */
 proto.data.ListLookupItemsRequest = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.data.ListLookupItemsRequest.repeatedFields_, null);
 };
 goog.inherits(proto.data.ListLookupItemsRequest, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -8923,6 +8923,13 @@ proto.data.LookupItem.prototype.clearValuesMap = function() {
 
 
 
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.data.ListLookupItemsRequest.repeatedFields_ = [10];
+
 
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
@@ -8955,9 +8962,18 @@ proto.data.ListLookupItemsRequest.prototype.toObject = function(opt_includeInsta
 proto.data.ListLookupItemsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     clientRequest: (f = msg.getClientRequest()) && proto_client_pb.ClientRequest.toObject(includeInstance, f),
-    criteria: (f = msg.getCriteria()) && proto_base_data_type_pb.Criteria.toObject(includeInstance, f),
-    pageSize: jspb.Message.getFieldWithDefault(msg, 5, 0),
-    pageToken: jspb.Message.getFieldWithDefault(msg, 6, "")
+    processParameterUuid: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    fieldUuid: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    browseFieldUuid: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    referenceUuid: jspb.Message.getFieldWithDefault(msg, 5, ""),
+    columnUuid: jspb.Message.getFieldWithDefault(msg, 6, ""),
+    columnName: jspb.Message.getFieldWithDefault(msg, 7, ""),
+    tableName: jspb.Message.getFieldWithDefault(msg, 8, ""),
+    searchValue: jspb.Message.getFieldWithDefault(msg, 9, ""),
+    contextAttributesList: jspb.Message.toObjectList(msg.getContextAttributesList(),
+    proto_base_data_type_pb.KeyValue.toObject, includeInstance),
+    pageSize: jspb.Message.getFieldWithDefault(msg, 11, 0),
+    pageToken: jspb.Message.getFieldWithDefault(msg, 12, "")
   };
 
   if (includeInstance) {
@@ -8994,21 +9010,53 @@ proto.data.ListLookupItemsRequest.deserializeBinaryFromReader = function(msg, re
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 3:
+    case 1:
       var value = new proto_client_pb.ClientRequest;
       reader.readMessage(value,proto_client_pb.ClientRequest.deserializeBinaryFromReader);
       msg.setClientRequest(value);
       break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setProcessParameterUuid(value);
+      break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setFieldUuid(value);
+      break;
     case 4:
-      var value = new proto_base_data_type_pb.Criteria;
-      reader.readMessage(value,proto_base_data_type_pb.Criteria.deserializeBinaryFromReader);
-      msg.setCriteria(value);
+      var value = /** @type {string} */ (reader.readString());
+      msg.setBrowseFieldUuid(value);
       break;
     case 5:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setReferenceUuid(value);
+      break;
+    case 6:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setColumnUuid(value);
+      break;
+    case 7:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setColumnName(value);
+      break;
+    case 8:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setTableName(value);
+      break;
+    case 9:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setSearchValue(value);
+      break;
+    case 10:
+      var value = new proto_base_data_type_pb.KeyValue;
+      reader.readMessage(value,proto_base_data_type_pb.KeyValue.deserializeBinaryFromReader);
+      msg.addContextAttributes(value);
+      break;
+    case 11:
       var value = /** @type {number} */ (reader.readInt32());
       msg.setPageSize(value);
       break;
-    case 6:
+    case 12:
       var value = /** @type {string} */ (reader.readString());
       msg.setPageToken(value);
       break;
@@ -9044,30 +9092,86 @@ proto.data.ListLookupItemsRequest.serializeBinaryToWriter = function(message, wr
   f = message.getClientRequest();
   if (f != null) {
     writer.writeMessage(
-      3,
+      1,
       f,
       proto_client_pb.ClientRequest.serializeBinaryToWriter
     );
   }
-  f = message.getCriteria();
-  if (f != null) {
-    writer.writeMessage(
+  f = message.getProcessParameterUuid();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
+  f = message.getFieldUuid();
+  if (f.length > 0) {
+    writer.writeString(
+      3,
+      f
+    );
+  }
+  f = message.getBrowseFieldUuid();
+  if (f.length > 0) {
+    writer.writeString(
       4,
+      f
+    );
+  }
+  f = message.getReferenceUuid();
+  if (f.length > 0) {
+    writer.writeString(
+      5,
+      f
+    );
+  }
+  f = message.getColumnUuid();
+  if (f.length > 0) {
+    writer.writeString(
+      6,
+      f
+    );
+  }
+  f = message.getColumnName();
+  if (f.length > 0) {
+    writer.writeString(
+      7,
+      f
+    );
+  }
+  f = message.getTableName();
+  if (f.length > 0) {
+    writer.writeString(
+      8,
+      f
+    );
+  }
+  f = message.getSearchValue();
+  if (f.length > 0) {
+    writer.writeString(
+      9,
+      f
+    );
+  }
+  f = message.getContextAttributesList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      10,
       f,
-      proto_base_data_type_pb.Criteria.serializeBinaryToWriter
+      proto_base_data_type_pb.KeyValue.serializeBinaryToWriter
     );
   }
   f = message.getPageSize();
   if (f !== 0) {
     writer.writeInt32(
-      5,
+      11,
       f
     );
   }
   f = message.getPageToken();
   if (f.length > 0) {
     writer.writeString(
-      6,
+      12,
       f
     );
   }
@@ -9075,12 +9179,12 @@ proto.data.ListLookupItemsRequest.serializeBinaryToWriter = function(message, wr
 
 
 /**
- * optional ClientRequest client_request = 3;
+ * optional ClientRequest client_request = 1;
  * @return {?proto.data.ClientRequest}
  */
 proto.data.ListLookupItemsRequest.prototype.getClientRequest = function() {
   return /** @type{?proto.data.ClientRequest} */ (
-    jspb.Message.getWrapperField(this, proto_client_pb.ClientRequest, 3));
+    jspb.Message.getWrapperField(this, proto_client_pb.ClientRequest, 1));
 };
 
 
@@ -9089,7 +9193,7 @@ proto.data.ListLookupItemsRequest.prototype.getClientRequest = function() {
  * @return {!proto.data.ListLookupItemsRequest} returns this
 */
 proto.data.ListLookupItemsRequest.prototype.setClientRequest = function(value) {
-  return jspb.Message.setWrapperField(this, 3, value);
+  return jspb.Message.setWrapperField(this, 1, value);
 };
 
 
@@ -9107,70 +9211,87 @@ proto.data.ListLookupItemsRequest.prototype.clearClientRequest = function() {
  * @return {boolean}
  */
 proto.data.ListLookupItemsRequest.prototype.hasClientRequest = function() {
-  return jspb.Message.getField(this, 3) != null;
+  return jspb.Message.getField(this, 1) != null;
 };
 
 
 /**
- * optional Criteria criteria = 4;
- * @return {?proto.data.Criteria}
- */
-proto.data.ListLookupItemsRequest.prototype.getCriteria = function() {
-  return /** @type{?proto.data.Criteria} */ (
-    jspb.Message.getWrapperField(this, proto_base_data_type_pb.Criteria, 4));
-};
-
-
-/**
- * @param {?proto.data.Criteria|undefined} value
- * @return {!proto.data.ListLookupItemsRequest} returns this
-*/
-proto.data.ListLookupItemsRequest.prototype.setCriteria = function(value) {
-  return jspb.Message.setWrapperField(this, 4, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.data.ListLookupItemsRequest} returns this
- */
-proto.data.ListLookupItemsRequest.prototype.clearCriteria = function() {
-  return this.setCriteria(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.data.ListLookupItemsRequest.prototype.hasCriteria = function() {
-  return jspb.Message.getField(this, 4) != null;
-};
-
-
-/**
- * optional int32 page_size = 5;
- * @return {number}
- */
-proto.data.ListLookupItemsRequest.prototype.getPageSize = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 5, 0));
-};
-
-
-/**
- * @param {number} value
- * @return {!proto.data.ListLookupItemsRequest} returns this
- */
-proto.data.ListLookupItemsRequest.prototype.setPageSize = function(value) {
-  return jspb.Message.setProto3IntField(this, 5, value);
-};
-
-
-/**
- * optional string page_token = 6;
+ * optional string process_parameter_uuid = 2;
  * @return {string}
  */
-proto.data.ListLookupItemsRequest.prototype.getPageToken = function() {
+proto.data.ListLookupItemsRequest.prototype.getProcessParameterUuid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.data.ListLookupItemsRequest} returns this
+ */
+proto.data.ListLookupItemsRequest.prototype.setProcessParameterUuid = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * optional string field_uuid = 3;
+ * @return {string}
+ */
+proto.data.ListLookupItemsRequest.prototype.getFieldUuid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.data.ListLookupItemsRequest} returns this
+ */
+proto.data.ListLookupItemsRequest.prototype.setFieldUuid = function(value) {
+  return jspb.Message.setProto3StringField(this, 3, value);
+};
+
+
+/**
+ * optional string browse_field_uuid = 4;
+ * @return {string}
+ */
+proto.data.ListLookupItemsRequest.prototype.getBrowseFieldUuid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.data.ListLookupItemsRequest} returns this
+ */
+proto.data.ListLookupItemsRequest.prototype.setBrowseFieldUuid = function(value) {
+  return jspb.Message.setProto3StringField(this, 4, value);
+};
+
+
+/**
+ * optional string reference_uuid = 5;
+ * @return {string}
+ */
+proto.data.ListLookupItemsRequest.prototype.getReferenceUuid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.data.ListLookupItemsRequest} returns this
+ */
+proto.data.ListLookupItemsRequest.prototype.setReferenceUuid = function(value) {
+  return jspb.Message.setProto3StringField(this, 5, value);
+};
+
+
+/**
+ * optional string column_uuid = 6;
+ * @return {string}
+ */
+proto.data.ListLookupItemsRequest.prototype.getColumnUuid = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
 };
 
@@ -9179,8 +9300,136 @@ proto.data.ListLookupItemsRequest.prototype.getPageToken = function() {
  * @param {string} value
  * @return {!proto.data.ListLookupItemsRequest} returns this
  */
-proto.data.ListLookupItemsRequest.prototype.setPageToken = function(value) {
+proto.data.ListLookupItemsRequest.prototype.setColumnUuid = function(value) {
   return jspb.Message.setProto3StringField(this, 6, value);
+};
+
+
+/**
+ * optional string column_name = 7;
+ * @return {string}
+ */
+proto.data.ListLookupItemsRequest.prototype.getColumnName = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 7, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.data.ListLookupItemsRequest} returns this
+ */
+proto.data.ListLookupItemsRequest.prototype.setColumnName = function(value) {
+  return jspb.Message.setProto3StringField(this, 7, value);
+};
+
+
+/**
+ * optional string table_name = 8;
+ * @return {string}
+ */
+proto.data.ListLookupItemsRequest.prototype.getTableName = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 8, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.data.ListLookupItemsRequest} returns this
+ */
+proto.data.ListLookupItemsRequest.prototype.setTableName = function(value) {
+  return jspb.Message.setProto3StringField(this, 8, value);
+};
+
+
+/**
+ * optional string search_value = 9;
+ * @return {string}
+ */
+proto.data.ListLookupItemsRequest.prototype.getSearchValue = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 9, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.data.ListLookupItemsRequest} returns this
+ */
+proto.data.ListLookupItemsRequest.prototype.setSearchValue = function(value) {
+  return jspb.Message.setProto3StringField(this, 9, value);
+};
+
+
+/**
+ * repeated KeyValue context_attributes = 10;
+ * @return {!Array<!proto.data.KeyValue>}
+ */
+proto.data.ListLookupItemsRequest.prototype.getContextAttributesList = function() {
+  return /** @type{!Array<!proto.data.KeyValue>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto_base_data_type_pb.KeyValue, 10));
+};
+
+
+/**
+ * @param {!Array<!proto.data.KeyValue>} value
+ * @return {!proto.data.ListLookupItemsRequest} returns this
+*/
+proto.data.ListLookupItemsRequest.prototype.setContextAttributesList = function(value) {
+  return jspb.Message.setRepeatedWrapperField(this, 10, value);
+};
+
+
+/**
+ * @param {!proto.data.KeyValue=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.data.KeyValue}
+ */
+proto.data.ListLookupItemsRequest.prototype.addContextAttributes = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 10, opt_value, proto.data.KeyValue, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.data.ListLookupItemsRequest} returns this
+ */
+proto.data.ListLookupItemsRequest.prototype.clearContextAttributesList = function() {
+  return this.setContextAttributesList([]);
+};
+
+
+/**
+ * optional int32 page_size = 11;
+ * @return {number}
+ */
+proto.data.ListLookupItemsRequest.prototype.getPageSize = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 11, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.data.ListLookupItemsRequest} returns this
+ */
+proto.data.ListLookupItemsRequest.prototype.setPageSize = function(value) {
+  return jspb.Message.setProto3IntField(this, 11, value);
+};
+
+
+/**
+ * optional string page_token = 12;
+ * @return {string}
+ */
+proto.data.ListLookupItemsRequest.prototype.getPageToken = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 12, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.data.ListLookupItemsRequest} returns this
+ */
+proto.data.ListLookupItemsRequest.prototype.setPageToken = function(value) {
+  return jspb.Message.setProto3StringField(this, 12, value);
 };
 
 

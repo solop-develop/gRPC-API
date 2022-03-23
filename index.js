@@ -1067,29 +1067,41 @@
   //  List Lookup Items
   listLookupItems({
     token,
+    processParameterUuid,
+    fieldUuid,
+    browseFieldUuid,
+    referenceUuid,
+    columnUuid,
+    columnName,
     tableName,
-    //  DSL
-    filters,
-    //  Custom Query
-    query,
-    whereClause,
-    orderByClause,
-    limit,
+    searchValue,
+    contextAttributes,
     pageSize,
     pageToken,
     language
   }, callback) {
     const { ListLookupItemsRequest } = require('./src/grpc/proto/business_pb.js')
     const request = new ListLookupItemsRequest()
-    const { convertCriteriaToGRPC } = require('./lib/convertValues.js');
-    request.setCriteria(convertCriteriaToGRPC({
-      tableName,
-      filters,
-      query,
-      whereClause,
-      orderByClause,
-      limit
-    }))
+    const { convertParameterToGRPC, typeOfValue } = require('./lib/convertValues.js');
+    request.setTableName(tableName)
+    request.setProcessParameterUuid(processParameterUuid)
+    request.setFieldUuid(fieldUuid)
+    request.setBrowseFieldUuid(browseFieldUuid)
+    request.setReferenceUuid(referenceUuid)
+    request.setColumnUuid(columnUuid)
+    request.setColumnName(columnName)
+    request.setSearchValue(searchValue)
+    if(contextAttributes) {
+      if (typeOfValue(contextAttributes) === 'String') {
+        contextAttributes = JSON.parse(contextAttributes);
+      }
+      contextAttributes.forEach(attribute => {
+        request.addContextAttributes(convertParameterToGRPC({
+          columnName: attribute.key,
+          value: attribute.value
+        }))
+      })
+    }
     request.setPageSize(pageSize)
     request.setPageToken(pageToken)
     request.setClientRequest(this.createClientRequest(token, language))
