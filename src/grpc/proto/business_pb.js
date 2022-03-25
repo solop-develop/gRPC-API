@@ -600,7 +600,7 @@ if (goog.DEBUG && !COMPILED) {
  * @constructor
  */
 proto.data.GetLookupItemRequest = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.data.GetLookupItemRequest.repeatedFields_, null);
 };
 goog.inherits(proto.data.GetLookupItemRequest, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -8016,6 +8016,13 @@ proto.data.ContextInfoValue.prototype.setMessageTip = function(value) {
 
 
 
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.data.GetLookupItemRequest.repeatedFields_ = [11];
+
 
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
@@ -8050,7 +8057,15 @@ proto.data.GetLookupItemRequest.toObject = function(includeInstance, msg) {
     id: jspb.Message.getFieldWithDefault(msg, 1, 0),
     uuid: jspb.Message.getFieldWithDefault(msg, 2, ""),
     clientRequest: (f = msg.getClientRequest()) && proto_client_pb.ClientRequest.toObject(includeInstance, f),
-    criteria: (f = msg.getCriteria()) && proto_base_data_type_pb.Criteria.toObject(includeInstance, f)
+    processParameterUuid: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    fieldUuid: jspb.Message.getFieldWithDefault(msg, 5, ""),
+    browseFieldUuid: jspb.Message.getFieldWithDefault(msg, 6, ""),
+    referenceUuid: jspb.Message.getFieldWithDefault(msg, 7, ""),
+    columnUuid: jspb.Message.getFieldWithDefault(msg, 8, ""),
+    columnName: jspb.Message.getFieldWithDefault(msg, 9, ""),
+    tableName: jspb.Message.getFieldWithDefault(msg, 10, ""),
+    contextAttributesList: jspb.Message.toObjectList(msg.getContextAttributesList(),
+    proto_base_data_type_pb.KeyValue.toObject, includeInstance)
   };
 
   if (includeInstance) {
@@ -8101,9 +8116,37 @@ proto.data.GetLookupItemRequest.deserializeBinaryFromReader = function(msg, read
       msg.setClientRequest(value);
       break;
     case 4:
-      var value = new proto_base_data_type_pb.Criteria;
-      reader.readMessage(value,proto_base_data_type_pb.Criteria.deserializeBinaryFromReader);
-      msg.setCriteria(value);
+      var value = /** @type {string} */ (reader.readString());
+      msg.setProcessParameterUuid(value);
+      break;
+    case 5:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setFieldUuid(value);
+      break;
+    case 6:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setBrowseFieldUuid(value);
+      break;
+    case 7:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setReferenceUuid(value);
+      break;
+    case 8:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setColumnUuid(value);
+      break;
+    case 9:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setColumnName(value);
+      break;
+    case 10:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setTableName(value);
+      break;
+    case 11:
+      var value = new proto_base_data_type_pb.KeyValue;
+      reader.readMessage(value,proto_base_data_type_pb.KeyValue.deserializeBinaryFromReader);
+      msg.addContextAttributes(value);
       break;
     default:
       reader.skipField();
@@ -8156,12 +8199,61 @@ proto.data.GetLookupItemRequest.serializeBinaryToWriter = function(message, writ
       proto_client_pb.ClientRequest.serializeBinaryToWriter
     );
   }
-  f = message.getCriteria();
-  if (f != null) {
-    writer.writeMessage(
+  f = message.getProcessParameterUuid();
+  if (f.length > 0) {
+    writer.writeString(
       4,
+      f
+    );
+  }
+  f = message.getFieldUuid();
+  if (f.length > 0) {
+    writer.writeString(
+      5,
+      f
+    );
+  }
+  f = message.getBrowseFieldUuid();
+  if (f.length > 0) {
+    writer.writeString(
+      6,
+      f
+    );
+  }
+  f = message.getReferenceUuid();
+  if (f.length > 0) {
+    writer.writeString(
+      7,
+      f
+    );
+  }
+  f = message.getColumnUuid();
+  if (f.length > 0) {
+    writer.writeString(
+      8,
+      f
+    );
+  }
+  f = message.getColumnName();
+  if (f.length > 0) {
+    writer.writeString(
+      9,
+      f
+    );
+  }
+  f = message.getTableName();
+  if (f.length > 0) {
+    writer.writeString(
+      10,
+      f
+    );
+  }
+  f = message.getContextAttributesList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      11,
       f,
-      proto_base_data_type_pb.Criteria.serializeBinaryToWriter
+      proto_base_data_type_pb.KeyValue.serializeBinaryToWriter
     );
   }
 };
@@ -8241,39 +8333,166 @@ proto.data.GetLookupItemRequest.prototype.hasClientRequest = function() {
 
 
 /**
- * optional Criteria criteria = 4;
- * @return {?proto.data.Criteria}
+ * optional string process_parameter_uuid = 4;
+ * @return {string}
  */
-proto.data.GetLookupItemRequest.prototype.getCriteria = function() {
-  return /** @type{?proto.data.Criteria} */ (
-    jspb.Message.getWrapperField(this, proto_base_data_type_pb.Criteria, 4));
+proto.data.GetLookupItemRequest.prototype.getProcessParameterUuid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
 };
 
 
 /**
- * @param {?proto.data.Criteria|undefined} value
+ * @param {string} value
+ * @return {!proto.data.GetLookupItemRequest} returns this
+ */
+proto.data.GetLookupItemRequest.prototype.setProcessParameterUuid = function(value) {
+  return jspb.Message.setProto3StringField(this, 4, value);
+};
+
+
+/**
+ * optional string field_uuid = 5;
+ * @return {string}
+ */
+proto.data.GetLookupItemRequest.prototype.getFieldUuid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.data.GetLookupItemRequest} returns this
+ */
+proto.data.GetLookupItemRequest.prototype.setFieldUuid = function(value) {
+  return jspb.Message.setProto3StringField(this, 5, value);
+};
+
+
+/**
+ * optional string browse_field_uuid = 6;
+ * @return {string}
+ */
+proto.data.GetLookupItemRequest.prototype.getBrowseFieldUuid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.data.GetLookupItemRequest} returns this
+ */
+proto.data.GetLookupItemRequest.prototype.setBrowseFieldUuid = function(value) {
+  return jspb.Message.setProto3StringField(this, 6, value);
+};
+
+
+/**
+ * optional string reference_uuid = 7;
+ * @return {string}
+ */
+proto.data.GetLookupItemRequest.prototype.getReferenceUuid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 7, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.data.GetLookupItemRequest} returns this
+ */
+proto.data.GetLookupItemRequest.prototype.setReferenceUuid = function(value) {
+  return jspb.Message.setProto3StringField(this, 7, value);
+};
+
+
+/**
+ * optional string column_uuid = 8;
+ * @return {string}
+ */
+proto.data.GetLookupItemRequest.prototype.getColumnUuid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 8, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.data.GetLookupItemRequest} returns this
+ */
+proto.data.GetLookupItemRequest.prototype.setColumnUuid = function(value) {
+  return jspb.Message.setProto3StringField(this, 8, value);
+};
+
+
+/**
+ * optional string column_name = 9;
+ * @return {string}
+ */
+proto.data.GetLookupItemRequest.prototype.getColumnName = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 9, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.data.GetLookupItemRequest} returns this
+ */
+proto.data.GetLookupItemRequest.prototype.setColumnName = function(value) {
+  return jspb.Message.setProto3StringField(this, 9, value);
+};
+
+
+/**
+ * optional string table_name = 10;
+ * @return {string}
+ */
+proto.data.GetLookupItemRequest.prototype.getTableName = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 10, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.data.GetLookupItemRequest} returns this
+ */
+proto.data.GetLookupItemRequest.prototype.setTableName = function(value) {
+  return jspb.Message.setProto3StringField(this, 10, value);
+};
+
+
+/**
+ * repeated KeyValue context_attributes = 11;
+ * @return {!Array<!proto.data.KeyValue>}
+ */
+proto.data.GetLookupItemRequest.prototype.getContextAttributesList = function() {
+  return /** @type{!Array<!proto.data.KeyValue>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto_base_data_type_pb.KeyValue, 11));
+};
+
+
+/**
+ * @param {!Array<!proto.data.KeyValue>} value
  * @return {!proto.data.GetLookupItemRequest} returns this
 */
-proto.data.GetLookupItemRequest.prototype.setCriteria = function(value) {
-  return jspb.Message.setWrapperField(this, 4, value);
+proto.data.GetLookupItemRequest.prototype.setContextAttributesList = function(value) {
+  return jspb.Message.setRepeatedWrapperField(this, 11, value);
 };
 
 
 /**
- * Clears the message field making it undefined.
+ * @param {!proto.data.KeyValue=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.data.KeyValue}
+ */
+proto.data.GetLookupItemRequest.prototype.addContextAttributes = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 11, opt_value, proto.data.KeyValue, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
  * @return {!proto.data.GetLookupItemRequest} returns this
  */
-proto.data.GetLookupItemRequest.prototype.clearCriteria = function() {
-  return this.setCriteria(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.data.GetLookupItemRequest.prototype.hasCriteria = function() {
-  return jspb.Message.getField(this, 4) != null;
+proto.data.GetLookupItemRequest.prototype.clearContextAttributesList = function() {
+  return this.setContextAttributesList([]);
 };
 
 

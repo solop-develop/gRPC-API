@@ -1116,24 +1116,47 @@
   //  Get Lookup
   getLookupItem({
     token,
+    processParameterUuid,
+    fieldUuid,
+    browseFieldUuid,
+    referenceUuid,
+    columnUuid,
+    columnName,
     tableName,
-    //  DSL
-    filters,
-    //  Custom Query
-    query,
+    searchValue,
+    contextAttributes,
+    id,
+    uuid,
     language
   }, callback) {
     const { GetLookupItemRequest } = require('./src/grpc/proto/business_pb.js');
     const request = new GetLookupItemRequest();
-    const { convertCriteriaToGRPC } = require('./lib/convertValues.js');
+    request.setUuid(uuid);
+    request.setId(id);
+    console.log('Hola')
+    request.setProcessParameterUuid(processParameterUuid);
+    request.setFieldUuid(fieldUuid);
+    request.setBrowseFieldUuid(browseFieldUuid);
+    //
+    request.setReferenceUuid(referenceUuid);
+    request.setTableName(tableName);
+    request.setColumnUuid(columnUuid);
+    request.setColumnName(columnName);
+    if (!this.isEmptyValue(contextAttributes)) {
+      const { convertParameterToGRPC, typeOfValue } = require('./lib/convertValues.js');
 
-    const criteriaGrpc = convertCriteriaToGRPC({
-      tableName,
-      filters,
-      query
-    });
-
-    request.setCriteria(criteriaGrpc);
+      if (typeOfValue(contextAttributes) === 'String') {
+        contextAttributes = JSON.parse(contextAttributes);
+      }
+      contextAttributes.forEach(attribute => {
+        request.addContextAttributes(
+          convertParameterToGRPC({
+            columnName: attribute.key,
+            value: attribute.value
+          })
+        );
+      })
+    }
     request.setClientRequest(this.createClientRequest(token, language));
     this.getUIService().getLookupItem(request, callback);
   }
