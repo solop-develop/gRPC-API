@@ -1080,32 +1080,37 @@
     pageToken,
     language
   }, callback) {
-    const { ListLookupItemsRequest } = require('./src/grpc/proto/business_pb.js')
-    const request = new ListLookupItemsRequest()
-    const { convertParameterToGRPC, typeOfValue } = require('./lib/convertValues.js');
-    request.setTableName(tableName)
-    request.setProcessParameterUuid(processParameterUuid)
-    request.setFieldUuid(fieldUuid)
-    request.setBrowseFieldUuid(browseFieldUuid)
-    request.setReferenceUuid(referenceUuid)
-    request.setColumnUuid(columnUuid)
-    request.setColumnName(columnName)
-    request.setSearchValue(searchValue)
-    if(contextAttributes) {
+    const { ListLookupItemsRequest } = require('./src/grpc/proto/business_pb.js');
+    const request = new ListLookupItemsRequest();
+
+    request.setProcessParameterUuid(processParameterUuid);
+    request.setFieldUuid(fieldUuid);
+    request.setBrowseFieldUuid(browseFieldUuid);
+    //
+    request.setReferenceUuid(referenceUuid);
+    request.setTableName(tableName);
+    request.setColumnUuid(columnUuid);
+    request.setColumnName(columnName);
+    request.setSearchValue(searchValue);
+    if (!this.isEmptyValue(contextAttributes)) {
+      const { convertParameterToGRPC, typeOfValue } = require('./lib/convertValues.js');
+
       if (typeOfValue(contextAttributes) === 'String') {
         contextAttributes = JSON.parse(contextAttributes);
       }
       contextAttributes.forEach(attribute => {
-        request.addContextAttributes(convertParameterToGRPC({
-          columnName: attribute.key,
-          value: attribute.value
-        }))
+        request.addContextAttributes(
+          convertParameterToGRPC({
+            columnName: attribute.key,
+            value: attribute.value
+          })
+        );
       })
     }
-    request.setPageSize(pageSize)
-    request.setPageToken(pageToken)
-    request.setClientRequest(this.createClientRequest(token, language))
-    this.getUIService().listLookupItems(request, callback)
+    request.setPageSize(pageSize);
+    request.setPageToken(pageToken);
+    request.setClientRequest(this.createClientRequest(token, language));
+    this.getUIService().listLookupItems(request, callback);
   }
 
   //  Get Lookup
