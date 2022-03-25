@@ -1133,7 +1133,6 @@
     const request = new GetLookupItemRequest();
     request.setUuid(uuid);
     request.setId(id);
-    console.log('Hola')
     request.setProcessParameterUuid(processParameterUuid);
     request.setFieldUuid(fieldUuid);
     request.setBrowseFieldUuid(browseFieldUuid);
