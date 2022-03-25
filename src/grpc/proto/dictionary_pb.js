@@ -8487,7 +8487,7 @@ proto.dictionary.ZoomWindow.prototype.setIsActive = function(value) {
  * @private {!Array<number>}
  * @const
  */
-proto.dictionary.Reference.repeatedFields_ = [7];
+proto.dictionary.Reference.repeatedFields_ = [4,5];
 
 
 
@@ -8523,9 +8523,7 @@ proto.dictionary.Reference.toObject = function(includeInstance, msg) {
     tableName: jspb.Message.getFieldWithDefault(msg, 1, ""),
     keyColumnName: jspb.Message.getFieldWithDefault(msg, 2, ""),
     displayColumnName: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    query: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    directQuery: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    validationCode: jspb.Message.getFieldWithDefault(msg, 6, ""),
+    contextColumnNamesList: (f = jspb.Message.getRepeatedField(msg, 4)) == null ? undefined : f,
     zoomWindowsList: jspb.Message.toObjectList(msg.getZoomWindowsList(),
     proto.dictionary.ZoomWindow.toObject, includeInstance)
   };
@@ -8578,17 +8576,9 @@ proto.dictionary.Reference.deserializeBinaryFromReader = function(msg, reader) {
       break;
     case 4:
       var value = /** @type {string} */ (reader.readString());
-      msg.setQuery(value);
+      msg.addContextColumnNames(value);
       break;
     case 5:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setDirectQuery(value);
-      break;
-    case 6:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setValidationCode(value);
-      break;
-    case 7:
       var value = new proto.dictionary.ZoomWindow;
       reader.readMessage(value,proto.dictionary.ZoomWindow.deserializeBinaryFromReader);
       msg.addZoomWindows(value);
@@ -8643,31 +8633,17 @@ proto.dictionary.Reference.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-  f = message.getQuery();
+  f = message.getContextColumnNamesList();
   if (f.length > 0) {
-    writer.writeString(
+    writer.writeRepeatedString(
       4,
-      f
-    );
-  }
-  f = message.getDirectQuery();
-  if (f.length > 0) {
-    writer.writeString(
-      5,
-      f
-    );
-  }
-  f = message.getValidationCode();
-  if (f.length > 0) {
-    writer.writeString(
-      6,
       f
     );
   }
   f = message.getZoomWindowsList();
   if (f.length > 0) {
     writer.writeRepeatedMessage(
-      7,
+      5,
       f,
       proto.dictionary.ZoomWindow.serializeBinaryToWriter
     );
@@ -8730,66 +8706,49 @@ proto.dictionary.Reference.prototype.setDisplayColumnName = function(value) {
 
 
 /**
- * optional string query = 4;
- * @return {string}
+ * repeated string context_column_names = 4;
+ * @return {!Array<string>}
  */
-proto.dictionary.Reference.prototype.getQuery = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+proto.dictionary.Reference.prototype.getContextColumnNamesList = function() {
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 4));
+};
+
+
+/**
+ * @param {!Array<string>} value
+ * @return {!proto.dictionary.Reference} returns this
+ */
+proto.dictionary.Reference.prototype.setContextColumnNamesList = function(value) {
+  return jspb.Message.setField(this, 4, value || []);
 };
 
 
 /**
  * @param {string} value
+ * @param {number=} opt_index
  * @return {!proto.dictionary.Reference} returns this
  */
-proto.dictionary.Reference.prototype.setQuery = function(value) {
-  return jspb.Message.setProto3StringField(this, 4, value);
+proto.dictionary.Reference.prototype.addContextColumnNames = function(value, opt_index) {
+  return jspb.Message.addToRepeatedField(this, 4, value, opt_index);
 };
 
 
 /**
- * optional string direct_query = 5;
- * @return {string}
- */
-proto.dictionary.Reference.prototype.getDirectQuery = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
-};
-
-
-/**
- * @param {string} value
+ * Clears the list making it empty but non-null.
  * @return {!proto.dictionary.Reference} returns this
  */
-proto.dictionary.Reference.prototype.setDirectQuery = function(value) {
-  return jspb.Message.setProto3StringField(this, 5, value);
+proto.dictionary.Reference.prototype.clearContextColumnNamesList = function() {
+  return this.setContextColumnNamesList([]);
 };
 
 
 /**
- * optional string validation_code = 6;
- * @return {string}
- */
-proto.dictionary.Reference.prototype.getValidationCode = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.dictionary.Reference} returns this
- */
-proto.dictionary.Reference.prototype.setValidationCode = function(value) {
-  return jspb.Message.setProto3StringField(this, 6, value);
-};
-
-
-/**
- * repeated ZoomWindow zoom_windows = 7;
+ * repeated ZoomWindow zoom_windows = 5;
  * @return {!Array<!proto.dictionary.ZoomWindow>}
  */
 proto.dictionary.Reference.prototype.getZoomWindowsList = function() {
   return /** @type{!Array<!proto.dictionary.ZoomWindow>} */ (
-    jspb.Message.getRepeatedWrapperField(this, proto.dictionary.ZoomWindow, 7));
+    jspb.Message.getRepeatedWrapperField(this, proto.dictionary.ZoomWindow, 5));
 };
 
 
@@ -8798,7 +8757,7 @@ proto.dictionary.Reference.prototype.getZoomWindowsList = function() {
  * @return {!proto.dictionary.Reference} returns this
 */
 proto.dictionary.Reference.prototype.setZoomWindowsList = function(value) {
-  return jspb.Message.setRepeatedWrapperField(this, 7, value);
+  return jspb.Message.setRepeatedWrapperField(this, 5, value);
 };
 
 
@@ -8808,7 +8767,7 @@ proto.dictionary.Reference.prototype.setZoomWindowsList = function(value) {
  * @return {!proto.dictionary.ZoomWindow}
  */
 proto.dictionary.Reference.prototype.addZoomWindows = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(this, 7, opt_value, proto.dictionary.ZoomWindow, opt_index);
+  return jspb.Message.addToRepeatedWrapperField(this, 5, opt_value, proto.dictionary.ZoomWindow, opt_index);
 };
 
 
