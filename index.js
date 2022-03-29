@@ -1123,7 +1123,6 @@
     columnUuid,
     columnName,
     tableName,
-    searchValue,
     contextAttributes,
     id,
     uuid,
@@ -1184,12 +1183,33 @@
   //  Get Default Value
   getDefaultValue({
     token,
-    query,
+    processParameterUuid,
+    fieldUuid,
+    browseFieldUuid,
+    columnUuid,
+    contextAttributes,
     language
   }, callback) {
     const { GetDefaultValueRequest } = require('./src/grpc/proto/business_pb.js')
     const request = new GetDefaultValueRequest()
-    request.setQuery(query)
+    request.setProcessParameterUuid(processParameterUuid)
+    request.setFieldUuid(fieldUuid)
+    request.setBrowseFieldUuid(browseFieldUuid)
+    request.setColumnUuid(columnUuid)
+    if (!this.isEmptyValue(contextAttributes)) {
+      const { convertParameterToGRPC, typeOfValue } = require('./lib/convertValues.js');
+      if (typeOfValue(contextAttributes) === 'String') {
+        contextAttributes = JSON.parse(contextAttributes);
+      }
+      contextAttributes.forEach(attribute => {
+        request.addContextAttributes(
+          convertParameterToGRPC({
+            columnName: attribute.key,
+            value: attribute.value
+          })
+        );
+      })
+    }
     request.setClientRequest(this.createClientRequest(token, language))
     this.getUIService().getDefaultValue(request, callback)
   }

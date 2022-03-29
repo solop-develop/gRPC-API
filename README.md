@@ -56,7 +56,7 @@ LATEST_VERSION=$(curl --silent "https://api.github.com/repos/protocolbuffers/pro
 
 ARCHITECTURE=$(arch)
 
-ZIP_FILE=protoc-$1-linux-$ARCHITECTURE.zip
+ZIP_FILE=protoc-$LATEST_VERSION-linux-$ARCHITECTURE.zip
 
 # Download latest version
 URL="https://github.com/protocolbuffers/protobuf/releases/download/v$LATEST_VERSION/$ZIP_FILE"
@@ -91,7 +91,7 @@ LATEST_VERSION=$(curl --silent "https://api.github.com/repos/grpc/grpc-web/relea
 FILE=protoc-gen-grpc-web
 
 # Download
-URL=https://github.com/grpc/grpc-web/releases/download/$LATEST_VERSION/$FILE-$1-linux-x86_64
+URL=https://github.com/grpc/grpc-web/releases/download/$LATEST_VERSION/$FILE-$LATEST_VERSION-linux-x86_64
 curl -L $URL -o $FILE
 
 # Extract and overwrite into dir

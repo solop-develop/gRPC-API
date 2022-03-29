@@ -98,6 +98,17 @@ function deserialize_data_CreateEntityRequest(buffer_arg) {
   return proto_business_pb.CreateEntityRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_data_DefaultValue(arg) {
+  if (!(arg instanceof proto_business_pb.DefaultValue)) {
+    throw new Error('Expected argument of type data.DefaultValue');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_DefaultValue(buffer_arg) {
+  return proto_business_pb.DefaultValue.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_data_DeleteEntityRequest(arg) {
   if (!(arg instanceof proto_business_pb.DeleteEntityRequest)) {
     throw new Error('Expected argument of type data.DeleteEntityRequest');
@@ -923,17 +934,6 @@ function deserialize_data_UpdateEntityRequest(buffer_arg) {
   return proto_business_pb.UpdateEntityRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_data_Value(arg) {
-  if (!(arg instanceof proto_base_data_type_pb.Value)) {
-    throw new Error('Expected argument of type data.Value');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_data_Value(buffer_arg) {
-  return proto_base_data_type_pb.Value.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
 
 // The greeting service definition.
 var BusinessDataService = exports.BusinessDataService = {
@@ -1056,11 +1056,11 @@ getDefaultValue: {
     requestStream: false,
     responseStream: false,
     requestType: proto_business_pb.GetDefaultValueRequest,
-    responseType: proto_base_data_type_pb.Value,
+    responseType: proto_business_pb.DefaultValue,
     requestSerialize: serialize_data_GetDefaultValueRequest,
     requestDeserialize: deserialize_data_GetDefaultValueRequest,
-    responseSerialize: serialize_data_Value,
-    responseDeserialize: deserialize_data_Value,
+    responseSerialize: serialize_data_DefaultValue,
+    responseDeserialize: deserialize_data_DefaultValue,
   },
   // Get Lookup Item
 getLookupItem: {
