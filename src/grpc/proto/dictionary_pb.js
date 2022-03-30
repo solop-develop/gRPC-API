@@ -192,7 +192,7 @@ if (goog.DEBUG && !COMPILED) {
  * @constructor
  */
 proto.dictionary.Field = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.dictionary.Field.repeatedFields_, null);
 };
 goog.inherits(proto.dictionary.Field, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -3312,6 +3312,13 @@ proto.dictionary.Tab.prototype.hasFieldGroup = function() {
 
 
 
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.dictionary.Field.repeatedFields_ = [53];
+
 
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
@@ -3394,7 +3401,8 @@ proto.dictionary.Field.toObject = function(includeInstance, msg) {
     isInfoOnly: jspb.Message.getBooleanFieldWithDefault(msg, 49, false),
     isActive: jspb.Message.getBooleanFieldWithDefault(msg, 50, false),
     defaultValueTo: jspb.Message.getFieldWithDefault(msg, 51, ""),
-    fieldLength: jspb.Message.getFieldWithDefault(msg, 52, 0)
+    fieldLength: jspb.Message.getFieldWithDefault(msg, 52, 0),
+    contextColumnNamesList: (f = jspb.Message.getRepeatedField(msg, 53)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -3643,6 +3651,10 @@ proto.dictionary.Field.deserializeBinaryFromReader = function(msg, reader) {
     case 52:
       var value = /** @type {number} */ (reader.readInt32());
       msg.setFieldLength(value);
+      break;
+    case 53:
+      var value = /** @type {string} */ (reader.readString());
+      msg.addContextColumnNames(value);
       break;
     default:
       reader.skipField();
@@ -4039,6 +4051,13 @@ proto.dictionary.Field.serializeBinaryToWriter = function(message, writer) {
   if (f !== 0) {
     writer.writeInt32(
       52,
+      f
+    );
+  }
+  f = message.getContextColumnNamesList();
+  if (f.length > 0) {
+    writer.writeRepeatedString(
+      53,
       f
     );
   }
@@ -5073,6 +5092,43 @@ proto.dictionary.Field.prototype.getFieldLength = function() {
  */
 proto.dictionary.Field.prototype.setFieldLength = function(value) {
   return jspb.Message.setProto3IntField(this, 52, value);
+};
+
+
+/**
+ * repeated string context_column_names = 53;
+ * @return {!Array<string>}
+ */
+proto.dictionary.Field.prototype.getContextColumnNamesList = function() {
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 53));
+};
+
+
+/**
+ * @param {!Array<string>} value
+ * @return {!proto.dictionary.Field} returns this
+ */
+proto.dictionary.Field.prototype.setContextColumnNamesList = function(value) {
+  return jspb.Message.setField(this, 53, value || []);
+};
+
+
+/**
+ * @param {string} value
+ * @param {number=} opt_index
+ * @return {!proto.dictionary.Field} returns this
+ */
+proto.dictionary.Field.prototype.addContextColumnNames = function(value, opt_index) {
+  return jspb.Message.addToRepeatedField(this, 53, value, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.dictionary.Field} returns this
+ */
+proto.dictionary.Field.prototype.clearContextColumnNamesList = function() {
+  return this.setContextColumnNamesList([]);
 };
 
 
