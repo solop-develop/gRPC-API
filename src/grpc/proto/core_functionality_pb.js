@@ -9505,7 +9505,8 @@ proto.data.ProductPrice.toObject = function(includeInstance, msg) {
     displayCurrency: (f = msg.getDisplayCurrency()) && proto.data.Currency.toObject(includeInstance, f),
     displayPriceList: (f = msg.getDisplayPriceList()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
     displayPriceStandard: (f = msg.getDisplayPriceStandard()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
-    displayPriceLimit: (f = msg.getDisplayPriceLimit()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f)
+    displayPriceLimit: (f = msg.getDisplayPriceLimit()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
+    conversionRate: (f = msg.getConversionRate()) && proto.data.ConversionRate.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -9627,6 +9628,11 @@ proto.data.ProductPrice.deserializeBinaryFromReader = function(msg, reader) {
       var value = new proto_base_data_type_pb.Decimal;
       reader.readMessage(value,proto_base_data_type_pb.Decimal.deserializeBinaryFromReader);
       msg.setDisplayPriceLimit(value);
+      break;
+    case 19:
+      var value = new proto.data.ConversionRate;
+      reader.readMessage(value,proto.data.ConversionRate.deserializeBinaryFromReader);
+      msg.setConversionRate(value);
       break;
     default:
       reader.skipField();
@@ -9795,6 +9801,14 @@ proto.data.ProductPrice.serializeBinaryToWriter = function(message, writer) {
       18,
       f,
       proto_base_data_type_pb.Decimal.serializeBinaryToWriter
+    );
+  }
+  f = message.getConversionRate();
+  if (f != null) {
+    writer.writeMessage(
+      19,
+      f,
+      proto.data.ConversionRate.serializeBinaryToWriter
     );
   }
 };
@@ -10387,6 +10401,43 @@ proto.data.ProductPrice.prototype.clearDisplayPriceLimit = function() {
  */
 proto.data.ProductPrice.prototype.hasDisplayPriceLimit = function() {
   return jspb.Message.getField(this, 18) != null;
+};
+
+
+/**
+ * optional ConversionRate conversion_rate = 19;
+ * @return {?proto.data.ConversionRate}
+ */
+proto.data.ProductPrice.prototype.getConversionRate = function() {
+  return /** @type{?proto.data.ConversionRate} */ (
+    jspb.Message.getWrapperField(this, proto.data.ConversionRate, 19));
+};
+
+
+/**
+ * @param {?proto.data.ConversionRate|undefined} value
+ * @return {!proto.data.ProductPrice} returns this
+*/
+proto.data.ProductPrice.prototype.setConversionRate = function(value) {
+  return jspb.Message.setWrapperField(this, 19, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.data.ProductPrice} returns this
+ */
+proto.data.ProductPrice.prototype.clearConversionRate = function() {
+  return this.setConversionRate(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.data.ProductPrice.prototype.hasConversionRate = function() {
+  return jspb.Message.getField(this, 19) != null;
 };
 
 
