@@ -1274,7 +1274,7 @@
     const { ListTabEntitiesRequest } = require('./src/grpc/proto/business_pb.js')
     const request = new ListTabEntitiesRequest()
     const { convertCriteriaToGRPC } = require('./lib/convertValues.js');
-    const { convertParameterToGRPC } = require('./lib/convertValues.js');
+
     //  TODO: Add support to all parameters
     request.setFilters(convertCriteriaToGRPC({
       filters,
@@ -1287,20 +1287,26 @@
     if(tabUuid) {
       request.setTabUuid(tabUuid)
     }
-    if(contextAttributes) {
-      if (contextAttributes.typeOfValue(filters) === 'String') {
-        contextAttributes = JSON.parse(filters);
+
+    if (!this.isEmptyValue(contextAttributes)) {
+      const { convertParameterToGRPC, typeOfValue } = require('./lib/convertValues.js');
+
+      if (typeOfValue(contextAttributes) === 'String') {
+        contextAttributes = JSON.parse(contextAttributes);
       }
       contextAttributes.forEach(attribute => {
-        request.addContextAttributes(convertParameterToGRPC({
-          columnName: attribute.key,
-          value: attribute.value
-        }))
-      })
+        request.addContextAttributes(
+          convertParameterToGRPC({
+            columnName: attribute.key,
+            value: attribute.value
+          })
+        );
+      });
     }
+
     //  For columns
-    if(columns) {
-      columns.forEach(column => request.addColumns(column))
+    if (!this.isEmptyValue(columns)) {
+      request.setColumnsList(columns);
     }
     if(pageSize) {
       request.setPageSize(pageSize)
