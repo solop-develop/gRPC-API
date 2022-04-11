@@ -10284,8 +10284,9 @@ proto.data.ListTabEntitiesRequest.toObject = function(includeInstance, msg) {
     contextAttributesList: jspb.Message.toObjectList(msg.getContextAttributesList(),
     proto_base_data_type_pb.KeyValue.toObject, includeInstance),
     columnsList: (f = jspb.Message.getRepeatedField(msg, 7)) == null ? undefined : f,
-    pageSize: jspb.Message.getFieldWithDefault(msg, 8, 0),
-    pageToken: jspb.Message.getFieldWithDefault(msg, 9, "")
+    searchValue: jspb.Message.getFieldWithDefault(msg, 8, ""),
+    pageSize: jspb.Message.getFieldWithDefault(msg, 9, 0),
+    pageToken: jspb.Message.getFieldWithDefault(msg, 10, "")
   };
 
   if (includeInstance) {
@@ -10354,10 +10355,14 @@ proto.data.ListTabEntitiesRequest.deserializeBinaryFromReader = function(msg, re
       msg.addColumns(value);
       break;
     case 8:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setSearchValue(value);
+      break;
+    case 9:
       var value = /** @type {number} */ (reader.readInt32());
       msg.setPageSize(value);
       break;
-    case 9:
+    case 10:
       var value = /** @type {string} */ (reader.readString());
       msg.setPageToken(value);
       break;
@@ -10442,17 +10447,24 @@ proto.data.ListTabEntitiesRequest.serializeBinaryToWriter = function(message, wr
       f
     );
   }
+  f = message.getSearchValue();
+  if (f.length > 0) {
+    writer.writeString(
+      8,
+      f
+    );
+  }
   f = message.getPageSize();
   if (f !== 0) {
     writer.writeInt32(
-      8,
+      9,
       f
     );
   }
   f = message.getPageToken();
   if (f.length > 0) {
     writer.writeString(
-      9,
+      10,
       f
     );
   }
@@ -10663,11 +10675,29 @@ proto.data.ListTabEntitiesRequest.prototype.clearColumnsList = function() {
 
 
 /**
- * optional int32 page_size = 8;
+ * optional string search_value = 8;
+ * @return {string}
+ */
+proto.data.ListTabEntitiesRequest.prototype.getSearchValue = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 8, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.data.ListTabEntitiesRequest} returns this
+ */
+proto.data.ListTabEntitiesRequest.prototype.setSearchValue = function(value) {
+  return jspb.Message.setProto3StringField(this, 8, value);
+};
+
+
+/**
+ * optional int32 page_size = 9;
  * @return {number}
  */
 proto.data.ListTabEntitiesRequest.prototype.getPageSize = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 8, 0));
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 9, 0));
 };
 
 
@@ -10676,16 +10706,16 @@ proto.data.ListTabEntitiesRequest.prototype.getPageSize = function() {
  * @return {!proto.data.ListTabEntitiesRequest} returns this
  */
 proto.data.ListTabEntitiesRequest.prototype.setPageSize = function(value) {
-  return jspb.Message.setProto3IntField(this, 8, value);
+  return jspb.Message.setProto3IntField(this, 9, value);
 };
 
 
 /**
- * optional string page_token = 9;
+ * optional string page_token = 10;
  * @return {string}
  */
 proto.data.ListTabEntitiesRequest.prototype.getPageToken = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 9, ""));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 10, ""));
 };
 
 
@@ -10694,7 +10724,7 @@ proto.data.ListTabEntitiesRequest.prototype.getPageToken = function() {
  * @return {!proto.data.ListTabEntitiesRequest} returns this
  */
 proto.data.ListTabEntitiesRequest.prototype.setPageToken = function(value) {
-  return jspb.Message.setProto3StringField(this, 9, value);
+  return jspb.Message.setProto3StringField(this, 10, value);
 };
 
 

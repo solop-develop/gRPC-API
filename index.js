@@ -1267,6 +1267,7 @@
     contextAttributes,
     sorting,
     //  Page Data
+    searchValue,
     pageSize,
     pageToken,
     language
@@ -1287,7 +1288,7 @@
     if(tabUuid) {
       request.setTabUuid(tabUuid)
     }
-
+    request.setSearchValue(searchValue)
     if (!this.isEmptyValue(contextAttributes)) {
       const { convertParameterToGRPC, typeOfValue } = require('./lib/convertValues.js');
 
