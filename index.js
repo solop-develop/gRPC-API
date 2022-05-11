@@ -1050,6 +1050,8 @@
     });
     request.setCriteria(criteriaGrpc);
     if (!this.isEmptyValue(contextAttributes)) {
+      const { typeOfValue } = require('./lib/convertValues.js');
+
       if (typeOfValue(contextAttributes) === 'String') {
         contextAttributes = JSON.parse(contextAttributes);
       }
