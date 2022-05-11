@@ -1049,11 +1049,18 @@
       filters
     });
     request.setCriteria(criteriaGrpc);
-    if(contextAttributes) {
+    if (!this.isEmptyValue(contextAttributes)) {
+      if (typeOfValue(contextAttributes) === 'String') {
+        contextAttributes = JSON.parse(contextAttributes);
+      }
       contextAttributes.forEach(attribute => {
+        let parsedAttribute = attribute;
+        if (typeOfValue(attribute) === 'String') {
+          parsedAttribute = JSON.parse(attribute);
+        }
         request.addContextAttributes(convertParameterToGRPC({
-          columnName: attribute.key,
-          value: attribute.value
+          columnName: parsedAttribute.key,
+          value: parsedAttribute.value
         }))
       })
     }
@@ -1099,10 +1106,14 @@
         contextAttributes = JSON.parse(contextAttributes);
       }
       contextAttributes.forEach(attribute => {
+        let parsedAttribute = attribute;
+        if (typeOfValue(attribute) === 'String') {
+          parsedAttribute = JSON.parse(attribute);
+        }
         request.addContextAttributes(
           convertParameterToGRPC({
-            columnName: attribute.key,
-            value: attribute.value
+            columnName: parsedAttribute.key,
+            value: parsedAttribute.value
           })
         );
       })
@@ -1147,10 +1158,14 @@
         contextAttributes = JSON.parse(contextAttributes);
       }
       contextAttributes.forEach(attribute => {
+        let parsedAttribute = attribute;
+        if (typeOfValue(attribute) === 'String') {
+          parsedAttribute = JSON.parse(attribute);
+        }
         request.addContextAttributes(
           convertParameterToGRPC({
-            columnName: attribute.key,
-            value: attribute.value
+            columnName: parsedAttribute.key,
+            value: parsedAttribute.value
           })
         );
       })
@@ -1202,10 +1217,14 @@
         contextAttributes = JSON.parse(contextAttributes);
       }
       contextAttributes.forEach(attribute => {
+        let parsedAttribute = attribute
+        if (typeOfValue(contextAttributes) === 'String') {
+          parsedAttribute = JSON.parse(contextAttributes);
+        }
         request.addContextAttributes(
           convertParameterToGRPC({
-            columnName: attribute.key,
-            value: attribute.value
+            columnName: parsedAttribute.key,
+            value: parsedAttribute.value
           })
         );
       })
@@ -1272,23 +1291,25 @@
     pageToken,
     language
   }, callback) {
-    const { ListTabEntitiesRequest } = require('./src/grpc/proto/business_pb.js')
-    const request = new ListTabEntitiesRequest()
+    const { ListTabEntitiesRequest } = require('./src/grpc/proto/business_pb.js');
+    const request = new ListTabEntitiesRequest();
     const { convertCriteriaToGRPC } = require('./lib/convertValues.js');
 
-    //  TODO: Add support to all parameters
-    request.setFilters(convertCriteriaToGRPC({
-      filters,
-      orderByClause: sorting
-    }))
-    request.setWindowNo(windowNo)
-    if(windowUuid) {
-      request.setWindowUuid(windowUuid)
+    // TODO: Add support to all parameters
+    request.setFilters(
+      convertCriteriaToGRPC({
+        filters,
+        orderByClause: sorting
+      })
+    );
+    request.setWindowNo(windowNo);
+    if (windowUuid) {
+      request.setWindowUuid(windowUuid);
     }
-    if(tabUuid) {
-      request.setTabUuid(tabUuid)
+    if (tabUuid) {
+      request.setTabUuid(tabUuid);
     }
-    request.setSearchValue(searchValue)
+    request.setSearchValue(searchValue);
     if (!this.isEmptyValue(contextAttributes)) {
       const { convertParameterToGRPC, typeOfValue } = require('./lib/convertValues.js');
 
@@ -1296,10 +1317,14 @@
         contextAttributes = JSON.parse(contextAttributes);
       }
       contextAttributes.forEach(attribute => {
+        let parsedAttribute = attribute;
+        if (typeOfValue(attribute) === 'String') {
+          parsedAttribute = JSON.parse(attribute);
+        }
         request.addContextAttributes(
           convertParameterToGRPC({
-            columnName: attribute.key,
-            value: attribute.value
+            columnName: parsedAttribute.key,
+            value: parsedAttribute.value
           })
         );
       });
@@ -1309,14 +1334,14 @@
     if (!this.isEmptyValue(columns)) {
       request.setColumnsList(columns);
     }
-    if(pageSize) {
-      request.setPageSize(pageSize)
+    if (pageSize) {
+      request.setPageSize(pageSize);
     }
-    if(pageToken) {
-      request.setPageToken(pageToken)
+    if (pageToken) {
+      request.setPageToken(pageToken);
     }
-    request.setClientRequest(this.createClientRequest(token, language))
-    this.getUIService().listTabEntities(request, callback)
+    request.setClientRequest(this.createClientRequest(token, language));
+    this.getUIService().listTabEntities(request, callback);
   }
 
   //  Rollback a value from entity
