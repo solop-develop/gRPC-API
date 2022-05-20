@@ -6666,7 +6666,10 @@ proto.dictionary.Process.toObject = function(includeInstance, msg) {
     proto.dictionary.Field.toObject, includeInstance),
     isActive: jspb.Message.getBooleanFieldWithDefault(msg, 12, false),
     reportExportTypesList: jspb.Message.toObjectList(msg.getReportExportTypesList(),
-    proto.dictionary.ReportExportType.toObject, includeInstance)
+    proto.dictionary.ReportExportType.toObject, includeInstance),
+    browserUuid: jspb.Message.getFieldWithDefault(msg, 14, ""),
+    formUuid: jspb.Message.getFieldWithDefault(msg, 15, ""),
+    workflowUuid: jspb.Message.getFieldWithDefault(msg, 16, "")
   };
 
   if (includeInstance) {
@@ -6756,6 +6759,18 @@ proto.dictionary.Process.deserializeBinaryFromReader = function(msg, reader) {
       var value = new proto.dictionary.ReportExportType;
       reader.readMessage(value,proto.dictionary.ReportExportType.deserializeBinaryFromReader);
       msg.addReportExportTypes(value);
+      break;
+    case 14:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setBrowserUuid(value);
+      break;
+    case 15:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setFormUuid(value);
+      break;
+    case 16:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setWorkflowUuid(value);
       break;
     default:
       reader.skipField();
@@ -6877,6 +6892,27 @@ proto.dictionary.Process.serializeBinaryToWriter = function(message, writer) {
       13,
       f,
       proto.dictionary.ReportExportType.serializeBinaryToWriter
+    );
+  }
+  f = message.getBrowserUuid();
+  if (f.length > 0) {
+    writer.writeString(
+      14,
+      f
+    );
+  }
+  f = message.getFormUuid();
+  if (f.length > 0) {
+    writer.writeString(
+      15,
+      f
+    );
+  }
+  f = message.getWorkflowUuid();
+  if (f.length > 0) {
+    writer.writeString(
+      16,
+      f
     );
   }
 };
@@ -7153,6 +7189,60 @@ proto.dictionary.Process.prototype.addReportExportTypes = function(opt_value, op
  */
 proto.dictionary.Process.prototype.clearReportExportTypesList = function() {
   return this.setReportExportTypesList([]);
+};
+
+
+/**
+ * optional string browser_uuid = 14;
+ * @return {string}
+ */
+proto.dictionary.Process.prototype.getBrowserUuid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 14, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.dictionary.Process} returns this
+ */
+proto.dictionary.Process.prototype.setBrowserUuid = function(value) {
+  return jspb.Message.setProto3StringField(this, 14, value);
+};
+
+
+/**
+ * optional string form_uuid = 15;
+ * @return {string}
+ */
+proto.dictionary.Process.prototype.getFormUuid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 15, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.dictionary.Process} returns this
+ */
+proto.dictionary.Process.prototype.setFormUuid = function(value) {
+  return jspb.Message.setProto3StringField(this, 15, value);
+};
+
+
+/**
+ * optional string workflow_uuid = 16;
+ * @return {string}
+ */
+proto.dictionary.Process.prototype.getWorkflowUuid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 16, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.dictionary.Process} returns this
+ */
+proto.dictionary.Process.prototype.setWorkflowUuid = function(value) {
+  return jspb.Message.setProto3StringField(this, 16, value);
 };
 
 
@@ -7554,7 +7644,8 @@ proto.dictionary.Browser.toObject = function(includeInstance, msg) {
     process: (f = msg.getProcess()) && proto.dictionary.Process.toObject(includeInstance, f),
     fieldsList: jspb.Message.toObjectList(msg.getFieldsList(),
     proto.dictionary.Field.toObject, includeInstance),
-    isActive: jspb.Message.getBooleanFieldWithDefault(msg, 20, false)
+    isActive: jspb.Message.getBooleanFieldWithDefault(msg, 20, false),
+    tableName: jspb.Message.getFieldWithDefault(msg, 21, "")
   };
 
   if (includeInstance) {
@@ -7669,6 +7760,10 @@ proto.dictionary.Browser.deserializeBinaryFromReader = function(msg, reader) {
     case 20:
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setIsActive(value);
+      break;
+    case 21:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setTableName(value);
       break;
     default:
       reader.skipField();
@@ -7832,6 +7927,13 @@ proto.dictionary.Browser.serializeBinaryToWriter = function(message, writer) {
   if (f) {
     writer.writeBool(
       20,
+      f
+    );
+  }
+  f = message.getTableName();
+  if (f.length > 0) {
+    writer.writeString(
+      21,
       f
     );
   }
@@ -8254,6 +8356,24 @@ proto.dictionary.Browser.prototype.getIsActive = function() {
  */
 proto.dictionary.Browser.prototype.setIsActive = function(value) {
   return jspb.Message.setProto3BooleanField(this, 20, value);
+};
+
+
+/**
+ * optional string table_name = 21;
+ * @return {string}
+ */
+proto.dictionary.Browser.prototype.getTableName = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 21, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.dictionary.Browser} returns this
+ */
+proto.dictionary.Browser.prototype.setTableName = function(value) {
+  return jspb.Message.setProto3StringField(this, 21, value);
 };
 
 
