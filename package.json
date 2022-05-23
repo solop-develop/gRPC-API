@@ -12,7 +12,7 @@
   ],
   "main": "index.js",
   "scripts": {
-    "stub": "yarn stub:access && yarn stub:base_data_type && yarn stub:business && yarn stub:client && yarn stub:core_functionality && yarn stub:dictionary && yarn stub:enrollment && yarn stub:point_of_sales",
+    "stub": "npm run stub:access && npm run stub:base_data_type && npm run stub:business && npm run stub:client && npm run stub:core_functionality && npm run stub:dictionary && npm run stub:enrollment && npm run stub:point_of_sales",
     "stub:access": "grpc_tools_node_protoc proto/access.proto --js_out=import_style=commonjs,binary:src/grpc/ --grpc_out=grpc_js:src/grpc/",
     "stub:base_data_type": "grpc_tools_node_protoc proto/base_data_type.proto --js_out=import_style=commonjs,binary:src/grpc/ --grpc_out=grpc_js:src/grpc/",
     "stub:business": "grpc_tools_node_protoc proto/business.proto --js_out=import_style=commonjs,binary:src/grpc/ --grpc_out=grpc_js:src/grpc/",
