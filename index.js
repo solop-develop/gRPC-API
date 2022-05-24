@@ -1049,23 +1049,28 @@
       filters
     });
     request.setCriteria(criteriaGrpc);
+
     if (!this.isEmptyValue(contextAttributes)) {
-      const { typeOfValue } = require('./lib/convertValues.js');
+      const { convertParameterToGRPC, typeOfValue } = require('./lib/convertValues.js');
 
       if (typeOfValue(contextAttributes) === 'String') {
         contextAttributes = JSON.parse(contextAttributes);
       }
+
       contextAttributes.forEach(attribute => {
         let parsedAttribute = attribute;
         if (typeOfValue(attribute) === 'String') {
           parsedAttribute = JSON.parse(attribute);
         }
-        request.addContextAttributes(convertParameterToGRPC({
-          columnName: parsedAttribute.key,
-          value: parsedAttribute.value
-        }))
+        request.addContextAttributes(
+          convertParameterToGRPC({
+            columnName: parsedAttribute.key,
+            value: parsedAttribute.value
+          })
+        );
       })
     }
+
     request.setUuid(uuid);
     request.setPageSize(pageSize);
     request.setPageToken(pageToken);
