@@ -539,16 +539,24 @@
     token,
     id,
     uuid,
+    ids = [],
     tableName,
     language
   }, callback) {
-    const { DeleteEntityRequest } = require('./src/grpc/proto/business_pb.js')
-    const request = new DeleteEntityRequest()
-    request.setId(id)
-    request.setUuid(uuid)
-    request.setTableName(tableName)
-    request.setClientRequest(this.createClientRequest(token, language))
-    this.getBusinessService().deleteEntity(request, callback)
+    const { DeleteEntityRequest } = require('./src/grpc/proto/business_pb.js');
+    const request = new DeleteEntityRequest();
+
+    request.setId(id);
+    request.setUuid(uuid);
+    request.setTableName(tableName);
+
+    // selection list id
+    if (!this.isEmptyValue(ids)) {
+      request.setIdsList(ids);
+    }
+
+    request.setClientRequest(this.createClientRequest(token, language));
+    this.getBusinessService().deleteEntity(request, callback);
   }
 
   //  List Entities
@@ -640,7 +648,7 @@
 
     request.setTableSelectedId(tableSelectedId);
     // browser records selections list
-    if (selections && selections.length) {
+    if (!this.isEmptyValue(selections)) {
       const { convertSelectionToGRPC } = require('./lib/convertValues.js');
 
       selections.forEach(selection => {

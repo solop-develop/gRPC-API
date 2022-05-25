@@ -538,7 +538,7 @@ if (goog.DEBUG && !COMPILED) {
  * @constructor
  */
 proto.data.DeleteEntityRequest = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.data.DeleteEntityRequest.repeatedFields_, null);
 };
 goog.inherits(proto.data.DeleteEntityRequest, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -7417,6 +7417,13 @@ proto.data.UpdateEntityRequest.prototype.clearAttributesList = function() {
 
 
 
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.data.DeleteEntityRequest.repeatedFields_ = [5,6];
+
 
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
@@ -7451,7 +7458,9 @@ proto.data.DeleteEntityRequest.toObject = function(includeInstance, msg) {
     clientRequest: (f = msg.getClientRequest()) && proto_client_pb.ClientRequest.toObject(includeInstance, f),
     tableName: jspb.Message.getFieldWithDefault(msg, 2, ""),
     uuid: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    id: jspb.Message.getFieldWithDefault(msg, 4, 0)
+    id: jspb.Message.getFieldWithDefault(msg, 4, 0),
+    uuidsList: (f = jspb.Message.getRepeatedField(msg, 5)) == null ? undefined : f,
+    idsList: (f = jspb.Message.getRepeatedField(msg, 6)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -7504,6 +7513,16 @@ proto.data.DeleteEntityRequest.deserializeBinaryFromReader = function(msg, reade
     case 4:
       var value = /** @type {number} */ (reader.readInt32());
       msg.setId(value);
+      break;
+    case 5:
+      var value = /** @type {string} */ (reader.readString());
+      msg.addUuids(value);
+      break;
+    case 6:
+      var values = /** @type {!Array<number>} */ (reader.isDelimited() ? reader.readPackedInt32() : [reader.readInt32()]);
+      for (var i = 0; i < values.length; i++) {
+        msg.addIds(values[i]);
+      }
       break;
     default:
       reader.skipField();
@@ -7560,6 +7579,20 @@ proto.data.DeleteEntityRequest.serializeBinaryToWriter = function(message, write
   if (f !== 0) {
     writer.writeInt32(
       4,
+      f
+    );
+  }
+  f = message.getUuidsList();
+  if (f.length > 0) {
+    writer.writeRepeatedString(
+      5,
+      f
+    );
+  }
+  f = message.getIdsList();
+  if (f.length > 0) {
+    writer.writePackedInt32(
+      6,
       f
     );
   }
@@ -7654,6 +7687,80 @@ proto.data.DeleteEntityRequest.prototype.getId = function() {
  */
 proto.data.DeleteEntityRequest.prototype.setId = function(value) {
   return jspb.Message.setProto3IntField(this, 4, value);
+};
+
+
+/**
+ * repeated string uuids = 5;
+ * @return {!Array<string>}
+ */
+proto.data.DeleteEntityRequest.prototype.getUuidsList = function() {
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 5));
+};
+
+
+/**
+ * @param {!Array<string>} value
+ * @return {!proto.data.DeleteEntityRequest} returns this
+ */
+proto.data.DeleteEntityRequest.prototype.setUuidsList = function(value) {
+  return jspb.Message.setField(this, 5, value || []);
+};
+
+
+/**
+ * @param {string} value
+ * @param {number=} opt_index
+ * @return {!proto.data.DeleteEntityRequest} returns this
+ */
+proto.data.DeleteEntityRequest.prototype.addUuids = function(value, opt_index) {
+  return jspb.Message.addToRepeatedField(this, 5, value, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.data.DeleteEntityRequest} returns this
+ */
+proto.data.DeleteEntityRequest.prototype.clearUuidsList = function() {
+  return this.setUuidsList([]);
+};
+
+
+/**
+ * repeated int32 ids = 6;
+ * @return {!Array<number>}
+ */
+proto.data.DeleteEntityRequest.prototype.getIdsList = function() {
+  return /** @type {!Array<number>} */ (jspb.Message.getRepeatedField(this, 6));
+};
+
+
+/**
+ * @param {!Array<number>} value
+ * @return {!proto.data.DeleteEntityRequest} returns this
+ */
+proto.data.DeleteEntityRequest.prototype.setIdsList = function(value) {
+  return jspb.Message.setField(this, 6, value || []);
+};
+
+
+/**
+ * @param {number} value
+ * @param {number=} opt_index
+ * @return {!proto.data.DeleteEntityRequest} returns this
+ */
+proto.data.DeleteEntityRequest.prototype.addIds = function(value, opt_index) {
+  return jspb.Message.addToRepeatedField(this, 6, value, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.data.DeleteEntityRequest} returns this
+ */
+proto.data.DeleteEntityRequest.prototype.clearIdsList = function() {
+  return this.setIdsList([]);
 };
 
 
