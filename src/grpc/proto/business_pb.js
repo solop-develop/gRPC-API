@@ -8670,7 +8670,8 @@ proto.data.GetDefaultValueRequest.toObject = function(includeInstance, msg) {
     browseFieldUuid: jspb.Message.getFieldWithDefault(msg, 4, ""),
     columnUuid: jspb.Message.getFieldWithDefault(msg, 5, ""),
     contextAttributesList: jspb.Message.toObjectList(msg.getContextAttributesList(),
-    proto_base_data_type_pb.KeyValue.toObject, includeInstance)
+    proto_base_data_type_pb.KeyValue.toObject, includeInstance),
+    value: (f = msg.getValue()) && proto_base_data_type_pb.Value.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -8732,6 +8733,11 @@ proto.data.GetDefaultValueRequest.deserializeBinaryFromReader = function(msg, re
       var value = new proto_base_data_type_pb.KeyValue;
       reader.readMessage(value,proto_base_data_type_pb.KeyValue.deserializeBinaryFromReader);
       msg.addContextAttributes(value);
+      break;
+    case 7:
+      var value = new proto_base_data_type_pb.Value;
+      reader.readMessage(value,proto_base_data_type_pb.Value.deserializeBinaryFromReader);
+      msg.setValue(value);
       break;
     default:
       reader.skipField();
@@ -8804,6 +8810,14 @@ proto.data.GetDefaultValueRequest.serializeBinaryToWriter = function(message, wr
       6,
       f,
       proto_base_data_type_pb.KeyValue.serializeBinaryToWriter
+    );
+  }
+  f = message.getValue();
+  if (f != null) {
+    writer.writeMessage(
+      7,
+      f,
+      proto_base_data_type_pb.Value.serializeBinaryToWriter
     );
   }
 };
@@ -8953,6 +8967,43 @@ proto.data.GetDefaultValueRequest.prototype.addContextAttributes = function(opt_
  */
 proto.data.GetDefaultValueRequest.prototype.clearContextAttributesList = function() {
   return this.setContextAttributesList([]);
+};
+
+
+/**
+ * optional Value value = 7;
+ * @return {?proto.data.Value}
+ */
+proto.data.GetDefaultValueRequest.prototype.getValue = function() {
+  return /** @type{?proto.data.Value} */ (
+    jspb.Message.getWrapperField(this, proto_base_data_type_pb.Value, 7));
+};
+
+
+/**
+ * @param {?proto.data.Value|undefined} value
+ * @return {!proto.data.GetDefaultValueRequest} returns this
+*/
+proto.data.GetDefaultValueRequest.prototype.setValue = function(value) {
+  return jspb.Message.setWrapperField(this, 7, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.data.GetDefaultValueRequest} returns this
+ */
+proto.data.GetDefaultValueRequest.prototype.clearValue = function() {
+  return this.setValue(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.data.GetDefaultValueRequest.prototype.hasValue = function() {
+  return jspb.Message.getField(this, 7) != null;
 };
 
 

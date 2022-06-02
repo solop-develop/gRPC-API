@@ -1217,35 +1217,48 @@
     fieldUuid,
     browseFieldUuid,
     columnUuid,
+    value,
     contextAttributes,
     language
   }, callback) {
     const { GetDefaultValueRequest } = require('./src/grpc/proto/business_pb.js')
-    const request = new GetDefaultValueRequest()
-    request.setProcessParameterUuid(processParameterUuid)
-    request.setFieldUuid(fieldUuid)
-    request.setBrowseFieldUuid(browseFieldUuid)
-    request.setColumnUuid(columnUuid)
+    const request = new GetDefaultValueRequest();
+    request.setProcessParameterUuid(processParameterUuid);
+    request.setFieldUuid(fieldUuid);
+    request.setBrowseFieldUuid(browseFieldUuid);
+    request.setColumnUuid(columnUuid);
     if (!this.isEmptyValue(contextAttributes)) {
       const { convertParameterToGRPC, typeOfValue } = require('./lib/convertValues.js');
       if (typeOfValue(contextAttributes) === 'String') {
         contextAttributes = JSON.parse(contextAttributes);
       }
+
       contextAttributes.forEach(attribute => {
-        let parsedAttribute = attribute
-        if (typeOfValue(contextAttributes) === 'String') {
-          parsedAttribute = JSON.parse(contextAttributes);
+        let parsedAttribute = attribute;
+        if (typeOfValue(attribute) === 'String') {
+          parsedAttribute = JSON.parse(attribute);
         }
+
         request.addContextAttributes(
           convertParameterToGRPC({
             columnName: parsedAttribute.key,
             value: parsedAttribute.value
           })
         );
-      })
+      });
     }
-    request.setClientRequest(this.createClientRequest(token, language))
-    this.getUIService().getDefaultValue(request, callback)
+
+    // set value as default value
+    if (!this.isEmptyValue(value)) {
+      const { convertValueToGRPC } = require('./lib/convertValues.js');
+      const convertedValue = convertValueToGRPC({
+        value
+      });
+      request.setValue(convertedValue);
+    }
+
+    request.setClientRequest(this.createClientRequest(token, language));
+    this.getUIService().getDefaultValue(request, callback);
   }
 
   //  Run a callout to server
