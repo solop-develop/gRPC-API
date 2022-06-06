@@ -1086,6 +1086,55 @@
     this.getUIService().listBrowserItems(request, callback);
   }
 
+  /**
+   * Update Browser Entity
+   * @param {string} token session uuid
+   * @param {number} id identifier of smart browser
+   * @param {string} id universally unique identifier of smart browser
+   * @param {object} 
+   */
+  updateBrowserEntity({
+    token,
+    id,
+    uuid,
+    recordId,
+    attributes,
+    language
+  }, callback) {
+    const { UpdateBrowserEntityRequest } = require('./src/grpc/proto/business_pb.js');
+    const request = new UpdateBrowserEntityRequest();
+
+    request.setId(id);
+    request.setUuid(uuid);
+    request.setRecordId(recordId);
+
+    // browser records selections list
+    if (!this.isEmptyValue(attributes)) {
+      const { convertParameterToGRPC, typeOfValue } = require('./lib/convertValues.js');
+  
+      if (typeOfValue(attributes) === 'String') {
+        attributes = JSON.parse(attributes);
+      }
+
+      attributes.forEach(attribute => {
+        let parsedAttribute = attribute;
+        if (typeOfValue(attribute) === 'String') {
+          parsedAttribute = JSON.parse(attribute);
+        }
+  
+        const attributeConverted = convertParameterToGRPC({
+          columnName: parsedAttribute.key,
+          value: parsedAttribute.value
+        });
+
+        request.addAttributes(attributeConverted);
+      });
+    }
+
+    request.setClientRequest(this.createClientRequest(token, language));
+    this.getUIService().updateBrowserEntity(request, callback);
+  }
+
   //  List Lookup Items
   listLookupItems({
     token,

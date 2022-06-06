@@ -923,6 +923,17 @@ function deserialize_data_UnlockPrivateAccessRequest(buffer_arg) {
   return proto_business_pb.UnlockPrivateAccessRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_data_UpdateBrowserEntityRequest(arg) {
+  if (!(arg instanceof proto_business_pb.UpdateBrowserEntityRequest)) {
+    throw new Error('Expected argument of type data.UpdateBrowserEntityRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_UpdateBrowserEntityRequest(buffer_arg) {
+  return proto_business_pb.UpdateBrowserEntityRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_data_UpdateEntityRequest(arg) {
   if (!(arg instanceof proto_business_pb.UpdateEntityRequest)) {
     throw new Error('Expected argument of type data.UpdateEntityRequest');
@@ -1097,6 +1108,18 @@ listBrowserItems: {
     requestDeserialize: deserialize_data_ListBrowserItemsRequest,
     responseSerialize: serialize_data_ListBrowserItemsResponse,
     responseDeserialize: deserialize_data_ListBrowserItemsResponse,
+  },
+  // Update Browser Entity
+updateBrowserEntity: {
+    path: '/data.UserInterface/UpdateBrowserEntity',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_business_pb.UpdateBrowserEntityRequest,
+    responseType: proto_base_data_type_pb.Entity,
+    requestSerialize: serialize_data_UpdateBrowserEntityRequest,
+    requestDeserialize: deserialize_data_UpdateBrowserEntityRequest,
+    responseSerialize: serialize_data_Entity,
+    responseDeserialize: deserialize_data_Entity,
   },
   // List a References
 listReferences: {
