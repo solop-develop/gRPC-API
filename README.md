@@ -106,8 +106,8 @@ grpc_tools_node_protoc \
 # Generate stub to access.proto file
 grpc_tools_node_protoc \
     proto/access.proto \
-    --js_out=import_style=commonjs,binary:$OUT_DIR  \
-    --grpc_out=grpc_js:$OUT_DIR
+    --js_out=import_style=commonjs,binary:src/grpc/ \
+    --grpc_out=grpc_js:src/grpc/
     # --grpc-web_out=import_style=commonjs,mode=grpcwebtext:$OUT_DIR
 ```
 
@@ -116,8 +116,8 @@ grpc_tools_node_protoc \
 # Generate stub to base_data_type.proto file
 grpc_tools_node_protoc \
     proto/base_data_type.proto \
-    --js_out=import_style=commonjs,binary:$OUT_DIR  \
-    --grpc_out=grpc_js:$OUT_DIR
+    --js_out=import_style=commonjs,binary:src/grpc/ \
+    --grpc_out=grpc_js:src/grpc/
     # --grpc-web_out=import_style=commonjs,mode=grpcwebtext:$OUT_DIR
 ```
 
@@ -126,8 +126,8 @@ grpc_tools_node_protoc \
 # Generate stub to business.proto file
 grpc_tools_node_protoc \
     proto/business.proto \
-    --js_out=import_style=commonjs,binary:$OUT_DIR  \
-    --grpc_out=grpc_js:$OUT_DIR
+    --js_out=import_style=commonjs,binary:src/grpc/ \
+    --grpc_out=grpc_js:src/grpc/
     # --grpc-web_out=import_style=commonjs,mode=grpcwebtext:$OUT_DIR
 ```
 
@@ -136,8 +136,8 @@ grpc_tools_node_protoc \
 # Generate stub to client.proto file
 grpc_tools_node_protoc \
     proto/access.proto \
-    --js_out=import_style=commonjs,binary:$OUT_DIR  \
-    --grpc_out=grpc_js:$OUT_DIR
+    --js_out=import_style=commonjs,binary:src/grpc/ \
+    --grpc_out=grpc_js:src/grpc/
     # --grpc-web_out=import_style=commonjs,mode=grpcwebtext:$OUT_DIR
 ```
 
@@ -146,8 +146,8 @@ grpc_tools_node_protoc \
 # Generate stub to access.proto file
 grpc_tools_node_protoc \
     proto/core_functionality.proto \
-    --js_out=import_style=commonjs,binary:$OUT_DIR  \
-    --grpc_out=grpc_js:$OUT_DIR
+    --js_out=import_style=commonjs,binary:src/grpc/ \
+    --grpc_out=grpc_js:src/grpc/
     # --grpc-web_out=import_style=commonjs,mode=grpcwebtext:$OUT_DIR
 ```
 
@@ -156,8 +156,8 @@ grpc_tools_node_protoc \
 # Generate stub to access.proto file
 grpc_tools_node_protoc \
     proto/dictionary.proto \
-    --js_out=import_style=commonjs,binary:$OUT_DIR  \
-    --grpc_out=grpc_js:$OUT_DIR
+    --js_out=import_style=commonjs,binary:src/grpc/ \
+    --grpc_out=grpc_js:src/grpc/
     # --grpc-web_out=import_style=commonjs,mode=grpcwebtext:$OUT_DIR
 ```
 
@@ -166,8 +166,8 @@ grpc_tools_node_protoc \
 # Generate stub to access.proto file
 grpc_tools_node_protoc \
     proto/enrollment.proto \
-    --js_out=import_style=commonjs,binary:$OUT_DIR  \
-    --grpc_out=grpc_js:$OUT_DIR
+    --js_out=import_style=commonjs,binary:src/grpc/ \
+    --grpc_out=grpc_js:src/grpc/
     # --grpc-web_out=import_style=commonjs,mode=grpcwebtext:$OUT_DIR
 ```
 
@@ -176,8 +176,8 @@ grpc_tools_node_protoc \
 # Generate stub to access.proto file
 grpc_tools_node_protoc \
     proto/point_of_sales.proto \
-    --js_out=import_style=commonjs,binary:$OUT_DIR  \
-    --grpc_out=grpc_js:$OUT_DIR
+    --js_out=import_style=commonjs,binary:src/grpc/ \
+    --grpc_out=grpc_js:src/grpc/
     # --grpc-web_out=import_style=commonjs,mode=grpcwebtext:$OUT_DIR
 ```
 
