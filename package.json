@@ -1,6 +1,6 @@
 {
   "name": "@adempiere/grpc-api",
-  "version": "3.0.4",
+  "version": "3.0.5",
   "description": "ADempiere Web Store write in Javascript for a node service",
   "author": "Yamel Senih",
   "contributors": [
@@ -12,6 +12,7 @@
   ],
   "main": "index.js",
   "scripts": {
+    "ci": "yarn install --frozen-lockfile",
     "stub": "npm run stub:access && npm run stub:base_data_type && npm run stub:business && npm run stub:client && npm run stub:core_functionality && npm run stub:dictionary && npm run stub:enrollment && npm run stub:point_of_sales",
     "stub:access": "grpc_tools_node_protoc proto/access.proto --js_out=import_style=commonjs,binary:src/grpc/ --grpc_out=grpc_js:src/grpc/",
     "stub:base_data_type": "grpc_tools_node_protoc proto/base_data_type.proto --js_out=import_style=commonjs,binary:src/grpc/ --grpc_out=grpc_js:src/grpc/",
@@ -39,7 +40,7 @@
     "grpc-tools": "1.11.2"
   },
   "engines": {
-    "node": ">= 10.0",
+    "node": ">= 12.0",
     "npm": ">= 6.0.0"
   },
   "keywords": [

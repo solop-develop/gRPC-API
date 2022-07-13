@@ -46,61 +46,6 @@ For recreate stub class you must have follow:
 
 ## Install prerequisites for proto stub generation
 
-### Install Proto C
-
-```shell
-# Get the latest version number of protoc
-LATEST_VERSION=$(curl --silent "https://api.github.com/repos/protocolbuffers/protobuf/releases/latest" |
-    grep -Po '"tag_name": "\K.*?(?=")' |
-    sed -E 's|v||g')
-
-ARCHITECTURE=$(arch)
-
-ZIP_FILE=protoc-$LATEST_VERSION-linux-$ARCHITECTURE.zip
-
-# Download latest version
-URL="https://github.com/protocolbuffers/protobuf/releases/download/v$LATEST_VERSION/$ZIP_FILE"
-curl -OL $URL
-
-# Extract and overwrite into dir
-sudo unzip -o $ZIP_FILE -d /usr/local bin/protoc
-sudo unzip -o $ZIP_FILE -d /usr/local 'include/*'
-
-# Delete donwloaded file
-rm -f -v $ZIP_FILE
-
-# Assign read and execute permissions
-sudo chmod 755 /usr/local/bin/protoc
-sudo chmod 755 -R /usr/local/include/google/
-```
-
-When installation is complete, check the version with
-```Shell
-protoc --version
-```
-
-### Install Proto C Gen gRPC Web
-This is only used to generate the stub if gRPC is handled on the client side.
-
-```shell
-# Get the latest version number of protoc-gen-grpc-web
-LATEST_VERSION=$(curl --silent "https://api.github.com/repos/grpc/grpc-web/releases/latest" |
-    grep -Po '"tag_name": "\K.*?(?=")' |
-    sed -E 's|v||g')
-
-FILE=protoc-gen-grpc-web
-
-# Download
-URL=https://github.com/grpc/grpc-web/releases/download/$LATEST_VERSION/$FILE-$LATEST_VERSION-linux-x86_64
-curl -L $URL -o $FILE
-
-# Extract and overwrite into dir
-sudo mv -f -v $FILE /usr/local/bin/
-
-# Assign read and execute permissions
-sudo chmod 755 /usr/local/bin/$FILE
-```
-
 ### Install gRPC Tools (Node Proto C)
 It can be installed as a global dependency although it is already managed as a project dependency.
 
@@ -117,12 +62,22 @@ yarn global add grpc-tools
 ## Generate Proto Stub:
 
 ### Generate with npm (Recommended):
+Via npm:
 ```shell
 # install dependecies and dev dependencies
-npm i
+npm ci
 
 # generate all stub
 npm run stub
+```
+
+Via yarn:
+```shell
+# install dependecies and dev dependencies
+yarn ci
+
+# generate all stub
+yarn stub
 ```
 
 Note to generate specific proto definition:
@@ -135,7 +90,7 @@ Note to generate specific proto definition:
 * To enrollment: `npm run stub:enrollment`
 * To point of sales: `npm run stub:point_of_sales`
 
-### Generate directly with grpc_tools_node_protoc:
+### Generate directly with grpc-tools:
 
 Generate all stub:
 ```shell
@@ -145,7 +100,6 @@ grpc_tools_node_protoc \
     proto/access.proto proto/base_data_type.proto proto/business.proto proto/client.proto proto/core_functionality.proto proto/dictionary.proto proto/enrollment.proto proto/point_of_sales.proto
     # --grpc-web_out=import_style=commonjs,mode=grpcwebtext:$OUT_DIR
 ```
-
 
 * To access:
 ```shell
