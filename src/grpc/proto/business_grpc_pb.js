@@ -274,6 +274,17 @@ function deserialize_data_GetResourceRequest(buffer_arg) {
   return proto_business_pb.GetResourceRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_data_GetTabEntityRequest(arg) {
+  if (!(arg instanceof proto_business_pb.GetTabEntityRequest)) {
+    throw new Error('Expected argument of type data.GetTabEntityRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_GetTabEntityRequest(buffer_arg) {
+  return proto_business_pb.GetTabEntityRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_data_ListBrowserItemsRequest(arg) {
   if (!(arg instanceof proto_business_pb.ListBrowserItemsRequest)) {
     throw new Error('Expected argument of type data.ListBrowserItemsRequest');
@@ -1025,6 +1036,30 @@ runBusinessProcess: {
 exports.BusinessDataClient = grpc.makeGenericClientConstructor(BusinessDataService);
 // 	User Interface
 var UserInterfaceService = exports.UserInterfaceService = {
+  // Get a Tab Entity
+getTabEntity: {
+    path: '/data.UserInterface/GetTabEntity',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_business_pb.GetTabEntityRequest,
+    responseType: proto_base_data_type_pb.Entity,
+    requestSerialize: serialize_data_GetTabEntityRequest,
+    requestDeserialize: deserialize_data_GetTabEntityRequest,
+    responseSerialize: serialize_data_Entity,
+    responseDeserialize: deserialize_data_Entity,
+  },
+  // 	List tab Entities
+listTabEntities: {
+    path: '/data.UserInterface/ListTabEntities',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_business_pb.ListTabEntitiesRequest,
+    responseType: proto_business_pb.ListTabEntitiesResponse,
+    requestSerialize: serialize_data_ListTabEntitiesRequest,
+    requestDeserialize: deserialize_data_ListTabEntitiesRequest,
+    responseSerialize: serialize_data_ListTabEntitiesResponse,
+    responseDeserialize: deserialize_data_ListTabEntitiesResponse,
+  },
   // 	Rollback Entity Request
 rollbackEntity: {
     path: '/data.UserInterface/RollbackEntity',
@@ -1324,18 +1359,6 @@ deletePreference: {
     requestDeserialize: deserialize_data_DeletePreferenceRequest,
     responseSerialize: serialize_data_Empty,
     responseDeserialize: deserialize_data_Empty,
-  },
-  // 	List tab Entities
-listTabEntities: {
-    path: '/data.UserInterface/ListTabEntities',
-    requestStream: false,
-    responseStream: false,
-    requestType: proto_business_pb.ListTabEntitiesRequest,
-    responseType: proto_business_pb.ListTabEntitiesResponse,
-    requestSerialize: serialize_data_ListTabEntitiesRequest,
-    requestDeserialize: deserialize_data_ListTabEntitiesRequest,
-    responseSerialize: serialize_data_ListTabEntitiesResponse,
-    responseDeserialize: deserialize_data_ListTabEntitiesResponse,
   },
 };
 
