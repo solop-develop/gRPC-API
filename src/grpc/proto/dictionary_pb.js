@@ -2151,7 +2151,8 @@ proto.dictionary.Tab.toObject = function(includeInstance, msg) {
     proto.dictionary.Process.toObject, includeInstance),
     fieldsList: jspb.Message.toObjectList(msg.getFieldsList(),
     proto.dictionary.Field.toObject, includeInstance),
-    fieldGroup: (f = msg.getFieldGroup()) && proto.dictionary.FieldGroup.toObject(includeInstance, f)
+    fieldGroup: (f = msg.getFieldGroup()) && proto.dictionary.FieldGroup.toObject(includeInstance, f),
+    readOnlyLogic: jspb.Message.getFieldWithDefault(msg, 38, "")
   };
 
   if (includeInstance) {
@@ -2327,6 +2328,10 @@ proto.dictionary.Tab.deserializeBinaryFromReader = function(msg, reader) {
       var value = new proto.dictionary.FieldGroup;
       reader.readMessage(value,proto.dictionary.FieldGroup.deserializeBinaryFromReader);
       msg.setFieldGroup(value);
+      break;
+    case 38:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setReadOnlyLogic(value);
       break;
     default:
       reader.skipField();
@@ -2597,6 +2602,13 @@ proto.dictionary.Tab.serializeBinaryToWriter = function(message, writer) {
       37,
       f,
       proto.dictionary.FieldGroup.serializeBinaryToWriter
+    );
+  }
+  f = message.getReadOnlyLogic();
+  if (f.length > 0) {
+    writer.writeString(
+      38,
+      f
     );
   }
 };
@@ -3308,6 +3320,24 @@ proto.dictionary.Tab.prototype.clearFieldGroup = function() {
  */
 proto.dictionary.Tab.prototype.hasFieldGroup = function() {
   return jspb.Message.getField(this, 37) != null;
+};
+
+
+/**
+ * optional string read_only_logic = 38;
+ * @return {string}
+ */
+proto.dictionary.Tab.prototype.getReadOnlyLogic = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 38, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.dictionary.Tab} returns this
+ */
+proto.dictionary.Tab.prototype.setReadOnlyLogic = function(value) {
+  return jspb.Message.setProto3StringField(this, 38, value);
 };
 
 
