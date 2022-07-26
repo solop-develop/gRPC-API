@@ -74,6 +74,28 @@ function deserialize_dictionary_Form(buffer_arg) {
   return proto_dictionary_pb.Form.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_dictionary_ListFieldsRequest(arg) {
+  if (!(arg instanceof proto_dictionary_pb.ListFieldsRequest)) {
+    throw new Error('Expected argument of type dictionary.ListFieldsRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_dictionary_ListFieldsRequest(buffer_arg) {
+  return proto_dictionary_pb.ListFieldsRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_dictionary_ListFieldsResponse(arg) {
+  if (!(arg instanceof proto_dictionary_pb.ListFieldsResponse)) {
+    throw new Error('Expected argument of type dictionary.ListFieldsResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_dictionary_ListFieldsResponse(buffer_arg) {
+  return proto_dictionary_pb.ListFieldsResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_dictionary_Process(arg) {
   if (!(arg instanceof proto_dictionary_pb.Process)) {
     throw new Error('Expected argument of type dictionary.Process');
@@ -238,6 +260,30 @@ getForm: {
     requestDeserialize: deserialize_dictionary_EntityRequest,
     responseSerialize: serialize_dictionary_Form,
     responseDeserialize: deserialize_dictionary_Form,
+  },
+  // List Identifiers Fields
+listIdentifiersFields: {
+    path: '/dictionary.Dictionary/ListIdentifiersFields',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_dictionary_pb.ListFieldsRequest,
+    responseType: proto_dictionary_pb.ListFieldsResponse,
+    requestSerialize: serialize_dictionary_ListFieldsRequest,
+    requestDeserialize: deserialize_dictionary_ListFieldsRequest,
+    responseSerialize: serialize_dictionary_ListFieldsResponse,
+    responseDeserialize: deserialize_dictionary_ListFieldsResponse,
+  },
+  // List Selections Fields
+listTableSearchFields: {
+    path: '/dictionary.Dictionary/ListTableSearchFields',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_dictionary_pb.ListFieldsRequest,
+    responseType: proto_dictionary_pb.ListFieldsResponse,
+    requestSerialize: serialize_dictionary_ListFieldsRequest,
+    requestDeserialize: deserialize_dictionary_ListFieldsRequest,
+    responseSerialize: serialize_dictionary_ListFieldsResponse,
+    responseDeserialize: deserialize_dictionary_ListFieldsResponse,
   },
 };
 

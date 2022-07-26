@@ -1,6 +1,6 @@
 {
   "name": "@adempiere/grpc-api",
-  "version": "3.0.6",
+  "version": "3.0.7",
   "description": "ADempiere Web Store write in Javascript for a node service",
   "author": "Yamel Senih",
   "contributors": [

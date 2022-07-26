@@ -280,9 +280,9 @@ google-protobuf@3.20.1:
   resolved "https://registry.yarnpkg.com/google-protobuf/-/google-protobuf-3.20.1.tgz#1b255c2b59bcda7c399df46c65206aa3c7a0ce8b"
   integrity sha512-XMf1+O32FjYIV3CYu6Tuh5PNbfNEU5Xu22X+Xkdb/DUexFlCzhvv7d5Iirm4AOwn8lv4al1YvIhzGrg2j9Zfzw==
 
-grpc-tools@1.11.2:
+grpc-tools@^1.11.2:
   version "1.11.2"
-  resolved "https://registry.npmjs.org/grpc-tools/-/grpc-tools-1.11.2.tgz"
+  resolved "https://registry.yarnpkg.com/grpc-tools/-/grpc-tools-1.11.2.tgz#22d802d40012510ccc6591d11f9c94109ac07aab"
   integrity sha512-4+EgpnnkJraamY++oyBCw5Hp9huRYfgakjNVKbiE3PgO9Tv5ydVlRo7ZyGJ0C0SEiA7HhbVc1sNNtIyK7FiEtg==
   dependencies:
     "@mapbox/node-pre-gyp" "^1.0.5"

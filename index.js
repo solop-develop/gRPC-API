@@ -54,6 +54,15 @@
     return client
   }
 
+  //  Create Application request from token
+  createApplicationRequest({ token, language }) {
+    const { ApplicationRequest } = require('./src/grpc/proto/dictionary_pb');
+    const application = new ApplicationRequest();
+    application.setSessionUuid(token);
+    application.setLanguage(language);
+    return application;
+  }
+
   // Init connection
   initAccessService() {
     var grpc = require('@grpc/grpc-js');
@@ -1338,6 +1347,60 @@
 
     request.setClientRequest(this.createClientRequest(token, language));
     this.getUIService().getDefaultValue(request, callback);
+  }
+
+  //  List Identifiers Fields
+  listIdentifiersFields({
+    token,
+    tableUuid,
+    tableId,
+    tableName,
+    tabUuid,
+    tabId,
+    language
+  }, callback) {
+    const { ListFieldsRequest } = require('./src/grpc/proto/dictionary_pb.js');
+    const request = new ListFieldsRequest();
+
+    request.setTableUuid(tableUuid);
+    request.setTableId(tableId);
+    request.setTableName(tableName);
+
+    request.setTabUuid(tabUuid);
+    request.setTabId(tabId);
+
+    request.setApplicationRequest(
+      this.createApplicationRequest({ token, language })
+    );
+
+    this.getDictionaryService().listIdentifiersFields(request, callback);
+  }
+
+  //  List Table Search Fields
+  listTableSearchFields({
+    token,
+    tableUuid,
+    tableId,
+    tableName,
+    tabUuid,
+    tabId,
+    language
+  }, callback) {
+    const { ListFieldsRequest } = require('./src/grpc/proto/dictionary_pb.js');
+    const request = new ListFieldsRequest();
+
+    request.setTableUuid(tableUuid);
+    request.setTableId(tableId);
+    request.setTableName(tableName);
+
+    request.setTabUuid(tabUuid);
+    request.setTabId(tabId);
+
+    request.setApplicationRequest(
+      this.createApplicationRequest({ token, language })
+    );
+
+    this.getDictionaryService().listTableSearchFields(request, callback);
   }
 
   //  Run a callout to server
