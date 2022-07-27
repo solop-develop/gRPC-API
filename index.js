@@ -1533,6 +1533,73 @@
     this.getUIService().rollbackEntity(request, callback)
   }
 
+  // List General Info
+  listGeneralInfo({
+    token,
+    //  DSL
+    filters = [],
+    searchValue,
+    contextAttributes,
+    // references
+    processParameterUuid,
+    fieldUuid,
+    browseFieldUuid,
+    columnUuid,
+    tableName,
+    columnName,
+    referenceUuid,
+    // Page Data
+    pageSize,
+    pageToken,
+    language
+  }, callback) {
+    const { ListGeneralInfoRequest } = require('./src/grpc/proto/business_pb.js');
+    const request = new ListGeneralInfoRequest();
+    const { convertCriteriaToGRPC } = require('./lib/convertValues.js');
+
+    request.setFieldUuid(fieldUuid);
+    request.setProcessParameterUuid(processParameterUuid);
+    request.setBrowseFieldUuid(browseFieldUuid);
+    request.setColumnUuid(columnUuid);
+    request.setTableName(tableName);
+    request.setColumnName(columnName);
+    request.setReferenceUuid(referenceUuid);
+
+    request.setFilters(
+      convertCriteriaToGRPC({
+        tableName,
+        filters
+      })
+    );
+
+    request.setSearchValue(searchValue);
+    if (!this.isEmptyValue(contextAttributes)) {
+      const { convertParameterToGRPC, typeOfValue } = require('./lib/convertValues.js');
+
+      if (typeOfValue(contextAttributes) === 'String') {
+        contextAttributes = JSON.parse(contextAttributes);
+      }
+      contextAttributes.forEach(attribute => {
+        let parsedAttribute = attribute;
+        if (typeOfValue(attribute) === 'String') {
+          parsedAttribute = JSON.parse(attribute);
+        }
+        request.addContextAttributes(
+          convertParameterToGRPC({
+            columnName: parsedAttribute.key,
+            value: parsedAttribute.value
+          })
+        );
+      });
+    }
+
+    request.setPageSize(pageSize);
+    request.setPageToken(pageToken);
+    request.setClientRequest(this.createClientRequest(token, language));
+
+    this.getUIService().listGeneralInfo(request, callback);
+  }
+
   //  Logs
   //  List process logs
   listProcessLogs({
