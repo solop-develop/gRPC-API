@@ -15,6 +15,7 @@
  ************************************************************************************/
 
 const { createClientRequest } = require('../../lib/clientRequest');
+const { isEmptyValue } = require('../../lib/convertValues.js');
 
 class Order {
 
@@ -85,8 +86,8 @@ class Order {
     );
 
     request.setSearchValue(searchValue);
-    if (!this.isEmptyValue(contextAttributes)) {
-      const { convertParameterToGRPC, typeOfValue } = require('./lib/convertValues.js');
+    if (!isEmptyValue(contextAttributes)) {
+      const { convertParameterToGRPC, typeOfValue } = require('../../lib/convertValues.js');
 
       if (typeOfValue(contextAttributes) === 'String') {
         contextAttributes = JSON.parse(contextAttributes);
