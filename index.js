@@ -54,6 +54,15 @@
     return client
   }
 
+  //  Create Application request from token
+  createApplicationRequest({ token, language }) {
+    const { ApplicationRequest } = require('./src/grpc/proto/dictionary_pb');
+    const application = new ApplicationRequest();
+    application.setSessionUuid(token);
+    application.setLanguage(language);
+    return application;
+  }
+
   // Init connection
   initAccessService() {
     var grpc = require('@grpc/grpc-js');
@@ -1340,6 +1349,60 @@
     this.getUIService().getDefaultValue(request, callback);
   }
 
+  //  List Identifiers Fields
+  listIdentifiersFields({
+    token,
+    tableUuid,
+    tableId,
+    tableName,
+    tabUuid,
+    tabId,
+    language
+  }, callback) {
+    const { ListFieldsRequest } = require('./src/grpc/proto/dictionary_pb.js');
+    const request = new ListFieldsRequest();
+
+    request.setTableUuid(tableUuid);
+    request.setTableId(tableId);
+    request.setTableName(tableName);
+
+    request.setTabUuid(tabUuid);
+    request.setTabId(tabId);
+
+    request.setApplicationRequest(
+      this.createApplicationRequest({ token, language })
+    );
+
+    this.getDictionaryService().listIdentifiersFields(request, callback);
+  }
+
+  //  List Table Search Fields
+  listTableSearchFields({
+    token,
+    tableUuid,
+    tableId,
+    tableName,
+    tabUuid,
+    tabId,
+    language
+  }, callback) {
+    const { ListFieldsRequest } = require('./src/grpc/proto/dictionary_pb.js');
+    const request = new ListFieldsRequest();
+
+    request.setTableUuid(tableUuid);
+    request.setTableId(tableId);
+    request.setTableName(tableName);
+
+    request.setTabUuid(tabUuid);
+    request.setTabId(tabId);
+
+    request.setApplicationRequest(
+      this.createApplicationRequest({ token, language })
+    );
+
+    this.getDictionaryService().listTableSearchFields(request, callback);
+  }
+
   //  Run a callout to server
   runCallout({
     token,
@@ -1468,6 +1531,73 @@
     request.setLogId(logId)
     request.setClientRequest(this.createClientRequest(token, language))
     this.getUIService().rollbackEntity(request, callback)
+  }
+
+  // List General Info
+  listGeneralInfo({
+    token,
+    //  DSL
+    filters = [],
+    searchValue,
+    contextAttributes,
+    // references
+    processParameterUuid,
+    fieldUuid,
+    browseFieldUuid,
+    columnUuid,
+    tableName,
+    columnName,
+    referenceUuid,
+    // Page Data
+    pageSize,
+    pageToken,
+    language
+  }, callback) {
+    const { ListGeneralInfoRequest } = require('./src/grpc/proto/business_pb.js');
+    const request = new ListGeneralInfoRequest();
+    const { convertCriteriaToGRPC } = require('./lib/convertValues.js');
+
+    request.setFieldUuid(fieldUuid);
+    request.setProcessParameterUuid(processParameterUuid);
+    request.setBrowseFieldUuid(browseFieldUuid);
+    request.setColumnUuid(columnUuid);
+    request.setTableName(tableName);
+    request.setColumnName(columnName);
+    request.setReferenceUuid(referenceUuid);
+
+    request.setFilters(
+      convertCriteriaToGRPC({
+        tableName,
+        filters
+      })
+    );
+
+    request.setSearchValue(searchValue);
+    if (!this.isEmptyValue(contextAttributes)) {
+      const { convertParameterToGRPC, typeOfValue } = require('./lib/convertValues.js');
+
+      if (typeOfValue(contextAttributes) === 'String') {
+        contextAttributes = JSON.parse(contextAttributes);
+      }
+      contextAttributes.forEach(attribute => {
+        let parsedAttribute = attribute;
+        if (typeOfValue(attribute) === 'String') {
+          parsedAttribute = JSON.parse(attribute);
+        }
+        request.addContextAttributes(
+          convertParameterToGRPC({
+            columnName: parsedAttribute.key,
+            value: parsedAttribute.value
+          })
+        );
+      });
+    }
+
+    request.setPageSize(pageSize);
+    request.setPageToken(pageToken);
+    request.setClientRequest(this.createClientRequest(token, language));
+
+    this.getUIService().listGeneralInfo(request, callback);
   }
 
   //  Logs

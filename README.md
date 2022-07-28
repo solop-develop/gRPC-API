@@ -44,21 +44,6 @@ For recreate stub class you must have follow:
 - [gRPC-Node](https://github.com/grpc/grpc-node)
 
 
-## Install prerequisites for proto stub generation
-
-### Install gRPC Tools (Node Proto C)
-It can be installed as a global dependency although it is already managed as a project dependency.
-
-Via npm:
-```shell
-sudo npm install -g grpc-tools
-```
-
-Via yarn:
-```shell
-yarn global add grpc-tools
-```
-
 ## Generate Proto Stub:
 
 ### Generate with npm (Recommended):
@@ -89,6 +74,12 @@ Note to generate specific proto definition:
 * To dictionary: `npm run stub:dictionary`
 * To enrollment: `npm run stub:enrollment`
 * To point of sales: `npm run stub:point_of_sales`
+* To business partner: `npm run stub:business_partner`
+* To in-out: `npm run stub:in_out`
+* To invoice: `npm run stub:invoice`
+* To order: `npm run stub:order`
+* To payment: `npm run stub:payment`
+* To product: `npm run stub:product`
 
 ### Generate directly with grpc-tools:
 
@@ -121,36 +112,6 @@ grpc_tools_node_protoc \
     # --grpc-web_out=import_style=commonjs,mode=grpcwebtext:$OUT_DIR
 ```
 
-* To business:
-```shell
-# Generate stub to business.proto file
-grpc_tools_node_protoc \
-    proto/business.proto \
-    --js_out=import_style=commonjs,binary:src/grpc/ \
-    --grpc_out=grpc_js:src/grpc/
-    # --grpc-web_out=import_style=commonjs,mode=grpcwebtext:$OUT_DIR
-```
-
-* To client:
-```shell
-# Generate stub to client.proto file
-grpc_tools_node_protoc \
-    proto/access.proto \
-    --js_out=import_style=commonjs,binary:src/grpc/ \
-    --grpc_out=grpc_js:src/grpc/
-    # --grpc-web_out=import_style=commonjs,mode=grpcwebtext:$OUT_DIR
-```
-
-* To core functionality:
-```shell
-# Generate stub to access.proto file
-grpc_tools_node_protoc \
-    proto/core_functionality.proto \
-    --js_out=import_style=commonjs,binary:src/grpc/ \
-    --grpc_out=grpc_js:src/grpc/
-    # --grpc-web_out=import_style=commonjs,mode=grpcwebtext:$OUT_DIR
-```
-
 * To dictionary:
 ```shell
 # Generate stub to access.proto file
@@ -160,27 +121,6 @@ grpc_tools_node_protoc \
     --grpc_out=grpc_js:src/grpc/
     # --grpc-web_out=import_style=commonjs,mode=grpcwebtext:$OUT_DIR
 ```
-
-* To enrollment:
-```shell
-# Generate stub to access.proto file
-grpc_tools_node_protoc \
-    proto/enrollment.proto \
-    --js_out=import_style=commonjs,binary:src/grpc/ \
-    --grpc_out=grpc_js:src/grpc/
-    # --grpc-web_out=import_style=commonjs,mode=grpcwebtext:$OUT_DIR
-```
-
-* To point of sales:
-```shell
-# Generate stub to access.proto file
-grpc_tools_node_protoc \
-    proto/point_of_sales.proto \
-    --js_out=import_style=commonjs,binary:src/grpc/ \
-    --grpc_out=grpc_js:src/grpc/
-    # --grpc-web_out=import_style=commonjs,mode=grpcwebtext:$OUT_DIR
-```
-
 
 ### Output proto stub
 The result is generated on: `src/grpc/proto/` folder
@@ -200,10 +140,24 @@ The result is generated on: `src/grpc/proto/` folder
 - `enrollment_pb.js`
 - `point_of_sales_grpc_pb.js`
 - `point_of_sales_pb.js`
+- `business_partner_grpc_pb.js`
+- `business_partner_pb.js`
+- `in_out_grpc_pb.js`
+- `in_out_pb.js`
+- `invoice_grpc_pb.js`
+- `invoice_pb.js`
+- `order_grpc_pb.js`
+- `order_pb.js`
+- `payment_grpc_pb.js`
+- `payment_pb.js`
+- `product_grpc_pb.js`
+- `product_pb.js`
 
 
 ## Sponsors
 
 Become a sponsor and get your logo on our README on GitHub with a link to your site. [Become a sponsor](https://www.paypal.com/paypalme/YamelSenih)
 
-<a href="http://erpya.com/"><img width="250px" src="https://erpya.com/wp-content/uploads/2017/11/ERP-logotipo-H-color.png" /></a>
+<a href="http://erpya.com/">
+  <img width="250px" src="https://erpya.com/wp-content/uploads/2017/11/ERP-logotipo-H-color.png" />
+</a>

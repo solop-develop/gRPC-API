@@ -505,6 +505,17 @@ function deserialize_data_ListFavoritesResponse(buffer_arg) {
   return proto_business_pb.ListFavoritesResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_data_ListGeneralInfoRequest(arg) {
+  if (!(arg instanceof proto_business_pb.ListGeneralInfoRequest)) {
+    throw new Error('Expected argument of type data.ListGeneralInfoRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_ListGeneralInfoRequest(buffer_arg) {
+  return proto_business_pb.ListGeneralInfoRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_data_ListLookupItemsRequest(arg) {
   if (!(arg instanceof proto_business_pb.ListLookupItemsRequest)) {
     throw new Error('Expected argument of type data.ListLookupItemsRequest');
@@ -668,17 +679,6 @@ function serialize_data_ListTabEntitiesRequest(arg) {
 
 function deserialize_data_ListTabEntitiesRequest(buffer_arg) {
   return proto_business_pb.ListTabEntitiesRequest.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
-function serialize_data_ListTabEntitiesResponse(arg) {
-  if (!(arg instanceof proto_business_pb.ListTabEntitiesResponse)) {
-    throw new Error('Expected argument of type data.ListTabEntitiesResponse');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_data_ListTabEntitiesResponse(buffer_arg) {
-  return proto_business_pb.ListTabEntitiesResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_data_ListTranslationsRequest(arg) {
@@ -1054,11 +1054,11 @@ listTabEntities: {
     requestStream: false,
     responseStream: false,
     requestType: proto_business_pb.ListTabEntitiesRequest,
-    responseType: proto_business_pb.ListTabEntitiesResponse,
+    responseType: proto_business_pb.ListEntitiesResponse,
     requestSerialize: serialize_data_ListTabEntitiesRequest,
     requestDeserialize: deserialize_data_ListTabEntitiesRequest,
-    responseSerialize: serialize_data_ListTabEntitiesResponse,
-    responseDeserialize: deserialize_data_ListTabEntitiesResponse,
+    responseSerialize: serialize_data_ListEntitiesResponse,
+    responseDeserialize: deserialize_data_ListEntitiesResponse,
   },
   // 	Rollback Entity Request
 rollbackEntity: {
@@ -1359,6 +1359,18 @@ deletePreference: {
     requestDeserialize: deserialize_data_DeletePreferenceRequest,
     responseSerialize: serialize_data_Empty,
     responseDeserialize: deserialize_data_Empty,
+  },
+  // 	List General Info
+listGeneralInfo: {
+    path: '/data.UserInterface/ListGeneralInfo',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_business_pb.ListGeneralInfoRequest,
+    responseType: proto_business_pb.ListEntitiesResponse,
+    requestSerialize: serialize_data_ListGeneralInfoRequest,
+    requestDeserialize: deserialize_data_ListGeneralInfoRequest,
+    responseSerialize: serialize_data_ListEntitiesResponse,
+    responseDeserialize: deserialize_data_ListEntitiesResponse,
   },
 };
 
