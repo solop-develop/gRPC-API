@@ -80,6 +80,7 @@ Note to generate specific proto definition:
 * To order: `npm run stub:order`
 * To payment: `npm run stub:payment`
 * To product: `npm run stub:product`
+* To payroll action notice: `npm run stub:payroll_action_notice`
 
 ### Generate directly with grpc-tools:
 
@@ -150,6 +151,8 @@ The result is generated on: `src/grpc/proto/` folder
 - `order_pb.js`
 - `payment_grpc_pb.js`
 - `payment_pb.js`
+- `payroll_action_notice_grpc_pb.js`
+- `payroll_action_notice_pb.js`
 - `product_grpc_pb.js`
 - `product_pb.js`
 
