@@ -33,7 +33,7 @@ service PayrollActionNotice {
 	// List Employee Valid
 	rpc ListEmployeeValid(ListEmployeeValidRequest) returns (data.ListLookupItemsResponse) {}
 	// List Payroll Conceps
-	rpc ListPayrollConcept(ListPayrollConceptsRequest) returns (data.ListLookupItemsResponse) {}
+	rpc ListPayrollConcepts(ListPayrollConceptsRequest) returns (data.ListLookupItemsResponse) {}
 	// List Payroll Movements
 	rpc ListPayrollMovements(ListPayrollMovementsRequest) returns (data.ListEntitiesResponse) {}
 	// Save Payroll Movement

@@ -149,8 +149,8 @@ listEmployeeValid: {
     responseDeserialize: deserialize_data_ListLookupItemsResponse,
   },
   // List Payroll Conceps
-listPayrollConcept: {
-    path: '/payroll_action_notice.PayrollActionNotice/ListPayrollConcept',
+listPayrollConcepts: {
+    path: '/payroll_action_notice.PayrollActionNotice/ListPayrollConcepts',
     requestStream: false,
     responseStream: false,
     requestType: proto_payroll_action_notice_pb.ListPayrollConceptsRequest,
