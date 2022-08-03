@@ -35,7 +35,7 @@ class PayrollActionNotice {
     }
 
     this.initPayrollActionNoticeService();
-    console.log('ADempiere In-Out Client Started');
+    console.log('ADempiere Payroll Action Notice Client Started');
   }
 
   // Init connection
