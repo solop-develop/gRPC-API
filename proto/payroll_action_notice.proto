@@ -39,7 +39,7 @@ service PayrollActionNotice {
 	// Save Payroll Movement
 	rpc SavePayrollMovement(SavePayrollMovementRequest) returns (data.Entity) {}
 	// Delete Payroll Movements
-	rpc DeletePayrollMovements(DeletePayrollMovementsRequest) returns (data.Entity) {}
+	rpc DeletePayrollMovements(DeletePayrollMovementsRequest) returns (data.Empty) {}
 }
 
 // List Payroll Process Request
