@@ -22,6 +22,17 @@ var proto_base_data_type_pb = require('../proto/base_data_type_pb.js');
 var proto_client_pb = require('../proto/client_pb.js');
 var proto_business_pb = require('../proto/business_pb.js');
 
+function serialize_data_Empty(arg) {
+  if (!(arg instanceof proto_base_data_type_pb.Empty)) {
+    throw new Error('Expected argument of type data.Empty');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_Empty(buffer_arg) {
+  return proto_base_data_type_pb.Empty.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_data_Entity(arg) {
   if (!(arg instanceof proto_base_data_type_pb.Entity)) {
     throw new Error('Expected argument of type data.Entity');
@@ -190,11 +201,11 @@ deletePayrollMovements: {
     requestStream: false,
     responseStream: false,
     requestType: proto_payroll_action_notice_pb.DeletePayrollMovementsRequest,
-    responseType: proto_base_data_type_pb.Entity,
+    responseType: proto_base_data_type_pb.Empty,
     requestSerialize: serialize_payroll_action_notice_DeletePayrollMovementsRequest,
     requestDeserialize: deserialize_payroll_action_notice_DeletePayrollMovementsRequest,
-    responseSerialize: serialize_data_Entity,
-    responseDeserialize: deserialize_data_Entity,
+    responseSerialize: serialize_data_Empty,
+    responseDeserialize: deserialize_data_Empty,
   },
 };
 
