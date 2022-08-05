@@ -3476,7 +3476,11 @@ proto.dictionary.Field.toObject = function(includeInstance, msg) {
     isActive: jspb.Message.getBooleanFieldWithDefault(msg, 50, false),
     defaultValueTo: jspb.Message.getFieldWithDefault(msg, 51, ""),
     fieldLength: jspb.Message.getFieldWithDefault(msg, 52, 0),
-    contextColumnNamesList: (f = jspb.Message.getRepeatedField(msg, 53)) == null ? undefined : f
+    contextColumnNamesList: (f = jspb.Message.getRepeatedField(msg, 53)) == null ? undefined : f,
+    columnId: jspb.Message.getFieldWithDefault(msg, 54, 0),
+    columnUuid: jspb.Message.getFieldWithDefault(msg, 55, ""),
+    elementId: jspb.Message.getFieldWithDefault(msg, 56, 0),
+    elementUuid: jspb.Message.getFieldWithDefault(msg, 57, "")
   };
 
   if (includeInstance) {
@@ -3729,6 +3733,22 @@ proto.dictionary.Field.deserializeBinaryFromReader = function(msg, reader) {
     case 53:
       var value = /** @type {string} */ (reader.readString());
       msg.addContextColumnNames(value);
+      break;
+    case 54:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setColumnId(value);
+      break;
+    case 55:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setColumnUuid(value);
+      break;
+    case 56:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setElementId(value);
+      break;
+    case 57:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setElementUuid(value);
       break;
     default:
       reader.skipField();
@@ -4132,6 +4152,34 @@ proto.dictionary.Field.serializeBinaryToWriter = function(message, writer) {
   if (f.length > 0) {
     writer.writeRepeatedString(
       53,
+      f
+    );
+  }
+  f = message.getColumnId();
+  if (f !== 0) {
+    writer.writeInt32(
+      54,
+      f
+    );
+  }
+  f = message.getColumnUuid();
+  if (f.length > 0) {
+    writer.writeString(
+      55,
+      f
+    );
+  }
+  f = message.getElementId();
+  if (f !== 0) {
+    writer.writeInt32(
+      56,
+      f
+    );
+  }
+  f = message.getElementUuid();
+  if (f.length > 0) {
+    writer.writeString(
+      57,
       f
     );
   }
@@ -5203,6 +5251,78 @@ proto.dictionary.Field.prototype.addContextColumnNames = function(value, opt_ind
  */
 proto.dictionary.Field.prototype.clearContextColumnNamesList = function() {
   return this.setContextColumnNamesList([]);
+};
+
+
+/**
+ * optional int32 column_id = 54;
+ * @return {number}
+ */
+proto.dictionary.Field.prototype.getColumnId = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 54, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.dictionary.Field} returns this
+ */
+proto.dictionary.Field.prototype.setColumnId = function(value) {
+  return jspb.Message.setProto3IntField(this, 54, value);
+};
+
+
+/**
+ * optional string column_uuid = 55;
+ * @return {string}
+ */
+proto.dictionary.Field.prototype.getColumnUuid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 55, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.dictionary.Field} returns this
+ */
+proto.dictionary.Field.prototype.setColumnUuid = function(value) {
+  return jspb.Message.setProto3StringField(this, 55, value);
+};
+
+
+/**
+ * optional int32 element_id = 56;
+ * @return {number}
+ */
+proto.dictionary.Field.prototype.getElementId = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 56, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.dictionary.Field} returns this
+ */
+proto.dictionary.Field.prototype.setElementId = function(value) {
+  return jspb.Message.setProto3IntField(this, 56, value);
+};
+
+
+/**
+ * optional string element_uuid = 57;
+ * @return {string}
+ */
+proto.dictionary.Field.prototype.getElementUuid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 57, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.dictionary.Field} returns this
+ */
+proto.dictionary.Field.prototype.setElementUuid = function(value) {
+  return jspb.Message.setProto3StringField(this, 57, value);
 };
 
 
@@ -8775,7 +8895,9 @@ proto.dictionary.Reference.toObject = function(includeInstance, msg) {
     displayColumnName: jspb.Message.getFieldWithDefault(msg, 3, ""),
     contextColumnNamesList: (f = jspb.Message.getRepeatedField(msg, 4)) == null ? undefined : f,
     zoomWindowsList: jspb.Message.toObjectList(msg.getZoomWindowsList(),
-    proto.dictionary.ZoomWindow.toObject, includeInstance)
+    proto.dictionary.ZoomWindow.toObject, includeInstance),
+    id: jspb.Message.getFieldWithDefault(msg, 6, 0),
+    uuid: jspb.Message.getFieldWithDefault(msg, 7, "")
   };
 
   if (includeInstance) {
@@ -8832,6 +8954,14 @@ proto.dictionary.Reference.deserializeBinaryFromReader = function(msg, reader) {
       var value = new proto.dictionary.ZoomWindow;
       reader.readMessage(value,proto.dictionary.ZoomWindow.deserializeBinaryFromReader);
       msg.addZoomWindows(value);
+      break;
+    case 6:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setId(value);
+      break;
+    case 7:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setUuid(value);
       break;
     default:
       reader.skipField();
@@ -8896,6 +9026,20 @@ proto.dictionary.Reference.serializeBinaryToWriter = function(message, writer) {
       5,
       f,
       proto.dictionary.ZoomWindow.serializeBinaryToWriter
+    );
+  }
+  f = message.getId();
+  if (f !== 0) {
+    writer.writeInt32(
+      6,
+      f
+    );
+  }
+  f = message.getUuid();
+  if (f.length > 0) {
+    writer.writeString(
+      7,
+      f
     );
   }
 };
@@ -9027,6 +9171,42 @@ proto.dictionary.Reference.prototype.addZoomWindows = function(opt_value, opt_in
  */
 proto.dictionary.Reference.prototype.clearZoomWindowsList = function() {
   return this.setZoomWindowsList([]);
+};
+
+
+/**
+ * optional int32 id = 6;
+ * @return {number}
+ */
+proto.dictionary.Reference.prototype.getId = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 6, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.dictionary.Reference} returns this
+ */
+proto.dictionary.Reference.prototype.setId = function(value) {
+  return jspb.Message.setProto3IntField(this, 6, value);
+};
+
+
+/**
+ * optional string uuid = 7;
+ * @return {string}
+ */
+proto.dictionary.Reference.prototype.getUuid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 7, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.dictionary.Reference} returns this
+ */
+proto.dictionary.Reference.prototype.setUuid = function(value) {
+  return jspb.Message.setProto3StringField(this, 7, value);
 };
 
 
