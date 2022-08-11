@@ -182,6 +182,26 @@ class PayrollActionNotice {
     this.getPayrollActionNoticeService().listPayrollConcepts(request, callback);
   }
 
+  getPayrollConceptDefinition({
+    token,
+    // DSL
+    id,
+    uuid,
+    language
+  }, callback) {
+    const { GetPayrollConceptDefinitionRequest } = require('../grpc/proto/payroll_action_notice_pb');
+    const request = new GetPayrollConceptDefinitionRequest();
+
+    request.setId(id);
+    request.setUuid(uuid);
+
+    request.setClientRequest(
+      createClientRequest({ token, language })
+    );
+
+    this.getPayrollActionNoticeService().getPayrollConceptDefinition(request, callback);
+  }
+
   listPayrollMovements({
     token,
     //  DSL

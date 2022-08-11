@@ -77,6 +77,17 @@ function deserialize_payroll_action_notice_DeletePayrollMovementsRequest(buffer_
   return proto_payroll_action_notice_pb.DeletePayrollMovementsRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_payroll_action_notice_GetPayrollConceptDefinitionRequest(arg) {
+  if (!(arg instanceof proto_payroll_action_notice_pb.GetPayrollConceptDefinitionRequest)) {
+    throw new Error('Expected argument of type payroll_action_notice.GetPayrollConceptDefinitionRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_payroll_action_notice_GetPayrollConceptDefinitionRequest(buffer_arg) {
+  return proto_payroll_action_notice_pb.GetPayrollConceptDefinitionRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_payroll_action_notice_ListEmployeeValidRequest(arg) {
   if (!(arg instanceof proto_payroll_action_notice_pb.ListEmployeeValidRequest)) {
     throw new Error('Expected argument of type payroll_action_notice.ListEmployeeValidRequest');
@@ -159,7 +170,7 @@ listEmployeeValid: {
     responseSerialize: serialize_data_ListLookupItemsResponse,
     responseDeserialize: deserialize_data_ListLookupItemsResponse,
   },
-  // List Payroll Conceps
+  // List Payroll Concepts
 listPayrollConcepts: {
     path: '/payroll_action_notice.PayrollActionNotice/ListPayrollConcepts',
     requestStream: false,
@@ -170,6 +181,18 @@ listPayrollConcepts: {
     requestDeserialize: deserialize_payroll_action_notice_ListPayrollConceptsRequest,
     responseSerialize: serialize_data_ListLookupItemsResponse,
     responseDeserialize: deserialize_data_ListLookupItemsResponse,
+  },
+  // Get Payroll Concept Definition
+getPayrollConceptDefinition: {
+    path: '/payroll_action_notice.PayrollActionNotice/GetPayrollConceptDefinition',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_payroll_action_notice_pb.GetPayrollConceptDefinitionRequest,
+    responseType: proto_base_data_type_pb.Entity,
+    requestSerialize: serialize_payroll_action_notice_GetPayrollConceptDefinitionRequest,
+    requestDeserialize: deserialize_payroll_action_notice_GetPayrollConceptDefinitionRequest,
+    responseSerialize: serialize_data_Entity,
+    responseDeserialize: deserialize_data_Entity,
   },
   // List Payroll Movements
 listPayrollMovements: {
