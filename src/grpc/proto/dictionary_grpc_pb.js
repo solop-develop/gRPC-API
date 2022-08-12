@@ -18,6 +18,18 @@
 'use strict';
 var grpc = require('@grpc/grpc-js');
 var proto_dictionary_pb = require('../proto/dictionary_pb.js');
+var proto_business_pb = require('../proto/business_pb.js');
+
+function serialize_data_WorkflowDefinition(arg) {
+  if (!(arg instanceof proto_business_pb.WorkflowDefinition)) {
+    throw new Error('Expected argument of type data.WorkflowDefinition');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_WorkflowDefinition(buffer_arg) {
+  return proto_business_pb.WorkflowDefinition.deserializeBinary(new Uint8Array(buffer_arg));
+}
 
 function serialize_dictionary_Browser(arg) {
   if (!(arg instanceof proto_dictionary_pb.Browser)) {
@@ -260,6 +272,18 @@ getForm: {
     requestDeserialize: deserialize_dictionary_EntityRequest,
     responseSerialize: serialize_dictionary_Form,
     responseDeserialize: deserialize_dictionary_Form,
+  },
+  // Get Workglow
+getWorkflow: {
+    path: '/dictionary.Dictionary/GetWorkflow',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_dictionary_pb.EntityRequest,
+    responseType: proto_business_pb.WorkflowDefinition,
+    requestSerialize: serialize_dictionary_EntityRequest,
+    requestDeserialize: deserialize_dictionary_EntityRequest,
+    responseSerialize: serialize_data_WorkflowDefinition,
+    responseDeserialize: deserialize_data_WorkflowDefinition,
   },
   // List Identifiers Fields
 listIdentifiersFields: {

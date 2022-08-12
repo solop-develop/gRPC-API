@@ -23930,7 +23930,7 @@ proto.data.WorkflowActivity.prototype.hasNode = function() {
  * @private {!Array<number>}
  * @const
  */
-proto.data.WorkflowDefinition.repeatedFields_ = [16];
+proto.data.WorkflowDefinition.repeatedFields_ = [17];
 
 
 
@@ -23963,20 +23963,21 @@ proto.data.WorkflowDefinition.prototype.toObject = function(opt_includeInstance)
  */
 proto.data.WorkflowDefinition.toObject = function(includeInstance, msg) {
   var f, obj = {
-    workflowUuid: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    value: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    name: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    description: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    help: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    tableName: jspb.Message.getFieldWithDefault(msg, 6, ""),
-    responsibleUuid: jspb.Message.getFieldWithDefault(msg, 7, ""),
-    responsibleName: jspb.Message.getFieldWithDefault(msg, 8, ""),
-    priority: jspb.Message.getFieldWithDefault(msg, 9, 0),
-    validFrom: jspb.Message.getFieldWithDefault(msg, 10, 0),
-    isDefault: jspb.Message.getBooleanFieldWithDefault(msg, 11, false),
-    isValid: jspb.Message.getBooleanFieldWithDefault(msg, 12, false),
-    publishStatus: jspb.Message.getFieldWithDefault(msg, 13, 0),
-    durationUnit: jspb.Message.getFieldWithDefault(msg, 14, 0),
+    id: jspb.Message.getFieldWithDefault(msg, 1, 0),
+    uuid: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    value: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    name: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    description: jspb.Message.getFieldWithDefault(msg, 5, ""),
+    help: jspb.Message.getFieldWithDefault(msg, 6, ""),
+    tableName: jspb.Message.getFieldWithDefault(msg, 7, ""),
+    responsibleUuid: jspb.Message.getFieldWithDefault(msg, 8, ""),
+    responsibleName: jspb.Message.getFieldWithDefault(msg, 9, ""),
+    priority: jspb.Message.getFieldWithDefault(msg, 10, 0),
+    validFrom: jspb.Message.getFieldWithDefault(msg, 11, 0),
+    isDefault: jspb.Message.getBooleanFieldWithDefault(msg, 12, false),
+    isValid: jspb.Message.getBooleanFieldWithDefault(msg, 13, false),
+    publishStatus: jspb.Message.getFieldWithDefault(msg, 14, 0),
+    durationUnit: jspb.Message.getFieldWithDefault(msg, 15, 0),
     startNode: (f = msg.getStartNode()) && proto.data.WorkflowNode.toObject(includeInstance, f),
     workflowNodesList: jspb.Message.toObjectList(msg.getWorkflowNodesList(),
     proto.data.WorkflowNode.toObject, includeInstance)
@@ -24017,67 +24018,71 @@ proto.data.WorkflowDefinition.deserializeBinaryFromReader = function(msg, reader
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setWorkflowUuid(value);
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setId(value);
       break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
-      msg.setValue(value);
+      msg.setUuid(value);
       break;
     case 3:
       var value = /** @type {string} */ (reader.readString());
-      msg.setName(value);
+      msg.setValue(value);
       break;
     case 4:
       var value = /** @type {string} */ (reader.readString());
-      msg.setDescription(value);
+      msg.setName(value);
       break;
     case 5:
       var value = /** @type {string} */ (reader.readString());
-      msg.setHelp(value);
+      msg.setDescription(value);
       break;
     case 6:
       var value = /** @type {string} */ (reader.readString());
-      msg.setTableName(value);
+      msg.setHelp(value);
       break;
     case 7:
       var value = /** @type {string} */ (reader.readString());
-      msg.setResponsibleUuid(value);
+      msg.setTableName(value);
       break;
     case 8:
       var value = /** @type {string} */ (reader.readString());
-      msg.setResponsibleName(value);
+      msg.setResponsibleUuid(value);
       break;
     case 9:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setResponsibleName(value);
+      break;
+    case 10:
       var value = /** @type {number} */ (reader.readInt32());
       msg.setPriority(value);
       break;
-    case 10:
+    case 11:
       var value = /** @type {number} */ (reader.readInt64());
       msg.setValidFrom(value);
       break;
-    case 11:
+    case 12:
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setIsDefault(value);
       break;
-    case 12:
+    case 13:
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setIsValid(value);
       break;
-    case 13:
+    case 14:
       var value = /** @type {!proto.data.WorkflowDefinition.PublishStatus} */ (reader.readEnum());
       msg.setPublishStatus(value);
       break;
-    case 14:
+    case 15:
       var value = /** @type {!proto.data.WorkflowDefinition.DurationUnit} */ (reader.readEnum());
       msg.setDurationUnit(value);
       break;
-    case 15:
+    case 16:
       var value = new proto.data.WorkflowNode;
       reader.readMessage(value,proto.data.WorkflowNode.deserializeBinaryFromReader);
       msg.setStartNode(value);
       break;
-    case 16:
+    case 17:
       var value = new proto.data.WorkflowNode;
       reader.readMessage(value,proto.data.WorkflowNode.deserializeBinaryFromReader);
       msg.addWorkflowNodes(value);
@@ -24111,108 +24116,115 @@ proto.data.WorkflowDefinition.prototype.serializeBinary = function() {
  */
 proto.data.WorkflowDefinition.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getWorkflowUuid();
-  if (f.length > 0) {
-    writer.writeString(
+  f = message.getId();
+  if (f !== 0) {
+    writer.writeInt32(
       1,
       f
     );
   }
-  f = message.getValue();
+  f = message.getUuid();
   if (f.length > 0) {
     writer.writeString(
       2,
       f
     );
   }
-  f = message.getName();
+  f = message.getValue();
   if (f.length > 0) {
     writer.writeString(
       3,
       f
     );
   }
-  f = message.getDescription();
+  f = message.getName();
   if (f.length > 0) {
     writer.writeString(
       4,
       f
     );
   }
-  f = message.getHelp();
+  f = message.getDescription();
   if (f.length > 0) {
     writer.writeString(
       5,
       f
     );
   }
-  f = message.getTableName();
+  f = message.getHelp();
   if (f.length > 0) {
     writer.writeString(
       6,
       f
     );
   }
-  f = message.getResponsibleUuid();
+  f = message.getTableName();
   if (f.length > 0) {
     writer.writeString(
       7,
       f
     );
   }
-  f = message.getResponsibleName();
+  f = message.getResponsibleUuid();
   if (f.length > 0) {
     writer.writeString(
       8,
       f
     );
   }
+  f = message.getResponsibleName();
+  if (f.length > 0) {
+    writer.writeString(
+      9,
+      f
+    );
+  }
   f = message.getPriority();
   if (f !== 0) {
     writer.writeInt32(
-      9,
+      10,
       f
     );
   }
   f = message.getValidFrom();
   if (f !== 0) {
     writer.writeInt64(
-      10,
+      11,
       f
     );
   }
   f = message.getIsDefault();
   if (f) {
     writer.writeBool(
-      11,
+      12,
       f
     );
   }
   f = message.getIsValid();
   if (f) {
     writer.writeBool(
-      12,
+      13,
       f
     );
   }
   f = message.getPublishStatus();
   if (f !== 0.0) {
     writer.writeEnum(
-      13,
+      14,
       f
     );
   }
   f = message.getDurationUnit();
   if (f !== 0.0) {
     writer.writeEnum(
-      14,
+      15,
       f
     );
   }
   f = message.getStartNode();
   if (f != null) {
     writer.writeMessage(
-      15,
+      16,
       f,
       proto.data.WorkflowNode.serializeBinaryToWriter
     );
@@ -24220,7 +24232,7 @@ proto.data.WorkflowDefinition.serializeBinaryToWriter = function(message, writer
   f = message.getWorkflowNodesList();
   if (f.length > 0) {
     writer.writeRepeatedMessage(
-      16,
+      17,
       f,
       proto.data.WorkflowNode.serializeBinaryToWriter
     );
@@ -24251,28 +24263,28 @@ proto.data.WorkflowDefinition.PublishStatus = {
 };
 
 /**
- * optional string workflow_uuid = 1;
- * @return {string}
+ * optional int32 id = 1;
+ * @return {number}
  */
-proto.data.WorkflowDefinition.prototype.getWorkflowUuid = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+proto.data.WorkflowDefinition.prototype.getId = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
 };
 
 
 /**
- * @param {string} value
+ * @param {number} value
  * @return {!proto.data.WorkflowDefinition} returns this
  */
-proto.data.WorkflowDefinition.prototype.setWorkflowUuid = function(value) {
-  return jspb.Message.setProto3StringField(this, 1, value);
+proto.data.WorkflowDefinition.prototype.setId = function(value) {
+  return jspb.Message.setProto3IntField(this, 1, value);
 };
 
 
 /**
- * optional string value = 2;
+ * optional string uuid = 2;
  * @return {string}
  */
-proto.data.WorkflowDefinition.prototype.getValue = function() {
+proto.data.WorkflowDefinition.prototype.getUuid = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
@@ -24281,16 +24293,16 @@ proto.data.WorkflowDefinition.prototype.getValue = function() {
  * @param {string} value
  * @return {!proto.data.WorkflowDefinition} returns this
  */
-proto.data.WorkflowDefinition.prototype.setValue = function(value) {
+proto.data.WorkflowDefinition.prototype.setUuid = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
 /**
- * optional string name = 3;
+ * optional string value = 3;
  * @return {string}
  */
-proto.data.WorkflowDefinition.prototype.getName = function() {
+proto.data.WorkflowDefinition.prototype.getValue = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
 
@@ -24299,16 +24311,16 @@ proto.data.WorkflowDefinition.prototype.getName = function() {
  * @param {string} value
  * @return {!proto.data.WorkflowDefinition} returns this
  */
-proto.data.WorkflowDefinition.prototype.setName = function(value) {
+proto.data.WorkflowDefinition.prototype.setValue = function(value) {
   return jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
 /**
- * optional string description = 4;
+ * optional string name = 4;
  * @return {string}
  */
-proto.data.WorkflowDefinition.prototype.getDescription = function() {
+proto.data.WorkflowDefinition.prototype.getName = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
 };
 
@@ -24317,16 +24329,16 @@ proto.data.WorkflowDefinition.prototype.getDescription = function() {
  * @param {string} value
  * @return {!proto.data.WorkflowDefinition} returns this
  */
-proto.data.WorkflowDefinition.prototype.setDescription = function(value) {
+proto.data.WorkflowDefinition.prototype.setName = function(value) {
   return jspb.Message.setProto3StringField(this, 4, value);
 };
 
 
 /**
- * optional string help = 5;
+ * optional string description = 5;
  * @return {string}
  */
-proto.data.WorkflowDefinition.prototype.getHelp = function() {
+proto.data.WorkflowDefinition.prototype.getDescription = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
 };
 
@@ -24335,16 +24347,16 @@ proto.data.WorkflowDefinition.prototype.getHelp = function() {
  * @param {string} value
  * @return {!proto.data.WorkflowDefinition} returns this
  */
-proto.data.WorkflowDefinition.prototype.setHelp = function(value) {
+proto.data.WorkflowDefinition.prototype.setDescription = function(value) {
   return jspb.Message.setProto3StringField(this, 5, value);
 };
 
 
 /**
- * optional string table_name = 6;
+ * optional string help = 6;
  * @return {string}
  */
-proto.data.WorkflowDefinition.prototype.getTableName = function() {
+proto.data.WorkflowDefinition.prototype.getHelp = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
 };
 
@@ -24353,16 +24365,16 @@ proto.data.WorkflowDefinition.prototype.getTableName = function() {
  * @param {string} value
  * @return {!proto.data.WorkflowDefinition} returns this
  */
-proto.data.WorkflowDefinition.prototype.setTableName = function(value) {
+proto.data.WorkflowDefinition.prototype.setHelp = function(value) {
   return jspb.Message.setProto3StringField(this, 6, value);
 };
 
 
 /**
- * optional string responsible_uuid = 7;
+ * optional string table_name = 7;
  * @return {string}
  */
-proto.data.WorkflowDefinition.prototype.getResponsibleUuid = function() {
+proto.data.WorkflowDefinition.prototype.getTableName = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 7, ""));
 };
 
@@ -24371,16 +24383,16 @@ proto.data.WorkflowDefinition.prototype.getResponsibleUuid = function() {
  * @param {string} value
  * @return {!proto.data.WorkflowDefinition} returns this
  */
-proto.data.WorkflowDefinition.prototype.setResponsibleUuid = function(value) {
+proto.data.WorkflowDefinition.prototype.setTableName = function(value) {
   return jspb.Message.setProto3StringField(this, 7, value);
 };
 
 
 /**
- * optional string responsible_name = 8;
+ * optional string responsible_uuid = 8;
  * @return {string}
  */
-proto.data.WorkflowDefinition.prototype.getResponsibleName = function() {
+proto.data.WorkflowDefinition.prototype.getResponsibleUuid = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 8, ""));
 };
 
@@ -24389,34 +24401,34 @@ proto.data.WorkflowDefinition.prototype.getResponsibleName = function() {
  * @param {string} value
  * @return {!proto.data.WorkflowDefinition} returns this
  */
-proto.data.WorkflowDefinition.prototype.setResponsibleName = function(value) {
+proto.data.WorkflowDefinition.prototype.setResponsibleUuid = function(value) {
   return jspb.Message.setProto3StringField(this, 8, value);
 };
 
 
 /**
- * optional int32 priority = 9;
+ * optional string responsible_name = 9;
+ * @return {string}
+ */
+proto.data.WorkflowDefinition.prototype.getResponsibleName = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 9, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.data.WorkflowDefinition} returns this
+ */
+proto.data.WorkflowDefinition.prototype.setResponsibleName = function(value) {
+  return jspb.Message.setProto3StringField(this, 9, value);
+};
+
+
+/**
+ * optional int32 priority = 10;
  * @return {number}
  */
 proto.data.WorkflowDefinition.prototype.getPriority = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 9, 0));
-};
-
-
-/**
- * @param {number} value
- * @return {!proto.data.WorkflowDefinition} returns this
- */
-proto.data.WorkflowDefinition.prototype.setPriority = function(value) {
-  return jspb.Message.setProto3IntField(this, 9, value);
-};
-
-
-/**
- * optional int64 valid_from = 10;
- * @return {number}
- */
-proto.data.WorkflowDefinition.prototype.getValidFrom = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 10, 0));
 };
 
@@ -24425,34 +24437,34 @@ proto.data.WorkflowDefinition.prototype.getValidFrom = function() {
  * @param {number} value
  * @return {!proto.data.WorkflowDefinition} returns this
  */
-proto.data.WorkflowDefinition.prototype.setValidFrom = function(value) {
+proto.data.WorkflowDefinition.prototype.setPriority = function(value) {
   return jspb.Message.setProto3IntField(this, 10, value);
 };
 
 
 /**
- * optional bool is_default = 11;
+ * optional int64 valid_from = 11;
+ * @return {number}
+ */
+proto.data.WorkflowDefinition.prototype.getValidFrom = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 11, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.data.WorkflowDefinition} returns this
+ */
+proto.data.WorkflowDefinition.prototype.setValidFrom = function(value) {
+  return jspb.Message.setProto3IntField(this, 11, value);
+};
+
+
+/**
+ * optional bool is_default = 12;
  * @return {boolean}
  */
 proto.data.WorkflowDefinition.prototype.getIsDefault = function() {
-  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 11, false));
-};
-
-
-/**
- * @param {boolean} value
- * @return {!proto.data.WorkflowDefinition} returns this
- */
-proto.data.WorkflowDefinition.prototype.setIsDefault = function(value) {
-  return jspb.Message.setProto3BooleanField(this, 11, value);
-};
-
-
-/**
- * optional bool is_valid = 12;
- * @return {boolean}
- */
-proto.data.WorkflowDefinition.prototype.getIsValid = function() {
   return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 12, false));
 };
 
@@ -24461,17 +24473,35 @@ proto.data.WorkflowDefinition.prototype.getIsValid = function() {
  * @param {boolean} value
  * @return {!proto.data.WorkflowDefinition} returns this
  */
-proto.data.WorkflowDefinition.prototype.setIsValid = function(value) {
+proto.data.WorkflowDefinition.prototype.setIsDefault = function(value) {
   return jspb.Message.setProto3BooleanField(this, 12, value);
 };
 
 
 /**
- * optional PublishStatus publish_status = 13;
+ * optional bool is_valid = 13;
+ * @return {boolean}
+ */
+proto.data.WorkflowDefinition.prototype.getIsValid = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 13, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.data.WorkflowDefinition} returns this
+ */
+proto.data.WorkflowDefinition.prototype.setIsValid = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 13, value);
+};
+
+
+/**
+ * optional PublishStatus publish_status = 14;
  * @return {!proto.data.WorkflowDefinition.PublishStatus}
  */
 proto.data.WorkflowDefinition.prototype.getPublishStatus = function() {
-  return /** @type {!proto.data.WorkflowDefinition.PublishStatus} */ (jspb.Message.getFieldWithDefault(this, 13, 0));
+  return /** @type {!proto.data.WorkflowDefinition.PublishStatus} */ (jspb.Message.getFieldWithDefault(this, 14, 0));
 };
 
 
@@ -24480,16 +24510,16 @@ proto.data.WorkflowDefinition.prototype.getPublishStatus = function() {
  * @return {!proto.data.WorkflowDefinition} returns this
  */
 proto.data.WorkflowDefinition.prototype.setPublishStatus = function(value) {
-  return jspb.Message.setProto3EnumField(this, 13, value);
+  return jspb.Message.setProto3EnumField(this, 14, value);
 };
 
 
 /**
- * optional DurationUnit duration_unit = 14;
+ * optional DurationUnit duration_unit = 15;
  * @return {!proto.data.WorkflowDefinition.DurationUnit}
  */
 proto.data.WorkflowDefinition.prototype.getDurationUnit = function() {
-  return /** @type {!proto.data.WorkflowDefinition.DurationUnit} */ (jspb.Message.getFieldWithDefault(this, 14, 0));
+  return /** @type {!proto.data.WorkflowDefinition.DurationUnit} */ (jspb.Message.getFieldWithDefault(this, 15, 0));
 };
 
 
@@ -24498,17 +24528,17 @@ proto.data.WorkflowDefinition.prototype.getDurationUnit = function() {
  * @return {!proto.data.WorkflowDefinition} returns this
  */
 proto.data.WorkflowDefinition.prototype.setDurationUnit = function(value) {
-  return jspb.Message.setProto3EnumField(this, 14, value);
+  return jspb.Message.setProto3EnumField(this, 15, value);
 };
 
 
 /**
- * optional WorkflowNode start_node = 15;
+ * optional WorkflowNode start_node = 16;
  * @return {?proto.data.WorkflowNode}
  */
 proto.data.WorkflowDefinition.prototype.getStartNode = function() {
   return /** @type{?proto.data.WorkflowNode} */ (
-    jspb.Message.getWrapperField(this, proto.data.WorkflowNode, 15));
+    jspb.Message.getWrapperField(this, proto.data.WorkflowNode, 16));
 };
 
 
@@ -24517,7 +24547,7 @@ proto.data.WorkflowDefinition.prototype.getStartNode = function() {
  * @return {!proto.data.WorkflowDefinition} returns this
 */
 proto.data.WorkflowDefinition.prototype.setStartNode = function(value) {
-  return jspb.Message.setWrapperField(this, 15, value);
+  return jspb.Message.setWrapperField(this, 16, value);
 };
 
 
@@ -24535,17 +24565,17 @@ proto.data.WorkflowDefinition.prototype.clearStartNode = function() {
  * @return {boolean}
  */
 proto.data.WorkflowDefinition.prototype.hasStartNode = function() {
-  return jspb.Message.getField(this, 15) != null;
+  return jspb.Message.getField(this, 16) != null;
 };
 
 
 /**
- * repeated WorkflowNode workflow_nodes = 16;
+ * repeated WorkflowNode workflow_nodes = 17;
  * @return {!Array<!proto.data.WorkflowNode>}
  */
 proto.data.WorkflowDefinition.prototype.getWorkflowNodesList = function() {
   return /** @type{!Array<!proto.data.WorkflowNode>} */ (
-    jspb.Message.getRepeatedWrapperField(this, proto.data.WorkflowNode, 16));
+    jspb.Message.getRepeatedWrapperField(this, proto.data.WorkflowNode, 17));
 };
 
 
@@ -24554,7 +24584,7 @@ proto.data.WorkflowDefinition.prototype.getWorkflowNodesList = function() {
  * @return {!proto.data.WorkflowDefinition} returns this
 */
 proto.data.WorkflowDefinition.prototype.setWorkflowNodesList = function(value) {
-  return jspb.Message.setRepeatedWrapperField(this, 16, value);
+  return jspb.Message.setRepeatedWrapperField(this, 17, value);
 };
 
 
@@ -24564,7 +24594,7 @@ proto.data.WorkflowDefinition.prototype.setWorkflowNodesList = function(value) {
  * @return {!proto.data.WorkflowNode}
  */
 proto.data.WorkflowDefinition.prototype.addWorkflowNodes = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(this, 16, opt_value, proto.data.WorkflowNode, opt_index);
+  return jspb.Message.addToRepeatedWrapperField(this, 17, opt_value, proto.data.WorkflowNode, opt_index);
 };
 
 
