@@ -307,28 +307,6 @@ function deserialize_data_ListBrowserItemsResponse(buffer_arg) {
   return proto_business_pb.ListBrowserItemsResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_data_ListChatEntriesRequest(arg) {
-  if (!(arg instanceof proto_business_pb.ListChatEntriesRequest)) {
-    throw new Error('Expected argument of type data.ListChatEntriesRequest');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_data_ListChatEntriesRequest(buffer_arg) {
-  return proto_business_pb.ListChatEntriesRequest.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
-function serialize_data_ListChatEntriesResponse(arg) {
-  if (!(arg instanceof proto_business_pb.ListChatEntriesResponse)) {
-    throw new Error('Expected argument of type data.ListChatEntriesResponse');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_data_ListChatEntriesResponse(buffer_arg) {
-  return proto_business_pb.ListChatEntriesResponse.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
 function serialize_data_ListDashboardsRequest(arg) {
   if (!(arg instanceof proto_business_pb.ListDashboardsRequest)) {
     throw new Error('Expected argument of type data.ListDashboardsRequest');
@@ -349,50 +327,6 @@ function serialize_data_ListDashboardsResponse(arg) {
 
 function deserialize_data_ListDashboardsResponse(buffer_arg) {
   return proto_business_pb.ListDashboardsResponse.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
-function serialize_data_ListDocumentActionsRequest(arg) {
-  if (!(arg instanceof proto_business_pb.ListDocumentActionsRequest)) {
-    throw new Error('Expected argument of type data.ListDocumentActionsRequest');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_data_ListDocumentActionsRequest(buffer_arg) {
-  return proto_business_pb.ListDocumentActionsRequest.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
-function serialize_data_ListDocumentActionsResponse(arg) {
-  if (!(arg instanceof proto_business_pb.ListDocumentActionsResponse)) {
-    throw new Error('Expected argument of type data.ListDocumentActionsResponse');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_data_ListDocumentActionsResponse(buffer_arg) {
-  return proto_business_pb.ListDocumentActionsResponse.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
-function serialize_data_ListDocumentStatusesRequest(arg) {
-  if (!(arg instanceof proto_business_pb.ListDocumentStatusesRequest)) {
-    throw new Error('Expected argument of type data.ListDocumentStatusesRequest');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_data_ListDocumentStatusesRequest(buffer_arg) {
-  return proto_business_pb.ListDocumentStatusesRequest.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
-function serialize_data_ListDocumentStatusesResponse(arg) {
-  if (!(arg instanceof proto_business_pb.ListDocumentStatusesResponse)) {
-    throw new Error('Expected argument of type data.ListDocumentStatusesResponse');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_data_ListDocumentStatusesResponse(buffer_arg) {
-  return proto_business_pb.ListDocumentStatusesResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_data_ListDrillTablesRequest(arg) {
@@ -437,50 +371,6 @@ function serialize_data_ListEntitiesResponse(arg) {
 
 function deserialize_data_ListEntitiesResponse(buffer_arg) {
   return proto_business_pb.ListEntitiesResponse.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
-function serialize_data_ListEntityChatsRequest(arg) {
-  if (!(arg instanceof proto_business_pb.ListEntityChatsRequest)) {
-    throw new Error('Expected argument of type data.ListEntityChatsRequest');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_data_ListEntityChatsRequest(buffer_arg) {
-  return proto_business_pb.ListEntityChatsRequest.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
-function serialize_data_ListEntityChatsResponse(arg) {
-  if (!(arg instanceof proto_business_pb.ListEntityChatsResponse)) {
-    throw new Error('Expected argument of type data.ListEntityChatsResponse');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_data_ListEntityChatsResponse(buffer_arg) {
-  return proto_business_pb.ListEntityChatsResponse.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
-function serialize_data_ListEntityLogsRequest(arg) {
-  if (!(arg instanceof proto_business_pb.ListEntityLogsRequest)) {
-    throw new Error('Expected argument of type data.ListEntityLogsRequest');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_data_ListEntityLogsRequest(buffer_arg) {
-  return proto_business_pb.ListEntityLogsRequest.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
-function serialize_data_ListEntityLogsResponse(arg) {
-  if (!(arg instanceof proto_business_pb.ListEntityLogsResponse)) {
-    throw new Error('Expected argument of type data.ListEntityLogsResponse');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_data_ListEntityLogsResponse(buffer_arg) {
-  return proto_business_pb.ListEntityLogsResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_data_ListFavoritesRequest(arg) {
@@ -582,50 +472,6 @@ function deserialize_data_ListPrintFormatsResponse(buffer_arg) {
   return proto_business_pb.ListPrintFormatsResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_data_ListProcessLogsRequest(arg) {
-  if (!(arg instanceof proto_business_pb.ListProcessLogsRequest)) {
-    throw new Error('Expected argument of type data.ListProcessLogsRequest');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_data_ListProcessLogsRequest(buffer_arg) {
-  return proto_business_pb.ListProcessLogsRequest.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
-function serialize_data_ListProcessLogsResponse(arg) {
-  if (!(arg instanceof proto_business_pb.ListProcessLogsResponse)) {
-    throw new Error('Expected argument of type data.ListProcessLogsResponse');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_data_ListProcessLogsResponse(buffer_arg) {
-  return proto_business_pb.ListProcessLogsResponse.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
-function serialize_data_ListRecentItemsRequest(arg) {
-  if (!(arg instanceof proto_business_pb.ListRecentItemsRequest)) {
-    throw new Error('Expected argument of type data.ListRecentItemsRequest');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_data_ListRecentItemsRequest(buffer_arg) {
-  return proto_business_pb.ListRecentItemsRequest.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
-function serialize_data_ListRecentItemsResponse(arg) {
-  if (!(arg instanceof proto_business_pb.ListRecentItemsResponse)) {
-    throw new Error('Expected argument of type data.ListRecentItemsResponse');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_data_ListRecentItemsResponse(buffer_arg) {
-  return proto_business_pb.ListRecentItemsResponse.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
 function serialize_data_ListReferencesRequest(arg) {
   if (!(arg instanceof proto_business_pb.ListReferencesRequest)) {
     throw new Error('Expected argument of type data.ListReferencesRequest');
@@ -701,72 +547,6 @@ function serialize_data_ListTranslationsResponse(arg) {
 
 function deserialize_data_ListTranslationsResponse(buffer_arg) {
   return proto_business_pb.ListTranslationsResponse.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
-function serialize_data_ListWorkflowActivitiesRequest(arg) {
-  if (!(arg instanceof proto_business_pb.ListWorkflowActivitiesRequest)) {
-    throw new Error('Expected argument of type data.ListWorkflowActivitiesRequest');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_data_ListWorkflowActivitiesRequest(buffer_arg) {
-  return proto_business_pb.ListWorkflowActivitiesRequest.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
-function serialize_data_ListWorkflowActivitiesResponse(arg) {
-  if (!(arg instanceof proto_business_pb.ListWorkflowActivitiesResponse)) {
-    throw new Error('Expected argument of type data.ListWorkflowActivitiesResponse');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_data_ListWorkflowActivitiesResponse(buffer_arg) {
-  return proto_business_pb.ListWorkflowActivitiesResponse.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
-function serialize_data_ListWorkflowLogsRequest(arg) {
-  if (!(arg instanceof proto_business_pb.ListWorkflowLogsRequest)) {
-    throw new Error('Expected argument of type data.ListWorkflowLogsRequest');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_data_ListWorkflowLogsRequest(buffer_arg) {
-  return proto_business_pb.ListWorkflowLogsRequest.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
-function serialize_data_ListWorkflowLogsResponse(arg) {
-  if (!(arg instanceof proto_business_pb.ListWorkflowLogsResponse)) {
-    throw new Error('Expected argument of type data.ListWorkflowLogsResponse');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_data_ListWorkflowLogsResponse(buffer_arg) {
-  return proto_business_pb.ListWorkflowLogsResponse.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
-function serialize_data_ListWorkflowsRequest(arg) {
-  if (!(arg instanceof proto_business_pb.ListWorkflowsRequest)) {
-    throw new Error('Expected argument of type data.ListWorkflowsRequest');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_data_ListWorkflowsRequest(buffer_arg) {
-  return proto_business_pb.ListWorkflowsRequest.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
-function serialize_data_ListWorkflowsResponse(arg) {
-  if (!(arg instanceof proto_business_pb.ListWorkflowsResponse)) {
-    throw new Error('Expected argument of type data.ListWorkflowsResponse');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_data_ListWorkflowsResponse(buffer_arg) {
-  return proto_business_pb.ListWorkflowsResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_data_LockPrivateAccessRequest(arg) {
@@ -1375,59 +1155,6 @@ listGeneralInfo: {
 };
 
 exports.UserInterfaceClient = grpc.makeGenericClientConstructor(UserInterfaceService);
-// 	Workflow management service
-var WorkflowService = exports.WorkflowService = {
-  // 	List Workflow
-listWorkflows: {
-    path: '/data.Workflow/ListWorkflows',
-    requestStream: false,
-    responseStream: false,
-    requestType: proto_business_pb.ListWorkflowsRequest,
-    responseType: proto_business_pb.ListWorkflowsResponse,
-    requestSerialize: serialize_data_ListWorkflowsRequest,
-    requestDeserialize: deserialize_data_ListWorkflowsRequest,
-    responseSerialize: serialize_data_ListWorkflowsResponse,
-    responseDeserialize: deserialize_data_ListWorkflowsResponse,
-  },
-  // 	List Document Actions
-listDocumentActions: {
-    path: '/data.Workflow/ListDocumentActions',
-    requestStream: false,
-    responseStream: false,
-    requestType: proto_business_pb.ListDocumentActionsRequest,
-    responseType: proto_business_pb.ListDocumentActionsResponse,
-    requestSerialize: serialize_data_ListDocumentActionsRequest,
-    requestDeserialize: deserialize_data_ListDocumentActionsRequest,
-    responseSerialize: serialize_data_ListDocumentActionsResponse,
-    responseDeserialize: deserialize_data_ListDocumentActionsResponse,
-  },
-  // 	List Document Statuses
-listDocumentStatuses: {
-    path: '/data.Workflow/ListDocumentStatuses',
-    requestStream: false,
-    responseStream: false,
-    requestType: proto_business_pb.ListDocumentStatusesRequest,
-    responseType: proto_business_pb.ListDocumentStatusesResponse,
-    requestSerialize: serialize_data_ListDocumentStatusesRequest,
-    requestDeserialize: deserialize_data_ListDocumentStatusesRequest,
-    responseSerialize: serialize_data_ListDocumentStatusesResponse,
-    responseDeserialize: deserialize_data_ListDocumentStatusesResponse,
-  },
-  // 	List Workflow Activities
-listWorkflowActivities: {
-    path: '/data.Workflow/ListWorkflowActivities',
-    requestStream: false,
-    responseStream: false,
-    requestType: proto_business_pb.ListWorkflowActivitiesRequest,
-    responseType: proto_business_pb.ListWorkflowActivitiesResponse,
-    requestSerialize: serialize_data_ListWorkflowActivitiesRequest,
-    requestDeserialize: deserialize_data_ListWorkflowActivitiesRequest,
-    responseSerialize: serialize_data_ListWorkflowActivitiesResponse,
-    responseDeserialize: deserialize_data_ListWorkflowActivitiesResponse,
-  },
-};
-
-exports.WorkflowClient = grpc.makeGenericClientConstructor(WorkflowService);
 // 	All related to dashboarding
 var DashboardingService = exports.DashboardingService = {
   // 	Request Dashboards Content Edit
@@ -1481,80 +1208,3 @@ getChart: {
 };
 
 exports.DashboardingClient = grpc.makeGenericClientConstructor(DashboardingService);
-// 	Logger services
-var LogsService = exports.LogsService = {
-  // 	Request BusinessProcess Activity from current session
-listProcessLogs: {
-    path: '/data.Logs/ListProcessLogs',
-    requestStream: false,
-    responseStream: false,
-    requestType: proto_business_pb.ListProcessLogsRequest,
-    responseType: proto_business_pb.ListProcessLogsResponse,
-    requestSerialize: serialize_data_ListProcessLogsRequest,
-    requestDeserialize: deserialize_data_ListProcessLogsRequest,
-    responseSerialize: serialize_data_ListProcessLogsResponse,
-    responseDeserialize: deserialize_data_ListProcessLogsResponse,
-  },
-  // 	Request Record Log List
-listEntityLogs: {
-    path: '/data.Logs/ListEntityLogs',
-    requestStream: false,
-    responseStream: false,
-    requestType: proto_business_pb.ListEntityLogsRequest,
-    responseType: proto_business_pb.ListEntityLogsResponse,
-    requestSerialize: serialize_data_ListEntityLogsRequest,
-    requestDeserialize: deserialize_data_ListEntityLogsRequest,
-    responseSerialize: serialize_data_ListEntityLogsResponse,
-    responseDeserialize: deserialize_data_ListEntityLogsResponse,
-  },
-  // 	Request Record Chat List
-listEntityChats: {
-    path: '/data.Logs/ListEntityChats',
-    requestStream: false,
-    responseStream: false,
-    requestType: proto_business_pb.ListEntityChatsRequest,
-    responseType: proto_business_pb.ListEntityChatsResponse,
-    requestSerialize: serialize_data_ListEntityChatsRequest,
-    requestDeserialize: deserialize_data_ListEntityChatsRequest,
-    responseSerialize: serialize_data_ListEntityChatsResponse,
-    responseDeserialize: deserialize_data_ListEntityChatsResponse,
-  },
-  // 	Request Chat Entries List
-listChatEntries: {
-    path: '/data.Logs/ListChatEntries',
-    requestStream: false,
-    responseStream: false,
-    requestType: proto_business_pb.ListChatEntriesRequest,
-    responseType: proto_business_pb.ListChatEntriesResponse,
-    requestSerialize: serialize_data_ListChatEntriesRequest,
-    requestDeserialize: deserialize_data_ListChatEntriesRequest,
-    responseSerialize: serialize_data_ListChatEntriesResponse,
-    responseDeserialize: deserialize_data_ListChatEntriesResponse,
-  },
-  // 	List workflow processes
-listWorkflowLogs: {
-    path: '/data.Logs/ListWorkflowLogs',
-    requestStream: false,
-    responseStream: false,
-    requestType: proto_business_pb.ListWorkflowLogsRequest,
-    responseType: proto_business_pb.ListWorkflowLogsResponse,
-    requestSerialize: serialize_data_ListWorkflowLogsRequest,
-    requestDeserialize: deserialize_data_ListWorkflowLogsRequest,
-    responseSerialize: serialize_data_ListWorkflowLogsResponse,
-    responseDeserialize: deserialize_data_ListWorkflowLogsResponse,
-  },
-  // 	Request Recent Items
-listRecentItems: {
-    path: '/data.Logs/ListRecentItems',
-    requestStream: false,
-    responseStream: false,
-    requestType: proto_business_pb.ListRecentItemsRequest,
-    responseType: proto_business_pb.ListRecentItemsResponse,
-    requestSerialize: serialize_data_ListRecentItemsRequest,
-    requestDeserialize: deserialize_data_ListRecentItemsRequest,
-    responseSerialize: serialize_data_ListRecentItemsResponse,
-    responseDeserialize: deserialize_data_ListRecentItemsResponse,
-  },
-};
-
-exports.LogsClient = grpc.makeGenericClientConstructor(LogsService);

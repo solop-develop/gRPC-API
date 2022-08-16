@@ -15,8 +15,6 @@ var jspb = require('google-protobuf');
 var goog = jspb;
 var global = Function('return this')();
 
-var proto_business_pb = require('../proto/business_pb.js');
-goog.object.extend(proto, proto_business_pb);
 goog.exportSymbol('proto.dictionary.ApplicationRequest', null, global);
 goog.exportSymbol('proto.dictionary.Browser', null, global);
 goog.exportSymbol('proto.dictionary.ContextInfo', null, global);

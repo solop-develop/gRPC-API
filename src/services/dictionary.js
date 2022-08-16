@@ -118,16 +118,6 @@ class Dictionary {
     this.getDictionaryService().getForm(this.getDictionaryRequest(token, id, uuid, language), callback)
   }
 
-  // Get Workflow
-  getWorkflow({
-    token,
-    id,
-    uuid,
-    language
-  }, callback) {
-    this.getDictionaryService().getWorkflow(this.getDictionaryRequest(token, id, uuid, language), callback)
-  }
-
   //  Get Validation Rule
   getValidationRule({
     token,
