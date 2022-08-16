@@ -79,8 +79,9 @@ Note to generate specific proto definition:
 * To invoice: `npm run stub:invoice`
 * To order: `npm run stub:order`
 * To payment: `npm run stub:payment`
-* To product: `npm run stub:product`
 * To payroll action notice: `npm run stub:payroll_action_notice`
+* To product: `npm run stub:product`
+* To workflow: `npm run stub:workflow`
 
 ### Generate directly with grpc-tools:
 
@@ -155,6 +156,8 @@ The result is generated on: `src/grpc/proto/` folder
 - `payroll_action_notice_pb.js`
 - `product_grpc_pb.js`
 - `product_pb.js`
+- `workflow_grpc_pb.js`
+- `workflow_pb.js`
 
 
 ## Sponsors

@@ -35,8 +35,6 @@
     this.initEnrollmentService()
     this.initUIService()
     this.initBusinessService()
-    this.initLogService()
-    this.initWorkflowService()
     this.initDashboardService()
     this.initCoreService()
     this.initPosService()
@@ -74,24 +72,10 @@
   }
 
   // Init connection
-  initLogService() {
-    var grpc = require('@grpc/grpc-js');
-    var services = require('./src/grpc/proto/business_grpc_pb');
-    this.entityLog = new services.LogsClient(this.businessHost, grpc.credentials.createInsecure());
-  }
-
-  // Init connection
   initBusinessService() {
     var grpc = require('@grpc/grpc-js');
     var services = require('./src/grpc/proto/business_grpc_pb');
     this.business = new services.BusinessDataClient(this.businessHost, grpc.credentials.createInsecure());
-  }
-
-  // Init connection
-  initWorkflowService() {
-    var grpc = require('@grpc/grpc-js');
-    var services = require('./src/grpc/proto/business_grpc_pb');
-    this.workflow = new services.WorkflowClient(this.businessHost, grpc.credentials.createInsecure());
   }
 
   // Init connection
@@ -128,16 +112,6 @@
   //  Get UI Service
   getUIService() {
     return this.ui
-  }
-
-  //  Get Log Service
-  getLogService() {
-    return this.entityLog
-  }
-
-  //  Get Workflow
-  getWorkflowService() {
-    return this.workflow
   }
 
   //  Get Dashboard
@@ -1405,217 +1379,7 @@
     this.getUIService().listGeneralInfo(request, callback);
   }
 
-  //  Logs
-  //  List process logs
-  listProcessLogs({
-    token,
-    tableName,
-    uuid,
-    id,
-    userUuid,
-    instanceUuid,
-    pageSize,
-    pageToken,
-    language
-  }, callback) {
-    const { ListProcessLogsRequest } = require('./src/grpc/proto/business_pb.js')
-    const request = new ListProcessLogsRequest()
-    request.setTableName(tableName)
-    request.setUuid(uuid)
-    request.setId(id)
-    request.setUserUuid(userUuid)
-    request.setInstanceUuid(instanceUuid)
-    request.setPageSize(pageSize)
-    request.setPageToken(pageToken)
-    request.setClientRequest(this.createClientRequest(token, language))
-    this.getLogService().listProcessLogs(request, callback)
-  }
-
-  //  List record logs
-  listEntityLogs({
-    token,
-    tableName,
-    uuid,
-    id,
-    pageSize,
-    pageToken,
-    language
-  }, callback) {
-    const { ListEntityLogsRequest } = require('./src/grpc/proto/business_pb.js')
-    const request = new ListEntityLogsRequest()
-    request.setTableName(tableName)
-    request.setUuid(uuid)
-    request.setId(id)
-    request.setPageSize(pageSize)
-    request.setPageToken(pageToken)
-    request.setClientRequest(this.createClientRequest(token, language))
-    this.getLogService().listEntityLogs(request, callback)
-  }
-
-  //  List entity chats
-  listEntityChats({
-    token,
-    tableName,
-    uuid,
-    id,
-    pageSize,
-    pageToken,
-    language
-  }, callback) {
-    const { ListEntityChatsRequest } = require('./src/grpc/proto/business_pb.js')
-    const request = new ListEntityChatsRequest()
-    request.setTableName(tableName)
-    request.setUuid(uuid)
-    request.setId(id)
-    request.setPageSize(pageSize)
-    request.setPageToken(pageToken)
-    request.setClientRequest(this.createClientRequest(token, language))
-    this.getLogService().listEntityChats(request, callback)
-  }
-
-  //  List chats entries
-  listChatEntries({
-    token,
-    id,
-    uuid,
-    pageSize,
-    pageToken,
-    language
-  }, callback) {
-    const { ListChatEntriesRequest } = require('./src/grpc/proto/business_pb.js')
-    const request = new ListChatEntriesRequest()
-    request.setUuid(uuid)
-    request.setId(id)
-    request.setPageSize(pageSize)
-    request.setPageToken(pageToken)
-    request.setClientRequest(this.createClientRequest(token, language))
-    this.getLogService().listChatEntries(request, callback)
-  }
-
-  //  List workflow logs
-  listWorkflowLogs({
-    token,
-    tableName,
-    uuid,
-    id,
-    pageSize,
-    pageToken,
-    language
-  }, callback) {
-    const { ListWorkflowLogsRequest } = require('./src/grpc/proto/business_pb.js')
-    const request = new ListWorkflowLogsRequest()
-    request.setTableName(tableName)
-    request.setUuid(uuid)
-    request.setId(id)
-    request.setPageSize(pageSize)
-    request.setPageToken(pageToken)
-    request.setClientRequest(this.createClientRequest(token, language))
-    this.getLogService().listWorkflowLogs(request, callback)
-  }
-
-  //  List workflow Activities
-  listWorkflowActivities({
-    token,
-    userUuid,
-    pageSize,
-    pageToken,
-    language
-  }, callback) {
-    const { ListWorkflowActivitiesRequest } = require('./src/grpc/proto/business_pb.js')
-    const request = new ListWorkflowActivitiesRequest()
-    request.setUserUuid(userUuid)
-    request.setPageSize(pageSize)
-    request.setPageToken(pageToken)
-    request.setClientRequest(this.createClientRequest(token, language))
-    this.getWorkflowService().listWorkflowActivities(request, callback)
-  }
-
-  //  List recent items
-  listRecentItems({
-    token,
-    userUuid,
-    roleUuid,
-    currentSession,
-    pageSize,
-    pageToken,
-    language
-  }, callback) {
-    const { ListRecentItemsRequest } = require('./src/grpc/proto/business_pb.js')
-    const request = new ListRecentItemsRequest()
-    request.setUserUuid(userUuid)
-    request.setRoleUuid(roleUuid)
-    request.setCurrentSession(currentSession)
-    request.setPageSize(pageSize)
-    request.setPageToken(pageToken)
-    request.setClientRequest(this.createClientRequest(token, language))
-    this.getLogService().listRecentItems(request, callback)
-  }
-
-  //  Workflow service
-  //  List workflow
-  listWorkflows({
-    token,
-    tableName,
-    pageSize,
-    pageToken,
-    language
-  }, callback) {
-    const { ListWorkflowsRequest } = require('./src/grpc/proto/business_pb.js')
-    const request = new ListWorkflowsRequest()
-    request.setTableName(tableName)
-    request.setPageSize(pageSize)
-    request.setPageToken(pageToken)
-    request.setClientRequest(this.createClientRequest(token, language))
-    this.getWorkflowService().listWorkflows(request, callback)
-  }
-
-  //  List workflow
-  listDocumentActions({
-    token,
-    tableName,
-    id,
-    uuid,
-    documentStatus,
-    documentAction,
-    pageSize,
-    pageToken,
-    language
-  }, callback) {
-    const { ListDocumentActionsRequest } = require('./src/grpc/proto/business_pb.js')
-    const request = new ListDocumentActionsRequest()
-    request.setTableName(tableName)
-    request.setId(id)
-    request.setUuid(uuid)
-    request.setDocumentStatus(documentStatus)
-    request.setDocumentAction(documentAction)
-    request.setPageSize(pageSize)
-    request.setPageToken(pageToken)
-    request.setClientRequest(this.createClientRequest(token, language))
-    this.getWorkflowService().listDocumentActions(request, callback)
-  }
-
-  //  List Document Statuses
-  listDocumentStatuses({
-    token,
-    tableName,
-    id,
-    uuid,
-    documentStatus,
-    pageSize,
-    pageToken,
-    language
-  }, callback) {
-    const { ListDocumentStatusesRequest } = require('./src/grpc/proto/business_pb.js')
-    const request = new ListDocumentStatusesRequest()
-    request.setTableName(tableName)
-    request.setId(id)
-    request.setUuid(uuid)
-    request.setDocumentStatus(documentStatus)
-    request.setPageSize(pageSize)
-    request.setPageToken(pageToken)
-    request.setClientRequest(this.createClientRequest(token, language))
-    this.getWorkflowService().listDocumentStatuses(request, callback)
-  }
+  //  Dashboard service
 
   //  List Document Statuses
   listDashboards({
