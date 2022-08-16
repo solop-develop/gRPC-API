@@ -49,6 +49,25 @@ class Workflow {
     return this.workflow;
   }
 
+  // Get Workflow
+  getWorkflow({
+    token,
+    id,
+    uuid,
+    language
+  }, callback) {
+    const { WorkflowDefinitionRequest } = require('../grpc/proto/workflow_pb.js');
+    const request = new WorkflowDefinitionRequest();
+
+    request.setId(id);
+    request.setUuid(uuid);
+    request.setClientRequest(
+      createClientRequest({ token, language })
+    );
+
+    this.getWorkflowService().getWorkflow(request, callback);
+  }
+
   //  List workflow
   listWorkflows({
     token,
@@ -63,7 +82,7 @@ class Workflow {
     request.setPageSize(pageSize)
     request.setPageToken(pageToken)
     request.setClientRequest(
-      this.createClientRequest({ token, language })
+      createClientRequest({ token, language })
     );
     this.getWorkflowService().listWorkflows(request, callback)
   }
@@ -90,7 +109,7 @@ class Workflow {
     request.setPageSize(pageSize)
     request.setPageToken(pageToken)
     request.setClientRequest(
-      this.createClientRequest({ token, language })
+      createClientRequest({ token, language })
     );
     this.getWorkflowService().listDocumentActions(request, callback)
   }
@@ -115,7 +134,7 @@ class Workflow {
     request.setPageSize(pageSize)
     request.setPageToken(pageToken)
     request.setClientRequest(
-      this.createClientRequest({ token, language })
+      createClientRequest({ token, language })
     )
     this.getWorkflowService().listDocumentStatuses(request, callback)
   }
@@ -135,7 +154,7 @@ class Workflow {
     request.setPageSize(pageSize)
     request.setPageToken(pageToken)
     request.setClientRequest(
-        createClientRequest({ token, language })
+      createClientRequest({ token, language })
     );
     this.getWorkflowService().listWorkflowActivities(request, callback)
   }

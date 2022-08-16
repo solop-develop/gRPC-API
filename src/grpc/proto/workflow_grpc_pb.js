@@ -109,9 +109,43 @@ function deserialize_workflow_ListWorkflowsResponse(buffer_arg) {
   return proto_workflow_pb.ListWorkflowsResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_workflow_WorkflowDefinition(arg) {
+  if (!(arg instanceof proto_workflow_pb.WorkflowDefinition)) {
+    throw new Error('Expected argument of type workflow.WorkflowDefinition');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_workflow_WorkflowDefinition(buffer_arg) {
+  return proto_workflow_pb.WorkflowDefinition.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_workflow_WorkflowDefinitionRequest(arg) {
+  if (!(arg instanceof proto_workflow_pb.WorkflowDefinitionRequest)) {
+    throw new Error('Expected argument of type workflow.WorkflowDefinitionRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_workflow_WorkflowDefinitionRequest(buffer_arg) {
+  return proto_workflow_pb.WorkflowDefinitionRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 
 // 	Workflow management service
 var WorkflowService = exports.WorkflowService = {
+  // Get Workflow
+getWorkflow: {
+    path: '/workflow.Workflow/GetWorkflow',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_workflow_pb.WorkflowDefinitionRequest,
+    responseType: proto_workflow_pb.WorkflowDefinition,
+    requestSerialize: serialize_workflow_WorkflowDefinitionRequest,
+    requestDeserialize: deserialize_workflow_WorkflowDefinitionRequest,
+    responseSerialize: serialize_workflow_WorkflowDefinition,
+    responseDeserialize: deserialize_workflow_WorkflowDefinition,
+  },
   // 	List Workflow
 listWorkflows: {
     path: '/workflow.Workflow/ListWorkflows',

@@ -15,8 +15,6 @@ var jspb = require('google-protobuf');
 var goog = jspb;
 var global = Function('return this')();
 
-var proto_workflow_pb = require('../proto/workflow_pb.js');
-goog.object.extend(proto, proto_workflow_pb);
 goog.exportSymbol('proto.dictionary.ApplicationRequest', null, global);
 goog.exportSymbol('proto.dictionary.Browser', null, global);
 goog.exportSymbol('proto.dictionary.ContextInfo', null, global);
