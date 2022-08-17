@@ -2277,7 +2277,8 @@ proto.data.DeletePaymentReferenceRequest.toObject = function(includeInstance, ms
   var f, obj = {
     clientRequest: (f = msg.getClientRequest()) && proto_client_pb.ClientRequest.toObject(includeInstance, f),
     id: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    uuid: jspb.Message.getFieldWithDefault(msg, 3, "")
+    uuid: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    posUuid: jspb.Message.getFieldWithDefault(msg, 4, "")
   };
 
   if (includeInstance) {
@@ -2327,6 +2328,10 @@ proto.data.DeletePaymentReferenceRequest.deserializeBinaryFromReader = function(
       var value = /** @type {string} */ (reader.readString());
       msg.setUuid(value);
       break;
+    case 4:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setPosUuid(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -2375,6 +2380,13 @@ proto.data.DeletePaymentReferenceRequest.serializeBinaryToWriter = function(mess
   if (f.length > 0) {
     writer.writeString(
       3,
+      f
+    );
+  }
+  f = message.getPosUuid();
+  if (f.length > 0) {
+    writer.writeString(
+      4,
       f
     );
   }
@@ -2451,6 +2463,24 @@ proto.data.DeletePaymentReferenceRequest.prototype.getUuid = function() {
  */
 proto.data.DeletePaymentReferenceRequest.prototype.setUuid = function(value) {
   return jspb.Message.setProto3StringField(this, 3, value);
+};
+
+
+/**
+ * optional string pos_uuid = 4;
+ * @return {string}
+ */
+proto.data.DeletePaymentReferenceRequest.prototype.getPosUuid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.data.DeletePaymentReferenceRequest} returns this
+ */
+proto.data.DeletePaymentReferenceRequest.prototype.setPosUuid = function(value) {
+  return jspb.Message.setProto3StringField(this, 4, value);
 };
 
 
@@ -8389,7 +8419,8 @@ proto.data.CreateShipmentRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     clientRequest: (f = msg.getClientRequest()) && proto_client_pb.ClientRequest.toObject(includeInstance, f),
     orderUuid: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    salesRepresentativeUuid: jspb.Message.getFieldWithDefault(msg, 3, "")
+    salesRepresentativeUuid: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    posUuid: jspb.Message.getFieldWithDefault(msg, 4, "")
   };
 
   if (includeInstance) {
@@ -8439,6 +8470,10 @@ proto.data.CreateShipmentRequest.deserializeBinaryFromReader = function(msg, rea
       var value = /** @type {string} */ (reader.readString());
       msg.setSalesRepresentativeUuid(value);
       break;
+    case 4:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setPosUuid(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -8487,6 +8522,13 @@ proto.data.CreateShipmentRequest.serializeBinaryToWriter = function(message, wri
   if (f.length > 0) {
     writer.writeString(
       3,
+      f
+    );
+  }
+  f = message.getPosUuid();
+  if (f.length > 0) {
+    writer.writeString(
+      4,
       f
     );
   }
@@ -8563,6 +8605,24 @@ proto.data.CreateShipmentRequest.prototype.getSalesRepresentativeUuid = function
  */
 proto.data.CreateShipmentRequest.prototype.setSalesRepresentativeUuid = function(value) {
   return jspb.Message.setProto3StringField(this, 3, value);
+};
+
+
+/**
+ * optional string pos_uuid = 4;
+ * @return {string}
+ */
+proto.data.CreateShipmentRequest.prototype.getPosUuid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.data.CreateShipmentRequest} returns this
+ */
+proto.data.CreateShipmentRequest.prototype.setPosUuid = function(value) {
+  return jspb.Message.setProto3StringField(this, 4, value);
 };
 
 
@@ -8810,7 +8870,8 @@ proto.data.DeleteShipmentRequest.prototype.toObject = function(opt_includeInstan
 proto.data.DeleteShipmentRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     clientRequest: (f = msg.getClientRequest()) && proto_client_pb.ClientRequest.toObject(includeInstance, f),
-    shipmentUuid: jspb.Message.getFieldWithDefault(msg, 2, "")
+    shipmentUuid: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    posUuid: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
 
   if (includeInstance) {
@@ -8856,6 +8917,10 @@ proto.data.DeleteShipmentRequest.deserializeBinaryFromReader = function(msg, rea
       var value = /** @type {string} */ (reader.readString());
       msg.setShipmentUuid(value);
       break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setPosUuid(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -8897,6 +8962,13 @@ proto.data.DeleteShipmentRequest.serializeBinaryToWriter = function(message, wri
   if (f.length > 0) {
     writer.writeString(
       2,
+      f
+    );
+  }
+  f = message.getPosUuid();
+  if (f.length > 0) {
+    writer.writeString(
+      3,
       f
     );
   }
@@ -8958,6 +9030,24 @@ proto.data.DeleteShipmentRequest.prototype.setShipmentUuid = function(value) {
 };
 
 
+/**
+ * optional string pos_uuid = 3;
+ * @return {string}
+ */
+proto.data.DeleteShipmentRequest.prototype.getPosUuid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.data.DeleteShipmentRequest} returns this
+ */
+proto.data.DeleteShipmentRequest.prototype.setPosUuid = function(value) {
+  return jspb.Message.setProto3StringField(this, 3, value);
+};
+
+
 
 
 
@@ -8991,7 +9081,8 @@ proto.data.DeleteShipmentLineRequest.prototype.toObject = function(opt_includeIn
 proto.data.DeleteShipmentLineRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     clientRequest: (f = msg.getClientRequest()) && proto_client_pb.ClientRequest.toObject(includeInstance, f),
-    shipmentLineUuid: jspb.Message.getFieldWithDefault(msg, 2, "")
+    shipmentLineUuid: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    posUuid: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
 
   if (includeInstance) {
@@ -9037,6 +9128,10 @@ proto.data.DeleteShipmentLineRequest.deserializeBinaryFromReader = function(msg,
       var value = /** @type {string} */ (reader.readString());
       msg.setShipmentLineUuid(value);
       break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setPosUuid(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -9078,6 +9173,13 @@ proto.data.DeleteShipmentLineRequest.serializeBinaryToWriter = function(message,
   if (f.length > 0) {
     writer.writeString(
       2,
+      f
+    );
+  }
+  f = message.getPosUuid();
+  if (f.length > 0) {
+    writer.writeString(
+      3,
       f
     );
   }
@@ -9139,6 +9241,24 @@ proto.data.DeleteShipmentLineRequest.prototype.setShipmentLineUuid = function(va
 };
 
 
+/**
+ * optional string pos_uuid = 3;
+ * @return {string}
+ */
+proto.data.DeleteShipmentLineRequest.prototype.getPosUuid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.data.DeleteShipmentLineRequest} returns this
+ */
+proto.data.DeleteShipmentLineRequest.prototype.setPosUuid = function(value) {
+  return jspb.Message.setProto3StringField(this, 3, value);
+};
+
+
 
 
 
@@ -9174,7 +9294,8 @@ proto.data.UpdateShipmentLineRequest.toObject = function(includeInstance, msg) {
     clientRequest: (f = msg.getClientRequest()) && proto_client_pb.ClientRequest.toObject(includeInstance, f),
     shipmentLineUuid: jspb.Message.getFieldWithDefault(msg, 2, ""),
     description: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    quantity: (f = msg.getQuantity()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f)
+    quantity: (f = msg.getQuantity()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
+    posUuid: jspb.Message.getFieldWithDefault(msg, 7, "")
   };
 
   if (includeInstance) {
@@ -9228,6 +9349,10 @@ proto.data.UpdateShipmentLineRequest.deserializeBinaryFromReader = function(msg,
       var value = new proto_base_data_type_pb.Decimal;
       reader.readMessage(value,proto_base_data_type_pb.Decimal.deserializeBinaryFromReader);
       msg.setQuantity(value);
+      break;
+    case 7:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setPosUuid(value);
       break;
     default:
       reader.skipField();
@@ -9286,6 +9411,13 @@ proto.data.UpdateShipmentLineRequest.serializeBinaryToWriter = function(message,
       6,
       f,
       proto_base_data_type_pb.Decimal.serializeBinaryToWriter
+    );
+  }
+  f = message.getPosUuid();
+  if (f.length > 0) {
+    writer.writeString(
+      7,
+      f
     );
   }
 };
@@ -9401,6 +9533,24 @@ proto.data.UpdateShipmentLineRequest.prototype.hasQuantity = function() {
 };
 
 
+/**
+ * optional string pos_uuid = 7;
+ * @return {string}
+ */
+proto.data.UpdateShipmentLineRequest.prototype.getPosUuid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 7, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.data.UpdateShipmentLineRequest} returns this
+ */
+proto.data.UpdateShipmentLineRequest.prototype.setPosUuid = function(value) {
+  return jspb.Message.setProto3StringField(this, 7, value);
+};
+
+
 
 
 
@@ -9437,7 +9587,8 @@ proto.data.CreateShipmentLineRequest.toObject = function(includeInstance, msg) {
     shipmentUuid: jspb.Message.getFieldWithDefault(msg, 2, ""),
     orderLineUuid: jspb.Message.getFieldWithDefault(msg, 3, ""),
     description: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    quantity: (f = msg.getQuantity()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f)
+    quantity: (f = msg.getQuantity()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
+    posUuid: jspb.Message.getFieldWithDefault(msg, 7, "")
   };
 
   if (includeInstance) {
@@ -9495,6 +9646,10 @@ proto.data.CreateShipmentLineRequest.deserializeBinaryFromReader = function(msg,
       var value = new proto_base_data_type_pb.Decimal;
       reader.readMessage(value,proto_base_data_type_pb.Decimal.deserializeBinaryFromReader);
       msg.setQuantity(value);
+      break;
+    case 7:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setPosUuid(value);
       break;
     default:
       reader.skipField();
@@ -9560,6 +9715,13 @@ proto.data.CreateShipmentLineRequest.serializeBinaryToWriter = function(message,
       6,
       f,
       proto_base_data_type_pb.Decimal.serializeBinaryToWriter
+    );
+  }
+  f = message.getPosUuid();
+  if (f.length > 0) {
+    writer.writeString(
+      7,
+      f
     );
   }
 };
@@ -9693,6 +9855,24 @@ proto.data.CreateShipmentLineRequest.prototype.hasQuantity = function() {
 };
 
 
+/**
+ * optional string pos_uuid = 7;
+ * @return {string}
+ */
+proto.data.CreateShipmentLineRequest.prototype.getPosUuid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 7, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.data.CreateShipmentLineRequest} returns this
+ */
+proto.data.CreateShipmentLineRequest.prototype.setPosUuid = function(value) {
+  return jspb.Message.setProto3StringField(this, 7, value);
+};
+
+
 
 
 
@@ -9728,7 +9908,8 @@ proto.data.ListShipmentLinesRequest.toObject = function(includeInstance, msg) {
     clientRequest: (f = msg.getClientRequest()) && proto_client_pb.ClientRequest.toObject(includeInstance, f),
     shipmentUuid: jspb.Message.getFieldWithDefault(msg, 2, ""),
     pageSize: jspb.Message.getFieldWithDefault(msg, 3, 0),
-    pageToken: jspb.Message.getFieldWithDefault(msg, 4, "")
+    pageToken: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    posUuid: jspb.Message.getFieldWithDefault(msg, 5, "")
   };
 
   if (includeInstance) {
@@ -9781,6 +9962,10 @@ proto.data.ListShipmentLinesRequest.deserializeBinaryFromReader = function(msg, 
     case 4:
       var value = /** @type {string} */ (reader.readString());
       msg.setPageToken(value);
+      break;
+    case 5:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setPosUuid(value);
       break;
     default:
       reader.skipField();
@@ -9837,6 +10022,13 @@ proto.data.ListShipmentLinesRequest.serializeBinaryToWriter = function(message, 
   if (f.length > 0) {
     writer.writeString(
       4,
+      f
+    );
+  }
+  f = message.getPosUuid();
+  if (f.length > 0) {
+    writer.writeString(
+      5,
       f
     );
   }
@@ -9931,6 +10123,24 @@ proto.data.ListShipmentLinesRequest.prototype.getPageToken = function() {
  */
 proto.data.ListShipmentLinesRequest.prototype.setPageToken = function(value) {
   return jspb.Message.setProto3StringField(this, 4, value);
+};
+
+
+/**
+ * optional string pos_uuid = 5;
+ * @return {string}
+ */
+proto.data.ListShipmentLinesRequest.prototype.getPosUuid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.data.ListShipmentLinesRequest} returns this
+ */
+proto.data.ListShipmentLinesRequest.prototype.setPosUuid = function(value) {
+  return jspb.Message.setProto3StringField(this, 5, value);
 };
 
 
@@ -10643,7 +10853,8 @@ proto.data.ProcessShipmentRequest.toObject = function(includeInstance, msg) {
     clientRequest: (f = msg.getClientRequest()) && proto_client_pb.ClientRequest.toObject(includeInstance, f),
     shipmentUuid: jspb.Message.getFieldWithDefault(msg, 2, ""),
     description: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    documentAction: jspb.Message.getFieldWithDefault(msg, 4, "")
+    documentAction: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    posUuid: jspb.Message.getFieldWithDefault(msg, 5, "")
   };
 
   if (includeInstance) {
@@ -10696,6 +10907,10 @@ proto.data.ProcessShipmentRequest.deserializeBinaryFromReader = function(msg, re
     case 4:
       var value = /** @type {string} */ (reader.readString());
       msg.setDocumentAction(value);
+      break;
+    case 5:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setPosUuid(value);
       break;
     default:
       reader.skipField();
@@ -10752,6 +10967,13 @@ proto.data.ProcessShipmentRequest.serializeBinaryToWriter = function(message, wr
   if (f.length > 0) {
     writer.writeString(
       4,
+      f
+    );
+  }
+  f = message.getPosUuid();
+  if (f.length > 0) {
+    writer.writeString(
+      5,
       f
     );
   }
@@ -10846,6 +11068,24 @@ proto.data.ProcessShipmentRequest.prototype.getDocumentAction = function() {
  */
 proto.data.ProcessShipmentRequest.prototype.setDocumentAction = function(value) {
   return jspb.Message.setProto3StringField(this, 4, value);
+};
+
+
+/**
+ * optional string pos_uuid = 5;
+ * @return {string}
+ */
+proto.data.ProcessShipmentRequest.prototype.getPosUuid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.data.ProcessShipmentRequest} returns this
+ */
+proto.data.ProcessShipmentRequest.prototype.setPosUuid = function(value) {
+  return jspb.Message.setProto3StringField(this, 5, value);
 };
 
 
@@ -11528,7 +11768,8 @@ proto.data.ListCustomerBankAccountsRequest.toObject = function(includeInstance, 
     clientRequest: (f = msg.getClientRequest()) && proto_client_pb.ClientRequest.toObject(includeInstance, f),
     customerUuid: jspb.Message.getFieldWithDefault(msg, 2, ""),
     pageSize: jspb.Message.getFieldWithDefault(msg, 3, 0),
-    pageToken: jspb.Message.getFieldWithDefault(msg, 4, "")
+    pageToken: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    posUuid: jspb.Message.getFieldWithDefault(msg, 5, "")
   };
 
   if (includeInstance) {
@@ -11581,6 +11822,10 @@ proto.data.ListCustomerBankAccountsRequest.deserializeBinaryFromReader = functio
     case 4:
       var value = /** @type {string} */ (reader.readString());
       msg.setPageToken(value);
+      break;
+    case 5:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setPosUuid(value);
       break;
     default:
       reader.skipField();
@@ -11637,6 +11882,13 @@ proto.data.ListCustomerBankAccountsRequest.serializeBinaryToWriter = function(me
   if (f.length > 0) {
     writer.writeString(
       4,
+      f
+    );
+  }
+  f = message.getPosUuid();
+  if (f.length > 0) {
+    writer.writeString(
+      5,
       f
     );
   }
@@ -11731,6 +11983,24 @@ proto.data.ListCustomerBankAccountsRequest.prototype.getPageToken = function() {
  */
 proto.data.ListCustomerBankAccountsRequest.prototype.setPageToken = function(value) {
   return jspb.Message.setProto3StringField(this, 4, value);
+};
+
+
+/**
+ * optional string pos_uuid = 5;
+ * @return {string}
+ */
+proto.data.ListCustomerBankAccountsRequest.prototype.getPosUuid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.data.ListCustomerBankAccountsRequest} returns this
+ */
+proto.data.ListCustomerBankAccountsRequest.prototype.setPosUuid = function(value) {
+  return jspb.Message.setProto3StringField(this, 5, value);
 };
 
 
@@ -12756,7 +13026,8 @@ proto.data.UpdateCustomerBankAccountRequest.toObject = function(includeInstance,
     routingNo: jspb.Message.getFieldWithDefault(msg, 17, ""),
     iban: jspb.Message.getFieldWithDefault(msg, 18, ""),
     isPayrollAccount: jspb.Message.getBooleanFieldWithDefault(msg, 19, false),
-    accountNo: jspb.Message.getFieldWithDefault(msg, 20, "")
+    accountNo: jspb.Message.getFieldWithDefault(msg, 20, ""),
+    posUuid: jspb.Message.getFieldWithDefault(msg, 21, "")
   };
 
   if (includeInstance) {
@@ -12873,6 +13144,10 @@ proto.data.UpdateCustomerBankAccountRequest.deserializeBinaryFromReader = functi
     case 20:
       var value = /** @type {string} */ (reader.readString());
       msg.setAccountNo(value);
+      break;
+    case 21:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setPosUuid(value);
       break;
     default:
       reader.skipField();
@@ -13041,6 +13316,13 @@ proto.data.UpdateCustomerBankAccountRequest.serializeBinaryToWriter = function(m
   if (f.length > 0) {
     writer.writeString(
       20,
+      f
+    );
+  }
+  f = message.getPosUuid();
+  if (f.length > 0) {
+    writer.writeString(
+      21,
       f
     );
   }
@@ -13426,6 +13708,24 @@ proto.data.UpdateCustomerBankAccountRequest.prototype.setAccountNo = function(va
 };
 
 
+/**
+ * optional string pos_uuid = 21;
+ * @return {string}
+ */
+proto.data.UpdateCustomerBankAccountRequest.prototype.getPosUuid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 21, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.data.UpdateCustomerBankAccountRequest} returns this
+ */
+proto.data.UpdateCustomerBankAccountRequest.prototype.setPosUuid = function(value) {
+  return jspb.Message.setProto3StringField(this, 21, value);
+};
+
+
 
 
 
@@ -13459,7 +13759,8 @@ proto.data.DeleteCustomerBankAccountRequest.prototype.toObject = function(opt_in
 proto.data.DeleteCustomerBankAccountRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     clientRequest: (f = msg.getClientRequest()) && proto_client_pb.ClientRequest.toObject(includeInstance, f),
-    customerBankAccountUuid: jspb.Message.getFieldWithDefault(msg, 2, "")
+    customerBankAccountUuid: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    posUuid: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
 
   if (includeInstance) {
@@ -13505,6 +13806,10 @@ proto.data.DeleteCustomerBankAccountRequest.deserializeBinaryFromReader = functi
       var value = /** @type {string} */ (reader.readString());
       msg.setCustomerBankAccountUuid(value);
       break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setPosUuid(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -13546,6 +13851,13 @@ proto.data.DeleteCustomerBankAccountRequest.serializeBinaryToWriter = function(m
   if (f.length > 0) {
     writer.writeString(
       2,
+      f
+    );
+  }
+  f = message.getPosUuid();
+  if (f.length > 0) {
+    writer.writeString(
+      3,
       f
     );
   }
@@ -13607,6 +13919,24 @@ proto.data.DeleteCustomerBankAccountRequest.prototype.setCustomerBankAccountUuid
 };
 
 
+/**
+ * optional string pos_uuid = 3;
+ * @return {string}
+ */
+proto.data.DeleteCustomerBankAccountRequest.prototype.getPosUuid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.data.DeleteCustomerBankAccountRequest} returns this
+ */
+proto.data.DeleteCustomerBankAccountRequest.prototype.setPosUuid = function(value) {
+  return jspb.Message.setProto3StringField(this, 3, value);
+};
+
+
 
 
 
@@ -13640,7 +13970,8 @@ proto.data.GetCustomerBankAccountRequest.prototype.toObject = function(opt_inclu
 proto.data.GetCustomerBankAccountRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     clientRequest: (f = msg.getClientRequest()) && proto_client_pb.ClientRequest.toObject(includeInstance, f),
-    customerBankAccountUuid: jspb.Message.getFieldWithDefault(msg, 2, "")
+    customerBankAccountUuid: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    posUuid: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
 
   if (includeInstance) {
@@ -13686,6 +14017,10 @@ proto.data.GetCustomerBankAccountRequest.deserializeBinaryFromReader = function(
       var value = /** @type {string} */ (reader.readString());
       msg.setCustomerBankAccountUuid(value);
       break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setPosUuid(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -13727,6 +14062,13 @@ proto.data.GetCustomerBankAccountRequest.serializeBinaryToWriter = function(mess
   if (f.length > 0) {
     writer.writeString(
       2,
+      f
+    );
+  }
+  f = message.getPosUuid();
+  if (f.length > 0) {
+    writer.writeString(
+      3,
       f
     );
   }
@@ -13785,6 +14127,24 @@ proto.data.GetCustomerBankAccountRequest.prototype.getCustomerBankAccountUuid = 
  */
 proto.data.GetCustomerBankAccountRequest.prototype.setCustomerBankAccountUuid = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * optional string pos_uuid = 3;
+ * @return {string}
+ */
+proto.data.GetCustomerBankAccountRequest.prototype.getPosUuid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.data.GetCustomerBankAccountRequest} returns this
+ */
+proto.data.GetCustomerBankAccountRequest.prototype.setPosUuid = function(value) {
+  return jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
@@ -15492,7 +15852,8 @@ proto.data.AddressRequest.toObject = function(includeInstance, msg) {
     email: jspb.Message.getFieldWithDefault(msg, 19, ""),
     phone: jspb.Message.getFieldWithDefault(msg, 20, ""),
     additionalAttributesList: jspb.Message.toObjectList(msg.getAdditionalAttributesList(),
-    proto_base_data_type_pb.KeyValue.toObject, includeInstance)
+    proto_base_data_type_pb.KeyValue.toObject, includeInstance),
+    posUuid: jspb.Message.getFieldWithDefault(msg, 22, "")
   };
 
   if (includeInstance) {
@@ -15613,6 +15974,10 @@ proto.data.AddressRequest.deserializeBinaryFromReader = function(msg, reader) {
       var value = new proto_base_data_type_pb.KeyValue;
       reader.readMessage(value,proto_base_data_type_pb.KeyValue.deserializeBinaryFromReader);
       msg.addAdditionalAttributes(value);
+      break;
+    case 22:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setPosUuid(value);
       break;
     default:
       reader.skipField();
@@ -15789,6 +16154,13 @@ proto.data.AddressRequest.serializeBinaryToWriter = function(message, writer) {
       21,
       f,
       proto_base_data_type_pb.KeyValue.serializeBinaryToWriter
+    );
+  }
+  f = message.getPosUuid();
+  if (f.length > 0) {
+    writer.writeString(
+      22,
+      f
     );
   }
 };
@@ -16189,6 +16561,24 @@ proto.data.AddressRequest.prototype.addAdditionalAttributes = function(opt_value
  */
 proto.data.AddressRequest.prototype.clearAdditionalAttributesList = function() {
   return this.setAdditionalAttributesList([]);
+};
+
+
+/**
+ * optional string pos_uuid = 22;
+ * @return {string}
+ */
+proto.data.AddressRequest.prototype.getPosUuid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 22, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.data.AddressRequest} returns this
+ */
+proto.data.AddressRequest.prototype.setPosUuid = function(value) {
+  return jspb.Message.setProto3StringField(this, 22, value);
 };
 
 
@@ -16777,7 +17167,8 @@ proto.data.UpdateCustomerRequest.toObject = function(includeInstance, msg) {
     addressesList: jspb.Message.toObjectList(msg.getAddressesList(),
     proto.data.AddressRequest.toObject, includeInstance),
     additionalAttributesList: jspb.Message.toObjectList(msg.getAdditionalAttributesList(),
-    proto_base_data_type_pb.KeyValue.toObject, includeInstance)
+    proto_base_data_type_pb.KeyValue.toObject, includeInstance),
+    posUuid: jspb.Message.getFieldWithDefault(msg, 12, "")
   };
 
   if (includeInstance) {
@@ -16860,6 +17251,10 @@ proto.data.UpdateCustomerRequest.deserializeBinaryFromReader = function(msg, rea
       var value = new proto_base_data_type_pb.KeyValue;
       reader.readMessage(value,proto_base_data_type_pb.KeyValue.deserializeBinaryFromReader);
       msg.addAdditionalAttributes(value);
+      break;
+    case 12:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setPosUuid(value);
       break;
     default:
       reader.skipField();
@@ -16968,6 +17363,13 @@ proto.data.UpdateCustomerRequest.serializeBinaryToWriter = function(message, wri
       11,
       f,
       proto_base_data_type_pb.KeyValue.serializeBinaryToWriter
+    );
+  }
+  f = message.getPosUuid();
+  if (f.length > 0) {
+    writer.writeString(
+      12,
+      f
     );
   }
 };
@@ -17230,6 +17632,24 @@ proto.data.UpdateCustomerRequest.prototype.clearAdditionalAttributesList = funct
 };
 
 
+/**
+ * optional string pos_uuid = 12;
+ * @return {string}
+ */
+proto.data.UpdateCustomerRequest.prototype.getPosUuid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 12, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.data.UpdateCustomerRequest} returns this
+ */
+proto.data.UpdateCustomerRequest.prototype.setPosUuid = function(value) {
+  return jspb.Message.setProto3StringField(this, 12, value);
+};
+
+
 
 
 
@@ -17269,7 +17689,8 @@ proto.data.GetCustomerRequest.toObject = function(includeInstance, msg) {
     contactName: jspb.Message.getFieldWithDefault(msg, 6, ""),
     email: jspb.Message.getFieldWithDefault(msg, 7, ""),
     postalCode: jspb.Message.getFieldWithDefault(msg, 8, ""),
-    phone: jspb.Message.getFieldWithDefault(msg, 9, "")
+    phone: jspb.Message.getFieldWithDefault(msg, 9, ""),
+    posUuid: jspb.Message.getFieldWithDefault(msg, 10, "")
   };
 
   if (includeInstance) {
@@ -17338,6 +17759,10 @@ proto.data.GetCustomerRequest.deserializeBinaryFromReader = function(msg, reader
     case 9:
       var value = /** @type {string} */ (reader.readString());
       msg.setPhone(value);
+      break;
+    case 10:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setPosUuid(value);
       break;
     default:
       reader.skipField();
@@ -17422,6 +17847,13 @@ proto.data.GetCustomerRequest.serializeBinaryToWriter = function(message, writer
   if (f.length > 0) {
     writer.writeString(
       9,
+      f
+    );
+  }
+  f = message.getPosUuid();
+  if (f.length > 0) {
+    writer.writeString(
+      10,
       f
     );
   }
@@ -17588,6 +18020,24 @@ proto.data.GetCustomerRequest.prototype.getPhone = function() {
  */
 proto.data.GetCustomerRequest.prototype.setPhone = function(value) {
   return jspb.Message.setProto3StringField(this, 9, value);
+};
+
+
+/**
+ * optional string pos_uuid = 10;
+ * @return {string}
+ */
+proto.data.GetCustomerRequest.prototype.getPosUuid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 10, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.data.GetCustomerRequest} returns this
+ */
+proto.data.GetCustomerRequest.prototype.setPosUuid = function(value) {
+  return jspb.Message.setProto3StringField(this, 10, value);
 };
 
 
@@ -25158,7 +25608,8 @@ proto.data.ListOrderLinesRequest.toObject = function(includeInstance, msg) {
     clientRequest: (f = msg.getClientRequest()) && proto_client_pb.ClientRequest.toObject(includeInstance, f),
     orderUuid: jspb.Message.getFieldWithDefault(msg, 2, ""),
     pageSize: jspb.Message.getFieldWithDefault(msg, 3, 0),
-    pageToken: jspb.Message.getFieldWithDefault(msg, 4, "")
+    pageToken: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    posUuid: jspb.Message.getFieldWithDefault(msg, 5, "")
   };
 
   if (includeInstance) {
@@ -25211,6 +25662,10 @@ proto.data.ListOrderLinesRequest.deserializeBinaryFromReader = function(msg, rea
     case 4:
       var value = /** @type {string} */ (reader.readString());
       msg.setPageToken(value);
+      break;
+    case 5:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setPosUuid(value);
       break;
     default:
       reader.skipField();
@@ -25267,6 +25722,13 @@ proto.data.ListOrderLinesRequest.serializeBinaryToWriter = function(message, wri
   if (f.length > 0) {
     writer.writeString(
       4,
+      f
+    );
+  }
+  f = message.getPosUuid();
+  if (f.length > 0) {
+    writer.writeString(
+      5,
       f
     );
   }
@@ -25361,6 +25823,24 @@ proto.data.ListOrderLinesRequest.prototype.getPageToken = function() {
  */
 proto.data.ListOrderLinesRequest.prototype.setPageToken = function(value) {
   return jspb.Message.setProto3StringField(this, 4, value);
+};
+
+
+/**
+ * optional string pos_uuid = 5;
+ * @return {string}
+ */
+proto.data.ListOrderLinesRequest.prototype.getPosUuid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.data.ListOrderLinesRequest} returns this
+ */
+proto.data.ListOrderLinesRequest.prototype.setPosUuid = function(value) {
+  return jspb.Message.setProto3StringField(this, 5, value);
 };
 
 
@@ -25841,7 +26321,8 @@ proto.data.ListPointOfSalesRequest.toObject = function(includeInstance, msg) {
     clientRequest: (f = msg.getClientRequest()) && proto_client_pb.ClientRequest.toObject(includeInstance, f),
     userUuid: jspb.Message.getFieldWithDefault(msg, 2, ""),
     pageSize: jspb.Message.getFieldWithDefault(msg, 3, 0),
-    pageToken: jspb.Message.getFieldWithDefault(msg, 4, "")
+    pageToken: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    posUuid: jspb.Message.getFieldWithDefault(msg, 5, "")
   };
 
   if (includeInstance) {
@@ -25894,6 +26375,10 @@ proto.data.ListPointOfSalesRequest.deserializeBinaryFromReader = function(msg, r
     case 4:
       var value = /** @type {string} */ (reader.readString());
       msg.setPageToken(value);
+      break;
+    case 5:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setPosUuid(value);
       break;
     default:
       reader.skipField();
@@ -25950,6 +26435,13 @@ proto.data.ListPointOfSalesRequest.serializeBinaryToWriter = function(message, w
   if (f.length > 0) {
     writer.writeString(
       4,
+      f
+    );
+  }
+  f = message.getPosUuid();
+  if (f.length > 0) {
+    writer.writeString(
+      5,
       f
     );
   }
@@ -26044,6 +26536,24 @@ proto.data.ListPointOfSalesRequest.prototype.getPageToken = function() {
  */
 proto.data.ListPointOfSalesRequest.prototype.setPageToken = function(value) {
   return jspb.Message.setProto3StringField(this, 4, value);
+};
+
+
+/**
+ * optional string pos_uuid = 5;
+ * @return {string}
+ */
+proto.data.ListPointOfSalesRequest.prototype.getPosUuid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.data.ListPointOfSalesRequest} returns this
+ */
+proto.data.ListPointOfSalesRequest.prototype.setPosUuid = function(value) {
+  return jspb.Message.setProto3StringField(this, 5, value);
 };
 
 
@@ -29779,7 +30289,8 @@ proto.data.UpdatePaymentRequest.toObject = function(includeInstance, msg) {
     paymentDate: jspb.Message.getFieldWithDefault(msg, 7, ""),
     tenderTypeCode: jspb.Message.getFieldWithDefault(msg, 8, ""),
     paymentMethodUuid: jspb.Message.getFieldWithDefault(msg, 9, ""),
-    paymentAccountDate: jspb.Message.getFieldWithDefault(msg, 10, "")
+    paymentAccountDate: jspb.Message.getFieldWithDefault(msg, 10, ""),
+    posUuid: jspb.Message.getFieldWithDefault(msg, 11, "")
   };
 
   if (includeInstance) {
@@ -29857,6 +30368,10 @@ proto.data.UpdatePaymentRequest.deserializeBinaryFromReader = function(msg, read
     case 10:
       var value = /** @type {string} */ (reader.readString());
       msg.setPaymentAccountDate(value);
+      break;
+    case 11:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setPosUuid(value);
       break;
     default:
       reader.skipField();
@@ -29956,6 +30471,13 @@ proto.data.UpdatePaymentRequest.serializeBinaryToWriter = function(message, writ
   if (f.length > 0) {
     writer.writeString(
       10,
+      f
+    );
+  }
+  f = message.getPosUuid();
+  if (f.length > 0) {
+    writer.writeString(
+      11,
       f
     );
   }
@@ -30180,6 +30702,24 @@ proto.data.UpdatePaymentRequest.prototype.setPaymentAccountDate = function(value
 };
 
 
+/**
+ * optional string pos_uuid = 11;
+ * @return {string}
+ */
+proto.data.UpdatePaymentRequest.prototype.getPosUuid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 11, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.data.UpdatePaymentRequest} returns this
+ */
+proto.data.UpdatePaymentRequest.prototype.setPosUuid = function(value) {
+  return jspb.Message.setProto3StringField(this, 11, value);
+};
+
+
 
 
 
@@ -30213,7 +30753,8 @@ proto.data.DeletePaymentRequest.prototype.toObject = function(opt_includeInstanc
 proto.data.DeletePaymentRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     clientRequest: (f = msg.getClientRequest()) && proto_client_pb.ClientRequest.toObject(includeInstance, f),
-    paymentUuid: jspb.Message.getFieldWithDefault(msg, 2, "")
+    paymentUuid: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    posUuid: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
 
   if (includeInstance) {
@@ -30259,6 +30800,10 @@ proto.data.DeletePaymentRequest.deserializeBinaryFromReader = function(msg, read
       var value = /** @type {string} */ (reader.readString());
       msg.setPaymentUuid(value);
       break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setPosUuid(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -30300,6 +30845,13 @@ proto.data.DeletePaymentRequest.serializeBinaryToWriter = function(message, writ
   if (f.length > 0) {
     writer.writeString(
       2,
+      f
+    );
+  }
+  f = message.getPosUuid();
+  if (f.length > 0) {
+    writer.writeString(
+      3,
       f
     );
   }
@@ -30358,6 +30910,24 @@ proto.data.DeletePaymentRequest.prototype.getPaymentUuid = function() {
  */
 proto.data.DeletePaymentRequest.prototype.setPaymentUuid = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * optional string pos_uuid = 3;
+ * @return {string}
+ */
+proto.data.DeletePaymentRequest.prototype.getPosUuid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.data.DeletePaymentRequest} returns this
+ */
+proto.data.DeletePaymentRequest.prototype.setPosUuid = function(value) {
+  return jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
@@ -32012,7 +32582,8 @@ proto.data.DeleteOrderRequest.prototype.toObject = function(opt_includeInstance)
 proto.data.DeleteOrderRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     clientRequest: (f = msg.getClientRequest()) && proto_client_pb.ClientRequest.toObject(includeInstance, f),
-    orderUuid: jspb.Message.getFieldWithDefault(msg, 2, "")
+    orderUuid: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    posUuid: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
 
   if (includeInstance) {
@@ -32058,6 +32629,10 @@ proto.data.DeleteOrderRequest.deserializeBinaryFromReader = function(msg, reader
       var value = /** @type {string} */ (reader.readString());
       msg.setOrderUuid(value);
       break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setPosUuid(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -32099,6 +32674,13 @@ proto.data.DeleteOrderRequest.serializeBinaryToWriter = function(message, writer
   if (f.length > 0) {
     writer.writeString(
       2,
+      f
+    );
+  }
+  f = message.getPosUuid();
+  if (f.length > 0) {
+    writer.writeString(
+      3,
       f
     );
   }
@@ -32160,6 +32742,24 @@ proto.data.DeleteOrderRequest.prototype.setOrderUuid = function(value) {
 };
 
 
+/**
+ * optional string pos_uuid = 3;
+ * @return {string}
+ */
+proto.data.DeleteOrderRequest.prototype.getPosUuid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.data.DeleteOrderRequest} returns this
+ */
+proto.data.DeleteOrderRequest.prototype.setPosUuid = function(value) {
+  return jspb.Message.setProto3StringField(this, 3, value);
+};
+
+
 
 
 
@@ -32193,7 +32793,8 @@ proto.data.DeleteOrderLineRequest.prototype.toObject = function(opt_includeInsta
 proto.data.DeleteOrderLineRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     clientRequest: (f = msg.getClientRequest()) && proto_client_pb.ClientRequest.toObject(includeInstance, f),
-    orderLineUuid: jspb.Message.getFieldWithDefault(msg, 2, "")
+    orderLineUuid: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    posUuid: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
 
   if (includeInstance) {
@@ -32239,6 +32840,10 @@ proto.data.DeleteOrderLineRequest.deserializeBinaryFromReader = function(msg, re
       var value = /** @type {string} */ (reader.readString());
       msg.setOrderLineUuid(value);
       break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setPosUuid(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -32280,6 +32885,13 @@ proto.data.DeleteOrderLineRequest.serializeBinaryToWriter = function(message, wr
   if (f.length > 0) {
     writer.writeString(
       2,
+      f
+    );
+  }
+  f = message.getPosUuid();
+  if (f.length > 0) {
+    writer.writeString(
+      3,
       f
     );
   }
@@ -32341,6 +32953,24 @@ proto.data.DeleteOrderLineRequest.prototype.setOrderLineUuid = function(value) {
 };
 
 
+/**
+ * optional string pos_uuid = 3;
+ * @return {string}
+ */
+proto.data.DeleteOrderLineRequest.prototype.getPosUuid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.data.DeleteOrderLineRequest} returns this
+ */
+proto.data.DeleteOrderLineRequest.prototype.setPosUuid = function(value) {
+  return jspb.Message.setProto3StringField(this, 3, value);
+};
+
+
 
 
 
@@ -32381,7 +33011,8 @@ proto.data.CreateOrderLineRequest.toObject = function(includeInstance, msg) {
     quantity: (f = msg.getQuantity()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
     price: (f = msg.getPrice()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
     discountRate: (f = msg.getDiscountRate()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
-    warehouseUuid: jspb.Message.getFieldWithDefault(msg, 9, "")
+    warehouseUuid: jspb.Message.getFieldWithDefault(msg, 9, ""),
+    posUuid: jspb.Message.getFieldWithDefault(msg, 10, "")
   };
 
   if (includeInstance) {
@@ -32457,6 +33088,10 @@ proto.data.CreateOrderLineRequest.deserializeBinaryFromReader = function(msg, re
     case 9:
       var value = /** @type {string} */ (reader.readString());
       msg.setWarehouseUuid(value);
+      break;
+    case 10:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setPosUuid(value);
       break;
     default:
       reader.skipField();
@@ -32551,6 +33186,13 @@ proto.data.CreateOrderLineRequest.serializeBinaryToWriter = function(message, wr
   if (f.length > 0) {
     writer.writeString(
       9,
+      f
+    );
+  }
+  f = message.getPosUuid();
+  if (f.length > 0) {
+    writer.writeString(
+      10,
       f
     );
   }
@@ -32792,6 +33434,24 @@ proto.data.CreateOrderLineRequest.prototype.getWarehouseUuid = function() {
  */
 proto.data.CreateOrderLineRequest.prototype.setWarehouseUuid = function(value) {
   return jspb.Message.setProto3StringField(this, 9, value);
+};
+
+
+/**
+ * optional string pos_uuid = 10;
+ * @return {string}
+ */
+proto.data.CreateOrderLineRequest.prototype.getPosUuid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 10, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.data.CreateOrderLineRequest} returns this
+ */
+proto.data.CreateOrderLineRequest.prototype.setPosUuid = function(value) {
+  return jspb.Message.setProto3StringField(this, 10, value);
 };
 
 
@@ -33378,7 +34038,8 @@ proto.data.UpdateOrderLineRequest.toObject = function(includeInstance, msg) {
     price: (f = msg.getPrice()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
     discountRate: (f = msg.getDiscountRate()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
     isAddQuantity: jspb.Message.getBooleanFieldWithDefault(msg, 9, false),
-    warehouseUuid: jspb.Message.getFieldWithDefault(msg, 10, "")
+    warehouseUuid: jspb.Message.getFieldWithDefault(msg, 10, ""),
+    posUuid: jspb.Message.getFieldWithDefault(msg, 11, "")
   };
 
   if (includeInstance) {
@@ -33450,6 +34111,10 @@ proto.data.UpdateOrderLineRequest.deserializeBinaryFromReader = function(msg, re
     case 10:
       var value = /** @type {string} */ (reader.readString());
       msg.setWarehouseUuid(value);
+      break;
+    case 11:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setPosUuid(value);
       break;
     default:
       reader.skipField();
@@ -33537,6 +34202,13 @@ proto.data.UpdateOrderLineRequest.serializeBinaryToWriter = function(message, wr
   if (f.length > 0) {
     writer.writeString(
       10,
+      f
+    );
+  }
+  f = message.getPosUuid();
+  if (f.length > 0) {
+    writer.writeString(
+      11,
       f
     );
   }
@@ -33763,6 +34435,24 @@ proto.data.UpdateOrderLineRequest.prototype.setWarehouseUuid = function(value) {
 };
 
 
+/**
+ * optional string pos_uuid = 11;
+ * @return {string}
+ */
+proto.data.UpdateOrderLineRequest.prototype.getPosUuid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 11, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.data.UpdateOrderLineRequest} returns this
+ */
+proto.data.UpdateOrderLineRequest.prototype.setPosUuid = function(value) {
+  return jspb.Message.setProto3StringField(this, 11, value);
+};
+
+
 
 
 
@@ -33796,7 +34486,8 @@ proto.data.GetOrderRequest.prototype.toObject = function(opt_includeInstance) {
 proto.data.GetOrderRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     clientRequest: (f = msg.getClientRequest()) && proto_client_pb.ClientRequest.toObject(includeInstance, f),
-    orderUuid: jspb.Message.getFieldWithDefault(msg, 2, "")
+    orderUuid: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    posUuid: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
 
   if (includeInstance) {
@@ -33842,6 +34533,10 @@ proto.data.GetOrderRequest.deserializeBinaryFromReader = function(msg, reader) {
       var value = /** @type {string} */ (reader.readString());
       msg.setOrderUuid(value);
       break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setPosUuid(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -33883,6 +34578,13 @@ proto.data.GetOrderRequest.serializeBinaryToWriter = function(message, writer) {
   if (f.length > 0) {
     writer.writeString(
       2,
+      f
+    );
+  }
+  f = message.getPosUuid();
+  if (f.length > 0) {
+    writer.writeString(
+      3,
       f
     );
   }
@@ -33944,6 +34646,24 @@ proto.data.GetOrderRequest.prototype.setOrderUuid = function(value) {
 };
 
 
+/**
+ * optional string pos_uuid = 3;
+ * @return {string}
+ */
+proto.data.GetOrderRequest.prototype.getPosUuid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.data.GetOrderRequest} returns this
+ */
+proto.data.GetOrderRequest.prototype.setPosUuid = function(value) {
+  return jspb.Message.setProto3StringField(this, 3, value);
+};
+
+
 
 
 
@@ -33977,7 +34697,8 @@ proto.data.GetKeyLayoutRequest.prototype.toObject = function(opt_includeInstance
 proto.data.GetKeyLayoutRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     clientRequest: (f = msg.getClientRequest()) && proto_client_pb.ClientRequest.toObject(includeInstance, f),
-    keyLayoutUuid: jspb.Message.getFieldWithDefault(msg, 2, "")
+    keyLayoutUuid: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    posUuid: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
 
   if (includeInstance) {
@@ -34023,6 +34744,10 @@ proto.data.GetKeyLayoutRequest.deserializeBinaryFromReader = function(msg, reade
       var value = /** @type {string} */ (reader.readString());
       msg.setKeyLayoutUuid(value);
       break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setPosUuid(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -34064,6 +34789,13 @@ proto.data.GetKeyLayoutRequest.serializeBinaryToWriter = function(message, write
   if (f.length > 0) {
     writer.writeString(
       2,
+      f
+    );
+  }
+  f = message.getPosUuid();
+  if (f.length > 0) {
+    writer.writeString(
+      3,
       f
     );
   }
@@ -34122,6 +34854,24 @@ proto.data.GetKeyLayoutRequest.prototype.getKeyLayoutUuid = function() {
  */
 proto.data.GetKeyLayoutRequest.prototype.setKeyLayoutUuid = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * optional string pos_uuid = 3;
+ * @return {string}
+ */
+proto.data.GetKeyLayoutRequest.prototype.getPosUuid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.data.GetKeyLayoutRequest} returns this
+ */
+proto.data.GetKeyLayoutRequest.prototype.setPosUuid = function(value) {
+  return jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
