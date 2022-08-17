@@ -94,7 +94,7 @@ class Logs {
       createClientRequest({ token, language })
     )
 
-    this.getLogService().listProcessLogs(request, callback)
+    this.getLogsService().listProcessLogs(request, callback)
   }
 
   //  List record logs
@@ -119,7 +119,7 @@ class Logs {
       createClientRequest({ token, language })
     )
 
-    this.getLogService().listEntityLogs(request, callback)
+    this.getLogsService().listEntityLogs(request, callback)
   }
 
   //  List entity chats
@@ -144,7 +144,7 @@ class Logs {
       createClientRequest({ token, language })
     )
 
-    this.getLogService().listEntityChats(request, callback)
+    this.getLogsService().listEntityChats(request, callback)
   }
 
   //  List chats entries
@@ -167,7 +167,7 @@ class Logs {
       createClientRequest({ token, language })
     )
 
-    this.getLogService().listChatEntries(request, callback)
+    this.getLogsService().listChatEntries(request, callback)
   }
 
   //  List workflow logs
@@ -192,7 +192,7 @@ class Logs {
       createClientRequest({ token, language })
     )
 
-    this.getLogService().listWorkflowLogs(request, callback)
+    this.getLogsService().listWorkflowLogs(request, callback)
   }
 
   //  List recent items
@@ -217,7 +217,7 @@ class Logs {
       createClientRequest({ token, language })
     )
 
-    this.getLogService().listRecentItems(request, callback)
+    this.getLogsService().listRecentItems(request, callback)
   }
 
 }
