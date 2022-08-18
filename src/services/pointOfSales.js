@@ -243,11 +243,14 @@ class PointOfSales {
   //  Delete Sales Order
   deleteOrder({
     token,
+    posUuid,
     orderUuid,
     language
   }, callback) {
     const { DeleteOrderRequest } = require('../grpc/proto/point_of_sales_pb.js');
     const request = new DeleteOrderRequest()
+
+    request.setPosUuid(posUuid);
     request.setOrderUuid(orderUuid)
     request.setClientRequest(
       createClientRequest({ token, language })
@@ -259,6 +262,7 @@ class PointOfSales {
   //  Create Sales Order Line
   createOrderLine({
     token,
+    posUuid,
     orderUuid,
     productUuid,
     chargeUuid,
@@ -272,6 +276,8 @@ class PointOfSales {
     const { CreateOrderLineRequest } = require('../grpc/proto/point_of_sales_pb.js');
     const request = new CreateOrderLineRequest()
     const { getDecimalFromNumber } = require('./lib/convertValues.js')
+
+    request.setPosUuid(posUuid);
     request.setOrderUuid(orderUuid)
     request.setProductUuid(productUuid)
     request.setChargeUuid(chargeUuid)
@@ -298,11 +304,14 @@ class PointOfSales {
   //  Delete Sales Order Line
   deleteOrderLine({
     token,
+    posUuid,
     orderLineUuid,
     language
   }, callback) {
     const { DeleteOrderLineRequest } = require('../grpc/proto/point_of_sales_pb.js');
     const request = new DeleteOrderLineRequest()
+
+    request.setPosUuid(posUuid);
     request.setOrderLineUuid(orderLineUuid)
     request.setClientRequest(
       createClientRequest({ token, language })
@@ -355,6 +364,7 @@ class PointOfSales {
   //  Update Sales Order Line
   updateOrderLine({
     token,
+    posUuid,
     orderLineUuid,
     description,
     quantity,
@@ -367,6 +377,8 @@ class PointOfSales {
     const { UpdateOrderLineRequest } = require('../grpc/proto/point_of_sales_pb.js');
     const request = new UpdateOrderLineRequest()
     const { getDecimalFromNumber } = require('./lib/convertValues.js')
+
+    request.setPosUuid(posUuid);
     request.setOrderLineUuid(orderLineUuid)
     request.setDescription(description)
     request.setQuantity(getDecimalFromNumber(quantity))
@@ -384,11 +396,14 @@ class PointOfSales {
   //  Get Sales Order
   getOrder({
     token,
+    posUuid,
     orderUuid,
     language
   }, callback) {
     const { GetOrderRequest } = require('../grpc/proto/point_of_sales_pb.js');
     const request = new GetOrderRequest()
+
+    request.setPosUuid(posUuid);
     request.setOrderUuid(orderUuid)
     request.setClientRequest(
       createClientRequest({ token, language })
@@ -471,6 +486,7 @@ class PointOfSales {
   //  List Sales Order Lines
   listOrderLines({
     token,
+    posUuid,
     orderUuid,
     pageSize,
     pageToken,
@@ -478,6 +494,8 @@ class PointOfSales {
   }, callback) {
     const { ListOrderLinesRequest } = require('../grpc/proto/point_of_sales_pb.js');
     const request = new ListOrderLinesRequest()
+
+    request.setPosUuid(posUuid);
     request.setOrderUuid(orderUuid)
     request.setPageSize(pageSize)
     request.setPageToken(pageToken)
@@ -491,12 +509,15 @@ class PointOfSales {
   //  Create Shipment
   createShipment({
     token,
+    posUuid,
     orderUuid,
     salesRepresentativeUuid,
     language
   }, callback) {
     const { CreateShipmentRequest } = require('../grpc/proto/point_of_sales_pb.js');
     const request = new CreateShipmentRequest()
+
+    request.setPosUuid(posUuid);
     request.setOrderUuid(orderUuid)
     request.setSalesRepresentativeUuid(salesRepresentativeUuid)
     request.setClientRequest(
@@ -509,6 +530,7 @@ class PointOfSales {
     //  Create Shipment Line
   createShipmentLine({
     token,
+    posUuid,
     shipmentUuid,
     orderLineUuid,
     description,
@@ -518,6 +540,8 @@ class PointOfSales {
     const { CreateShipmentLineRequest } = require('../grpc/proto/point_of_sales_pb.js');
     const request = new CreateShipmentLineRequest()
     const { getDecimalFromNumber } = require('./lib/convertValues.js')
+
+    request.setPosUuid(posUuid);
     request.setShipmentUuid(shipmentUuid)
     request.setOrderLineUuid(orderLineUuid)
     request.setDescription(description)
@@ -534,11 +558,14 @@ class PointOfSales {
   //  Delete Shipment Line
   deleteShipmentLine({
     token,
+    posUuid,
     shipmentLineUuid,
     language
   }, callback) {
     const { DeleteShipmentLineRequest } = require('../grpc/proto/point_of_sales_pb.js');
     const request = new DeleteShipmentLineRequest()
+
+    request.setPosUuid(posUuid);
     request.setShipmentLineUuid(shipmentLineUuid)
     request.setClientRequest(
       createClientRequest({ token, language })
@@ -550,6 +577,7 @@ class PointOfSales {
   //  List Shipment Lines
   listShipmentLines({
     token,
+    posUuid,
     shipmentUuid,
     pageSize,
     pageToken,
@@ -557,6 +585,8 @@ class PointOfSales {
   }, callback) {
     const { ListShipmentLinesRequest } = require('../grpc/proto/point_of_sales_pb.js');
     const request = new ListShipmentLinesRequest()
+
+    request.setPosUuid(posUuid);
     request.setShipmentUuid(shipmentUuid)
     request.setPageSize(pageSize)
     request.setPageToken(pageToken)
@@ -570,6 +600,7 @@ class PointOfSales {
   //  Process Shipment
   processShipment({
     token,
+    posUuid,
     shipmentUuid,
     description,
     documentAction,
@@ -577,6 +608,8 @@ class PointOfSales {
   }, callback) {
     const { ProcessShipmentRequest } = require('../grpc/proto/point_of_sales_pb.js');
     const request = new ProcessShipmentRequest()
+
+    request.setPosUuid(posUuid);
     request.setShipmentUuid(shipmentUuid)
     request.setDescription(description)
     request.setDocumentAction(documentAction)
@@ -751,6 +784,7 @@ class PointOfSales {
   //  Update Payment
   updatePayment({
     token,
+    posUuid,
     paymentUuid,
     bankUuid,
     referenceNo,
@@ -765,6 +799,8 @@ class PointOfSales {
     const { UpdatePaymentRequest } = require('../grpc/proto/point_of_sales_pb.js');
     const { getDecimalFromNumber } = require('./lib/convertValues.js')
     const request = new UpdatePaymentRequest()
+
+    request.setPosUuid(posUuid);
     request.setPaymentUuid(paymentUuid)
     if (bankUuid) {
       request.setBankUuid(bankUuid)
@@ -1011,11 +1047,14 @@ class PointOfSales {
   //  Delete Payment
   deletePayment({
     token,
+    posUuid,
     paymentUuid,
     language
   }, callback) {
     const { DeletePaymentRequest } = require('../grpc/proto/point_of_sales_pb.js');
     const request = new DeletePaymentRequest()
+
+    request.setPosUuid(posUuid);
     request.setPaymentUuid(paymentUuid)
     request.setClientRequest(
       createClientRequest({ token, language })
@@ -1027,12 +1066,15 @@ class PointOfSales {
   //  Delete Refund Reference
   deletePaymentReference({
     token,
+    posUuid,
     uuid,
     id,
     language
   }, callback) {
     const { DeletePaymentReferenceRequest } = require('../grpc/proto/point_of_sales_pb.js');
     const request = new DeletePaymentReferenceRequest()
+
+    request.setPosUuid(posUuid);
     request.setUuid(uuid)
     request.setId(id)
     request.setClientRequest(
@@ -1156,11 +1198,14 @@ class PointOfSales {
   //  Get Sales Order
   getKeyLayout({
     token,
+    posUuid,
     keyLayoutUuid,
     language
   }, callback) {
     const { GetKeyLayoutRequest } = require('../grpc/proto/point_of_sales_pb.js');
     const request = new GetKeyLayoutRequest()
+
+    request.setPosUuid(posUuid);
     request.setKeyLayoutUuid(keyLayoutUuid)
     request.setClientRequest(
       createClientRequest({ token, language })
@@ -1374,8 +1419,9 @@ class PointOfSales {
 
   //  Update Customer from POS
   updateCustomer({
-    uuid,
     token,
+    posUuid,
+    uuid,
     value,
     taxId,
     duns,
@@ -1390,6 +1436,8 @@ class PointOfSales {
     const { UpdateCustomerRequest, AddressRequest } = require('../grpc/proto/point_of_sales_pb.js');
     const { convertParameterToGRPC } = require('./lib/convertValues.js');
     const request = new UpdateCustomerRequest()
+
+    request.setPosUuid(posUuid);
     request.setUuid(uuid)
     request.setValue(value)
     request.setTaxId(taxId)
@@ -1449,6 +1497,7 @@ class PointOfSales {
   //  Get Customer
   getCustomer({
     token,
+    posUuid,
     searchValue,
     value,
     name,
@@ -1460,6 +1509,8 @@ class PointOfSales {
   }, callback) {
     const { GetCustomerRequest } = require('../grpc/proto/point_of_sales_pb.js');
     const request = new GetCustomerRequest()
+
+    request.setPosUuid(posUuid);
     request.setSearchValue(searchValue)
     request.setValue(value)
     request.setName(name)
@@ -1477,11 +1528,14 @@ class PointOfSales {
   //  Get Customer Bank Account
   getCustomerBankAccount({
     token,
+    posUuid,
     customerBankAccountUuid,
     language
   }, callback) {
     const { GetCustomerBankAccountRequest } = require('../grpc/proto/point_of_sales_pb.js');
     const request = new GetCustomerBankAccountRequest()
+
+    request.setPosUuid(posUuid);
     request.setCustomerBankAccountUuid(customerBankAccountUuid)
     request.setClientRequest(
       createClientRequest({ token, language })
@@ -1601,11 +1655,14 @@ class PointOfSales {
   //  Get Customer Bank Accoount
   getCustomerBankAccount({
     token,
+    posUuid,
     customerBankAccountUuid,
     language
   }, callback) {
     const { GetCustomerBankAccountRequest } = require('../grpc/proto/point_of_sales_pb.js');
     const request = new GetCustomerBankAccountRequest()
+
+    request.setPosUuid(posUuid);
     request.setCustomerBankAccountUuid(customerBankAccountUuid)
     request.setClientRequest(
       createClientRequest({ token, language })
@@ -1617,11 +1674,14 @@ class PointOfSales {
   //  Delete Customer Bank Accoount
   deleteCustomerBankAccount({
     token,
+    posUuid,
     customerBankAccountUuid,
     language
   }, callback) {
     const { DeleteCustomerBankAccountRequest } = require('../grpc/proto/point_of_sales_pb.js');
     const request = new DeleteCustomerBankAccountRequest()
+
+    request.setPosUuid(posUuid);
     request.setCustomerBankAccountUuid(customerBankAccountUuid)
     request.setClientRequest(
       createClientRequest({ token, language })
@@ -1633,6 +1693,7 @@ class PointOfSales {
   //  List Customer Bank Accounts
   listCustomerBankAccounts({
     token,
+    posUuid,
     customerUuid,
     pageSize,
     pageToken,
@@ -1640,6 +1701,8 @@ class PointOfSales {
   }, callback) {
     const { ListCustomerBankAccountsRequest } = require('../grpc/proto/point_of_sales_pb.js');
     const request = new ListCustomerBankAccountsRequest()
+
+    request.setPosUuid(posUuid);
     request.setCustomerUuid(customerUuid)
     request.setPageSize(pageSize)
     request.setPageToken(pageToken)
