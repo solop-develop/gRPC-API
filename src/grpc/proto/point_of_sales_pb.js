@@ -26811,7 +26811,9 @@ proto.data.PointOfSales.toObject = function(includeInstance, msg) {
     isAllowsCashClosing: jspb.Message.getBooleanFieldWithDefault(msg, 39, false),
     isAllowsCashOpening: jspb.Message.getBooleanFieldWithDefault(msg, 40, false),
     isAllowsCashWithdrawal: jspb.Message.getBooleanFieldWithDefault(msg, 41, false),
-    isAllowsApplyDiscount: jspb.Message.getBooleanFieldWithDefault(msg, 42, false)
+    isAllowsApplyDiscount: jspb.Message.getBooleanFieldWithDefault(msg, 42, false),
+    isAllowsBusinessPartnerCreate: jspb.Message.getBooleanFieldWithDefault(msg, 43, false),
+    isAllowsPrintDocument: jspb.Message.getBooleanFieldWithDefault(msg, 44, false)
   };
 
   if (includeInstance) {
@@ -27029,6 +27031,14 @@ proto.data.PointOfSales.deserializeBinaryFromReader = function(msg, reader) {
     case 42:
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setIsAllowsApplyDiscount(value);
+      break;
+    case 43:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setIsAllowsBusinessPartnerCreate(value);
+      break;
+    case 44:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setIsAllowsPrintDocument(value);
       break;
     default:
       reader.skipField();
@@ -27364,6 +27374,20 @@ proto.data.PointOfSales.serializeBinaryToWriter = function(message, writer) {
   if (f) {
     writer.writeBool(
       42,
+      f
+    );
+  }
+  f = message.getIsAllowsBusinessPartnerCreate();
+  if (f) {
+    writer.writeBool(
+      43,
+      f
+    );
+  }
+  f = message.getIsAllowsPrintDocument();
+  if (f) {
+    writer.writeBool(
+      44,
       f
     );
   }
@@ -28389,6 +28413,42 @@ proto.data.PointOfSales.prototype.getIsAllowsApplyDiscount = function() {
  */
 proto.data.PointOfSales.prototype.setIsAllowsApplyDiscount = function(value) {
   return jspb.Message.setProto3BooleanField(this, 42, value);
+};
+
+
+/**
+ * optional bool is_allows_business_partner_create = 43;
+ * @return {boolean}
+ */
+proto.data.PointOfSales.prototype.getIsAllowsBusinessPartnerCreate = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 43, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.data.PointOfSales} returns this
+ */
+proto.data.PointOfSales.prototype.setIsAllowsBusinessPartnerCreate = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 43, value);
+};
+
+
+/**
+ * optional bool is_allows_print_document = 44;
+ * @return {boolean}
+ */
+proto.data.PointOfSales.prototype.getIsAllowsPrintDocument = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 44, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.data.PointOfSales} returns this
+ */
+proto.data.PointOfSales.prototype.setIsAllowsPrintDocument = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 44, value);
 };
 
 
