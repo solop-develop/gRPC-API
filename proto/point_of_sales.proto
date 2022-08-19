@@ -96,7 +96,7 @@ service Store {
 	//	Get Daily Refund
 	rpc GetAvailableRefund(GetAvailableRefundRequest) returns (AvailableRefund) {}
 	//	Print Ticket
-	rpc PrintTicket(PrintTicketRequest) returns (PrintTicketResponse) {}
+	rpc PrintTicket(PrintTicketRequest) returns (ProcessLog) {}
 	//	Create Customer Account
 	rpc CreateCustomerBankAccount(CreateCustomerBankAccountRequest) returns (CustomerBankAccount) {}
 	//	Update Customer Account
@@ -563,11 +563,6 @@ message PrintTicketRequest {
 	string order_uuid = 3;
 }
 
-//	Response after print
-message PrintTicketResponse {
-	string result = 1;
-}
-
 //	Request Daily Refund
 message GetAvailableRefundRequest {
 	ClientRequest client_request = 1;
@@ -992,7 +987,7 @@ message PointOfSales {
 	bool is_allows_cash_opening = 40;
 	bool is_allows_cash_withdrawal = 41;
 	bool is_allows_apply_discount = 42;
-	bool is_allows_business_partner_create = 43;
+	bool is_allows_create_customer = 43;
 	bool is_allows_print_document = 44;
 }
 
