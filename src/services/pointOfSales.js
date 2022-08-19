@@ -41,7 +41,10 @@ class PointOfSales {
   initPointOfSalesService() {
     const grpc = require('@grpc/grpc-js');
     const services = require('../grpc/proto/point_of_sales_grpc_pb');
-    this.pointOfSales = new services.StoreClient(this.businessHost, grpc.credentials.createInsecure());
+    this.pointOfSales = new services.StoreClient(
+      this.businessHost,
+      grpc.credentials.createInsecure()
+    );
   }
 
   // Get PointOfSales Service
@@ -149,7 +152,7 @@ class PointOfSales {
     request.setWarehouseUuid(warehouseUuid)
     request.setValidFrom(validFrom)
     //
-    const { convertCriteriaToGRPC } = require('./lib/convertValues.js');
+    const { convertCriteriaToGRPC } = require('../../lib/convertValues.js');
     //  TODO: Add support to all parameters
     request.setCriteria(convertCriteriaToGRPC({
       tableName,
@@ -275,7 +278,7 @@ class PointOfSales {
   }, callback) {
     const { CreateOrderLineRequest } = require('../grpc/proto/point_of_sales_pb.js');
     const request = new CreateOrderLineRequest()
-    const { getDecimalFromNumber } = require('./lib/convertValues.js')
+    const { getDecimalFromNumber } = require('../../lib/convertValues.js')
 
     request.setPosUuid(posUuid);
     request.setOrderUuid(orderUuid)
@@ -337,7 +340,7 @@ class PointOfSales {
     language
   }, callback) {
     const { UpdateOrderRequest } = require('../grpc/proto/point_of_sales_pb.js');
-    const { getDecimalFromNumber } = require('./lib/convertValues.js')
+    const { getDecimalFromNumber } = require('../../lib/convertValues.js')
     const request = new UpdateOrderRequest()
     request.setOrderUuid(orderUuid)
     request.setCampaignUuid(campaignUuid)
@@ -376,7 +379,7 @@ class PointOfSales {
   }, callback) {
     const { UpdateOrderLineRequest } = require('../grpc/proto/point_of_sales_pb.js');
     const request = new UpdateOrderLineRequest()
-    const { getDecimalFromNumber } = require('./lib/convertValues.js')
+    const { getDecimalFromNumber } = require('../../lib/convertValues.js')
 
     request.setPosUuid(posUuid);
     request.setOrderLineUuid(orderLineUuid)
@@ -442,7 +445,7 @@ class PointOfSales {
   }, callback) {
     const { ListOrdersRequest } = require('../grpc/proto/point_of_sales_pb.js');
     const request = new ListOrdersRequest()
-    const { convertCriteriaToGRPC, getDecimalFromNumber } = require('./lib/convertValues.js')
+    const { convertCriteriaToGRPC, getDecimalFromNumber } = require('../../lib/convertValues.js')
     request.setCriteria(convertCriteriaToGRPC({
       tableName,
       filters,
@@ -539,7 +542,7 @@ class PointOfSales {
   }, callback) {
     const { CreateShipmentLineRequest } = require('../grpc/proto/point_of_sales_pb.js');
     const request = new CreateShipmentLineRequest()
-    const { getDecimalFromNumber } = require('./lib/convertValues.js')
+    const { getDecimalFromNumber } = require('../../lib/convertValues.js')
 
     request.setPosUuid(posUuid);
     request.setShipmentUuid(shipmentUuid)
@@ -662,7 +665,7 @@ class PointOfSales {
     language
   }, callback) {
     const { CreatePaymentRequest } = require('../grpc/proto/point_of_sales_pb.js');
-    const { getDecimalFromNumber } = require('./lib/convertValues.js')
+    const { getDecimalFromNumber } = require('../../lib/convertValues.js')
     const request = new CreatePaymentRequest()
     request.setPosUuid(posUuid)
     if(orderUuid) {
@@ -734,7 +737,7 @@ class PointOfSales {
     language
   }, callback) {
     const { CreatePaymentReferenceRequest } = require('../grpc/proto/point_of_sales_pb.js');
-    const { getDecimalFromNumber } = require('./lib/convertValues.js')
+    const { getDecimalFromNumber } = require('../../lib/convertValues.js')
     const request = new CreatePaymentReferenceRequest()
     request.setPosUuid(posUuid)
     request.setOrderUuid(orderUuid)
@@ -797,7 +800,7 @@ class PointOfSales {
     language
   }, callback) {
     const { UpdatePaymentRequest } = require('../grpc/proto/point_of_sales_pb.js');
-    const { getDecimalFromNumber } = require('./lib/convertValues.js')
+    const { getDecimalFromNumber } = require('../../lib/convertValues.js')
     const request = new UpdatePaymentRequest()
 
     request.setPosUuid(posUuid);
@@ -890,7 +893,7 @@ class PointOfSales {
     language
   }, callback) {
     const { CashOpeningRequest, CreatePaymentRequest } = require('../grpc/proto/point_of_sales_pb.js');
-    const { convertValueToGRPC, getDecimalFromNumber } = require('./lib/convertValues.js')
+    const { convertValueToGRPC, getDecimalFromNumber } = require('../../lib/convertValues.js')
     const request = new CashOpeningRequest()
     request.setPosUuid(posUuid)
     request.setCollectingAgentUuid(collectingAgentUuid)
@@ -954,7 +957,7 @@ class PointOfSales {
     language
   }, callback) {
     const { CashWithdrawalRequest, CreatePaymentRequest } = require('../grpc/proto/point_of_sales_pb.js');
-    const { convertValueToGRPC, getDecimalFromNumber } = require('./lib/convertValues.js')
+    const { convertValueToGRPC, getDecimalFromNumber } = require('../../lib/convertValues.js')
     const request = new CashWithdrawalRequest()
     request.setPosUuid(posUuid)
     request.setCollectingAgentUuid(collectingAgentUuid)
@@ -1104,7 +1107,7 @@ class PointOfSales {
     language
   }, callback) {
     const { ListPaymentsRequest } = require('../grpc/proto/point_of_sales_pb.js');
-    const { convertCriteriaToGRPC } = require('./lib/convertValues.js')
+    const { convertCriteriaToGRPC } = require('../../lib/convertValues.js')
     const request = new ListPaymentsRequest()
     request.setCriteria(convertCriteriaToGRPC({
       tableName,
@@ -1141,7 +1144,7 @@ class PointOfSales {
     language
   }, callback) {
     const { CreatePaymentRequest, ProcessOrderRequest } = require('../grpc/proto/point_of_sales_pb.js');
-    const { convertValueToGRPC, getDecimalFromNumber } = require('./lib/convertValues.js')
+    const { convertValueToGRPC, getDecimalFromNumber } = require('../../lib/convertValues.js')
     const request = new ProcessOrderRequest()
     request.setPosUuid(posUuid)
     request.setOrderUuid(orderUuid)
@@ -1359,7 +1362,7 @@ class PointOfSales {
     language
   }, callback) {
     const { CreateCustomerRequest, AddressRequest } = require('../grpc/proto/point_of_sales_pb.js');
-    const { convertParameterToGRPC } = require('./lib/convertValues.js');
+    const { convertParameterToGRPC } = require('../../lib/convertValues.js');
     const request = new CreateCustomerRequest()
     request.setValue(value)
     request.setTaxId(taxId)
@@ -1434,7 +1437,7 @@ class PointOfSales {
     language
   }, callback) {
     const { UpdateCustomerRequest, AddressRequest } = require('../grpc/proto/point_of_sales_pb.js');
-    const { convertParameterToGRPC } = require('./lib/convertValues.js');
+    const { convertParameterToGRPC } = require('../../lib/convertValues.js');
     const request = new UpdateCustomerRequest()
 
     request.setPosUuid(posUuid);

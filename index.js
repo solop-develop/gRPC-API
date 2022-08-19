@@ -25,14 +25,12 @@
   constructor(config) {
     if(config) {
       const adempiereConfig = config.adempiereApi.api
-      this.accessHost = adempiereConfig.accessHost
       this.businessHost = adempiereConfig.businessHost
       this.version = adempiereConfig.version
       this.language = adempiereConfig.language
       this.token = adempiereConfig.token
     }
-    this.initAccessService()
-    this.initEnrollmentService()
+
     this.initUIService()
     this.initBusinessService()
     this.initDashboardService()
@@ -47,20 +45,6 @@
     client.setSessionUuid(token)
     client.setLanguage(language)
     return client
-  }
-
-  // Init connection
-  initAccessService() {
-    var grpc = require('@grpc/grpc-js');
-    var services = require('./src/grpc/proto/access_grpc_pb');
-    this.access = new services.SecurityClient(this.accessHost, grpc.credentials.createInsecure());
-  }
-
-  //  Init Enrollment
-  initEnrollmentService() {
-    var grpc = require('@grpc/grpc-js');
-    var services = require('./src/grpc/proto/enrollment_grpc_pb');
-    this.enrollment = new services.RegisterClient(this.accessHost, grpc.credentials.createInsecure());
   }
 
   // Init connection
@@ -91,11 +75,6 @@
     this.core = new services.CoreFunctionalityClient(this.businessHost, grpc.credentials.createInsecure());
   }
 
-  //  Get Access Service
-  getAccessService() {
-    return this.access
-  }
-
   //  Get Enrollment Service
   getEnrollmentService() {
     return this.enrollment
@@ -119,113 +98,6 @@
   //  Get Business Service
   getBusinessService() {
     return this.business
-  }
-
-  //  Login with a user
-  login({
-    user,
-    password,
-    token,
-    roleUuid,
-    organizationUuid,
-    warehouseUuid,
-    language
-  }, callback) {
-    const { LoginRequest } = require('./src/grpc/proto/access_pb.js')
-    const request = new LoginRequest()
-    request.setUserName(user)
-    request.setUserPass(password)
-    request.setToken(token)
-    request.setRoleUuid(roleUuid)
-    request.setOrganizationUuid(organizationUuid)
-    request.setWarehouseUuid(warehouseUuid)
-    request.setLanguage(language)
-    request.setClientVersion(this.version)
-    this.getAccessService().runLogin(request, callback)
-  }
-
-  //  Get User Information
-  getUserInfo({
-    token,
-    language
-  }, callback) {
-    const { UserInfoRequest } = require('./src/grpc/proto/access_pb.js')
-    const request = new UserInfoRequest()
-    request.setSessionUuid(token)
-    request.setLanguage(language)
-    request.setClientVersion(this.version)
-    this.getAccessService().getUserInfo(request, callback)
-  }
-
-  //  Get User Information
-  getUserRoles({
-    token,
-    language
-  }, callback) {
-    const { ListRolesRequest } = require('./src/grpc/proto/access_pb.js')
-    const request = new ListRolesRequest()
-    request.setSessionUuid(token)
-    request.setLanguage(language)
-    request.setClientVersion(this.version)
-    this.getAccessService().listRoles(request, callback)
-  }
-
-  //  Get User Menu
-  getMenu({
-    token,
-    language
-  }, callback) {
-    const { MenuRequest } = require('./src/grpc/proto/access_pb.js')
-    const request = new MenuRequest()
-    request.setSessionUuid(token)
-    request.setLanguage(language)
-    request.setClientVersion(this.version)
-    this.getAccessService().getMenu(request, callback)
-  }
-
-  //  Get User Menu
-  getSessionInfo({
-    token,
-    language
-  }, callback) {
-    const { SessionRequest } = require('./src/grpc/proto/access_pb.js')
-    const request = new SessionRequest()
-    request.setSessionUuid(token)
-    request.setLanguage(language)
-    request.setClientVersion(this.version)
-    this.getAccessService().getSession(request, callback)
-  }
-
-  //  Change role
-  changeRole({
-    token,
-    role,
-    organization,
-    warehouse,
-    language
-  }, callback) {
-    const { ChangeRoleRequest } = require('./src/grpc/proto/access_pb.js')
-    const request = new ChangeRoleRequest()
-    request.setSessionUuid(token)
-    request.setRoleUuid(role)
-    request.setOrganizationUuid(organization)
-    request.setWarehouseUuid(warehouse)
-    request.setLanguage(language)
-    request.setClientVersion(this.version)
-    this.getAccessService().runChangeRole(request, callback)
-  }
-
-  //  Login with a user
-  logout({
-    token,
-    language
-  }, callback) {
-    const { LogoutRequest } = require('./src/grpc/proto/access_pb.js')
-    const request = new LogoutRequest()
-    request.setSessionUuid(token)
-    request.setLanguage(language)
-    request.setClientVersion(this.version)
-    this.getAccessService().runLogout(request, callback)
   }
 
   //  Get Resource Image from name
@@ -1677,67 +1549,6 @@
     }
     request.setClientRequest(this.createClientRequest(token, language))
     this.getCoreService().getConversionRate(request, callback)
-  }
-
-  //  Enrollment service
-  //  Enroll User
-  enrollUser({
-    userName,
-    name,
-    email,
-    clientVersion,
-    applicationType,
-    password
-  }, callback) {
-    const { EnrollUserRequest } = require('./src/grpc/proto/enrollment_pb.js')
-    const request = new EnrollUserRequest()
-    request.setUserName(userName)
-    request.setName(name)
-    request.setEmail(email)
-    request.setClientVersion(clientVersion)
-    request.setApplicationType(applicationType)
-    request.setPassword(password)
-    this.getEnrollmentService().enrollUser(request, callback)
-  }
-
-  //  Reset Password
-  resetPassword({
-    userName,
-    email,
-    clientVersion
-  }, callback) {
-    const { ResetPasswordRequest } = require('./src/grpc/proto/enrollment_pb.js')
-    const request = new ResetPasswordRequest()
-    request.setUserName(userName)
-    request.setEmail(email)
-    request.setClientVersion(clientVersion)
-    this.getEnrollmentService().resetPassword(request, callback)
-  }
-
-  //  Reset Password from Token
-  resetPasswordFromToken({
-    token,
-    password,
-    clientVersion
-  }, callback) {
-    const { ResetPasswordTokenRequest } = require('./src/grpc/proto/enrollment_pb.js')
-    const request = new ResetPasswordTokenRequest()
-    request.setToken(token)
-    request.setPassword(password)
-    request.setClientVersion(clientVersion)
-    this.getEnrollmentService().resetPasswordFromToken(request, callback)
-  }
-
-  //  Activate User
-  activateUser({
-    token,
-    clientVersion
-  }, callback) {
-    const { ActivateUserRequest } = require('./src/grpc/proto/enrollment_pb.js')
-    const request = new ActivateUserRequest()
-    request.setToken(token)
-    request.setClientVersion(clientVersion)
-    this.getEnrollmentService().activateUser(request, callback)
   }
 
   isEmptyValue(value) {
