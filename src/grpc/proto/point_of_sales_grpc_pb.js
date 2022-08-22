@@ -847,15 +847,15 @@ function deserialize_data_PrintTicketRequest(buffer_arg) {
   return proto_point_of_sales_pb.PrintTicketRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_data_ProcessLog(arg) {
-  if (!(arg instanceof proto_base_data_type_pb.ProcessLog)) {
-    throw new Error('Expected argument of type data.ProcessLog');
+function serialize_data_PrintTicketResponse(arg) {
+  if (!(arg instanceof proto_point_of_sales_pb.PrintTicketResponse)) {
+    throw new Error('Expected argument of type data.PrintTicketResponse');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_data_ProcessLog(buffer_arg) {
-  return proto_base_data_type_pb.ProcessLog.deserializeBinary(new Uint8Array(buffer_arg));
+function deserialize_data_PrintTicketResponse(buffer_arg) {
+  return proto_point_of_sales_pb.PrintTicketResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_data_ProcessOrderRequest(arg) {
@@ -1419,11 +1419,11 @@ printTicket: {
     requestStream: false,
     responseStream: false,
     requestType: proto_point_of_sales_pb.PrintTicketRequest,
-    responseType: proto_base_data_type_pb.ProcessLog,
+    responseType: proto_point_of_sales_pb.PrintTicketResponse,
     requestSerialize: serialize_data_PrintTicketRequest,
     requestDeserialize: deserialize_data_PrintTicketRequest,
-    responseSerialize: serialize_data_ProcessLog,
-    responseDeserialize: deserialize_data_ProcessLog,
+    responseSerialize: serialize_data_PrintTicketResponse,
+    responseDeserialize: deserialize_data_PrintTicketResponse,
   },
   // 	Create Customer Account
 createCustomerBankAccount: {
