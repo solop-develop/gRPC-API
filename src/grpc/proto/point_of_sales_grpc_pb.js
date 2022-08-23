@@ -770,6 +770,28 @@ function deserialize_data_ListShipmentLinesResponse(buffer_arg) {
   return proto_point_of_sales_pb.ListShipmentLinesResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_data_ListStocksRequest(arg) {
+  if (!(arg instanceof proto_point_of_sales_pb.ListStocksRequest)) {
+    throw new Error('Expected argument of type data.ListStocksRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_ListStocksRequest(buffer_arg) {
+  return proto_point_of_sales_pb.ListStocksRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_data_ListStocksResponse(arg) {
+  if (!(arg instanceof proto_point_of_sales_pb.ListStocksResponse)) {
+    throw new Error('Expected argument of type data.ListStocksResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_ListStocksResponse(buffer_arg) {
+  return proto_point_of_sales_pb.ListStocksResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_data_Order(arg) {
   if (!(arg instanceof proto_point_of_sales_pb.Order)) {
     throw new Error('Expected argument of type data.Order');
@@ -1714,6 +1736,18 @@ listPaymentReferences: {
     requestDeserialize: deserialize_data_ListPaymentReferencesRequest,
     responseSerialize: serialize_data_ListPaymentReferencesResponse,
     responseDeserialize: deserialize_data_ListPaymentReferencesResponse,
+  },
+  //  List Stock: GET /api/stocks
+listStocks: {
+    path: '/data.Store/ListStocks',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_point_of_sales_pb.ListStocksRequest,
+    responseType: proto_point_of_sales_pb.ListStocksResponse,
+    requestSerialize: serialize_data_ListStocksRequest,
+    requestDeserialize: deserialize_data_ListStocksRequest,
+    responseSerialize: serialize_data_ListStocksResponse,
+    responseDeserialize: deserialize_data_ListStocksResponse,
   },
 };
 

@@ -1804,6 +1804,30 @@ class PointOfSales {
     this.getPointOfSalesService().printTicket(request, callback)
   }
 
+  //  Print Ticket
+  listStocks({
+    token,
+    posUuid,
+    sku,
+    value,
+    pageSize,
+    pageToken,
+    language
+  }, callback) {
+    const { ListStocksRequest } = require('../grpc/proto/point_of_sales_pb.js');
+    const request = new ListStocksRequest();
+
+    request.setPosUuid(posUuid);
+    request.setSku(sku);
+    request.setValue(value);
+    request.setPageSize(pageSize);
+    request.setPageToken(pageToken);
+    request.setClientRequest(
+      createClientRequest({ token, language })
+    );
+
+    this.getPointOfSalesService().listStocks(request, callback);
+  }
 }
 
 module.exports = PointOfSales;
