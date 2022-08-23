@@ -1807,15 +1807,15 @@ class PointOfSales {
   }
 
   //  Print Ticket Preview
-  printTicketPreview({
+  printPreview({
     token,
     posUuid,
     orderUuid,
     reportType,
     language
   }, callback) {
-    const { PrintTicketPreviewRequest } = require('../grpc/proto/point_of_sales_pb.js');
-    const request = new PrintTicketPreviewRequest();
+    const { PrintPreviewRequest } = require('../grpc/proto/point_of_sales_pb.js');
+    const request = new PrintPreviewRequest();
 
     request.setPosUuid(posUuid);
     request.setOrderUuid(orderUuid);

@@ -97,8 +97,8 @@ service Store {
 	rpc GetAvailableRefund(GetAvailableRefundRequest) returns (AvailableRefund) {}
 	//	Print Ticket
 	rpc PrintTicket(PrintTicketRequest) returns (PrintTicketResponse) {}
-	//	Print Ticket Preview
-	rpc PrintTicketPreview(PrintTicketPreviewRequest) returns (PrintTicketPreviewResponse) {}
+	//	Print Preview
+	rpc PrintPreview(PrintPreviewRequest) returns (PrintPreviewResponse) {}
 	//	Create Customer Account
 	rpc CreateCustomerBankAccount(CreateCustomerBankAccountRequest) returns (CustomerBankAccount) {}
 	//	Update Customer Account
@@ -574,7 +574,7 @@ message PrintTicketResponse {
 }
 
 //	Print Preview Ticket
-message PrintTicketPreviewRequest {
+message PrintPreviewRequest {
 	ClientRequest client_request = 1;
 	string pos_uuid = 2;
 	string order_uuid = 3;
@@ -582,7 +582,7 @@ message PrintTicketPreviewRequest {
 }
 
 //	Response after preview
-message PrintTicketPreviewResponse {
+message PrintPreviewResponse {
 	string result = 1;
 	ProcessLog process_log = 2;
 }
