@@ -858,6 +858,28 @@ function deserialize_data_PointOfSalesRequest(buffer_arg) {
   return proto_point_of_sales_pb.PointOfSalesRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_data_PrintPreviewRequest(arg) {
+  if (!(arg instanceof proto_point_of_sales_pb.PrintPreviewRequest)) {
+    throw new Error('Expected argument of type data.PrintPreviewRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_PrintPreviewRequest(buffer_arg) {
+  return proto_point_of_sales_pb.PrintPreviewRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_data_PrintPreviewResponse(arg) {
+  if (!(arg instanceof proto_point_of_sales_pb.PrintPreviewResponse)) {
+    throw new Error('Expected argument of type data.PrintPreviewResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_PrintPreviewResponse(buffer_arg) {
+  return proto_point_of_sales_pb.PrintPreviewResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_data_PrintTicketRequest(arg) {
   if (!(arg instanceof proto_point_of_sales_pb.PrintTicketRequest)) {
     throw new Error('Expected argument of type data.PrintTicketRequest');
@@ -1446,6 +1468,18 @@ printTicket: {
     requestDeserialize: deserialize_data_PrintTicketRequest,
     responseSerialize: serialize_data_PrintTicketResponse,
     responseDeserialize: deserialize_data_PrintTicketResponse,
+  },
+  // 	Print Preview
+printPreview: {
+    path: '/data.Store/PrintPreview',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_point_of_sales_pb.PrintPreviewRequest,
+    responseType: proto_point_of_sales_pb.PrintPreviewResponse,
+    requestSerialize: serialize_data_PrintPreviewRequest,
+    requestDeserialize: deserialize_data_PrintPreviewRequest,
+    responseSerialize: serialize_data_PrintPreviewResponse,
+    responseDeserialize: deserialize_data_PrintPreviewResponse,
   },
   // 	Create Customer Account
 createCustomerBankAccount: {
