@@ -8486,7 +8486,8 @@ proto.data.CreateShipmentRequest.toObject = function(includeInstance, msg) {
     clientRequest: (f = msg.getClientRequest()) && proto_client_pb.ClientRequest.toObject(includeInstance, f),
     orderUuid: jspb.Message.getFieldWithDefault(msg, 2, ""),
     salesRepresentativeUuid: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    posUuid: jspb.Message.getFieldWithDefault(msg, 4, "")
+    posUuid: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    isCreateLinesFromOrder: jspb.Message.getBooleanFieldWithDefault(msg, 5, false)
   };
 
   if (includeInstance) {
@@ -8539,6 +8540,10 @@ proto.data.CreateShipmentRequest.deserializeBinaryFromReader = function(msg, rea
     case 4:
       var value = /** @type {string} */ (reader.readString());
       msg.setPosUuid(value);
+      break;
+    case 5:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setIsCreateLinesFromOrder(value);
       break;
     default:
       reader.skipField();
@@ -8595,6 +8600,13 @@ proto.data.CreateShipmentRequest.serializeBinaryToWriter = function(message, wri
   if (f.length > 0) {
     writer.writeString(
       4,
+      f
+    );
+  }
+  f = message.getIsCreateLinesFromOrder();
+  if (f) {
+    writer.writeBool(
+      5,
       f
     );
   }
@@ -8689,6 +8701,24 @@ proto.data.CreateShipmentRequest.prototype.getPosUuid = function() {
  */
 proto.data.CreateShipmentRequest.prototype.setPosUuid = function(value) {
   return jspb.Message.setProto3StringField(this, 4, value);
+};
+
+
+/**
+ * optional bool is_create_lines_from_order = 5;
+ * @return {boolean}
+ */
+proto.data.CreateShipmentRequest.prototype.getIsCreateLinesFromOrder = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 5, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.data.CreateShipmentRequest} returns this
+ */
+proto.data.CreateShipmentRequest.prototype.setIsCreateLinesFromOrder = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 5, value);
 };
 
 

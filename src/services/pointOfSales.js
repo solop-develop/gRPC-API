@@ -515,19 +515,21 @@ class PointOfSales {
     posUuid,
     orderUuid,
     salesRepresentativeUuid,
+    isCreateLinesFromOrder,
     language
   }, callback) {
     const { CreateShipmentRequest } = require('../grpc/proto/point_of_sales_pb.js');
-    const request = new CreateShipmentRequest()
+    const request = new CreateShipmentRequest();
 
     request.setPosUuid(posUuid);
-    request.setOrderUuid(orderUuid)
-    request.setSalesRepresentativeUuid(salesRepresentativeUuid)
+    request.setOrderUuid(orderUuid);
+    request.setIsCreateLinesFromOrder(isCreateLinesFromOrder);
+    request.setSalesRepresentativeUuid(salesRepresentativeUuid);
     request.setClientRequest(
       createClientRequest({ token, language })
     );
 
-    this.getPointOfSalesService().createShipment(request, callback)
+    this.getPointOfSalesService().createShipment(request, callback);
   }
 
     //  Create Shipment Line
