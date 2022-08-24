@@ -1824,7 +1824,7 @@ class PointOfSales {
       createClientRequest({ token, language })
     );
 
-    this.getPointOfSalesService().printTicketPreview(request, callback);
+    this.getPointOfSalesService().printPreview(request, callback);
   }
 
   //  Print Ticket
