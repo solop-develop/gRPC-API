@@ -1224,10 +1224,13 @@ class PointOfSales {
     token,
     posUuid,
     pin,
+    requestedAccess,
     language
   }, callback) {
     const { ValidatePINRequest } = require('../grpc/proto/point_of_sales_pb.js');
     const request = new ValidatePINRequest()
+
+    request.setRequestedAccess(requestedAccess);
     request.setPin(pin)
     request.setPosUuid(posUuid)
     request.setClientRequest(
