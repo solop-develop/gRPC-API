@@ -32878,7 +32878,7 @@ proto.data.Payment.toObject = function(includeInstance, msg) {
     paymentDate: jspb.Message.getFieldWithDefault(msg, 14, ""),
     paymentAccountDate: jspb.Message.getFieldWithDefault(msg, 15, ""),
     tenderTypeCode: jspb.Message.getFieldWithDefault(msg, 16, ""),
-    currencyUuid: jspb.Message.getFieldWithDefault(msg, 17, ""),
+    currency: (f = msg.getCurrency()) && proto_core_functionality_pb.Currency.toObject(includeInstance, f),
     isRefund: jspb.Message.getBooleanFieldWithDefault(msg, 18, false),
     name: jspb.Message.getFieldWithDefault(msg, 19, ""),
     orderCurrencyRate: (f = msg.getOrderCurrencyRate()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
@@ -32988,8 +32988,9 @@ proto.data.Payment.deserializeBinaryFromReader = function(msg, reader) {
       msg.setTenderTypeCode(value);
       break;
     case 17:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setCurrencyUuid(value);
+      var value = new proto_core_functionality_pb.Currency;
+      reader.readMessage(value,proto_core_functionality_pb.Currency.deserializeBinaryFromReader);
+      msg.setCurrency(value);
       break;
     case 18:
       var value = /** @type {boolean} */ (reader.readBool());
@@ -33154,11 +33155,12 @@ proto.data.Payment.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-  f = message.getCurrencyUuid();
-  if (f.length > 0) {
-    writer.writeString(
+  f = message.getCurrency();
+  if (f != null) {
+    writer.writeMessage(
       17,
-      f
+      f,
+      proto_core_functionality_pb.Currency.serializeBinaryToWriter
     );
   }
   f = message.getIsRefund();
@@ -33559,20 +33561,39 @@ proto.data.Payment.prototype.setTenderTypeCode = function(value) {
 
 
 /**
- * optional string currency_uuid = 17;
- * @return {string}
+ * optional Currency currency = 17;
+ * @return {?proto.data.Currency}
  */
-proto.data.Payment.prototype.getCurrencyUuid = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 17, ""));
+proto.data.Payment.prototype.getCurrency = function() {
+  return /** @type{?proto.data.Currency} */ (
+    jspb.Message.getWrapperField(this, proto_core_functionality_pb.Currency, 17));
 };
 
 
 /**
- * @param {string} value
+ * @param {?proto.data.Currency|undefined} value
+ * @return {!proto.data.Payment} returns this
+*/
+proto.data.Payment.prototype.setCurrency = function(value) {
+  return jspb.Message.setWrapperField(this, 17, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
  * @return {!proto.data.Payment} returns this
  */
-proto.data.Payment.prototype.setCurrencyUuid = function(value) {
-  return jspb.Message.setProto3StringField(this, 17, value);
+proto.data.Payment.prototype.clearCurrency = function() {
+  return this.setCurrency(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.data.Payment.prototype.hasCurrency = function() {
+  return jspb.Message.getField(this, 17) != null;
 };
 
 
