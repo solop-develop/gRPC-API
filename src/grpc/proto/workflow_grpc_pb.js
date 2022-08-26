@@ -21,6 +21,17 @@ var proto_workflow_pb = require('../proto/workflow_pb.js');
 var proto_base_data_type_pb = require('../proto/base_data_type_pb.js');
 var proto_client_pb = require('../proto/client_pb.js');
 
+function serialize_data_ProcessLog(arg) {
+  if (!(arg instanceof proto_base_data_type_pb.ProcessLog)) {
+    throw new Error('Expected argument of type data.ProcessLog');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_ProcessLog(buffer_arg) {
+  return proto_base_data_type_pb.ProcessLog.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_workflow_ListDocumentActionsRequest(arg) {
   if (!(arg instanceof proto_workflow_pb.ListDocumentActionsRequest)) {
     throw new Error('Expected argument of type workflow.ListDocumentActionsRequest');
@@ -109,6 +120,17 @@ function deserialize_workflow_ListWorkflowsResponse(buffer_arg) {
   return proto_workflow_pb.ListWorkflowsResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_workflow_RunDocumentActionRequest(arg) {
+  if (!(arg instanceof proto_workflow_pb.RunDocumentActionRequest)) {
+    throw new Error('Expected argument of type workflow.RunDocumentActionRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_workflow_RunDocumentActionRequest(buffer_arg) {
+  return proto_workflow_pb.RunDocumentActionRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_workflow_WorkflowDefinition(arg) {
   if (!(arg instanceof proto_workflow_pb.WorkflowDefinition)) {
     throw new Error('Expected argument of type workflow.WorkflowDefinition');
@@ -193,6 +215,18 @@ listWorkflowActivities: {
     requestDeserialize: deserialize_workflow_ListWorkflowActivitiesRequest,
     responseSerialize: serialize_workflow_ListWorkflowActivitiesResponse,
     responseDeserialize: deserialize_workflow_ListWorkflowActivitiesResponse,
+  },
+  // 	Run a Document Action
+runDocumentAction: {
+    path: '/workflow.Workflow/RunDocumentAction',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_workflow_pb.RunDocumentActionRequest,
+    responseType: proto_base_data_type_pb.ProcessLog,
+    requestSerialize: serialize_workflow_RunDocumentActionRequest,
+    requestDeserialize: deserialize_workflow_RunDocumentActionRequest,
+    responseSerialize: serialize_data_ProcessLog,
+    responseDeserialize: deserialize_data_ProcessLog,
   },
 };
 

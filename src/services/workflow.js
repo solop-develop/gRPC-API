@@ -1,5 +1,5 @@
 /*************************************************************************************
- * Workflow: ADempiere gRPC Dictionary Client                                         *
+ * Product: ADempiere gRPC Workflow Client                                           *
  * Copyright (C) 2012-2022 E.R.P. Consultores y Asociados, C.A.                      *
  * Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                      *
  * This program is free software: you can redistribute it and/or modify              *
@@ -11,7 +11,7 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                     *
  * GNU General Public License for more details.                                      *
  * You should have received a copy of the GNU General Public License                 *
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.            *
+ * along with this program. If not, see <https://www.gnu.org/licenses/>.             *
  ************************************************************************************/
 
 const { createClientRequest } = require('../../lib/clientRequest')
@@ -157,6 +157,28 @@ class Workflow {
       createClientRequest({ token, language })
     );
     this.getWorkflowService().listWorkflowActivities(request, callback)
+  }
+
+  // Run Document Action
+  runDocumentAction({
+    token,
+    id,
+    uuid,
+    tableName,
+    documentAction,
+    language
+  }, callback) {
+    const { RunDocumentActionRequest } = require('../grpc/proto/workflow_pb.js')
+    const request = new RunDocumentActionRequest();
+
+    request.setId(id);
+    request.setUuid(uuid);
+    request.setTableName(tableName);
+    request.setDocumentAction(documentAction);
+    request.setClientRequest(
+      createClientRequest({ token, language })
+    );
+    this.getWorkflowService().runDocumentAction(request, callback)
   }
 
 }
