@@ -35191,9 +35191,11 @@ proto.data.UpdateOrderLineRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     clientRequest: (f = msg.getClientRequest()) && proto_client_pb.ClientRequest.toObject(includeInstance, f),
     orderLineUuid: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    description: jspb.Message.getFieldWithDefault(msg, 5, ""),
+    description: jspb.Message.getFieldWithDefault(msg, 3, ""),
     quantity: (f = msg.getQuantity()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
+    quantityOrdered: (f = msg.getQuantityOrdered()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
     price: (f = msg.getPrice()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
+    priceActual: (f = msg.getPriceActual()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
     discountRate: (f = msg.getDiscountRate()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
     isAddQuantity: jspb.Message.getBooleanFieldWithDefault(msg, 9, false),
     warehouseUuid: jspb.Message.getFieldWithDefault(msg, 10, ""),
@@ -35243,19 +35245,29 @@ proto.data.UpdateOrderLineRequest.deserializeBinaryFromReader = function(msg, re
       var value = /** @type {string} */ (reader.readString());
       msg.setOrderLineUuid(value);
       break;
-    case 5:
+    case 3:
       var value = /** @type {string} */ (reader.readString());
       msg.setDescription(value);
       break;
-    case 6:
+    case 4:
       var value = new proto_base_data_type_pb.Decimal;
       reader.readMessage(value,proto_base_data_type_pb.Decimal.deserializeBinaryFromReader);
       msg.setQuantity(value);
       break;
-    case 7:
+    case 5:
+      var value = new proto_base_data_type_pb.Decimal;
+      reader.readMessage(value,proto_base_data_type_pb.Decimal.deserializeBinaryFromReader);
+      msg.setQuantityOrdered(value);
+      break;
+    case 6:
       var value = new proto_base_data_type_pb.Decimal;
       reader.readMessage(value,proto_base_data_type_pb.Decimal.deserializeBinaryFromReader);
       msg.setPrice(value);
+      break;
+    case 7:
+      var value = new proto_base_data_type_pb.Decimal;
+      reader.readMessage(value,proto_base_data_type_pb.Decimal.deserializeBinaryFromReader);
+      msg.setPriceActual(value);
       break;
     case 8:
       var value = new proto_base_data_type_pb.Decimal;
@@ -35321,11 +35333,27 @@ proto.data.UpdateOrderLineRequest.serializeBinaryToWriter = function(message, wr
   f = message.getDescription();
   if (f.length > 0) {
     writer.writeString(
-      5,
+      3,
       f
     );
   }
   f = message.getQuantity();
+  if (f != null) {
+    writer.writeMessage(
+      4,
+      f,
+      proto_base_data_type_pb.Decimal.serializeBinaryToWriter
+    );
+  }
+  f = message.getQuantityOrdered();
+  if (f != null) {
+    writer.writeMessage(
+      5,
+      f,
+      proto_base_data_type_pb.Decimal.serializeBinaryToWriter
+    );
+  }
+  f = message.getPrice();
   if (f != null) {
     writer.writeMessage(
       6,
@@ -35333,7 +35361,7 @@ proto.data.UpdateOrderLineRequest.serializeBinaryToWriter = function(message, wr
       proto_base_data_type_pb.Decimal.serializeBinaryToWriter
     );
   }
-  f = message.getPrice();
+  f = message.getPriceActual();
   if (f != null) {
     writer.writeMessage(
       7,
@@ -35429,11 +35457,11 @@ proto.data.UpdateOrderLineRequest.prototype.setOrderLineUuid = function(value) {
 
 
 /**
- * optional string description = 5;
+ * optional string description = 3;
  * @return {string}
  */
 proto.data.UpdateOrderLineRequest.prototype.getDescription = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
 
 
@@ -35442,17 +35470,17 @@ proto.data.UpdateOrderLineRequest.prototype.getDescription = function() {
  * @return {!proto.data.UpdateOrderLineRequest} returns this
  */
 proto.data.UpdateOrderLineRequest.prototype.setDescription = function(value) {
-  return jspb.Message.setProto3StringField(this, 5, value);
+  return jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
 /**
- * optional Decimal quantity = 6;
+ * optional Decimal quantity = 4;
  * @return {?proto.data.Decimal}
  */
 proto.data.UpdateOrderLineRequest.prototype.getQuantity = function() {
   return /** @type{?proto.data.Decimal} */ (
-    jspb.Message.getWrapperField(this, proto_base_data_type_pb.Decimal, 6));
+    jspb.Message.getWrapperField(this, proto_base_data_type_pb.Decimal, 4));
 };
 
 
@@ -35461,7 +35489,7 @@ proto.data.UpdateOrderLineRequest.prototype.getQuantity = function() {
  * @return {!proto.data.UpdateOrderLineRequest} returns this
 */
 proto.data.UpdateOrderLineRequest.prototype.setQuantity = function(value) {
-  return jspb.Message.setWrapperField(this, 6, value);
+  return jspb.Message.setWrapperField(this, 4, value);
 };
 
 
@@ -35479,17 +35507,54 @@ proto.data.UpdateOrderLineRequest.prototype.clearQuantity = function() {
  * @return {boolean}
  */
 proto.data.UpdateOrderLineRequest.prototype.hasQuantity = function() {
-  return jspb.Message.getField(this, 6) != null;
+  return jspb.Message.getField(this, 4) != null;
 };
 
 
 /**
- * optional Decimal price = 7;
+ * optional Decimal quantity_ordered = 5;
+ * @return {?proto.data.Decimal}
+ */
+proto.data.UpdateOrderLineRequest.prototype.getQuantityOrdered = function() {
+  return /** @type{?proto.data.Decimal} */ (
+    jspb.Message.getWrapperField(this, proto_base_data_type_pb.Decimal, 5));
+};
+
+
+/**
+ * @param {?proto.data.Decimal|undefined} value
+ * @return {!proto.data.UpdateOrderLineRequest} returns this
+*/
+proto.data.UpdateOrderLineRequest.prototype.setQuantityOrdered = function(value) {
+  return jspb.Message.setWrapperField(this, 5, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.data.UpdateOrderLineRequest} returns this
+ */
+proto.data.UpdateOrderLineRequest.prototype.clearQuantityOrdered = function() {
+  return this.setQuantityOrdered(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.data.UpdateOrderLineRequest.prototype.hasQuantityOrdered = function() {
+  return jspb.Message.getField(this, 5) != null;
+};
+
+
+/**
+ * optional Decimal price = 6;
  * @return {?proto.data.Decimal}
  */
 proto.data.UpdateOrderLineRequest.prototype.getPrice = function() {
   return /** @type{?proto.data.Decimal} */ (
-    jspb.Message.getWrapperField(this, proto_base_data_type_pb.Decimal, 7));
+    jspb.Message.getWrapperField(this, proto_base_data_type_pb.Decimal, 6));
 };
 
 
@@ -35498,7 +35563,7 @@ proto.data.UpdateOrderLineRequest.prototype.getPrice = function() {
  * @return {!proto.data.UpdateOrderLineRequest} returns this
 */
 proto.data.UpdateOrderLineRequest.prototype.setPrice = function(value) {
-  return jspb.Message.setWrapperField(this, 7, value);
+  return jspb.Message.setWrapperField(this, 6, value);
 };
 
 
@@ -35516,6 +35581,43 @@ proto.data.UpdateOrderLineRequest.prototype.clearPrice = function() {
  * @return {boolean}
  */
 proto.data.UpdateOrderLineRequest.prototype.hasPrice = function() {
+  return jspb.Message.getField(this, 6) != null;
+};
+
+
+/**
+ * optional Decimal price_actual = 7;
+ * @return {?proto.data.Decimal}
+ */
+proto.data.UpdateOrderLineRequest.prototype.getPriceActual = function() {
+  return /** @type{?proto.data.Decimal} */ (
+    jspb.Message.getWrapperField(this, proto_base_data_type_pb.Decimal, 7));
+};
+
+
+/**
+ * @param {?proto.data.Decimal|undefined} value
+ * @return {!proto.data.UpdateOrderLineRequest} returns this
+*/
+proto.data.UpdateOrderLineRequest.prototype.setPriceActual = function(value) {
+  return jspb.Message.setWrapperField(this, 7, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.data.UpdateOrderLineRequest} returns this
+ */
+proto.data.UpdateOrderLineRequest.prototype.clearPriceActual = function() {
+  return this.setPriceActual(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.data.UpdateOrderLineRequest.prototype.hasPriceActual = function() {
   return jspb.Message.getField(this, 7) != null;
 };
 
@@ -36086,7 +36188,8 @@ proto.data.Order.toObject = function(includeInstance, msg) {
     displayCurrencyRate: (f = msg.getDisplayCurrencyRate()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
     openAmount: (f = msg.getOpenAmount()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
     paymentAmount: (f = msg.getPaymentAmount()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
-    refundAmount: (f = msg.getRefundAmount()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f)
+    refundAmount: (f = msg.getRefundAmount()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
+    chargeAmount: (f = msg.getChargeAmount()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -36224,6 +36327,11 @@ proto.data.Order.deserializeBinaryFromReader = function(msg, reader) {
       var value = new proto_base_data_type_pb.Decimal;
       reader.readMessage(value,proto_base_data_type_pb.Decimal.deserializeBinaryFromReader);
       msg.setRefundAmount(value);
+      break;
+    case 24:
+      var value = new proto_base_data_type_pb.Decimal;
+      reader.readMessage(value,proto_base_data_type_pb.Decimal.deserializeBinaryFromReader);
+      msg.setChargeAmount(value);
       break;
     default:
       reader.skipField();
@@ -36418,6 +36526,14 @@ proto.data.Order.serializeBinaryToWriter = function(message, writer) {
   if (f != null) {
     writer.writeMessage(
       23,
+      f,
+      proto_base_data_type_pb.Decimal.serializeBinaryToWriter
+    );
+  }
+  f = message.getChargeAmount();
+  if (f != null) {
+    writer.writeMessage(
+      24,
       f,
       proto_base_data_type_pb.Decimal.serializeBinaryToWriter
     );
@@ -37087,6 +37203,43 @@ proto.data.Order.prototype.hasRefundAmount = function() {
 };
 
 
+/**
+ * optional Decimal charge_amount = 24;
+ * @return {?proto.data.Decimal}
+ */
+proto.data.Order.prototype.getChargeAmount = function() {
+  return /** @type{?proto.data.Decimal} */ (
+    jspb.Message.getWrapperField(this, proto_base_data_type_pb.Decimal, 24));
+};
+
+
+/**
+ * @param {?proto.data.Decimal|undefined} value
+ * @return {!proto.data.Order} returns this
+*/
+proto.data.Order.prototype.setChargeAmount = function(value) {
+  return jspb.Message.setWrapperField(this, 24, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.data.Order} returns this
+ */
+proto.data.Order.prototype.clearChargeAmount = function() {
+  return this.setChargeAmount(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.data.Order.prototype.hasChargeAmount = function() {
+  return jspb.Message.getField(this, 24) != null;
+};
+
+
 
 
 
@@ -37141,7 +37294,9 @@ proto.data.OrderLine.toObject = function(includeInstance, msg) {
     totalBaseAmountWithTax: (f = msg.getTotalBaseAmountWithTax()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
     totalAmount: (f = msg.getTotalAmount()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
     totalAmountWithTax: (f = msg.getTotalAmountWithTax()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
-    line: jspb.Message.getFieldWithDefault(msg, 23, 0)
+    line: jspb.Message.getFieldWithDefault(msg, 23, 0),
+    uom: (f = msg.getUom()) && proto_core_functionality_pb.ProductConversion.toObject(includeInstance, f),
+    productUom: (f = msg.getProductUom()) && proto_core_functionality_pb.ProductConversion.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -37287,6 +37442,16 @@ proto.data.OrderLine.deserializeBinaryFromReader = function(msg, reader) {
     case 23:
       var value = /** @type {number} */ (reader.readInt32());
       msg.setLine(value);
+      break;
+    case 24:
+      var value = new proto_core_functionality_pb.ProductConversion;
+      reader.readMessage(value,proto_core_functionality_pb.ProductConversion.deserializeBinaryFromReader);
+      msg.setUom(value);
+      break;
+    case 25:
+      var value = new proto_core_functionality_pb.ProductConversion;
+      reader.readMessage(value,proto_core_functionality_pb.ProductConversion.deserializeBinaryFromReader);
+      msg.setProductUom(value);
       break;
     default:
       reader.skipField();
@@ -37494,6 +37659,22 @@ proto.data.OrderLine.serializeBinaryToWriter = function(message, writer) {
     writer.writeInt32(
       23,
       f
+    );
+  }
+  f = message.getUom();
+  if (f != null) {
+    writer.writeMessage(
+      24,
+      f,
+      proto_core_functionality_pb.ProductConversion.serializeBinaryToWriter
+    );
+  }
+  f = message.getProductUom();
+  if (f != null) {
+    writer.writeMessage(
+      25,
+      f,
+      proto_core_functionality_pb.ProductConversion.serializeBinaryToWriter
     );
   }
 };
@@ -38252,6 +38433,80 @@ proto.data.OrderLine.prototype.getLine = function() {
  */
 proto.data.OrderLine.prototype.setLine = function(value) {
   return jspb.Message.setProto3IntField(this, 23, value);
+};
+
+
+/**
+ * optional ProductConversion uom = 24;
+ * @return {?proto.data.ProductConversion}
+ */
+proto.data.OrderLine.prototype.getUom = function() {
+  return /** @type{?proto.data.ProductConversion} */ (
+    jspb.Message.getWrapperField(this, proto_core_functionality_pb.ProductConversion, 24));
+};
+
+
+/**
+ * @param {?proto.data.ProductConversion|undefined} value
+ * @return {!proto.data.OrderLine} returns this
+*/
+proto.data.OrderLine.prototype.setUom = function(value) {
+  return jspb.Message.setWrapperField(this, 24, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.data.OrderLine} returns this
+ */
+proto.data.OrderLine.prototype.clearUom = function() {
+  return this.setUom(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.data.OrderLine.prototype.hasUom = function() {
+  return jspb.Message.getField(this, 24) != null;
+};
+
+
+/**
+ * optional ProductConversion product_uom = 25;
+ * @return {?proto.data.ProductConversion}
+ */
+proto.data.OrderLine.prototype.getProductUom = function() {
+  return /** @type{?proto.data.ProductConversion} */ (
+    jspb.Message.getWrapperField(this, proto_core_functionality_pb.ProductConversion, 25));
+};
+
+
+/**
+ * @param {?proto.data.ProductConversion|undefined} value
+ * @return {!proto.data.OrderLine} returns this
+*/
+proto.data.OrderLine.prototype.setProductUom = function(value) {
+  return jspb.Message.setWrapperField(this, 25, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.data.OrderLine} returns this
+ */
+proto.data.OrderLine.prototype.clearProductUom = function() {
+  return this.setProductUom(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.data.OrderLine.prototype.hasProductUom = function() {
+  return jspb.Message.getField(this, 25) != null;
 };
 
 
