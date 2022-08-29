@@ -102,7 +102,7 @@
         symbol: unitOfMeasureToConvert.getSymbol(),
         name: unitOfMeasureToConvert.getName(),
         description: unitOfMeasureToConvert.getDescription(),
-        starndard_precision: unitOfMeasureToConvert.getStandardprecision(),
+        starndard_precision: unitOfMeasureToConvert.getStandardPrecision(),
         costing_precision: unitOfMeasureToConvert.getCostingPrecision()
       };
     }
@@ -111,6 +111,9 @@
 
   convertProductConversionFromGRPC(productConversionToConvert) {
     if (productConversionToConvert) {
+      const {
+        getDecimalFromGRPC
+      } = require('@adempiere/grpc-api/lib/convertBaseDataType.js');
       return {
         uuid: productConversionToConvert.getUuid(),
         id: productConversionToConvert.getId(),
