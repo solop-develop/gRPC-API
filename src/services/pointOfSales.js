@@ -371,7 +371,9 @@ class PointOfSales {
     orderLineUuid,
     description,
     quantity,
+    quantityOrdered,
     price,
+    priceActual,
     discountRate,
     isAddQuantity,
     warehouseUuid,
@@ -385,7 +387,9 @@ class PointOfSales {
     request.setOrderLineUuid(orderLineUuid)
     request.setDescription(description)
     request.setQuantity(getDecimalFromNumber(quantity))
+    request.setQuantityOrdered(getDecimalFromNumber(quantityOrdered));
     request.setPrice(getDecimalFromNumber(price))
+    request.setPriceActual(getDecimalFromNumber(priceActual));
     request.setDiscountRate(getDecimalFromNumber(discountRate))
     request.setWarehouseUuid(warehouseUuid)
     request.setIsAddQuantity(isAddQuantity)
