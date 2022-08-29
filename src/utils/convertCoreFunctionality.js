@@ -188,7 +188,7 @@
 
   convertProductFromGRPC(productToConvert) {
     if (productToConvert) {
-      const { getDecimalFromGRPC } = require('./convertBaseDataType.js');
+      const { getDecimalFromGRPC } = require('@adempiere/grpc-api/lib/convertBaseDataType.js');
 
       return {
         uuid: productToConvert.getUuid(),
@@ -238,7 +238,7 @@
   convertTaxRateFromGRPC(taxRate) {
     //  Tax rate
     if (taxRate) {
-      const { getDecimalFromGRPC } = require('./convertBaseDataType.js');
+      const { getDecimalFromGRPC } = require('@adempiere/grpc-api/lib/convertBaseDataType.js');
 
       return {
         name: taxRate.getName(),
@@ -254,7 +254,7 @@
 
   convertProductPriceFromGRPC(productPrice) {
     if (productPrice) {
-      const { getDecimalFromGRPC } = require('./convertBaseDataType.js');
+      const { getDecimalFromGRPC } = require('@adempiere/grpc-api/lib/convertBaseDataType.js');
 
       return {
         currency: convertCoreFunctionality.convertCurrencyFromGRPC(
@@ -346,8 +346,8 @@
 
   convertBankAccountFromGRPC(bankAccount) {
     if (bankAccount) {
-      const { getDecimalFromGRPC } = require('./convertBaseDataType.js');
-      const { getBankAccount_BankAccountType } = require('./convertEnums.js');
+      const { getDecimalFromGRPC } = require('@adempiere/grpc-api/lib/convertBaseDataType.js');
+      const { getBankAccount_BankAccountType } = require('@adempiere/grpc-api/lib/convertEnums.js');
 
       return {
         uuid: bankAccount.getUuid(),
@@ -381,7 +381,7 @@
 
   convertConversionRateFromGRPC(conversionRate) {
     if (conversionRate) {
-      const { getDecimalFromGRPC } = require('./convertBaseDataType.js');
+      const { getDecimalFromGRPC } = require('@adempiere/grpc-api/lib/convertBaseDataType.js');
 
       return {
         uuid: conversionRate.getUuid(),
