@@ -164,6 +164,28 @@ function deserialize_data_ListOrganizationsResponse(buffer_arg) {
   return proto_core_functionality_pb.ListOrganizationsResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_data_ListProductConversionRequest(arg) {
+  if (!(arg instanceof proto_core_functionality_pb.ListProductConversionRequest)) {
+    throw new Error('Expected argument of type data.ListProductConversionRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_ListProductConversionRequest(buffer_arg) {
+  return proto_core_functionality_pb.ListProductConversionRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_data_ListProductConversionResponse(arg) {
+  if (!(arg instanceof proto_core_functionality_pb.ListProductConversionResponse)) {
+    throw new Error('Expected argument of type data.ListProductConversionResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_ListProductConversionResponse(buffer_arg) {
+  return proto_core_functionality_pb.ListProductConversionResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_data_ListWarehousesRequest(arg) {
   if (!(arg instanceof proto_core_functionality_pb.ListWarehousesRequest)) {
     throw new Error('Expected argument of type data.ListWarehousesRequest');
@@ -283,6 +305,18 @@ getConversionRate: {
     requestDeserialize: deserialize_data_GetConversionRateRequest,
     responseSerialize: serialize_data_ConversionRate,
     responseDeserialize: deserialize_data_ConversionRate,
+  },
+  // 	List Product Conversion UOM
+listProductConversion: {
+    path: '/data.CoreFunctionality/ListProductConversion',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_core_functionality_pb.ListProductConversionRequest,
+    responseType: proto_core_functionality_pb.ListProductConversionResponse,
+    requestSerialize: serialize_data_ListProductConversionRequest,
+    requestDeserialize: deserialize_data_ListProductConversionRequest,
+    responseSerialize: serialize_data_ListProductConversionResponse,
+    responseDeserialize: deserialize_data_ListProductConversionResponse,
   },
 };
 
