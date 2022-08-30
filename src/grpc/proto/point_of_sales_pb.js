@@ -30671,7 +30671,8 @@ proto.data.CreatePaymentRequest.toObject = function(includeInstance, msg) {
     paymentAccountDate: jspb.Message.getFieldWithDefault(msg, 15, ""),
     isRefund: jspb.Message.getBooleanFieldWithDefault(msg, 16, false),
     chargeUuid: jspb.Message.getFieldWithDefault(msg, 17, ""),
-    collectingAgentUuid: jspb.Message.getFieldWithDefault(msg, 18, "")
+    collectingAgentUuid: jspb.Message.getFieldWithDefault(msg, 18, ""),
+    referenceBankAccountUuid: jspb.Message.getFieldWithDefault(msg, 19, "")
   };
 
   if (includeInstance) {
@@ -30781,6 +30782,10 @@ proto.data.CreatePaymentRequest.deserializeBinaryFromReader = function(msg, read
     case 18:
       var value = /** @type {string} */ (reader.readString());
       msg.setCollectingAgentUuid(value);
+      break;
+    case 19:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setReferenceBankAccountUuid(value);
       break;
     default:
       reader.skipField();
@@ -30936,6 +30941,13 @@ proto.data.CreatePaymentRequest.serializeBinaryToWriter = function(message, writ
   if (f.length > 0) {
     writer.writeString(
       18,
+      f
+    );
+  }
+  f = message.getReferenceBankAccountUuid();
+  if (f.length > 0) {
+    writer.writeString(
+      19,
       f
     );
   }
@@ -31304,6 +31316,24 @@ proto.data.CreatePaymentRequest.prototype.setCollectingAgentUuid = function(valu
 };
 
 
+/**
+ * optional string reference_bank_account_uuid = 19;
+ * @return {string}
+ */
+proto.data.CreatePaymentRequest.prototype.getReferenceBankAccountUuid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 19, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.data.CreatePaymentRequest} returns this
+ */
+proto.data.CreatePaymentRequest.prototype.setReferenceBankAccountUuid = function(value) {
+  return jspb.Message.setProto3StringField(this, 19, value);
+};
+
+
 
 
 
@@ -31346,7 +31376,8 @@ proto.data.UpdatePaymentRequest.toObject = function(includeInstance, msg) {
     tenderTypeCode: jspb.Message.getFieldWithDefault(msg, 8, ""),
     paymentMethodUuid: jspb.Message.getFieldWithDefault(msg, 9, ""),
     paymentAccountDate: jspb.Message.getFieldWithDefault(msg, 10, ""),
-    posUuid: jspb.Message.getFieldWithDefault(msg, 11, "")
+    posUuid: jspb.Message.getFieldWithDefault(msg, 11, ""),
+    referenceBankAccountUuid: jspb.Message.getFieldWithDefault(msg, 12, "")
   };
 
   if (includeInstance) {
@@ -31428,6 +31459,10 @@ proto.data.UpdatePaymentRequest.deserializeBinaryFromReader = function(msg, read
     case 11:
       var value = /** @type {string} */ (reader.readString());
       msg.setPosUuid(value);
+      break;
+    case 12:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setReferenceBankAccountUuid(value);
       break;
     default:
       reader.skipField();
@@ -31534,6 +31569,13 @@ proto.data.UpdatePaymentRequest.serializeBinaryToWriter = function(message, writ
   if (f.length > 0) {
     writer.writeString(
       11,
+      f
+    );
+  }
+  f = message.getReferenceBankAccountUuid();
+  if (f.length > 0) {
+    writer.writeString(
+      12,
       f
     );
   }
@@ -31773,6 +31815,24 @@ proto.data.UpdatePaymentRequest.prototype.getPosUuid = function() {
  */
 proto.data.UpdatePaymentRequest.prototype.setPosUuid = function(value) {
   return jspb.Message.setProto3StringField(this, 11, value);
+};
+
+
+/**
+ * optional string reference_bank_account_uuid = 12;
+ * @return {string}
+ */
+proto.data.UpdatePaymentRequest.prototype.getReferenceBankAccountUuid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 12, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.data.UpdatePaymentRequest} returns this
+ */
+proto.data.UpdatePaymentRequest.prototype.setReferenceBankAccountUuid = function(value) {
+  return jspb.Message.setProto3StringField(this, 12, value);
 };
 
 
@@ -32882,7 +32942,11 @@ proto.data.Payment.toObject = function(includeInstance, msg) {
     isRefund: jspb.Message.getBooleanFieldWithDefault(msg, 18, false),
     name: jspb.Message.getFieldWithDefault(msg, 19, ""),
     orderCurrencyRate: (f = msg.getOrderCurrencyRate()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
-    paymentMethod: (f = msg.getPaymentMethod()) && proto.data.PaymentMethod.toObject(includeInstance, f)
+    paymentMethod: (f = msg.getPaymentMethod()) && proto.data.PaymentMethod.toObject(includeInstance, f),
+    bankAccount: (f = msg.getBankAccount()) && proto_core_functionality_pb.BankAccount.toObject(includeInstance, f),
+    referenceBankAccount: (f = msg.getReferenceBankAccount()) && proto_core_functionality_pb.BankAccount.toObject(includeInstance, f),
+    charge: (f = msg.getCharge()) && proto_core_functionality_pb.Charge.toObject(includeInstance, f),
+    documentType: (f = msg.getDocumentType()) && proto_core_functionality_pb.DocumentType.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -33009,6 +33073,26 @@ proto.data.Payment.deserializeBinaryFromReader = function(msg, reader) {
       var value = new proto.data.PaymentMethod;
       reader.readMessage(value,proto.data.PaymentMethod.deserializeBinaryFromReader);
       msg.setPaymentMethod(value);
+      break;
+    case 22:
+      var value = new proto_core_functionality_pb.BankAccount;
+      reader.readMessage(value,proto_core_functionality_pb.BankAccount.deserializeBinaryFromReader);
+      msg.setBankAccount(value);
+      break;
+    case 23:
+      var value = new proto_core_functionality_pb.BankAccount;
+      reader.readMessage(value,proto_core_functionality_pb.BankAccount.deserializeBinaryFromReader);
+      msg.setReferenceBankAccount(value);
+      break;
+    case 24:
+      var value = new proto_core_functionality_pb.Charge;
+      reader.readMessage(value,proto_core_functionality_pb.Charge.deserializeBinaryFromReader);
+      msg.setCharge(value);
+      break;
+    case 25:
+      var value = new proto_core_functionality_pb.DocumentType;
+      reader.readMessage(value,proto_core_functionality_pb.DocumentType.deserializeBinaryFromReader);
+      msg.setDocumentType(value);
       break;
     default:
       reader.skipField();
@@ -33191,6 +33275,38 @@ proto.data.Payment.serializeBinaryToWriter = function(message, writer) {
       21,
       f,
       proto.data.PaymentMethod.serializeBinaryToWriter
+    );
+  }
+  f = message.getBankAccount();
+  if (f != null) {
+    writer.writeMessage(
+      22,
+      f,
+      proto_core_functionality_pb.BankAccount.serializeBinaryToWriter
+    );
+  }
+  f = message.getReferenceBankAccount();
+  if (f != null) {
+    writer.writeMessage(
+      23,
+      f,
+      proto_core_functionality_pb.BankAccount.serializeBinaryToWriter
+    );
+  }
+  f = message.getCharge();
+  if (f != null) {
+    writer.writeMessage(
+      24,
+      f,
+      proto_core_functionality_pb.Charge.serializeBinaryToWriter
+    );
+  }
+  f = message.getDocumentType();
+  if (f != null) {
+    writer.writeMessage(
+      25,
+      f,
+      proto_core_functionality_pb.DocumentType.serializeBinaryToWriter
     );
   }
 };
@@ -33704,6 +33820,154 @@ proto.data.Payment.prototype.clearPaymentMethod = function() {
  */
 proto.data.Payment.prototype.hasPaymentMethod = function() {
   return jspb.Message.getField(this, 21) != null;
+};
+
+
+/**
+ * optional BankAccount bank_account = 22;
+ * @return {?proto.data.BankAccount}
+ */
+proto.data.Payment.prototype.getBankAccount = function() {
+  return /** @type{?proto.data.BankAccount} */ (
+    jspb.Message.getWrapperField(this, proto_core_functionality_pb.BankAccount, 22));
+};
+
+
+/**
+ * @param {?proto.data.BankAccount|undefined} value
+ * @return {!proto.data.Payment} returns this
+*/
+proto.data.Payment.prototype.setBankAccount = function(value) {
+  return jspb.Message.setWrapperField(this, 22, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.data.Payment} returns this
+ */
+proto.data.Payment.prototype.clearBankAccount = function() {
+  return this.setBankAccount(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.data.Payment.prototype.hasBankAccount = function() {
+  return jspb.Message.getField(this, 22) != null;
+};
+
+
+/**
+ * optional BankAccount reference_bank_account = 23;
+ * @return {?proto.data.BankAccount}
+ */
+proto.data.Payment.prototype.getReferenceBankAccount = function() {
+  return /** @type{?proto.data.BankAccount} */ (
+    jspb.Message.getWrapperField(this, proto_core_functionality_pb.BankAccount, 23));
+};
+
+
+/**
+ * @param {?proto.data.BankAccount|undefined} value
+ * @return {!proto.data.Payment} returns this
+*/
+proto.data.Payment.prototype.setReferenceBankAccount = function(value) {
+  return jspb.Message.setWrapperField(this, 23, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.data.Payment} returns this
+ */
+proto.data.Payment.prototype.clearReferenceBankAccount = function() {
+  return this.setReferenceBankAccount(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.data.Payment.prototype.hasReferenceBankAccount = function() {
+  return jspb.Message.getField(this, 23) != null;
+};
+
+
+/**
+ * optional Charge charge = 24;
+ * @return {?proto.data.Charge}
+ */
+proto.data.Payment.prototype.getCharge = function() {
+  return /** @type{?proto.data.Charge} */ (
+    jspb.Message.getWrapperField(this, proto_core_functionality_pb.Charge, 24));
+};
+
+
+/**
+ * @param {?proto.data.Charge|undefined} value
+ * @return {!proto.data.Payment} returns this
+*/
+proto.data.Payment.prototype.setCharge = function(value) {
+  return jspb.Message.setWrapperField(this, 24, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.data.Payment} returns this
+ */
+proto.data.Payment.prototype.clearCharge = function() {
+  return this.setCharge(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.data.Payment.prototype.hasCharge = function() {
+  return jspb.Message.getField(this, 24) != null;
+};
+
+
+/**
+ * optional DocumentType document_type = 25;
+ * @return {?proto.data.DocumentType}
+ */
+proto.data.Payment.prototype.getDocumentType = function() {
+  return /** @type{?proto.data.DocumentType} */ (
+    jspb.Message.getWrapperField(this, proto_core_functionality_pb.DocumentType, 25));
+};
+
+
+/**
+ * @param {?proto.data.DocumentType|undefined} value
+ * @return {!proto.data.Payment} returns this
+*/
+proto.data.Payment.prototype.setDocumentType = function(value) {
+  return jspb.Message.setWrapperField(this, 25, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.data.Payment} returns this
+ */
+proto.data.Payment.prototype.clearDocumentType = function() {
+  return this.setDocumentType(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.data.Payment.prototype.hasDocumentType = function() {
+  return jspb.Message.getField(this, 25) != null;
 };
 
 
@@ -35193,13 +35457,12 @@ proto.data.UpdateOrderLineRequest.toObject = function(includeInstance, msg) {
     orderLineUuid: jspb.Message.getFieldWithDefault(msg, 2, ""),
     description: jspb.Message.getFieldWithDefault(msg, 3, ""),
     quantity: (f = msg.getQuantity()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
-    quantityOrdered: (f = msg.getQuantityOrdered()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
     price: (f = msg.getPrice()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
-    priceActual: (f = msg.getPriceActual()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
+    uomUuid: jspb.Message.getFieldWithDefault(msg, 6, ""),
     discountRate: (f = msg.getDiscountRate()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
-    isAddQuantity: jspb.Message.getBooleanFieldWithDefault(msg, 9, false),
-    warehouseUuid: jspb.Message.getFieldWithDefault(msg, 10, ""),
-    posUuid: jspb.Message.getFieldWithDefault(msg, 11, "")
+    isAddQuantity: jspb.Message.getBooleanFieldWithDefault(msg, 8, false),
+    warehouseUuid: jspb.Message.getFieldWithDefault(msg, 9, ""),
+    posUuid: jspb.Message.getFieldWithDefault(msg, 10, "")
   };
 
   if (includeInstance) {
@@ -35257,32 +35520,26 @@ proto.data.UpdateOrderLineRequest.deserializeBinaryFromReader = function(msg, re
     case 5:
       var value = new proto_base_data_type_pb.Decimal;
       reader.readMessage(value,proto_base_data_type_pb.Decimal.deserializeBinaryFromReader);
-      msg.setQuantityOrdered(value);
+      msg.setPrice(value);
       break;
     case 6:
-      var value = new proto_base_data_type_pb.Decimal;
-      reader.readMessage(value,proto_base_data_type_pb.Decimal.deserializeBinaryFromReader);
-      msg.setPrice(value);
+      var value = /** @type {string} */ (reader.readString());
+      msg.setUomUuid(value);
       break;
     case 7:
       var value = new proto_base_data_type_pb.Decimal;
       reader.readMessage(value,proto_base_data_type_pb.Decimal.deserializeBinaryFromReader);
-      msg.setPriceActual(value);
-      break;
-    case 8:
-      var value = new proto_base_data_type_pb.Decimal;
-      reader.readMessage(value,proto_base_data_type_pb.Decimal.deserializeBinaryFromReader);
       msg.setDiscountRate(value);
       break;
-    case 9:
+    case 8:
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setIsAddQuantity(value);
       break;
-    case 10:
+    case 9:
       var value = /** @type {string} */ (reader.readString());
       msg.setWarehouseUuid(value);
       break;
-    case 11:
+    case 10:
       var value = /** @type {string} */ (reader.readString());
       msg.setPosUuid(value);
       break;
@@ -35345,7 +35602,7 @@ proto.data.UpdateOrderLineRequest.serializeBinaryToWriter = function(message, wr
       proto_base_data_type_pb.Decimal.serializeBinaryToWriter
     );
   }
-  f = message.getQuantityOrdered();
+  f = message.getPrice();
   if (f != null) {
     writer.writeMessage(
       5,
@@ -35353,15 +35610,14 @@ proto.data.UpdateOrderLineRequest.serializeBinaryToWriter = function(message, wr
       proto_base_data_type_pb.Decimal.serializeBinaryToWriter
     );
   }
-  f = message.getPrice();
-  if (f != null) {
-    writer.writeMessage(
+  f = message.getUomUuid();
+  if (f.length > 0) {
+    writer.writeString(
       6,
-      f,
-      proto_base_data_type_pb.Decimal.serializeBinaryToWriter
+      f
     );
   }
-  f = message.getPriceActual();
+  f = message.getDiscountRate();
   if (f != null) {
     writer.writeMessage(
       7,
@@ -35369,32 +35625,24 @@ proto.data.UpdateOrderLineRequest.serializeBinaryToWriter = function(message, wr
       proto_base_data_type_pb.Decimal.serializeBinaryToWriter
     );
   }
-  f = message.getDiscountRate();
-  if (f != null) {
-    writer.writeMessage(
-      8,
-      f,
-      proto_base_data_type_pb.Decimal.serializeBinaryToWriter
-    );
-  }
   f = message.getIsAddQuantity();
   if (f) {
     writer.writeBool(
-      9,
+      8,
       f
     );
   }
   f = message.getWarehouseUuid();
   if (f.length > 0) {
     writer.writeString(
-      10,
+      9,
       f
     );
   }
   f = message.getPosUuid();
   if (f.length > 0) {
     writer.writeString(
-      11,
+      10,
       f
     );
   }
@@ -35512,10 +35760,10 @@ proto.data.UpdateOrderLineRequest.prototype.hasQuantity = function() {
 
 
 /**
- * optional Decimal quantity_ordered = 5;
+ * optional Decimal price = 5;
  * @return {?proto.data.Decimal}
  */
-proto.data.UpdateOrderLineRequest.prototype.getQuantityOrdered = function() {
+proto.data.UpdateOrderLineRequest.prototype.getPrice = function() {
   return /** @type{?proto.data.Decimal} */ (
     jspb.Message.getWrapperField(this, proto_base_data_type_pb.Decimal, 5));
 };
@@ -35525,45 +35773,8 @@ proto.data.UpdateOrderLineRequest.prototype.getQuantityOrdered = function() {
  * @param {?proto.data.Decimal|undefined} value
  * @return {!proto.data.UpdateOrderLineRequest} returns this
 */
-proto.data.UpdateOrderLineRequest.prototype.setQuantityOrdered = function(value) {
-  return jspb.Message.setWrapperField(this, 5, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.data.UpdateOrderLineRequest} returns this
- */
-proto.data.UpdateOrderLineRequest.prototype.clearQuantityOrdered = function() {
-  return this.setQuantityOrdered(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.data.UpdateOrderLineRequest.prototype.hasQuantityOrdered = function() {
-  return jspb.Message.getField(this, 5) != null;
-};
-
-
-/**
- * optional Decimal price = 6;
- * @return {?proto.data.Decimal}
- */
-proto.data.UpdateOrderLineRequest.prototype.getPrice = function() {
-  return /** @type{?proto.data.Decimal} */ (
-    jspb.Message.getWrapperField(this, proto_base_data_type_pb.Decimal, 6));
-};
-
-
-/**
- * @param {?proto.data.Decimal|undefined} value
- * @return {!proto.data.UpdateOrderLineRequest} returns this
-*/
 proto.data.UpdateOrderLineRequest.prototype.setPrice = function(value) {
-  return jspb.Message.setWrapperField(this, 6, value);
+  return jspb.Message.setWrapperField(this, 5, value);
 };
 
 
@@ -35581,15 +35792,33 @@ proto.data.UpdateOrderLineRequest.prototype.clearPrice = function() {
  * @return {boolean}
  */
 proto.data.UpdateOrderLineRequest.prototype.hasPrice = function() {
-  return jspb.Message.getField(this, 6) != null;
+  return jspb.Message.getField(this, 5) != null;
 };
 
 
 /**
- * optional Decimal price_actual = 7;
+ * optional string uom_uuid = 6;
+ * @return {string}
+ */
+proto.data.UpdateOrderLineRequest.prototype.getUomUuid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.data.UpdateOrderLineRequest} returns this
+ */
+proto.data.UpdateOrderLineRequest.prototype.setUomUuid = function(value) {
+  return jspb.Message.setProto3StringField(this, 6, value);
+};
+
+
+/**
+ * optional Decimal discount_rate = 7;
  * @return {?proto.data.Decimal}
  */
-proto.data.UpdateOrderLineRequest.prototype.getPriceActual = function() {
+proto.data.UpdateOrderLineRequest.prototype.getDiscountRate = function() {
   return /** @type{?proto.data.Decimal} */ (
     jspb.Message.getWrapperField(this, proto_base_data_type_pb.Decimal, 7));
 };
@@ -35599,45 +35828,8 @@ proto.data.UpdateOrderLineRequest.prototype.getPriceActual = function() {
  * @param {?proto.data.Decimal|undefined} value
  * @return {!proto.data.UpdateOrderLineRequest} returns this
 */
-proto.data.UpdateOrderLineRequest.prototype.setPriceActual = function(value) {
-  return jspb.Message.setWrapperField(this, 7, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.data.UpdateOrderLineRequest} returns this
- */
-proto.data.UpdateOrderLineRequest.prototype.clearPriceActual = function() {
-  return this.setPriceActual(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.data.UpdateOrderLineRequest.prototype.hasPriceActual = function() {
-  return jspb.Message.getField(this, 7) != null;
-};
-
-
-/**
- * optional Decimal discount_rate = 8;
- * @return {?proto.data.Decimal}
- */
-proto.data.UpdateOrderLineRequest.prototype.getDiscountRate = function() {
-  return /** @type{?proto.data.Decimal} */ (
-    jspb.Message.getWrapperField(this, proto_base_data_type_pb.Decimal, 8));
-};
-
-
-/**
- * @param {?proto.data.Decimal|undefined} value
- * @return {!proto.data.UpdateOrderLineRequest} returns this
-*/
 proto.data.UpdateOrderLineRequest.prototype.setDiscountRate = function(value) {
-  return jspb.Message.setWrapperField(this, 8, value);
+  return jspb.Message.setWrapperField(this, 7, value);
 };
 
 
@@ -35655,16 +35847,16 @@ proto.data.UpdateOrderLineRequest.prototype.clearDiscountRate = function() {
  * @return {boolean}
  */
 proto.data.UpdateOrderLineRequest.prototype.hasDiscountRate = function() {
-  return jspb.Message.getField(this, 8) != null;
+  return jspb.Message.getField(this, 7) != null;
 };
 
 
 /**
- * optional bool is_add_quantity = 9;
+ * optional bool is_add_quantity = 8;
  * @return {boolean}
  */
 proto.data.UpdateOrderLineRequest.prototype.getIsAddQuantity = function() {
-  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 9, false));
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 8, false));
 };
 
 
@@ -35673,16 +35865,16 @@ proto.data.UpdateOrderLineRequest.prototype.getIsAddQuantity = function() {
  * @return {!proto.data.UpdateOrderLineRequest} returns this
  */
 proto.data.UpdateOrderLineRequest.prototype.setIsAddQuantity = function(value) {
-  return jspb.Message.setProto3BooleanField(this, 9, value);
+  return jspb.Message.setProto3BooleanField(this, 8, value);
 };
 
 
 /**
- * optional string warehouse_uuid = 10;
+ * optional string warehouse_uuid = 9;
  * @return {string}
  */
 proto.data.UpdateOrderLineRequest.prototype.getWarehouseUuid = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 10, ""));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 9, ""));
 };
 
 
@@ -35691,16 +35883,16 @@ proto.data.UpdateOrderLineRequest.prototype.getWarehouseUuid = function() {
  * @return {!proto.data.UpdateOrderLineRequest} returns this
  */
 proto.data.UpdateOrderLineRequest.prototype.setWarehouseUuid = function(value) {
-  return jspb.Message.setProto3StringField(this, 10, value);
+  return jspb.Message.setProto3StringField(this, 9, value);
 };
 
 
 /**
- * optional string pos_uuid = 11;
+ * optional string pos_uuid = 10;
  * @return {string}
  */
 proto.data.UpdateOrderLineRequest.prototype.getPosUuid = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 11, ""));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 10, ""));
 };
 
 
@@ -35709,7 +35901,7 @@ proto.data.UpdateOrderLineRequest.prototype.getPosUuid = function() {
  * @return {!proto.data.UpdateOrderLineRequest} returns this
  */
 proto.data.UpdateOrderLineRequest.prototype.setPosUuid = function(value) {
-  return jspb.Message.setProto3StringField(this, 11, value);
+  return jspb.Message.setProto3StringField(this, 10, value);
 };
 
 
