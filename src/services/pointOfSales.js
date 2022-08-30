@@ -371,28 +371,26 @@ class PointOfSales {
     orderLineUuid,
     description,
     quantity,
-    quantityOrdered,
+    uomUuid,
     price,
-    priceActual,
     discountRate,
     isAddQuantity,
     warehouseUuid,
     language
   }, callback) {
-    const { UpdateOrderLineRequest } = require('../grpc/proto/point_of_sales_pb.js');
-    const request = new UpdateOrderLineRequest()
-    const { getDecimalFromNumber } = require('../../lib/convertValues.js')
-
+    const { UpdateOrderLineRequest } = require('@adempiere/grpc-api/src/grpc/proto/point_of_sales_pb.js');
+    const { getDecimalFromNumber } = require('@adempiere/grpc-api/lib/convertValues.js');
+    const request = new UpdateOrderLineRequest();
+    
     request.setPosUuid(posUuid);
     request.setOrderLineUuid(orderLineUuid)
     request.setDescription(description)
     request.setQuantity(getDecimalFromNumber(quantity))
-    request.setQuantityOrdered(getDecimalFromNumber(quantityOrdered));
     request.setPrice(getDecimalFromNumber(price))
-    request.setPriceActual(getDecimalFromNumber(priceActual));
     request.setDiscountRate(getDecimalFromNumber(discountRate))
     request.setWarehouseUuid(warehouseUuid)
     request.setIsAddQuantity(isAddQuantity)
+    request.setUomUuid(uomUuid);
     request.setClientRequest(
       createClientRequest({ token, language })
     );
@@ -668,11 +666,13 @@ class PointOfSales {
     currencyUuid,
     paymentMethodUuid,
     isRefund,
+    referenceBankAccountUuid,
     language
   }, callback) {
-    const { CreatePaymentRequest } = require('../grpc/proto/point_of_sales_pb.js');
-    const { getDecimalFromNumber } = require('../../lib/convertValues.js')
+    const { CreatePaymentRequest } = require('@adempiere/grpc-api/src/grpc/proto/point_of_sales_pb.js');
+    const { getDecimalFromNumber } = require('@adempiere/grpc-api/lib/convertValues.js');
     const request = new CreatePaymentRequest()
+
     request.setPosUuid(posUuid)
     if(orderUuid) {
       request.setOrderUuid(orderUuid)
@@ -715,6 +715,7 @@ class PointOfSales {
     if (paymentAccountDate) {
       request.setPaymentAccountDate(paymentAccountDate)
     }
+    request.setReferenceBankAccountUuid(referenceBankAccountUuid);
     request.setClientRequest(
       createClientRequest({ token, language })
     );
@@ -803,11 +804,12 @@ class PointOfSales {
     tenderTypeCode,
     paymentMethodUuid,
     paymentAccountDate,
+    referenceBankAccountUuid,
     language
   }, callback) {
-    const { UpdatePaymentRequest } = require('../grpc/proto/point_of_sales_pb.js');
-    const { getDecimalFromNumber } = require('../../lib/convertValues.js')
-    const request = new UpdatePaymentRequest()
+    const { UpdatePaymentRequest } = require('@adempiere/grpc-api/src/grpc/proto/point_of_sales_pb.js');
+    const { getDecimalFromNumber } = require('@adempiere/grpc-api/lib/convertValues.js');
+    const request = new UpdatePaymentRequest();
 
     request.setPosUuid(posUuid);
     request.setPaymentUuid(paymentUuid)
@@ -836,6 +838,7 @@ class PointOfSales {
     if (paymentAccountDate) {
       request.setPaymentAccountDate(paymentAccountDate)
     }
+    request.setReferenceBankAccountUuid(referenceBankAccountUuid);
     request.setClientRequest(
       createClientRequest({ token, language })
     );
