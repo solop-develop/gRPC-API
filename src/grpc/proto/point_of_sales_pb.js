@@ -36381,7 +36381,8 @@ proto.data.Order.toObject = function(includeInstance, msg) {
     openAmount: (f = msg.getOpenAmount()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
     paymentAmount: (f = msg.getPaymentAmount()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
     refundAmount: (f = msg.getRefundAmount()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
-    chargeAmount: (f = msg.getChargeAmount()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f)
+    chargeAmount: (f = msg.getChargeAmount()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
+    creditAmount: (f = msg.getCreditAmount()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -36524,6 +36525,11 @@ proto.data.Order.deserializeBinaryFromReader = function(msg, reader) {
       var value = new proto_base_data_type_pb.Decimal;
       reader.readMessage(value,proto_base_data_type_pb.Decimal.deserializeBinaryFromReader);
       msg.setChargeAmount(value);
+      break;
+    case 25:
+      var value = new proto_base_data_type_pb.Decimal;
+      reader.readMessage(value,proto_base_data_type_pb.Decimal.deserializeBinaryFromReader);
+      msg.setCreditAmount(value);
       break;
     default:
       reader.skipField();
@@ -36726,6 +36732,14 @@ proto.data.Order.serializeBinaryToWriter = function(message, writer) {
   if (f != null) {
     writer.writeMessage(
       24,
+      f,
+      proto_base_data_type_pb.Decimal.serializeBinaryToWriter
+    );
+  }
+  f = message.getCreditAmount();
+  if (f != null) {
+    writer.writeMessage(
+      25,
       f,
       proto_base_data_type_pb.Decimal.serializeBinaryToWriter
     );
@@ -37429,6 +37443,43 @@ proto.data.Order.prototype.clearChargeAmount = function() {
  */
 proto.data.Order.prototype.hasChargeAmount = function() {
   return jspb.Message.getField(this, 24) != null;
+};
+
+
+/**
+ * optional Decimal credit_amount = 25;
+ * @return {?proto.data.Decimal}
+ */
+proto.data.Order.prototype.getCreditAmount = function() {
+  return /** @type{?proto.data.Decimal} */ (
+    jspb.Message.getWrapperField(this, proto_base_data_type_pb.Decimal, 25));
+};
+
+
+/**
+ * @param {?proto.data.Decimal|undefined} value
+ * @return {!proto.data.Order} returns this
+*/
+proto.data.Order.prototype.setCreditAmount = function(value) {
+  return jspb.Message.setWrapperField(this, 25, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.data.Order} returns this
+ */
+proto.data.Order.prototype.clearCreditAmount = function() {
+  return this.setCreditAmount(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.data.Order.prototype.hasCreditAmount = function() {
+  return jspb.Message.getField(this, 25) != null;
 };
 
 
