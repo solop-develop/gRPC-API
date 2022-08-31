@@ -396,6 +396,28 @@ function deserialize_data_KeyLayout(buffer_arg) {
   return proto_point_of_sales_pb.KeyLayout.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_data_ListAvailableCashRequest(arg) {
+  if (!(arg instanceof proto_point_of_sales_pb.ListAvailableCashRequest)) {
+    throw new Error('Expected argument of type data.ListAvailableCashRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_ListAvailableCashRequest(buffer_arg) {
+  return proto_point_of_sales_pb.ListAvailableCashRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_data_ListAvailableCashResponse(arg) {
+  if (!(arg instanceof proto_point_of_sales_pb.ListAvailableCashResponse)) {
+    throw new Error('Expected argument of type data.ListAvailableCashResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_ListAvailableCashResponse(buffer_arg) {
+  return proto_point_of_sales_pb.ListAvailableCashResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_data_ListAvailableCurrenciesRequest(arg) {
   if (!(arg instanceof proto_point_of_sales_pb.ListAvailableCurrenciesRequest)) {
     throw new Error('Expected argument of type data.ListAvailableCurrenciesRequest');
@@ -1782,6 +1804,18 @@ listStocks: {
     requestDeserialize: deserialize_data_ListStocksRequest,
     responseSerialize: serialize_data_ListStocksResponse,
     responseDeserialize: deserialize_data_ListStocksResponse,
+  },
+  //  List Available Cash 
+listAvailableCash: {
+    path: '/data.Store/ListAvailableCash',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_point_of_sales_pb.ListAvailableCashRequest,
+    responseType: proto_point_of_sales_pb.ListAvailableCashResponse,
+    requestSerialize: serialize_data_ListAvailableCashRequest,
+    requestDeserialize: deserialize_data_ListAvailableCashRequest,
+    responseSerialize: serialize_data_ListAvailableCashResponse,
+    responseDeserialize: deserialize_data_ListAvailableCashResponse,
   },
 };
 
