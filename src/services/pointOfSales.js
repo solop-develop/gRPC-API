@@ -1861,6 +1861,27 @@ class PointOfSales {
 
     this.getPointOfSalesService().listStocks(request, callback);
   }
+
+  // List Available Warehouses
+  listAvailableCash({
+    token,
+    posUuid,
+    pageSize,
+    pageToken,
+    language
+  }, callback) {
+    const { ListAvailableCashRequest } = require('@adempiere/grpc-api/src/grpc/proto/point_of_sales_pb.js');
+    const request = new ListAvailableCashRequest();
+
+    request.setPosUuid(posUuid);
+    request.setPageSize(pageSize);
+    request.setPageToken(pageToken);
+    request.setClientRequest(
+      createClientRequest({ token, language })
+    );
+
+    this.getPointOfSalesService().listAvailableCash(request, callback)
+  }
 }
 
 module.exports = PointOfSales;
