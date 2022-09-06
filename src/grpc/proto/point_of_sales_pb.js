@@ -4627,7 +4627,8 @@ proto.data.PaymentReference.toObject = function(includeInstance, msg) {
     isReceipt: jspb.Message.getBooleanFieldWithDefault(msg, 15, false),
     sourceAmount: (f = msg.getSourceAmount()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
     isAutomatic: jspb.Message.getBooleanFieldWithDefault(msg, 17, false),
-    isProcessed: jspb.Message.getBooleanFieldWithDefault(msg, 18, false)
+    isProcessed: jspb.Message.getBooleanFieldWithDefault(msg, 18, false),
+    orderCurrencyRate: (f = msg.getOrderCurrencyRate()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -4740,6 +4741,11 @@ proto.data.PaymentReference.deserializeBinaryFromReader = function(msg, reader) 
     case 18:
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setIsProcessed(value);
+      break;
+    case 19:
+      var value = new proto_base_data_type_pb.Decimal;
+      reader.readMessage(value,proto_base_data_type_pb.Decimal.deserializeBinaryFromReader);
+      msg.setOrderCurrencyRate(value);
       break;
     default:
       reader.skipField();
@@ -4899,6 +4905,14 @@ proto.data.PaymentReference.serializeBinaryToWriter = function(message, writer) 
     writer.writeBool(
       18,
       f
+    );
+  }
+  f = message.getOrderCurrencyRate();
+  if (f != null) {
+    writer.writeMessage(
+      19,
+      f,
+      proto_base_data_type_pb.Decimal.serializeBinaryToWriter
     );
   }
 };
@@ -5320,6 +5334,43 @@ proto.data.PaymentReference.prototype.getIsProcessed = function() {
  */
 proto.data.PaymentReference.prototype.setIsProcessed = function(value) {
   return jspb.Message.setProto3BooleanField(this, 18, value);
+};
+
+
+/**
+ * optional Decimal order_currency_rate = 19;
+ * @return {?proto.data.Decimal}
+ */
+proto.data.PaymentReference.prototype.getOrderCurrencyRate = function() {
+  return /** @type{?proto.data.Decimal} */ (
+    jspb.Message.getWrapperField(this, proto_base_data_type_pb.Decimal, 19));
+};
+
+
+/**
+ * @param {?proto.data.Decimal|undefined} value
+ * @return {!proto.data.PaymentReference} returns this
+*/
+proto.data.PaymentReference.prototype.setOrderCurrencyRate = function(value) {
+  return jspb.Message.setWrapperField(this, 19, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.data.PaymentReference} returns this
+ */
+proto.data.PaymentReference.prototype.clearOrderCurrencyRate = function() {
+  return this.setOrderCurrencyRate(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.data.PaymentReference.prototype.hasOrderCurrencyRate = function() {
+  return jspb.Message.getField(this, 19) != null;
 };
 
 
