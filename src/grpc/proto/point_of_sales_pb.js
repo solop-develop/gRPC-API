@@ -27897,7 +27897,10 @@ proto.data.PointOfSales.toObject = function(includeInstance, msg) {
     isAllowsApplyDiscount: jspb.Message.getBooleanFieldWithDefault(msg, 42, false),
     isAllowsCreateCustomer: jspb.Message.getBooleanFieldWithDefault(msg, 43, false),
     isAllowsPrintDocument: jspb.Message.getBooleanFieldWithDefault(msg, 44, false),
-    isAllowsPreviewDocument: jspb.Message.getBooleanFieldWithDefault(msg, 45, false)
+    isAllowsPreviewDocument: jspb.Message.getBooleanFieldWithDefault(msg, 45, false),
+    isPosManager: jspb.Message.getBooleanFieldWithDefault(msg, 46, false),
+    isAllowsModifyDiscount: jspb.Message.getBooleanFieldWithDefault(msg, 47, false),
+    isKeepPriceFromCustomer: jspb.Message.getBooleanFieldWithDefault(msg, 48, false)
   };
 
   if (includeInstance) {
@@ -28127,6 +28130,18 @@ proto.data.PointOfSales.deserializeBinaryFromReader = function(msg, reader) {
     case 45:
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setIsAllowsPreviewDocument(value);
+      break;
+    case 46:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setIsPosManager(value);
+      break;
+    case 47:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setIsAllowsModifyDiscount(value);
+      break;
+    case 48:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setIsKeepPriceFromCustomer(value);
       break;
     default:
       reader.skipField();
@@ -28483,6 +28498,27 @@ proto.data.PointOfSales.serializeBinaryToWriter = function(message, writer) {
   if (f) {
     writer.writeBool(
       45,
+      f
+    );
+  }
+  f = message.getIsPosManager();
+  if (f) {
+    writer.writeBool(
+      46,
+      f
+    );
+  }
+  f = message.getIsAllowsModifyDiscount();
+  if (f) {
+    writer.writeBool(
+      47,
+      f
+    );
+  }
+  f = message.getIsKeepPriceFromCustomer();
+  if (f) {
+    writer.writeBool(
+      48,
       f
     );
   }
@@ -29562,6 +29598,60 @@ proto.data.PointOfSales.prototype.getIsAllowsPreviewDocument = function() {
  */
 proto.data.PointOfSales.prototype.setIsAllowsPreviewDocument = function(value) {
   return jspb.Message.setProto3BooleanField(this, 45, value);
+};
+
+
+/**
+ * optional bool is_pos_manager = 46;
+ * @return {boolean}
+ */
+proto.data.PointOfSales.prototype.getIsPosManager = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 46, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.data.PointOfSales} returns this
+ */
+proto.data.PointOfSales.prototype.setIsPosManager = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 46, value);
+};
+
+
+/**
+ * optional bool is_allows_modify_discount = 47;
+ * @return {boolean}
+ */
+proto.data.PointOfSales.prototype.getIsAllowsModifyDiscount = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 47, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.data.PointOfSales} returns this
+ */
+proto.data.PointOfSales.prototype.setIsAllowsModifyDiscount = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 47, value);
+};
+
+
+/**
+ * optional bool is_keep_price_from_customer = 48;
+ * @return {boolean}
+ */
+proto.data.PointOfSales.prototype.getIsKeepPriceFromCustomer = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 48, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.data.PointOfSales} returns this
+ */
+proto.data.PointOfSales.prototype.setIsKeepPriceFromCustomer = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 48, value);
 };
 
 
