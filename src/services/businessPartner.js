@@ -14,8 +14,8 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.            *
  ************************************************************************************/
 
-const { createClientRequest } = require('../../lib/clientRequest');
-const { isEmptyValue } = require('../../lib/convertValues.js');
+const { createClientRequest } = require('@adempiere/grpc-api/lib/clientRequest');
+const { isEmptyValue } = require('@adempiere/grpc-api/lib/convertValues.js');
 
 class BusinessPartner {
 
@@ -41,7 +41,7 @@ class BusinessPartner {
   // Init connection
   initBusinessPartnerService() {
     const grpc = require('@grpc/grpc-js');
-    const services = require('../grpc/proto/business_partner_grpc_pb');
+    const services = require('@adempiere/grpc-api/src/grpc/proto/business_partner_grpc_pb');
     this.businessPartner = new services.BusinessPartnerClient(this.businessHost, grpc.credentials.createInsecure());
   }
 
@@ -68,9 +68,9 @@ class BusinessPartner {
     pageToken,
     language
   }, callback) {
-    const { ListBusinessPartnerInfo } = require('../grpc/proto/business_partner_grpc_pb');
-    const request = new ListBusinessPartnerInfo();
-    const { convertCriteriaToGRPC } = require('../../lib/convertValues');
+    const { ListBusinessPartnerInfoRequest } = require('@adempiere/grpc-api/src/grpc/proto/business_partner_pb.js');
+    const request = new ListBusinessPartnerInfoRequest();
+    const { convertCriteriaToGRPC } = require('@adempiere/grpc-api/lib/convertValues');
 
     request.setFieldUuid(fieldUuid);
     request.setProcessParameterUuid(processParameterUuid);
@@ -87,7 +87,7 @@ class BusinessPartner {
 
     request.setSearchValue(searchValue);
     if (!isEmptyValue(contextAttributes)) {
-      const { convertParameterToGRPC, typeOfValue } = require('../../lib/convertValues.js');
+      const { convertParameterToGRPC, typeOfValue } = require('@adempiere/grpc-api/lib/convertValues.js');
 
       if (typeOfValue(contextAttributes) === 'String') {
         contextAttributes = JSON.parse(contextAttributes);
