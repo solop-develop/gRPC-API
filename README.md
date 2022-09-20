@@ -69,17 +69,18 @@ Note to generate specific proto definition:
 * To access: `npm run stub:access`
 * To base data type: `npm run stub:base_data_type`
 * To business: `npm run stub:business`
+* To business partner: `npm run stub:business_partner`
 * To client: `npm run stub:client`
 * To core functionality: `npm run stub:core_functionality`
 * To dictionary: `npm run stub:dictionary`
 * To enrollment: `npm run stub:enrollment`
-* To point of sales: `npm run stub:point_of_sales`
-* To business partner: `npm run stub:business_partner`
+* To general ledger: `npm run stub:general_ledger`
 * To in-out: `npm run stub:in_out`
 * To invoice: `npm run stub:invoice`
 * To order: `npm run stub:order`
 * To payment: `npm run stub:payment`
 * To payroll action notice: `npm run stub:payroll_action_notice`
+* To point of sales: `npm run stub:point_of_sales`
 * To product: `npm run stub:product`
 * To workflow: `npm run stub:workflow`
 
@@ -132,6 +133,8 @@ The result is generated on: `src/grpc/proto/` folder
 - `base_data_type_pb.js`
 - `business_grpc_pb.js`
 - `business_pb.js`
+- `business_partner_grpc_pb.js`
+- `business_partner_pb.js`
 - `client_grpc_pb.js`
 - `client_pb.js`
 - `core_functionality_grpc_pb.js`
@@ -140,10 +143,8 @@ The result is generated on: `src/grpc/proto/` folder
 - `dictionary_pb.js`
 - `enrollment_grpc_pb.js`
 - `enrollment_pb.js`
-- `point_of_sales_grpc_pb.js`
-- `point_of_sales_pb.js`
-- `business_partner_grpc_pb.js`
-- `business_partner_pb.js`
+- `general_ledger_pb.js`
+- `general_ledger_grpc_pb.js`
 - `in_out_grpc_pb.js`
 - `in_out_pb.js`
 - `invoice_grpc_pb.js`
@@ -154,6 +155,8 @@ The result is generated on: `src/grpc/proto/` folder
 - `payment_pb.js`
 - `payroll_action_notice_grpc_pb.js`
 - `payroll_action_notice_pb.js`
+- `point_of_sales_grpc_pb.js`
+- `point_of_sales_pb.js`
 - `product_grpc_pb.js`
 - `product_pb.js`
 - `workflow_grpc_pb.js`
