@@ -75,11 +75,6 @@
     this.core = new services.CoreFunctionalityClient(this.businessHost, grpc.credentials.createInsecure());
   }
 
-  //  Get Enrollment Service
-  getEnrollmentService() {
-    return this.enrollment
-  }
-
   //  Get UI Service
   getUIService() {
     return this.ui
@@ -1050,6 +1045,7 @@
     tabUuid,
     callout,
     columnName,
+    valueType,
     oldValue,
     value,
     windowNo,
@@ -1063,12 +1059,20 @@
     request.setTabUuid(tabUuid)
     request.setCallout(callout)
     request.setColumnName(columnName)
-    request.setOldValue(convertValueToGRPC({
-      value: oldValue
-    }))
-    request.setValue(convertValueToGRPC({
-      value
-    }))
+
+    request.setOldValue(
+      convertValueToGRPC({
+        value: oldValue,
+        valueType
+      })
+    );
+    request.setValue(
+      convertValueToGRPC({
+        value,
+        valueType
+      })
+    );
+
     request.setWindowNo(windowNo)
     if(contextAttributes) {
       contextAttributes.forEach(attribute => {
@@ -1079,6 +1083,7 @@
       })
     }
     request.setClientRequest(this.createClientRequest(token, language))
+
     this.getUIService().runCallout(request, callback)
   }
 
