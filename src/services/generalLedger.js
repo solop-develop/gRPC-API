@@ -1,5 +1,5 @@
 /*************************************************************************************
- * Product: ADempiere gRPC Dictionary Client                                         *
+ * Product: ADempiere gRPC General Ledger Client                                     *
  * Copyright (C) 2012-2022 E.R.P. Consultores y Asociados, C.A.                      *
  * Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                      *
  * This program is free software: you can redistribute it and/or modify              *
@@ -196,6 +196,73 @@ class GeneralLedger {
     );
 
     this.getGeneralLedgerService().saveAccountingCombination(request, callback);
+  }
+
+  srartRePost({
+    token,
+    tableName,
+    recordId,
+    recordUuid,
+    isForce = false,
+    language
+  }, callback) {
+    const { StartRePostRequest } = require('@adempiere/grpc-api/src/grpc/proto/general_ledger_pb.js');
+    const request = new StartRePostRequest();
+
+    request.setTableName(tableName);
+    request.setRecordId(recordId);
+    request.setRecordUuid(recordUuid);
+    request.setIsForce(isForce);
+
+    request.setClientRequest(
+      createClientRequest({
+        token,
+        language
+      })
+    );
+
+    this.getGeneralLedgerService().startRePost(request, callback);
+  }
+
+  listAccoutingFacts({
+    token,
+    // DSL
+    tableName,
+    recordId,
+    recordUuid,
+    filters = [],
+    // Page Data
+    pageSize,
+    pageToken,
+    language
+  }, callback) {
+    const {
+      ListAccoutingFactsRequest
+    } = require('@adempiere/grpc-api/src/grpc/proto/general_ledger_pb.js');
+    const request = new ListAccoutingFactsRequest();
+
+    request.setTableName(tableName);
+    request.setRecordId(recordId);
+    request.setRecordUuid(recordUuid);
+
+    if (!isEmptyValue(filters)) {
+      const {
+        convertCriteriaToGRPC
+      } = require('@adempiere/grpc-api/lib/convertValues');
+      request.setFilters(
+        convertCriteriaToGRPC({
+          filters
+        })
+      );
+    }
+
+    request.setPageSize(pageSize);
+    request.setPageToken(pageToken);
+    request.setClientRequest(
+      createClientRequest({ token, language })
+    );
+
+    this.getGeneralLedgerService().listAccoutingFacts(request, callback);
   }
 
 }
