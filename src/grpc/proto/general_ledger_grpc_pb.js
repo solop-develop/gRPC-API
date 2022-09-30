@@ -66,6 +66,17 @@ function deserialize_general_ledger_ListAccountingCombinationsRequest(buffer_arg
   return proto_general_ledger_pb.ListAccountingCombinationsRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_general_ledger_ListAccoutingFactsRequest(arg) {
+  if (!(arg instanceof proto_general_ledger_pb.ListAccoutingFactsRequest)) {
+    throw new Error('Expected argument of type general_ledger.ListAccoutingFactsRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_general_ledger_ListAccoutingFactsRequest(buffer_arg) {
+  return proto_general_ledger_pb.ListAccoutingFactsRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_general_ledger_SaveAccountingCombinationRequest(arg) {
   if (!(arg instanceof proto_general_ledger_pb.SaveAccountingCombinationRequest)) {
     throw new Error('Expected argument of type general_ledger.SaveAccountingCombinationRequest');
@@ -75,6 +86,28 @@ function serialize_general_ledger_SaveAccountingCombinationRequest(arg) {
 
 function deserialize_general_ledger_SaveAccountingCombinationRequest(buffer_arg) {
   return proto_general_ledger_pb.SaveAccountingCombinationRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_general_ledger_StartRePostRequest(arg) {
+  if (!(arg instanceof proto_general_ledger_pb.StartRePostRequest)) {
+    throw new Error('Expected argument of type general_ledger.StartRePostRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_general_ledger_StartRePostRequest(buffer_arg) {
+  return proto_general_ledger_pb.StartRePostRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_general_ledger_StartRePostResponse(arg) {
+  if (!(arg instanceof proto_general_ledger_pb.StartRePostResponse)) {
+    throw new Error('Expected argument of type general_ledger.StartRePostResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_general_ledger_StartRePostResponse(buffer_arg) {
+  return proto_general_ledger_pb.StartRePostResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 
@@ -115,6 +148,30 @@ saveAccountingCombination: {
     requestDeserialize: deserialize_general_ledger_SaveAccountingCombinationRequest,
     responseSerialize: serialize_data_Entity,
     responseDeserialize: deserialize_data_Entity,
+  },
+  // List Accouting Facts
+listAccoutingFacts: {
+    path: '/general_ledger.GeneralLedger/ListAccoutingFacts',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_general_ledger_pb.ListAccoutingFactsRequest,
+    responseType: proto_business_pb.ListEntitiesResponse,
+    requestSerialize: serialize_general_ledger_ListAccoutingFactsRequest,
+    requestDeserialize: deserialize_general_ledger_ListAccoutingFactsRequest,
+    responseSerialize: serialize_data_ListEntitiesResponse,
+    responseDeserialize: deserialize_data_ListEntitiesResponse,
+  },
+  // Start Re-Post
+startRePost: {
+    path: '/general_ledger.GeneralLedger/StartRePost',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_general_ledger_pb.StartRePostRequest,
+    responseType: proto_general_ledger_pb.StartRePostResponse,
+    requestSerialize: serialize_general_ledger_StartRePostRequest,
+    requestDeserialize: deserialize_general_ledger_StartRePostRequest,
+    responseSerialize: serialize_general_ledger_StartRePostResponse,
+    responseDeserialize: deserialize_general_ledger_StartRePostResponse,
   },
 };
 

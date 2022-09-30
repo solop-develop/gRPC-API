@@ -1,6 +1,6 @@
 {
   "name": "@adempiere/grpc-api",
-  "version": "3.4.4",
+  "version": "3.4.5",
   "description": "ADempiere Web Store write in Javascript for a node service",
   "author": "Yamel Senih",
   "contributors": [
@@ -18,7 +18,7 @@
   ],
   "scripts": {
     "ci": "yarn install --frozen-lockfile",
-    "stub": "npm run stub:access && npm run stub:base_data_type && npm run stub:business && npm run stub:business_partner && npm run stub:client && npm run stub:core_functionality && npm run stub:dictionary && npm run stub:enrollment && npm run stub:general_ledger && npm run stub:in_out && npm run stub:invoice && npm run stub:logs && npm run stub:order && npm run stub:payment && npm run stub:payroll_action_notice && npm run stub:point_of_sales && npm run stub:product && npm run stub:workflow",
+    "stub": "npm run stub:access && npm run stub:base_data_type && npm run stub:business && npm run stub:business_partner && npm run stub:client && npm run stub:core_functionality && npm run stub:dictionary && npm run stub:enrollment && npm run stub:general_ledger && npm run stub:in_out && npm run stub:invoice && npm run stub:logs && npm run stub:material_management && npm run stub:order && npm run stub:payment && npm run stub:payroll_action_notice && npm run stub:point_of_sales && npm run stub:product && npm run stub:workflow",
     "stub:access": "grpc_tools_node_protoc proto/access.proto --js_out=import_style=commonjs,binary:src/grpc/ --grpc_out=grpc_js:src/grpc/",
     "stub:base_data_type": "grpc_tools_node_protoc proto/base_data_type.proto --js_out=import_style=commonjs,binary:src/grpc/ --grpc_out=grpc_js:src/grpc/",
     "stub:business": "grpc_tools_node_protoc proto/business.proto --js_out=import_style=commonjs,binary:src/grpc/ --grpc_out=grpc_js:src/grpc/",
@@ -31,6 +31,7 @@
     "stub:in_out": "grpc_tools_node_protoc proto/in_out.proto --js_out=import_style=commonjs,binary:src/grpc/ --grpc_out=grpc_js:src/grpc/",
     "stub:invoice": "grpc_tools_node_protoc proto/invoice.proto --js_out=import_style=commonjs,binary:src/grpc/ --grpc_out=grpc_js:src/grpc/",
     "stub:logs": "grpc_tools_node_protoc proto/logs.proto --js_out=import_style=commonjs,binary:src/grpc/ --grpc_out=grpc_js:src/grpc/",
+    "stub:material_management": "grpc_tools_node_protoc proto/material_management.proto --js_out=import_style=commonjs,binary:src/grpc/ --grpc_out=grpc_js:src/grpc/",
     "stub:order": "grpc_tools_node_protoc proto/order.proto --js_out=import_style=commonjs,binary:src/grpc/ --grpc_out=grpc_js:src/grpc/",
     "stub:payment": "grpc_tools_node_protoc proto/payment.proto --js_out=import_style=commonjs,binary:src/grpc/ --grpc_out=grpc_js:src/grpc/",
     "stub:payroll_action_notice": "grpc_tools_node_protoc proto/payroll_action_notice.proto --js_out=import_style=commonjs,binary:src/grpc/ --grpc_out=grpc_js:src/grpc/",
