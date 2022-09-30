@@ -52,7 +52,7 @@ class MaterialManagement {
     return this.materialManagement;
   }
 
-  listProductStorageRequest({
+  listProductStorage({
     token,
     // DSL
     tableName,
@@ -78,7 +78,7 @@ class MaterialManagement {
       createClientRequest({ token, language })
     );
 
-    this.getMaterialManagementService().listProductStorageRequest(request, callback);
+    this.getMaterialManagementService().listProductStorage(request, callback);
   }
 
 }
