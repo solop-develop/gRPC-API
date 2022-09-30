@@ -206,7 +206,7 @@ class GeneralLedger {
     isForce = false,
     language
   }, callback) {
-    const { StartRePostRequest } = require('@/adempiere/grpc-api/src/grpc/proto/general_ledger_pb.js');
+    const { StartRePostRequest } = require('@adempiere/grpc-api/src/grpc/proto/general_ledger_pb.js');
     const request = new StartRePostRequest();
 
     request.setTableName(tableName);
@@ -221,7 +221,7 @@ class GeneralLedger {
       })
     );
 
-    this.getGeneralLedgerService().srartRePost(request, callback);
+    this.getGeneralLedgerService().startRePost(request, callback);
   }
 
   listAccoutingFacts({
