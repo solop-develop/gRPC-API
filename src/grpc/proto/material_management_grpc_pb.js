@@ -44,7 +44,7 @@ function deserialize_material_management_ListProductStorageRequest(buffer_arg) {
 }
 
 
-// The General Ledger service definition.
+// The Material Management service definition.
 var MaterialManagementService = exports.MaterialManagementService = {
   // List Product Storage
 listProductStorage: {
