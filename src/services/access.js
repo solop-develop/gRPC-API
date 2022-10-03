@@ -56,6 +56,7 @@ class Access {
     password,
     token,
     roleUuid,
+    roleId,
     organizationUuid,
     warehouseUuid,
     language
@@ -70,6 +71,7 @@ class Access {
     request.setOrganizationUuid(organizationUuid)
     request.setWarehouseUuid(warehouseUuid)
     request.setLanguage(language)
+    request.setRoleId(roleId)
     request.setClientVersion(this.version)
     this.getAccessService().runLogin(request, callback)
   }

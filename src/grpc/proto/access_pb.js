@@ -811,7 +811,8 @@ proto.access.LoginRequest.toObject = function(includeInstance, msg) {
     warehouseUuid: jspb.Message.getFieldWithDefault(msg, 5, ""),
     clientVersion: jspb.Message.getFieldWithDefault(msg, 6, ""),
     language: jspb.Message.getFieldWithDefault(msg, 7, ""),
-    token: jspb.Message.getFieldWithDefault(msg, 8, "")
+    token: jspb.Message.getFieldWithDefault(msg, 8, ""),
+    roleId: jspb.Message.getFieldWithDefault(msg, 9, 0)
   };
 
   if (includeInstance) {
@@ -879,6 +880,10 @@ proto.access.LoginRequest.deserializeBinaryFromReader = function(msg, reader) {
     case 8:
       var value = /** @type {string} */ (reader.readString());
       msg.setToken(value);
+      break;
+    case 9:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setRoleId(value);
       break;
     default:
       reader.skipField();
@@ -962,6 +967,13 @@ proto.access.LoginRequest.serializeBinaryToWriter = function(message, writer) {
   if (f.length > 0) {
     writer.writeString(
       8,
+      f
+    );
+  }
+  f = message.getRoleId();
+  if (f !== 0) {
+    writer.writeInt32(
+      9,
       f
     );
   }
@@ -1109,6 +1121,24 @@ proto.access.LoginRequest.prototype.getToken = function() {
  */
 proto.access.LoginRequest.prototype.setToken = function(value) {
   return jspb.Message.setProto3StringField(this, 8, value);
+};
+
+
+/**
+ * optional int32 role_id = 9;
+ * @return {number}
+ */
+proto.access.LoginRequest.prototype.getRoleId = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 9, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.access.LoginRequest} returns this
+ */
+proto.access.LoginRequest.prototype.setRoleId = function(value) {
+  return jspb.Message.setProto3IntField(this, 9, value);
 };
 
 
