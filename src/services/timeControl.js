@@ -11,10 +11,11 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                     *
  * GNU General Public License for more details.                                      *
  * You should have received a copy of the GNU General Public License                 *
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.            *
+ * along with this program. If not, see <https://www.gnu.org/licenses/>.             *
  ************************************************************************************/
 
 const { createClientRequest } = require('@adempiere/grpc-api/lib/clientRequest');
+const { isEmptyValue } = require('@adempiere/grpc-api/lib/convertValues.js');
 
 class TimeControl {
 
@@ -54,8 +55,8 @@ class TimeControl {
   createResourceAssignment({
     token,
     // DSL
-    typeId,
-    typeUuid,
+    resourceTypeId,
+    resourceTypeUuid,
     name,
     description,
     //
@@ -66,8 +67,10 @@ class TimeControl {
     } = require('@adempiere/grpc-api/src/grpc/proto/time_control_pb.js');
     const request = new CreateResourceAssignmentRequest();
 
-    request.setTypeId(typeId);
-    request.setTypeUuid(typeUuid);
+    if (!isEmptyValue(resourceTypeId) && !Number.isNaN(resourceTypeId)) {
+      request.setResourceTypeId(Number(resourceTypeId));
+    }
+    request.setResourceTypeUuid(resourceTypeUuid);
     request.setName(name);
     request.setDescription(description);
 
@@ -78,11 +81,11 @@ class TimeControl {
     this.getTimeControlService().createResourceAssignment(request, callback);
   }
 
-  listResourcesAssigment({
+  listResourcesAssignment({
     token,
     // DSL
-    typeId,
-    typeUuid,
+    resourceTypeId,
+    resourceTypeUuid,
     name,
     description,
     // Page Data
@@ -91,12 +94,15 @@ class TimeControl {
     language
   }, callback) {
     const {
-      ListResourcesAssigmentRequest
+      ListResourcesAssignmentRequest
     } = require('@adempiere/grpc-api/src/grpc/proto/time_control_pb.js');
-    const request = new ListResourcesAssigmentRequest();
+    const request = new ListResourcesAssignmentRequest();
 
-    request.setTypeId(typeId);
-    request.setTypeUuid(typeUuid);
+    if (!isEmptyValue(resourceTypeId) && !Number.isNaN(resourceTypeId)) {
+      request.setResourceTypeId(Number(resourceTypeId));
+    }
+
+    request.setResourceTypeUuid(resourceTypeUuid);
     request.setName(name);
     request.setDescription(description);
 
@@ -106,7 +112,7 @@ class TimeControl {
       createClientRequest({ token, language })
     );
 
-    this.getTimeControlService().listResourcesAssigment(request, callback);
+    this.getTimeControlService().listResourcesAssignment(request, callback);
   }
 
   updateResourceAssignment({
@@ -124,7 +130,9 @@ class TimeControl {
     } = require('@adempiere/grpc-api/src/grpc/proto/time_control_pb.js');
     const request = new UpdateResourceAssignmentRequest();
 
-    request.setId(id);
+    if (!isEmptyValue(id) && !Number.isNaN(id)) {
+      request.setId(Number(id));
+    }
     request.setUuid(uuid);
     request.setName(name);
     request.setDescription(description);
@@ -149,7 +157,9 @@ class TimeControl {
     } = require('@adempiere/grpc-api/src/grpc/proto/time_control_pb.js');
     const request = new DeleteResourceAssignmentRequest();
 
-    request.setId(id);
+    if (!isEmptyValue(id) && !Number.isNaN(id)) {
+      request.setId(Number(id));
+    }
     request.setUuid(uuid);
 
     request.setClientRequest(
@@ -158,6 +168,32 @@ class TimeControl {
 
     this.getTimeControlService().deleteResourceAssignment(request, callback);
   }
+
+  confirmResourceAssignment({
+    token,
+    // DSL
+    id,
+    uuid,
+    //
+    language
+  }, callback) {
+    const {
+      ConfirmResourceAssignmentRequest
+    } = require('@adempiere/grpc-api/src/grpc/proto/time_control_pb.js');
+    const request = new ConfirmResourceAssignmentRequest();
+
+    if (!isEmptyValue(id) && !Number.isNaN(id)) {
+      request.setId(Number(id));
+    }
+    request.setUuid(uuid);
+
+    request.setClientRequest(
+      createClientRequest({ token, language })
+    );
+
+    this.getTimeControlService().confirmResourceAssignment(request, callback);
+  }
+
 }
 
 module.exports = TimeControl;
