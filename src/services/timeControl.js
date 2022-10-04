@@ -88,6 +88,7 @@ class TimeControl {
     resourceTypeUuid,
     name,
     description,
+    isWaitingForOrdered = false,
     // Page Data
     pageSize,
     pageToken,
@@ -105,8 +106,11 @@ class TimeControl {
     request.setResourceTypeUuid(resourceTypeUuid);
     request.setName(name);
     request.setDescription(description);
+    request.setIsWaitingForOrdered(isWaitingForOrdered);
 
-    request.setPageSize(pageSize);
+    if (!isEmptyValue(pageSize) && !Number.isNaN(pageSize)) {
+      request.setPageSize(Number(pageSize));
+    }
     request.setPageToken(pageToken);
     request.setClientRequest(
       createClientRequest({ token, language })

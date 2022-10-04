@@ -526,7 +526,8 @@ proto.time_control.ListResourcesAssignmentRequest.toObject = function(includeIns
     resourceTypeId: jspb.Message.getFieldWithDefault(msg, 4, 0),
     resourceTypeUuid: jspb.Message.getFieldWithDefault(msg, 5, ""),
     name: jspb.Message.getFieldWithDefault(msg, 6, ""),
-    description: jspb.Message.getFieldWithDefault(msg, 7, "")
+    description: jspb.Message.getFieldWithDefault(msg, 7, ""),
+    isWaitingForOrdered: jspb.Message.getBooleanFieldWithDefault(msg, 9, false)
   };
 
   if (includeInstance) {
@@ -591,6 +592,10 @@ proto.time_control.ListResourcesAssignmentRequest.deserializeBinaryFromReader = 
     case 7:
       var value = /** @type {string} */ (reader.readString());
       msg.setDescription(value);
+      break;
+    case 9:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setIsWaitingForOrdered(value);
       break;
     default:
       reader.skipField();
@@ -668,6 +673,13 @@ proto.time_control.ListResourcesAssignmentRequest.serializeBinaryToWriter = func
   if (f.length > 0) {
     writer.writeString(
       7,
+      f
+    );
+  }
+  f = message.getIsWaitingForOrdered();
+  if (f) {
+    writer.writeBool(
+      9,
       f
     );
   }
@@ -816,6 +828,24 @@ proto.time_control.ListResourcesAssignmentRequest.prototype.getDescription = fun
  */
 proto.time_control.ListResourcesAssignmentRequest.prototype.setDescription = function(value) {
   return jspb.Message.setProto3StringField(this, 7, value);
+};
+
+
+/**
+ * optional bool is_waiting_for_ordered = 9;
+ * @return {boolean}
+ */
+proto.time_control.ListResourcesAssignmentRequest.prototype.getIsWaitingForOrdered = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 9, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.time_control.ListResourcesAssignmentRequest} returns this
+ */
+proto.time_control.ListResourcesAssignmentRequest.prototype.setIsWaitingForOrdered = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 9, value);
 };
 
 
