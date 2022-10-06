@@ -88,7 +88,10 @@ class TimeControl {
     resourceTypeUuid,
     name,
     description,
+    isOnlyConfirmed = false,
     isWaitingForOrdered = false,
+    dateFrom,
+    dateTo,
     // Page Data
     pageSize,
     pageToken,
@@ -106,7 +109,10 @@ class TimeControl {
     request.setResourceTypeUuid(resourceTypeUuid);
     request.setName(name);
     request.setDescription(description);
+    request.setIsOnlyConfirmed(isOnlyConfirmed);
     request.setIsWaitingForOrdered(isWaitingForOrdered);
+    request.setDateFrom(dateFrom);
+    request.setDateTo(dateTo);
 
     if (!isEmptyValue(pageSize) && !Number.isNaN(pageSize)) {
       request.setPageSize(Number(pageSize));
