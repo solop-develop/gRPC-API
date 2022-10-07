@@ -269,6 +269,7 @@ class PointOfSales {
     orderUuid,
     productUuid,
     chargeUuid,
+    resourceAssignmentUuid,
     description,
     quantity,
     price,
@@ -284,6 +285,7 @@ class PointOfSales {
     request.setOrderUuid(orderUuid)
     request.setProductUuid(productUuid)
     request.setChargeUuid(chargeUuid)
+    request.setResourceAssignmentUuid(resourceAssignmentUuid);
     request.setDescription(description)
     if(quantity) {
       request.setQuantity(getDecimalFromNumber(quantity))

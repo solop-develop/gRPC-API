@@ -19,6 +19,8 @@ var proto_client_pb = require('../proto/client_pb.js');
 goog.object.extend(proto, proto_client_pb);
 var proto_base_data_type_pb = require('../proto/base_data_type_pb.js');
 goog.object.extend(proto, proto_base_data_type_pb);
+var proto_core_functionality_pb = require('../proto/core_functionality_pb.js');
+goog.object.extend(proto, proto_core_functionality_pb);
 goog.exportSymbol('proto.time_control.ConfirmResourceAssignmentRequest', null, global);
 goog.exportSymbol('proto.time_control.CreateResourceAssignmentRequest', null, global);
 goog.exportSymbol('proto.time_control.DeleteResourceAssignmentRequest', null, global);
@@ -526,7 +528,11 @@ proto.time_control.ListResourcesAssignmentRequest.toObject = function(includeIns
     resourceTypeId: jspb.Message.getFieldWithDefault(msg, 4, 0),
     resourceTypeUuid: jspb.Message.getFieldWithDefault(msg, 5, ""),
     name: jspb.Message.getFieldWithDefault(msg, 6, ""),
-    description: jspb.Message.getFieldWithDefault(msg, 7, "")
+    description: jspb.Message.getFieldWithDefault(msg, 7, ""),
+    isOnlyConfirmed: jspb.Message.getBooleanFieldWithDefault(msg, 8, false),
+    isWaitingForOrdered: jspb.Message.getBooleanFieldWithDefault(msg, 9, false),
+    dateFrom: jspb.Message.getFieldWithDefault(msg, 10, 0),
+    dateTo: jspb.Message.getFieldWithDefault(msg, 11, 0)
   };
 
   if (includeInstance) {
@@ -591,6 +597,22 @@ proto.time_control.ListResourcesAssignmentRequest.deserializeBinaryFromReader = 
     case 7:
       var value = /** @type {string} */ (reader.readString());
       msg.setDescription(value);
+      break;
+    case 8:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setIsOnlyConfirmed(value);
+      break;
+    case 9:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setIsWaitingForOrdered(value);
+      break;
+    case 10:
+      var value = /** @type {number} */ (reader.readInt64());
+      msg.setDateFrom(value);
+      break;
+    case 11:
+      var value = /** @type {number} */ (reader.readInt64());
+      msg.setDateTo(value);
       break;
     default:
       reader.skipField();
@@ -668,6 +690,34 @@ proto.time_control.ListResourcesAssignmentRequest.serializeBinaryToWriter = func
   if (f.length > 0) {
     writer.writeString(
       7,
+      f
+    );
+  }
+  f = message.getIsOnlyConfirmed();
+  if (f) {
+    writer.writeBool(
+      8,
+      f
+    );
+  }
+  f = message.getIsWaitingForOrdered();
+  if (f) {
+    writer.writeBool(
+      9,
+      f
+    );
+  }
+  f = message.getDateFrom();
+  if (f !== 0) {
+    writer.writeInt64(
+      10,
+      f
+    );
+  }
+  f = message.getDateTo();
+  if (f !== 0) {
+    writer.writeInt64(
+      11,
       f
     );
   }
@@ -816,6 +866,78 @@ proto.time_control.ListResourcesAssignmentRequest.prototype.getDescription = fun
  */
 proto.time_control.ListResourcesAssignmentRequest.prototype.setDescription = function(value) {
   return jspb.Message.setProto3StringField(this, 7, value);
+};
+
+
+/**
+ * optional bool is_only_confirmed = 8;
+ * @return {boolean}
+ */
+proto.time_control.ListResourcesAssignmentRequest.prototype.getIsOnlyConfirmed = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 8, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.time_control.ListResourcesAssignmentRequest} returns this
+ */
+proto.time_control.ListResourcesAssignmentRequest.prototype.setIsOnlyConfirmed = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 8, value);
+};
+
+
+/**
+ * optional bool is_waiting_for_ordered = 9;
+ * @return {boolean}
+ */
+proto.time_control.ListResourcesAssignmentRequest.prototype.getIsWaitingForOrdered = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 9, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.time_control.ListResourcesAssignmentRequest} returns this
+ */
+proto.time_control.ListResourcesAssignmentRequest.prototype.setIsWaitingForOrdered = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 9, value);
+};
+
+
+/**
+ * optional int64 date_from = 10;
+ * @return {number}
+ */
+proto.time_control.ListResourcesAssignmentRequest.prototype.getDateFrom = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 10, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.time_control.ListResourcesAssignmentRequest} returns this
+ */
+proto.time_control.ListResourcesAssignmentRequest.prototype.setDateFrom = function(value) {
+  return jspb.Message.setProto3IntField(this, 10, value);
+};
+
+
+/**
+ * optional int64 date_to = 11;
+ * @return {number}
+ */
+proto.time_control.ListResourcesAssignmentRequest.prototype.getDateTo = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 11, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.time_control.ListResourcesAssignmentRequest} returns this
+ */
+proto.time_control.ListResourcesAssignmentRequest.prototype.setDateTo = function(value) {
+  return jspb.Message.setProto3IntField(this, 11, value);
 };
 
 
@@ -1335,9 +1457,10 @@ proto.time_control.ResourceType.toObject = function(includeInstance, msg) {
   var f, obj = {
     id: jspb.Message.getFieldWithDefault(msg, 1, 0),
     uuid: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    value: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    name: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    description: jspb.Message.getFieldWithDefault(msg, 6, "")
+    value: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    name: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    description: jspb.Message.getFieldWithDefault(msg, 5, ""),
+    unitOfMeasure: (f = msg.getUnitOfMeasure()) && proto_core_functionality_pb.UnitOfMeasure.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1382,17 +1505,22 @@ proto.time_control.ResourceType.deserializeBinaryFromReader = function(msg, read
       var value = /** @type {string} */ (reader.readString());
       msg.setUuid(value);
       break;
-    case 4:
+    case 3:
       var value = /** @type {string} */ (reader.readString());
       msg.setValue(value);
       break;
-    case 5:
+    case 4:
       var value = /** @type {string} */ (reader.readString());
       msg.setName(value);
       break;
-    case 6:
+    case 5:
       var value = /** @type {string} */ (reader.readString());
       msg.setDescription(value);
+      break;
+    case 6:
+      var value = new proto_core_functionality_pb.UnitOfMeasure;
+      reader.readMessage(value,proto_core_functionality_pb.UnitOfMeasure.deserializeBinaryFromReader);
+      msg.setUnitOfMeasure(value);
       break;
     default:
       reader.skipField();
@@ -1440,22 +1568,30 @@ proto.time_control.ResourceType.serializeBinaryToWriter = function(message, writ
   f = message.getValue();
   if (f.length > 0) {
     writer.writeString(
-      4,
+      3,
       f
     );
   }
   f = message.getName();
   if (f.length > 0) {
     writer.writeString(
-      5,
+      4,
       f
     );
   }
   f = message.getDescription();
   if (f.length > 0) {
     writer.writeString(
-      6,
+      5,
       f
+    );
+  }
+  f = message.getUnitOfMeasure();
+  if (f != null) {
+    writer.writeMessage(
+      6,
+      f,
+      proto_core_functionality_pb.UnitOfMeasure.serializeBinaryToWriter
     );
   }
 };
@@ -1498,11 +1634,11 @@ proto.time_control.ResourceType.prototype.setUuid = function(value) {
 
 
 /**
- * optional string value = 4;
+ * optional string value = 3;
  * @return {string}
  */
 proto.time_control.ResourceType.prototype.getValue = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
 
 
@@ -1511,16 +1647,16 @@ proto.time_control.ResourceType.prototype.getValue = function() {
  * @return {!proto.time_control.ResourceType} returns this
  */
 proto.time_control.ResourceType.prototype.setValue = function(value) {
-  return jspb.Message.setProto3StringField(this, 4, value);
+  return jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
 /**
- * optional string name = 5;
+ * optional string name = 4;
  * @return {string}
  */
 proto.time_control.ResourceType.prototype.getName = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
 };
 
 
@@ -1529,16 +1665,16 @@ proto.time_control.ResourceType.prototype.getName = function() {
  * @return {!proto.time_control.ResourceType} returns this
  */
 proto.time_control.ResourceType.prototype.setName = function(value) {
-  return jspb.Message.setProto3StringField(this, 5, value);
+  return jspb.Message.setProto3StringField(this, 4, value);
 };
 
 
 /**
- * optional string description = 6;
+ * optional string description = 5;
  * @return {string}
  */
 proto.time_control.ResourceType.prototype.getDescription = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
 };
 
 
@@ -1547,7 +1683,44 @@ proto.time_control.ResourceType.prototype.getDescription = function() {
  * @return {!proto.time_control.ResourceType} returns this
  */
 proto.time_control.ResourceType.prototype.setDescription = function(value) {
-  return jspb.Message.setProto3StringField(this, 6, value);
+  return jspb.Message.setProto3StringField(this, 5, value);
+};
+
+
+/**
+ * optional data.UnitOfMeasure unit_of_measure = 6;
+ * @return {?proto.data.UnitOfMeasure}
+ */
+proto.time_control.ResourceType.prototype.getUnitOfMeasure = function() {
+  return /** @type{?proto.data.UnitOfMeasure} */ (
+    jspb.Message.getWrapperField(this, proto_core_functionality_pb.UnitOfMeasure, 6));
+};
+
+
+/**
+ * @param {?proto.data.UnitOfMeasure|undefined} value
+ * @return {!proto.time_control.ResourceType} returns this
+*/
+proto.time_control.ResourceType.prototype.setUnitOfMeasure = function(value) {
+  return jspb.Message.setWrapperField(this, 6, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.time_control.ResourceType} returns this
+ */
+proto.time_control.ResourceType.prototype.clearUnitOfMeasure = function() {
+  return this.setUnitOfMeasure(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.time_control.ResourceType.prototype.hasUnitOfMeasure = function() {
+  return jspb.Message.getField(this, 6) != null;
 };
 
 

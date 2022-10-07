@@ -21,6 +21,8 @@ var proto_base_data_type_pb = require('../proto/base_data_type_pb.js');
 goog.object.extend(proto, proto_base_data_type_pb);
 var proto_client_pb = require('../proto/client_pb.js');
 goog.object.extend(proto, proto_client_pb);
+var proto_time_control_pb = require('../proto/time_control_pb.js');
+goog.object.extend(proto, proto_time_control_pb);
 goog.exportSymbol('proto.data.Address', null, global);
 goog.exportSymbol('proto.data.AddressRequest', null, global);
 goog.exportSymbol('proto.data.AllocateSellerRequest', null, global);
@@ -34671,7 +34673,8 @@ proto.data.CreateOrderLineRequest.toObject = function(includeInstance, msg) {
     price: (f = msg.getPrice()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
     discountRate: (f = msg.getDiscountRate()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
     warehouseUuid: jspb.Message.getFieldWithDefault(msg, 9, ""),
-    posUuid: jspb.Message.getFieldWithDefault(msg, 10, "")
+    posUuid: jspb.Message.getFieldWithDefault(msg, 10, ""),
+    resourceAssignmentUuid: jspb.Message.getFieldWithDefault(msg, 11, "")
   };
 
   if (includeInstance) {
@@ -34751,6 +34754,10 @@ proto.data.CreateOrderLineRequest.deserializeBinaryFromReader = function(msg, re
     case 10:
       var value = /** @type {string} */ (reader.readString());
       msg.setPosUuid(value);
+      break;
+    case 11:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setResourceAssignmentUuid(value);
       break;
     default:
       reader.skipField();
@@ -34852,6 +34859,13 @@ proto.data.CreateOrderLineRequest.serializeBinaryToWriter = function(message, wr
   if (f.length > 0) {
     writer.writeString(
       10,
+      f
+    );
+  }
+  f = message.getResourceAssignmentUuid();
+  if (f.length > 0) {
+    writer.writeString(
+      11,
       f
     );
   }
@@ -35111,6 +35125,24 @@ proto.data.CreateOrderLineRequest.prototype.getPosUuid = function() {
  */
 proto.data.CreateOrderLineRequest.prototype.setPosUuid = function(value) {
   return jspb.Message.setProto3StringField(this, 10, value);
+};
+
+
+/**
+ * optional string resource_assignment_uuid = 11;
+ * @return {string}
+ */
+proto.data.CreateOrderLineRequest.prototype.getResourceAssignmentUuid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 11, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.data.CreateOrderLineRequest} returns this
+ */
+proto.data.CreateOrderLineRequest.prototype.setResourceAssignmentUuid = function(value) {
+  return jspb.Message.setProto3StringField(this, 11, value);
 };
 
 
@@ -37782,7 +37814,8 @@ proto.data.OrderLine.toObject = function(includeInstance, msg) {
     totalAmountWithTax: (f = msg.getTotalAmountWithTax()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
     line: jspb.Message.getFieldWithDefault(msg, 29, 0),
     uom: (f = msg.getUom()) && proto_core_functionality_pb.ProductConversion.toObject(includeInstance, f),
-    productUom: (f = msg.getProductUom()) && proto_core_functionality_pb.ProductConversion.toObject(includeInstance, f)
+    productUom: (f = msg.getProductUom()) && proto_core_functionality_pb.ProductConversion.toObject(includeInstance, f),
+    resourceAssignment: (f = msg.getResourceAssignment()) && proto_time_control_pb.ResourceAssignment.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -37968,6 +38001,11 @@ proto.data.OrderLine.deserializeBinaryFromReader = function(msg, reader) {
       var value = new proto_core_functionality_pb.ProductConversion;
       reader.readMessage(value,proto_core_functionality_pb.ProductConversion.deserializeBinaryFromReader);
       msg.setProductUom(value);
+      break;
+    case 32:
+      var value = new proto_time_control_pb.ResourceAssignment;
+      reader.readMessage(value,proto_time_control_pb.ResourceAssignment.deserializeBinaryFromReader);
+      msg.setResourceAssignment(value);
       break;
     default:
       reader.skipField();
@@ -38239,6 +38277,14 @@ proto.data.OrderLine.serializeBinaryToWriter = function(message, writer) {
       31,
       f,
       proto_core_functionality_pb.ProductConversion.serializeBinaryToWriter
+    );
+  }
+  f = message.getResourceAssignment();
+  if (f != null) {
+    writer.writeMessage(
+      32,
+      f,
+      proto_time_control_pb.ResourceAssignment.serializeBinaryToWriter
     );
   }
 };
@@ -39293,6 +39339,43 @@ proto.data.OrderLine.prototype.clearProductUom = function() {
  */
 proto.data.OrderLine.prototype.hasProductUom = function() {
   return jspb.Message.getField(this, 31) != null;
+};
+
+
+/**
+ * optional time_control.ResourceAssignment resource_assignment = 32;
+ * @return {?proto.time_control.ResourceAssignment}
+ */
+proto.data.OrderLine.prototype.getResourceAssignment = function() {
+  return /** @type{?proto.time_control.ResourceAssignment} */ (
+    jspb.Message.getWrapperField(this, proto_time_control_pb.ResourceAssignment, 32));
+};
+
+
+/**
+ * @param {?proto.time_control.ResourceAssignment|undefined} value
+ * @return {!proto.data.OrderLine} returns this
+*/
+proto.data.OrderLine.prototype.setResourceAssignment = function(value) {
+  return jspb.Message.setWrapperField(this, 32, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.data.OrderLine} returns this
+ */
+proto.data.OrderLine.prototype.clearResourceAssignment = function() {
+  return this.setResourceAssignment(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.data.OrderLine.prototype.hasResourceAssignment = function() {
+  return jspb.Message.getField(this, 32) != null;
 };
 
 
