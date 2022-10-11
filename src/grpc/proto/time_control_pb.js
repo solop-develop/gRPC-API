@@ -529,7 +529,7 @@ proto.time_control.ListResourcesAssignmentRequest.toObject = function(includeIns
     resourceTypeUuid: jspb.Message.getFieldWithDefault(msg, 5, ""),
     name: jspb.Message.getFieldWithDefault(msg, 6, ""),
     description: jspb.Message.getFieldWithDefault(msg, 7, ""),
-    isOnlyConfirmed: jspb.Message.getBooleanFieldWithDefault(msg, 8, false),
+    confirmed: jspb.Message.getFieldWithDefault(msg, 8, ""),
     isWaitingForOrdered: jspb.Message.getBooleanFieldWithDefault(msg, 9, false),
     dateFrom: jspb.Message.getFieldWithDefault(msg, 10, 0),
     dateTo: jspb.Message.getFieldWithDefault(msg, 11, 0)
@@ -599,8 +599,8 @@ proto.time_control.ListResourcesAssignmentRequest.deserializeBinaryFromReader = 
       msg.setDescription(value);
       break;
     case 8:
-      var value = /** @type {boolean} */ (reader.readBool());
-      msg.setIsOnlyConfirmed(value);
+      var value = /** @type {string} */ (reader.readString());
+      msg.setConfirmed(value);
       break;
     case 9:
       var value = /** @type {boolean} */ (reader.readBool());
@@ -693,9 +693,9 @@ proto.time_control.ListResourcesAssignmentRequest.serializeBinaryToWriter = func
       f
     );
   }
-  f = message.getIsOnlyConfirmed();
-  if (f) {
-    writer.writeBool(
+  f = message.getConfirmed();
+  if (f.length > 0) {
+    writer.writeString(
       8,
       f
     );
@@ -870,20 +870,20 @@ proto.time_control.ListResourcesAssignmentRequest.prototype.setDescription = fun
 
 
 /**
- * optional bool is_only_confirmed = 8;
- * @return {boolean}
+ * optional string confirmed = 8;
+ * @return {string}
  */
-proto.time_control.ListResourcesAssignmentRequest.prototype.getIsOnlyConfirmed = function() {
-  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 8, false));
+proto.time_control.ListResourcesAssignmentRequest.prototype.getConfirmed = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 8, ""));
 };
 
 
 /**
- * @param {boolean} value
+ * @param {string} value
  * @return {!proto.time_control.ListResourcesAssignmentRequest} returns this
  */
-proto.time_control.ListResourcesAssignmentRequest.prototype.setIsOnlyConfirmed = function(value) {
-  return jspb.Message.setProto3BooleanField(this, 8, value);
+proto.time_control.ListResourcesAssignmentRequest.prototype.setConfirmed = function(value) {
+  return jspb.Message.setProto3StringField(this, 8, value);
 };
 
 
