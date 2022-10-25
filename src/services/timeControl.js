@@ -88,7 +88,7 @@ class TimeControl {
     resourceTypeUuid,
     name,
     description,
-    isOnlyConfirmed = false,
+    confirmed,
     isWaitingForOrdered = false,
     dateFrom,
     dateTo,
@@ -109,7 +109,7 @@ class TimeControl {
     request.setResourceTypeUuid(resourceTypeUuid);
     request.setName(name);
     request.setDescription(description);
-    request.setIsOnlyConfirmed(isOnlyConfirmed);
+    request.setConfirmed(confirmed);
     request.setIsWaitingForOrdered(isWaitingForOrdered);
     request.setDateFrom(dateFrom);
     request.setDateTo(dateTo);
