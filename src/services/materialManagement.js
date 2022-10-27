@@ -81,6 +81,56 @@ class MaterialManagement {
     this.getMaterialManagementService().listProductStorage(request, callback);
   }
 
+  /**
+   * List Product Attribute Set Instances
+   * @param {number} productId
+   * @param {string} productUuid
+   * @param {number} productAttributeSetId
+   * @param {string} productAttributeSetUuid
+   * @param {function} callback
+   */
+  listProductAttributeSetInstances({
+    token,
+    // DSL
+    productId,
+    productUuid,
+    productAttributeSetId,
+    productAttributeSetUuid,
+    filters,
+    // Page Data
+    pageSize,
+    pageToken,
+    language
+  }, callback) {
+    const { isEmptyValue } = require('@adempiere/grpc-api/lib/convertValues');
+    const {
+      ListProductAttributeSetInstancesRequest
+    } = require('@adempiere/grpc-api/src/grpc/proto/material_management_pb.js');
+    const request = new ListProductAttributeSetInstancesRequest();
+
+    request.setProductId(productId);
+    request.setProductUuid(productUuid);
+    request.setProductAttributeSetId(productAttributeSetId);
+    request.setProductAttributeSetUuid(productAttributeSetUuid);
+
+    if (!isEmptyValue(filters)) {
+      const { convertCriteriaToGRPC } = require('@adempiere/grpc-api/lib/convertValues');
+      request.setFilters(
+        convertCriteriaToGRPC({
+          filters
+        })
+      );
+    }
+
+    request.setPageSize(pageSize);
+    request.setPageToken(pageToken);
+    request.setClientRequest(
+      createClientRequest({ token, language })
+    );
+
+    this.getMaterialManagementService().listProductAttributeSetInstances(request, callback);
+  }
+
 }
 
 module.exports = MaterialManagement;
