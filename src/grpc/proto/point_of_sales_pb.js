@@ -35189,7 +35189,8 @@ proto.data.UpdateOrderRequest.toObject = function(includeInstance, msg) {
     campaignUuid: jspb.Message.getFieldWithDefault(msg, 9, ""),
     discountRate: (f = msg.getDiscountRate()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
     discountRateOff: (f = msg.getDiscountRateOff()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
-    discountAmountOff: (f = msg.getDiscountAmountOff()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f)
+    discountAmountOff: (f = msg.getDiscountAmountOff()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
+    salesRepresentativeUuid: jspb.Message.getFieldWithDefault(msg, 13, "")
   };
 
   if (includeInstance) {
@@ -35277,6 +35278,10 @@ proto.data.UpdateOrderRequest.deserializeBinaryFromReader = function(msg, reader
       var value = new proto_base_data_type_pb.Decimal;
       reader.readMessage(value,proto_base_data_type_pb.Decimal.deserializeBinaryFromReader);
       msg.setDiscountAmountOff(value);
+      break;
+    case 13:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setSalesRepresentativeUuid(value);
       break;
     default:
       reader.skipField();
@@ -35393,6 +35398,13 @@ proto.data.UpdateOrderRequest.serializeBinaryToWriter = function(message, writer
       12,
       f,
       proto_base_data_type_pb.Decimal.serializeBinaryToWriter
+    );
+  }
+  f = message.getSalesRepresentativeUuid();
+  if (f.length > 0) {
+    writer.writeString(
+      13,
+      f
     );
   }
 };
@@ -35687,6 +35699,24 @@ proto.data.UpdateOrderRequest.prototype.clearDiscountAmountOff = function() {
  */
 proto.data.UpdateOrderRequest.prototype.hasDiscountAmountOff = function() {
   return jspb.Message.getField(this, 12) != null;
+};
+
+
+/**
+ * optional string sales_representative_uuid = 13;
+ * @return {string}
+ */
+proto.data.UpdateOrderRequest.prototype.getSalesRepresentativeUuid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 13, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.data.UpdateOrderRequest} returns this
+ */
+proto.data.UpdateOrderRequest.prototype.setSalesRepresentativeUuid = function(value) {
+  return jspb.Message.setProto3StringField(this, 13, value);
 };
 
 
