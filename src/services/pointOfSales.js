@@ -339,6 +339,7 @@ class PointOfSales {
     discountRate,
     discountRateOff,
     discountAmountOff,
+    salesRepresentativeUuid,
     language
   }, callback) {
     const { UpdateOrderRequest } = require('../grpc/proto/point_of_sales_pb.js');
@@ -353,6 +354,8 @@ class PointOfSales {
     request.setDiscountRate(getDecimalFromNumber(discountRate))
     request.setDiscountRateOff(getDecimalFromNumber(discountRateOff))
     request.setDiscountAmountOff(getDecimalFromNumber(discountAmountOff))
+    request.setSalesRepresentativeUuid(salesRepresentativeUuid);
+
     if(warehouseUuid) {
       request.setWarehouseUuid(warehouseUuid)
     }
