@@ -1237,12 +1237,17 @@ class PointOfSales {
     posUuid,
     pin,
     requestedAccess,
+    requestedAmount,
     language
   }, callback) {
     const { ValidatePINRequest } = require('../grpc/proto/point_of_sales_pb.js');
+    const { getDecimalFromNumber } = require('../../lib/convertValues.js')
     const request = new ValidatePINRequest()
 
     request.setRequestedAccess(requestedAccess);
+    if(requestedAmount) {
+      request.setRequestedAmount(getDecimalFromNumber(requestedAmount))
+    }
     request.setPin(pin)
     request.setPosUuid(posUuid)
     request.setClientRequest(
