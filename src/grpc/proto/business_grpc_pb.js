@@ -13,7 +13,7 @@
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.	See the                     *
 // GNU General Public License for more details.                                     *
 // You should have received a copy of the GNU General Public License                *
-// along with this program.	If not, see <https://www.gnu.org/licenses/>.            *
+// along with this program. If not, see <https://www.gnu.org/licenses/>.            *
 // **********************************************************************************
 'use strict';
 var grpc = require('@grpc/grpc-js');
@@ -527,6 +527,17 @@ function deserialize_data_ListTabEntitiesRequest(buffer_arg) {
   return proto_business_pb.ListTabEntitiesRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_data_ListTabSequencesRequest(arg) {
+  if (!(arg instanceof proto_business_pb.ListTabSequencesRequest)) {
+    throw new Error('Expected argument of type data.ListTabSequencesRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_ListTabSequencesRequest(buffer_arg) {
+  return proto_business_pb.ListTabSequencesRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_data_ListTranslationsRequest(arg) {
   if (!(arg instanceof proto_business_pb.ListTranslationsRequest)) {
     throw new Error('Expected argument of type data.ListTranslationsRequest');
@@ -679,6 +690,17 @@ function serialize_data_RunCalloutRequest(arg) {
 
 function deserialize_data_RunCalloutRequest(buffer_arg) {
   return proto_business_pb.RunCalloutRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_data_SaveTabSequencesRequest(arg) {
+  if (!(arg instanceof proto_business_pb.SaveTabSequencesRequest)) {
+    throw new Error('Expected argument of type data.SaveTabSequencesRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_SaveTabSequencesRequest(buffer_arg) {
+  return proto_business_pb.SaveTabSequencesRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_data_SetPreferenceRequest(arg) {
@@ -1149,6 +1171,30 @@ listGeneralInfo: {
     responseType: proto_business_pb.ListEntitiesResponse,
     requestSerialize: serialize_data_ListGeneralInfoRequest,
     requestDeserialize: deserialize_data_ListGeneralInfoRequest,
+    responseSerialize: serialize_data_ListEntitiesResponse,
+    responseDeserialize: deserialize_data_ListEntitiesResponse,
+  },
+  // 	List Tab Sequences
+listTabSequences: {
+    path: '/data.UserInterface/ListTabSequences',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_business_pb.ListTabSequencesRequest,
+    responseType: proto_business_pb.ListEntitiesResponse,
+    requestSerialize: serialize_data_ListTabSequencesRequest,
+    requestDeserialize: deserialize_data_ListTabSequencesRequest,
+    responseSerialize: serialize_data_ListEntitiesResponse,
+    responseDeserialize: deserialize_data_ListEntitiesResponse,
+  },
+  // 	Save Tab Sequences
+saveTabSequences: {
+    path: '/data.UserInterface/SaveTabSequences',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_business_pb.SaveTabSequencesRequest,
+    responseType: proto_business_pb.ListEntitiesResponse,
+    requestSerialize: serialize_data_SaveTabSequencesRequest,
+    requestDeserialize: deserialize_data_SaveTabSequencesRequest,
     responseSerialize: serialize_data_ListEntitiesResponse,
     responseDeserialize: deserialize_data_ListEntitiesResponse,
   },
