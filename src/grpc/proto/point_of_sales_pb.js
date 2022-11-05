@@ -27902,7 +27902,9 @@ proto.data.PointOfSales.toObject = function(includeInstance, msg) {
     isAllowsPreviewDocument: jspb.Message.getBooleanFieldWithDefault(msg, 45, false),
     isPosManager: jspb.Message.getBooleanFieldWithDefault(msg, 46, false),
     isAllowsModifyDiscount: jspb.Message.getBooleanFieldWithDefault(msg, 47, false),
-    isKeepPriceFromCustomer: jspb.Message.getBooleanFieldWithDefault(msg, 48, false)
+    isKeepPriceFromCustomer: jspb.Message.getBooleanFieldWithDefault(msg, 48, false),
+    maximumLineDiscountAllowed: (f = msg.getMaximumLineDiscountAllowed()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
+    isAllowsModifyCustomer: jspb.Message.getBooleanFieldWithDefault(msg, 50, false)
   };
 
   if (includeInstance) {
@@ -28144,6 +28146,15 @@ proto.data.PointOfSales.deserializeBinaryFromReader = function(msg, reader) {
     case 48:
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setIsKeepPriceFromCustomer(value);
+      break;
+    case 59:
+      var value = new proto_base_data_type_pb.Decimal;
+      reader.readMessage(value,proto_base_data_type_pb.Decimal.deserializeBinaryFromReader);
+      msg.setMaximumLineDiscountAllowed(value);
+      break;
+    case 50:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setIsAllowsModifyCustomer(value);
       break;
     default:
       reader.skipField();
@@ -28521,6 +28532,21 @@ proto.data.PointOfSales.serializeBinaryToWriter = function(message, writer) {
   if (f) {
     writer.writeBool(
       48,
+      f
+    );
+  }
+  f = message.getMaximumLineDiscountAllowed();
+  if (f != null) {
+    writer.writeMessage(
+      59,
+      f,
+      proto_base_data_type_pb.Decimal.serializeBinaryToWriter
+    );
+  }
+  f = message.getIsAllowsModifyCustomer();
+  if (f) {
+    writer.writeBool(
+      50,
       f
     );
   }
@@ -29654,6 +29680,61 @@ proto.data.PointOfSales.prototype.getIsKeepPriceFromCustomer = function() {
  */
 proto.data.PointOfSales.prototype.setIsKeepPriceFromCustomer = function(value) {
   return jspb.Message.setProto3BooleanField(this, 48, value);
+};
+
+
+/**
+ * optional Decimal maximum_line_discount_allowed = 59;
+ * @return {?proto.data.Decimal}
+ */
+proto.data.PointOfSales.prototype.getMaximumLineDiscountAllowed = function() {
+  return /** @type{?proto.data.Decimal} */ (
+    jspb.Message.getWrapperField(this, proto_base_data_type_pb.Decimal, 59));
+};
+
+
+/**
+ * @param {?proto.data.Decimal|undefined} value
+ * @return {!proto.data.PointOfSales} returns this
+*/
+proto.data.PointOfSales.prototype.setMaximumLineDiscountAllowed = function(value) {
+  return jspb.Message.setWrapperField(this, 59, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.data.PointOfSales} returns this
+ */
+proto.data.PointOfSales.prototype.clearMaximumLineDiscountAllowed = function() {
+  return this.setMaximumLineDiscountAllowed(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.data.PointOfSales.prototype.hasMaximumLineDiscountAllowed = function() {
+  return jspb.Message.getField(this, 59) != null;
+};
+
+
+/**
+ * optional bool is_allows_modify_customer = 50;
+ * @return {boolean}
+ */
+proto.data.PointOfSales.prototype.getIsAllowsModifyCustomer = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 50, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.data.PointOfSales} returns this
+ */
+proto.data.PointOfSales.prototype.setIsAllowsModifyCustomer = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 50, value);
 };
 
 
@@ -32673,7 +32754,8 @@ proto.data.ValidatePINRequest.toObject = function(includeInstance, msg) {
     clientRequest: (f = msg.getClientRequest()) && proto_client_pb.ClientRequest.toObject(includeInstance, f),
     posUuid: jspb.Message.getFieldWithDefault(msg, 2, ""),
     pin: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    requestedAccess: jspb.Message.getFieldWithDefault(msg, 4, "")
+    requestedAccess: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    requestedAmount: (f = msg.getRequestedAmount()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -32726,6 +32808,11 @@ proto.data.ValidatePINRequest.deserializeBinaryFromReader = function(msg, reader
     case 4:
       var value = /** @type {string} */ (reader.readString());
       msg.setRequestedAccess(value);
+      break;
+    case 5:
+      var value = new proto_base_data_type_pb.Decimal;
+      reader.readMessage(value,proto_base_data_type_pb.Decimal.deserializeBinaryFromReader);
+      msg.setRequestedAmount(value);
       break;
     default:
       reader.skipField();
@@ -32783,6 +32870,14 @@ proto.data.ValidatePINRequest.serializeBinaryToWriter = function(message, writer
     writer.writeString(
       4,
       f
+    );
+  }
+  f = message.getRequestedAmount();
+  if (f != null) {
+    writer.writeMessage(
+      5,
+      f,
+      proto_base_data_type_pb.Decimal.serializeBinaryToWriter
     );
   }
 };
@@ -32876,6 +32971,43 @@ proto.data.ValidatePINRequest.prototype.getRequestedAccess = function() {
  */
 proto.data.ValidatePINRequest.prototype.setRequestedAccess = function(value) {
   return jspb.Message.setProto3StringField(this, 4, value);
+};
+
+
+/**
+ * optional Decimal requested_amount = 5;
+ * @return {?proto.data.Decimal}
+ */
+proto.data.ValidatePINRequest.prototype.getRequestedAmount = function() {
+  return /** @type{?proto.data.Decimal} */ (
+    jspb.Message.getWrapperField(this, proto_base_data_type_pb.Decimal, 5));
+};
+
+
+/**
+ * @param {?proto.data.Decimal|undefined} value
+ * @return {!proto.data.ValidatePINRequest} returns this
+*/
+proto.data.ValidatePINRequest.prototype.setRequestedAmount = function(value) {
+  return jspb.Message.setWrapperField(this, 5, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.data.ValidatePINRequest} returns this
+ */
+proto.data.ValidatePINRequest.prototype.clearRequestedAmount = function() {
+  return this.setRequestedAmount(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.data.ValidatePINRequest.prototype.hasRequestedAmount = function() {
+  return jspb.Message.getField(this, 5) != null;
 };
 
 
