@@ -676,7 +676,7 @@ proto.data.Empty.serializeBinaryToWriter = function(message, writer) {
  * @private {!Array<number>}
  * @const
  */
-proto.data.KeyValueSelection.repeatedFields_ = [2];
+proto.data.KeyValueSelection.repeatedFields_ = [3];
 
 
 
@@ -710,6 +710,7 @@ proto.data.KeyValueSelection.prototype.toObject = function(opt_includeInstance) 
 proto.data.KeyValueSelection.toObject = function(includeInstance, msg) {
   var f, obj = {
     selectionId: jspb.Message.getFieldWithDefault(msg, 1, 0),
+    selectionUuid: jspb.Message.getFieldWithDefault(msg, 2, ""),
     valuesList: jspb.Message.toObjectList(msg.getValuesList(),
     proto.data.KeyValue.toObject, includeInstance)
   };
@@ -753,6 +754,10 @@ proto.data.KeyValueSelection.deserializeBinaryFromReader = function(msg, reader)
       msg.setSelectionId(value);
       break;
     case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setSelectionUuid(value);
+      break;
+    case 3:
       var value = new proto.data.KeyValue;
       reader.readMessage(value,proto.data.KeyValue.deserializeBinaryFromReader);
       msg.addValues(value);
@@ -793,10 +798,17 @@ proto.data.KeyValueSelection.serializeBinaryToWriter = function(message, writer)
       f
     );
   }
+  f = message.getSelectionUuid();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
   f = message.getValuesList();
   if (f.length > 0) {
     writer.writeRepeatedMessage(
-      2,
+      3,
       f,
       proto.data.KeyValue.serializeBinaryToWriter
     );
@@ -823,12 +835,30 @@ proto.data.KeyValueSelection.prototype.setSelectionId = function(value) {
 
 
 /**
- * repeated KeyValue values = 2;
+ * optional string selection_uuid = 2;
+ * @return {string}
+ */
+proto.data.KeyValueSelection.prototype.getSelectionUuid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.data.KeyValueSelection} returns this
+ */
+proto.data.KeyValueSelection.prototype.setSelectionUuid = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * repeated KeyValue values = 3;
  * @return {!Array<!proto.data.KeyValue>}
  */
 proto.data.KeyValueSelection.prototype.getValuesList = function() {
   return /** @type{!Array<!proto.data.KeyValue>} */ (
-    jspb.Message.getRepeatedWrapperField(this, proto.data.KeyValue, 2));
+    jspb.Message.getRepeatedWrapperField(this, proto.data.KeyValue, 3));
 };
 
 
@@ -837,7 +867,7 @@ proto.data.KeyValueSelection.prototype.getValuesList = function() {
  * @return {!proto.data.KeyValueSelection} returns this
 */
 proto.data.KeyValueSelection.prototype.setValuesList = function(value) {
-  return jspb.Message.setRepeatedWrapperField(this, 2, value);
+  return jspb.Message.setRepeatedWrapperField(this, 3, value);
 };
 
 
@@ -847,7 +877,7 @@ proto.data.KeyValueSelection.prototype.setValuesList = function(value) {
  * @return {!proto.data.KeyValue}
  */
 proto.data.KeyValueSelection.prototype.addValues = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(this, 2, opt_value, proto.data.KeyValue, opt_index);
+  return jspb.Message.addToRepeatedWrapperField(this, 3, opt_value, proto.data.KeyValue, opt_index);
 };
 
 
