@@ -103,7 +103,6 @@ class UserInterface {
   saveTabSequences({
     token,
     tabUuid,
-    tableName,
     contextAttributes,
     entitiesList,
     language
@@ -112,7 +111,6 @@ class UserInterface {
     const request = new SaveTabSequencesRequest();
 
     request.setTabUuid(tabUuid);
-    request.setTableName(tableName);
 
     if (!isEmptyValue(contextAttributes)) {
       const { convertParameterToGRPC } = require('@adempiere/grpc-api/lib/convertValues.js');
