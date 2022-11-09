@@ -20863,7 +20863,7 @@ proto.data.ListTabSequencesRequest.prototype.clearContextAttributesList = functi
  * @private {!Array<number>}
  * @const
  */
-proto.data.SaveTabSequencesRequest.repeatedFields_ = [4,5];
+proto.data.SaveTabSequencesRequest.repeatedFields_ = [3,4];
 
 
 
@@ -20897,12 +20897,11 @@ proto.data.SaveTabSequencesRequest.prototype.toObject = function(opt_includeInst
 proto.data.SaveTabSequencesRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     clientRequest: (f = msg.getClientRequest()) && proto_client_pb.ClientRequest.toObject(includeInstance, f),
-    windowUuid: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    tabUuid: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    tabUuid: jspb.Message.getFieldWithDefault(msg, 2, ""),
     contextAttributesList: jspb.Message.toObjectList(msg.getContextAttributesList(),
     proto_base_data_type_pb.KeyValue.toObject, includeInstance),
-    attributesList: jspb.Message.toObjectList(msg.getAttributesList(),
-    proto_base_data_type_pb.KeyValue.toObject, includeInstance)
+    entitiesList: jspb.Message.toObjectList(msg.getEntitiesList(),
+    proto_base_data_type_pb.KeyValueSelection.toObject, includeInstance)
   };
 
   if (includeInstance) {
@@ -20946,21 +20945,17 @@ proto.data.SaveTabSequencesRequest.deserializeBinaryFromReader = function(msg, r
       break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
-      msg.setWindowUuid(value);
-      break;
-    case 3:
-      var value = /** @type {string} */ (reader.readString());
       msg.setTabUuid(value);
       break;
-    case 4:
+    case 3:
       var value = new proto_base_data_type_pb.KeyValue;
       reader.readMessage(value,proto_base_data_type_pb.KeyValue.deserializeBinaryFromReader);
       msg.addContextAttributes(value);
       break;
-    case 5:
-      var value = new proto_base_data_type_pb.KeyValue;
-      reader.readMessage(value,proto_base_data_type_pb.KeyValue.deserializeBinaryFromReader);
-      msg.addAttributes(value);
+    case 4:
+      var value = new proto_base_data_type_pb.KeyValueSelection;
+      reader.readMessage(value,proto_base_data_type_pb.KeyValueSelection.deserializeBinaryFromReader);
+      msg.addEntities(value);
       break;
     default:
       reader.skipField();
@@ -20999,34 +20994,27 @@ proto.data.SaveTabSequencesRequest.serializeBinaryToWriter = function(message, w
       proto_client_pb.ClientRequest.serializeBinaryToWriter
     );
   }
-  f = message.getWindowUuid();
+  f = message.getTabUuid();
   if (f.length > 0) {
     writer.writeString(
       2,
       f
     );
   }
-  f = message.getTabUuid();
+  f = message.getContextAttributesList();
   if (f.length > 0) {
-    writer.writeString(
+    writer.writeRepeatedMessage(
       3,
-      f
+      f,
+      proto_base_data_type_pb.KeyValue.serializeBinaryToWriter
     );
   }
-  f = message.getContextAttributesList();
+  f = message.getEntitiesList();
   if (f.length > 0) {
     writer.writeRepeatedMessage(
       4,
       f,
-      proto_base_data_type_pb.KeyValue.serializeBinaryToWriter
-    );
-  }
-  f = message.getAttributesList();
-  if (f.length > 0) {
-    writer.writeRepeatedMessage(
-      5,
-      f,
-      proto_base_data_type_pb.KeyValue.serializeBinaryToWriter
+      proto_base_data_type_pb.KeyValueSelection.serializeBinaryToWriter
     );
   }
 };
@@ -21070,10 +21058,10 @@ proto.data.SaveTabSequencesRequest.prototype.hasClientRequest = function() {
 
 
 /**
- * optional string window_uuid = 2;
+ * optional string tab_uuid = 2;
  * @return {string}
  */
-proto.data.SaveTabSequencesRequest.prototype.getWindowUuid = function() {
+proto.data.SaveTabSequencesRequest.prototype.getTabUuid = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
@@ -21082,36 +21070,18 @@ proto.data.SaveTabSequencesRequest.prototype.getWindowUuid = function() {
  * @param {string} value
  * @return {!proto.data.SaveTabSequencesRequest} returns this
  */
-proto.data.SaveTabSequencesRequest.prototype.setWindowUuid = function(value) {
+proto.data.SaveTabSequencesRequest.prototype.setTabUuid = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
 /**
- * optional string tab_uuid = 3;
- * @return {string}
- */
-proto.data.SaveTabSequencesRequest.prototype.getTabUuid = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.data.SaveTabSequencesRequest} returns this
- */
-proto.data.SaveTabSequencesRequest.prototype.setTabUuid = function(value) {
-  return jspb.Message.setProto3StringField(this, 3, value);
-};
-
-
-/**
- * repeated KeyValue context_attributes = 4;
+ * repeated KeyValue context_attributes = 3;
  * @return {!Array<!proto.data.KeyValue>}
  */
 proto.data.SaveTabSequencesRequest.prototype.getContextAttributesList = function() {
   return /** @type{!Array<!proto.data.KeyValue>} */ (
-    jspb.Message.getRepeatedWrapperField(this, proto_base_data_type_pb.KeyValue, 4));
+    jspb.Message.getRepeatedWrapperField(this, proto_base_data_type_pb.KeyValue, 3));
 };
 
 
@@ -21120,7 +21090,7 @@ proto.data.SaveTabSequencesRequest.prototype.getContextAttributesList = function
  * @return {!proto.data.SaveTabSequencesRequest} returns this
 */
 proto.data.SaveTabSequencesRequest.prototype.setContextAttributesList = function(value) {
-  return jspb.Message.setRepeatedWrapperField(this, 4, value);
+  return jspb.Message.setRepeatedWrapperField(this, 3, value);
 };
 
 
@@ -21130,7 +21100,7 @@ proto.data.SaveTabSequencesRequest.prototype.setContextAttributesList = function
  * @return {!proto.data.KeyValue}
  */
 proto.data.SaveTabSequencesRequest.prototype.addContextAttributes = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(this, 4, opt_value, proto.data.KeyValue, opt_index);
+  return jspb.Message.addToRepeatedWrapperField(this, 3, opt_value, proto.data.KeyValue, opt_index);
 };
 
 
@@ -21144,31 +21114,31 @@ proto.data.SaveTabSequencesRequest.prototype.clearContextAttributesList = functi
 
 
 /**
- * repeated KeyValue attributes = 5;
- * @return {!Array<!proto.data.KeyValue>}
+ * repeated KeyValueSelection entities = 4;
+ * @return {!Array<!proto.data.KeyValueSelection>}
  */
-proto.data.SaveTabSequencesRequest.prototype.getAttributesList = function() {
-  return /** @type{!Array<!proto.data.KeyValue>} */ (
-    jspb.Message.getRepeatedWrapperField(this, proto_base_data_type_pb.KeyValue, 5));
+proto.data.SaveTabSequencesRequest.prototype.getEntitiesList = function() {
+  return /** @type{!Array<!proto.data.KeyValueSelection>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto_base_data_type_pb.KeyValueSelection, 4));
 };
 
 
 /**
- * @param {!Array<!proto.data.KeyValue>} value
+ * @param {!Array<!proto.data.KeyValueSelection>} value
  * @return {!proto.data.SaveTabSequencesRequest} returns this
 */
-proto.data.SaveTabSequencesRequest.prototype.setAttributesList = function(value) {
-  return jspb.Message.setRepeatedWrapperField(this, 5, value);
+proto.data.SaveTabSequencesRequest.prototype.setEntitiesList = function(value) {
+  return jspb.Message.setRepeatedWrapperField(this, 4, value);
 };
 
 
 /**
- * @param {!proto.data.KeyValue=} opt_value
+ * @param {!proto.data.KeyValueSelection=} opt_value
  * @param {number=} opt_index
- * @return {!proto.data.KeyValue}
+ * @return {!proto.data.KeyValueSelection}
  */
-proto.data.SaveTabSequencesRequest.prototype.addAttributes = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(this, 5, opt_value, proto.data.KeyValue, opt_index);
+proto.data.SaveTabSequencesRequest.prototype.addEntities = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 4, opt_value, proto.data.KeyValueSelection, opt_index);
 };
 
 
@@ -21176,8 +21146,8 @@ proto.data.SaveTabSequencesRequest.prototype.addAttributes = function(opt_value,
  * Clears the list making it empty but non-null.
  * @return {!proto.data.SaveTabSequencesRequest} returns this
  */
-proto.data.SaveTabSequencesRequest.prototype.clearAttributesList = function() {
-  return this.setAttributesList([]);
+proto.data.SaveTabSequencesRequest.prototype.clearEntitiesList = function() {
+  return this.setEntitiesList([]);
 };
 
 

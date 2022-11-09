@@ -99,6 +99,54 @@ class UserInterface {
     this.getUserInterfaceService().listTabSequences(request, callback)
   }
 
+  // Tab Sequences (Is Sort Tab)
+  saveTabSequences({
+    token,
+    tabUuid,
+    contextAttributes,
+    entitiesList,
+    language
+  }, callback) {
+    const { SaveTabSequencesRequest } = require(this.stubFilePath);
+    const request = new SaveTabSequencesRequest();
+
+    request.setTabUuid(tabUuid);
+
+    if (!isEmptyValue(contextAttributes)) {
+      const { convertParameterToGRPC } = require('@adempiere/grpc-api/lib/convertValues.js');
+      contextAttributes.forEach(attribute => {
+        request.addContextAttributes(
+          convertParameterToGRPC({
+            columnName: attribute.key,
+            value: attribute.value
+          })
+        );
+      });
+    }
+
+    // entities records selections list
+    if (!isEmptyValue(entitiesList)) {
+      const { convertSelectionToGRPC } = require('@adempiere/grpc-api/lib/convertValues.js');
+
+      entitiesList.forEach(entity => {
+        // selection format = { selectionId: number, selectionValues: [{ columName, value }] }
+        const convertedRecord = convertSelectionToGRPC({
+          selectionId: entity.recordId,
+          selectionUuid: entity.recordUuid,
+          selectionValues: entity.attributesList
+        });
+
+        request.addEntities(convertedRecord);
+      });
+    }
+
+    request.setClientRequest(
+      createClientRequest({ token, language })
+    );
+  
+    this.getUserInterfaceService().saveTabSequences(request, callback)
+  }
+
 }
 
 module.exports = UserInterface;
