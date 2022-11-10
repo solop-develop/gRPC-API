@@ -20,6 +20,11 @@ const { isEmptyValue } = require('@adempiere/grpc-api/lib/convertValues.js');
 class MaterialManagement {
 
   /**
+   * File on generated stub
+   */
+  stubFile = require('@adempiere/grpc-api/src/grpc/proto/material_management_pb.js');
+
+  /**
    * Constructor, No authentication required
    * @param {string} host
    * @param {string} version
@@ -63,9 +68,7 @@ class MaterialManagement {
     pageToken,
     language
   }, callback) {
-    const {
-      ListProductStorageRequest
-    } = require('@adempiere/grpc-api/src/grpc/proto/material_management_pb.js');
+    const { ListProductStorageRequest } = this.stubFile;
     const request = new ListProductStorageRequest();
 
     request.setTableName(tableName);
@@ -101,9 +104,7 @@ class MaterialManagement {
     productAttributeSetInstanceUuid,
     language
   }, callback) {
-    const {
-      GetProductAttributeSetRequest
-    } = require('@adempiere/grpc-api/src/grpc/proto/material_management_pb.js');
+    const { GetProductAttributeSetRequest } = this.stubFile;
     const request = new GetProductAttributeSetRequest();
 
     request.setId(id);
@@ -118,6 +119,40 @@ class MaterialManagement {
     );
 
     this.getMaterialManagementService().getProductAttributeSet(request, callback);
+  }
+
+
+  /**
+   * Get Product Attribute Set Instance
+   * @param {number} id
+   * @param {string} uuid
+   * @param {number} productId
+   * @param {string} productUuid
+   * @param {number} productAttributeSetId
+   * @param {string} productAttributeSetUuid
+   * @param {function} callback
+   */
+  getProductAttributeSetInstance({
+    token,
+    id,
+    uuid,
+    productId,
+    productUuid,
+    language
+  }, callback) {
+    const { GetProductAttributeSetInstanceRequest } = this.stubFile;
+    const request = new GetProductAttributeSetInstanceRequest();
+
+    request.setId(id);
+    request.setUuid(uuid);
+    request.setProductId(productId);
+    request.setProductUuid(productUuid);
+
+    request.setClientRequest(
+      createClientRequest({ token, language })
+    );
+
+    this.getMaterialManagementService().getProductAttributeSetInstance(request, callback);
   }
 
   /**
@@ -142,9 +177,7 @@ class MaterialManagement {
     language
   }, callback) {
     const { isEmptyValue } = require('@adempiere/grpc-api/lib/convertValues');
-    const {
-      ListProductAttributeSetInstancesRequest
-    } = require('@adempiere/grpc-api/src/grpc/proto/material_management_pb.js');
+    const { ListProductAttributeSetInstancesRequest } = this.stubFile;
     const request = new ListProductAttributeSetInstancesRequest();
 
     request.setProductId(productId);
@@ -170,6 +203,62 @@ class MaterialManagement {
     this.getMaterialManagementService().listProductAttributeSetInstances(request, callback);
   }
 
+  /**
+   * Save Product Attribute Set Instance
+   * @param {number} id
+   * @param {string} uuid
+   * @param {number} productId
+   * @param {string} productUuid
+   * @param {number} productAttributeSetId
+   * @param {string} productAttributeSetUuid
+   * @param {array} attributes
+   * @param {function} callback
+   */
+   saveProductAttributeSetInstance({
+    token,
+    // DSL
+    id,
+    uuid,
+    productId,
+    productUuid,
+    productAttributeSetId,
+    productAttributeSetUuid,
+    attributes,
+    language
+  }, callback) {
+    const { isEmptyValue } = require('@adempiere/grpc-api/lib/convertValues');
+    const { SaveProductAttributeSetInstanceRequest } = this.stubFile;
+    const request = new SaveProductAttributeSetInstanceRequest();
+
+    request.setId(id);
+    request.setUuid(uuid);
+    request.setProductId(productId);
+    request.setProductUuid(productUuid);
+    request.setProductAttributeSetId(productAttributeSetId);
+    request.setProductAttributeSetUuid(productAttributeSetUuid);
+
+    if (!isEmptyValue(attributes)) {
+      const { convertParameterToGRPC } = require('@adempiere/grpc-api/lib/convertValues');
+
+      attributes.forEach(attribute => {
+        // parameter format = { columName, value }
+        const convertedAttribute = convertParameterToGRPC({
+          columnName: attribute.key,
+          value: attribute.value
+        });
+
+        request.addAttributes(convertedAttribute);
+      });
+    }
+
+    request.setClientRequest(
+      createClientRequest({ token, language })
+    );
+
+    this.getMaterialManagementService().saveProductAttributeSetInstance(request, callback);
+  }
+
+  
 }
 
 module.exports = MaterialManagement;

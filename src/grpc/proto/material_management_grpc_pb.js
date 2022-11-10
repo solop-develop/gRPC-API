@@ -194,7 +194,7 @@ getProductAttributeSet: {
     responseSerialize: serialize_material_management_ProductAttributeSet,
     responseDeserialize: deserialize_material_management_ProductAttributeSet,
   },
-  // Get Product Set Attribute
+  // Get Product Set Attribute Instance
 getProductAttributeSetInstance: {
     path: '/material_management.MaterialManagement/GetProductAttributeSetInstance',
     requestStream: false,
@@ -218,7 +218,7 @@ listProductAttributeSetInstances: {
     responseSerialize: serialize_material_management_ListProductAttributeSetInstancesResponse,
     responseDeserialize: deserialize_material_management_ListProductAttributeSetInstancesResponse,
   },
-  // Create/Update Product Set Attribute
+  // Create/Update Attribute Product Set Instance
 saveProductAttributeSetInstance: {
     path: '/material_management.MaterialManagement/SaveProductAttributeSetInstance',
     requestStream: false,
