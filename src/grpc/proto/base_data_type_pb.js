@@ -3056,19 +3056,20 @@ proto.data.Condition.serializeBinaryToWriter = function(message, writer) {
  * @enum {number}
  */
 proto.data.Condition.Operator = {
-  EQUAL: 0,
-  NOT_EQUAL: 1,
-  LIKE: 2,
-  NOT_LIKE: 3,
-  GREATER: 4,
-  GREATER_EQUAL: 5,
-  LESS: 6,
-  LESS_EQUAL: 7,
-  BETWEEN: 8,
-  NOT_NULL: 9,
-  NULL: 10,
-  IN: 11,
-  NOT_IN: 12
+  VOID: 0,
+  EQUAL: 1,
+  NOT_EQUAL: 2,
+  LIKE: 3,
+  NOT_LIKE: 4,
+  GREATER: 5,
+  GREATER_EQUAL: 6,
+  LESS: 7,
+  LESS_EQUAL: 8,
+  BETWEEN: 9,
+  NOT_NULL: 10,
+  NULL: 11,
+  IN: 12,
+  NOT_IN: 13
 };
 
 /**
