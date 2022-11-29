@@ -21,6 +21,8 @@ var proto_base_data_type_pb = require('../proto/base_data_type_pb.js');
 goog.object.extend(proto, proto_base_data_type_pb);
 var proto_client_pb = require('../proto/client_pb.js');
 goog.object.extend(proto, proto_client_pb);
+var proto_file_management_pb = require('../proto/file_management_pb.js');
+goog.object.extend(proto, proto_file_management_pb);
 var proto_time_control_pb = require('../proto/time_control_pb.js');
 goog.object.extend(proto, proto_time_control_pb);
 goog.exportSymbol('proto.data.Address', null, global);
@@ -40405,7 +40407,7 @@ proto.data.Key.toObject = function(includeInstance, msg) {
     spanY: jspb.Message.getFieldWithDefault(msg, 9, 0),
     productValue: jspb.Message.getFieldWithDefault(msg, 10, ""),
     quantity: (f = msg.getQuantity()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
-    resourceReference: (f = msg.getResourceReference()) && proto_base_data_type_pb.ResourceReference.toObject(includeInstance, f)
+    resourceReference: (f = msg.getResourceReference()) && proto_file_management_pb.ResourceReference.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -40488,8 +40490,8 @@ proto.data.Key.deserializeBinaryFromReader = function(msg, reader) {
       msg.setQuantity(value);
       break;
     case 12:
-      var value = new proto_base_data_type_pb.ResourceReference;
-      reader.readMessage(value,proto_base_data_type_pb.ResourceReference.deserializeBinaryFromReader);
+      var value = new proto_file_management_pb.ResourceReference;
+      reader.readMessage(value,proto_file_management_pb.ResourceReference.deserializeBinaryFromReader);
       msg.setResourceReference(value);
       break;
     default:
@@ -40604,7 +40606,7 @@ proto.data.Key.serializeBinaryToWriter = function(message, writer) {
     writer.writeMessage(
       12,
       f,
-      proto_base_data_type_pb.ResourceReference.serializeBinaryToWriter
+      proto_file_management_pb.ResourceReference.serializeBinaryToWriter
     );
   }
 };
@@ -40828,17 +40830,17 @@ proto.data.Key.prototype.hasQuantity = function() {
 
 
 /**
- * optional ResourceReference resource_reference = 12;
- * @return {?proto.data.ResourceReference}
+ * optional file_management.ResourceReference resource_reference = 12;
+ * @return {?proto.file_management.ResourceReference}
  */
 proto.data.Key.prototype.getResourceReference = function() {
-  return /** @type{?proto.data.ResourceReference} */ (
-    jspb.Message.getWrapperField(this, proto_base_data_type_pb.ResourceReference, 12));
+  return /** @type{?proto.file_management.ResourceReference} */ (
+    jspb.Message.getWrapperField(this, proto_file_management_pb.ResourceReference, 12));
 };
 
 
 /**
- * @param {?proto.data.ResourceReference|undefined} value
+ * @param {?proto.file_management.ResourceReference|undefined} value
  * @return {!proto.data.Key} returns this
 */
 proto.data.Key.prototype.setResourceReference = function(value) {
