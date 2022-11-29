@@ -1,5 +1,5 @@
 /*************************************************************************************
- * Product: ADempiere gRPC File Management Client                                *
+ * Product: ADempiere gRPC File Management Client                                    *
  * Copyright (C) 2012-2022 E.R.P. Consultores y Asociados, C.A.                      *
  * Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                      *
  * This program is free software: you can redistribute it and/or modify              *
