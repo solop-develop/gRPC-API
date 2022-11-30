@@ -1036,58 +1036,7 @@
     this.getUIService().getDefaultValue(request, callback);
   }
 
-  //  Run a callout to server
-  runCallout({
-    token,
-    language,
-    tableName,
-    windowUuid,
-    tabUuid,
-    callout,
-    columnName,
-    valueType,
-    oldValue,
-    value,
-    windowNo,
-    contextAttributes
-  }, callback) {
-    const { RunCalloutRequest } = require('./src/grpc/proto/business_pb.js')
-    const { convertParameterToGRPC, convertValueToGRPC } = require('./lib/convertValues.js');
-    const request = new RunCalloutRequest()
-    request.setTableName(tableName)
-    request.setWindowUuid(windowUuid)
-    request.setTabUuid(tabUuid)
-    request.setCallout(callout)
-    request.setColumnName(columnName)
-
-    request.setOldValue(
-      convertValueToGRPC({
-        value: oldValue,
-        valueType
-      })
-    );
-    request.setValue(
-      convertValueToGRPC({
-        value,
-        valueType
-      })
-    );
-
-    request.setWindowNo(windowNo)
-    if(contextAttributes) {
-      contextAttributes.forEach(attribute => {
-        request.addContextAttributes(convertParameterToGRPC({
-          columnName: attribute.key,
-          value: attribute.value
-        }))
-      })
-    }
-    request.setClientRequest(this.createClientRequest(token, language))
-
-    this.getUIService().runCallout(request, callback)
-  }
-
-    //  List Tab Entities
+  // List Tab Entities
   listTabEntities({
     token,
     windowUuid,
