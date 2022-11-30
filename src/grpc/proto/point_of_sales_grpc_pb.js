@@ -903,6 +903,28 @@ function deserialize_data_PrintPreviewResponse(buffer_arg) {
   return proto_point_of_sales_pb.PrintPreviewResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_data_PrintShipmentPreviewRequest(arg) {
+  if (!(arg instanceof proto_point_of_sales_pb.PrintShipmentPreviewRequest)) {
+    throw new Error('Expected argument of type data.PrintShipmentPreviewRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_PrintShipmentPreviewRequest(buffer_arg) {
+  return proto_point_of_sales_pb.PrintShipmentPreviewRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_data_PrintShipmentPreviewResponse(arg) {
+  if (!(arg instanceof proto_point_of_sales_pb.PrintShipmentPreviewResponse)) {
+    throw new Error('Expected argument of type data.PrintShipmentPreviewResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_PrintShipmentPreviewResponse(buffer_arg) {
+  return proto_point_of_sales_pb.PrintShipmentPreviewResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_data_PrintTicketRequest(arg) {
   if (!(arg instanceof proto_point_of_sales_pb.PrintTicketRequest)) {
     throw new Error('Expected argument of type data.PrintTicketRequest');
@@ -1503,6 +1525,18 @@ printPreview: {
     requestDeserialize: deserialize_data_PrintPreviewRequest,
     responseSerialize: serialize_data_PrintPreviewResponse,
     responseDeserialize: deserialize_data_PrintPreviewResponse,
+  },
+  // 	Print Preview for Shipment
+printShipmentPreview: {
+    path: '/data.Store/PrintShipmentPreview',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_point_of_sales_pb.PrintShipmentPreviewRequest,
+    responseType: proto_point_of_sales_pb.PrintShipmentPreviewResponse,
+    requestSerialize: serialize_data_PrintShipmentPreviewRequest,
+    requestDeserialize: deserialize_data_PrintShipmentPreviewRequest,
+    responseSerialize: serialize_data_PrintShipmentPreviewResponse,
+    responseDeserialize: deserialize_data_PrintShipmentPreviewResponse,
   },
   // 	Create Customer Account
 createCustomerBankAccount: {
