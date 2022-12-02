@@ -22,7 +22,7 @@ class UserInterface {
   /**
    * File on generated stub
    */
-  stubFilePath = '@adempiere/grpc-api/src/grpc/proto/business_pb.js';
+  stubFile = require('@adempiere/grpc-api/src/grpc/proto/business_pb.js');
 
   /**
    * Constructor, No authentication required
@@ -64,7 +64,7 @@ class UserInterface {
     pageToken,
     language
   }, callback) {
-    const { ListTabSequencesRequest } = require(this.stubFilePath);
+    const { ListTabSequencesRequest } = this.stubFile;
     const request = new ListTabSequencesRequest();
 
     request.setTabUuid(tabUuid);
@@ -107,7 +107,7 @@ class UserInterface {
     entitiesList,
     language
   }, callback) {
-    const { SaveTabSequencesRequest } = require(this.stubFilePath);
+    const { SaveTabSequencesRequest } = this.stubFile;
     const request = new SaveTabSequencesRequest();
 
     request.setTabUuid(tabUuid);
@@ -145,6 +145,75 @@ class UserInterface {
     );
   
     this.getUserInterfaceService().saveTabSequences(request, callback)
+  }
+
+  // Run a callout to server
+  runCallout({
+    token,
+    language,
+    tableName,
+    windowUuid,
+    tabUuid,
+    callout,
+    columnName,
+    valueType,
+    oldValue,
+    value,
+    windowNo,
+    contextAttributes
+  }, callback) {
+    const { RunCalloutRequest } = this.stubFile;
+    const { convertParameterToGRPC, convertValueToGRPC } = require('@adempiere/grpc-api/lib/convertValues.js');
+    const request = new RunCalloutRequest();
+
+    request.setWindowNo(windowNo);
+    request.setTableName(tableName);
+    request.setWindowUuid(windowUuid);
+    request.setTabUuid(tabUuid);
+    request.setCallout(callout);
+    request.setColumnName(columnName);
+
+    request.setOldValue(
+      convertValueToGRPC({
+        value: oldValue,
+        valueType
+      })
+    );
+    request.setValue(
+      convertValueToGRPC({
+        value,
+        valueType
+      })
+    );
+
+    if (!isEmptyValue(contextAttributes)) {
+      const { typeOfValue } = require('@adempiere/grpc-api/lib/convertValues.js');
+      contextAttributes.forEach(attribute => {
+        let value = attribute.value
+        let valueType = ''
+        if (!isEmptyValue(attribute.value) && typeOfValue(attribute.value) === 'Object') {
+          value = attribute.value.value
+          if (!isEmptyValue(attribute.value.valueType)) {
+            valueType = attribute.value.valueType
+          }
+        }
+
+        // parameter format = { columName, value }
+        const convertedParameter = convertParameterToGRPC({
+          columnName: attribute.key,
+          valueType,
+          value
+        });
+
+        request.addContextAttributes(convertedParameter);
+      });
+    }
+
+    request.setClientRequest(
+      createClientRequest({ token, language })
+    );
+
+    this.getUserInterfaceService().runCallout(request, callback);
   }
 
 }

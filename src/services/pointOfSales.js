@@ -1847,6 +1847,27 @@ class PointOfSales {
     this.getPointOfSalesService().printPreview(request, callback);
   }
 
+  //  Print Ticket shipment Preview
+  printShipmentPreview({
+    token,
+    posUuid,
+    shipmentUuid,
+    reportType,
+    language
+  }, callback) {
+    const { PrintShipmentPreviewRequest } = require('../grpc/proto/point_of_sales_pb.js');
+    const request = new PrintShipmentPreviewRequest();
+
+    request.setPosUuid(posUuid);
+    request.setShipmentUuid(shipmentUuid);
+    request.setReportType(reportType);
+    request.setClientRequest(
+      createClientRequest({ token, language })
+    );
+
+    this.getPointOfSalesService().printShipmentPreview(request, callback);
+  }
+
   //  Print Ticket
   listStocks({
     token,
