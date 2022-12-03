@@ -21,6 +21,17 @@ var proto_file_management_pb = require('../proto/file_management_pb.js');
 var proto_base_data_type_pb = require('../proto/base_data_type_pb.js');
 var proto_client_pb = require('../proto/client_pb.js');
 
+function serialize_data_Empty(arg) {
+  if (!(arg instanceof proto_base_data_type_pb.Empty)) {
+    throw new Error('Expected argument of type data.Empty');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_Empty(buffer_arg) {
+  return proto_base_data_type_pb.Empty.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_file_management_Attachment(arg) {
   if (!(arg instanceof proto_file_management_pb.Attachment)) {
     throw new Error('Expected argument of type file_management.Attachment');
@@ -30,6 +41,17 @@ function serialize_file_management_Attachment(arg) {
 
 function deserialize_file_management_Attachment(buffer_arg) {
   return proto_file_management_pb.Attachment.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_file_management_DeleteResourceReferenceRequest(arg) {
+  if (!(arg instanceof proto_file_management_pb.DeleteResourceReferenceRequest)) {
+    throw new Error('Expected argument of type file_management.DeleteResourceReferenceRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_file_management_DeleteResourceReferenceRequest(buffer_arg) {
+  return proto_file_management_pb.DeleteResourceReferenceRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_file_management_GetAttachmentRequest(arg) {
@@ -162,7 +184,7 @@ setResourceReference: {
   },
   // 	Service for set a resource
 loadResource: {
-    path: '/file_management.FileManagement/loadResource',
+    path: '/file_management.FileManagement/LoadResource',
     requestStream: true,
     responseStream: false,
     requestType: proto_file_management_pb.LoadResourceRequest,
@@ -171,6 +193,18 @@ loadResource: {
     requestDeserialize: deserialize_file_management_LoadResourceRequest,
     responseSerialize: serialize_file_management_ResourceReference,
     responseDeserialize: deserialize_file_management_ResourceReference,
+  },
+  // Delete resource reference
+deleteResourceReference: {
+    path: '/file_management.FileManagement/DeleteResourceReference',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_file_management_pb.DeleteResourceReferenceRequest,
+    responseType: proto_base_data_type_pb.Empty,
+    requestSerialize: serialize_file_management_DeleteResourceReferenceRequest,
+    requestDeserialize: deserialize_file_management_DeleteResourceReferenceRequest,
+    responseSerialize: serialize_data_Empty,
+    responseDeserialize: deserialize_data_Empty,
   },
 };
 

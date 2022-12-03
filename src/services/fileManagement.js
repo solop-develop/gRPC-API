@@ -162,6 +162,37 @@ class FileManagement {
     this.getFileManagementService().getResourceReference(request, callback);
   }
 
+  /**
+   * Delete Resource information
+   * @param {string} resourceName
+   * @param {string} resourceUuid
+   * @param {number} resourceId
+   * @param {string} language
+   * @param {string} token
+   * @param {function} callback
+   */
+  deleteResourceReference({
+    token,
+    resourceId,
+    resourceUuid,
+    resourceName,
+    language
+  }, callback) {
+    const { DeleteResourceReferenceRequest } = this.stubFile;
+    const request = new DeleteResourceReferenceRequest();
+
+    request.setResourceName(resourceName);
+    request.setResourceUuid(resourceUuid);
+    if (!isEmptyValue(resourceId) && !Number.isNaN(resourceId)) {
+      request.setResourceId(Number(resourceId));
+    }
+
+    request.setClientRequest(
+      createClientRequest({ token, language })
+    );
+
+    this.getFileManagementService().deleteResourceReference(request, callback);
+  }
 }
 
 module.exports = FileManagement;
