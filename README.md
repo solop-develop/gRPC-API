@@ -74,9 +74,11 @@ Note to generate specific proto definition:
 * To core functionality: `npm run stub:core_functionality`
 * To dictionary: `npm run stub:dictionary`
 * To enrollment: `npm run stub:enrollment`
+* To file management: `npm run stub:file_management`
 * To general ledger: `npm run stub:general_ledger`
 * To in-out: `npm run stub:in_out`
 * To invoice: `npm run stub:invoice`
+* To material management: `npm run stub:material_management`
 * To order: `npm run stub:order`
 * To payment: `npm run stub:payment`
 * To payroll action notice: `npm run stub:payroll_action_notice`

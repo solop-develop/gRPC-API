@@ -11,7 +11,7 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                     *
  * GNU General Public License for more details.                                      *
  * You should have received a copy of the GNU General Public License                 *
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.            *
+ * along with this program. If not, see <https://www.gnu.org/licenses/>.             *
  ************************************************************************************/
 
  class Api {
@@ -93,50 +93,6 @@
   //  Get Business Service
   getBusinessService() {
     return this.business
-  }
-
-  //  Get Resource Image from name
-  getResource({
-    resourceName,
-    resourceUuid,
-    language,
-    token
-  }, callback) {
-    const { GetResourceRequest } = require('./src/grpc/proto/business_pb.js')
-    const request = new GetResourceRequest()
-    request.setClientRequest(this.createClientRequest(token, language))
-    request.setResourceName(resourceName)
-    request.setResourceUuid(resourceUuid)
-    const stream = this.getUIService().getResource(request)
-    let result = new Uint8Array()
-    stream.on('data', (response) => {
-      result = this.mergeByteArray(result, response.getData())
-    })
-    stream.on('status', (status) => {
-      if (status && status.code === 13) {
-        callback(status, undefined)
-      }
-    })
-    stream.on('end', (end) => {
-      callback(undefined, result)
-    })
-  }
-
-  // Merge two arrays and return merged array
-  mergeByteArray(currentArray, arrayToMerge) {
-    const mergedArray = new currentArray.constructor(currentArray.length + arrayToMerge.length)
-    mergedArray.set(currentArray)
-    mergedArray.set(arrayToMerge, currentArray.length)
-    return mergedArray
-  }
-
-  // Build a base 64 image from array
-  buildImageFromArray(resource, byteArray) {
-    return 'data:' + resource.contentType + ';base64,' + btoa(
-      byteArray.reduce(
-        (data, byte) => data + String.fromCharCode(byte), ''
-      )
-    )
   }
 
   /**
@@ -390,35 +346,6 @@
   }
 
   //  User Interface
-  //  Get Attachment information
-  getAttachment({
-    token,
-    id,
-    uuid,
-    tableName,
-    language
-  }, callback) {
-    const { GetAttachmentRequest } = require('./src/grpc/proto/business_pb.js')
-    const request = new GetAttachmentRequest()
-    request.setId(id)
-    request.setUuid(uuid)
-    request.setTableName(tableName)
-    request.setClientRequest(this.createClientRequest(token, language))
-    this.getUIService().getAttachment(request, callback)
-  }
-
-  //  Get Resource information
-  getResourceReference({
-    token,
-    imageId,
-    language
-  }, callback) {
-    const { GetResourceReferenceRequest } = require('./src/grpc/proto/business_pb.js')
-    const request = new GetResourceReferenceRequest()
-    request.setImageId(imageId)
-    request.setClientRequest(this.createClientRequest(token, language))
-    this.getUIService().getResourceReference(request, callback)
-  }
 
   //  Create Chat Entry
   createChatEntry({

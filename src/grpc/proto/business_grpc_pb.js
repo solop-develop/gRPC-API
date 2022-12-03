@@ -21,17 +21,6 @@ var proto_business_pb = require('../proto/business_pb.js');
 var proto_base_data_type_pb = require('../proto/base_data_type_pb.js');
 var proto_client_pb = require('../proto/client_pb.js');
 
-function serialize_data_Attachment(arg) {
-  if (!(arg instanceof proto_base_data_type_pb.Attachment)) {
-    throw new Error('Expected argument of type data.Attachment');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_data_Attachment(buffer_arg) {
-  return proto_base_data_type_pb.Attachment.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
 function serialize_data_Callout(arg) {
   if (!(arg instanceof proto_business_pb.Callout)) {
     throw new Error('Expected argument of type data.Callout');
@@ -153,17 +142,6 @@ function deserialize_data_Entity(buffer_arg) {
   return proto_base_data_type_pb.Entity.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_data_GetAttachmentRequest(arg) {
-  if (!(arg instanceof proto_business_pb.GetAttachmentRequest)) {
-    throw new Error('Expected argument of type data.GetAttachmentRequest');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_data_GetAttachmentRequest(buffer_arg) {
-  return proto_business_pb.GetAttachmentRequest.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
 function serialize_data_GetChartRequest(arg) {
   if (!(arg instanceof proto_business_pb.GetChartRequest)) {
     throw new Error('Expected argument of type data.GetChartRequest');
@@ -250,28 +228,6 @@ function serialize_data_GetReportOutputRequest(arg) {
 
 function deserialize_data_GetReportOutputRequest(buffer_arg) {
   return proto_business_pb.GetReportOutputRequest.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
-function serialize_data_GetResourceReferenceRequest(arg) {
-  if (!(arg instanceof proto_business_pb.GetResourceReferenceRequest)) {
-    throw new Error('Expected argument of type data.GetResourceReferenceRequest');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_data_GetResourceReferenceRequest(buffer_arg) {
-  return proto_business_pb.GetResourceReferenceRequest.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
-function serialize_data_GetResourceRequest(arg) {
-  if (!(arg instanceof proto_business_pb.GetResourceRequest)) {
-    throw new Error('Expected argument of type data.GetResourceRequest');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_data_GetResourceRequest(buffer_arg) {
-  return proto_business_pb.GetResourceRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_data_GetTabEntityRequest(arg) {
@@ -635,28 +591,6 @@ function serialize_data_ReportOutput(arg) {
 
 function deserialize_data_ReportOutput(buffer_arg) {
   return proto_base_data_type_pb.ReportOutput.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
-function serialize_data_Resource(arg) {
-  if (!(arg instanceof proto_base_data_type_pb.Resource)) {
-    throw new Error('Expected argument of type data.Resource');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_data_Resource(buffer_arg) {
-  return proto_base_data_type_pb.Resource.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
-function serialize_data_ResourceReference(arg) {
-  if (!(arg instanceof proto_base_data_type_pb.ResourceReference)) {
-    throw new Error('Expected argument of type data.ResourceReference');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_data_ResourceReference(buffer_arg) {
-  return proto_base_data_type_pb.ResourceReference.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_data_RollbackEntityRequest(arg) {
@@ -1101,42 +1035,6 @@ createChatEntry: {
     requestDeserialize: deserialize_data_CreateChatEntryRequest,
     responseSerialize: serialize_data_ChatEntry,
     responseDeserialize: deserialize_data_ChatEntry,
-  },
-  // 	Service for get a resource from resource uuid
-getResource: {
-    path: '/data.UserInterface/GetResource',
-    requestStream: false,
-    responseStream: true,
-    requestType: proto_business_pb.GetResourceRequest,
-    responseType: proto_base_data_type_pb.Resource,
-    requestSerialize: serialize_data_GetResourceRequest,
-    requestDeserialize: deserialize_data_GetResourceRequest,
-    responseSerialize: serialize_data_Resource,
-    responseDeserialize: deserialize_data_Resource,
-  },
-  // 	Service for get a resource reference from image, attachment or archive
-getResourceReference: {
-    path: '/data.UserInterface/GetResourceReference',
-    requestStream: false,
-    responseStream: false,
-    requestType: proto_business_pb.GetResourceReferenceRequest,
-    responseType: proto_base_data_type_pb.ResourceReference,
-    requestSerialize: serialize_data_GetResourceReferenceRequest,
-    requestDeserialize: deserialize_data_GetResourceReferenceRequest,
-    responseSerialize: serialize_data_ResourceReference,
-    responseDeserialize: deserialize_data_ResourceReference,
-  },
-  // 	Service for get a attachment from table and record uuid
-getAttachment: {
-    path: '/data.UserInterface/GetAttachment',
-    requestStream: false,
-    responseStream: false,
-    requestType: proto_business_pb.GetAttachmentRequest,
-    responseType: proto_base_data_type_pb.Attachment,
-    requestSerialize: serialize_data_GetAttachmentRequest,
-    requestDeserialize: deserialize_data_GetAttachmentRequest,
-    responseSerialize: serialize_data_Attachment,
-    responseDeserialize: deserialize_data_Attachment,
   },
   // 	Set Preference from field
 setPreference: {
