@@ -1,4 +1,4 @@
-# This workflow will run tests using node and then publish a package to NPM and GitHub Packages
+# This workflow will run tests using node and then publish a package to NPM, Yarn and GitHub Packages
 # when a release is created
 # For more information see: https://help.github.com/actions/language-and-framework-guides/publishing-nodejs-packages
 # This file was contributed by EdwinBetanc0urt@outlook.com from ERP Consultores y Asociados, C.A
@@ -23,20 +23,20 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 14
-          cache: 'npm'
-          registry-url: https://registry.npmjs.org/
+          cache: 'yarn'
 
       - name: Install node dependencies
-        run: npm ci # if a package.lock exists
+        run: yarn ci # if a package.lock exists
 
       - name: Generate proto stub
-        run: npm run stub --if-present
+        run: yarn stub
 
       - name: Upload dist app
         uses: actions/upload-artifact@v3
         with:
           name: gRPC-API
           path: ./
+
 
   # Check secrets to push image in NPM registry
   check-npm-secrets:
@@ -80,6 +80,51 @@ jobs:
         run: npm publish --access=public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+
+  # # Check secrets to push image in NPM registry
+  # check-yarn-secrets:
+  #   name: Check if Yarn registry information was set on secrets
+  #   needs:
+  #     - build-app
+  #   runs-on: ubuntu-latest
+  #   outputs:
+  #     is_have_secrets: ${{ steps.check_secret_job.outputs.is_have_secrets }}
+  #   steps:
+  #     - id: check_secret_job
+  #       run: |
+  #         if [[ "${{ secrets.YARN_TOKEN }}" != "" && ]]; \
+  #         then
+  #           echo "Secrets to use a NPM are configured in the repo"
+  #           echo "is_have_secrets=true" >> $GITHUB_OUTPUT
+  #         else
+  #           echo "Secrets to use a NPM were not configured in the repo"
+  #           echo "is_have_secrets=false" >> $GITHUB_OUTPUT
+  #         fi
+
+  # publish-yarn:
+  #   name: Publish Yarn Registry
+  #   needs:
+  #     - check-yarn-secrets
+  #   # Skip step based on secret
+  #   if: needs.check-yarn-secrets.outputs.is_have_secrets == 'true'
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Node configuration
+  #       uses: actions/setup-node@v3
+  #       with:
+  #         node-version: 14
+  #         cache: 'npm'
+  #         registry-url: https://registry.npmjs.org/
+
+  #     - name: Download all artifacts
+  #       uses: actions/download-artifact@v3
+
+  #     - name: Publish Yarn Registry
+  #       run: yarn publish --access=public
+  #       env:
+  #         NODE_AUTH_TOKEN: ${{ secrets.YARN_TOKEN }}
+
 
   publish-gpr:
     name: Publish GitHub Package Registry
