@@ -1,0 +1,40 @@
+# This workflow will run tests using node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/publishing-nodejs-packages
+# This file was contributed by EdwinBetanc0urt@outlook.com from ERP Consultores y Asociados, C.A
+
+name: Continuous Integration
+
+on:
+  push:
+    branches:
+      - '*'         # matches every branch that doesn't contain a '/'
+      - '*/*'       # matches every branch containing a single '/'
+      - '**'        # matches every branch
+
+jobs:
+
+  build-app:
+    name: Generate Stub Files
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v3
+
+      - name: Node configuration
+        uses: actions/setup-node@v3
+        with:
+          node-version: 14
+          cache: 'npm'
+          registry-url: https://registry.npmjs.org/
+
+      - name: Install node dependencies
+        run: npm ci # if a package.lock exists
+
+      - name: Generate proto stub
+        run: npm run stub --if-present
+
+      - name: Upload dist app
+        uses: actions/upload-artifact@v3
+        with:
+          name: gRPC-API
+          path: ./
