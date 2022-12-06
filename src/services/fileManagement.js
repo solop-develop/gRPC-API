@@ -135,6 +135,36 @@ class FileManagement {
     return mergedArray
   }
 
+  setResourceReference({
+    token,
+    tableName,
+    recordId,
+    recordUuid,
+    textMessage,
+    fileName,
+    fileSize,
+    language
+  }, callback) {
+    const { SetResourceReferenceRequest } = this.stubFile;
+    const request = new SetResourceReferenceRequest();
+
+    request.setTableName(tableName);
+    if (!isEmptyValue(recordId) && !Number.isNaN(recordId)) {
+      request.setRecordId(Number(recordId));
+    }
+
+    request.setRecordUuid(recordUuid);
+    request.setTextMessage(textMessage);
+    request.setFileName(fileName);
+    request.setFileSize(fileSize);
+
+    request.setClientRequest(
+      createClientRequest({ token, language })
+    );
+
+    this.getFileManagementService().setResourceReference(request, callback);
+  }
+
   /**
    * Get Resource information
    * @param {number} id

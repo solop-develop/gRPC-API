@@ -1698,8 +1698,8 @@ proto.file_management.SetResourceReferenceRequest.toObject = function(includeIns
     tableName: jspb.Message.getFieldWithDefault(msg, 2, ""),
     recordId: jspb.Message.getFieldWithDefault(msg, 3, 0),
     recordUuid: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    textMsg: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    contentType: jspb.Message.getFieldWithDefault(msg, 6, ""),
+    textMessage: jspb.Message.getFieldWithDefault(msg, 5, ""),
+    fileName: jspb.Message.getFieldWithDefault(msg, 6, ""),
     fileSize: jspb.Message.getFieldWithDefault(msg, 7, 0)
   };
 
@@ -1756,11 +1756,11 @@ proto.file_management.SetResourceReferenceRequest.deserializeBinaryFromReader = 
       break;
     case 5:
       var value = /** @type {string} */ (reader.readString());
-      msg.setTextMsg(value);
+      msg.setTextMessage(value);
       break;
     case 6:
       var value = /** @type {string} */ (reader.readString());
-      msg.setContentType(value);
+      msg.setFileName(value);
       break;
     case 7:
       var value = /** @type {number} */ (reader.readInt32());
@@ -1824,14 +1824,14 @@ proto.file_management.SetResourceReferenceRequest.serializeBinaryToWriter = func
       f
     );
   }
-  f = message.getTextMsg();
+  f = message.getTextMessage();
   if (f.length > 0) {
     writer.writeString(
       5,
       f
     );
   }
-  f = message.getContentType();
+  f = message.getFileName();
   if (f.length > 0) {
     writer.writeString(
       6,
@@ -1940,10 +1940,10 @@ proto.file_management.SetResourceReferenceRequest.prototype.setRecordUuid = func
 
 
 /**
- * optional string text_msg = 5;
+ * optional string text_message = 5;
  * @return {string}
  */
-proto.file_management.SetResourceReferenceRequest.prototype.getTextMsg = function() {
+proto.file_management.SetResourceReferenceRequest.prototype.getTextMessage = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
 };
 
@@ -1952,16 +1952,16 @@ proto.file_management.SetResourceReferenceRequest.prototype.getTextMsg = functio
  * @param {string} value
  * @return {!proto.file_management.SetResourceReferenceRequest} returns this
  */
-proto.file_management.SetResourceReferenceRequest.prototype.setTextMsg = function(value) {
+proto.file_management.SetResourceReferenceRequest.prototype.setTextMessage = function(value) {
   return jspb.Message.setProto3StringField(this, 5, value);
 };
 
 
 /**
- * optional string content_type = 6;
+ * optional string file_name = 6;
  * @return {string}
  */
-proto.file_management.SetResourceReferenceRequest.prototype.getContentType = function() {
+proto.file_management.SetResourceReferenceRequest.prototype.getFileName = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
 };
 
@@ -1970,7 +1970,7 @@ proto.file_management.SetResourceReferenceRequest.prototype.getContentType = fun
  * @param {string} value
  * @return {!proto.file_management.SetResourceReferenceRequest} returns this
  */
-proto.file_management.SetResourceReferenceRequest.prototype.setContentType = function(value) {
+proto.file_management.SetResourceReferenceRequest.prototype.setFileName = function(value) {
   return jspb.Message.setProto3StringField(this, 6, value);
 };
 
