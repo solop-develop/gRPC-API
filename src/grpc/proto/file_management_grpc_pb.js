@@ -54,6 +54,28 @@ function deserialize_file_management_DeleteResourceReferenceRequest(buffer_arg) 
   return proto_file_management_pb.DeleteResourceReferenceRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_file_management_ExistsAttachmentRequest(arg) {
+  if (!(arg instanceof proto_file_management_pb.ExistsAttachmentRequest)) {
+    throw new Error('Expected argument of type file_management.ExistsAttachmentRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_file_management_ExistsAttachmentRequest(buffer_arg) {
+  return proto_file_management_pb.ExistsAttachmentRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_file_management_ExistsAttachmentResponse(arg) {
+  if (!(arg instanceof proto_file_management_pb.ExistsAttachmentResponse)) {
+    throw new Error('Expected argument of type file_management.ExistsAttachmentResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_file_management_ExistsAttachmentResponse(buffer_arg) {
+  return proto_file_management_pb.ExistsAttachmentResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_file_management_GetAttachmentRequest(arg) {
   if (!(arg instanceof proto_file_management_pb.GetAttachmentRequest)) {
     throw new Error('Expected argument of type file_management.GetAttachmentRequest');
@@ -205,6 +227,18 @@ deleteResourceReference: {
     requestDeserialize: deserialize_file_management_DeleteResourceReferenceRequest,
     responseSerialize: serialize_data_Empty,
     responseDeserialize: deserialize_data_Empty,
+  },
+  // Exists Attachment on Record
+existsAttachment: {
+    path: '/file_management.FileManagement/ExistsAttachment',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_file_management_pb.ExistsAttachmentRequest,
+    responseType: proto_file_management_pb.ExistsAttachmentResponse,
+    requestSerialize: serialize_file_management_ExistsAttachmentRequest,
+    requestDeserialize: deserialize_file_management_ExistsAttachmentRequest,
+    responseSerialize: serialize_file_management_ExistsAttachmentResponse,
+    responseDeserialize: deserialize_file_management_ExistsAttachmentResponse,
   },
 };
 

@@ -58,6 +58,38 @@ class FileManagement {
   }
 
   /**
+   * Exists Attachment On Record
+   * @param {string} tableName
+   * @param {number} recordId
+   * @param {string} recordUuid
+   * @param {string} language
+   * @param {string} token
+   */
+  existsAttachment({
+    token,
+    // DSL
+    tableName,
+    recordId,
+    recordUuid,
+    language
+  }, callback) {
+    const { ExistsAttachmentRequest } = this.stubFile;
+    const request = new ExistsAttachmentRequest();
+
+    request.setTableName(tableName);
+    if (!isEmptyValue(recordId) && !Number.isNaN(recordId)) {
+      request.setRecordId(Number(recordId));
+    }
+    request.setRecordUuid(recordUuid);
+
+    request.setClientRequest(
+      createClientRequest({ token, language })
+    );
+
+    this.getFileManagementService().existsAttachment(request, callback);
+  }
+
+  /**
    * Get Attachment Information
    * @param {*} param0 
    * @param {*} callback 
