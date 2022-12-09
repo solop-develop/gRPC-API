@@ -132,6 +132,8 @@ jobs:
     permissions:
       contents: read
       packages: write
+    needs:
+      - build-app
     steps:
       - name: Node configuration
         uses: actions/setup-node@v3
@@ -142,7 +144,33 @@ jobs:
           # Defaults to the user or organization that owns the workflow file
           scope: '@adempiere'
 
+      - name: Download all artifacts
+        uses: actions/download-artifact@v3
+
+      - run: ls
+
       - name: Publish GitHub Package Registry
-        run: npm publish
+        run: npm publish --access=public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  # Publish dist binaries to application
+  publish-app-dist:
+    name: Upload Binaries ADempiere-Proxy
+    needs:
+      - build-app
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download build dist app
+        uses: actions/download-artifact@v3
+        with:
+          name: gRPC-API
+
+      - run: ls
+
+      - name: Publish application binary in repository
+        uses: skx/github-action-publish-binaries@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          args: 'gRPC-API.zip'
