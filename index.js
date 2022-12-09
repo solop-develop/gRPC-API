@@ -33,7 +33,6 @@
 
     this.initUIService()
     this.initBusinessService()
-    this.initDashboardService()
     this.initCoreService()
     console.log('ADempiere Api Client Started')
   }
@@ -62,13 +61,6 @@
   }
 
   // Init connection
-  initDashboardService() {
-    var grpc = require('@grpc/grpc-js');
-    var services = require('./src/grpc/proto/business_grpc_pb');
-    this.dashboard = new services.DashboardingClient(this.businessHost, grpc.credentials.createInsecure());
-  }
-
-  // Init connection
   initCoreService() {
     var grpc = require('@grpc/grpc-js');
     var services = require('./src/grpc/proto/core_functionality_grpc_pb');
@@ -78,11 +70,6 @@
   //  Get UI Service
   getUIService() {
     return this.ui
-  }
-
-  //  Get Dashboard
-  getDashboardService() {
-    return this.dashboard
   }
 
   //  Get Core
@@ -1118,84 +1105,6 @@
 
     this.getUIService().listGeneralInfo(request, callback);
   }
-
-  //  Dashboard service
-
-  //  List Document Statuses
-  listDashboards({
-    token,
-    roleUuid,
-    roleId,
-    pageSize,
-    pageToken,
-    language
-  }, callback) {
-    const { ListDashboardsRequest } = require('./src/grpc/proto/business_pb.js')
-    const request = new ListDashboardsRequest()
-    request.setRoleUuid(roleUuid)
-    request.setRoleId(roleId)
-    request.setPageSize(pageSize)
-    request.setPageToken(pageToken)
-    request.setClientRequest(this.createClientRequest(token, language))
-    this.getDashboardService().listDashboards(request, callback)
-  }
-
-  //  List Document Statuses
-  listFavorites({
-    token,
-    userUuid,
-    userId,
-    pageSize,
-    pageToken,
-    language
-  }, callback) {
-    const { ListFavoritesRequest } = require('./src/grpc/proto/business_pb.js')
-    const request = new ListFavoritesRequest()
-    request.setUserUuid(userUuid)
-    request.setUserId(userId)
-    request.setPageSize(pageSize)
-    request.setPageToken(pageToken)
-    request.setClientRequest(this.createClientRequest(token, language))
-    this.getDashboardService().listFavorites(request, callback)
-  }
-
-  //  List Document Statuses
-  listPendingDocuments({
-    token,
-    userUuid,
-    userId,
-    roleUuid,
-    roleId,
-    pageSize,
-    pageToken,
-    language
-  }, callback) {
-    const { ListPendingDocumentsRequest } = require('./src/grpc/proto/business_pb.js')
-    const request = new ListPendingDocumentsRequest()
-    request.setUserUuid(userUuid)
-    request.setUserId(userId)
-    request.setRoleUuid(roleUuid)
-    request.setRoleId(roleId)
-    request.setPageSize(pageSize)
-    request.setPageToken(pageToken)
-    request.setClientRequest(this.createClientRequest(token, language))
-    this.getDashboardService().listPendingDocuments(request, callback)
-  }
-
-    //  Get Chart Data
-    getChart({
-      token,
-      uuid,
-      id,
-      language
-    }, callback) {
-      const { GetChartRequest } = require('./src/grpc/proto/business_pb.js')
-      const request = new GetChartRequest()
-      request.setUuid(uuid)
-      request.setId(id)
-      request.setClientRequest(this.createClientRequest(token, language))
-      this.getDashboardService().getChart(request, callback)
-    }
 
   //  Core Functionality
   //  Get Country
