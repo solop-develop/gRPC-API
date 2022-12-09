@@ -157,6 +157,46 @@ class FileManagement {
   }
 
   /**
+   * Get Resource Image from name
+   * @param {string} fileName
+   * @param {string} resourceUuid
+   * @param {Blob} file
+   * @param {string} token
+   */
+  loadResource({
+    fileName,
+    resourceUuid,
+    file,
+    language,
+    token
+  }, callback) {
+    const { LoadResourceRequest } = this.stubFile;
+    const request = new LoadResourceRequest();
+
+    request.setClientRequest(
+      createClientRequest({ token, language })
+    );
+
+    request.setFileName(fileName);
+    request.setResourceUuid(resourceUuid);
+
+    // const stream = this.getFileManagementService().getResource(request)
+    // let result = new Uint8Array()
+    // stream.on('data', (response) => {
+    //   result = this.mergeByteArray(result, response.getData());
+    // });
+    // stream.on('status', (status) => {
+    //   if (status && status.code === 13) {
+    //     callback(status, undefined);
+    //   }
+    // });
+    // stream.on('end', (end) => {
+    //   callback(undefined, result);
+    // });
+    this.getFileManagementService().loadResource(request);
+  }
+
+  /**
    * Merge two arrays and return merged array
    * 
    */

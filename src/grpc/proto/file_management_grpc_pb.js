@@ -168,6 +168,18 @@ getResource: {
     responseSerialize: serialize_file_management_Resource,
     responseDeserialize: deserialize_file_management_Resource,
   },
+  // 	Service for set a resource with resource uuid
+loadResource: {
+    path: '/file_management.FileManagement/LoadResource',
+    requestStream: true,
+    responseStream: false,
+    requestType: proto_file_management_pb.LoadResourceRequest,
+    responseType: proto_file_management_pb.ResourceReference,
+    requestSerialize: serialize_file_management_LoadResourceRequest,
+    requestDeserialize: deserialize_file_management_LoadResourceRequest,
+    responseSerialize: serialize_file_management_ResourceReference,
+    responseDeserialize: deserialize_file_management_ResourceReference,
+  },
   // 	Service for get a resource reference from image, attachment or archive
 getResourceReference: {
     path: '/file_management.FileManagement/GetResourceReference',
@@ -201,18 +213,6 @@ setResourceReference: {
     responseType: proto_file_management_pb.ResourceReference,
     requestSerialize: serialize_file_management_SetResourceReferenceRequest,
     requestDeserialize: deserialize_file_management_SetResourceReferenceRequest,
-    responseSerialize: serialize_file_management_ResourceReference,
-    responseDeserialize: deserialize_file_management_ResourceReference,
-  },
-  // 	Service for set a resource
-loadResource: {
-    path: '/file_management.FileManagement/LoadResource',
-    requestStream: true,
-    responseStream: false,
-    requestType: proto_file_management_pb.LoadResourceRequest,
-    responseType: proto_file_management_pb.ResourceReference,
-    requestSerialize: serialize_file_management_LoadResourceRequest,
-    requestDeserialize: deserialize_file_management_LoadResourceRequest,
     responseSerialize: serialize_file_management_ResourceReference,
     responseDeserialize: deserialize_file_management_ResourceReference,
   },
