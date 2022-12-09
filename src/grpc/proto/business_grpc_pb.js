@@ -32,17 +32,6 @@ function deserialize_data_Callout(buffer_arg) {
   return proto_business_pb.Callout.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_data_Chart(arg) {
-  if (!(arg instanceof proto_business_pb.Chart)) {
-    throw new Error('Expected argument of type data.Chart');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_data_Chart(buffer_arg) {
-  return proto_business_pb.Chart.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
 function serialize_data_ChatEntry(arg) {
   if (!(arg instanceof proto_business_pb.ChatEntry)) {
     throw new Error('Expected argument of type data.ChatEntry');
@@ -140,17 +129,6 @@ function serialize_data_Entity(arg) {
 
 function deserialize_data_Entity(buffer_arg) {
   return proto_base_data_type_pb.Entity.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
-function serialize_data_GetChartRequest(arg) {
-  if (!(arg instanceof proto_business_pb.GetChartRequest)) {
-    throw new Error('Expected argument of type data.GetChartRequest');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_data_GetChartRequest(buffer_arg) {
-  return proto_business_pb.GetChartRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_data_GetContextInfoValueRequest(arg) {
@@ -263,28 +241,6 @@ function deserialize_data_ListBrowserItemsResponse(buffer_arg) {
   return proto_business_pb.ListBrowserItemsResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_data_ListDashboardsRequest(arg) {
-  if (!(arg instanceof proto_business_pb.ListDashboardsRequest)) {
-    throw new Error('Expected argument of type data.ListDashboardsRequest');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_data_ListDashboardsRequest(buffer_arg) {
-  return proto_business_pb.ListDashboardsRequest.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
-function serialize_data_ListDashboardsResponse(arg) {
-  if (!(arg instanceof proto_business_pb.ListDashboardsResponse)) {
-    throw new Error('Expected argument of type data.ListDashboardsResponse');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_data_ListDashboardsResponse(buffer_arg) {
-  return proto_business_pb.ListDashboardsResponse.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
 function serialize_data_ListDrillTablesRequest(arg) {
   if (!(arg instanceof proto_business_pb.ListDrillTablesRequest)) {
     throw new Error('Expected argument of type data.ListDrillTablesRequest');
@@ -329,28 +285,6 @@ function deserialize_data_ListEntitiesResponse(buffer_arg) {
   return proto_business_pb.ListEntitiesResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_data_ListFavoritesRequest(arg) {
-  if (!(arg instanceof proto_business_pb.ListFavoritesRequest)) {
-    throw new Error('Expected argument of type data.ListFavoritesRequest');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_data_ListFavoritesRequest(buffer_arg) {
-  return proto_business_pb.ListFavoritesRequest.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
-function serialize_data_ListFavoritesResponse(arg) {
-  if (!(arg instanceof proto_business_pb.ListFavoritesResponse)) {
-    throw new Error('Expected argument of type data.ListFavoritesResponse');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_data_ListFavoritesResponse(buffer_arg) {
-  return proto_business_pb.ListFavoritesResponse.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
 function serialize_data_ListGeneralInfoRequest(arg) {
   if (!(arg instanceof proto_business_pb.ListGeneralInfoRequest)) {
     throw new Error('Expected argument of type data.ListGeneralInfoRequest');
@@ -382,28 +316,6 @@ function serialize_data_ListLookupItemsResponse(arg) {
 
 function deserialize_data_ListLookupItemsResponse(buffer_arg) {
   return proto_business_pb.ListLookupItemsResponse.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
-function serialize_data_ListPendingDocumentsRequest(arg) {
-  if (!(arg instanceof proto_business_pb.ListPendingDocumentsRequest)) {
-    throw new Error('Expected argument of type data.ListPendingDocumentsRequest');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_data_ListPendingDocumentsRequest(buffer_arg) {
-  return proto_business_pb.ListPendingDocumentsRequest.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
-function serialize_data_ListPendingDocumentsResponse(arg) {
-  if (!(arg instanceof proto_business_pb.ListPendingDocumentsResponse)) {
-    throw new Error('Expected argument of type data.ListPendingDocumentsResponse');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_data_ListPendingDocumentsResponse(buffer_arg) {
-  return proto_business_pb.ListPendingDocumentsResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_data_ListPrintFormatsRequest(arg) {
@@ -1099,56 +1011,3 @@ saveTabSequences: {
 };
 
 exports.UserInterfaceClient = grpc.makeGenericClientConstructor(UserInterfaceService);
-// 	All related to dashboarding
-var DashboardingService = exports.DashboardingService = {
-  // 	Request Dashboards Content Edit
-listDashboards: {
-    path: '/data.Dashboarding/ListDashboards',
-    requestStream: false,
-    responseStream: false,
-    requestType: proto_business_pb.ListDashboardsRequest,
-    responseType: proto_business_pb.ListDashboardsResponse,
-    requestSerialize: serialize_data_ListDashboardsRequest,
-    requestDeserialize: deserialize_data_ListDashboardsRequest,
-    responseSerialize: serialize_data_ListDashboardsResponse,
-    responseDeserialize: deserialize_data_ListDashboardsResponse,
-  },
-  // 	Request Favorites
-listFavorites: {
-    path: '/data.Dashboarding/ListFavorites',
-    requestStream: false,
-    responseStream: false,
-    requestType: proto_business_pb.ListFavoritesRequest,
-    responseType: proto_business_pb.ListFavoritesResponse,
-    requestSerialize: serialize_data_ListFavoritesRequest,
-    requestDeserialize: deserialize_data_ListFavoritesRequest,
-    responseSerialize: serialize_data_ListFavoritesResponse,
-    responseDeserialize: deserialize_data_ListFavoritesResponse,
-  },
-  // 	Request Document Statuses
-listPendingDocuments: {
-    path: '/data.Dashboarding/ListPendingDocuments',
-    requestStream: false,
-    responseStream: false,
-    requestType: proto_business_pb.ListPendingDocumentsRequest,
-    responseType: proto_business_pb.ListPendingDocumentsResponse,
-    requestSerialize: serialize_data_ListPendingDocumentsRequest,
-    requestDeserialize: deserialize_data_ListPendingDocumentsRequest,
-    responseSerialize: serialize_data_ListPendingDocumentsResponse,
-    responseDeserialize: deserialize_data_ListPendingDocumentsResponse,
-  },
-  // 	Get Chart
-getChart: {
-    path: '/data.Dashboarding/GetChart',
-    requestStream: false,
-    responseStream: false,
-    requestType: proto_business_pb.GetChartRequest,
-    responseType: proto_business_pb.Chart,
-    requestSerialize: serialize_data_GetChartRequest,
-    requestDeserialize: deserialize_data_GetChartRequest,
-    responseSerialize: serialize_data_Chart,
-    responseDeserialize: deserialize_data_Chart,
-  },
-};
-
-exports.DashboardingClient = grpc.makeGenericClientConstructor(DashboardingService);
