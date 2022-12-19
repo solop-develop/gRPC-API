@@ -177,8 +177,8 @@ class PaymentPrintExport {
    */
   getDocumentNo({
     token,
-    paymentSelectionId,
-    paymentSelectionUuid,
+    bankAccountId,
+    bankAccountUuid,
     paymentRuleId,
     paymentRuleUuid,
     language
@@ -186,10 +186,10 @@ class PaymentPrintExport {
     const { GetDocumentNoRequest } = this.stubFile;
     const request = new GetDocumentNoRequest();
 
-    request.setPaymentSelectionId(
-      getValidId(paymentSelectionId)
+    request.setBankAccountId(
+      getValidId(bankAccountId)
     );
-    request.setPaymentSelectionUuid(paymentSelectionUuid);
+    request.setBankAccountUuid(bankAccountUuid);
 
     request.setPaymentRuleId(
       getValidId(paymentRuleId)

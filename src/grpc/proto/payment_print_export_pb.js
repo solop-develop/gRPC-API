@@ -2639,8 +2639,8 @@ proto.payment_print_export.GetDocumentNoRequest.prototype.toObject = function(op
 proto.payment_print_export.GetDocumentNoRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     clientRequest: (f = msg.getClientRequest()) && proto_client_pb.ClientRequest.toObject(includeInstance, f),
-    paymentSelectionId: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    paymentSelectionUuid: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    bankAccountId: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    bankAccountUuid: jspb.Message.getFieldWithDefault(msg, 3, ""),
     paymentRuleId: jspb.Message.getFieldWithDefault(msg, 4, 0),
     paymentRuleUuid: jspb.Message.getFieldWithDefault(msg, 5, "")
   };
@@ -2686,11 +2686,11 @@ proto.payment_print_export.GetDocumentNoRequest.deserializeBinaryFromReader = fu
       break;
     case 2:
       var value = /** @type {number} */ (reader.readInt32());
-      msg.setPaymentSelectionId(value);
+      msg.setBankAccountId(value);
       break;
     case 3:
       var value = /** @type {string} */ (reader.readString());
-      msg.setPaymentSelectionUuid(value);
+      msg.setBankAccountUuid(value);
       break;
     case 4:
       var value = /** @type {number} */ (reader.readInt32());
@@ -2737,14 +2737,14 @@ proto.payment_print_export.GetDocumentNoRequest.serializeBinaryToWriter = functi
       proto_client_pb.ClientRequest.serializeBinaryToWriter
     );
   }
-  f = message.getPaymentSelectionId();
+  f = message.getBankAccountId();
   if (f !== 0) {
     writer.writeInt32(
       2,
       f
     );
   }
-  f = message.getPaymentSelectionUuid();
+  f = message.getBankAccountUuid();
   if (f.length > 0) {
     writer.writeString(
       3,
@@ -2806,10 +2806,10 @@ proto.payment_print_export.GetDocumentNoRequest.prototype.hasClientRequest = fun
 
 
 /**
- * optional int32 payment_selection_id = 2;
+ * optional int32 bank_account_id = 2;
  * @return {number}
  */
-proto.payment_print_export.GetDocumentNoRequest.prototype.getPaymentSelectionId = function() {
+proto.payment_print_export.GetDocumentNoRequest.prototype.getBankAccountId = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
 };
 
@@ -2818,16 +2818,16 @@ proto.payment_print_export.GetDocumentNoRequest.prototype.getPaymentSelectionId 
  * @param {number} value
  * @return {!proto.payment_print_export.GetDocumentNoRequest} returns this
  */
-proto.payment_print_export.GetDocumentNoRequest.prototype.setPaymentSelectionId = function(value) {
+proto.payment_print_export.GetDocumentNoRequest.prototype.setBankAccountId = function(value) {
   return jspb.Message.setProto3IntField(this, 2, value);
 };
 
 
 /**
- * optional string payment_selection_uuid = 3;
+ * optional string bank_account_uuid = 3;
  * @return {string}
  */
-proto.payment_print_export.GetDocumentNoRequest.prototype.getPaymentSelectionUuid = function() {
+proto.payment_print_export.GetDocumentNoRequest.prototype.getBankAccountUuid = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
 
@@ -2836,7 +2836,7 @@ proto.payment_print_export.GetDocumentNoRequest.prototype.getPaymentSelectionUui
  * @param {string} value
  * @return {!proto.payment_print_export.GetDocumentNoRequest} returns this
  */
-proto.payment_print_export.GetDocumentNoRequest.prototype.setPaymentSelectionUuid = function(value) {
+proto.payment_print_export.GetDocumentNoRequest.prototype.setBankAccountUuid = function(value) {
   return jspb.Message.setProto3StringField(this, 3, value);
 };
 
@@ -3040,8 +3040,8 @@ proto.payment_print_export.CreateEFTPaymentRequest.prototype.toObject = function
 proto.payment_print_export.CreateEFTPaymentRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     clientRequest: (f = msg.getClientRequest()) && proto_client_pb.ClientRequest.toObject(includeInstance, f),
-    paymentSelectionId: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    paymentSelectionUuid: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    bankAccountId: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    bankAccountUuid: jspb.Message.getFieldWithDefault(msg, 3, ""),
     paymentRuleId: jspb.Message.getFieldWithDefault(msg, 4, 0),
     paymentRuleUuid: jspb.Message.getFieldWithDefault(msg, 5, ""),
     documentNo: jspb.Message.getFieldWithDefault(msg, 6, "")
@@ -3088,11 +3088,11 @@ proto.payment_print_export.CreateEFTPaymentRequest.deserializeBinaryFromReader =
       break;
     case 2:
       var value = /** @type {number} */ (reader.readInt32());
-      msg.setPaymentSelectionId(value);
+      msg.setBankAccountId(value);
       break;
     case 3:
       var value = /** @type {string} */ (reader.readString());
-      msg.setPaymentSelectionUuid(value);
+      msg.setBankAccountUuid(value);
       break;
     case 4:
       var value = /** @type {number} */ (reader.readInt32());
@@ -3143,14 +3143,14 @@ proto.payment_print_export.CreateEFTPaymentRequest.serializeBinaryToWriter = fun
       proto_client_pb.ClientRequest.serializeBinaryToWriter
     );
   }
-  f = message.getPaymentSelectionId();
+  f = message.getBankAccountId();
   if (f !== 0) {
     writer.writeInt32(
       2,
       f
     );
   }
-  f = message.getPaymentSelectionUuid();
+  f = message.getBankAccountUuid();
   if (f.length > 0) {
     writer.writeString(
       3,
@@ -3219,10 +3219,10 @@ proto.payment_print_export.CreateEFTPaymentRequest.prototype.hasClientRequest = 
 
 
 /**
- * optional int32 payment_selection_id = 2;
+ * optional int32 bank_account_id = 2;
  * @return {number}
  */
-proto.payment_print_export.CreateEFTPaymentRequest.prototype.getPaymentSelectionId = function() {
+proto.payment_print_export.CreateEFTPaymentRequest.prototype.getBankAccountId = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
 };
 
@@ -3231,16 +3231,16 @@ proto.payment_print_export.CreateEFTPaymentRequest.prototype.getPaymentSelection
  * @param {number} value
  * @return {!proto.payment_print_export.CreateEFTPaymentRequest} returns this
  */
-proto.payment_print_export.CreateEFTPaymentRequest.prototype.setPaymentSelectionId = function(value) {
+proto.payment_print_export.CreateEFTPaymentRequest.prototype.setBankAccountId = function(value) {
   return jspb.Message.setProto3IntField(this, 2, value);
 };
 
 
 /**
- * optional string payment_selection_uuid = 3;
+ * optional string bank_account_uuid = 3;
  * @return {string}
  */
-proto.payment_print_export.CreateEFTPaymentRequest.prototype.getPaymentSelectionUuid = function() {
+proto.payment_print_export.CreateEFTPaymentRequest.prototype.getBankAccountUuid = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
 
@@ -3249,7 +3249,7 @@ proto.payment_print_export.CreateEFTPaymentRequest.prototype.getPaymentSelection
  * @param {string} value
  * @return {!proto.payment_print_export.CreateEFTPaymentRequest} returns this
  */
-proto.payment_print_export.CreateEFTPaymentRequest.prototype.setPaymentSelectionUuid = function(value) {
+proto.payment_print_export.CreateEFTPaymentRequest.prototype.setBankAccountUuid = function(value) {
   return jspb.Message.setProto3StringField(this, 3, value);
 };
 
