@@ -14,39 +14,81 @@
  * along with this program. If not, see <https://www.gnu.org/licenses/>.             *
  ************************************************************************************/
 
-const baseDataTypeFromGRPC = {
+/**
+ * Get value from Decimal definition
+ * @param {Decimal} decimalToConvert
+ * @return {number}
+ */
+function getDecimalFromGRPC(decimalToConvert) {
+  const { isEmptyValue } = require('./valueUtils');
 
-  /**
-   * Get all operator or get key value type from value
-   * @param {string} key
-   * @param {number} value
-   * @returns {number|string|object}
-      VOID = 0;
-      EQUAL = 1;
-      NOT_EQUAL = 2;
-      LIKE = 3;
-      NOT_LIKE = 4;
-      GREATER = 5;
-      GREATER_EQUAL = 6;
-      LESS = 7;
-      LESS_EQUAL = 8;
-      BETWEEN = 9;
-      NOT_NULL = 10;
-      NULL = 11;
-      IN = 12;
-      NOT_IN = 13;
-   */
-  getCondition_Operator({ key, value }) {
-    const { getValueOrKey } = require('@adempiere/grpc-api/src/utils/convertEnums.js')
-    const { Condition } = require('@adempiere/grpc-api/src/grpc/proto/base_data_type_pb.js');
-    const { Operator } = Condition;
-
-    return getValueOrKey({
-      list: Operator,
-      key,
-      value
-    });
+  if (isEmptyValue(decimalToConvert)) {
+    return undefined;
   }
+
+  const value = decimalToConvert.getDecimalValue();
+  if (isEmptyValue(value)) {
+    return undefined;
+  }
+
+  // return number value
+  return Number(value);
 }
 
-module.exports = baseDataTypeFromGRPC;
+/**
+ * Get all operator or get key value type from value
+ * @param {string} key
+ * @param {number} value
+ * @returns {number|string|object}
+    VOID = 0;
+    EQUAL = 1;
+    NOT_EQUAL = 2;
+    LIKE = 3;
+    NOT_LIKE = 4;
+    GREATER = 5;
+    GREATER_EQUAL = 6;
+    LESS = 7;
+    LESS_EQUAL = 8;
+    BETWEEN = 9;
+    NOT_NULL = 10;
+    NULL = 11;
+    IN = 12;
+    NOT_IN = 13;
+ */
+function getCondition_Operator({ key, value }) {
+  const { getValueOrKey } = require('@adempiere/grpc-api/src/utils/convertEnums.js')
+  const { Condition } = require('@adempiere/grpc-api/src/grpc/proto/base_data_type_pb.js');
+  const { Operator } = Condition;
+
+  return getValueOrKey({
+    list: Operator,
+    key,
+    value
+  });
+}
+
+/**
+ * Get Business Partner Convert From gRPC
+ */
+function getBusinessPartnerFromGRPC(businessPartnerToConvert) {
+  if (!businessPartnerToConvert) {
+    return undefined;
+  }
+  return {
+    uuid: businessPartnerToConvert.getUuid(),
+    id: businessPartnerToConvert.getId(),
+    value: businessPartnerToConvert.getValue(),
+    tax_id: businessPartnerToConvert.getTaxId(),
+    duns: businessPartnerToConvert.getDuns(),
+    naics: businessPartnerToConvert.getNaics(),
+    name: businessPartnerToConvert.getName(),
+    last_name: businessPartnerToConvert.getLastName(),
+    description: businessPartnerToConvert.getDescription()
+  };
+}
+
+module.exports = {
+  getDecimalFromGRPC,
+  getCondition_Operator,
+  getBusinessPartnerFromGRPC
+};
