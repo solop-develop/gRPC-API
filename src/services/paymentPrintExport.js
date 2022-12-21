@@ -127,7 +127,7 @@ class PaymentPrintExport {
     request.setClientRequest(
       createClientRequest({ token, language })
     );
-  
+
     this.getPaymentPrintExport().listPaymentSelection(request, callback);
   }
 
@@ -163,7 +163,7 @@ class PaymentPrintExport {
     request.setClientRequest(
       createClientRequest({ token, language })
     );
-  
+
     this.getPaymentPrintExport().listPaymentRules(request, callback);
   }
 
@@ -199,7 +199,7 @@ class PaymentPrintExport {
     request.setClientRequest(
       createClientRequest({ token, language })
     );
-  
+
     this.getPaymentPrintExport().getDocumentNo(request, callback);
   }
 
