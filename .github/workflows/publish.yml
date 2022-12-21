@@ -34,7 +34,7 @@ jobs:
       - name: Upload dist app
         uses: actions/upload-artifact@v3
         with:
-          name: gRPC-API
+          name: grpc-api
           path: ./
 
 
@@ -49,7 +49,7 @@ jobs:
     steps:
       - id: check_secret_job
         run: |
-          if [[ "${{ secrets.NPM_TOKEN }}" != "" && ]]; \
+          if [[ "${{ secrets.NPM_TOKEN }}" != "" ]]; \
           then
             echo "Secrets to use a NPM are configured in the repo"
             echo "is_have_secrets=true" >> $GITHUB_OUTPUT
@@ -82,50 +82,6 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
 
-  # # Check secrets to push image in NPM registry
-  # check-yarn-secrets:
-  #   name: Check if Yarn registry information was set on secrets
-  #   needs:
-  #     - build-app
-  #   runs-on: ubuntu-latest
-  #   outputs:
-  #     is_have_secrets: ${{ steps.check_secret_job.outputs.is_have_secrets }}
-  #   steps:
-  #     - id: check_secret_job
-  #       run: |
-  #         if [[ "${{ secrets.YARN_TOKEN }}" != "" && ]]; \
-  #         then
-  #           echo "Secrets to use a NPM are configured in the repo"
-  #           echo "is_have_secrets=true" >> $GITHUB_OUTPUT
-  #         else
-  #           echo "Secrets to use a NPM were not configured in the repo"
-  #           echo "is_have_secrets=false" >> $GITHUB_OUTPUT
-  #         fi
-
-  # publish-yarn:
-  #   name: Publish Yarn Registry
-  #   needs:
-  #     - check-yarn-secrets
-  #   # Skip step based on secret
-  #   if: needs.check-yarn-secrets.outputs.is_have_secrets == 'true'
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Node configuration
-  #       uses: actions/setup-node@v3
-  #       with:
-  #         node-version: 14
-  #         cache: 'npm'
-  #         registry-url: https://registry.npmjs.org/
-
-  #     - name: Download all artifacts
-  #       uses: actions/download-artifact@v3
-
-  #     - name: Publish Yarn Registry
-  #       run: yarn publish --access=public
-  #       env:
-  #         NODE_AUTH_TOKEN: ${{ secrets.YARN_TOKEN }}
-
-
   publish-gpr:
     name: Publish GitHub Package Registry
     runs-on: ubuntu-latest
@@ -135,6 +91,24 @@ jobs:
     needs:
       - build-app
     steps:
+      - run: ls
+
+      - name: Download build dist app
+        uses: actions/download-artifact@v3
+        with:
+          name: grpc-api
+
+      - run: ls
+
+      - name: Set Lower Case to owner and repository
+        run: |
+          echo "OWNER_LC=${OWNER,,}" >> ${GITHUB_ENV}
+        env:
+          OWNER: '${{ github.repository_owner }}'
+
+      - name: Echo org
+        run: echo {{ env.OWNER_LC }}
+
       - name: Node configuration
         uses: actions/setup-node@v3
         with:
@@ -142,10 +116,7 @@ jobs:
           registry-url: https://npm.pkg.github.com/
           cache: 'npm'
           # Defaults to the user or organization that owns the workflow file
-          scope: '@adempiere'
-
-      - name: Download all artifacts
-        uses: actions/download-artifact@v3
+          scope: '@${{ env.OWNER_LC }}'
 
       - run: ls
 
@@ -153,6 +124,7 @@ jobs:
         run: npm publish --access=public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
 
   # Publish dist binaries to application
   publish-app-dist:
@@ -164,7 +136,15 @@ jobs:
       - name: Download build dist app
         uses: actions/download-artifact@v3
         with:
-          name: gRPC-API
+          name: grpc-api
+
+      - run: ls
+
+      - name: Compress files for application dist
+        uses: TheDoctor0/zip-release@0.6.2
+        with:
+          filename: 'gRPC-API.zip'
+          path: './'
 
       - run: ls
 

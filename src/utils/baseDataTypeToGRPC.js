@@ -14,55 +14,54 @@
  * along with this program. If not, see <https://www.gnu.org/licenses/>.             *
  ************************************************************************************/
 
-const baseDataTypeToGRPC = {
+/**
+ * Convert a parameter defined by columnName and value to Value Object
+ * @param {string} columnName
+ * @param {mixed}  value
+ * @param {mixed}  valueTo
+ * @param {array}  values
+ * @param {string} operator
+ * @returns Object
+ */
+function convertConditionToGRPC({ columnName, value, valueTo, values = [], operator = 'VOID' }) {
+  const { isEmptyValue, convertValueToGRPC } = require('@adempiere/grpc-api/lib/convertValues.js');
+  const { Condition } = require('@adempiere/grpc-api/src/grpc/proto/base_data_type_pb.js');
+  const { Operator } = Condition;
+  const conditionInstance = new Condition();
+  conditionInstance.setColumnName(columnName);
 
-  /**
-   * Convert a parameter defined by columnName and value to Value Object
-   * @param {string} columnName
-   * @param {mixed}  value
-   * @param {mixed}  valueTo
-   * @param {array}  values
-   * @param {string} operator
-   * @returns Object
-   */
-   convertConditionToGRPC({ columnName, value, valueTo, values = [], operator = 'VOID' }) {
-    const { isEmptyValue, convertValueToGRPC } = require('@adempiere/grpc-api/lib/convertValues.js');
-    const { Condition } = require('@adempiere/grpc-api/src/grpc/proto/base_data_type_pb.js');
-    const { Operator } = Condition;
-    const conditionInstance = new Condition();
-    conditionInstance.setColumnName(columnName);
+  // set operator
+  conditionInstance.setOperator(Operator.VOID); // 0
+  if (operator) {
+    conditionInstance.setOperator(Operator[operator]);
+  }
 
-    // set operator
-    conditionInstance.setOperator(Operator.VOID); // 0
-    if (operator) {
-      conditionInstance.setOperator(Operator[operator]);
-    }
-
-    // set value and value to
-    if (!isEmptyValue(value)) {
-      conditionInstance.setValue(
-        convertValueToGRPC({ value })
-      );
-    }
-    if (!isEmptyValue(valueTo)) {
-      conditionInstance.setValueTo(
-        convertValueToGRPC({
-          value: valueTo
-        })
-      );
-    }
-    // set values
-    if (!isEmptyValue(values)) {
-      values.forEach(itemValue => {
-        const convertedValue = convertValueToGRPC({
-          value: itemValue
-        });
-        conditionInstance.addValues(convertedValue);
+  // set value and value to
+  if (!isEmptyValue(value)) {
+    conditionInstance.setValue(
+      convertValueToGRPC({ value })
+    );
+  }
+  if (!isEmptyValue(valueTo)) {
+    conditionInstance.setValueTo(
+      convertValueToGRPC({
+        value: valueTo
+      })
+    );
+  }
+  // set values
+  if (!isEmptyValue(values)) {
+    values.forEach(itemValue => {
+      const convertedValue = convertValueToGRPC({
+        value: itemValue
       });
-    }
-    //  Return converted condition
-    return conditionInstance;
-  },
+      conditionInstance.addValues(convertedValue);
+    });
+  }
+  //  Return converted condition
+  return conditionInstance;
 }
 
-module.exports = baseDataTypeToGRPC;
+module.exports = {
+  convertConditionToGRPC
+};
