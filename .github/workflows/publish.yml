@@ -107,7 +107,12 @@ jobs:
           OWNER: '${{ github.repository_owner }}'
 
       - name: Echo org
-        run: echo {{ env.OWNER_LC }}
+        run: |
+          echo {{ env.OWNER_LC }} \
+          echo $OWNER_LC \
+          echo ${{ github.repository_owner }} \
+          echo ${{ github.repository_name }}
+          
 
       - name: Node configuration
         uses: actions/setup-node@v3

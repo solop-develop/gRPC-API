@@ -15,7 +15,7 @@
  ************************************************************************************/
 
 const { createClientRequest } = require('@adempiere/grpc-api/lib/clientRequest');
-const { isEmptyValue } = require('@adempiere/grpc-api/lib/convertValues.js');
+const { isEmptyValue, getValidId } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
 
 class UserInterface {
 
@@ -53,6 +53,34 @@ class UserInterface {
   // Get UserInterface Service
   getUserInterfaceService() {
     return this.userInterface;
+  }
+
+  existsReferences({
+    token,
+    language,
+    tabId,
+    tabUuid,
+    recordId,
+    recordUuid
+  }, callback) {
+    const { ExistsReferencesRequest } = this.stubFile;
+    const request = new ExistsReferencesRequest();
+
+    request.setTabId(
+      getValidId(tabId)
+    );
+    request.setTabUuid(tabUuid);
+
+    request.setRecordId(
+      getValidId(recordId)
+    );
+    request.setRecordUuid(recordUuid);
+
+    request.setClientRequest(
+      createClientRequest({ token, language })
+    );
+
+    this.getUserInterfaceService().existsReferences(request, callback);
   }
 
   // Tab Sequences (Is Sort Tab)
@@ -96,7 +124,7 @@ class UserInterface {
       createClientRequest({ token, language })
     );
   
-    this.getUserInterfaceService().listTabSequences(request, callback)
+    this.getUserInterfaceService().listTabSequences(request, callback);
   }
 
   // Tab Sequences (Is Sort Tab)
@@ -144,7 +172,7 @@ class UserInterface {
       createClientRequest({ token, language })
     );
   
-    this.getUserInterfaceService().saveTabSequences(request, callback)
+    this.getUserInterfaceService().saveTabSequences(request, callback);
   }
 
   // Run a callout to server

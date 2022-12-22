@@ -131,6 +131,28 @@ function deserialize_data_Entity(buffer_arg) {
   return proto_base_data_type_pb.Entity.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_data_ExistsReferencesRequest(arg) {
+  if (!(arg instanceof proto_business_pb.ExistsReferencesRequest)) {
+    throw new Error('Expected argument of type data.ExistsReferencesRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_ExistsReferencesRequest(buffer_arg) {
+  return proto_business_pb.ExistsReferencesRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_data_ExistsReferencesResponse(arg) {
+  if (!(arg instanceof proto_business_pb.ExistsReferencesResponse)) {
+    throw new Error('Expected argument of type data.ExistsReferencesResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_ExistsReferencesResponse(buffer_arg) {
+  return proto_business_pb.ExistsReferencesResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_data_GetContextInfoValueRequest(arg) {
   if (!(arg instanceof proto_business_pb.GetContextInfoValueRequest)) {
     throw new Error('Expected argument of type data.GetContextInfoValueRequest');
@@ -803,6 +825,18 @@ updateBrowserEntity: {
     requestDeserialize: deserialize_data_UpdateBrowserEntityRequest,
     responseSerialize: serialize_data_Entity,
     responseDeserialize: deserialize_data_Entity,
+  },
+  // Exists References on Record
+existsReferences: {
+    path: '/data.UserInterface/ExistsReferences',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_business_pb.ExistsReferencesRequest,
+    responseType: proto_business_pb.ExistsReferencesResponse,
+    requestSerialize: serialize_data_ExistsReferencesRequest,
+    requestDeserialize: deserialize_data_ExistsReferencesRequest,
+    responseSerialize: serialize_data_ExistsReferencesResponse,
+    responseDeserialize: deserialize_data_ExistsReferencesResponse,
   },
   // List a References
 listReferences: {
