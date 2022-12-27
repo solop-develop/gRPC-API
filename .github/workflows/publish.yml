@@ -109,7 +109,10 @@ jobs:
       - name: Echo org
         run: |
           echo {{ env.OWNER_LC }} \
-          echo $OWNER_LC \
+          echo $OWNER_LC
+      
+      - name: Echo repo
+        run: |
           echo ${{ github.repository_owner }} \
           echo ${{ github.repository_name }}
           
