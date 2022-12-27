@@ -15,7 +15,7 @@
  ************************************************************************************/
 
 const { createClientRequest } = require('@adempiere/grpc-api/lib/clientRequest');
-const { isEmptyValue, getValidId } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
+const { getValidId } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
 
 class PaymentPrintExport {
 
@@ -56,6 +56,33 @@ class PaymentPrintExport {
   }
 
   /**
+   * List Payment Selection
+   * @param {string} searchValue
+   * @param {array} contextAttributes
+   * @param {number} pageSize
+   * @param {string} pageToken
+   */
+  listPaymentSelections({
+    token,
+    searchValue,
+    pageSize,
+    pageToken,
+    language
+  }, callback) {
+    const { ListPaymentSelectionRequest } = this.stubFile;
+    const request = new ListPaymentSelectionRequest();
+    request.setSearchValue(searchValue);
+
+    request.setPageSize(pageSize);
+    request.setPageToken(pageToken);
+    request.setClientRequest(
+      createClientRequest({ token, language })
+    );
+
+    this.getPaymentPrintExport().listPaymentSelections(request, callback);
+  }
+
+  /**
    * Get Payment Selection
    * @param {number} id
    * @param {string} uuid
@@ -79,56 +106,6 @@ class PaymentPrintExport {
     );
 
     this.getPaymentPrintExport().getPaymentSelection(request, callback);
-  }
-
-  /**
-   * List Payment Selection
-   * @param {string} searchValue
-   * @param {array} contextAttributes
-   * @param {number} pageSize
-   * @param {string} pageToken
-   */
-  listPaymentSelection({
-    token,
-    searchValue,
-    contextAttributes,
-    pageSize,
-    pageToken,
-    language
-  }, callback) {
-    const { ListPaymentSelectionRequest } = this.stubFile;
-    const request = new ListPaymentSelectionRequest();
-    request.setSearchValue(searchValue);
-
-    if (!isEmptyValue(contextAttributes)) {
-      const { getTypeOfValue } = require('@adempiere/grpc-api/src/utils/valueUtils');
-      const { convertParameterToGRPC } = require('@adempiere/grpc-api/lib/convertValues.js');
-
-      if (getTypeOfValue(contextAttributes) === 'String') {
-        contextAttributes = JSON.parse(contextAttributes);
-      }
-
-      contextAttributes.forEach(attribute => {
-        let parsedAttribute = attribute;
-        if (getTypeOfValue(attribute) === 'String') {
-          parsedAttribute = JSON.parse(attribute);
-        }
-        request.addContextAttributes(
-          convertParameterToGRPC({
-            columnName: parsedAttribute.key,
-            value: parsedAttribute.value
-          })
-        );
-      });
-    }
-
-    request.setPageSize(pageSize);
-    request.setPageToken(pageToken);
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
-
-    this.getPaymentPrintExport().listPaymentSelection(request, callback);
   }
 
   /**
@@ -168,6 +145,42 @@ class PaymentPrintExport {
   }
 
   /**
+   * List Payments
+   * @param {string} searchValue
+   * @param {number} paymentSelectionId
+   * @param {string} paymentSelectionUuid
+   * @param {number} pageSize
+   * @param {string} pageToken
+   */
+  listPayments({
+    token,
+    searchValue,
+    paymentSelectionId,
+    paymentSelectionUuid,
+    pageSize,
+    pageToken,
+    language
+  }, callback) {
+    const { ListPaymentsRequest } = this.stubFile;
+    const request = new ListPaymentsRequest();
+
+    request.setSearchValue(searchValue);
+
+    request.setPaymentSelectionId(
+      getValidId(paymentSelectionId)
+    );
+    request.setPaymentSelectionUuid(paymentSelectionUuid);
+
+    request.setPageSize(pageSize);
+    request.setPageToken(pageToken);
+    request.setClientRequest(
+      createClientRequest({ token, language })
+    );
+
+    this.getPaymentPrintExport().listPayments(request, callback);
+  }
+
+  /**
    * Get Document No
    * @param {string} searchValue
    * @param {number} paymentSelectionId
@@ -204,14 +217,14 @@ class PaymentPrintExport {
   }
 
   /**
-   * Create EFT Payment
+   * Process and Create EFT Payment
    * @param {number} paymentSelectionId
    * @param {string} paymentSelectionUuid
    * @param {number} paymentRuleId
    * @param {string} paymentRuleUuid
    * @param {string} documentNo
    */
-  createEFTPayment({
+  process({
     token,
     language,
     paymentSelectionId,
@@ -220,8 +233,8 @@ class PaymentPrintExport {
     paymentRuleUuid,
     documentNo
   }, callback) {
-    const { CreateEFTPaymentRequest } = this.stubFile;
-    const request = new CreateEFTPaymentRequest();
+    const { ProcessRequest } = this.stubFile;
+    const request = new ProcessRequest();
 
     request.setPaymentSelectionId(
       getValidId(paymentSelectionId)
@@ -239,7 +252,46 @@ class PaymentPrintExport {
       createClientRequest({ token, language })
     );
 
-    this.getPaymentPrintExport().createEFTPayment(request, callback);
+    this.getPaymentPrintExport().process(request, callback);
+  }
+
+  /**
+   * Process and Create EFT Payment
+   * @param {number} paymentSelectionId
+   * @param {string} paymentSelectionUuid
+   * @param {number} paymentRuleId
+   * @param {string} paymentRuleUuid
+   * @param {string} documentNo
+   */
+  export({
+    token,
+    language,
+    paymentSelectionId,
+    paymentSelectionUuid,
+    paymentRuleId,
+    paymentRuleUuid,
+    documentNo
+  }, callback) {
+    const { ExportRequest } = this.stubFile;
+    const request = new ExportRequest();
+
+    request.setPaymentSelectionId(
+      getValidId(paymentSelectionId)
+    );
+    request.setPaymentSelectionUuid(paymentSelectionUuid);
+
+    request.setPaymentRuleId(
+      getValidId(paymentRuleId)
+    );
+    request.setPaymentRuleUuid(paymentRuleUuid);
+
+    request.setDocumentNo(documentNo);
+
+    request.setClientRequest(
+      createClientRequest({ token, language })
+    );
+
+    this.getPaymentPrintExport().export(request, callback);
   }
 
   /**
@@ -250,7 +302,7 @@ class PaymentPrintExport {
    * @param {string} paymentRuleUuid
    * @param {string} documentNo
    */
-  printPayments({
+  print({
     token,
     language,
     paymentSelectionId,
@@ -259,8 +311,8 @@ class PaymentPrintExport {
     paymentRuleUuid,
     documentNo
   }, callback) {
-    const { PrintPaymentsRequest } = this.stubFile;
-    const request = new PrintPaymentsRequest();
+    const { PrintRequest } = this.stubFile;
+    const request = new PrintRequest();
 
     request.setPaymentSelectionId(
       getValidId(paymentSelectionId)
@@ -278,7 +330,7 @@ class PaymentPrintExport {
       createClientRequest({ token, language })
     );
 
-    this.getPaymentPrintExport().printPayments(request, callback);
+    this.getPaymentPrintExport().print(request, callback);
   }
 
   /**
