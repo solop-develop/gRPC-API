@@ -87,8 +87,34 @@ function getBusinessPartnerFromGRPC(businessPartnerToConvert) {
   };
 }
 
+function getReportOutputFromGRPC(reportOutputToConvert) {
+  if (!reportOutputToConvert) {
+    return undefined;
+  }
+  return {
+    uuid: reportOutputToConvert.getUuid(),
+    name: reportOutputToConvert.getName(),
+    description: reportOutputToConvert.getDescription(),
+    file_name: reportOutputToConvert.getFileName(),
+    output: reportOutputToConvert.getOutput(),
+    mime_type: reportOutputToConvert.getMimeType(),
+    data_cols: reportOutputToConvert.getDataCols(),
+    data_rows: reportOutputToConvert.getDataRows(),
+    header_name: reportOutputToConvert.getHeaderName(),
+    footer_name: reportOutputToConvert.getFooterName(),
+    print_format_uuid: reportOutputToConvert.getPrintFormatUuid(),
+    report_view_uuid: reportOutputToConvert.getReportViewUuid(),
+    table_name: reportOutputToConvert.getTableName(),
+    output_stream: reportOutputToConvert.getOutputStream(),
+    output_stream_asB64: reportOutputToConvert.getOutputStream_asB64(),
+    output_stream_asU8: reportOutputToConvert.getOutputStream_asU8(),
+    report_type: reportOutputToConvert.getReportType()
+  };
+}
+
 module.exports = {
   getDecimalFromGRPC,
   getCondition_Operator,
-  getBusinessPartnerFromGRPC
+  getBusinessPartnerFromGRPC,
+  getReportOutputFromGRPC
 };

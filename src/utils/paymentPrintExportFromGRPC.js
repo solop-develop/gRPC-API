@@ -14,73 +14,29 @@
  * along with this program. If not, see <https://www.gnu.org/licenses/>.             *
  ************************************************************************************/
 
-/**
- * Get Bank Account Type from gRPC
- */
-function getBanckAccountTypeFromGRPC(bankAccountTypeToConvert) {
-  if (!bankAccountTypeToConvert) {
-    return undefined
-  }
-  return {
-    id: bankAccountTypeToConvert.getId(),
-    uuid: bankAccountTypeToConvert.getUuid(),
-    value: bankAccountTypeToConvert.getValue(),
-    name: bankAccountTypeToConvert.getName(),
-    description: bankAccountTypeToConvert.getDescription()
-  }
-}
 
 function getBankAccountFromGRPC(bankAccountToConvert) {
   if (!bankAccountToConvert) {
     return undefined
   }
-  const { getBusinessPartnerFromGRPC, getDecimalFromGRPC } = require('./baseDataTypeFromGRPC');
-  const { getCurrencyFromGRPC } = require('./coreFunctionalityFromGRPC');
+  const { getDecimalFromGRPC } = require('./baseDataTypeFromGRPC');
   return {
     id: bankAccountToConvert.getId(),
     uuid: bankAccountToConvert.getUuid(),
     account_no: bankAccountToConvert.getAccountNo(),
-    bban: bankAccountToConvert.getBban(),
-    iban: bankAccountToConvert.getIban(),
-    description: bankAccountToConvert.getDescription(),
-    is_default: bankAccountToConvert.getIsDefault(),
-    currency: getCurrencyFromGRPC(
-      bankAccountToConvert.getCurrency()
-    ),
-    bank_account_type: getBanckAccountTypeFromGRPC(
-      bankAccountToConvert.getBankAccountType()
-    ),
-    credit_limit: getDecimalFromGRPC(
-      bankAccountToConvert.getCreditLimit()
-    ),
+    account_name: bankAccountToConvert.getAccountName(),
+    bank_name: bankAccountToConvert.getBankName(),
     current_balance: getDecimalFromGRPC(
       bankAccountToConvert.getCurrentBalance()
     ),
-    is_sales_transaction: bankAccountToConvert.getIsSalesTransaction(),
-    business_partner:getBusinessPartnerFromGRPC(
-      bankAccountToConvert.getBusinessPartner()
-    )
   };
-}
-
-function getPaymentRuleFromGRPC(paymentRuleToConvert) {
-  if (!paymentRuleToConvert) {
-    return undefined
-  }
-  return {
-    id: paymentRuleToConvert.getId(),
-    uuid: paymentRuleToConvert.getUuid(),
-    value: paymentRuleToConvert.getValue(),
-    name: paymentRuleToConvert.getName(),
-    description: paymentRuleToConvert.getDescription(),
-  }
 }
 
 function getPaymentSelectionFromGRPC(paymentSelectionToConvert) {
   if (!paymentSelectionToConvert) {
     return undefined
   }
-
+  const { getCurrencyFromGRPC } = require('./coreFunctionalityFromGRPC');
   return {
     id: paymentSelectionToConvert.getId(),
     uuid: paymentSelectionToConvert.getUuid(),
@@ -88,18 +44,97 @@ function getPaymentSelectionFromGRPC(paymentSelectionToConvert) {
     bank_account: getBankAccountFromGRPC(
       paymentSelectionToConvert.getBankAccount()
     ),
-    payment_rules: paymentSelectionToConvert.getPaymentRulesList().map(paymentRule => {
-      return getPaymentRuleFromGRPC(
-        paymentRule
-      );
-    }),
-    number_payments: paymentSelectionToConvert.getNumberPayments()
+    payment_amount: getDecimalFromGRPC(
+      paymentSelectionToConvert.getPaymentAmount()
+    ),
+    payment_quantity: paymentSelectionToConvert.getPaymentQuantity(),
+    currency: getCurrencyFromGRPC(
+      paymentSelectionToConvert.getCurrency()
+    )
+  }
+}
+
+function getPaymentFromGRPC(paymentToConvert) {
+  if (!paymentToConvert) {
+    return undefined
+  }
+  return {
+    id: paymentToConvert.getId(),
+    uuid: paymentToConvert.getUuid(),
+    document_no: paymentToConvert.getDocumentNo(),
+    vendor_id: paymentToConvert.getVendorId(),
+    vendor_uuid: paymentToConvert.getVendorUuid(),
+    vendor_tax_id: paymentToConvert.getTaxId(),
+    vendor_name: paymentToConvert.getName(),
+    grand_total: getDecimalFromGRPC(
+      paymentToConvert.getGrandTotal()
+    ),
+    over_under_amount: getDecimalFromGRPC(
+      paymentToConvert.getOverUnderAmount()
+    ),
+    payment_amount: getDecimalFromGRPC(
+      paymentToConvert.getPaymentAmount()
+    ),
+    open_amount: getDecimalFromGRPC(
+      paymentToConvert.getOpenAmount()
+    ),
+  }
+}
+
+function getProcessFromGRPC(processToConvert) {
+  if (!processToConvert) {
+    return undefined
+  }
+  const { getReportOutputFromGRPC } = require('./baseDataTypeFromGRPC')
+  return {
+    report_output: getReportOutputFromGRPC(
+      processToConvert.getReportOutput()
+    )
+  }
+}
+
+function getExportFromGRPC(exportToConvert) {
+  if (!exportToConvert) {
+    return undefined
+  }
+  const { getReportOutputFromGRPC } = require('./baseDataTypeFromGRPC')
+  return {
+    report_output: getReportOutputFromGRPC(
+      exportToConvert.getReportOutput()
+    )
+  }
+}
+
+function getPrintFromGRPC(printToConvert) {
+  if (!printToConvert) {
+    return undefined
+  }
+  const { getReportOutputFromGRPC } = require('./baseDataTypeFromGRPC')
+  return {
+    report_output: getReportOutputFromGRPC(
+      printToConvert.getReportOutput()
+    )
+  }
+}
+
+function getPrintRemittanceFromGRPC(printRemittanceToConvert) {
+  if (!printRemittanceToConvert) {
+    return undefined
+  }
+  const { getReportOutputFromGRPC } = require('./baseDataTypeFromGRPC')
+  return {
+    report_output: getReportOutputFromGRPC(
+      printRemittanceToConvert.getReportOutput()
+    )
   }
 }
 
 module.exports = {
-  getBanckAccountTypeFromGRPC,
   getBankAccountFromGRPC,
-  getPaymentRuleFromGRPC,
-  getPaymentSelectionFromGRPC
+  getPaymentFromGRPC,
+  getPaymentSelectionFromGRPC,
+  getProcessFromGRPC,
+  getExportFromGRPC,
+  getPrintFromGRPC,
+  getPrintRemittanceFromGRPC
 };

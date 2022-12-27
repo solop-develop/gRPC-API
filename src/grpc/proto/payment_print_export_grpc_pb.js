@@ -34,17 +34,6 @@ function deserialize_data_ListLookupItemsResponse(buffer_arg) {
   return proto_business_pb.ListLookupItemsResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_data_ProcessLog(arg) {
-  if (!(arg instanceof proto_base_data_type_pb.ProcessLog)) {
-    throw new Error('Expected argument of type data.ProcessLog');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_data_ProcessLog(buffer_arg) {
-  return proto_base_data_type_pb.ProcessLog.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
 function serialize_payment_print_export_ConfirmPrintRequest(arg) {
   if (!(arg instanceof proto_payment_print_export_pb.ConfirmPrintRequest)) {
     throw new Error('Expected argument of type payment_print_export.ConfirmPrintRequest');
@@ -56,26 +45,37 @@ function deserialize_payment_print_export_ConfirmPrintRequest(buffer_arg) {
   return proto_payment_print_export_pb.ConfirmPrintRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_payment_print_export_CreateEFTPaymentRequest(arg) {
-  if (!(arg instanceof proto_payment_print_export_pb.CreateEFTPaymentRequest)) {
-    throw new Error('Expected argument of type payment_print_export.CreateEFTPaymentRequest');
+function serialize_payment_print_export_ConfirmPrintResponse(arg) {
+  if (!(arg instanceof proto_payment_print_export_pb.ConfirmPrintResponse)) {
+    throw new Error('Expected argument of type payment_print_export.ConfirmPrintResponse');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_payment_print_export_CreateEFTPaymentRequest(buffer_arg) {
-  return proto_payment_print_export_pb.CreateEFTPaymentRequest.deserializeBinary(new Uint8Array(buffer_arg));
+function deserialize_payment_print_export_ConfirmPrintResponse(buffer_arg) {
+  return proto_payment_print_export_pb.ConfirmPrintResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_payment_print_export_ExportPaymentsRequest(arg) {
-  if (!(arg instanceof proto_payment_print_export_pb.ExportPaymentsRequest)) {
-    throw new Error('Expected argument of type payment_print_export.ExportPaymentsRequest');
+function serialize_payment_print_export_ExportRequest(arg) {
+  if (!(arg instanceof proto_payment_print_export_pb.ExportRequest)) {
+    throw new Error('Expected argument of type payment_print_export.ExportRequest');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_payment_print_export_ExportPaymentsRequest(buffer_arg) {
-  return proto_payment_print_export_pb.ExportPaymentsRequest.deserializeBinary(new Uint8Array(buffer_arg));
+function deserialize_payment_print_export_ExportRequest(buffer_arg) {
+  return proto_payment_print_export_pb.ExportRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_payment_print_export_ExportResponse(arg) {
+  if (!(arg instanceof proto_payment_print_export_pb.ExportResponse)) {
+    throw new Error('Expected argument of type payment_print_export.ExportResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_payment_print_export_ExportResponse(buffer_arg) {
+  return proto_payment_print_export_pb.ExportResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_payment_print_export_GetDocumentNoRequest(arg) {
@@ -122,15 +122,37 @@ function deserialize_payment_print_export_ListPaymentRulesRequest(buffer_arg) {
   return proto_payment_print_export_pb.ListPaymentRulesRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_payment_print_export_ListPaymentSelectionRequest(arg) {
-  if (!(arg instanceof proto_payment_print_export_pb.ListPaymentSelectionRequest)) {
-    throw new Error('Expected argument of type payment_print_export.ListPaymentSelectionRequest');
+function serialize_payment_print_export_ListPaymentSelectionsRequest(arg) {
+  if (!(arg instanceof proto_payment_print_export_pb.ListPaymentSelectionsRequest)) {
+    throw new Error('Expected argument of type payment_print_export.ListPaymentSelectionsRequest');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_payment_print_export_ListPaymentSelectionRequest(buffer_arg) {
-  return proto_payment_print_export_pb.ListPaymentSelectionRequest.deserializeBinary(new Uint8Array(buffer_arg));
+function deserialize_payment_print_export_ListPaymentSelectionsRequest(buffer_arg) {
+  return proto_payment_print_export_pb.ListPaymentSelectionsRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_payment_print_export_ListPaymentsRequest(arg) {
+  if (!(arg instanceof proto_payment_print_export_pb.ListPaymentsRequest)) {
+    throw new Error('Expected argument of type payment_print_export.ListPaymentsRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_payment_print_export_ListPaymentsRequest(buffer_arg) {
+  return proto_payment_print_export_pb.ListPaymentsRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_payment_print_export_ListPaymentsResponse(arg) {
+  if (!(arg instanceof proto_payment_print_export_pb.ListPaymentsResponse)) {
+    throw new Error('Expected argument of type payment_print_export.ListPaymentsResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_payment_print_export_ListPaymentsResponse(buffer_arg) {
+  return proto_payment_print_export_pb.ListPaymentsResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_payment_print_export_PaymentSelection(arg) {
@@ -144,17 +166,6 @@ function deserialize_payment_print_export_PaymentSelection(buffer_arg) {
   return proto_payment_print_export_pb.PaymentSelection.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_payment_print_export_PrintPaymentsRequest(arg) {
-  if (!(arg instanceof proto_payment_print_export_pb.PrintPaymentsRequest)) {
-    throw new Error('Expected argument of type payment_print_export.PrintPaymentsRequest');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_payment_print_export_PrintPaymentsRequest(buffer_arg) {
-  return proto_payment_print_export_pb.PrintPaymentsRequest.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
 function serialize_payment_print_export_PrintRemittanceRequest(arg) {
   if (!(arg instanceof proto_payment_print_export_pb.PrintRemittanceRequest)) {
     throw new Error('Expected argument of type payment_print_export.PrintRemittanceRequest');
@@ -166,21 +177,76 @@ function deserialize_payment_print_export_PrintRemittanceRequest(buffer_arg) {
   return proto_payment_print_export_pb.PrintRemittanceRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_payment_print_export_PrintRemittanceResponse(arg) {
+  if (!(arg instanceof proto_payment_print_export_pb.PrintRemittanceResponse)) {
+    throw new Error('Expected argument of type payment_print_export.PrintRemittanceResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_payment_print_export_PrintRemittanceResponse(buffer_arg) {
+  return proto_payment_print_export_pb.PrintRemittanceResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_payment_print_export_PrintRequest(arg) {
+  if (!(arg instanceof proto_payment_print_export_pb.PrintRequest)) {
+    throw new Error('Expected argument of type payment_print_export.PrintRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_payment_print_export_PrintRequest(buffer_arg) {
+  return proto_payment_print_export_pb.PrintRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_payment_print_export_PrintResponse(arg) {
+  if (!(arg instanceof proto_payment_print_export_pb.PrintResponse)) {
+    throw new Error('Expected argument of type payment_print_export.PrintResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_payment_print_export_PrintResponse(buffer_arg) {
+  return proto_payment_print_export_pb.PrintResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_payment_print_export_ProcessRequest(arg) {
+  if (!(arg instanceof proto_payment_print_export_pb.ProcessRequest)) {
+    throw new Error('Expected argument of type payment_print_export.ProcessRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_payment_print_export_ProcessRequest(buffer_arg) {
+  return proto_payment_print_export_pb.ProcessRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_payment_print_export_ProcessResponse(arg) {
+  if (!(arg instanceof proto_payment_print_export_pb.ProcessResponse)) {
+    throw new Error('Expected argument of type payment_print_export.ProcessResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_payment_print_export_ProcessResponse(buffer_arg) {
+  return proto_payment_print_export_pb.ProcessResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 
 // The Payment Print/Export form service definition.
 // - org.compiere.apps.form.PayPrint
 // - org.compiere.apps.form.VPayPrint
 // - org.adempiere.webui.apps.form.WPayPrint
 var PaymentPrintExportService = exports.PaymentPrintExportService = {
-  // List Payment Selection
-listPaymentSelection: {
-    path: '/payment_print_export.PaymentPrintExport/ListPaymentSelection',
+  // List Payment Selections
+listPaymentSelections: {
+    path: '/payment_print_export.PaymentPrintExport/ListPaymentSelections',
     requestStream: false,
     responseStream: false,
-    requestType: proto_payment_print_export_pb.ListPaymentSelectionRequest,
+    requestType: proto_payment_print_export_pb.ListPaymentSelectionsRequest,
     responseType: proto_business_pb.ListLookupItemsResponse,
-    requestSerialize: serialize_payment_print_export_ListPaymentSelectionRequest,
-    requestDeserialize: deserialize_payment_print_export_ListPaymentSelectionRequest,
+    requestSerialize: serialize_payment_print_export_ListPaymentSelectionsRequest,
+    requestDeserialize: deserialize_payment_print_export_ListPaymentSelectionsRequest,
     responseSerialize: serialize_data_ListLookupItemsResponse,
     responseDeserialize: deserialize_data_ListLookupItemsResponse,
   },
@@ -220,41 +286,53 @@ getDocumentNo: {
     responseSerialize: serialize_payment_print_export_GetDocumentNoResponse,
     responseDeserialize: deserialize_payment_print_export_GetDocumentNoResponse,
   },
-  // Create EFT Payment
-createEFTPayment: {
-    path: '/payment_print_export.PaymentPrintExport/CreateEFTPayment',
+  // List Payments Check
+listPayments: {
+    path: '/payment_print_export.PaymentPrintExport/ListPayments',
     requestStream: false,
     responseStream: false,
-    requestType: proto_payment_print_export_pb.CreateEFTPaymentRequest,
-    responseType: proto_payment_print_export_pb.PaymentSelection,
-    requestSerialize: serialize_payment_print_export_CreateEFTPaymentRequest,
-    requestDeserialize: deserialize_payment_print_export_CreateEFTPaymentRequest,
-    responseSerialize: serialize_payment_print_export_PaymentSelection,
-    responseDeserialize: deserialize_payment_print_export_PaymentSelection,
+    requestType: proto_payment_print_export_pb.ListPaymentsRequest,
+    responseType: proto_payment_print_export_pb.ListPaymentsResponse,
+    requestSerialize: serialize_payment_print_export_ListPaymentsRequest,
+    requestDeserialize: deserialize_payment_print_export_ListPaymentsRequest,
+    responseSerialize: serialize_payment_print_export_ListPaymentsResponse,
+    responseDeserialize: deserialize_payment_print_export_ListPaymentsResponse,
+  },
+  // Process and Create EFT Payment
+process: {
+    path: '/payment_print_export.PaymentPrintExport/Process',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_payment_print_export_pb.ProcessRequest,
+    responseType: proto_payment_print_export_pb.ProcessResponse,
+    requestSerialize: serialize_payment_print_export_ProcessRequest,
+    requestDeserialize: deserialize_payment_print_export_ProcessRequest,
+    responseSerialize: serialize_payment_print_export_ProcessResponse,
+    responseDeserialize: deserialize_payment_print_export_ProcessResponse,
   },
   // Export Payments
-exportPayments: {
-    path: '/payment_print_export.PaymentPrintExport/ExportPayments',
+export: {
+    path: '/payment_print_export.PaymentPrintExport/Export',
     requestStream: false,
     responseStream: false,
-    requestType: proto_payment_print_export_pb.ExportPaymentsRequest,
-    responseType: proto_base_data_type_pb.ProcessLog,
-    requestSerialize: serialize_payment_print_export_ExportPaymentsRequest,
-    requestDeserialize: deserialize_payment_print_export_ExportPaymentsRequest,
-    responseSerialize: serialize_data_ProcessLog,
-    responseDeserialize: deserialize_data_ProcessLog,
+    requestType: proto_payment_print_export_pb.ExportRequest,
+    responseType: proto_payment_print_export_pb.ExportResponse,
+    requestSerialize: serialize_payment_print_export_ExportRequest,
+    requestDeserialize: deserialize_payment_print_export_ExportRequest,
+    responseSerialize: serialize_payment_print_export_ExportResponse,
+    responseDeserialize: deserialize_payment_print_export_ExportResponse,
   },
   // Print Payments
-printPayments: {
-    path: '/payment_print_export.PaymentPrintExport/PrintPayments',
+print: {
+    path: '/payment_print_export.PaymentPrintExport/Print',
     requestStream: false,
     responseStream: false,
-    requestType: proto_payment_print_export_pb.PrintPaymentsRequest,
-    responseType: proto_base_data_type_pb.ProcessLog,
-    requestSerialize: serialize_payment_print_export_PrintPaymentsRequest,
-    requestDeserialize: deserialize_payment_print_export_PrintPaymentsRequest,
-    responseSerialize: serialize_data_ProcessLog,
-    responseDeserialize: deserialize_data_ProcessLog,
+    requestType: proto_payment_print_export_pb.PrintRequest,
+    responseType: proto_payment_print_export_pb.PrintResponse,
+    requestSerialize: serialize_payment_print_export_PrintRequest,
+    requestDeserialize: deserialize_payment_print_export_PrintRequest,
+    responseSerialize: serialize_payment_print_export_PrintResponse,
+    responseDeserialize: deserialize_payment_print_export_PrintResponse,
   },
   // Confirm Payment
 confirmPrint: {
@@ -262,11 +340,11 @@ confirmPrint: {
     requestStream: false,
     responseStream: false,
     requestType: proto_payment_print_export_pb.ConfirmPrintRequest,
-    responseType: proto_payment_print_export_pb.PaymentSelection,
+    responseType: proto_payment_print_export_pb.ConfirmPrintResponse,
     requestSerialize: serialize_payment_print_export_ConfirmPrintRequest,
     requestDeserialize: deserialize_payment_print_export_ConfirmPrintRequest,
-    responseSerialize: serialize_payment_print_export_PaymentSelection,
-    responseDeserialize: deserialize_payment_print_export_PaymentSelection,
+    responseSerialize: serialize_payment_print_export_ConfirmPrintResponse,
+    responseDeserialize: deserialize_payment_print_export_ConfirmPrintResponse,
   },
   // Print Remittance
 printRemittance: {
@@ -274,11 +352,11 @@ printRemittance: {
     requestStream: false,
     responseStream: false,
     requestType: proto_payment_print_export_pb.PrintRemittanceRequest,
-    responseType: proto_base_data_type_pb.ProcessLog,
+    responseType: proto_payment_print_export_pb.PrintRemittanceResponse,
     requestSerialize: serialize_payment_print_export_PrintRemittanceRequest,
     requestDeserialize: deserialize_payment_print_export_PrintRemittanceRequest,
-    responseSerialize: serialize_data_ProcessLog,
-    responseDeserialize: deserialize_data_ProcessLog,
+    responseSerialize: serialize_payment_print_export_PrintRemittanceResponse,
+    responseDeserialize: deserialize_payment_print_export_PrintRemittanceResponse,
   },
 };
 
