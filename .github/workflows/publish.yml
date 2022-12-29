@@ -108,14 +108,13 @@ jobs:
 
       - name: Echo org
         run: |
-          echo {{ env.OWNER_LC }} \
+          echo {{ env.OWNER_LC }}
           echo $OWNER_LC
       
       - name: Echo repo
         run: |
-          echo ${{ github.repository_owner }} \
+          echo ${{ github.repository_owner }}
           echo ${{ github.repository_name }}
-          
 
       - name: Node configuration
         uses: actions/setup-node@v3
@@ -124,7 +123,7 @@ jobs:
           registry-url: https://npm.pkg.github.com/
           cache: 'npm'
           # Defaults to the user or organization that owns the workflow file
-          scope: '@${{ env.OWNER_LC }}'
+          scope: '@${{ github.repository_owner }}'
 
       - run: ls
 
