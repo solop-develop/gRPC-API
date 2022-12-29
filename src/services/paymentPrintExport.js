@@ -69,8 +69,8 @@ class PaymentPrintExport {
     pageToken,
     language
   }, callback) {
-    const { ListPaymentSelectionRequest } = this.stubFile;
-    const request = new ListPaymentSelectionRequest();
+    const { ListPaymentSelectionsRequest } = this.stubFile;
+    const request = new ListPaymentSelectionsRequest();
     request.setSearchValue(searchValue);
 
     request.setPageSize(pageSize);
@@ -157,6 +157,8 @@ class PaymentPrintExport {
     searchValue,
     paymentSelectionId,
     paymentSelectionUuid,
+    paymentRuleId,
+    paymentRuleUuid,
     pageSize,
     pageToken,
     language
@@ -170,6 +172,11 @@ class PaymentPrintExport {
       getValidId(paymentSelectionId)
     );
     request.setPaymentSelectionUuid(paymentSelectionUuid);
+
+    request.setPaymentRuleId(
+      getValidId(paymentRuleId)
+    );
+    request.setPaymentRuleUuid(paymentRuleUuid);
 
     request.setPageSize(pageSize);
     request.setPageToken(pageToken);

@@ -37,6 +37,7 @@ function getPaymentSelectionFromGRPC(paymentSelectionToConvert) {
     return undefined
   }
   const { getCurrencyFromGRPC } = require('./coreFunctionalityFromGRPC');
+  const { getDecimalFromGRPC } = require('./baseDataTypeFromGRPC');
   return {
     id: paymentSelectionToConvert.getId(),
     uuid: paymentSelectionToConvert.getUuid(),
@@ -58,14 +59,15 @@ function getPaymentFromGRPC(paymentToConvert) {
   if (!paymentToConvert) {
     return undefined
   }
+  const { getDecimalFromGRPC } = require('./baseDataTypeFromGRPC');
   return {
     id: paymentToConvert.getId(),
     uuid: paymentToConvert.getUuid(),
     document_no: paymentToConvert.getDocumentNo(),
     vendor_id: paymentToConvert.getVendorId(),
     vendor_uuid: paymentToConvert.getVendorUuid(),
-    vendor_tax_id: paymentToConvert.getTaxId(),
-    vendor_name: paymentToConvert.getName(),
+    vendor_tax_id: paymentToConvert.getVendorTaxId(),
+    vendor_name: paymentToConvert.getVendorName(),
     grand_total: getDecimalFromGRPC(
       paymentToConvert.getGrandTotal()
     ),
