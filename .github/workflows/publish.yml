@@ -82,14 +82,36 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
 
-  publish-gpr:
-    name: Publish GitHub Package Registry
+  # Check secrets to push image in GitHub Packages registry
+  check-ghpr-secrets:
+    name: Check if GitHub Packages registry information was set on secrets
+    needs:
+      - build-app
+    runs-on: ubuntu-latest
+    outputs:
+      is_have_secrets: ${{ steps.check_secret_job.outputs.is_have_secrets }}
+    steps:
+      - id: check_secret_job
+        run: |
+          if [[ "${{ secrets.GITHUB_TOKEN }}" != "" ]]; \
+          then
+            echo "Secrets to use a GitHub are configured in the repo"
+            echo "is_have_secrets=true" >> $GITHUB_OUTPUT
+          else
+            echo "Secrets to use a GitHub were not configured in the repo"
+            echo "is_have_secrets=false" >> $GITHUB_OUTPUT
+          fi
+
+  publish-ghpr:
+    name: Publish GitHub Packages Registry
+    needs:
+      - check-ghpr-secrets
+    # Skip step based on secret
+    if: needs.check-ghpr-secrets.outputs.is_have_secrets == 'true'
     runs-on: ubuntu-latest
     permissions:
       contents: read
       packages: write
-    needs:
-      - build-app
     steps:
       - run: ls
 
