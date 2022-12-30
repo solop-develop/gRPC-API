@@ -2700,7 +2700,8 @@ proto.payment_print_export.Payment.toObject = function(includeInstance, msg) {
     grandTotal: (f = msg.getGrandTotal()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
     overUnderAmount: (f = msg.getOverUnderAmount()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
     paymentAmount: (f = msg.getPaymentAmount()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
-    openAmount: (f = msg.getOpenAmount()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f)
+    openAmount: (f = msg.getOpenAmount()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
+    finalBalance: (f = msg.getFinalBalance()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -2784,6 +2785,11 @@ proto.payment_print_export.Payment.deserializeBinaryFromReader = function(msg, r
       var value = new proto_base_data_type_pb.Decimal;
       reader.readMessage(value,proto_base_data_type_pb.Decimal.deserializeBinaryFromReader);
       msg.setOpenAmount(value);
+      break;
+    case 12:
+      var value = new proto_base_data_type_pb.Decimal;
+      reader.readMessage(value,proto_base_data_type_pb.Decimal.deserializeBinaryFromReader);
+      msg.setFinalBalance(value);
       break;
     default:
       reader.skipField();
@@ -2891,6 +2897,14 @@ proto.payment_print_export.Payment.serializeBinaryToWriter = function(message, w
   if (f != null) {
     writer.writeMessage(
       11,
+      f,
+      proto_base_data_type_pb.Decimal.serializeBinaryToWriter
+    );
+  }
+  f = message.getFinalBalance();
+  if (f != null) {
+    writer.writeMessage(
+      12,
       f,
       proto_base_data_type_pb.Decimal.serializeBinaryToWriter
     );
@@ -3169,6 +3183,43 @@ proto.payment_print_export.Payment.prototype.clearOpenAmount = function() {
  */
 proto.payment_print_export.Payment.prototype.hasOpenAmount = function() {
   return jspb.Message.getField(this, 11) != null;
+};
+
+
+/**
+ * optional data.Decimal final_balance = 12;
+ * @return {?proto.data.Decimal}
+ */
+proto.payment_print_export.Payment.prototype.getFinalBalance = function() {
+  return /** @type{?proto.data.Decimal} */ (
+    jspb.Message.getWrapperField(this, proto_base_data_type_pb.Decimal, 12));
+};
+
+
+/**
+ * @param {?proto.data.Decimal|undefined} value
+ * @return {!proto.payment_print_export.Payment} returns this
+*/
+proto.payment_print_export.Payment.prototype.setFinalBalance = function(value) {
+  return jspb.Message.setWrapperField(this, 12, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.payment_print_export.Payment} returns this
+ */
+proto.payment_print_export.Payment.prototype.clearFinalBalance = function() {
+  return this.setFinalBalance(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.payment_print_export.Payment.prototype.hasFinalBalance = function() {
+  return jspb.Message.getField(this, 12) != null;
 };
 
 

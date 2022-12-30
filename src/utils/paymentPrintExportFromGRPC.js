@@ -80,6 +80,9 @@ function getPaymentFromGRPC(paymentToConvert) {
     open_amount: getDecimalFromGRPC(
       paymentToConvert.getOpenAmount()
     ),
+    final_balance: getDecimalFromGRPC(
+      paymentToConvert.getFinalBalance()
+    )
   }
 }
 
