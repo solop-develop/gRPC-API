@@ -10,7 +10,7 @@
 // (at your option) any later version.                                              *
 // This program is distributed in the hope that it will be useful,                  *
 // but WITHOUT ANY WARRANTY; without even the implied warranty of                   *
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the                     *
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.	See the                     *
 // GNU General Public License for more details.                                     *
 // You should have received a copy of the GNU General Public License                *
 // along with this program. If not, see <https://www.gnu.org/licenses/>.            *
@@ -74,6 +74,17 @@ function serialize_data_CreateEntityRequest(arg) {
 
 function deserialize_data_CreateEntityRequest(buffer_arg) {
   return proto_business_pb.CreateEntityRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_data_CreateTabEntityRequest(arg) {
+  if (!(arg instanceof proto_business_pb.CreateTabEntityRequest)) {
+    throw new Error('Expected argument of type data.CreateTabEntityRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_CreateTabEntityRequest(buffer_arg) {
+  return proto_business_pb.CreateTabEntityRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_data_DefaultValue(arg) {
@@ -648,6 +659,17 @@ function deserialize_data_UpdateEntityRequest(buffer_arg) {
   return proto_business_pb.UpdateEntityRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_data_UpdateTabEntityRequest(arg) {
+  if (!(arg instanceof proto_business_pb.UpdateTabEntityRequest)) {
+    throw new Error('Expected argument of type data.UpdateTabEntityRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_UpdateTabEntityRequest(buffer_arg) {
+  return proto_business_pb.UpdateTabEntityRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 
 // The greeting service definition.
 var BusinessDataService = exports.BusinessDataService = {
@@ -737,6 +759,30 @@ getTabEntity: {
     responseType: proto_base_data_type_pb.Entity,
     requestSerialize: serialize_data_GetTabEntityRequest,
     requestDeserialize: deserialize_data_GetTabEntityRequest,
+    responseSerialize: serialize_data_Entity,
+    responseDeserialize: deserialize_data_Entity,
+  },
+  // Create Tab Entity
+createTabEntity: {
+    path: '/data.UserInterface/CreateTabEntity',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_business_pb.CreateTabEntityRequest,
+    responseType: proto_base_data_type_pb.Entity,
+    requestSerialize: serialize_data_CreateTabEntityRequest,
+    requestDeserialize: deserialize_data_CreateTabEntityRequest,
+    responseSerialize: serialize_data_Entity,
+    responseDeserialize: deserialize_data_Entity,
+  },
+  // Update Tab Entity
+updateTabEntity: {
+    path: '/data.UserInterface/UpdateTabEntity',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_business_pb.UpdateTabEntityRequest,
+    responseType: proto_base_data_type_pb.Entity,
+    requestSerialize: serialize_data_UpdateTabEntityRequest,
+    requestDeserialize: deserialize_data_UpdateTabEntityRequest,
     responseSerialize: serialize_data_Entity,
     responseDeserialize: deserialize_data_Entity,
   },
