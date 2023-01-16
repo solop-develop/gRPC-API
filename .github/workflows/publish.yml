@@ -148,6 +148,8 @@ jobs:
           scope: '@${{ github.repository_owner }}'
 
       - run: ls
+  
+      - run: cat $NPM_CONFIG_USERCONFIG
 
       - name: Publish GitHub Package Registry
         run: npm publish --access=public

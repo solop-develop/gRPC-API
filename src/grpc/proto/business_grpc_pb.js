@@ -10,7 +10,7 @@
 // (at your option) any later version.                                              *
 // This program is distributed in the hope that it will be useful,                  *
 // but WITHOUT ANY WARRANTY; without even the implied warranty of                   *
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.	See the                     *
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the                     *
 // GNU General Public License for more details.                                     *
 // You should have received a copy of the GNU General Public License                *
 // along with this program. If not, see <https://www.gnu.org/licenses/>.            *
@@ -448,6 +448,28 @@ function serialize_data_ListTranslationsResponse(arg) {
 
 function deserialize_data_ListTranslationsResponse(buffer_arg) {
   return proto_business_pb.ListTranslationsResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_data_ListTreeNodesRequest(arg) {
+  if (!(arg instanceof proto_business_pb.ListTreeNodesRequest)) {
+    throw new Error('Expected argument of type data.ListTreeNodesRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_ListTreeNodesRequest(buffer_arg) {
+  return proto_business_pb.ListTreeNodesRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_data_ListTreeNodesResponse(arg) {
+  if (!(arg instanceof proto_business_pb.ListTreeNodesResponse)) {
+    throw new Error('Expected argument of type data.ListTreeNodesResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_ListTreeNodesResponse(buffer_arg) {
+  return proto_business_pb.ListTreeNodesResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_data_LockPrivateAccessRequest(arg) {
@@ -1041,6 +1063,18 @@ saveTabSequences: {
     requestDeserialize: deserialize_data_SaveTabSequencesRequest,
     responseSerialize: serialize_data_ListEntitiesResponse,
     responseDeserialize: deserialize_data_ListEntitiesResponse,
+  },
+  // List Tree Nodes Request
+listTreeNodes: {
+    path: '/data.UserInterface/ListTreeNodes',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_business_pb.ListTreeNodesRequest,
+    responseType: proto_business_pb.ListTreeNodesResponse,
+    requestSerialize: serialize_data_ListTreeNodesRequest,
+    requestDeserialize: deserialize_data_ListTreeNodesRequest,
+    responseSerialize: serialize_data_ListTreeNodesResponse,
+    responseDeserialize: deserialize_data_ListTreeNodesResponse,
   },
 };
 
