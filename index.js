@@ -82,36 +82,6 @@
     return this.business
   }
 
-  /**
-   * Get a Tab Entity
-   * @param {string} token session uuid
-   * @param {string} language
-   * @param {string} tabUuid
-   * @param {number} id record id
-   * @param {string} uuid record uuid
-   */
-  getTabEntity({
-    token,
-    tabUuid,
-    id,
-    uuid,
-    language
-  }, callback) {
-    const { GetTabEntityRequest } = require('./src/grpc/proto/business_pb.js')
-    const request = new GetTabEntityRequest();
-
-    request.setTabUuid(tabUuid);
-    request.setUuid(uuid);
-    if (!this.isEmptyValue(id) && !Number.isNaN(id)) {
-      const parsedId = parseInt(id, 10);
-      request.setId(parsedId);
-    }
-
-    request.setClientRequest(this.createClientRequest(token, language));
-
-    this.getUIService().getTabEntity(request, callback);
-  }
-
   //  Business CRUD
   //  Get a Entity
   getEntity({

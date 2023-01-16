@@ -8,11 +8,34 @@
  * (at your option) any later version.                                               *
  * This program is distributed in the hope that it will be useful,                   *
  * but WITHOUT ANY WARRANTY; without even the implied warranty of                    *
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                     *
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the                      *
  * GNU General Public License for more details.                                      *
  * You should have received a copy of the GNU General Public License                 *
  * along with this program. If not, see <https://www.gnu.org/licenses/>.             *
  ************************************************************************************/
+
+/**
+ * Convert a parameter defined by columnName and value to Value Object
+ * @param {string} columnName
+ * @param {string} valueType
+ * @param {mixed} value
+ * @returns KeyValue Object
+ */
+function getKeyValueToGRPC({ columnName, value, valueType }) {
+  const { KeyValue } = require('@adempiere/grpc-api/src/grpc/proto/base_data_type_pb.js');
+  const keyValue = new KeyValue();
+  keyValue.setKey(columnName);
+
+  const { convertValueToGRPC } = require('@adempiere/grpc-api/lib/convertValues.js');
+  const convertedValue = convertValueToGRPC({
+    value,
+    valueType
+  });
+  keyValue.setValue(convertedValue);
+
+  // Return converted value
+  return keyValue;
+}
 
 /**
  * Convert a parameter defined by columnName and value to Value Object
@@ -63,5 +86,6 @@ function convertConditionToGRPC({ columnName, value, valueTo, values = [], opera
 }
 
 module.exports = {
-  convertConditionToGRPC
+  convertConditionToGRPC,
+  getKeyValueToGRPC
 };

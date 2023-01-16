@@ -55,6 +55,125 @@ class UserInterface {
     return this.userInterface;
   }
 
+  /**
+   * Get a Tab Entity
+   * @param {string} token session uuid
+   * @param {string} language
+   * @param {string} tabUuid
+   * @param {number} id record id
+   * @param {string} uuid record uuid
+   */
+  getTabEntity({
+    token,
+    tabUuid,
+    id,
+    uuid,
+    language
+  }, callback) {
+    const { GetTabEntityRequest } = this.stubFile;
+    const request = new GetTabEntityRequest();
+
+    request.setTabUuid(tabUuid);
+    request.setUuid(uuid);
+    request.setId(
+      getValidId(id)
+    );
+
+    request.setClientRequest(
+      createClientRequest({ token, language })
+    );
+
+    this.getUserInterfaceService().getTabEntity(request, callback);
+  }
+
+  // Create a Tab Entity
+  createTabEntity({
+    token,
+    tabUuid,
+    attributes,
+    language
+  }, callback) {
+    const { CreateTabEntityRequest } = this.stubFile;
+    const request = new CreateTabEntityRequest();
+
+    request.setTabUuid(tabUuid);
+
+    if (!isEmptyValue(attributes)) {
+      const { getTypeOfValue } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
+      if (getTypeOfValue(attributes) === 'String') {
+        attributes = JSON.parse(attributes);
+      }
+
+      const { getKeyValueToGRPC } = require('@adempiere/grpc-api/src/utils/baseDataTypeToGRPC.js');
+      attributes.forEach(attribute => {
+        let parsedAttribute = attribute
+        if (getTypeOfValue(attribute) === 'String') {
+          parsedAttribute = JSON.parse(attribute);
+        }
+
+        // attributte format = { columName, value }
+        const convertedAttribute = getKeyValueToGRPC({
+          columnName: parsedAttribute.key,
+          value: parsedAttribute.value
+        });
+
+        request.addAttributes(convertedAttribute);
+      })
+    }
+
+    request.setClientRequest(
+      createClientRequest({ token, language })
+    );
+
+    this.getUserInterfaceService().createTabEntity(request, callback);
+  }
+
+  // Update a Tab Entity
+  updateTabEntity({
+    token,
+    tabUuid,
+    id,
+    uuid,
+    attributes,
+    language
+  }, callback) {
+    const { UpdateTabEntityRequest } = this.stubFile;
+    const request = new UpdateTabEntityRequest();
+
+    request.setTabUuid(tabUuid);
+    request.setId(id);
+    request.setUuid(uuid);
+
+    if (!isEmptyValue(attributes)) {
+      const { getTypeOfValue } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
+      if (getTypeOfValue(attributes) === 'String') {
+        attributes = JSON.parse(attributes);
+      }
+
+      const { getKeyValueToGRPC } = require('@adempiere/grpc-api/src/utils/baseDataTypeToGRPC.js');
+      attributes.forEach(attribute => {
+        let parsedAttribute = attribute
+        if (getTypeOfValue(attribute) === 'String') {
+          parsedAttribute = JSON.parse(attribute);
+        }
+
+        // attributte format = { columName, value }
+        const convertedAttribute = getKeyValueToGRPC({
+          columnName: parsedAttribute.key,
+          value: parsedAttribute.value
+        });
+
+        request.addAttributes(convertedAttribute);
+      })
+    }
+
+    request.setClientRequest(
+      createClientRequest({ token, language })
+    );
+
+    this.getUserInterfaceService().updateTabEntity(request, callback)
+  }
+
   existsReferences({
     token,
     language,
@@ -98,23 +217,25 @@ class UserInterface {
     request.setTabUuid(tabUuid);
 
     if (!isEmptyValue(contextAttributes)) {
-      const { convertParameterToGRPC, typeOfValue } = require('@adempiere/grpc-api/lib/convertValues.js');
+      const { getTypeOfValue } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
 
-      if (typeOfValue(contextAttributes) === 'String') {
+      if (getTypeOfValue(contextAttributes) === 'String') {
         contextAttributes = JSON.parse(contextAttributes);
       }
 
+      const { getKeyValueToGRPC } = require('@adempiere/grpc-api/src/utils/baseDataTypeToGRPC.js');
       contextAttributes.forEach(attribute => {
         let parsedAttribute = attribute;
-        if (typeOfValue(attribute) === 'String') {
+        if (getTypeOfValue(attribute) === 'String') {
           parsedAttribute = JSON.parse(attribute);
         }
-        request.addContextAttributes(
-          convertParameterToGRPC({
-            columnName: parsedAttribute.key,
-            value: parsedAttribute.value
-          })
-        );
+
+        // attributte format = { columName, value }
+        const convertedAttribute = getKeyValueToGRPC({
+          columnName: parsedAttribute.key,
+          value: parsedAttribute.value
+        });
+        request.addContextAttributes(convertedAttribute);
       });
     }
 
@@ -141,14 +262,25 @@ class UserInterface {
     request.setTabUuid(tabUuid);
 
     if (!isEmptyValue(contextAttributes)) {
-      const { convertParameterToGRPC } = require('@adempiere/grpc-api/lib/convertValues.js');
+      const { getTypeOfValue } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
+      if (getTypeOfValue(contextAttributes) === 'String') {
+        contextAttributes = JSON.parse(contextAttributes);
+      }
+
+      const { getKeyValueToGRPC } = require('@adempiere/grpc-api/src/utils/baseDataTypeToGRPC.js');
       contextAttributes.forEach(attribute => {
-        request.addContextAttributes(
-          convertParameterToGRPC({
-            columnName: attribute.key,
-            value: attribute.value
-          })
-        );
+        let parsedAttribute = attribute
+        if (getTypeOfValue(attribute) === 'String') {
+          parsedAttribute = JSON.parse(attribute);
+        }
+
+        // attributte format = { columName, value }
+        const convertedAttribute = getKeyValueToGRPC({
+          columnName: parsedAttribute.key,
+          value: parsedAttribute.value
+        });
+
+        request.addContextAttributes(convertedAttribute);
       });
     }
 
@@ -191,7 +323,7 @@ class UserInterface {
     contextAttributes
   }, callback) {
     const { RunCalloutRequest } = this.stubFile;
-    const { convertParameterToGRPC, convertValueToGRPC } = require('@adempiere/grpc-api/lib/convertValues.js');
+    const { convertValueToGRPC } = require('@adempiere/grpc-api/lib/convertValues.js');
     const request = new RunCalloutRequest();
 
     request.setWindowNo(windowNo);
@@ -215,20 +347,30 @@ class UserInterface {
     );
 
     if (!isEmptyValue(contextAttributes)) {
-      const { typeOfValue } = require('@adempiere/grpc-api/lib/convertValues.js');
+      const { getTypeOfValue } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
+      if (getTypeOfValue(attributes) === 'String') {
+        contextAttributes = JSON.parse(contextAttributes);
+      }
+
+      const { getKeyValueToGRPC } = require('@adempiere/grpc-api/src/utils/baseDataTypeToGRPC.js');
       contextAttributes.forEach(attribute => {
-        let value = attribute.value
+        let parsedAttribute = attribute
+        if (getTypeOfValue(attribute) === 'String') {
+          parsedAttribute = JSON.parse(attribute);
+        }
+
+        let value = parsedAttribute.value
         let valueType = ''
-        if (!isEmptyValue(attribute.value) && typeOfValue(attribute.value) === 'Object') {
-          value = attribute.value.value
-          if (!isEmptyValue(attribute.value.valueType)) {
-            valueType = attribute.value.valueType
+        if (!isEmptyValue(parsedAttribute.value) && typeOfValue(parsedAttribute.value) === 'Object') {
+          value = parsedAttribute.value.value
+          if (!isEmptyValue(parsedAttribute.value.valueType)) {
+            valueType = parsedAttribute.value.valueType
           }
         }
 
         // parameter format = { columName, value }
-        const convertedParameter = convertParameterToGRPC({
-          columnName: attribute.key,
+        const convertedParameter = getKeyValueToGRPC({
+          columnName: parsedAttribute.key,
           valueType,
           value
         });
