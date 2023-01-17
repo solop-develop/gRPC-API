@@ -348,7 +348,7 @@ class UserInterface {
 
     if (!isEmptyValue(contextAttributes)) {
       const { getTypeOfValue } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
-      if (getTypeOfValue(attributes) === 'String') {
+      if (getTypeOfValue(contextAttributes) === 'String') {
         contextAttributes = JSON.parse(contextAttributes);
       }
 
@@ -361,7 +361,7 @@ class UserInterface {
 
         let value = parsedAttribute.value
         let valueType = ''
-        if (!isEmptyValue(parsedAttribute.value) && typeOfValue(parsedAttribute.value) === 'Object') {
+        if (!isEmptyValue(parsedAttribute.value) && getTypeOfValue(parsedAttribute.value) === 'Object') {
           value = parsedAttribute.value.value
           if (!isEmptyValue(parsedAttribute.value.valueType)) {
             valueType = parsedAttribute.value.valueType
