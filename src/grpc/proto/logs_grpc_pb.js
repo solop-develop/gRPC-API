@@ -10,10 +10,10 @@
 // (at your option) any later version.                                              *
 // This program is distributed in the hope that it will be useful,                  *
 // but WITHOUT ANY WARRANTY; without even the implied warranty of                   *
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.	See the                     *
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the                     *
 // GNU General Public License for more details.                                     *
 // You should have received a copy of the GNU General Public License                *
-// along with this program.	If not, see <https://www.gnu.org/licenses/>.            *
+// along with this program. If not, see <https://www.gnu.org/licenses/>.            *
 // **********************************************************************************
 'use strict';
 var grpc = require('@grpc/grpc-js');
@@ -22,6 +22,28 @@ var proto_base_data_type_pb = require('../proto/base_data_type_pb.js');
 var proto_client_pb = require('../proto/client_pb.js');
 var proto_business_pb = require('../proto/business_pb.js');
 var proto_workflow_pb = require('../proto/workflow_pb.js');
+
+function serialize_logs_ExistsChatEntriesRequest(arg) {
+  if (!(arg instanceof proto_logs_pb.ExistsChatEntriesRequest)) {
+    throw new Error('Expected argument of type logs.ExistsChatEntriesRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_logs_ExistsChatEntriesRequest(buffer_arg) {
+  return proto_logs_pb.ExistsChatEntriesRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_logs_ExistsChatEntriesResponse(arg) {
+  if (!(arg instanceof proto_logs_pb.ExistsChatEntriesResponse)) {
+    throw new Error('Expected argument of type logs.ExistsChatEntriesResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_logs_ExistsChatEntriesResponse(buffer_arg) {
+  return proto_logs_pb.ExistsChatEntriesResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
 
 function serialize_logs_ListChatEntriesRequest(arg) {
   if (!(arg instanceof proto_logs_pb.ListChatEntriesRequest)) {
@@ -193,6 +215,18 @@ listEntityChats: {
     requestDeserialize: deserialize_logs_ListEntityChatsRequest,
     responseSerialize: serialize_logs_ListEntityChatsResponse,
     responseDeserialize: deserialize_logs_ListEntityChatsResponse,
+  },
+  // 	Exists Chat Entries
+existsChatEntries: {
+    path: '/logs.Logs/ExistsChatEntries',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_logs_pb.ExistsChatEntriesRequest,
+    responseType: proto_logs_pb.ExistsChatEntriesResponse,
+    requestSerialize: serialize_logs_ExistsChatEntriesRequest,
+    requestDeserialize: deserialize_logs_ExistsChatEntriesRequest,
+    responseSerialize: serialize_logs_ExistsChatEntriesResponse,
+    responseDeserialize: deserialize_logs_ExistsChatEntriesResponse,
   },
   // 	Request Chat Entries List
 listChatEntries: {
