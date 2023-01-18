@@ -8,7 +8,7 @@
  * (at your option) any later version.                                               *
  * This program is distributed in the hope that it will be useful,                   *
  * but WITHOUT ANY WARRANTY; without even the implied warranty of                    *
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                     *
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the                      *
  * GNU General Public License for more details.                                      *
  * You should have received a copy of the GNU General Public License                 *
  * along with this program. If not, see <https://www.gnu.org/licenses/>.             *
@@ -120,27 +120,6 @@ const dashboardingFromGRPC = {
         menu_description: favorite.getMenuDescription(),
         reference_uuid: favorite.getReferenceUuid(),
         action: favorite.getAction()
-      };
-    }
-    return undefined;
-  },
-
-  convertRecentItemFromGRPC(recentItem) {
-    if (recentItem) {
-      return {
-        menu_uuid: recentItem.getMenuUuid(),
-        menu_name: recentItem.getMenuName(),
-        menu_description: recentItem.getMenuDescription(),
-        window_uuid: recentItem.getWindowUuid(),
-        tab_uuid: recentItem.getTabUuid(),
-        table_id: recentItem.getTableId(),
-        table_name: recentItem.getTableName(),
-        id: recentItem.getId(),
-        uuid: recentItem.getUuid(),
-        display_name: recentItem.getDisplayName(),
-        updated: new Date(recentItem.getUpdated()),
-        reference_uuid: recentItem.getReferenceUuid(),
-        action: recentItem.getAction()
       };
     }
     return undefined;

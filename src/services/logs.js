@@ -8,15 +8,21 @@
  * (at your option) any later version.                                               *
  * This program is distributed in the hope that it will be useful,                   *
  * but WITHOUT ANY WARRANTY; without even the implied warranty of                    *
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                     *
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the                      *
  * GNU General Public License for more details.                                      *
  * You should have received a copy of the GNU General Public License                 *
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.            *
+ * along with this program. If not, see <https://www.gnu.org/licenses/>.             *
  ************************************************************************************/
 
-const { createClientRequest } = require('../../lib/clientRequest')
+const { createClientRequest } = require('@adempiere/grpc-api/lib/clientRequest');
+const { getValidId } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
 
 class Logs {
+
+  /**
+   * File on generated stub
+   */
+  stubFile = require('@adempiere/grpc-api/src/grpc/proto/logs_pb.js');
 
   /**
    * Constructor, No authentication required
@@ -57,15 +63,15 @@ class Logs {
     pageToken,
     language
   }, callback) {
-    const { ListLogsRequest } = require('../grpc/proto/logs_pb.js')
-    const request = new ListLogsRequest()
-    request.setTableName(tableName)
-    request.setPageSize(pageSize)
-    request.setPageToken(pageToken)
+    const { ListLogsRequest } = this.stubFile;
+    const request = new ListLogsRequest();
+    request.setTableName(tableName);
+    request.setPageSize(pageSize);
+    request.setPageToken(pageToken);
     request.setClientRequest(
       this.createClientRequest({ token, language })
     );
-    this.getLogsService().listLogs(request, callback)
+    this.getLogsService().listLogs(request, callback);
   }
 
   //  List process logs
@@ -80,12 +86,14 @@ class Logs {
     pageToken,
     language
   }, callback) {
-    const { ListProcessLogsRequest } = require('../grpc/proto/logs_pb.js')
+    const { ListProcessLogsRequest } = this.stubFile;
     const request = new ListProcessLogsRequest()
 
     request.setTableName(tableName)
     request.setUuid(uuid)
-    request.setId(id)
+    request.setId(
+      getValidId(id)
+    );
     request.setUserUuid(userUuid)
     request.setInstanceUuid(instanceUuid)
     request.setPageSize(pageSize)
@@ -107,12 +115,14 @@ class Logs {
     pageToken,
     language
   }, callback) {
-    const { ListEntityLogsRequest } = require('../grpc/proto/logs_pb.js')
+    const { ListEntityLogsRequest } = this.stubFile;
     const request = new ListEntityLogsRequest()
 
     request.setTableName(tableName)
     request.setUuid(uuid)
-    request.setId(id)
+    request.setId(
+      getValidId(id)
+    );
     request.setPageSize(pageSize)
     request.setPageToken(pageToken)
     request.setClientRequest(
@@ -132,12 +142,14 @@ class Logs {
     pageToken,
     language
   }, callback) {
-    const { ListEntityChatsRequest } = require('../grpc/proto/logs_pb.js')
+    const { ListEntityChatsRequest } = this.stubFile;
     const request = new ListEntityChatsRequest()
 
     request.setTableName(tableName)
     request.setUuid(uuid)
-    request.setId(id)
+    request.setId(
+      getValidId(id)
+    );
     request.setPageSize(pageSize)
     request.setPageToken(pageToken)
     request.setClientRequest(
@@ -145,6 +157,38 @@ class Logs {
     )
 
     this.getLogsService().listEntityChats(request, callback)
+  }
+
+  /**
+   * Exists Chat Entries
+   * @param {string} tableName
+   * @param {number} recordId
+   * @param {string} recordUuid
+   * @param {string} language
+   * @param {string} token
+   */
+  existsChatEntries({
+    token,
+    // DSL
+    tableName,
+    recordId,
+    recordUuid,
+    language
+  }, callback) {
+    const { ExistsChatEntriesRequest } = this.stubFile;
+    const request = new ExistsChatEntriesRequest();
+
+    request.setTableName(tableName);
+    request.setRecordId(
+      getValidId(recordId)
+    );
+    request.setRecordUuid(recordUuid);
+
+    request.setClientRequest(
+      createClientRequest({ token, language })
+    );
+
+    this.getLogsService().existsChatEntries(request, callback);
   }
 
   //  List chats entries
@@ -156,11 +200,14 @@ class Logs {
     pageToken,
     language
   }, callback) {
-    const { ListChatEntriesRequest } = require('../grpc/proto/logs_pb.js')
+    const { ListChatEntriesRequest } = this.stubFile;
     const request = new ListChatEntriesRequest()
 
     request.setUuid(uuid)
     request.setId(id)
+    request.setId(
+      getValidId(id)
+    );
     request.setPageSize(pageSize)
     request.setPageToken(pageToken)
     request.setClientRequest(
@@ -180,12 +227,14 @@ class Logs {
     pageToken,
     language
   }, callback) {
-    const { ListWorkflowLogsRequest } = require('../grpc/proto/logs_pb.js')
+    const { ListWorkflowLogsRequest } = this.stubFile;
     const request = new ListWorkflowLogsRequest()
 
     request.setTableName(tableName)
     request.setUuid(uuid)
-    request.setId(id)
+    request.setId(
+      getValidId(id)
+    );
     request.setPageSize(pageSize)
     request.setPageToken(pageToken)
     request.setClientRequest(
@@ -205,7 +254,7 @@ class Logs {
     pageToken,
     language
   }, callback) {
-    const { ListRecentItemsRequest } = require('../grpc/proto/logs_pb.js')
+    const { ListRecentItemsRequest } = this.stubFile;
     const request = new ListRecentItemsRequest()
 
     request.setUserUuid(userUuid)
