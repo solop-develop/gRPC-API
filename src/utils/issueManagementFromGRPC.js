@@ -38,6 +38,31 @@ function getRequestTypeFromGRPC(requestTypeToConvert) {
   };
 }
 
+function getPriorityFromGRPC(priorityToConvert) {
+  if (!priorityToConvert) {
+    return undefined;
+  }
+  return {
+    id: priorityToConvert.getId(),
+    uuid: priorityToConvert.getUuid(),
+    value: priorityToConvert.getValue(),
+    name: priorityToConvert.getName(),
+    description: priorityToConvert.getDescription()
+  };
+}
+
+function getStatusFromGRPC(statusToConvert) {
+  if (!statusToConvert) {
+    return undefined;
+  }
+  return {
+    id: statusToConvert.getId(),
+    uuid: statusToConvert.getUuid(),
+    name: statusToConvert.getName(),
+    description: statusToConvert.getDescription()
+  };
+}
+
 function getIssueFromGRPC(issueToConvert) {
   if (!issueToConvert) {
     return undefined;
@@ -58,6 +83,12 @@ function getIssueFromGRPC(issueToConvert) {
     user_name: issueToConvert.getUserName(),
     sales_representative: getSalesRepresentativeFromGRPC(
       issueToConvert.getSalesRepresentative()
+    ),
+    status: getStatusFromGRPC(
+      issueToConvert.getStatus()
+    ),
+    priority: getPriorityFromGRPC(
+      issueToConvert.getPriority()
     )
   };
 }
@@ -81,6 +112,8 @@ function getIssueCommentFromGRPC(issueCommentToConvert) {
 module.exports = {
   getSalesRepresentativeFromGRPC,
   getRequestTypeFromGRPC,
+  getPriorityFromGRPC,
+  getStatusFromGRPC,
   getIssueFromGRPC,
   getIssueCommentFromGRPC
 };

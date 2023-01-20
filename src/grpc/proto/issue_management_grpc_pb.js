@@ -164,6 +164,28 @@ function deserialize_issue_management_ListIssuesRequest(buffer_arg) {
   return proto_issue_management_pb.ListIssuesRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_issue_management_ListPrioritiesRequest(arg) {
+  if (!(arg instanceof proto_issue_management_pb.ListPrioritiesRequest)) {
+    throw new Error('Expected argument of type issue_management.ListPrioritiesRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_issue_management_ListPrioritiesRequest(buffer_arg) {
+  return proto_issue_management_pb.ListPrioritiesRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_issue_management_ListPrioritiesResponse(arg) {
+  if (!(arg instanceof proto_issue_management_pb.ListPrioritiesResponse)) {
+    throw new Error('Expected argument of type issue_management.ListPrioritiesResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_issue_management_ListPrioritiesResponse(buffer_arg) {
+  return proto_issue_management_pb.ListPrioritiesResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_issue_management_ListRequestTypesRequest(arg) {
   if (!(arg instanceof proto_issue_management_pb.ListRequestTypesRequest)) {
     throw new Error('Expected argument of type issue_management.ListRequestTypesRequest');
@@ -206,6 +228,28 @@ function serialize_issue_management_ListSalesRepresentativesResponse(arg) {
 
 function deserialize_issue_management_ListSalesRepresentativesResponse(buffer_arg) {
   return proto_issue_management_pb.ListSalesRepresentativesResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_issue_management_ListStatusesRequest(arg) {
+  if (!(arg instanceof proto_issue_management_pb.ListStatusesRequest)) {
+    throw new Error('Expected argument of type issue_management.ListStatusesRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_issue_management_ListStatusesRequest(buffer_arg) {
+  return proto_issue_management_pb.ListStatusesRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_issue_management_ListStatusesResponse(arg) {
+  if (!(arg instanceof proto_issue_management_pb.ListStatusesResponse)) {
+    throw new Error('Expected argument of type issue_management.ListStatusesResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_issue_management_ListStatusesResponse(buffer_arg) {
+  return proto_issue_management_pb.ListStatusesResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_issue_management_UpdateIssueCommentRequest(arg) {
@@ -256,6 +300,30 @@ listSalesRepresentatives: {
     requestDeserialize: deserialize_issue_management_ListSalesRepresentativesRequest,
     responseSerialize: serialize_issue_management_ListSalesRepresentativesResponse,
     responseDeserialize: deserialize_issue_management_ListSalesRepresentativesResponse,
+  },
+  // Priority
+listPriorities: {
+    path: '/issue_management.IssueManagement/ListPriorities',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_issue_management_pb.ListPrioritiesRequest,
+    responseType: proto_issue_management_pb.ListPrioritiesResponse,
+    requestSerialize: serialize_issue_management_ListPrioritiesRequest,
+    requestDeserialize: deserialize_issue_management_ListPrioritiesRequest,
+    responseSerialize: serialize_issue_management_ListPrioritiesResponse,
+    responseDeserialize: deserialize_issue_management_ListPrioritiesResponse,
+  },
+  // Status
+listStatuses: {
+    path: '/issue_management.IssueManagement/ListStatuses',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_issue_management_pb.ListStatusesRequest,
+    responseType: proto_issue_management_pb.ListStatusesResponse,
+    requestSerialize: serialize_issue_management_ListStatusesRequest,
+    requestDeserialize: deserialize_issue_management_ListStatusesRequest,
+    responseSerialize: serialize_issue_management_ListStatusesResponse,
+    responseDeserialize: deserialize_issue_management_ListStatusesResponse,
   },
   // Issue
 existsIssues: {

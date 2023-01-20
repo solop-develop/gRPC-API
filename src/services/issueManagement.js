@@ -108,6 +108,67 @@ class IssueManagement {
 
 
   /**
+   * List Priorities
+   * @param {number} pageSize
+   * @param {string} pageToken
+   * @param {string} language
+   * @param {string} token
+   */
+  listPriorities({
+    token,
+    pageSize,
+    pageToken,
+    language
+  }, callback) {
+    const { ListPrioritiesRequest } = this.stubFile;
+    const request = new ListPrioritiesRequest();
+
+    request.setPageSize(pageSize);
+    request.setPageToken(pageToken);
+    request.setClientRequest(
+      createClientRequest({ token, language })
+    );
+
+    this.getIssueManagementService().listPriorities(request, callback);
+  }
+
+
+  /**
+   * List Statuses
+   * @param {number} requestTypeId
+   * @param {string} requestTypeUuid
+   * @param {number} pageSize
+   * @param {string} pageToken
+   * @param {string} language
+   * @param {string} token
+   */
+  listStatuses({
+    token,
+    requestTypeId,
+    requestTypeUuid,
+    pageSize,
+    pageToken,
+    language
+  }, callback) {
+    const { ListStatusesRequest } = this.stubFile;
+    const request = new ListStatusesRequest();
+
+    request.setRequestTypeId(
+      getValidId(requestTypeId)
+    );
+    request.setRequestTypeUuid(requestTypeUuid);
+
+    request.setPageSize(pageSize);
+    request.setPageToken(pageToken);
+    request.setClientRequest(
+      createClientRequest({ token, language })
+    );
+
+    this.getIssueManagementService().listStatuses(request, callback);
+  }
+
+
+  /**
    * Exists Chat Entries
    * @param {string} tableName
    * @param {number} recordId
@@ -199,10 +260,13 @@ class IssueManagement {
     requestTypeUuid,
     salesRepresentativeId,
     salesRepresentativeUuid,
+    statusId,
+    statusUuid,
+    priorityValue,
     language
   }, callback) {
     const { CreateIssueRequest } = this.stubFile;
-    const request = new CreateIssueRequest()
+    const request = new CreateIssueRequest();
 
     request.setTableName(tableName);
     request.setRecordId(
@@ -220,6 +284,11 @@ class IssueManagement {
       getValidId(salesRepresentativeId)
     );
     request.setSalesRepresentativeUuid(salesRepresentativeUuid);
+    request.setStatusId(
+      getValidId(statusId)
+    );
+    request.setStatusUuid(statusUuid);
+    request.setPriorityValue(priorityValue);
 
     request.setClientRequest(
       createClientRequest({ token, language })
@@ -247,10 +316,15 @@ class IssueManagement {
     summary,
     requestTypeId,
     requestTypeUuid,
+    salesRepresentativeId,
+    salesRepresentativeUuid,
+    statusId,
+    statusUuid,
+    priorityValue,
     language
   }, callback) {
     const { UpdateIssueRequest } = this.stubFile;
-    const request = new UpdateIssueRequest()
+    const request = new UpdateIssueRequest();
 
     request.setUuid(uuid);
     request.setId(
@@ -267,10 +341,15 @@ class IssueManagement {
       getValidId(salesRepresentativeId)
     );
     request.setSalesRepresentativeUuid(salesRepresentativeUuid);
+      request.setStatusId(
+      getValidId(statusId)
+    );
+    request.setStatusUuid(statusUuid);
+    request.setPriorityValue(priorityValue);
 
     request.setClientRequest(
       createClientRequest({ token, language })
-    )
+    );
 
     this.getIssueManagementService().updateIssue(request, callback)
   }
