@@ -65,19 +65,11 @@ message ResourceReference {
 	string content_type = 6;
 }
 
-enum Status {
-	PENDING = 0;
-	IN_PROGRESS = 1;
-	SUCCESS = 2;
-	FAILED = 3;
-}
-
 // Request for upload resource
 message LoadResourceRequest {
-	data.ClientRequest client_request = 1;
+	bytes data = 1;
 	string resource_uuid = 2;
-	string file_name = 3;
-	Resource resource = 4;
+	data.Decimal file_size = 3;
 }
 
 // Request for download resource
