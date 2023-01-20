@@ -166,34 +166,10 @@ class FileManagement {
   loadResource({
     fileName,
     resourceUuid,
-    file,
     language,
     token
   }, callback) {
-    const { LoadResourceRequest } = this.stubFile;
-    const request = new LoadResourceRequest();
-
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
-
-    request.setFileName(fileName);
-    request.setResourceUuid(resourceUuid);
-
-    // const stream = this.getFileManagementService().getResource(request)
-    // let result = new Uint8Array()
-    // stream.on('data', (response) => {
-    //   result = this.mergeByteArray(result, response.getData());
-    // });
-    // stream.on('status', (status) => {
-    //   if (status && status.code === 13) {
-    //     callback(status, undefined);
-    //   }
-    // });
-    // stream.on('end', (end) => {
-    //   callback(undefined, result);
-    // });
-    this.getFileManagementService().loadResource(request);
+    return this.getFileManagementService().loadResource(callback);
   }
 
   /**
