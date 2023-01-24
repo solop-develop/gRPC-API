@@ -115,14 +115,14 @@ function getTimestamp(dateValue) {
   }
 
   const typeOfValue = getTypeOfValue(dateValue);
-  if (typeOfValue === 'String' || typeOfValue == 'Number') {
+  if (typeOfValue === 'Date') {
+    return dateValue.getTime();
+  }
+  else if (typeOfValue === 'String' || typeOfValue == 'Number') {
     value = Date.parse(dateValue);
     // value = new Date(dateValue)
   }
-  if (typeOfValue === 'Date') {
-    return value.getTime();
-  }
-  if (Date.isNaN(value)) {
+  if (isNaN(value)) {
     value = 0
   }
 
