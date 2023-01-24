@@ -104,27 +104,6 @@ function getValidId(id) {
 }
 
 /**
- * Get all values type or get key value type from value
- * @param {object} list
- * @param {string} key
- * @param {number} value
- * @returns {number|string|object}
- */
-function getValueOrKeyEnum({ list, key, value }) {
-  if (isEmptyValue(list)) {
-    return undefined;
-  }
-
-  if (key !== undefined) {
-    return list[key];
-  } else if (value !== undefined) {
-    return Object.keys(list).find(keyItem => list[keyItem] === value);
-  }
-  // return all values
-  return list;
-}
-
-/**
  * Get long (timestamp) from value
  * @param {String|Number|Date} dateValue
  * @returns {Number} number of milliseconds
@@ -154,6 +133,5 @@ module.exports = {
   getTypeOfValue,
   isEmptyValue,
   getTimestamp,
-  getValidId,
-  getValueOrKeyEnum
+  getValidId
 };

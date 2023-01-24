@@ -168,6 +168,36 @@ class Dashboarding {
     this.getDashboardingService().getChart(request, callback);
   }
 
+  /**
+   * List notification
+   * @param {string} searchValue
+   * @param {number} pageSize
+   * @param {string} pageToken
+   */
+  listNotifications({
+    token,
+    searchValue,
+    pageSize,
+    pageToken,
+    language
+  }, callback) {
+    const { ListNotificationsRequest } = this.stubFile;
+    const request = new ListNotificationsRequest();
+
+    request.setSearchValue(searchValue);
+    request.setPageSize(pageSize);
+    request.setPageToken(pageToken);
+
+    request.setClientRequest(
+      createClientRequest({
+        token,
+        language
+      })
+    );
+
+    this.getDashboardingService().listNotifications(request, callback);
+  }
+  
 }
 
 module.exports = Dashboarding;

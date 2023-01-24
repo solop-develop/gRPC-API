@@ -10,7 +10,7 @@
 // (at your option) any later version.                                              *
 // This program is distributed in the hope that it will be useful,                  *
 // but WITHOUT ANY WARRANTY; without even the implied warranty of                   *
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.	See the                     *
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the                     *
 // GNU General Public License for more details.                                     *
 // You should have received a copy of the GNU General Public License                *
 // along with this program. If not, see <https://www.gnu.org/licenses/>.            *
@@ -87,6 +87,28 @@ function deserialize_dashboarding_ListFavoritesResponse(buffer_arg) {
   return proto_dashboarding_pb.ListFavoritesResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_dashboarding_ListNotificationsRequest(arg) {
+  if (!(arg instanceof proto_dashboarding_pb.ListNotificationsRequest)) {
+    throw new Error('Expected argument of type dashboarding.ListNotificationsRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_dashboarding_ListNotificationsRequest(buffer_arg) {
+  return proto_dashboarding_pb.ListNotificationsRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_dashboarding_ListNotificationsResponse(arg) {
+  if (!(arg instanceof proto_dashboarding_pb.ListNotificationsResponse)) {
+    throw new Error('Expected argument of type dashboarding.ListNotificationsResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_dashboarding_ListNotificationsResponse(buffer_arg) {
+  return proto_dashboarding_pb.ListNotificationsResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_dashboarding_ListPendingDocumentsRequest(arg) {
   if (!(arg instanceof proto_dashboarding_pb.ListPendingDocumentsRequest)) {
     throw new Error('Expected argument of type dashboarding.ListPendingDocumentsRequest');
@@ -159,6 +181,18 @@ getChart: {
     requestDeserialize: deserialize_dashboarding_GetChartRequest,
     responseSerialize: serialize_dashboarding_Chart,
     responseDeserialize: deserialize_dashboarding_Chart,
+  },
+  // Notification
+listNotifications: {
+    path: '/dashboarding.Dashboarding/ListNotifications',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_dashboarding_pb.ListNotificationsRequest,
+    responseType: proto_dashboarding_pb.ListNotificationsResponse,
+    requestSerialize: serialize_dashboarding_ListNotificationsRequest,
+    requestDeserialize: deserialize_dashboarding_ListNotificationsRequest,
+    responseSerialize: serialize_dashboarding_ListNotificationsResponse,
+    responseDeserialize: deserialize_dashboarding_ListNotificationsResponse,
   },
 };
 
