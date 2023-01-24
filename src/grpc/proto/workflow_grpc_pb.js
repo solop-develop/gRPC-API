@@ -21,6 +21,17 @@ var proto_workflow_pb = require('../proto/workflow_pb.js');
 var proto_base_data_type_pb = require('../proto/base_data_type_pb.js');
 var proto_client_pb = require('../proto/client_pb.js');
 
+function serialize_data_Empty(arg) {
+  if (!(arg instanceof proto_base_data_type_pb.Empty)) {
+    throw new Error('Expected argument of type data.Empty');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_Empty(buffer_arg) {
+  return proto_base_data_type_pb.Empty.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_data_ProcessLog(arg) {
   if (!(arg instanceof proto_base_data_type_pb.ProcessLog)) {
     throw new Error('Expected argument of type data.ProcessLog');
@@ -30,6 +41,17 @@ function serialize_data_ProcessLog(arg) {
 
 function deserialize_data_ProcessLog(buffer_arg) {
   return proto_base_data_type_pb.ProcessLog.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_workflow_ForwardRequest(arg) {
+  if (!(arg instanceof proto_workflow_pb.ForwardRequest)) {
+    throw new Error('Expected argument of type workflow.ForwardRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_workflow_ForwardRequest(buffer_arg) {
+  return proto_workflow_pb.ForwardRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_workflow_ListDocumentActionsRequest(arg) {
@@ -120,6 +142,17 @@ function deserialize_workflow_ListWorkflowsResponse(buffer_arg) {
   return proto_workflow_pb.ListWorkflowsResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_workflow_ProcessRequest(arg) {
+  if (!(arg instanceof proto_workflow_pb.ProcessRequest)) {
+    throw new Error('Expected argument of type workflow.ProcessRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_workflow_ProcessRequest(buffer_arg) {
+  return proto_workflow_pb.ProcessRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_workflow_RunDocumentActionRequest(arg) {
   if (!(arg instanceof proto_workflow_pb.RunDocumentActionRequest)) {
     throw new Error('Expected argument of type workflow.RunDocumentActionRequest');
@@ -204,7 +237,7 @@ listDocumentStatuses: {
     responseSerialize: serialize_workflow_ListDocumentStatusesResponse,
     responseDeserialize: deserialize_workflow_ListDocumentStatusesResponse,
   },
-  // 	List Workflow Activities
+  // 	Workflow Activities
 listWorkflowActivities: {
     path: '/workflow.Workflow/ListWorkflowActivities',
     requestStream: false,
@@ -215,6 +248,28 @@ listWorkflowActivities: {
     requestDeserialize: deserialize_workflow_ListWorkflowActivitiesRequest,
     responseSerialize: serialize_workflow_ListWorkflowActivitiesResponse,
     responseDeserialize: deserialize_workflow_ListWorkflowActivitiesResponse,
+  },
+  process: {
+    path: '/workflow.Workflow/Process',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_workflow_pb.ProcessRequest,
+    responseType: proto_base_data_type_pb.Empty,
+    requestSerialize: serialize_workflow_ProcessRequest,
+    requestDeserialize: deserialize_workflow_ProcessRequest,
+    responseSerialize: serialize_data_Empty,
+    responseDeserialize: deserialize_data_Empty,
+  },
+  forward: {
+    path: '/workflow.Workflow/Forward',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_workflow_pb.ForwardRequest,
+    responseType: proto_base_data_type_pb.Empty,
+    requestSerialize: serialize_workflow_ForwardRequest,
+    requestDeserialize: deserialize_workflow_ForwardRequest,
+    responseSerialize: serialize_data_Empty,
+    responseDeserialize: deserialize_data_Empty,
   },
   // 	Run a Document Action
 runDocumentAction: {

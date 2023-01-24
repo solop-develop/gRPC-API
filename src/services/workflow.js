@@ -14,9 +14,15 @@
  * along with this program. If not, see <https://www.gnu.org/licenses/>.             *
  ************************************************************************************/
 
-const { createClientRequest } = require('../../lib/clientRequest')
+const { createClientRequest } = require('@adempiere/grpc-api/lib/clientRequest');
+const { getValidId } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
 
 class Workflow {
+
+  /**
+   * File on generated stub
+   */
+  stubFile = require('@adempiere/grpc-api/src/grpc/proto/workflow_pb.js');
 
   /**
    * Constructor, No authentication required
@@ -40,7 +46,7 @@ class Workflow {
   // Init connection
   initWorkflowService() {
     const grpc = require('@grpc/grpc-js');
-    const services = require('../grpc/proto/workflow_grpc_pb');
+    const services = require('@adempiere/grpc-api/src/grpc/proto/workflow_grpc_pb.js');
     this.workflow = new services.WorkflowClient(this.businessHost, grpc.credentials.createInsecure());
   }
 
@@ -56,7 +62,7 @@ class Workflow {
     uuid,
     language
   }, callback) {
-    const { WorkflowDefinitionRequest } = require('../grpc/proto/workflow_pb.js');
+    const { WorkflowDefinitionRequest } = this.stubFile;
     const request = new WorkflowDefinitionRequest();
 
     request.setId(id);
@@ -76,7 +82,7 @@ class Workflow {
     pageToken,
     language
   }, callback) {
-    const { ListWorkflowsRequest } = require('../grpc/proto/workflow_pb.js')
+    const { ListWorkflowsRequest } = this.stubFile
     const request = new ListWorkflowsRequest()
     request.setTableName(tableName)
     request.setPageSize(pageSize)
@@ -99,7 +105,7 @@ class Workflow {
     pageToken,
     language
   }, callback) {
-    const { ListDocumentActionsRequest } = require('../grpc/proto/workflow_pb.js')
+    const { ListDocumentActionsRequest } = this.stubFile
     const request = new ListDocumentActionsRequest()
     request.setTableName(tableName)
     request.setId(id)
@@ -125,7 +131,7 @@ class Workflow {
     pageToken,
     language
   }, callback) {
-    const { ListDocumentStatusesRequest } = require('../grpc/proto/workflow_pb.js')
+    const { ListDocumentStatusesRequest } = this.stubFile
     const request = new ListDocumentStatusesRequest()
     request.setTableName(tableName)
     request.setId(id)
@@ -147,7 +153,7 @@ class Workflow {
     pageToken,
     language
   }, callback) {
-    const { ListWorkflowActivitiesRequest } = require('../grpc/proto/workflow_pb.js')
+    const { ListWorkflowActivitiesRequest } = this.stubFile
     const request = new ListWorkflowActivitiesRequest()
 
     request.setUserUuid(userUuid)
@@ -168,7 +174,7 @@ class Workflow {
     documentAction,
     language
   }, callback) {
-    const { RunDocumentActionRequest } = require('../grpc/proto/workflow_pb.js')
+    const { RunDocumentActionRequest } = this.stubFile
     const request = new RunDocumentActionRequest();
 
     request.setId(id);
@@ -181,6 +187,71 @@ class Workflow {
     this.getWorkflowService().runDocumentAction(request, callback)
   }
 
+  /**
+   * Process workflow activity
+   * @param {number} id
+   * @param {string} uuid
+   * @param {string} message
+   * @param {boolean} isApproved
+   */
+  process({
+    token,
+    id,
+    uuid,
+    message,
+    isApproved,
+    language
+  }, callback) {
+    const { ProcessRequest } = this.stubFile
+    const request = new ProcessRequest();
+
+    request.setId(
+      getValidId(id)
+    );
+    request.setUuid(uuid);
+    request.setMessage(message);
+    request.setIsApproved(isApproved);
+
+    request.setClientRequest(
+      createClientRequest({ token, language })
+    );
+    this.getWorkflowService().process(request, callback)
+  }
+
+  /**
+   * Forward workflow activity
+   * @param {number} id
+   * @param {string} uuid
+   * @param {string} message
+   * @param {boolean} isApproved
+   */
+  forward({
+    token,
+    id,
+    uuid,
+    message,
+    userId,
+    userUuid,
+    language
+  }, callback) {
+    const { ForwardRequest } = this.stubFile
+    const request = new ForwardRequest();
+
+    request.setId(
+      getValidId(id)
+    );
+    request.setUuid(uuid);
+    request.setMessage(message);
+    request.setUserId(
+      getValidId(userId)
+    );
+    request.setUserUuid(userUuid);
+
+    request.setClientRequest(
+      createClientRequest({ token, language })
+    );
+    this.getWorkflowService().forward(request, callback)
+  }
 }
 
 module.exports = Workflow;
