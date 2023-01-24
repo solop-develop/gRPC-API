@@ -124,9 +124,36 @@ function getValueOrKeyEnum({ list, key, value }) {
   return list;
 }
 
+/**
+ * Get long (timestamp) from value
+ * @param {String|Number|Date} dateValue
+ * @returns {Number} number of milliseconds
+ */
+function getTimestamp(dateValue) {
+  let value = 0;
+  if (isEmptyValue(dateValue)) {
+    return value;
+  }
+
+  const typeOfValue = getTypeOfValue(dateValue);
+  if (typeOfValue === 'String' || typeOfValue == 'Number') {
+    value = Date.parse(dateValue);
+    // value = new Date(dateValue)
+  }
+  if (typeOfValue === 'Date') {
+    return value.getTime();
+  }
+  if (Date.isNaN(value)) {
+    value = 0
+  }
+
+  return value;
+}
+
 module.exports = {
   getTypeOfValue,
   isEmptyValue,
+  getTimestamp,
   getValidId,
   getValueOrKeyEnum
 };
