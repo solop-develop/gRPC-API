@@ -100,7 +100,7 @@ function getIssueCommentFromGRPC(issueCommentToConvert) {
   return {
     id: issueCommentToConvert.getId(),
     uuid: issueCommentToConvert.getUuid(),
-    result: issueCommentToConvert.getDocumentNo(),
+    result: issueCommentToConvert.getResult(),
     created: issueCommentToConvert.getCreated(),
     date_next_action: issueCommentToConvert.getDateNextAction(),
     user_id: issueCommentToConvert.getUserId(),
