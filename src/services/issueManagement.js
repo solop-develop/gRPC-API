@@ -15,7 +15,7 @@
  ************************************************************************************/
 
 const { createClientRequest } = require('@adempiere/grpc-api/lib/clientRequest');
-const { getValidId } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
+const { getValidId, getTimestamp } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
 
 class IssueManagement {
 
@@ -438,9 +438,11 @@ class IssueManagement {
     request.setIssueId(
       getValidId(issueId)
     );
-    request.setIssuedUuid(issueUuid);
+    request.setIssueUuid(issueUuid);
 
-    request.setDateNextAction(dateNextAction);
+    request.setDateNextAction(
+      getTimestamp(dateNextAction)
+    );
     request.setResult(result);
 
     request.setClientRequest(
@@ -476,7 +478,9 @@ class IssueManagement {
     );
 
     request.setResult(result);
-    request.setDateNextAction(dateNextAction);
+    request.setDateNextAction(
+      getTimestamp(dateNextAction)
+    );
 
     request.setClientRequest(
       createClientRequest({ token, language })
