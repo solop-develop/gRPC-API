@@ -26,10 +26,10 @@
       NOT_STARTED: 5,
   */
 function getWorkflowState({ key, value }) {
-  const { getValueOrKey } = require('@adempiere/grpc-api/src/utils/convertEnums.js')
+  const { getValueOrKeyEnum } = require('@adempiere/grpc-api/src/utils/convertEnums.js')
   const { WorkflowState } = require('@adempiere/grpc-api/src/grpc/proto/workflow_pb.js');
 
-  return getValueOrKey({
+  return getValueOrKeyEnum({
     list: WorkflowState,
     key,
     value
@@ -47,10 +47,10 @@ function getWorkflowState({ key, value }) {
       MINOR: 4,
   */
 function getPriority({ key, value }) {
-  const { getValueOrKey } = require('@adempiere/grpc-api/src/utils/convertEnums.js')
+  const { getValueOrKeyEnum } = require('@adempiere/grpc-api/src/utils/convertEnums.js')
   const { Priority } = require('@adempiere/grpc-api/src/grpc/proto/workflow_pb.js');
 
-  return getValueOrKey({
+  return getValueOrKeyEnum({
     list: Priority,
     key,
     value
@@ -66,10 +66,10 @@ function getPriority({ key, value }) {
       STATE_CHANGED = 2;
   */
 function getEventType({ key, value }) {
-  const { getValueOrKey } = require('@adempiere/grpc-api/src/utils/convertEnums.js')
+  const { getValueOrKeyEnum } = require('@adempiere/grpc-api/src/utils/convertEnums.js')
   const { EventType } = require('@adempiere/grpc-api/src/grpc/proto/workflow_pb');
 
-  return getValueOrKey({
+  return getValueOrKeyEnum({
     list: EventType,
     key,
     value
@@ -95,10 +95,10 @@ function getEventType({ key, value }) {
     WAIT_SLEEP = 12;
   */
 function getAction({ value, key }) {
-  const { getValueOrKey } = require('@adempiere/grpc-api/src/utils/convertEnums.js')
+  const { getValueOrKeyEnum } = require('@adempiere/grpc-api/src/utils/convertEnums.js')
   const { Action } = require('@adempiere/grpc-api/src/grpc/proto/workflow_pb');
 
-  return getValueOrKey({
+  return getValueOrKeyEnum({
     list: Action,
     key,
     value
@@ -113,10 +113,10 @@ function getAction({ value, key }) {
     OR = 1;
   */
 function getConditionType({ key, value }) {
-  const { getValueOrKey } = require('@adempiere/grpc-api/src/utils/convertEnums.js')
+  const { getValueOrKeyEnum } = require('@adempiere/grpc-api/src/utils/convertEnums.js')
   const { ConditionType } = require('@adempiere/grpc-api/src/grpc/proto/workflow_pb');
 
-  return getValueOrKey({
+  return getValueOrKeyEnum({
     list: ConditionType,
     key,
     value
@@ -138,10 +138,10 @@ function getConditionType({ key, value }) {
     SQL = 9;
   */
 function getOperation({ value, key }) {
-  const { getValueOrKey } = require('@adempiere/grpc-api/src/utils/convertEnums.js')
+  const { getValueOrKeyEnum } = require('@adempiere/grpc-api/src/utils/convertEnums.js')
   const { Operation } = require('@adempiere/grpc-api/src/grpc/proto/workflow_pb');
 
-  return getValueOrKey({
+  return getValueOrKeyEnum({
     list: Operation,
     key,
     value
@@ -159,10 +159,10 @@ function getOperation({ value, key }) {
       VOID = 3;
   */
 function getPublishStatus({ key, value }) {
-  const { getValueOrKey } = require('@adempiere/grpc-api/src/utils/convertEnums.js')
+  const { getValueOrKeyEnum } = require('@adempiere/grpc-api/src/utils/convertEnums.js')
   const { PublishStatus } = require('@adempiere/grpc-api/src/grpc/proto/workflow_pb');
 
-  return getValueOrKey({
+  return getValueOrKeyEnum({
     list: PublishStatus,
     key,
     value
@@ -181,10 +181,10 @@ function getPublishStatus({ key, value }) {
       YEAR = 5;
   */
 function getDurationUnit({ key, value }) {
-  const { getValueOrKey } = require('@adempiere/grpc-api/src/utils/convertEnums.js')
+  const { getValueOrKeyEnum } = require('@adempiere/grpc-api/src/utils/convertEnums.js')
   const { DurationUnit } = require('@adempiere/grpc-api/src/grpc/proto/workflow_pb.js');
 
-  return getValueOrKey({
+  return getValueOrKeyEnum({
     list: DurationUnit,
     key,
     value

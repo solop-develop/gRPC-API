@@ -39,6 +39,7 @@ function getValueOrKey({ list, key, value }) {
  * @returns {number|string|object}
  */
 function getValueOrKeyEnum({ list, key, value }) {
+  const { isEmptyValue } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
   if (isEmptyValue(list)) {
     return undefined;
   }
