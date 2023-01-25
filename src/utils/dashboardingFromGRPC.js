@@ -138,7 +138,7 @@ function getFavoriteFromGRPC(favorite) {
       WORKFLOW = 5;
  */
 function getAction({ key, value }) {
-  const { getValueOrKeyEnum } = require('@adempiere/grpc-api/src/utils/convertEnum.js')
+  const { getValueOrKeyEnum } = require('@adempiere/grpc-api/src/utils/convertEnums.js');
   const { Action } = require('@adempiere/grpc-api/src/grpc/proto/dashboarding_pb.js');
 
   return getValueOrKeyEnum({
