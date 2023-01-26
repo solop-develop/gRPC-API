@@ -31,7 +31,7 @@ function getFieldAttributesToGRPC({
   const { FieldAttributes } = stubFile;
   const fieldAttributesInstance = new FieldAttributes();
 
-  fieldAttributesInstance.setcolumnName(columnName);
+  fieldAttributesInstance.setColumnName(columnName);
   fieldAttributesInstance.setSequence(sequence);
   fieldAttributesInstance.setColor(color);
   fieldAttributesInstance.setIsDefaultDisplayed(isDefaultDisplayed);

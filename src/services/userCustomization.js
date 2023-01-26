@@ -223,8 +223,8 @@ class UserCustomization {
     fieldAttributes,
     language
   }, callback) {
-    const { SaveWindowCustomizationRequest } = this.stubFile;
-    const request = new SaveWindowCustomizationRequest();
+    const { SaveBrowseCustomizationRequest } = this.stubFile;
+    const request = new SaveBrowseCustomizationRequest();
 
     request.setBrowseUuid(browseUuid);
 
@@ -280,8 +280,8 @@ class UserCustomization {
     fieldAttributes,
     language
   }, callback) {
-    const { SaveWindowCustomizationRequest } = this.stubFile;
-    const request = new SaveWindowCustomizationRequest();
+    const { SaveProcessCustomizationRequest } = this.stubFile;
+    const request = new SaveProcessCustomizationRequest();
 
     request.setProcessUuid(processUuid);
 
