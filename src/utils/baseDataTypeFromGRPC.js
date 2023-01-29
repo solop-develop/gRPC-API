@@ -14,13 +14,29 @@
  * along with this program. If not, see <https://www.gnu.org/licenses/>.             *
  ************************************************************************************/
 
+const stubFile = require('@adempiere/grpc-api/src/grpc/proto/base_data_type_pb.js');
+
+/**
+ * Get integer from a grpc value
+ * @param integerValueToConvert
+ * @return {number}
+ */
+function getIntegerFromGRPC(integerValueToConvert) {
+  const { isEmptyValue } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
+
+  if (isEmptyValue(integerValueToConvert)) {
+    return undefined;
+  }
+  return integerValueToConvert.getIntValue();
+}
+
 /**
  * Get value from Decimal definition
  * @param {Decimal} decimalToConvert
  * @return {number}
  */
 function getDecimalFromGRPC(decimalToConvert) {
-  const { isEmptyValue } = require('./valueUtils');
+  const { isEmptyValue } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
 
   if (isEmptyValue(decimalToConvert)) {
     return undefined;
@@ -33,6 +49,112 @@ function getDecimalFromGRPC(decimalToConvert) {
 
   // return number value
   return Number(value);
+}
+
+/**
+ * Get Decimal from Value definition
+ * @param Value.Decicimal
+ * @return {number}
+ */
+function getDecimalValueFromGRPC(decimalValueToConvert) {
+  const { isEmptyValue } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
+  const decimalObject = decimalValueToConvert.getDecimalValue();
+
+  if (isEmptyValue(decimalObject)) {
+    return undefined;
+  }
+
+  // Convert it
+  return getDecimalFromGRPC(decimalObject);
+}
+
+/**
+ * Get Boolean from a grpc value
+ * @param booleanValueToConvert
+ * @return
+ */
+function getBooleanValueFromGRPC(booleanValueToConvert) {
+  const { isEmptyValue } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
+
+  if (isEmptyValue(booleanValueToConvert)) {
+    return false;
+  }
+  return booleanValueToConvert.getBooleanValue();
+}
+
+/**
+ * Get String from a grpc value
+ * @param stringValueToConvert
+ * @param uppercase
+ * @return {string}
+ */
+function getStringValueFromGRPC(stringValueToConvert, uppercase = false) {
+  const { isEmptyValue } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
+
+  if (isEmptyValue(stringValueToConvert)) {
+    return undefined;
+  }
+
+  let stringValue = stringValueToConvert.getStringValue();
+  // To Upper case
+  if (uppercase) {
+    stringValue = stringValue.toUpperCase();
+  }
+  return stringValue;
+}
+
+/**
+ * Get Date from a grpc value
+ * @param dateValueToConvert value to convert
+ * @return {date}
+ */
+function getDateValueFromGRPC(dateValueToConvert) {
+  const { isEmptyValue } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
+
+  if (!isEmptyValue(dateValueToConvert) && dateValueToConvert.getLongValue() > 0) {
+    return new Date(dateValueToConvert.getLongValue());
+  }
+  return undefined;
+}
+
+function getValueFromGRPC(valueToConvert) {
+  const { isEmptyValue } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
+
+  if (isEmptyValue(valueToConvert)) {
+    return undefined;
+  }
+
+  const { Value } = stubFile;
+  const { ValueType } = Value;
+
+  let returnValue;
+  switch (valueToConvert.getValueType()) {
+    case ValueType.INTEGER:
+      returnValue = getIntegerFromGRPC(valueToConvert);
+      break;
+    // data type Number (float)
+    case ValueType.DECIMAL:
+      returnValue = getDecimalValueFromGRPC(valueToConvert);
+      break;
+    // data type Boolean
+    case ValueType.BOOLEAN:
+      returnValue = getBooleanValueFromGRPC(valueToConvert);
+      break;
+    // data type String
+    case ValueType.STRING:
+      returnValue = getStringValueFromGRPC(valueToConvert);
+      break;
+    // data type Date
+    case ValueType.DATE:
+      returnValue = getDateValueFromGRPC(valueToConvert);
+      break;
+    // empty value
+    default:
+    case ValueType.UNKNOWN:
+      returnValue = undefined;
+      break;
+  }
+  return returnValue; 
 }
 
 /**
@@ -113,7 +235,14 @@ function getReportOutputFromGRPC(reportOutputToConvert) {
 }
 
 module.exports = {
+  getBooleanValueFromGRPC,
+  getDateValueFromGRPC,
   getDecimalFromGRPC,
+  getDecimalValueFromGRPC,
+  getIntegerFromGRPC,
+  getStringValueFromGRPC,
+  getValueFromGRPC,
+  //
   getCondition_Operator,
   getBusinessPartnerFromGRPC,
   getReportOutputFromGRPC

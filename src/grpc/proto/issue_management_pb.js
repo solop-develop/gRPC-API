@@ -33,6 +33,7 @@ goog.exportSymbol('proto.issue_management.ExistsIssuesRequest', null, global);
 goog.exportSymbol('proto.issue_management.ExistsIssuesResponse', null, global);
 goog.exportSymbol('proto.issue_management.Issue', null, global);
 goog.exportSymbol('proto.issue_management.IssueComment', null, global);
+goog.exportSymbol('proto.issue_management.IssueCommentType', null, global);
 goog.exportSymbol('proto.issue_management.ListIssueCommentsReponse', null, global);
 goog.exportSymbol('proto.issue_management.ListIssueCommentsRequest', null, global);
 goog.exportSymbol('proto.issue_management.ListIssuesReponse', null, global);
@@ -6029,7 +6030,11 @@ proto.issue_management.IssueComment.toObject = function(includeInstance, msg) {
     dateNextAction: jspb.Message.getFieldWithDefault(msg, 5, 0),
     userId: jspb.Message.getFieldWithDefault(msg, 6, 0),
     userUuid: jspb.Message.getFieldWithDefault(msg, 7, ""),
-    userName: jspb.Message.getFieldWithDefault(msg, 8, "")
+    userName: jspb.Message.getFieldWithDefault(msg, 8, ""),
+    issueCommentType: jspb.Message.getFieldWithDefault(msg, 9, 0),
+    label: jspb.Message.getFieldWithDefault(msg, 10, ""),
+    newValue: (f = msg.getNewValue()) && proto_base_data_type_pb.Value.toObject(includeInstance, f),
+    displayedValue: jspb.Message.getFieldWithDefault(msg, 12, "")
   };
 
   if (includeInstance) {
@@ -6097,6 +6102,23 @@ proto.issue_management.IssueComment.deserializeBinaryFromReader = function(msg, 
     case 8:
       var value = /** @type {string} */ (reader.readString());
       msg.setUserName(value);
+      break;
+    case 9:
+      var value = /** @type {!proto.issue_management.IssueCommentType} */ (reader.readEnum());
+      msg.setIssueCommentType(value);
+      break;
+    case 10:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setLabel(value);
+      break;
+    case 11:
+      var value = new proto_base_data_type_pb.Value;
+      reader.readMessage(value,proto_base_data_type_pb.Value.deserializeBinaryFromReader);
+      msg.setNewValue(value);
+      break;
+    case 12:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setDisplayedValue(value);
       break;
     default:
       reader.skipField();
@@ -6180,6 +6202,35 @@ proto.issue_management.IssueComment.serializeBinaryToWriter = function(message, 
   if (f.length > 0) {
     writer.writeString(
       8,
+      f
+    );
+  }
+  f = message.getIssueCommentType();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      9,
+      f
+    );
+  }
+  f = message.getLabel();
+  if (f.length > 0) {
+    writer.writeString(
+      10,
+      f
+    );
+  }
+  f = message.getNewValue();
+  if (f != null) {
+    writer.writeMessage(
+      11,
+      f,
+      proto_base_data_type_pb.Value.serializeBinaryToWriter
+    );
+  }
+  f = message.getDisplayedValue();
+  if (f.length > 0) {
+    writer.writeString(
+      12,
       f
     );
   }
@@ -6327,6 +6378,97 @@ proto.issue_management.IssueComment.prototype.getUserName = function() {
  */
 proto.issue_management.IssueComment.prototype.setUserName = function(value) {
   return jspb.Message.setProto3StringField(this, 8, value);
+};
+
+
+/**
+ * optional IssueCommentType issue_comment_type = 9;
+ * @return {!proto.issue_management.IssueCommentType}
+ */
+proto.issue_management.IssueComment.prototype.getIssueCommentType = function() {
+  return /** @type {!proto.issue_management.IssueCommentType} */ (jspb.Message.getFieldWithDefault(this, 9, 0));
+};
+
+
+/**
+ * @param {!proto.issue_management.IssueCommentType} value
+ * @return {!proto.issue_management.IssueComment} returns this
+ */
+proto.issue_management.IssueComment.prototype.setIssueCommentType = function(value) {
+  return jspb.Message.setProto3EnumField(this, 9, value);
+};
+
+
+/**
+ * optional string label = 10;
+ * @return {string}
+ */
+proto.issue_management.IssueComment.prototype.getLabel = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 10, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.issue_management.IssueComment} returns this
+ */
+proto.issue_management.IssueComment.prototype.setLabel = function(value) {
+  return jspb.Message.setProto3StringField(this, 10, value);
+};
+
+
+/**
+ * optional data.Value new_value = 11;
+ * @return {?proto.data.Value}
+ */
+proto.issue_management.IssueComment.prototype.getNewValue = function() {
+  return /** @type{?proto.data.Value} */ (
+    jspb.Message.getWrapperField(this, proto_base_data_type_pb.Value, 11));
+};
+
+
+/**
+ * @param {?proto.data.Value|undefined} value
+ * @return {!proto.issue_management.IssueComment} returns this
+*/
+proto.issue_management.IssueComment.prototype.setNewValue = function(value) {
+  return jspb.Message.setWrapperField(this, 11, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.issue_management.IssueComment} returns this
+ */
+proto.issue_management.IssueComment.prototype.clearNewValue = function() {
+  return this.setNewValue(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.issue_management.IssueComment.prototype.hasNewValue = function() {
+  return jspb.Message.getField(this, 11) != null;
+};
+
+
+/**
+ * optional string displayed_value = 12;
+ * @return {string}
+ */
+proto.issue_management.IssueComment.prototype.getDisplayedValue = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 12, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.issue_management.IssueComment} returns this
+ */
+proto.issue_management.IssueComment.prototype.setDisplayedValue = function(value) {
+  return jspb.Message.setProto3StringField(this, 12, value);
 };
 
 
@@ -7573,5 +7715,13 @@ proto.issue_management.DeleteIssueCommentRequest.prototype.setUuid = function(va
   return jspb.Message.setProto3StringField(this, 3, value);
 };
 
+
+/**
+ * @enum {number}
+ */
+proto.issue_management.IssueCommentType = {
+  COMMENT: 0,
+  LOG: 1
+};
 
 goog.object.extend(exports, proto.issue_management);
