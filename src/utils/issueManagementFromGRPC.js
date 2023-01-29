@@ -14,6 +14,8 @@
  * along with this program. If not, see <https://www.gnu.org/licenses/>.             *
  ************************************************************************************/
 
+const stubFile = require('@adempiere/grpc-api/src/grpc/proto/issue_management_pb.js');
+
 function getSalesRepresentativeFromGRPC(salesRepresentativeToConvert) {
   if (!salesRepresentativeToConvert) {
     return undefined;
@@ -93,10 +95,31 @@ function getIssueFromGRPC(issueToConvert) {
   };
 }
 
+/**
+ * Get all moderation type or get key value type from value
+ * @param {number} value
+ * @param {string} key
+    COMMENT = 0;
+    LOG = 1;
+ */
+function getIssueCommentType({ key, value }) {
+  const { getValueOrKeyEnum } = require('@adempiere/grpc-api/src/utils/convertEnums.js');
+  const { IssueCommentType } = stubFile;
+
+  return getValueOrKeyEnum({
+    list: IssueCommentType,
+    key,
+    value
+  });
+}
+
 function getIssueCommentFromGRPC(issueCommentToConvert) {
   if (!issueCommentToConvert) {
     return undefined;
   }
+
+  const { getValueFromGRPC } = require('@adempiere/grpc-api/src/utils/baseDataTypeFromGRPC.js');
+
   return {
     id: issueCommentToConvert.getId(),
     uuid: issueCommentToConvert.getUuid(),
@@ -105,7 +128,16 @@ function getIssueCommentFromGRPC(issueCommentToConvert) {
     date_next_action: issueCommentToConvert.getDateNextAction(),
     user_id: issueCommentToConvert.getUserId(),
     user_uuid: issueCommentToConvert.getUserUuid(),
-    user_name: issueCommentToConvert.getUserName()
+    user_name: issueCommentToConvert.getUserName(),
+    issue_comment_type: issueCommentToConvert.getIssueCommentType(),
+    issue_comment_type_name: getIssueCommentType({
+      value: issueCommentToConvert.getIssueCommentType()
+    }),
+    label: issueCommentToConvert.getLabel(),
+    new_value: getValueFromGRPC(
+      issueCommentToConvert.getNewValue()
+    ),
+    displayed_value: issueCommentToConvert.getDisplayedValue()
   };
 }
 
