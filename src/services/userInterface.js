@@ -415,6 +415,34 @@ class UserInterface {
     this.getUserInterfaceService().listTreeNodes(request, callback);
   }
 
+  /**
+   * List Mail Templates
+   * @param {string} token session
+   * @param {string} searchValue filter records
+   * @param {number} pageSize records per page
+   * @param {string} pageToken
+   * @param {string} language to translation
+   */
+  listMailTemplates({
+    token,
+    searchValue,
+    pageSize,
+    pageToken,
+    language
+  }, callback) {
+    const { ListMailTemplatesRequest } = this.stubFile;
+    const request = new ListMailTemplatesRequest();
+
+    request.setSearchValue(searchValue);
+    request.setPageSize(pageSize);
+    request.setPageToken(pageToken);
+    request.setClientRequest(
+      createClientRequest({ token, language })
+    );
+  
+    this.getUserInterfaceService().listMailTemplates(request, callback);
+  }
+
 }
 
 module.exports = UserInterface;
