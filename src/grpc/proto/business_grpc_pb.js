@@ -10,7 +10,7 @@
 // (at your option) any later version.                                              *
 // This program is distributed in the hope that it will be useful,                  *
 // but WITHOUT ANY WARRANTY; without even the implied warranty of                   *
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.	See the                     *
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the                     *
 // GNU General Public License for more details.                                     *
 // You should have received a copy of the GNU General Public License                *
 // along with this program. If not, see <https://www.gnu.org/licenses/>.            *
@@ -349,6 +349,28 @@ function serialize_data_ListLookupItemsResponse(arg) {
 
 function deserialize_data_ListLookupItemsResponse(buffer_arg) {
   return proto_business_pb.ListLookupItemsResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_data_ListMailTemplatesRequest(arg) {
+  if (!(arg instanceof proto_business_pb.ListMailTemplatesRequest)) {
+    throw new Error('Expected argument of type data.ListMailTemplatesRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_ListMailTemplatesRequest(buffer_arg) {
+  return proto_business_pb.ListMailTemplatesRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_data_ListMailTemplatesResponse(arg) {
+  if (!(arg instanceof proto_business_pb.ListMailTemplatesResponse)) {
+    throw new Error('Expected argument of type data.ListMailTemplatesResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_ListMailTemplatesResponse(buffer_arg) {
+  return proto_business_pb.ListMailTemplatesResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_data_ListPrintFormatsRequest(arg) {
@@ -1121,6 +1143,18 @@ listTreeNodes: {
     requestDeserialize: deserialize_data_ListTreeNodesRequest,
     responseSerialize: serialize_data_ListTreeNodesResponse,
     responseDeserialize: deserialize_data_ListTreeNodesResponse,
+  },
+  // List Mail Templates
+listMailTemplates: {
+    path: '/data.UserInterface/ListMailTemplates',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_business_pb.ListMailTemplatesRequest,
+    responseType: proto_business_pb.ListMailTemplatesResponse,
+    requestSerialize: serialize_data_ListMailTemplatesRequest,
+    requestDeserialize: deserialize_data_ListMailTemplatesRequest,
+    responseSerialize: serialize_data_ListMailTemplatesResponse,
+    responseDeserialize: deserialize_data_ListMailTemplatesResponse,
   },
 };
 
