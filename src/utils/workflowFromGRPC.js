@@ -258,6 +258,19 @@ function getWorkflowEventFromGRPC(workflowEvent) {
   };
 }
 
+function getZoomWindowFromGRPC(zoomWindow) {
+  if (!zoomWindow) {
+    return undefined;
+  }
+  return {
+    id: zoomWindow.getId(),
+    uuid: zoomWindow.getUuid(),
+    name: zoomWindow.getName(),
+    description: zoomWindow.getDescription(),
+    is_sales_transaction: zoomWindow.getIsSalesTransaction()
+  };
+}
+
 function getWorkflowActivityFromGRPC(workflowActivity) {
   if (!workflowActivity) {
     return undefined;
@@ -266,6 +279,7 @@ function getWorkflowActivityFromGRPC(workflowActivity) {
     uuid: workflowActivity.getUuid(),
     id: workflowActivity.getId(),
     table_name: workflowActivity.getTableName(),
+    record_id: workflowActivity.getRecordId(),
     record_uuid: workflowActivity.getRecordUuid(),
     user_uuid: workflowActivity.getUserUuid(),
     user_name: workflowActivity.getUserName(),
@@ -285,7 +299,10 @@ function getWorkflowActivityFromGRPC(workflowActivity) {
     ),
     node: getWorkflowNodeFromGRPC(
       workflowActivity.getNode()
-    )
+    ),
+    zoom_windows: workflowActivity.getZoomWindowsList().map(zoomWindow => {
+      return getZoomWindowFromGRPC(zoomWindow);
+    })
   };
 }
 
@@ -433,5 +450,6 @@ module.exports = {
   getWorkflowNodeFromGRPC,
   getWorkflowTransitionFromGRPC,
   getWorkflowConditionFromGRPC,
-  getDocumentActionFromGRPC
+  getDocumentActionFromGRPC,
+  getZoomWindowFromGRPC
 };
