@@ -247,6 +247,7 @@ class IssueManagement {
    * @param {number} requestTypeId
    * @param {string} requestTypeUuid
    * @param {string} language
+   * @param {date} dateNextAction
    * @param {string} token
    */
   createIssue({
@@ -263,6 +264,7 @@ class IssueManagement {
     statusId,
     statusUuid,
     priorityValue,
+    dateNextAction,
     language
   }, callback) {
     const { CreateIssueRequest } = this.stubFile;
@@ -289,6 +291,9 @@ class IssueManagement {
     );
     request.setStatusUuid(statusUuid);
     request.setPriorityValue(priorityValue);
+    request.setDateNextAction(
+      getTimestamp(dateNextAction)
+    );
 
     request.setClientRequest(
       createClientRequest({ token, language })
@@ -306,6 +311,7 @@ class IssueManagement {
    * @param {number} requestTypeId
    * @param {string} requestTypeUuid
    * @param {string} language
+   * @param {date} dateNextAction
    * @param {string} token
    */
   updateIssue({
@@ -321,6 +327,7 @@ class IssueManagement {
     statusId,
     statusUuid,
     priorityValue,
+    dateNextAction,
     language
   }, callback) {
     const { UpdateIssueRequest } = this.stubFile;
@@ -346,6 +353,9 @@ class IssueManagement {
     );
     request.setStatusUuid(statusUuid);
     request.setPriorityValue(priorityValue);
+    request.setDateNextAction(
+      getTimestamp(dateNextAction)
+    );
 
     request.setClientRequest(
       createClientRequest({ token, language })
@@ -422,7 +432,6 @@ class IssueManagement {
    * @param {number} issueId
    * @param {string} issueUuid
    * @param {string} result
-   * @param {date} dateNextAction
    */
   createIssueComment({
     token,
@@ -457,7 +466,6 @@ class IssueManagement {
    * @param {number} id
    * @param {string} uuid
    * @param {string} result
-   * @param {date} dateNextAction
    * @param {string} language
    * @param {string} token
    */
@@ -466,7 +474,6 @@ class IssueManagement {
     id,
     uuid,
     result,
-    dateNextAction,
     language
   }, callback) {
     const { UpdateIssueCommentRequest } = this.stubFile;
@@ -478,9 +485,6 @@ class IssueManagement {
     );
 
     request.setResult(result);
-    request.setDateNextAction(
-      getTimestamp(dateNextAction)
-    );
 
     request.setClientRequest(
       createClientRequest({ token, language })

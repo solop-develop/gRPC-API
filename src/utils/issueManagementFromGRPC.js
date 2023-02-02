@@ -36,7 +36,8 @@ function getRequestTypeFromGRPC(requestTypeToConvert) {
     id: requestTypeToConvert.getId(),
     uuid: requestTypeToConvert.getUuid(),
     name: requestTypeToConvert.getName(),
-    description: requestTypeToConvert.getDescription()
+    description: requestTypeToConvert.getDescription(),
+    due_date_tolerance: requestTypeToConvert.getDueDateTolerance()
   };
 }
 
@@ -62,6 +63,19 @@ function getStatusFromGRPC(statusToConvert) {
     uuid: statusToConvert.getUuid(),
     name: statusToConvert.getName(),
     description: statusToConvert.getDescription()
+  };
+}
+
+function getDueTypeFromGRPC(dueTypeToConvert) {
+  if (!dueTypeToConvert) {
+    return undefined;
+  }
+  return {
+    id: dueTypeToConvert.getId(),
+    uuid: dueTypeToConvert.getUuid(),
+    value: dueTypeToConvert.getValue(),
+    name: dueTypeToConvert.getName(),
+    description: dueTypeToConvert.getDescription()
   };
 }
 
@@ -91,6 +105,10 @@ function getIssueFromGRPC(issueToConvert) {
     ),
     priority: getPriorityFromGRPC(
       issueToConvert.getPriority()
+    ),
+    date_next_action: issueToConvert.getDateNextAction(),
+    due_type: getDueTypeFromGRPC(
+      issueToConvert.getDueType()
     )
   };
 }
@@ -125,7 +143,6 @@ function getIssueCommentFromGRPC(issueCommentToConvert) {
     uuid: issueCommentToConvert.getUuid(),
     result: issueCommentToConvert.getResult(),
     created: issueCommentToConvert.getCreated(),
-    date_next_action: issueCommentToConvert.getDateNextAction(),
     user_id: issueCommentToConvert.getUserId(),
     user_uuid: issueCommentToConvert.getUserUuid(),
     user_name: issueCommentToConvert.getUserName(),
