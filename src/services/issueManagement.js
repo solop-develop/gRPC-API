@@ -438,7 +438,6 @@ class IssueManagement {
     issueId,
     issueUuid,
     result,
-    dateNextAction,
     language
   }, callback) {
     const { CreateIssueCommentRequest } = this.stubFile;
@@ -449,9 +448,6 @@ class IssueManagement {
     );
     request.setIssueUuid(issueUuid);
 
-    request.setDateNextAction(
-      getTimestamp(dateNextAction)
-    );
     request.setResult(result);
 
     request.setClientRequest(
