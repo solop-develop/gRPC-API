@@ -8,13 +8,18 @@
  * (at your option) any later version.                                               *
  * This program is distributed in the hope that it will be useful,                   *
  * but WITHOUT ANY WARRANTY; without even the implied warranty of                    *
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                     *
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the                      *
  * GNU General Public License for more details.                                      *
  * You should have received a copy of the GNU General Public License                 *
  * along with this program. If not, see <https://www.gnu.org/licenses/>.             *
  ************************************************************************************/
 
 class Access {
+
+  /**
+   * File on generated stub
+   */
+  stubFile = require('@adempiere/grpc-api/src/grpc/proto/access_pb.js');
 
   /**
    * Constructor, No authentication required
@@ -38,7 +43,7 @@ class Access {
   // Init connection
   initAccessService() {
     const grpc = require('@grpc/grpc-js');
-    const services = require('../grpc/proto/access_grpc_pb');
+    const services = require('@adempiere/grpc-api/src/grpc/proto/access_grpc_pb');
     this.access = new services.SecurityClient(
       this.accessHost,
       grpc.credentials.createInsecure()
@@ -60,7 +65,7 @@ class Access {
     warehouseUuid,
     language
   }, callback) {
-    const { LoginRequest } = require('../grpc/proto/access_pb.js')
+    const { LoginRequest } = this.stubFile;
     const request = new LoginRequest()
 
     request.setUserName(user)
@@ -79,7 +84,7 @@ class Access {
     token,
     language
   }, callback) {
-    const { UserInfoRequest } = require('../grpc/proto/access_pb.js')
+    const { UserInfoRequest } = this.stubFile;
     const request = new UserInfoRequest()
 
     request.setSessionUuid(token)
@@ -93,7 +98,7 @@ class Access {
     token,
     language
   }, callback) {
-    const { ListRolesRequest } = require('../grpc/proto/access_pb.js')
+    const { ListRolesRequest } = this.stubFile;
     const request = new ListRolesRequest()
 
     request.setSessionUuid(token)
@@ -107,13 +112,14 @@ class Access {
     token,
     language
   }, callback) {
-    const { MenuRequest } = require('../grpc/proto/access_pb.js')
-    const request = new MenuRequest()
+    const { MenuRequest } = this.stubFile;
+    const request = new MenuRequest();
 
-    request.setSessionUuid(token)
-    request.setLanguage(language)
-    request.setClientVersion(this.version)
-    this.getAccessService().getMenu(request, callback)
+    request.setSessionUuid(token);
+    request.setLanguage(language);
+    request.setClientVersion(this.version);
+
+    this.getAccessService().getMenu(request, callback);
   }
 
   //  Get User Menu
@@ -121,7 +127,7 @@ class Access {
     token,
     language
   }, callback) {
-    const { SessionRequest } = require('../grpc/proto/access_pb.js')
+    const { SessionRequest } = this.stubFile;
     const request = new SessionRequest()
 
     request.setSessionUuid(token)
@@ -138,7 +144,7 @@ class Access {
     warehouse,
     language
   }, callback) {
-    const { ChangeRoleRequest } = require('../grpc/proto/access_pb.js')
+    const { ChangeRoleRequest } = this.stubFile;
     const request = new ChangeRoleRequest()
 
     request.setSessionUuid(token)
@@ -155,7 +161,7 @@ class Access {
     token,
     language
   }, callback) {
-    const { LogoutRequest } = require('../grpc/proto/access_pb.js')
+    const { LogoutRequest } = this.stubFile;
     const request = new LogoutRequest()
 
     request.setSessionUuid(token)
