@@ -86,6 +86,92 @@ class UserInterface {
     this.getUserInterfaceService().getTabEntity(request, callback);
   }
 
+  /**
+   * List Tab Entities
+   * @param {string} token session uuid
+   * @param {string} language
+   * @param {string} tabUuid
+   * @param {number} id record id
+   * @param {string} uuid record uuid
+   */
+  listTabEntities({
+    token,
+    windowUuid,
+    tabUuid,
+    windowNo,
+    //  DSL
+    filters,
+    columns,
+    contextAttributes,
+    sorting,
+    //  Page Data
+    searchValue,
+    pageSize,
+    pageToken,
+    language
+  }, callback) {
+    const { ListTabEntitiesRequest } = this.stubFile;
+    const request = new ListTabEntitiesRequest();
+
+    const { getTypeOfValue } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
+    // TODO: Add support to all parameters
+    if (!isEmptyValue(filters)) {
+      if (getTypeOfValue(filters) === 'String') {
+        filters = JSON.parse(filters);
+      }
+      const { getCriteriaToGRPC } = require('@adempiere/grpc-api/src/utils/baseDataTypeToGRPC.js');
+      const convertedCriteria = getCriteriaToGRPC({
+        filters,
+        orderByClause: sorting
+      })
+      request.setFilters(convertedCriteria);
+    }
+    request.setWindowNo(windowNo);
+    if (windowUuid) {
+      request.setWindowUuid(windowUuid);
+    }
+    if (tabUuid) {
+      request.setTabUuid(tabUuid);
+    }
+    request.setSearchValue(searchValue);
+    if (!isEmptyValue(contextAttributes)) {
+      const { getKeyValueToGRPC } = require('@adempiere/grpc-api/src/utils/baseDataTypeToGRPC.js');
+
+      if (getTypeOfValue(contextAttributes) === 'String') {
+        contextAttributes = JSON.parse(contextAttributes);
+      }
+      contextAttributes.forEach(attribute => {
+        let parsedAttribute = attribute;
+        if (getTypeOfValue(attribute) === 'String') {
+          parsedAttribute = JSON.parse(attribute);
+        }
+
+        // attributte format = { columName, value }
+        const convertedAttribute = getKeyValueToGRPC({
+          columnName: parsedAttribute.key,
+          value: parsedAttribute.value
+        });
+
+        request.addContextAttributes(convertedAttribute);
+      });
+    }
+
+    //  For columns
+    if (!isEmptyValue(columns)) {
+      request.setColumnsList(columns);
+    }
+    if (pageSize) {
+      request.setPageSize(pageSize);
+    }
+    if (pageToken) {
+      request.setPageToken(pageToken);
+    }
+    request.setClientRequest(
+      createClientRequest({ token, language })
+    );
+    this.getUserInterfaceService().listTabEntities(request, callback);
+  }
+
   // Create a Tab Entity
   createTabEntity({
     token,

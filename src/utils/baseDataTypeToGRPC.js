@@ -14,6 +14,8 @@
  * along with this program. If not, see <https://www.gnu.org/licenses/>.             *
  ************************************************************************************/
 
+const stubFile = require('@adempiere/grpc-api/src/grpc/proto/base_data_type_pb.js');
+
 /**
  * Convert a parameter defined by columnName and value to Value Object
  * @param {string} columnName
@@ -22,7 +24,7 @@
  * @returns KeyValue Object
  */
 function getKeyValueToGRPC({ columnName, value, valueType }) {
-  const { KeyValue } = require('@adempiere/grpc-api/src/grpc/proto/base_data_type_pb.js');
+  const { KeyValue } = stubFile;
   const keyValue = new KeyValue();
   keyValue.setKey(columnName);
 
@@ -46,9 +48,9 @@ function getKeyValueToGRPC({ columnName, value, valueType }) {
  * @param {string} operator
  * @returns Object
  */
-function convertConditionToGRPC({ columnName, value, valueTo, values = [], operator = 'VOID' }) {
-  const { isEmptyValue, convertValueToGRPC } = require('@adempiere/grpc-api/lib/convertValues.js');
-  const { Condition } = require('@adempiere/grpc-api/src/grpc/proto/base_data_type_pb.js');
+function getConditionToGRPC({ columnName, value, valueTo, values = [], operator = 'VOID' }) {
+  const { convertValueToGRPC } = require('@adempiere/grpc-api/lib/convertValues.js');
+  const { Condition } = stubFile;
   const { Operator } = Condition;
   const conditionInstance = new Condition();
   conditionInstance.setColumnName(columnName);
@@ -59,6 +61,7 @@ function convertConditionToGRPC({ columnName, value, valueTo, values = [], opera
     conditionInstance.setOperator(Operator[operator]);
   }
 
+  const { isEmptyValue } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
   // set value and value to
   if (!isEmptyValue(value)) {
     conditionInstance.setValue(
@@ -85,7 +88,135 @@ function convertConditionToGRPC({ columnName, value, valueTo, values = [], opera
   return conditionInstance;
 }
 
+/**
+ * Get order by property converted to gRPC
+ * @param {string} columnName
+ * @param {string} orderType 'ASCENDING' or 'DESCENDING'
+ */
+function getOrderByPropertyToGRPC({ columnName, orderType }) {
+  const { OrderByProperty } = stubFile;
+  const { OrderType } = OrderByProperty;
+  const orderByInstance = new OrderByProperty;
+
+  orderByInstance.setColumnName(columnName);
+  // set order type, default is 0
+  orderByInstance.setOrderType(OrderType.ASCENDING);
+  if (orderType) {
+    orderByInstance.setOrderType(OrderType[orderType]);
+  }
+  return orderByInstance;
+}
+
+/**
+ * Get Criteria from Table Name
+ * @param {string} tableName
+ * @param {string} query
+ * @param {string} whereClause
+ * @param {string} referenceUuid
+ * @param {mixed} value
+ * @param {array}  valuesList mixed values
+ * @param {array}  filters [{ columnName: String, value: Mixed, valueTo: Mixed, values: Array, operator: String}]
+ * @param {array}  orderByColumnsList [{ columnName: String, orderType: Number }]
+ * @param {string} orderByClause
+ * @param {number} limit
+ * @return {object} Criteria instance
+ */
+function getCriteriaToGRPC({
+  tableName,
+  query,
+  whereClause,
+  referenceUuid,
+  value,
+  valuesList = [],
+  filters = [],
+  orderByClause,
+  orderByColumnsList = [],
+  limit
+}) {
+  const { Criteria } = stubFile;
+  const criteria = new Criteria();
+
+  const { isEmptyValue, getTypeOfValue } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
+  if (!isEmptyValue(tableName)) {
+    criteria.setTableName(tableName);
+  }
+  if (!isEmptyValue(query)) {
+    criteria.setQuery(query);
+  }
+  if (!isEmptyValue(whereClause)) {
+    criteria.setWhereClause(whereClause);
+  }
+
+  criteria.setReferenceUuid(referenceUuid);
+
+  const { convertValueToGRPC } = require('@adempiere/grpc-api/lib/convertValues.js')
+  // add value
+  if (!isEmptyValue(value)) {
+    const valueGrpc = convertValueToGRPC({
+      value
+    });
+    criteria.addValues(valueGrpc);
+  }
+
+  // add values list
+  if (!isEmptyValue(valuesList)) {
+    valuesList.forEach(itemValue => {
+      const valueGrpc = convertValueToGRPC({
+        value: itemValue
+      });
+      criteria.addValues(valueGrpc);
+    });
+  }
+
+  // add conditions
+  if (!isEmptyValue(filters)) {
+    if (getTypeOfValue(filters) === 'String') {
+      filters = JSON.parse(filters);
+    }
+
+    filters.forEach(condition => {
+      let parsedCondition = condition;
+      // set with get method is string value
+      if (getTypeOfValue(condition) === 'String') {
+        parsedCondition = JSON.parse(condition);
+      }
+
+      const criteriaGrpc = getConditionToGRPC({
+        columnName: parsedCondition.column_name,
+        value: parsedCondition.value,
+        valueTo: parsedCondition.value_to,
+        values: parsedCondition.values,
+        operator: parsedCondition.operator
+      });
+      criteria.addConditions(criteriaGrpc);
+    });
+  }
+
+  // set order by clause
+  if (!isEmptyValue(orderByColumnsList)) {
+    orderByColumnsList.forEach(itemOrderBy => {
+      const orderBy = getOrderByPropertyToGRPC({
+        columnName: itemOrderBy.column_name,
+        orderType: itemOrderBy.order_type
+      });
+      criteria.addOrderByColumn(orderBy);
+    });
+  }
+  if (!isEmptyValue(orderByClause)) {
+    criteria.setOrderByClause(orderByClause);
+  }
+
+  if (!isEmptyValue(limit)) {
+    criteria.setLimit(limit);
+  }
+
+  // return criteria
+  return criteria;
+}
+
 module.exports = {
-  convertConditionToGRPC,
-  getKeyValueToGRPC
+  getConditionToGRPC,
+  getCriteriaToGRPC,
+  getKeyValueToGRPC,
+  getOrderByPropertyToGRPC
 };
