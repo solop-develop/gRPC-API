@@ -8,14 +8,15 @@
  * (at your option) any later version.                                               *
  * This program is distributed in the hope that it will be useful,                   *
  * but WITHOUT ANY WARRANTY; without even the implied warranty of                    *
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                     *
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the                      *
  * GNU General Public License for more details.                                      *
  * You should have received a copy of the GNU General Public License                 *
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.            *
+ * along with this program. If not, see <https://www.gnu.org/licenses/>.             *
  ************************************************************************************/
 
 const { createClientRequest } = require('@adempiere/grpc-api/lib/clientRequest');
-const { isEmptyValue } = require('@adempiere/grpc-api/lib/convertValues.js');
+const { getClientRequestToGRPC } = require('@adempiere/grpc-api/src/utils/clientToGRPC');
+const { isEmptyValue, getValidId } = require('@adempiere/grpc-api/src/utils/valueUtils.js')
 
 class MaterialManagement {
 
@@ -176,7 +177,6 @@ class MaterialManagement {
     pageToken,
     language
   }, callback) {
-    const { isEmptyValue } = require('@adempiere/grpc-api/lib/convertValues');
     const { ListProductAttributeSetInstancesRequest } = this.stubFile;
     const request = new ListProductAttributeSetInstancesRequest();
 
@@ -214,7 +214,7 @@ class MaterialManagement {
    * @param {array} attributes
    * @param {function} callback
    */
-   saveProductAttributeSetInstance({
+  saveProductAttributeSetInstance({
     token,
     // DSL
     id,
@@ -226,7 +226,6 @@ class MaterialManagement {
     attributes,
     language
   }, callback) {
-    const { isEmptyValue } = require('@adempiere/grpc-api/lib/convertValues');
     const { SaveProductAttributeSetInstanceRequest } = this.stubFile;
     const request = new SaveProductAttributeSetInstanceRequest();
 
@@ -258,7 +257,84 @@ class MaterialManagement {
     this.getMaterialManagementService().saveProductAttributeSetInstance(request, callback);
   }
 
-  
+  /**
+   * List Available Warehouses
+   * @param {number} warehouseId
+   * @param {string} warehouseUuid
+   * @param {string} searchValue
+   * @param {number} pageSize
+   * @param {string} pageToken
+   * @param {function} callback
+   */
+  listAvailableWarehouses({
+    token,
+    // DSL
+    warehouseId,
+    warehouseUuid,
+    searchValue,
+    // Page Data
+    pageSize,
+    pageToken,
+    language
+  }, callback) {
+    const { ListAvailableWarehousesRequest } = this.stubFile;
+    const request = new ListAvailableWarehousesRequest();
+
+    request.setWarehouseId(
+      getValidId(warehouseId)
+    );
+    request.setWarehouseUuid(warehouseUuid);
+
+    request.setSearchValue(searchValue);
+
+    request.setPageSize(pageSize);
+    request.setPageToken(pageToken);
+    request.setClientRequest(
+      getClientRequestToGRPC({ token, language })
+    );
+
+    this.getMaterialManagementService().listAvailableWarehouses(request, callback);
+  }
+
+  /**
+   * List Locators
+   * @param {number} warehouseId
+   * @param {string} warehouseUuid
+   * @param {string} searchValue
+   * @param {number} pageSize
+   * @param {string} pageToken
+   * @param {function} callback
+   */
+  listLocators({
+    token,
+    // DSL
+    warehouseId,
+    warehouseUuid,
+    searchValue,
+    // Page Data
+    pageSize,
+    pageToken,
+    language
+  }, callback) {
+    const { ListLocatorsRequest } = this.stubFile;
+    const request = new ListLocatorsRequest();
+
+    request.setWarehouseId(
+      getValidId(warehouseId)
+    );
+    request.setWarehouseUuid(warehouseUuid);
+
+    request.setSearchValue(searchValue);
+
+    request.setPageSize(pageSize);
+    request.setPageToken(pageToken);
+    request.setClientRequest(
+      getClientRequestToGRPC({ token, language })
+    );
+
+    this.getMaterialManagementService().listLocators(request, callback);
+  }
+
 }
 
 module.exports = MaterialManagement;

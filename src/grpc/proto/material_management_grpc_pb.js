@@ -55,6 +55,50 @@ function deserialize_material_management_GetProductAttributeSetRequest(buffer_ar
   return proto_material_management_pb.GetProductAttributeSetRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_material_management_ListAvailableWarehousesRequest(arg) {
+  if (!(arg instanceof proto_material_management_pb.ListAvailableWarehousesRequest)) {
+    throw new Error('Expected argument of type material_management.ListAvailableWarehousesRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_material_management_ListAvailableWarehousesRequest(buffer_arg) {
+  return proto_material_management_pb.ListAvailableWarehousesRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_material_management_ListAvailableWarehousesResponse(arg) {
+  if (!(arg instanceof proto_material_management_pb.ListAvailableWarehousesResponse)) {
+    throw new Error('Expected argument of type material_management.ListAvailableWarehousesResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_material_management_ListAvailableWarehousesResponse(buffer_arg) {
+  return proto_material_management_pb.ListAvailableWarehousesResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_material_management_ListLocatorsRequest(arg) {
+  if (!(arg instanceof proto_material_management_pb.ListLocatorsRequest)) {
+    throw new Error('Expected argument of type material_management.ListLocatorsRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_material_management_ListLocatorsRequest(buffer_arg) {
+  return proto_material_management_pb.ListLocatorsRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_material_management_ListLocatorsResponse(arg) {
+  if (!(arg instanceof proto_material_management_pb.ListLocatorsResponse)) {
+    throw new Error('Expected argument of type material_management.ListLocatorsResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_material_management_ListLocatorsResponse(buffer_arg) {
+  return proto_material_management_pb.ListLocatorsResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_material_management_ListProductAttributeSetInstancesRequest(arg) {
   if (!(arg instanceof proto_material_management_pb.ListProductAttributeSetInstancesRequest)) {
     throw new Error('Expected argument of type material_management.ListProductAttributeSetInstancesRequest');
@@ -158,7 +202,7 @@ listProductStorage: {
     responseSerialize: serialize_data_ListEntitiesResponse,
     responseDeserialize: deserialize_data_ListEntitiesResponse,
   },
-  // List Product Attribute Values
+  // Attribute Set
 listProductAttributeValues: {
     path: '/material_management.MaterialManagement/ListProductAttributeValues',
     requestStream: false,
@@ -170,8 +214,7 @@ listProductAttributeValues: {
     responseSerialize: serialize_data_ListEntitiesResponse,
     responseDeserialize: deserialize_data_ListEntitiesResponse,
   },
-  // List Product Attributes
-listProductAttributes: {
+  listProductAttributes: {
     path: '/material_management.MaterialManagement/ListProductAttributes',
     requestStream: false,
     responseStream: false,
@@ -182,8 +225,7 @@ listProductAttributes: {
     responseSerialize: serialize_data_ListEntitiesResponse,
     responseDeserialize: deserialize_data_ListEntitiesResponse,
   },
-  // Get Product Attribute Set
-getProductAttributeSet: {
+  getProductAttributeSet: {
     path: '/material_management.MaterialManagement/GetProductAttributeSet',
     requestStream: false,
     responseStream: false,
@@ -194,8 +236,7 @@ getProductAttributeSet: {
     responseSerialize: serialize_material_management_ProductAttributeSet,
     responseDeserialize: deserialize_material_management_ProductAttributeSet,
   },
-  // Get Product Set Attribute Instance
-getProductAttributeSetInstance: {
+  getProductAttributeSetInstance: {
     path: '/material_management.MaterialManagement/GetProductAttributeSetInstance',
     requestStream: false,
     responseStream: false,
@@ -206,8 +247,7 @@ getProductAttributeSetInstance: {
     responseSerialize: serialize_material_management_ProductAttributeSetInstance,
     responseDeserialize: deserialize_material_management_ProductAttributeSetInstance,
   },
-  // List Product Atribute Set Instance
-listProductAttributeSetInstances: {
+  listProductAttributeSetInstances: {
     path: '/material_management.MaterialManagement/ListProductAttributeSetInstances',
     requestStream: false,
     responseStream: false,
@@ -218,8 +258,7 @@ listProductAttributeSetInstances: {
     responseSerialize: serialize_material_management_ListProductAttributeSetInstancesResponse,
     responseDeserialize: deserialize_material_management_ListProductAttributeSetInstancesResponse,
   },
-  // Create/Update Attribute Product Set Instance
-saveProductAttributeSetInstance: {
+  saveProductAttributeSetInstance: {
     path: '/material_management.MaterialManagement/SaveProductAttributeSetInstance',
     requestStream: false,
     responseStream: false,
@@ -229,6 +268,29 @@ saveProductAttributeSetInstance: {
     requestDeserialize: deserialize_material_management_SaveProductAttributeSetInstanceRequest,
     responseSerialize: serialize_material_management_ProductAttributeSetInstance,
     responseDeserialize: deserialize_material_management_ProductAttributeSetInstance,
+  },
+  // Locator
+listAvailableWarehouses: {
+    path: '/material_management.MaterialManagement/ListAvailableWarehouses',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_material_management_pb.ListAvailableWarehousesRequest,
+    responseType: proto_material_management_pb.ListAvailableWarehousesResponse,
+    requestSerialize: serialize_material_management_ListAvailableWarehousesRequest,
+    requestDeserialize: deserialize_material_management_ListAvailableWarehousesRequest,
+    responseSerialize: serialize_material_management_ListAvailableWarehousesResponse,
+    responseDeserialize: deserialize_material_management_ListAvailableWarehousesResponse,
+  },
+  listLocators: {
+    path: '/material_management.MaterialManagement/ListLocators',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_material_management_pb.ListLocatorsRequest,
+    responseType: proto_material_management_pb.ListLocatorsResponse,
+    requestSerialize: serialize_material_management_ListLocatorsRequest,
+    requestDeserialize: deserialize_material_management_ListLocatorsRequest,
+    responseSerialize: serialize_material_management_ListLocatorsResponse,
+    responseDeserialize: deserialize_material_management_ListLocatorsResponse,
   },
 };
 
