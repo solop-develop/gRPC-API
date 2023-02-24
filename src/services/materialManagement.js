@@ -311,6 +311,15 @@ class MaterialManagement {
     warehouseId,
     warehouseUuid,
     searchValue,
+    contextAttributes,
+    // references
+    processParameterUuid,
+    fieldUuid,
+    browseFieldUuid,
+    referenceUuid,
+    columnUuid,
+    tableName,
+    columnName,
     // Page Data
     pageSize,
     pageToken,
@@ -325,6 +334,36 @@ class MaterialManagement {
     request.setWarehouseUuid(warehouseUuid);
 
     request.setSearchValue(searchValue);
+
+    if (!isEmptyValue(contextAttributes)) {
+      const { getTypeOfValue } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
+      const { getKeyValueToGRPC } = require('@adempiere/grpc-api/src/utils/baseDataTypeToGRPC.js');
+
+      if (getTypeOfValue(contextAttributes) === 'String') {
+        contextAttributes = JSON.parse(contextAttributes);
+      }
+      contextAttributes.forEach(attribute => {
+        let parsedAttribute = attribute;
+        if (getTypeOfValue(attribute) === 'String') {
+          parsedAttribute = JSON.parse(attribute);
+        }
+
+        // attributte format = { columName, value }
+        const convertedAttribute = getKeyValueToGRPC({
+          columnName: parsedAttribute.key,
+          value: parsedAttribute.value
+        });
+        request.addContextAttributes(convertedAttribute);
+      });
+    }
+
+    request.setFieldUuid(fieldUuid);
+    request.setProcessParameterUuid(processParameterUuid);
+    request.setBrowseFieldUuid(browseFieldUuid);
+    request.setReferenceUuid(referenceUuid);
+    request.setColumnUuid(columnUuid);
+    request.setTableName(tableName);
+    request.setColumnName(columnName);
 
     request.setPageSize(pageSize);
     request.setPageToken(pageToken);
