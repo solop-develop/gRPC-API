@@ -414,7 +414,7 @@ if (goog.DEBUG && !COMPILED) {
  * @constructor
  */
 proto.material_management.ListLocatorsRequest = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.material_management.ListLocatorsRequest.repeatedFields_, null);
 };
 goog.inherits(proto.material_management.ListLocatorsRequest, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -6571,6 +6571,13 @@ proto.material_management.Locator.prototype.hasWarehouse = function() {
 
 
 
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.material_management.ListLocatorsRequest.repeatedFields_ = [7];
+
 
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
@@ -6607,7 +6614,16 @@ proto.material_management.ListLocatorsRequest.toObject = function(includeInstanc
     pageToken: jspb.Message.getFieldWithDefault(msg, 3, ""),
     searchValue: jspb.Message.getFieldWithDefault(msg, 4, ""),
     warehouseId: jspb.Message.getFieldWithDefault(msg, 5, 0),
-    warehouseUuid: jspb.Message.getFieldWithDefault(msg, 6, "")
+    warehouseUuid: jspb.Message.getFieldWithDefault(msg, 6, ""),
+    contextAttributesList: jspb.Message.toObjectList(msg.getContextAttributesList(),
+    proto_base_data_type_pb.KeyValue.toObject, includeInstance),
+    processParameterUuid: jspb.Message.getFieldWithDefault(msg, 8, ""),
+    fieldUuid: jspb.Message.getFieldWithDefault(msg, 9, ""),
+    browseFieldUuid: jspb.Message.getFieldWithDefault(msg, 10, ""),
+    referenceUuid: jspb.Message.getFieldWithDefault(msg, 11, ""),
+    columnUuid: jspb.Message.getFieldWithDefault(msg, 12, ""),
+    tableName: jspb.Message.getFieldWithDefault(msg, 13, ""),
+    columnName: jspb.Message.getFieldWithDefault(msg, 14, "")
   };
 
   if (includeInstance) {
@@ -6668,6 +6684,39 @@ proto.material_management.ListLocatorsRequest.deserializeBinaryFromReader = func
     case 6:
       var value = /** @type {string} */ (reader.readString());
       msg.setWarehouseUuid(value);
+      break;
+    case 7:
+      var value = new proto_base_data_type_pb.KeyValue;
+      reader.readMessage(value,proto_base_data_type_pb.KeyValue.deserializeBinaryFromReader);
+      msg.addContextAttributes(value);
+      break;
+    case 8:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setProcessParameterUuid(value);
+      break;
+    case 9:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setFieldUuid(value);
+      break;
+    case 10:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setBrowseFieldUuid(value);
+      break;
+    case 11:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setReferenceUuid(value);
+      break;
+    case 12:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setColumnUuid(value);
+      break;
+    case 13:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setTableName(value);
+      break;
+    case 14:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setColumnName(value);
       break;
     default:
       reader.skipField();
@@ -6738,6 +6787,63 @@ proto.material_management.ListLocatorsRequest.serializeBinaryToWriter = function
   if (f.length > 0) {
     writer.writeString(
       6,
+      f
+    );
+  }
+  f = message.getContextAttributesList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      7,
+      f,
+      proto_base_data_type_pb.KeyValue.serializeBinaryToWriter
+    );
+  }
+  f = message.getProcessParameterUuid();
+  if (f.length > 0) {
+    writer.writeString(
+      8,
+      f
+    );
+  }
+  f = message.getFieldUuid();
+  if (f.length > 0) {
+    writer.writeString(
+      9,
+      f
+    );
+  }
+  f = message.getBrowseFieldUuid();
+  if (f.length > 0) {
+    writer.writeString(
+      10,
+      f
+    );
+  }
+  f = message.getReferenceUuid();
+  if (f.length > 0) {
+    writer.writeString(
+      11,
+      f
+    );
+  }
+  f = message.getColumnUuid();
+  if (f.length > 0) {
+    writer.writeString(
+      12,
+      f
+    );
+  }
+  f = message.getTableName();
+  if (f.length > 0) {
+    writer.writeString(
+      13,
+      f
+    );
+  }
+  f = message.getColumnName();
+  if (f.length > 0) {
+    writer.writeString(
+      14,
       f
     );
   }
@@ -6868,6 +6974,170 @@ proto.material_management.ListLocatorsRequest.prototype.getWarehouseUuid = funct
  */
 proto.material_management.ListLocatorsRequest.prototype.setWarehouseUuid = function(value) {
   return jspb.Message.setProto3StringField(this, 6, value);
+};
+
+
+/**
+ * repeated data.KeyValue context_attributes = 7;
+ * @return {!Array<!proto.data.KeyValue>}
+ */
+proto.material_management.ListLocatorsRequest.prototype.getContextAttributesList = function() {
+  return /** @type{!Array<!proto.data.KeyValue>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto_base_data_type_pb.KeyValue, 7));
+};
+
+
+/**
+ * @param {!Array<!proto.data.KeyValue>} value
+ * @return {!proto.material_management.ListLocatorsRequest} returns this
+*/
+proto.material_management.ListLocatorsRequest.prototype.setContextAttributesList = function(value) {
+  return jspb.Message.setRepeatedWrapperField(this, 7, value);
+};
+
+
+/**
+ * @param {!proto.data.KeyValue=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.data.KeyValue}
+ */
+proto.material_management.ListLocatorsRequest.prototype.addContextAttributes = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 7, opt_value, proto.data.KeyValue, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.material_management.ListLocatorsRequest} returns this
+ */
+proto.material_management.ListLocatorsRequest.prototype.clearContextAttributesList = function() {
+  return this.setContextAttributesList([]);
+};
+
+
+/**
+ * optional string process_parameter_uuid = 8;
+ * @return {string}
+ */
+proto.material_management.ListLocatorsRequest.prototype.getProcessParameterUuid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 8, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.material_management.ListLocatorsRequest} returns this
+ */
+proto.material_management.ListLocatorsRequest.prototype.setProcessParameterUuid = function(value) {
+  return jspb.Message.setProto3StringField(this, 8, value);
+};
+
+
+/**
+ * optional string field_uuid = 9;
+ * @return {string}
+ */
+proto.material_management.ListLocatorsRequest.prototype.getFieldUuid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 9, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.material_management.ListLocatorsRequest} returns this
+ */
+proto.material_management.ListLocatorsRequest.prototype.setFieldUuid = function(value) {
+  return jspb.Message.setProto3StringField(this, 9, value);
+};
+
+
+/**
+ * optional string browse_field_uuid = 10;
+ * @return {string}
+ */
+proto.material_management.ListLocatorsRequest.prototype.getBrowseFieldUuid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 10, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.material_management.ListLocatorsRequest} returns this
+ */
+proto.material_management.ListLocatorsRequest.prototype.setBrowseFieldUuid = function(value) {
+  return jspb.Message.setProto3StringField(this, 10, value);
+};
+
+
+/**
+ * optional string reference_uuid = 11;
+ * @return {string}
+ */
+proto.material_management.ListLocatorsRequest.prototype.getReferenceUuid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 11, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.material_management.ListLocatorsRequest} returns this
+ */
+proto.material_management.ListLocatorsRequest.prototype.setReferenceUuid = function(value) {
+  return jspb.Message.setProto3StringField(this, 11, value);
+};
+
+
+/**
+ * optional string column_uuid = 12;
+ * @return {string}
+ */
+proto.material_management.ListLocatorsRequest.prototype.getColumnUuid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 12, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.material_management.ListLocatorsRequest} returns this
+ */
+proto.material_management.ListLocatorsRequest.prototype.setColumnUuid = function(value) {
+  return jspb.Message.setProto3StringField(this, 12, value);
+};
+
+
+/**
+ * optional string table_name = 13;
+ * @return {string}
+ */
+proto.material_management.ListLocatorsRequest.prototype.getTableName = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 13, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.material_management.ListLocatorsRequest} returns this
+ */
+proto.material_management.ListLocatorsRequest.prototype.setTableName = function(value) {
+  return jspb.Message.setProto3StringField(this, 13, value);
+};
+
+
+/**
+ * optional string column_name = 14;
+ * @return {string}
+ */
+proto.material_management.ListLocatorsRequest.prototype.getColumnName = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 14, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.material_management.ListLocatorsRequest} returns this
+ */
+proto.material_management.ListLocatorsRequest.prototype.setColumnName = function(value) {
+  return jspb.Message.setProto3StringField(this, 14, value);
 };
 
 
