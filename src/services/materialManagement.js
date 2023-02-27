@@ -171,6 +171,7 @@ class MaterialManagement {
     productUuid,
     productAttributeSetId,
     productAttributeSetUuid,
+    searchValue,
     filters,
     // Page Data
     pageSize,
@@ -185,6 +186,7 @@ class MaterialManagement {
     request.setProductAttributeSetId(productAttributeSetId);
     request.setProductAttributeSetUuid(productAttributeSetUuid);
 
+    request.setSearchValue(searchValue);
     if (!isEmptyValue(filters)) {
       const { convertCriteriaToGRPC } = require('@adempiere/grpc-api/lib/convertValues');
       request.setFilters(

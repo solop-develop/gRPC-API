@@ -3334,11 +3334,12 @@ proto.material_management.ListProductAttributesRequest.toObject = function(inclu
     clientRequest: (f = msg.getClientRequest()) && proto_client_pb.ClientRequest.toObject(includeInstance, f),
     pageSize: jspb.Message.getFieldWithDefault(msg, 2, 0),
     pageToken: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    productId: jspb.Message.getFieldWithDefault(msg, 4, 0),
-    productUuid: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    productAttributeSetInstanceId: jspb.Message.getFieldWithDefault(msg, 6, 0),
-    productAttributeSetInstanceUuid: jspb.Message.getFieldWithDefault(msg, 7, ""),
-    filters: (f = msg.getFilters()) && proto_base_data_type_pb.Criteria.toObject(includeInstance, f)
+    searchValue: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    filters: (f = msg.getFilters()) && proto_base_data_type_pb.Criteria.toObject(includeInstance, f),
+    productId: jspb.Message.getFieldWithDefault(msg, 6, 0),
+    productUuid: jspb.Message.getFieldWithDefault(msg, 7, ""),
+    productAttributeSetInstanceId: jspb.Message.getFieldWithDefault(msg, 8, 0),
+    productAttributeSetInstanceUuid: jspb.Message.getFieldWithDefault(msg, 9, "")
   };
 
   if (includeInstance) {
@@ -3389,25 +3390,29 @@ proto.material_management.ListProductAttributesRequest.deserializeBinaryFromRead
       msg.setPageToken(value);
       break;
     case 4:
-      var value = /** @type {number} */ (reader.readInt32());
-      msg.setProductId(value);
+      var value = /** @type {string} */ (reader.readString());
+      msg.setSearchValue(value);
       break;
     case 5:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setProductUuid(value);
-      break;
-    case 6:
-      var value = /** @type {number} */ (reader.readInt32());
-      msg.setProductAttributeSetInstanceId(value);
-      break;
-    case 7:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setProductAttributeSetInstanceUuid(value);
-      break;
-    case 8:
       var value = new proto_base_data_type_pb.Criteria;
       reader.readMessage(value,proto_base_data_type_pb.Criteria.deserializeBinaryFromReader);
       msg.setFilters(value);
+      break;
+    case 6:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setProductId(value);
+      break;
+    case 7:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setProductUuid(value);
+      break;
+    case 8:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setProductAttributeSetInstanceId(value);
+      break;
+    case 9:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setProductAttributeSetInstanceUuid(value);
       break;
     default:
       reader.skipField();
@@ -3460,40 +3465,47 @@ proto.material_management.ListProductAttributesRequest.serializeBinaryToWriter =
       f
     );
   }
-  f = message.getProductId();
-  if (f !== 0) {
-    writer.writeInt32(
+  f = message.getSearchValue();
+  if (f.length > 0) {
+    writer.writeString(
       4,
-      f
-    );
-  }
-  f = message.getProductUuid();
-  if (f.length > 0) {
-    writer.writeString(
-      5,
-      f
-    );
-  }
-  f = message.getProductAttributeSetInstanceId();
-  if (f !== 0) {
-    writer.writeInt32(
-      6,
-      f
-    );
-  }
-  f = message.getProductAttributeSetInstanceUuid();
-  if (f.length > 0) {
-    writer.writeString(
-      7,
       f
     );
   }
   f = message.getFilters();
   if (f != null) {
     writer.writeMessage(
-      8,
+      5,
       f,
       proto_base_data_type_pb.Criteria.serializeBinaryToWriter
+    );
+  }
+  f = message.getProductId();
+  if (f !== 0) {
+    writer.writeInt32(
+      6,
+      f
+    );
+  }
+  f = message.getProductUuid();
+  if (f.length > 0) {
+    writer.writeString(
+      7,
+      f
+    );
+  }
+  f = message.getProductAttributeSetInstanceId();
+  if (f !== 0) {
+    writer.writeInt32(
+      8,
+      f
+    );
+  }
+  f = message.getProductAttributeSetInstanceUuid();
+  if (f.length > 0) {
+    writer.writeString(
+      9,
+      f
     );
   }
 };
@@ -3573,29 +3585,11 @@ proto.material_management.ListProductAttributesRequest.prototype.setPageToken = 
 
 
 /**
- * optional int32 product_id = 4;
- * @return {number}
- */
-proto.material_management.ListProductAttributesRequest.prototype.getProductId = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
-};
-
-
-/**
- * @param {number} value
- * @return {!proto.material_management.ListProductAttributesRequest} returns this
- */
-proto.material_management.ListProductAttributesRequest.prototype.setProductId = function(value) {
-  return jspb.Message.setProto3IntField(this, 4, value);
-};
-
-
-/**
- * optional string product_uuid = 5;
+ * optional string search_value = 4;
  * @return {string}
  */
-proto.material_management.ListProductAttributesRequest.prototype.getProductUuid = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
+proto.material_management.ListProductAttributesRequest.prototype.getSearchValue = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
 };
 
 
@@ -3603,54 +3597,18 @@ proto.material_management.ListProductAttributesRequest.prototype.getProductUuid 
  * @param {string} value
  * @return {!proto.material_management.ListProductAttributesRequest} returns this
  */
-proto.material_management.ListProductAttributesRequest.prototype.setProductUuid = function(value) {
-  return jspb.Message.setProto3StringField(this, 5, value);
+proto.material_management.ListProductAttributesRequest.prototype.setSearchValue = function(value) {
+  return jspb.Message.setProto3StringField(this, 4, value);
 };
 
 
 /**
- * optional int32 product_attribute_set_instance_id = 6;
- * @return {number}
- */
-proto.material_management.ListProductAttributesRequest.prototype.getProductAttributeSetInstanceId = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 6, 0));
-};
-
-
-/**
- * @param {number} value
- * @return {!proto.material_management.ListProductAttributesRequest} returns this
- */
-proto.material_management.ListProductAttributesRequest.prototype.setProductAttributeSetInstanceId = function(value) {
-  return jspb.Message.setProto3IntField(this, 6, value);
-};
-
-
-/**
- * optional string product_attribute_set_instance_uuid = 7;
- * @return {string}
- */
-proto.material_management.ListProductAttributesRequest.prototype.getProductAttributeSetInstanceUuid = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 7, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.material_management.ListProductAttributesRequest} returns this
- */
-proto.material_management.ListProductAttributesRequest.prototype.setProductAttributeSetInstanceUuid = function(value) {
-  return jspb.Message.setProto3StringField(this, 7, value);
-};
-
-
-/**
- * optional data.Criteria filters = 8;
+ * optional data.Criteria filters = 5;
  * @return {?proto.data.Criteria}
  */
 proto.material_management.ListProductAttributesRequest.prototype.getFilters = function() {
   return /** @type{?proto.data.Criteria} */ (
-    jspb.Message.getWrapperField(this, proto_base_data_type_pb.Criteria, 8));
+    jspb.Message.getWrapperField(this, proto_base_data_type_pb.Criteria, 5));
 };
 
 
@@ -3659,7 +3617,7 @@ proto.material_management.ListProductAttributesRequest.prototype.getFilters = fu
  * @return {!proto.material_management.ListProductAttributesRequest} returns this
 */
 proto.material_management.ListProductAttributesRequest.prototype.setFilters = function(value) {
-  return jspb.Message.setWrapperField(this, 8, value);
+  return jspb.Message.setWrapperField(this, 5, value);
 };
 
 
@@ -3677,7 +3635,79 @@ proto.material_management.ListProductAttributesRequest.prototype.clearFilters = 
  * @return {boolean}
  */
 proto.material_management.ListProductAttributesRequest.prototype.hasFilters = function() {
-  return jspb.Message.getField(this, 8) != null;
+  return jspb.Message.getField(this, 5) != null;
+};
+
+
+/**
+ * optional int32 product_id = 6;
+ * @return {number}
+ */
+proto.material_management.ListProductAttributesRequest.prototype.getProductId = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 6, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.material_management.ListProductAttributesRequest} returns this
+ */
+proto.material_management.ListProductAttributesRequest.prototype.setProductId = function(value) {
+  return jspb.Message.setProto3IntField(this, 6, value);
+};
+
+
+/**
+ * optional string product_uuid = 7;
+ * @return {string}
+ */
+proto.material_management.ListProductAttributesRequest.prototype.getProductUuid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 7, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.material_management.ListProductAttributesRequest} returns this
+ */
+proto.material_management.ListProductAttributesRequest.prototype.setProductUuid = function(value) {
+  return jspb.Message.setProto3StringField(this, 7, value);
+};
+
+
+/**
+ * optional int32 product_attribute_set_instance_id = 8;
+ * @return {number}
+ */
+proto.material_management.ListProductAttributesRequest.prototype.getProductAttributeSetInstanceId = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 8, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.material_management.ListProductAttributesRequest} returns this
+ */
+proto.material_management.ListProductAttributesRequest.prototype.setProductAttributeSetInstanceId = function(value) {
+  return jspb.Message.setProto3IntField(this, 8, value);
+};
+
+
+/**
+ * optional string product_attribute_set_instance_uuid = 9;
+ * @return {string}
+ */
+proto.material_management.ListProductAttributesRequest.prototype.getProductAttributeSetInstanceUuid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 9, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.material_management.ListProductAttributesRequest} returns this
+ */
+proto.material_management.ListProductAttributesRequest.prototype.setProductAttributeSetInstanceUuid = function(value) {
+  return jspb.Message.setProto3StringField(this, 9, value);
 };
 
 
@@ -3716,9 +3746,10 @@ proto.material_management.ListProductAttributeValuesRequest.toObject = function(
     clientRequest: (f = msg.getClientRequest()) && proto_client_pb.ClientRequest.toObject(includeInstance, f),
     pageSize: jspb.Message.getFieldWithDefault(msg, 2, 0),
     pageToken: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    productAttributeId: jspb.Message.getFieldWithDefault(msg, 4, 0),
-    productAttributeUuid: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    filters: (f = msg.getFilters()) && proto_base_data_type_pb.Criteria.toObject(includeInstance, f)
+    searchValue: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    filters: (f = msg.getFilters()) && proto_base_data_type_pb.Criteria.toObject(includeInstance, f),
+    productAttributeId: jspb.Message.getFieldWithDefault(msg, 6, 0),
+    productAttributeUuid: jspb.Message.getFieldWithDefault(msg, 7, "")
   };
 
   if (includeInstance) {
@@ -3769,17 +3800,21 @@ proto.material_management.ListProductAttributeValuesRequest.deserializeBinaryFro
       msg.setPageToken(value);
       break;
     case 4:
-      var value = /** @type {number} */ (reader.readInt32());
-      msg.setProductAttributeId(value);
+      var value = /** @type {string} */ (reader.readString());
+      msg.setSearchValue(value);
       break;
     case 5:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setProductAttributeUuid(value);
-      break;
-    case 6:
       var value = new proto_base_data_type_pb.Criteria;
       reader.readMessage(value,proto_base_data_type_pb.Criteria.deserializeBinaryFromReader);
       msg.setFilters(value);
+      break;
+    case 6:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setProductAttributeId(value);
+      break;
+    case 7:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setProductAttributeUuid(value);
       break;
     default:
       reader.skipField();
@@ -3832,26 +3867,33 @@ proto.material_management.ListProductAttributeValuesRequest.serializeBinaryToWri
       f
     );
   }
-  f = message.getProductAttributeId();
-  if (f !== 0) {
-    writer.writeInt32(
-      4,
-      f
-    );
-  }
-  f = message.getProductAttributeUuid();
+  f = message.getSearchValue();
   if (f.length > 0) {
     writer.writeString(
-      5,
+      4,
       f
     );
   }
   f = message.getFilters();
   if (f != null) {
     writer.writeMessage(
-      6,
+      5,
       f,
       proto_base_data_type_pb.Criteria.serializeBinaryToWriter
+    );
+  }
+  f = message.getProductAttributeId();
+  if (f !== 0) {
+    writer.writeInt32(
+      6,
+      f
+    );
+  }
+  f = message.getProductAttributeUuid();
+  if (f.length > 0) {
+    writer.writeString(
+      7,
+      f
     );
   }
 };
@@ -3931,29 +3973,11 @@ proto.material_management.ListProductAttributeValuesRequest.prototype.setPageTok
 
 
 /**
- * optional int32 product_attribute_id = 4;
- * @return {number}
- */
-proto.material_management.ListProductAttributeValuesRequest.prototype.getProductAttributeId = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
-};
-
-
-/**
- * @param {number} value
- * @return {!proto.material_management.ListProductAttributeValuesRequest} returns this
- */
-proto.material_management.ListProductAttributeValuesRequest.prototype.setProductAttributeId = function(value) {
-  return jspb.Message.setProto3IntField(this, 4, value);
-};
-
-
-/**
- * optional string product_attribute_uuid = 5;
+ * optional string search_value = 4;
  * @return {string}
  */
-proto.material_management.ListProductAttributeValuesRequest.prototype.getProductAttributeUuid = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
+proto.material_management.ListProductAttributeValuesRequest.prototype.getSearchValue = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
 };
 
 
@@ -3961,18 +3985,18 @@ proto.material_management.ListProductAttributeValuesRequest.prototype.getProduct
  * @param {string} value
  * @return {!proto.material_management.ListProductAttributeValuesRequest} returns this
  */
-proto.material_management.ListProductAttributeValuesRequest.prototype.setProductAttributeUuid = function(value) {
-  return jspb.Message.setProto3StringField(this, 5, value);
+proto.material_management.ListProductAttributeValuesRequest.prototype.setSearchValue = function(value) {
+  return jspb.Message.setProto3StringField(this, 4, value);
 };
 
 
 /**
- * optional data.Criteria filters = 6;
+ * optional data.Criteria filters = 5;
  * @return {?proto.data.Criteria}
  */
 proto.material_management.ListProductAttributeValuesRequest.prototype.getFilters = function() {
   return /** @type{?proto.data.Criteria} */ (
-    jspb.Message.getWrapperField(this, proto_base_data_type_pb.Criteria, 6));
+    jspb.Message.getWrapperField(this, proto_base_data_type_pb.Criteria, 5));
 };
 
 
@@ -3981,7 +4005,7 @@ proto.material_management.ListProductAttributeValuesRequest.prototype.getFilters
  * @return {!proto.material_management.ListProductAttributeValuesRequest} returns this
 */
 proto.material_management.ListProductAttributeValuesRequest.prototype.setFilters = function(value) {
-  return jspb.Message.setWrapperField(this, 6, value);
+  return jspb.Message.setWrapperField(this, 5, value);
 };
 
 
@@ -3999,7 +4023,43 @@ proto.material_management.ListProductAttributeValuesRequest.prototype.clearFilte
  * @return {boolean}
  */
 proto.material_management.ListProductAttributeValuesRequest.prototype.hasFilters = function() {
-  return jspb.Message.getField(this, 6) != null;
+  return jspb.Message.getField(this, 5) != null;
+};
+
+
+/**
+ * optional int32 product_attribute_id = 6;
+ * @return {number}
+ */
+proto.material_management.ListProductAttributeValuesRequest.prototype.getProductAttributeId = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 6, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.material_management.ListProductAttributeValuesRequest} returns this
+ */
+proto.material_management.ListProductAttributeValuesRequest.prototype.setProductAttributeId = function(value) {
+  return jspb.Message.setProto3IntField(this, 6, value);
+};
+
+
+/**
+ * optional string product_attribute_uuid = 7;
+ * @return {string}
+ */
+proto.material_management.ListProductAttributeValuesRequest.prototype.getProductAttributeUuid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 7, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.material_management.ListProductAttributeValuesRequest} returns this
+ */
+proto.material_management.ListProductAttributeValuesRequest.prototype.setProductAttributeUuid = function(value) {
+  return jspb.Message.setProto3StringField(this, 7, value);
 };
 
 
@@ -4309,11 +4369,12 @@ proto.material_management.ListProductAttributeSetInstancesRequest.toObject = fun
     clientRequest: (f = msg.getClientRequest()) && proto_client_pb.ClientRequest.toObject(includeInstance, f),
     pageSize: jspb.Message.getFieldWithDefault(msg, 2, 0),
     pageToken: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    productId: jspb.Message.getFieldWithDefault(msg, 4, 0),
-    productUuid: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    productAttributeSetId: jspb.Message.getFieldWithDefault(msg, 6, 0),
-    productAttributeSetUuid: jspb.Message.getFieldWithDefault(msg, 7, ""),
-    filters: (f = msg.getFilters()) && proto_base_data_type_pb.Criteria.toObject(includeInstance, f)
+    searchValue: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    filters: (f = msg.getFilters()) && proto_base_data_type_pb.Criteria.toObject(includeInstance, f),
+    productId: jspb.Message.getFieldWithDefault(msg, 6, 0),
+    productUuid: jspb.Message.getFieldWithDefault(msg, 7, ""),
+    productAttributeSetId: jspb.Message.getFieldWithDefault(msg, 8, 0),
+    productAttributeSetUuid: jspb.Message.getFieldWithDefault(msg, 9, "")
   };
 
   if (includeInstance) {
@@ -4364,25 +4425,29 @@ proto.material_management.ListProductAttributeSetInstancesRequest.deserializeBin
       msg.setPageToken(value);
       break;
     case 4:
-      var value = /** @type {number} */ (reader.readInt32());
-      msg.setProductId(value);
+      var value = /** @type {string} */ (reader.readString());
+      msg.setSearchValue(value);
       break;
     case 5:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setProductUuid(value);
-      break;
-    case 6:
-      var value = /** @type {number} */ (reader.readInt32());
-      msg.setProductAttributeSetId(value);
-      break;
-    case 7:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setProductAttributeSetUuid(value);
-      break;
-    case 8:
       var value = new proto_base_data_type_pb.Criteria;
       reader.readMessage(value,proto_base_data_type_pb.Criteria.deserializeBinaryFromReader);
       msg.setFilters(value);
+      break;
+    case 6:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setProductId(value);
+      break;
+    case 7:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setProductUuid(value);
+      break;
+    case 8:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setProductAttributeSetId(value);
+      break;
+    case 9:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setProductAttributeSetUuid(value);
       break;
     default:
       reader.skipField();
@@ -4435,40 +4500,47 @@ proto.material_management.ListProductAttributeSetInstancesRequest.serializeBinar
       f
     );
   }
-  f = message.getProductId();
-  if (f !== 0) {
-    writer.writeInt32(
+  f = message.getSearchValue();
+  if (f.length > 0) {
+    writer.writeString(
       4,
-      f
-    );
-  }
-  f = message.getProductUuid();
-  if (f.length > 0) {
-    writer.writeString(
-      5,
-      f
-    );
-  }
-  f = message.getProductAttributeSetId();
-  if (f !== 0) {
-    writer.writeInt32(
-      6,
-      f
-    );
-  }
-  f = message.getProductAttributeSetUuid();
-  if (f.length > 0) {
-    writer.writeString(
-      7,
       f
     );
   }
   f = message.getFilters();
   if (f != null) {
     writer.writeMessage(
-      8,
+      5,
       f,
       proto_base_data_type_pb.Criteria.serializeBinaryToWriter
+    );
+  }
+  f = message.getProductId();
+  if (f !== 0) {
+    writer.writeInt32(
+      6,
+      f
+    );
+  }
+  f = message.getProductUuid();
+  if (f.length > 0) {
+    writer.writeString(
+      7,
+      f
+    );
+  }
+  f = message.getProductAttributeSetId();
+  if (f !== 0) {
+    writer.writeInt32(
+      8,
+      f
+    );
+  }
+  f = message.getProductAttributeSetUuid();
+  if (f.length > 0) {
+    writer.writeString(
+      9,
+      f
     );
   }
 };
@@ -4548,29 +4620,11 @@ proto.material_management.ListProductAttributeSetInstancesRequest.prototype.setP
 
 
 /**
- * optional int32 product_id = 4;
- * @return {number}
- */
-proto.material_management.ListProductAttributeSetInstancesRequest.prototype.getProductId = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
-};
-
-
-/**
- * @param {number} value
- * @return {!proto.material_management.ListProductAttributeSetInstancesRequest} returns this
- */
-proto.material_management.ListProductAttributeSetInstancesRequest.prototype.setProductId = function(value) {
-  return jspb.Message.setProto3IntField(this, 4, value);
-};
-
-
-/**
- * optional string product_uuid = 5;
+ * optional string search_value = 4;
  * @return {string}
  */
-proto.material_management.ListProductAttributeSetInstancesRequest.prototype.getProductUuid = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
+proto.material_management.ListProductAttributeSetInstancesRequest.prototype.getSearchValue = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
 };
 
 
@@ -4578,54 +4632,18 @@ proto.material_management.ListProductAttributeSetInstancesRequest.prototype.getP
  * @param {string} value
  * @return {!proto.material_management.ListProductAttributeSetInstancesRequest} returns this
  */
-proto.material_management.ListProductAttributeSetInstancesRequest.prototype.setProductUuid = function(value) {
-  return jspb.Message.setProto3StringField(this, 5, value);
+proto.material_management.ListProductAttributeSetInstancesRequest.prototype.setSearchValue = function(value) {
+  return jspb.Message.setProto3StringField(this, 4, value);
 };
 
 
 /**
- * optional int32 product_attribute_set_id = 6;
- * @return {number}
- */
-proto.material_management.ListProductAttributeSetInstancesRequest.prototype.getProductAttributeSetId = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 6, 0));
-};
-
-
-/**
- * @param {number} value
- * @return {!proto.material_management.ListProductAttributeSetInstancesRequest} returns this
- */
-proto.material_management.ListProductAttributeSetInstancesRequest.prototype.setProductAttributeSetId = function(value) {
-  return jspb.Message.setProto3IntField(this, 6, value);
-};
-
-
-/**
- * optional string product_attribute_set_uuid = 7;
- * @return {string}
- */
-proto.material_management.ListProductAttributeSetInstancesRequest.prototype.getProductAttributeSetUuid = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 7, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.material_management.ListProductAttributeSetInstancesRequest} returns this
- */
-proto.material_management.ListProductAttributeSetInstancesRequest.prototype.setProductAttributeSetUuid = function(value) {
-  return jspb.Message.setProto3StringField(this, 7, value);
-};
-
-
-/**
- * optional data.Criteria filters = 8;
+ * optional data.Criteria filters = 5;
  * @return {?proto.data.Criteria}
  */
 proto.material_management.ListProductAttributeSetInstancesRequest.prototype.getFilters = function() {
   return /** @type{?proto.data.Criteria} */ (
-    jspb.Message.getWrapperField(this, proto_base_data_type_pb.Criteria, 8));
+    jspb.Message.getWrapperField(this, proto_base_data_type_pb.Criteria, 5));
 };
 
 
@@ -4634,7 +4652,7 @@ proto.material_management.ListProductAttributeSetInstancesRequest.prototype.getF
  * @return {!proto.material_management.ListProductAttributeSetInstancesRequest} returns this
 */
 proto.material_management.ListProductAttributeSetInstancesRequest.prototype.setFilters = function(value) {
-  return jspb.Message.setWrapperField(this, 8, value);
+  return jspb.Message.setWrapperField(this, 5, value);
 };
 
 
@@ -4652,7 +4670,79 @@ proto.material_management.ListProductAttributeSetInstancesRequest.prototype.clea
  * @return {boolean}
  */
 proto.material_management.ListProductAttributeSetInstancesRequest.prototype.hasFilters = function() {
-  return jspb.Message.getField(this, 8) != null;
+  return jspb.Message.getField(this, 5) != null;
+};
+
+
+/**
+ * optional int32 product_id = 6;
+ * @return {number}
+ */
+proto.material_management.ListProductAttributeSetInstancesRequest.prototype.getProductId = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 6, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.material_management.ListProductAttributeSetInstancesRequest} returns this
+ */
+proto.material_management.ListProductAttributeSetInstancesRequest.prototype.setProductId = function(value) {
+  return jspb.Message.setProto3IntField(this, 6, value);
+};
+
+
+/**
+ * optional string product_uuid = 7;
+ * @return {string}
+ */
+proto.material_management.ListProductAttributeSetInstancesRequest.prototype.getProductUuid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 7, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.material_management.ListProductAttributeSetInstancesRequest} returns this
+ */
+proto.material_management.ListProductAttributeSetInstancesRequest.prototype.setProductUuid = function(value) {
+  return jspb.Message.setProto3StringField(this, 7, value);
+};
+
+
+/**
+ * optional int32 product_attribute_set_id = 8;
+ * @return {number}
+ */
+proto.material_management.ListProductAttributeSetInstancesRequest.prototype.getProductAttributeSetId = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 8, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.material_management.ListProductAttributeSetInstancesRequest} returns this
+ */
+proto.material_management.ListProductAttributeSetInstancesRequest.prototype.setProductAttributeSetId = function(value) {
+  return jspb.Message.setProto3IntField(this, 8, value);
+};
+
+
+/**
+ * optional string product_attribute_set_uuid = 9;
+ * @return {string}
+ */
+proto.material_management.ListProductAttributeSetInstancesRequest.prototype.getProductAttributeSetUuid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 9, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.material_management.ListProductAttributeSetInstancesRequest} returns this
+ */
+proto.material_management.ListProductAttributeSetInstancesRequest.prototype.setProductAttributeSetUuid = function(value) {
+  return jspb.Message.setProto3StringField(this, 9, value);
 };
 
 
@@ -6313,7 +6403,7 @@ proto.material_management.Locator.deserializeBinaryFromReader = function(msg, re
       var value = /** @type {string} */ (reader.readString());
       msg.setLevel(value);
       break;
-    case 9:
+    case 8:
       var value = new proto.material_management.Warehouse;
       reader.readMessage(value,proto.material_management.Warehouse.deserializeBinaryFromReader);
       msg.setWarehouse(value);
@@ -6399,7 +6489,7 @@ proto.material_management.Locator.serializeBinaryToWriter = function(message, wr
   f = message.getWarehouse();
   if (f != null) {
     writer.writeMessage(
-      9,
+      8,
       f,
       proto.material_management.Warehouse.serializeBinaryToWriter
     );
@@ -6534,12 +6624,12 @@ proto.material_management.Locator.prototype.setLevel = function(value) {
 
 
 /**
- * optional Warehouse warehouse = 9;
+ * optional Warehouse warehouse = 8;
  * @return {?proto.material_management.Warehouse}
  */
 proto.material_management.Locator.prototype.getWarehouse = function() {
   return /** @type{?proto.material_management.Warehouse} */ (
-    jspb.Message.getWrapperField(this, proto.material_management.Warehouse, 9));
+    jspb.Message.getWrapperField(this, proto.material_management.Warehouse, 8));
 };
 
 
@@ -6548,7 +6638,7 @@ proto.material_management.Locator.prototype.getWarehouse = function() {
  * @return {!proto.material_management.Locator} returns this
 */
 proto.material_management.Locator.prototype.setWarehouse = function(value) {
-  return jspb.Message.setWrapperField(this, 9, value);
+  return jspb.Message.setWrapperField(this, 8, value);
 };
 
 
@@ -6566,7 +6656,7 @@ proto.material_management.Locator.prototype.clearWarehouse = function() {
  * @return {boolean}
  */
 proto.material_management.Locator.prototype.hasWarehouse = function() {
-  return jspb.Message.getField(this, 9) != null;
+  return jspb.Message.getField(this, 8) != null;
 };
 
 
@@ -6576,7 +6666,7 @@ proto.material_management.Locator.prototype.hasWarehouse = function() {
  * @private {!Array<number>}
  * @const
  */
-proto.material_management.ListLocatorsRequest.repeatedFields_ = [7];
+proto.material_management.ListLocatorsRequest.repeatedFields_ = [5];
 
 
 
@@ -6613,10 +6703,10 @@ proto.material_management.ListLocatorsRequest.toObject = function(includeInstanc
     pageSize: jspb.Message.getFieldWithDefault(msg, 2, 0),
     pageToken: jspb.Message.getFieldWithDefault(msg, 3, ""),
     searchValue: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    warehouseId: jspb.Message.getFieldWithDefault(msg, 5, 0),
-    warehouseUuid: jspb.Message.getFieldWithDefault(msg, 6, ""),
     contextAttributesList: jspb.Message.toObjectList(msg.getContextAttributesList(),
     proto_base_data_type_pb.KeyValue.toObject, includeInstance),
+    warehouseId: jspb.Message.getFieldWithDefault(msg, 6, 0),
+    warehouseUuid: jspb.Message.getFieldWithDefault(msg, 7, ""),
     processParameterUuid: jspb.Message.getFieldWithDefault(msg, 8, ""),
     fieldUuid: jspb.Message.getFieldWithDefault(msg, 9, ""),
     browseFieldUuid: jspb.Message.getFieldWithDefault(msg, 10, ""),
@@ -6678,17 +6768,17 @@ proto.material_management.ListLocatorsRequest.deserializeBinaryFromReader = func
       msg.setSearchValue(value);
       break;
     case 5:
-      var value = /** @type {number} */ (reader.readInt32());
-      msg.setWarehouseId(value);
-      break;
-    case 6:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setWarehouseUuid(value);
-      break;
-    case 7:
       var value = new proto_base_data_type_pb.KeyValue;
       reader.readMessage(value,proto_base_data_type_pb.KeyValue.deserializeBinaryFromReader);
       msg.addContextAttributes(value);
+      break;
+    case 6:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setWarehouseId(value);
+      break;
+    case 7:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setWarehouseUuid(value);
       break;
     case 8:
       var value = /** @type {string} */ (reader.readString());
@@ -6776,26 +6866,26 @@ proto.material_management.ListLocatorsRequest.serializeBinaryToWriter = function
       f
     );
   }
+  f = message.getContextAttributesList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      5,
+      f,
+      proto_base_data_type_pb.KeyValue.serializeBinaryToWriter
+    );
+  }
   f = message.getWarehouseId();
   if (f !== 0) {
     writer.writeInt32(
-      5,
+      6,
       f
     );
   }
   f = message.getWarehouseUuid();
   if (f.length > 0) {
     writer.writeString(
-      6,
-      f
-    );
-  }
-  f = message.getContextAttributesList();
-  if (f.length > 0) {
-    writer.writeRepeatedMessage(
       7,
-      f,
-      proto_base_data_type_pb.KeyValue.serializeBinaryToWriter
+      f
     );
   }
   f = message.getProcessParameterUuid();
@@ -6942,48 +7032,12 @@ proto.material_management.ListLocatorsRequest.prototype.setSearchValue = functio
 
 
 /**
- * optional int32 warehouse_id = 5;
- * @return {number}
- */
-proto.material_management.ListLocatorsRequest.prototype.getWarehouseId = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 5, 0));
-};
-
-
-/**
- * @param {number} value
- * @return {!proto.material_management.ListLocatorsRequest} returns this
- */
-proto.material_management.ListLocatorsRequest.prototype.setWarehouseId = function(value) {
-  return jspb.Message.setProto3IntField(this, 5, value);
-};
-
-
-/**
- * optional string warehouse_uuid = 6;
- * @return {string}
- */
-proto.material_management.ListLocatorsRequest.prototype.getWarehouseUuid = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.material_management.ListLocatorsRequest} returns this
- */
-proto.material_management.ListLocatorsRequest.prototype.setWarehouseUuid = function(value) {
-  return jspb.Message.setProto3StringField(this, 6, value);
-};
-
-
-/**
- * repeated data.KeyValue context_attributes = 7;
+ * repeated data.KeyValue context_attributes = 5;
  * @return {!Array<!proto.data.KeyValue>}
  */
 proto.material_management.ListLocatorsRequest.prototype.getContextAttributesList = function() {
   return /** @type{!Array<!proto.data.KeyValue>} */ (
-    jspb.Message.getRepeatedWrapperField(this, proto_base_data_type_pb.KeyValue, 7));
+    jspb.Message.getRepeatedWrapperField(this, proto_base_data_type_pb.KeyValue, 5));
 };
 
 
@@ -6992,7 +7046,7 @@ proto.material_management.ListLocatorsRequest.prototype.getContextAttributesList
  * @return {!proto.material_management.ListLocatorsRequest} returns this
 */
 proto.material_management.ListLocatorsRequest.prototype.setContextAttributesList = function(value) {
-  return jspb.Message.setRepeatedWrapperField(this, 7, value);
+  return jspb.Message.setRepeatedWrapperField(this, 5, value);
 };
 
 
@@ -7002,7 +7056,7 @@ proto.material_management.ListLocatorsRequest.prototype.setContextAttributesList
  * @return {!proto.data.KeyValue}
  */
 proto.material_management.ListLocatorsRequest.prototype.addContextAttributes = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(this, 7, opt_value, proto.data.KeyValue, opt_index);
+  return jspb.Message.addToRepeatedWrapperField(this, 5, opt_value, proto.data.KeyValue, opt_index);
 };
 
 
@@ -7012,6 +7066,42 @@ proto.material_management.ListLocatorsRequest.prototype.addContextAttributes = f
  */
 proto.material_management.ListLocatorsRequest.prototype.clearContextAttributesList = function() {
   return this.setContextAttributesList([]);
+};
+
+
+/**
+ * optional int32 warehouse_id = 6;
+ * @return {number}
+ */
+proto.material_management.ListLocatorsRequest.prototype.getWarehouseId = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 6, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.material_management.ListLocatorsRequest} returns this
+ */
+proto.material_management.ListLocatorsRequest.prototype.setWarehouseId = function(value) {
+  return jspb.Message.setProto3IntField(this, 6, value);
+};
+
+
+/**
+ * optional string warehouse_uuid = 7;
+ * @return {string}
+ */
+proto.material_management.ListLocatorsRequest.prototype.getWarehouseUuid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 7, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.material_management.ListLocatorsRequest} returns this
+ */
+proto.material_management.ListLocatorsRequest.prototype.setWarehouseUuid = function(value) {
+  return jspb.Message.setProto3StringField(this, 7, value);
 };
 
 
