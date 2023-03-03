@@ -40,6 +40,51 @@ function getKeyValueToGRPC({ columnName, value, valueType }) {
 }
 
 /**
+ * Convert a list of parameter defined by columnName and value to Value Object
+ * @param {number} selectionId keyColumn Value
+ * @param {string} selectionUuid
+ * @param {array}  selectionValues [{ columName: String, value: Mixed }]
+ * @param {KeyValue} KeyValue Object
+ */
+function getKeyValueSelectionToGRPC({ selectionId, selectionUuid, selectionValues = [] }) {
+  const { KeyValueSelection } = stubFile;
+  const selectionInstance = new KeyValueSelection();
+
+  const { isEmptyValue, getTypeOfValue, getValidId } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
+
+  // set selection id from record
+  selectionInstance.setSelectionId(
+    getValidId(selectionId)
+  );
+
+  // set selection uuid from record
+  if (!isEmptyValue(selectionUuid)) {
+    selectionInstance.setSelectionUuid(selectionUuid);
+  }
+
+  // convert attributes values to selection
+  if (getTypeOfValue(selectionValues) === 'String') {
+    selectionValues = JSON.parse(selectionValues);
+  }
+
+  selectionValues.forEach(selectionItem => {
+    if (getTypeOfValue(selectionItem) === 'String') {
+      selectionItem = JSON.parse(selectionItem);
+    }
+
+    const convertedSelection = getKeyValueToGRPC({
+      columnName: selectionItem.columnName,
+      valueType: selectionItem.valueType,
+      value: selectionItem.value
+    });
+
+    selectionInstance.addValues(convertedSelection);
+  });
+
+  return selectionInstance;
+}
+
+/**
  * Convert a parameter defined by columnName and value to Value Object
  * @param {string} columnName
  * @param {mixed}  value
@@ -218,5 +263,6 @@ module.exports = {
   getConditionToGRPC,
   getCriteriaToGRPC,
   getKeyValueToGRPC,
+  getKeyValueSelectionToGRPC,
   getOrderByPropertyToGRPC
 };

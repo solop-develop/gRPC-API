@@ -238,69 +238,6 @@
     this.getBusinessService().listEntities(request, callback)
   }
 
-  /**
-   * Run a business process
-   */
-  runProcess({
-    token,
-    processUuid,
-    tableName,
-    id,
-    uuid,
-    reportType,
-    printFormatUuid,
-    reportViewUuid,
-    isSummary,
-    parameters,
-    tableSelectedId,
-    selections,
-    language
-  }, callback) {
-    const { RunBusinessProcessRequest } = require('./src/grpc/proto/business_pb.js');
-    const request = new RunBusinessProcessRequest();
-
-    // record of window
-    request.setTableName(tableName);
-    request.setId(id);
-    request.setUuid(uuid);
-
-    // report values
-    request.setReportType(reportType);
-    request.setPrintFormatUuid(printFormatUuid);
-    request.setReportViewUuid(reportViewUuid);
-    request.setIsSummary(isSummary);
-
-    request.setProcessUuid(processUuid);
-    // set process parameters list
-    if (parameters && parameters.length) {
-      const { convertParameterToGRPC } = require('./lib/convertValues.js');
-      parameters.forEach(parameter => {
-        // parameter format = { columName, value }
-        const convertedParameter = convertParameterToGRPC({
-          columnName: parameter.key,
-          value: parameter.value
-        });
-
-        request.addParameters(convertedParameter);
-      });
-    }
-
-    request.setTableSelectedId(tableSelectedId);
-    // browser records selections list
-    if (!this.isEmptyValue(selections)) {
-      const { convertSelectionToGRPC } = require('./lib/convertValues.js');
-
-      selections.forEach(selection => {
-        // selection format = { selectionId: number, selectionValues: [{ columName, value }] }
-        const convertedRecord = convertSelectionToGRPC(selection);
-
-        request.addSelections(convertedRecord);
-      });
-    }
-
-    request.setClientRequest(this.createClientRequest(token, language));
-    this.getBusinessService().runBusinessProcess(request, callback);
-  }
 
   //  User Interface
 

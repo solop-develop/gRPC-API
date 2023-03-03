@@ -372,11 +372,11 @@ class UserInterface {
 
     // entities records selections list
     if (!isEmptyValue(entitiesList)) {
-      const { convertSelectionToGRPC } = require('@adempiere/grpc-api/lib/convertValues.js');
+      const { getKeyValueSelectionToGRPC } = require('@adempiere/grpc-api/src/utils/baseDataTypeToGRPC.js');
 
       entitiesList.forEach(entity => {
         // selection format = { selectionId: number, selectionValues: [{ columName, value }] }
-        const convertedRecord = convertSelectionToGRPC({
+        const convertedRecord = getKeyValueSelectionToGRPC({
           selectionId: entity.recordId,
           selectionUuid: entity.recordUuid,
           selectionValues: entity.attributesList
