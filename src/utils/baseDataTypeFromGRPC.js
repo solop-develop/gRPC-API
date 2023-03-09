@@ -234,6 +234,25 @@ function getReportOutputFromGRPC(reportOutputToConvert) {
   };
 }
 
+function getRecordReferenceInfoFromGRPC(referenceInfo) {
+  if (!referenceInfo) {
+    return undefined;
+  }
+  return {
+    uuid: referenceInfo.getUuid(),
+    window_uuid: referenceInfo.getWindowUuid(),
+    tab_uuid: referenceInfo.getTabUuid(),
+    table_name: referenceInfo.getTableName(),
+    where_clause: referenceInfo.getWhereClause(),
+    record_count: referenceInfo.getRecordCount(),
+    column_name: referenceInfo.getColumnName(),
+    display_name: referenceInfo.getDisplayName(),
+    value: getValueFromGRPC(
+      referenceInfo.getValue()
+    )
+  };
+}
+
 module.exports = {
   getBooleanValueFromGRPC,
   getDateValueFromGRPC,
@@ -243,6 +262,7 @@ module.exports = {
   getStringValueFromGRPC,
   getValueFromGRPC,
   //
+  getRecordReferenceInfoFromGRPC,
   getCondition_Operator,
   getBusinessPartnerFromGRPC,
   getReportOutputFromGRPC

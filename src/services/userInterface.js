@@ -99,12 +99,13 @@ class UserInterface {
     windowUuid,
     tabUuid,
     windowNo,
-    //  DSL
+    // DSL
+    referenceUuid,
     filters,
     columns,
     contextAttributes,
     sorting,
-    //  Page Data
+    // Page Data
     searchValue,
     pageSize,
     pageToken,
@@ -119,13 +120,15 @@ class UserInterface {
       if (getTypeOfValue(filters) === 'String') {
         filters = JSON.parse(filters);
       }
-      const { getCriteriaToGRPC } = require('@adempiere/grpc-api/src/utils/baseDataTypeToGRPC.js');
-      const convertedCriteria = getCriteriaToGRPC({
-        filters,
-        orderByClause: sorting
-      })
-      request.setFilters(convertedCriteria);
     }
+    const { getCriteriaToGRPC } = require('@adempiere/grpc-api/src/utils/baseDataTypeToGRPC.js');
+    const convertedCriteria = getCriteriaToGRPC({
+      referenceUuid,
+      filters,
+      orderByClause: sorting
+    })
+    request.setFilters(convertedCriteria);
+
     request.setWindowNo(windowNo);
     if (windowUuid) {
       request.setWindowUuid(windowUuid);
