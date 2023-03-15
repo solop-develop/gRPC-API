@@ -84,6 +84,8 @@ Note to generate specific proto definition:
 * To payroll action notice: `npm run stub:payroll_action_notice`
 * To point of sales: `npm run stub:point_of_sales`
 * To product: `npm run stub:product`
+* To time control: `npm run stub:time_control`
+* To time record: `npm run stub:time_record`
 * To workflow: `npm run stub:workflow`
 
 ### Generate directly with grpc-tools:
@@ -161,6 +163,10 @@ The result is generated on: `src/grpc/proto/` folder
 - `point_of_sales_pb.js`
 - `product_grpc_pb.js`
 - `product_pb.js`
+- `time_control_grpc_pb.js`
+- `time_control_pb.js`
+- `time_record_grpc_pb.js`
+- `time_record_pb.js`
 - `workflow_grpc_pb.js`
 - `workflow_pb.js`
 

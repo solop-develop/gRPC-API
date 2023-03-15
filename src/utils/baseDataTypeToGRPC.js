@@ -17,6 +17,45 @@
 const stubFile = require('@adempiere/grpc-api/src/grpc/proto/base_data_type_pb.js');
 
 /**
+ * Get big decimal from number to grpc
+ * @param {number} numberValue
+ * @return {Decimal}
+ */
+function getDecimalToGRPC(numberValue) {
+  const { Decimal } = require('@adempiere/grpc-api/src/grpc/proto/base_data_type_pb.js');
+  const convertedDecimalValue = new Decimal();
+
+  const { isEmptyValue } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
+  if (!isEmptyValue(numberValue)) {
+    if (Number.isInteger(numberValue)) {
+      numberValue = numberValue.toFixed(2);
+    }
+    convertedDecimalValue.setDecimalValue(numberValue.toString());
+    // get scale
+    const scale = getScaleFromDecimal(numberValue)
+    convertedDecimalValue.setScale(scale);
+  }
+  return convertedDecimalValue;
+}
+
+/**
+ * Get scale to decimal
+ * @param {number} numberValue 
+ * @returns {number}
+ */
+function getScaleFromDecimal(numberValue) {
+  const index = numberValue
+    .toString()
+    .indexOf('.');
+
+  let scale = 0;
+  if (index !== -1) {
+    scale = numberValue.toString().length - index - 1;
+  }
+  return scale
+}
+
+/**
  * Convert a parameter defined by columnName and value to Value Object
  * @param {string} columnName
  * @param {string} valueType
@@ -260,6 +299,10 @@ function getCriteriaToGRPC({
 }
 
 module.exports = {
+  // data type,
+  getDecimalToGRPC,
+  getScaleFromDecimal,
+  //
   getConditionToGRPC,
   getCriteriaToGRPC,
   getKeyValueToGRPC,
