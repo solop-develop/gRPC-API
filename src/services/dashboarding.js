@@ -1,6 +1,6 @@
 /*************************************************************************************
  * Product: ADempiere gRPC Dashboardimg Client                                       *
- * Copyright (C) 2012-2022 E.R.P. Consultores y Asociados, C.A.                      *
+ * Copyright (C) 2012-2023 E.R.P. Consultores y Asociados, C.A.                      *
  * Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                      *
  * This program is free software: you can redistribute it and/or modify              *
  * it under the terms of the GNU General Public License as published by              *
@@ -8,13 +8,14 @@
  * (at your option) any later version.                                               *
  * This program is distributed in the hope that it will be useful,                   *
  * but WITHOUT ANY WARRANTY; without even the implied warranty of                    *
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                     *
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the                      *
  * GNU General Public License for more details.                                      *
  * You should have received a copy of the GNU General Public License                 *
  * along with this program. If not, see <https://www.gnu.org/licenses/>.             *
  ************************************************************************************/
 
 const { createClientRequest } = require('@adempiere/grpc-api/lib/clientRequest');
+const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
 
 class Dashboarding {
 
@@ -82,7 +83,15 @@ class Dashboarding {
       })
     );
 
-    this.getDashboardingService().listDashboards(request, callback);
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getDashboardingService().listDashboards(
+      request,
+      metadata,
+      callback
+    );
   }
 
   //  List Document Statuses
@@ -110,7 +119,15 @@ class Dashboarding {
       })
     );
 
-    this.getDashboardingService().listFavorites(request, callback);
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getDashboardingService().listFavorites(
+      request,
+      metadata,
+      callback
+    );
   }
 
   //  List Document Statuses
@@ -142,7 +159,15 @@ class Dashboarding {
       })
     );
 
-    this.getDashboardingService().listPendingDocuments(request, callback);
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getDashboardingService().listPendingDocuments(
+      request,
+      metadata,
+      callback
+    );
   }
 
   //  Get Chart Data
@@ -165,7 +190,15 @@ class Dashboarding {
       })
     );
 
-    this.getDashboardingService().getChart(request, callback);
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getDashboardingService().getChart(
+      request,
+      metadata,
+      callback
+    );
   }
 
   /**
@@ -195,7 +228,15 @@ class Dashboarding {
       })
     );
 
-    this.getDashboardingService().listNotifications(request, callback);
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getDashboardingService().listNotifications(
+      request,
+      metadata,
+      callback
+    );
   }
   
 }

@@ -1,6 +1,6 @@
 /*************************************************************************************
- * Product: ADempiere gRPC Dictionary Client                                         *
- * Copyright (C) 2012-2022 E.R.P. Consultores y Asociados, C.A.                      *
+ * Product: ADempiere gRPC Order Client                                              *
+ * Copyright (C) 2012-2023 E.R.P. Consultores y Asociados, C.A.                      *
  * Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                      *
  * This program is free software: you can redistribute it and/or modify              *
  * it under the terms of the GNU General Public License as published by              *
@@ -8,16 +8,22 @@
  * (at your option) any later version.                                               *
  * This program is distributed in the hope that it will be useful,                   *
  * but WITHOUT ANY WARRANTY; without even the implied warranty of                    *
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                     *
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the                      *
  * GNU General Public License for more details.                                      *
  * You should have received a copy of the GNU General Public License                 *
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.            *
+ * along with this program. If not, see <https://www.gnu.org/licenses/>.             *
  ************************************************************************************/
 
-const { createClientRequest } = require('../../lib/clientRequest');
-const { isEmptyValue } = require('../../lib/convertValues.js');
+const { createClientRequest } = require('@adempiere/grpc-api/lib/clientRequest');
+const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
+const { isEmptyValue } = require('@adempiere/grpc-api/lib/convertValues.js');
 
 class Order {
+
+  /**
+   * File on generated stub
+   */
+  stubFile = require('@adempiere/grpc-api/src/grpc/proto/order_pb.js');
 
   /**
    * Constructor, No authentication required
@@ -40,9 +46,12 @@ class Order {
 
   // Init connection
   initOrderService() {
-    var grpc = require('@grpc/grpc-js');
-    var services = require('../grpc/proto/order_grpc_pb');
-    this.order = new services.OrderClient(this.businessHost, grpc.credentials.createInsecure());
+    const grpc = require('@grpc/grpc-js');
+    const services = require('@adempiere/grpc-api/src/grpc/proto/order_grpc_pb.js');
+    this.order = new services.OrderClient(
+      this.businessHost,
+      grpc.credentials.createInsecure()
+    );
   }
 
   // Get Order Service
@@ -68,9 +77,8 @@ class Order {
     pageToken,
     language
   }, callback) {
-    const { ListOrderInfo } = require('../grpc/proto/order_grpc_pb');
+    const { ListOrderInfo } = this.stubFile;
     const request = new ListOrderInfo();
-    const { convertCriteriaToGRPC } = require('../../lib/convertValues');
 
     request.setFieldUuid(fieldUuid);
     request.setProcessParameterUuid(processParameterUuid);
@@ -79,26 +87,30 @@ class Order {
     request.setColumnName(columnName);
     request.setReferenceUuid(referenceUuid);
 
-    request.setFilters(
-      convertCriteriaToGRPC({
-        filters
-      })
-    );
-
     request.setSearchValue(searchValue);
-    if (!isEmptyValue(contextAttributes)) {
-      const { convertParameterToGRPC, typeOfValue } = require('../../lib/convertValues.js');
+    if (!isEmptyValue(filters)) {
+      const { getCriteriaToGRPC } = require('@adempiere/grpc-api/src/utils/baseDataTypeToGRPC.js');
+      request.setFilters(
+        getCriteriaToGRPC({
+          filters
+        })
+      );
+    }
 
-      if (typeOfValue(contextAttributes) === 'String') {
+    if (!isEmptyValue(contextAttributes)) {
+      const { getTypeOfValue } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
+      const { getKeyValueToGRPC } = require('@adempiere/grpc-api/src/utils/baseDataTypeToGRPC.js');
+
+      if (getTypeOfValue(contextAttributes) === 'String') {
         contextAttributes = JSON.parse(contextAttributes);
       }
       contextAttributes.forEach(attribute => {
         let parsedAttribute = attribute;
-        if (typeOfValue(attribute) === 'String') {
+        if (getTypeOfValue(attribute) === 'String') {
           parsedAttribute = JSON.parse(attribute);
         }
         request.addContextAttributes(
-          convertParameterToGRPC({
+          getKeyValueToGRPC({
             columnName: parsedAttribute.key,
             value: parsedAttribute.value
           })
@@ -112,7 +124,15 @@ class Order {
       createClientRequest({ token, language })
     );
 
-    this.getOrderService().listOrderInfo(request, callback);
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getBusinessPartnerService().listOrderInfo(
+      request,
+      metadata,
+      callback
+    );
   }
 
 }

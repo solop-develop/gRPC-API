@@ -15,6 +15,7 @@
  ************************************************************************************/
 
 const { createClientRequest } = require('@adempiere/grpc-api/lib/clientRequest');
+const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
 const { isEmptyValue, getValidId } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
 
 class BusinessData {
@@ -47,13 +48,17 @@ class BusinessData {
   initBusinessDataService() {
     const grpc = require('@grpc/grpc-js');
     const services = require('@adempiere/grpc-api/src/grpc/proto/business_grpc_pb');
-    this.businessData = new services.BusinessDataClient(this.businessHost, grpc.credentials.createInsecure());
+    this.businessData = new services.BusinessDataClient(
+      this.businessHost,
+      grpc.credentials.createInsecure()
+    );
   }
 
   // Get Business Data Service
   getBusinessDataService() {
     return this.businessData;
   }
+
 
   /**
    * Run a business process
@@ -92,10 +97,11 @@ class BusinessData {
     request.setProcessUuid(processUuid);
     // set process parameters list
     if (!isEmptyValue(parametersList)) {
-      const { convertParameterToGRPC } = require('@adempiere/grpc-api/lib/convertValues.js');
+      const { getKeyValueToGRPC } = require('@adempiere/grpc-api/src/utils/baseDataTypeToGRPC.js');
+
       parametersList.forEach(parameter => {
         // parameter format = { columName, value, valueType }
-        const convertedParameter = convertParameterToGRPC({
+        const convertedParameter = getKeyValueToGRPC({
           columnName: parameter.key,
           value: parameter.value
         });
@@ -122,7 +128,16 @@ class BusinessData {
     request.setClientRequest(
       createClientRequest({ token, language })
     );
-    this.getBusinessDataService().runBusinessProcess(request, callback);
+
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getBusinessDataService().runBusinessProcess(
+      request,
+      metadata,
+      callback
+    );
   }
 
 }

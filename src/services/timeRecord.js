@@ -15,6 +15,7 @@
  ************************************************************************************/
 
 const { createClientRequest } = require('@adempiere/grpc-api/lib/clientRequest');
+const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
 const { isEmptyValue, getValidId } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
 
 class TimeRecord {
@@ -87,7 +88,15 @@ class TimeRecord {
       createClientRequest({ token, language })
     );
 
-    this.getTimeRecordService().listIssues(request, callback);
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getTimeRecordService().listIssues(
+      request,
+      metadata,
+      callback
+    );
   }
 
 
@@ -121,7 +130,15 @@ class TimeRecord {
       createClientRequest({ token, language })
     );
 
-    this.getTimeRecordService().listProjects(request, callback);
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getTimeRecordService().listProjects(
+      request,
+      metadata,
+      callback
+    );
   }
 
 
@@ -176,7 +193,15 @@ class TimeRecord {
       createClientRequest({ token, language })
     );
 
-    this.getTimeRecordService().createTimeRecord(request, callback);
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getTimeRecordService().createTimeRecord(
+      request,
+      metadata,
+      callback
+    );
   }
 
   listTimeRecord({
@@ -223,7 +248,15 @@ class TimeRecord {
       createClientRequest({ token, language })
     );
 
-    this.getTimeRecordService().listTimeRecord(request, callback);
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getTimeRecordService(token).listTimeRecord(
+      request,
+      metadata,
+      callback
+    );
   }
 
 }

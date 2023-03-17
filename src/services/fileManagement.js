@@ -1,6 +1,6 @@
 /*************************************************************************************
  * Product: ADempiere gRPC File Management Client                                    *
- * Copyright (C) 2012-2022 E.R.P. Consultores y Asociados, C.A.                      *
+ * Copyright (C) 2012-2023 E.R.P. Consultores y Asociados, C.A.                      *
  * Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                      *
  * This program is free software: you can redistribute it and/or modify              *
  * it under the terms of the GNU General Public License as published by              *
@@ -8,13 +8,14 @@
  * (at your option) any later version.                                               *
  * This program is distributed in the hope that it will be useful,                   *
  * but WITHOUT ANY WARRANTY; without even the implied warranty of                    *
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                     *
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the                      *
  * GNU General Public License for more details.                                      *
  * You should have received a copy of the GNU General Public License                 *
  * along with this program. If not, see <https://www.gnu.org/licenses/>.             *
  ************************************************************************************/
 
 const { createClientRequest } = require('@adempiere/grpc-api/lib/clientRequest');
+const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
 const { isEmptyValue } = require('@adempiere/grpc-api/lib/convertValues.js');
 
 class FileManagement {
@@ -48,7 +49,8 @@ class FileManagement {
     const grpc = require('@grpc/grpc-js');
     const services = require('@adempiere/grpc-api/src/grpc/proto/file_management_grpc_pb');
     this.fileManagement = new services.FileManagementClient(
-      this.businessHost, grpc.credentials.createInsecure()
+      this.businessHost,
+      grpc.credentials.createInsecure()
     );
   }
 
@@ -86,7 +88,15 @@ class FileManagement {
       createClientRequest({ token, language })
     );
 
-    this.getFileManagementService().existsAttachment(request, callback);
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getFileManagementService().existsAttachment(
+      request,
+      metadata,
+      callback
+    );
   }
 
   /**
@@ -115,7 +125,15 @@ class FileManagement {
       createClientRequest({ token, language })
     );
 
-    this.getFileManagementService().getAttachment(request, callback);
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getFileManagementService().getAttachment(
+      request,
+      metadata,
+      callback
+    );
   }
 
   /**
@@ -210,7 +228,15 @@ class FileManagement {
       createClientRequest({ token, language })
     );
 
-    this.getFileManagementService().setResourceReference(request, callback);
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getFileManagementService().setResourceReference(
+      request,
+      metadata,
+      callback
+    );
   }
 
   /**

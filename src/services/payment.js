@@ -1,6 +1,6 @@
 /*************************************************************************************
- * Product: ADempiere gRPC Dictionary Client                                         *
- * Copyright (C) 2012-2022 E.R.P. Consultores y Asociados, C.A.                      *
+ * Product: ADempiere gRPC Payment Client                                            *
+ * Copyright (C) 2012-2023 E.R.P. Consultores y Asociados, C.A.                      *
  * Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                      *
  * This program is free software: you can redistribute it and/or modify              *
  * it under the terms of the GNU General Public License as published by              *
@@ -8,16 +8,22 @@
  * (at your option) any later version.                                               *
  * This program is distributed in the hope that it will be useful,                   *
  * but WITHOUT ANY WARRANTY; without even the implied warranty of                    *
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                     *
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the                      *
  * GNU General Public License for more details.                                      *
  * You should have received a copy of the GNU General Public License                 *
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.            *
+ * along with this program. If not, see <https://www.gnu.org/licenses/>.             *
  ************************************************************************************/
 
-const { createClientRequest } = require('../../lib/clientRequest');
-const { isEmptyValue } = require('../../lib/convertValues.js');
+const { createClientRequest } = require('@adempiere/grpc-api/lib/clientRequest');
+const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
+const { isEmptyValue } = require('@adempiere/grpc-api/lib/convertValues.js');
 
 class Payment {
+
+  /**
+   * File on generated stub
+   */
+  stubFile = require('@adempiere/grpc-api/src/grpc/proto/payment_pb.js');
 
   /**
    * Constructor, No authentication required
@@ -41,8 +47,11 @@ class Payment {
   // Init connection
   initPaymentService() {
     var grpc = require('@grpc/grpc-js');
-    var services = require('../grpc/proto/payment_grpc_pb');
-    this.payment = new services.PaymentClient(this.businessHost, grpc.credentials.createInsecure());
+    var services = require('@adempiere/grpc-api/src/grpc/proto/payment_grpc_pb.js');
+    this.payment = new services.PaymentClient(
+      this.businessHost,
+      grpc.credentials.createInsecure()
+    );
   }
 
   // Get Payment Service

@@ -1,6 +1,6 @@
 /*************************************************************************************
  * Product: ADempiere gRPC Time Control Client                                       *
- * Copyright (C) 2012-2022 E.R.P. Consultores y Asociados, C.A.                      *
+ * Copyright (C) 2012-2023 E.R.P. Consultores y Asociados, C.A.                      *
  * Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                      *
  * This program is free software: you can redistribute it and/or modify              *
  * it under the terms of the GNU General Public License as published by              *
@@ -8,14 +8,15 @@
  * (at your option) any later version.                                               *
  * This program is distributed in the hope that it will be useful,                   *
  * but WITHOUT ANY WARRANTY; without even the implied warranty of                    *
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                     *
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the                      *
  * GNU General Public License for more details.                                      *
  * You should have received a copy of the GNU General Public License                 *
  * along with this program. If not, see <https://www.gnu.org/licenses/>.             *
  ************************************************************************************/
 
 const { createClientRequest } = require('@adempiere/grpc-api/lib/clientRequest');
-const { isEmptyValue } = require('@adempiere/grpc-api/lib/convertValues.js');
+const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
+const { isEmptyValue, getValidId } = require('@adempiere/grpc-api/lib/convertValues.js');
 
 class TimeControl {
 
@@ -43,7 +44,8 @@ class TimeControl {
     const grpc = require('@grpc/grpc-js');
     const services = require('@adempiere/grpc-api/src/grpc/proto/time_control_grpc_pb');
     this.timeControl = new services.TimeControlClient(
-      this.businessHost, grpc.credentials.createInsecure()
+      this.businessHost,
+      grpc.credentials.createInsecure()
     );
   }
 
@@ -67,9 +69,9 @@ class TimeControl {
     } = require('@adempiere/grpc-api/src/grpc/proto/time_control_pb.js');
     const request = new CreateResourceAssignmentRequest();
 
-    if (!isEmptyValue(resourceTypeId) && !Number.isNaN(resourceTypeId)) {
-      request.setResourceTypeId(Number(resourceTypeId));
-    }
+    request.setResourceTypeId(
+      getValidId(resourceTypeId)
+    );
     request.setResourceTypeUuid(resourceTypeUuid);
     request.setName(name);
     request.setDescription(description);
@@ -78,7 +80,15 @@ class TimeControl {
       createClientRequest({ token, language })
     );
 
-    this.getTimeControlService().createResourceAssignment(request, callback);
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getTimeControlService().createResourceAssignment(
+      request,
+      metadata,
+      callback
+    );
   }
 
   listResourcesAssignment({
@@ -102,10 +112,9 @@ class TimeControl {
     } = require('@adempiere/grpc-api/src/grpc/proto/time_control_pb.js');
     const request = new ListResourcesAssignmentRequest();
 
-    if (!isEmptyValue(resourceTypeId) && !Number.isNaN(resourceTypeId)) {
-      request.setResourceTypeId(Number(resourceTypeId));
-    }
-
+    request.setResourceTypeId(
+      getValidId(resourceTypeId)
+    );
     request.setResourceTypeUuid(resourceTypeUuid);
     request.setName(name);
     request.setDescription(description);
@@ -122,7 +131,15 @@ class TimeControl {
       createClientRequest({ token, language })
     );
 
-    this.getTimeControlService().listResourcesAssignment(request, callback);
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getTimeControlService().listResourcesAssignment(
+      request,
+      metadata,
+      callback
+    );
   }
 
   updateResourceAssignment({
@@ -140,9 +157,9 @@ class TimeControl {
     } = require('@adempiere/grpc-api/src/grpc/proto/time_control_pb.js');
     const request = new UpdateResourceAssignmentRequest();
 
-    if (!isEmptyValue(id) && !Number.isNaN(id)) {
-      request.setId(Number(id));
-    }
+    request.setId(
+      getValidId(id)
+    );
     request.setUuid(uuid);
     request.setName(name);
     request.setDescription(description);
@@ -151,7 +168,15 @@ class TimeControl {
       createClientRequest({ token, language })
     );
 
-    this.getTimeControlService().updateResourceAssignment(request, callback);
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getTimeControlService().updateResourceAssignment(
+      request,
+      metadata,
+      callback
+    );
   }
 
   deleteResourceAssignment({
@@ -167,16 +192,24 @@ class TimeControl {
     } = require('@adempiere/grpc-api/src/grpc/proto/time_control_pb.js');
     const request = new DeleteResourceAssignmentRequest();
 
-    if (!isEmptyValue(id) && !Number.isNaN(id)) {
-      request.setId(Number(id));
-    }
+    request.setId(
+      getValidId(id)
+    );
     request.setUuid(uuid);
 
     request.setClientRequest(
       createClientRequest({ token, language })
     );
 
-    this.getTimeControlService().deleteResourceAssignment(request, callback);
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getTimeControlService().deleteResourceAssignment(
+      request,
+      metadata,
+      callback
+    );
   }
 
   confirmResourceAssignment({
@@ -192,16 +225,24 @@ class TimeControl {
     } = require('@adempiere/grpc-api/src/grpc/proto/time_control_pb.js');
     const request = new ConfirmResourceAssignmentRequest();
 
-    if (!isEmptyValue(id) && !Number.isNaN(id)) {
-      request.setId(Number(id));
-    }
+    request.setId(
+      getValidId(id)
+    );
     request.setUuid(uuid);
 
     request.setClientRequest(
       createClientRequest({ token, language })
     );
 
-    this.getTimeControlService().confirmResourceAssignment(request, callback);
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getTimeControlService().confirmResourceAssignment(
+      request,
+      metadata,
+      callback
+    );
   }
 
 }

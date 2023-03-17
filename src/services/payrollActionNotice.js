@@ -1,6 +1,6 @@
 /*************************************************************************************
- * Product: ADempiere gRPC Dictionary Client                                         *
- * Copyright (C) 2012-2022 E.R.P. Consultores y Asociados, C.A.                      *
+ * Product: ADempiere gRPC Payroll Action Notice Client                              *
+ * Copyright (C) 2012-2023 E.R.P. Consultores y Asociados, C.A.                      *
  * Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                      *
  * This program is free software: you can redistribute it and/or modify              *
  * it under the terms of the GNU General Public License as published by              *
@@ -8,16 +8,22 @@
  * (at your option) any later version.                                               *
  * This program is distributed in the hope that it will be useful,                   *
  * but WITHOUT ANY WARRANTY; without even the implied warranty of                    *
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                     *
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the                      *
  * GNU General Public License for more details.                                      *
  * You should have received a copy of the GNU General Public License                 *
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.            *
+ * along with this program. If not, see <https://www.gnu.org/licenses/>.             *
  ************************************************************************************/
 
-const { createClientRequest } = require('../../lib/clientRequest');
-const { isEmptyValue } = require('../../lib/convertValues.js');
+const { createClientRequest } = require('@adempiere/grpc-api/lib/clientRequest');
+const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
+const { isEmptyValue, getTypeOfValue, getValidId } = require('@adempiere/grpc-api/lib/convertValues.js');
 
 class PayrollActionNotice {
+
+  /**
+   * File on generated stub
+   */
+  stubFile = require('@adempiere/grpc-api/src/grpc/proto/payroll_action_notice_pb.js');
 
   /**
    * Constructor, No authentication required
@@ -41,8 +47,11 @@ class PayrollActionNotice {
   // Init connection
   initPayrollActionNoticeService() {
     const grpc = require('@grpc/grpc-js');
-    const services = require('../grpc/proto/payroll_action_notice_grpc_pb');
-    this.payrollActionNotice = new services.PayrollActionNoticeClient(this.businessHost, grpc.credentials.createInsecure());
+    const services = require('@adempiere/grpc-api/src/grpc/proto/payroll_action_notice_grpc_pb');
+    this.payrollActionNotice = new services.PayrollActionNoticeClient(
+      this.businessHost,
+      grpc.credentials.createInsecure()
+    );
   }
 
   // Get Payroll Action Notice Service
@@ -60,24 +69,24 @@ class PayrollActionNotice {
     pageToken,
     language
   }, callback) {
-    const { ListPayrollProcessRequest } = require('../grpc/proto/payroll_action_notice_pb');
+    const { ListPayrollProcessRequest } = this.stubFile;
     const request = new ListPayrollProcessRequest();
 
     request.setSearchValue(searchValue);
 
     if (!isEmptyValue(contextAttributes)) {
-      const { convertParameterToGRPC, typeOfValue } = require('../../lib/convertValues.js');
+      const { getKeyValueToGRPC } = require('@adempiere/grpc-api/src/utils/baseDataTypeToGRPC.js');
 
-      if (typeOfValue(contextAttributes) === 'String') {
+      if (getTypeOfValue(contextAttributes) === 'String') {
         contextAttributes = JSON.parse(contextAttributes);
       }
       contextAttributes.forEach(attribute => {
         let parsedAttribute = attribute;
-        if (typeOfValue(attribute) === 'String') {
+        if (getTypeOfValue(attribute) === 'String') {
           parsedAttribute = JSON.parse(attribute);
         }
         request.addContextAttributes(
-          convertParameterToGRPC({
+          getKeyValueToGRPC({
             columnName: parsedAttribute.key,
             value: parsedAttribute.value
           })
@@ -91,7 +100,15 @@ class PayrollActionNotice {
       createClientRequest({ token, language })
     );
 
-    this.getPayrollActionNoticeService().listPayrollProcess(request, callback);
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getPayrollActionNoticeService().listPayrollProcess(
+      request,
+      metadata,
+      callback
+    );
   }
 
   listEmployeeValid({
@@ -104,24 +121,24 @@ class PayrollActionNotice {
     pageToken,
     language
   }, callback) {
-    const { ListEmployeeValidRequest } = require('../grpc/proto/payroll_action_notice_pb');
+    const { ListEmployeeValidRequest } = this.stubFile;
     const request = new ListEmployeeValidRequest();
 
     request.setSearchValue(searchValue);
 
     if (!isEmptyValue(contextAttributes)) {
-      const { convertParameterToGRPC, typeOfValue } = require('../../lib/convertValues.js');
+      const { getKeyValueToGRPC } = require('@adempiere/grpc-api/src/utils/baseDataTypeToGRPC.js');
 
-      if (typeOfValue(contextAttributes) === 'String') {
+      if (getTypeOfValue(contextAttributes) === 'String') {
         contextAttributes = JSON.parse(contextAttributes);
       }
       contextAttributes.forEach(attribute => {
         let parsedAttribute = attribute;
-        if (typeOfValue(attribute) === 'String') {
+        if (getTypeOfValue(attribute) === 'String') {
           parsedAttribute = JSON.parse(attribute);
         }
         request.addContextAttributes(
-          convertParameterToGRPC({
+          getKeyValueToGRPC({
             columnName: parsedAttribute.key,
             value: parsedAttribute.value
           })
@@ -135,7 +152,15 @@ class PayrollActionNotice {
       createClientRequest({ token, language })
     );
 
-    this.getPayrollActionNoticeService().listEmployeeValid(request, callback);
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getPayrollActionNoticeService().listEmployeeValid(
+      request,
+      metadata,
+      callback
+    );
   }
 
   listPayrollConcepts({
@@ -148,24 +173,24 @@ class PayrollActionNotice {
     pageToken,
     language
   }, callback) {
-    const { ListPayrollConceptsRequest } = require('../grpc/proto/payroll_action_notice_pb');
+    const { ListPayrollConceptsRequest } = this.stubFile;
     const request = new ListPayrollConceptsRequest();
 
     request.setSearchValue(searchValue);
 
-    if (!isEmptyValue(contextAttributes)) {
-      const { convertParameterToGRPC, typeOfValue } = require('../../lib/convertValues.js');
+    if (!isEmptyValue(contextAttributes)) {4
+      const { getKeyValueToGRPC } = require('@adempiere/grpc-api/src/utils/baseDataTypeToGRPC.js');
 
-      if (typeOfValue(contextAttributes) === 'String') {
+      if (getTypeOfValue(contextAttributes) === 'String') {
         contextAttributes = JSON.parse(contextAttributes);
       }
       contextAttributes.forEach(attribute => {
         let parsedAttribute = attribute;
-        if (typeOfValue(attribute) === 'String') {
+        if (getTypeOfValue(attribute) === 'String') {
           parsedAttribute = JSON.parse(attribute);
         }
         request.addContextAttributes(
-          convertParameterToGRPC({
+          getKeyValueToGRPC({
             columnName: parsedAttribute.key,
             value: parsedAttribute.value
           })
@@ -179,7 +204,15 @@ class PayrollActionNotice {
       createClientRequest({ token, language })
     );
 
-    this.getPayrollActionNoticeService().listPayrollConcepts(request, callback);
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getPayrollActionNoticeService().listPayrollConcepts(
+      request,
+      metadata,
+      callback
+    );
   }
 
   getPayrollConceptDefinition({
@@ -189,7 +222,7 @@ class PayrollActionNotice {
     uuid,
     language
   }, callback) {
-    const { GetPayrollConceptDefinitionRequest } = require('../grpc/proto/payroll_action_notice_pb');
+    const { GetPayrollConceptDefinitionRequest } = this.stubFile;
     const request = new GetPayrollConceptDefinitionRequest();
 
     request.setId(id);
@@ -199,7 +232,15 @@ class PayrollActionNotice {
       createClientRequest({ token, language })
     );
 
-    this.getPayrollActionNoticeService().getPayrollConceptDefinition(request, callback);
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getPayrollActionNoticeService().getPayrollConceptDefinition(
+      request,
+      metadata,
+      callback
+    );
   }
 
   listPayrollMovements({
@@ -213,31 +254,32 @@ class PayrollActionNotice {
     pageToken,
     language
   }, callback) {
-    const { ListPayrollMovementsRequest } = require('../grpc/proto/payroll_action_notice_pb');
+    const { ListPayrollMovementsRequest } = this.stubFile;
     const request = new ListPayrollMovementsRequest();
-    const { convertCriteriaToGRPC } = require('../../lib/convertValues');
-
-    request.setFilters(
-      convertCriteriaToGRPC({
-        filters
-      })
-    );
 
     request.setSearchValue(searchValue);
+    if (!isEmptyValue(filters)) {
+      const { getCriteriaToGRPC } = require('@adempiere/grpc-api/src/utils/baseDataTypeToGRPC.js');
+      request.setFilters(
+        getCriteriaToGRPC({
+          filters
+        })
+      );
+    }
 
     if (!isEmptyValue(contextAttributes)) {
-      const { convertParameterToGRPC, typeOfValue } = require('../../lib/convertValues.js');
+      const { getKeyValueToGRPC } = require('@adempiere/grpc-api/src/utils/baseDataTypeToGRPC.js');
 
-      if (typeOfValue(contextAttributes) === 'String') {
+      if (getTypeOfValue(contextAttributes) === 'String') {
         contextAttributes = JSON.parse(contextAttributes);
       }
       contextAttributes.forEach(attribute => {
         let parsedAttribute = attribute;
-        if (typeOfValue(attribute) === 'String') {
+        if (getTypeOfValue(attribute) === 'String') {
           parsedAttribute = JSON.parse(attribute);
         }
         request.addContextAttributes(
-          convertParameterToGRPC({
+          getKeyValueToGRPC({
             columnName: parsedAttribute.key,
             value: parsedAttribute.value
           })
@@ -251,7 +293,15 @@ class PayrollActionNotice {
       createClientRequest({ token, language })
     );
 
-    this.getPayrollActionNoticeService().listPayrollMovements(request, callback);
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getPayrollActionNoticeService().listPayrollMovements(
+      request,
+      metadata,
+      callback
+    );
   }
 
   savePayrollMovement({
@@ -263,24 +313,26 @@ class PayrollActionNotice {
     attributes,
     language
   }, callback) {
-    const { SavePayrollMovementRequest } = require('../grpc/proto/payroll_action_notice_pb');
+    const { SavePayrollMovementRequest } = this.stubFile;
     const request = new SavePayrollMovementRequest();
-    const { convertParameterToGRPC, typeOfValue } = require('../../lib/convertValues');
+      const { getKeyValueToGRPC } = require('@adempiere/grpc-api/src/utils/baseDataTypeToGRPC.js');
 
-    request.setId(id);
+    request.setId(
+      getValidId(id)
+    );
     request.setUuid(uuid);
 
     if (!isEmptyValue(attributes)) {
-      if (typeOfValue(attributes) === 'String') {
+      if (getTypeOfValue(attributes) === 'String') {
         attributes = JSON.parse(attributes);
       }
       attributes.forEach(attribute => {
         let parsedAttribute = attribute;
-        if (typeOfValue(attribute) === 'String') {
+        if (getTypeOfValue(attribute) === 'String') {
           parsedAttribute = JSON.parse(attribute);
         }
         request.addAttributes(
-          convertParameterToGRPC({
+          getKeyValueToGRPC({
             columnName: parsedAttribute.key,
             value: parsedAttribute.value
           })
@@ -289,16 +341,16 @@ class PayrollActionNotice {
     }
 
     if (!isEmptyValue(contextAttributes)) {
-      if (typeOfValue(contextAttributes) === 'String') {
+      if (getTypeOfValue(contextAttributes) === 'String') {
         contextAttributes = JSON.parse(contextAttributes);
       }
       contextAttributes.forEach(attribute => {
         let parsedAttribute = attribute;
-        if (typeOfValue(attribute) === 'String') {
+        if (getTypeOfValue(attribute) === 'String') {
           parsedAttribute = JSON.parse(attribute);
         }
         request.addContextAttributes(
-          convertParameterToGRPC({
+          getKeyValueToGRPC({
             columnName: parsedAttribute.key,
             value: parsedAttribute.value
           })
@@ -310,7 +362,15 @@ class PayrollActionNotice {
       createClientRequest({ token, language })
     );
 
-    this.getPayrollActionNoticeService().savePayrollMovement(request, callback);
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getPayrollActionNoticeService().savePayrollMovement(
+      request,
+      metadata,
+      callback
+    );
   }
 
   deletePayrollMovements({
@@ -321,22 +381,22 @@ class PayrollActionNotice {
     uuids = [],
     language
   }, callback) {
-    const { DeletePayrollMovementsRequest } = require('../grpc/proto/payroll_action_notice_pb');
+    const { DeletePayrollMovementsRequest } = this.stubFile;
     const request = new DeletePayrollMovementsRequest();
 
     if (!isEmptyValue(contextAttributes)) {
-      const { convertParameterToGRPC, typeOfValue } = require('../../lib/convertValues.js');
+      const { getKeyValueToGRPC } = require('@adempiere/grpc-api/src/utils/baseDataTypeToGRPC.js');
 
-      if (typeOfValue(contextAttributes) === 'String') {
+      if (getTypeOfValue(contextAttributes) === 'String') {
         contextAttributes = JSON.parse(contextAttributes);
       }
       contextAttributes.forEach(attribute => {
         let parsedAttribute = attribute;
-        if (typeOfValue(attribute) === 'String') {
+        if (getTypeOfValue(attribute) === 'String') {
           parsedAttribute = JSON.parse(attribute);
         }
         request.addContextAttributes(
-          convertParameterToGRPC({
+          getKeyValueToGRPC({
             columnName: parsedAttribute.key,
             value: parsedAttribute.value
           })
@@ -358,7 +418,15 @@ class PayrollActionNotice {
       createClientRequest({ token, language })
     );
 
-    this.getPayrollActionNoticeService().deletePayrollMovements(request, callback);
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getPayrollActionNoticeService().deletePayrollMovements(
+      request,
+      metadata,
+      callback
+    );
   }
 }
 

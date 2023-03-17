@@ -1,6 +1,6 @@
 /*************************************************************************************
  * Product: ADempiere gRPC User Interface Client                                     *
- * Copyright (C) 2012-2022 E.R.P. Consultores y Asociados, C.A.                      *
+ * Copyright (C) 2012-2023 E.R.P. Consultores y Asociados, C.A.                      *
  * Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                      *
  * This program is free software: you can redistribute it and/or modify              *
  * it under the terms of the GNU General Public License as published by              *
@@ -15,6 +15,7 @@
  ************************************************************************************/
 
 const { createClientRequest } = require('@adempiere/grpc-api/lib/clientRequest');
+const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
 const { isEmptyValue, getValidId } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
 
 class UserInterface {
@@ -47,13 +48,84 @@ class UserInterface {
   initUserInterfaceService() {
     const grpc = require('@grpc/grpc-js');
     const services = require('@adempiere/grpc-api/src/grpc/proto/business_grpc_pb');
-    this.userInterface = new services.UserInterfaceClient(this.businessHost, grpc.credentials.createInsecure());
+    this.userInterface = new services.UserInterfaceClient(
+      this.businessHost,
+      grpc.credentials.createInsecure()
+    );
   }
 
   // Get UserInterface Service
   getUserInterfaceService() {
     return this.userInterface;
   }
+
+
+  // Get Default Value
+  getDefaultValue({
+    token,
+    processParameterUuid,
+    fieldUuid,
+    browseFieldUuid,
+    columnUuid,
+    value,
+    contextAttributes,
+    language
+  }, callback) {
+    const { GetDefaultValueRequest } = this.stubFile;
+    const request = new GetDefaultValueRequest();
+
+    request.setProcessParameterUuid(processParameterUuid);
+    request.setFieldUuid(fieldUuid);
+    request.setBrowseFieldUuid(browseFieldUuid);
+    request.setColumnUuid(columnUuid);
+
+    if (!isEmptyValue(contextAttributes)) {
+      const { getTypeOfValue } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
+      const { getKeyValueToGRPC } = require('@adempiere/grpc-api/src/utils/baseDataTypeToGRPC.js');
+
+      if (getTypeOfValue(contextAttributes) === 'String') {
+        contextAttributes = JSON.parse(contextAttributes);
+      }
+
+      contextAttributes.forEach(attribute => {
+        let parsedAttribute = attribute;
+        if (getTypeOfValue(attribute) === 'String') {
+          parsedAttribute = JSON.parse(attribute);
+        }
+
+        request.addContextAttributes(
+          getKeyValueToGRPC({
+            columnName: parsedAttribute.key,
+            value: parsedAttribute.value
+          })
+        );
+      });
+    }
+
+    // set value as default value
+    if (!isEmptyValue(value)) {
+    const { convertValueToGRPC } = require('@adempiere/grpc-api/lib/convertValues.js');
+      const convertedValue = convertValueToGRPC({
+        value
+      });
+      request.setValue(convertedValue);
+    }
+
+    request.setClientRequest(
+      createClientRequest({ token, language })
+    );
+
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getUserInterfaceService().getDefaultValue(
+      request,
+      metadata,
+      callback
+    );
+  }
+
 
   /**
    * Get a Tab Entity
@@ -83,7 +155,15 @@ class UserInterface {
       createClientRequest({ token, language })
     );
 
-    this.getUserInterfaceService().getTabEntity(request, callback);
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getUserInterfaceService().getTabEntity(
+      request,
+      metadata,
+      callback
+    );
   }
 
   /**
@@ -172,7 +252,16 @@ class UserInterface {
     request.setClientRequest(
       createClientRequest({ token, language })
     );
-    this.getUserInterfaceService().listTabEntities(request, callback);
+
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getUserInterfaceService().listTabEntities(
+      request,
+      metadata,
+      callback
+    );
   }
 
   // Create a Tab Entity
@@ -214,7 +303,15 @@ class UserInterface {
       createClientRequest({ token, language })
     );
 
-    this.getUserInterfaceService().createTabEntity(request, callback);
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getUserInterfaceService().createTabEntity(
+      request,
+      metadata,
+      callback
+    );
   }
 
   // Update a Tab Entity
@@ -260,7 +357,15 @@ class UserInterface {
       createClientRequest({ token, language })
     );
 
-    this.getUserInterfaceService().updateTabEntity(request, callback)
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getUserInterfaceService().updateTabEntity(
+      request,
+      metadata,
+      callback
+    );
   }
 
   existsReferences({
@@ -288,7 +393,15 @@ class UserInterface {
       createClientRequest({ token, language })
     );
 
-    this.getUserInterfaceService().existsReferences(request, callback);
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getUserInterfaceService().existsReferences(
+      request,
+      metadata,
+      callback
+    );
   }
 
   // Tab Sequences (Is Sort Tab)
@@ -333,8 +446,16 @@ class UserInterface {
     request.setClientRequest(
       createClientRequest({ token, language })
     );
-  
-    this.getUserInterfaceService().listTabSequences(request, callback);
+
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getUserInterfaceService().listTabSequences(
+      request,
+      metadata,
+      callback
+    );
   }
 
   // Tab Sequences (Is Sort Tab)
@@ -392,8 +513,16 @@ class UserInterface {
     request.setClientRequest(
       createClientRequest({ token, language })
     );
-  
-    this.getUserInterfaceService().saveTabSequences(request, callback);
+
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getUserInterfaceService().saveTabSequences(
+      request,
+      metadata,
+      callback
+    );
   }
 
   // Run a callout to server
@@ -472,7 +601,15 @@ class UserInterface {
       createClientRequest({ token, language })
     );
 
-    this.getUserInterfaceService().runCallout(request, callback);
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getUserInterfaceService().runCallout(
+      request,
+      metadata,
+      callback
+    );
   }
 
   listTreeNodes({
@@ -501,7 +638,19 @@ class UserInterface {
       createClientRequest({ token, language })
     );
 
-    this.getUserInterfaceService().listTreeNodes(request, callback);
+    request.setClientRequest(
+      createClientRequest({ token, language })
+    );
+
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getUserInterfaceService().listTreeNodes(
+      request,
+      metadata,
+      callback
+    );
   }
 
   /**
@@ -528,8 +677,16 @@ class UserInterface {
     request.setClientRequest(
       createClientRequest({ token, language })
     );
-  
-    this.getUserInterfaceService().listMailTemplates(request, callback);
+
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getUserInterfaceService().listMailTemplates(
+      request,
+      metadata,
+      callback
+    );
   }
 
 }

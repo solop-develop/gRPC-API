@@ -1,6 +1,6 @@
 /*************************************************************************************
  * Product: ADempiere gRPC Client                                                    *
- * Copyright (C) 2012-2018 E.R.P. Consultores y Asociados, C.A.                      *
+ * Copyright (C) 2012-2023 E.R.P. Consultores y Asociados, C.A.                      *
  * Contributor(s): Yamel Senih ysenih@erpya.com                                      *
  * This program is free software: you can redistribute it and/or modify              *
  * it under the terms of the GNU General Public License as published by              *
@@ -8,7 +8,7 @@
  * (at your option) any later version.                                               *
  * This program is distributed in the hope that it will be useful,                   *
  * but WITHOUT ANY WARRANTY; without even the implied warranty of                    *
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                     *
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the                      *
  * GNU General Public License for more details.                                      *
  * You should have received a copy of the GNU General Public License                 *
  * along with this program. If not, see <https://www.gnu.org/licenses/>.             *
@@ -33,7 +33,6 @@
 
     this.initUIService()
     this.initBusinessService()
-    this.initCoreService()
     console.log('ADempiere Api Client Started')
   }
 
@@ -48,33 +47,27 @@
 
   // Init connection
   initUIService() {
-    var grpc = require('@grpc/grpc-js');
-    var services = require('./src/grpc/proto/business_grpc_pb');
-    this.ui = new services.UserInterfaceClient(this.businessHost, grpc.credentials.createInsecure());
+    const grpc = require('@grpc/grpc-js');
+    const services = require('./src/grpc/proto/business_grpc_pb');
+    this.ui = new services.UserInterfaceClient(
+      this.businessHost,
+      grpc.credentials.createInsecure()
+    );
   }
 
   // Init connection
   initBusinessService() {
-    var grpc = require('@grpc/grpc-js');
-    var services = require('./src/grpc/proto/business_grpc_pb');
-    this.business = new services.BusinessDataClient(this.businessHost, grpc.credentials.createInsecure());
-  }
-
-  // Init connection
-  initCoreService() {
-    var grpc = require('@grpc/grpc-js');
-    var services = require('./src/grpc/proto/core_functionality_grpc_pb');
-    this.core = new services.CoreFunctionalityClient(this.businessHost, grpc.credentials.createInsecure());
+    const grpc = require('@grpc/grpc-js');
+    const services = require('./src/grpc/proto/business_grpc_pb');
+    this.business = new services.BusinessDataClient(
+      this.businessHost,
+      grpc.credentials.createInsecure()
+    );
   }
 
   //  Get UI Service
   getUIService() {
     return this.ui
-  }
-
-  //  Get Core
-  getCoreService() {
-    return this.core
   }
 
   //  Get Business Service
@@ -97,7 +90,16 @@
     request.setUuid(uuid)
     request.setTableName(tableName)
     request.setClientRequest(this.createClientRequest(token, language))
-    this.getBusinessService().getEntity(request, callback)
+    
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getBusinessService().getEntity(
+      request,
+      metadata,
+      callback
+    );
   }
 
   //  Create a Entity
@@ -120,7 +122,16 @@
       })
     }
     request.setClientRequest(this.createClientRequest(token, language))
-    this.getBusinessService().createEntity(request, callback)
+    
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getBusinessService().createEntity(
+      request,
+      metadata,
+      callback
+    );
   }
 
   //  Create a Entity
@@ -147,7 +158,16 @@
       })
     }
     request.setClientRequest(this.createClientRequest(token, language))
-    this.getBusinessService().updateEntity(request, callback)
+    
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getBusinessService().updateEntity(
+      request,
+      metadata,
+      callback
+    );
   }
 
   //  Create a Entity
@@ -170,7 +190,16 @@
       })
     }
     request.setClientRequest(this.createClientRequest(token, language))
-    this.getBusinessService().createEntity(request, callback)
+    
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getBusinessService().createEntity(
+      request,
+      metadata,
+      callback
+    );
   }
 
   //  Delete a Entity
@@ -195,7 +224,16 @@
     }
 
     request.setClientRequest(this.createClientRequest(token, language));
-    this.getBusinessService().deleteEntity(request, callback);
+    
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getBusinessService().deleteEntity(
+      request,
+      metadata,
+      callback
+    );
   }
 
   //  List Entities
@@ -235,7 +273,16 @@
     request.setPageToken(pageToken)
     //  TODO: Add Criteria
     request.setClientRequest(this.createClientRequest(token, language))
-    this.getBusinessService().listEntities(request, callback)
+    
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getBusinessService().listEntities(
+      request,
+      metadata,
+      callback
+    );
   }
 
 
@@ -257,7 +304,16 @@
     request.setUuid(uuid)
     request.setComment(comment)
     request.setClientRequest(this.createClientRequest(token, language))
-    this.getUIService().createChatEntry(request, callback)
+    
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getUIService().createChatEntry(
+      request,
+      metadata,
+      callback
+    );
   }
 
   //  Get Report Output
@@ -305,7 +361,16 @@
     request.setReportName(reportName);
     request.setReportType(reportType);
     request.setClientRequest(this.createClientRequest(token, language));
-    this.getUIService().getReportOutput(request, callback);
+    
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getUIService().getReportOutput(
+      request,
+      metadata,
+      callback
+    );
   }
 
   //  List Drill Tables
@@ -322,7 +387,16 @@
     request.setPageSize(pageSize)
     request.setPageToken(pageToken)
     request.setClientRequest(this.createClientRequest(token, language))
-    this.getUIService().listDrillTables(request, callback)
+    
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getUIService().listDrillTables(
+      request,
+      metadata,
+      callback
+    );
   }
 
   //  List Print Formats
@@ -343,7 +417,16 @@
     request.setPageSize(pageSize)
     request.setPageToken(pageToken)
     request.setClientRequest(this.createClientRequest(token, language))
-    this.getUIService().listPrintFormats(request, callback)
+    
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getUIService().listPrintFormats(
+      request,
+      metadata,
+      callback
+    );
   }
 
   //  List Print Formats
@@ -364,7 +447,16 @@
     request.setPageSize(pageSize)
     request.setPageToken(pageToken)
     request.setClientRequest(this.createClientRequest(token, language))
-    this.getUIService().listPrintFormats(request, callback)
+    
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getUIService().listPrintFormats(
+      request,
+      metadata,
+      callback
+    );
   }
 
   //  List Report Views
@@ -383,7 +475,16 @@
     request.setPageSize(pageSize)
     request.setPageToken(pageToken)
     request.setClientRequest(this.createClientRequest(token, language))
-    this.getUIService().listReportViews(request, callback)
+    
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getUIService().listReportViews(
+      request,
+      metadata,
+      callback
+    );
   }
 
   //  Unlock Private Access
@@ -400,7 +501,16 @@
     request.setId(id)
     request.setUuid(uuid)
     request.setClientRequest(this.createClientRequest(token, language))
-    this.getUIService().unlockPrivateAccess(request, callback)
+    
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getUIService().unlockPrivateAccess(
+      request,
+      metadata,
+      callback
+    );
   }
 
   //  Lock Private Access
@@ -417,7 +527,16 @@
     request.setId(id)
     request.setUuid(uuid)
     request.setClientRequest(this.createClientRequest(token, language))
-    this.getUIService().lockPrivateAccess(request, callback)
+    
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getUIService().lockPrivateAccess(
+      request,
+      metadata,
+      callback
+    );
   }
 
   //  Get Private Access
@@ -434,7 +553,16 @@
     request.setId(id)
     request.setUuid(uuid)
     request.setClientRequest(this.createClientRequest(token, language))
-    this.getUIService().getPrivateAccess(request, callback)
+    
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getUIService().getPrivateAccess(
+      request,
+      metadata,
+      callback
+    );
   }
 
   //  Get Record Access for current role
@@ -451,7 +579,16 @@
     request.setId(id)
     request.setUuid(uuid)
     request.setClientRequest(this.createClientRequest(token, language))
-    this.getUIService().getRecordAccess(request, callback)
+    
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getUIService().getRecordAccess(
+      request,
+      metadata,
+      callback
+    );
   }
 
   // Set Record Access for current role
@@ -487,7 +624,16 @@
       })
     }
     request.setClientRequest(this.createClientRequest(token, language))
-    this.getUIService().setRecordAccess(request, callback)
+    
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getUIService().setRecordAccess(
+      request,
+      metadata,
+      callback
+    );
   }
 
   // Set preference value for a attribute
@@ -514,7 +660,16 @@
     request.setIsForCurrentOrganization(isForCurrentOrganization)
     request.setIsForCurrentContainer(isForCurrentContainer)
     request.setClientRequest(this.createClientRequest(token, language))
-    this.getUIService().setPreference(request, callback)
+    
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getUIService().setPreference(
+      request,
+      metadata,
+      callback
+    );
   }
 
   // Delete preference based on criteria for it
@@ -540,7 +695,16 @@
     request.setIsForCurrentOrganization(isForCurrentOrganization)
     request.setIsForCurrentContainer(isForCurrentContainer)
     request.setClientRequest(this.createClientRequest(token, language))
-    this.getUIService().deletePreference(request, callback)
+    
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getUIService().deletePreference(
+      request,
+      metadata,
+      callback
+    );
   }
 
   //  Get Context Information Value
@@ -557,7 +721,16 @@
     request.setUuid(uuid)
     request.setId(id)
     request.setClientRequest(this.createClientRequest(token, language))
-    this.getUIService().getContextInfoValue(request, callback)
+    
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getUIService().getContextInfoValue(
+      request,
+      metadata,
+      callback
+    );
   }
 
   //  List references of record
@@ -580,7 +753,16 @@
     request.setPageSize(pageSize)
     request.setPageToken(pageToken)
     request.setClientRequest(this.createClientRequest(token, language))
-    this.getUIService().listReferences(request, callback)
+    
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getUIService().listReferences(
+      request,
+      metadata,
+      callback
+    );
   }
 
   //  List Browser Items
@@ -630,7 +812,16 @@
     request.setPageSize(pageSize);
     request.setPageToken(pageToken);
     request.setClientRequest(this.createClientRequest(token, language));
-    this.getUIService().listBrowserItems(request, callback);
+    
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getUIService().listBrowserItems(
+      request,
+      metadata,
+      callback
+    );
   }
 
   /**
@@ -679,7 +870,16 @@
     }
 
     request.setClientRequest(this.createClientRequest(token, language));
-    this.getUIService().updateBrowserEntity(request, callback);
+    
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getUIService().updateBrowserEntity(
+      request,
+      metadata,
+      callback
+    );
   }
 
   //  List Lookup Items
@@ -732,7 +932,16 @@
     request.setPageSize(pageSize);
     request.setPageToken(pageToken);
     request.setClientRequest(this.createClientRequest(token, language));
-    this.getUIService().listLookupItems(request, callback);
+    
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getUIService().listLookupItems(
+      request,
+      metadata,
+      callback
+    );
   }
 
   //  Get Lookup
@@ -782,7 +991,16 @@
       })
     }
     request.setClientRequest(this.createClientRequest(token, language));
-    this.getUIService().getLookupItem(request, callback);
+    
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getUIService().getLookupItem(
+      request,
+      metadata,
+      callback
+    );
   }
 
   //  List translations
@@ -803,58 +1021,16 @@
     request.setPageSize(pageSize)
     request.setPageToken(pageToken)
     request.setClientRequest(this.createClientRequest(token, language))
-    this.getUIService().listTranslations(request, callback)
-  }
+    
+    const metadata = getMetadata({
+      token
+    });
 
-  //  Get Default Value
-  getDefaultValue({
-    token,
-    processParameterUuid,
-    fieldUuid,
-    browseFieldUuid,
-    columnUuid,
-    value,
-    contextAttributes,
-    language
-  }, callback) {
-    const { GetDefaultValueRequest } = require('./src/grpc/proto/business_pb.js')
-    const request = new GetDefaultValueRequest();
-    request.setProcessParameterUuid(processParameterUuid);
-    request.setFieldUuid(fieldUuid);
-    request.setBrowseFieldUuid(browseFieldUuid);
-    request.setColumnUuid(columnUuid);
-    if (!this.isEmptyValue(contextAttributes)) {
-      const { convertParameterToGRPC, typeOfValue } = require('./lib/convertValues.js');
-      if (typeOfValue(contextAttributes) === 'String') {
-        contextAttributes = JSON.parse(contextAttributes);
-      }
-
-      contextAttributes.forEach(attribute => {
-        let parsedAttribute = attribute;
-        if (typeOfValue(attribute) === 'String') {
-          parsedAttribute = JSON.parse(attribute);
-        }
-
-        request.addContextAttributes(
-          convertParameterToGRPC({
-            columnName: parsedAttribute.key,
-            value: parsedAttribute.value
-          })
-        );
-      });
-    }
-
-    // set value as default value
-    if (!this.isEmptyValue(value)) {
-      const { convertValueToGRPC } = require('./lib/convertValues.js');
-      const convertedValue = convertValueToGRPC({
-        value
-      });
-      request.setValue(convertedValue);
-    }
-
-    request.setClientRequest(this.createClientRequest(token, language));
-    this.getUIService().getDefaultValue(request, callback);
+    this.getUIService().listTranslations(
+      request,
+      metadata,
+      callback
+    );
   }
 
   //  Rollback a value from entity
@@ -873,7 +1049,16 @@
     request.setUuid(uuid)
     request.setLogId(logId)
     request.setClientRequest(this.createClientRequest(token, language))
-    this.getUIService().rollbackEntity(request, callback)
+    
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getUIService().rollbackEntity(
+      request,
+      metadata,
+      callback
+    );
   }
 
   // List General Info
@@ -940,242 +1125,16 @@
     request.setPageToken(pageToken);
     request.setClientRequest(this.createClientRequest(token, language));
 
-    this.getUIService().listGeneralInfo(request, callback);
-  }
+    
+    const metadata = getMetadata({
+      token
+    });
 
-  //  Core Functionality
-  //  Get Country
-  getCountry({
-    token,
-    uuid,
-    id,
-    language
-  }, callback) {
-    const { GetCountryRequest } = require('./src/grpc/proto/core_functionality_pb.js')
-    const request = new GetCountryRequest()
-    request.setUuid(uuid)
-    request.setId(id)
-    request.setClientRequest(this.createClientRequest(token, language))
-    this.getCoreService().getCountry(request, callback)
-  }
-
-  //  List Organizations
-  listOrganizations({
-    token,
-    roleUuid,
-    roleId,
-    pageSize,
-    pageToken,
-    language
-  }, callback) {
-    const { ListOrganizationsRequest } = require('./src/grpc/proto/core_functionality_pb.js')
-    const request = new ListOrganizationsRequest()
-    request.setRoleUuid(roleUuid)
-    request.setRoleId(roleId)
-    request.setPageSize(pageSize)
-    request.setPageToken(pageToken)
-    request.setClientRequest(this.createClientRequest(token, language))
-    this.getCoreService().listOrganizations(request, callback)
-  }
-
-  //  List Warehouses
-  listWarehouses({
-    token,
-    organizationUuid,
-    organizationId,
-    pageSize,
-    pageToken,
-    language
-  }, callback) {
-    const { ListWarehousesRequest } = require('./src/grpc/proto/core_functionality_pb.js')
-    const request = new ListWarehousesRequest()
-    request.setOrganizationUuid(organizationUuid)
-    request.setOrganizationId(organizationId)
-    request.setPageSize(pageSize)
-    request.setPageToken(pageToken)
-    request.setClientRequest(this.createClientRequest(token, language))
-    this.getCoreService().listWarehouses(request, callback)
-  }
-
-  //  List Languages
-  listLanguages({
-    token,
-    pageSize,
-    pageToken,
-    language
-  }, callback) {
-    const { ListLanguagesRequest } = require('./src/grpc/proto/core_functionality_pb.js')
-    const request = new ListLanguagesRequest()
-    request.setPageSize(pageSize)
-    request.setPageToken(pageToken)
-    request.setClientRequest(this.createClientRequest(token, language))
-    this.getCoreService().listLanguages(request, callback)
-  }
-
-  //  Get Business Partner
-  getBusinessPartner({
-    token,
-    searchValue,
-    value,
-    name,
-    contactName,
-    email,
-    postalCode,
-    phone,
-    tableName,
-    //  DSL
-    filters,
-    //  Custom Query
-    query,
-    whereClause,
-    orderByClause,
-    limit,
-    language
-  }, callback) {
-    const { GetBusinessPartnerRequest } = require('./src/grpc/proto/core_functionality_pb.js')
-    const request = new GetBusinessPartnerRequest()
-    const { convertCriteriaToGRPC } = require('./lib/convertValues.js');
-    //  TODO: Add support to all parameters
-    request.setCriteria(convertCriteriaToGRPC({
-      tableName,
-      filters,
-      query,
-      whereClause,
-      orderByClause,
-      limit
-    }))
-    request.setSearchValue(searchValue)
-    request.setValue(value)
-    request.setName(name)
-    request.setContactName(contactName)
-    request.setEmail(email)
-    request.setPostalCode(postalCode)
-    request.setPhone(phone)
-    request.setClientRequest(this.createClientRequest(token, language))
-    this.getCoreService().getBusinessPartner(request, callback)
-  }
-
-  //  Create Business Partner
-  createBusinessPartner({
-    token,
-    value,
-    taxId,
-    duns,
-    naics,
-    name,
-    lastName,
-    description,
-    contactName,
-    email,
-    phone,
-    businessPartnerGroupUuid,
-    address1,
-    address2,
-    address3,
-    address4,
-    cityUuid,
-    cityName,
-    postalCode,
-    regionUuid,
-    regionName,
-    countryUuid,
-    posUuid,
-    language
-  }, callback) {
-    const { CreateBusinessPartnerRequest } = require('./src/grpc/proto/core_functionality_pb.js')
-    const request = new CreateBusinessPartnerRequest()
-    request.setValue(value)
-    request.setTaxId(taxId)
-    request.setDuns(duns)
-    request.setNaics(naics)
-    request.setName(name)
-    request.setLastName(lastName)
-    request.setDescription(description)
-    request.setContactName(contactName)
-    request.setEmail(email)
-    request.setPhone(phone)
-    request.setBusinessPartnerGroupUuid(businessPartnerGroupUuid)
-    request.setAddress1(address1)
-    request.setAddress2(address2)
-    request.setAddress3(address3)
-    request.setAddress4(address4)
-    request.setCityUuid(cityUuid)
-    request.setCityName(cityName)
-    request.setPostalCode(postalCode)
-    request.setRegionUuid(regionUuid)
-    request.setRegionName(regionName)
-    request.setCountryUuid(countryUuid)
-    request.setPosUuid(posUuid)
-    request.setClientRequest(this.createClientRequest(token, language))
-    this.getCoreService().createBusinessPartner(request, callback)
-  }
-
-  //  List Business Partner
-  listBusinessPartners({
-    token,
-    searchValue,
-    value,
-    name,
-    contactName,
-    email,
-    postalCode,
-    phone,
-    tableName,
-    //  DSL
-    filters,
-    //  Custom Query
-    query,
-    whereClause,
-    orderByClause,
-    limit,
-    pageSize,
-    pageToken,
-    language
-  }, callback) {
-    const { ListBusinessPartnersRequest } = require('./src/grpc/proto/core_functionality_pb.js')
-    const request = new ListBusinessPartnersRequest()
-    const { convertCriteriaToGRPC } = require('./lib/convertValues.js');
-    //  TODO: Add support to all parameters
-    request.setCriteria(convertCriteriaToGRPC({
-      tableName,
-      filters,
-      query,
-      whereClause,
-      orderByClause,
-      limit
-    }))
-    request.setSearchValue(searchValue)
-    request.setValue(value)
-    request.setName(name)
-    request.setContactName(contactName)
-    request.setEmail(email)
-    request.setPostalCode(postalCode)
-    request.setPhone(phone)
-    request.setPageSize(pageSize)
-    request.setPageToken(pageToken)
-    request.setClientRequest(this.createClientRequest(token, language))
-    this.getCoreService().listBusinessPartners(request, callback)
-  }
-
-  //  Get Conversion Rate
-  getConversionRate({
-    token,
-    conversionTypeUuid,
-    currencyFromUuid,
-    currencyToUuid,
-    conversionDate,
-    language
-  }, callback) {
-    const { GetConversionRateRequest } = require('./src/grpc/proto/core_functionality_pb.js')
-    const request = new GetConversionRateRequest()
-    request.setConversionTypeUuid(conversionTypeUuid)
-    request.setCurrencyFromUuid(currencyFromUuid)
-    request.setCurrencyToUuid(currencyToUuid)
-    if (conversionDate) {
-      request.setConversionDate(conversionDate)
-    }
-    request.setClientRequest(this.createClientRequest(token, language))
-    this.getCoreService().getConversionRate(request, callback)
+    this.getUIService().listGeneralInfo(
+      request,
+      metadata,
+      callback
+    );
   }
 
   isEmptyValue(value) {
