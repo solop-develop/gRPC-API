@@ -1,6 +1,6 @@
 /*************************************************************************************
  * Product: ADempiere gRPC Access Client                                             *
- * Copyright (C) 2012-2022 E.R.P. Consultores y Asociados, C.A.                      *
+ * Copyright (C) 2012-2023 E.R.P. Consultores y Asociados, C.A.                      *
  * Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                      *
  * This program is free software: you can redistribute it and/or modify              *
  * it under the terms of the GNU General Public License as published by              *
@@ -13,6 +13,8 @@
  * You should have received a copy of the GNU General Public License                 *
  * along with this program. If not, see <https://www.gnu.org/licenses/>.             *
  ************************************************************************************/
+
+const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
 
 class Access {
 
@@ -66,17 +68,18 @@ class Access {
     language
   }, callback) {
     const { LoginRequest } = this.stubFile;
-    const request = new LoginRequest()
+    const request = new LoginRequest();
 
-    request.setUserName(user)
-    request.setUserPass(password)
-    request.setToken(token)
-    request.setRoleUuid(roleUuid)
-    request.setOrganizationUuid(organizationUuid)
-    request.setWarehouseUuid(warehouseUuid)
-    request.setLanguage(language)
-    request.setClientVersion(this.version)
-    this.getAccessService().runLogin(request, callback)
+    request.setUserName(user);
+    request.setUserPass(password);
+    request.setToken(token);
+    request.setRoleUuid(roleUuid);
+    request.setOrganizationUuid(organizationUuid);
+    request.setWarehouseUuid(warehouseUuid);
+    request.setLanguage(language);
+    request.setClientVersion(this.version);
+
+    this.getAccessService().runLogin(request, callback);
   }
 
   //  Get User Information
@@ -85,12 +88,21 @@ class Access {
     language
   }, callback) {
     const { UserInfoRequest } = this.stubFile;
-    const request = new UserInfoRequest()
+    const request = new UserInfoRequest();
 
-    request.setSessionUuid(token)
-    request.setLanguage(language)
-    request.setClientVersion(this.version)
-    this.getAccessService().getUserInfo(request, callback)
+    request.setSessionUuid(token);
+    request.setLanguage(language);
+    request.setClientVersion(this.version);
+
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getAccessService().getUserInfo(
+      request,
+      metadata,
+      callback
+    );
   }
 
   //  Get User Information
@@ -99,12 +111,21 @@ class Access {
     language
   }, callback) {
     const { ListRolesRequest } = this.stubFile;
-    const request = new ListRolesRequest()
+    const request = new ListRolesRequest();
 
-    request.setSessionUuid(token)
-    request.setLanguage(language)
-    request.setClientVersion(this.version)
-    this.getAccessService().listRoles(request, callback)
+    request.setSessionUuid(token);
+    request.setLanguage(language);
+    request.setClientVersion(this.version);
+
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getAccessService().listRoles(
+      request,
+      metadata,
+      callback
+    );
   }
 
   //  Get User Menu
@@ -119,7 +140,15 @@ class Access {
     request.setLanguage(language);
     request.setClientVersion(this.version);
 
-    this.getAccessService().getMenu(request, callback);
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getAccessService().getMenu(
+      request,
+      metadata,
+      callback
+    );
   }
 
   //  Get User Menu
@@ -128,12 +157,21 @@ class Access {
     language
   }, callback) {
     const { SessionRequest } = this.stubFile;
-    const request = new SessionRequest()
+    const request = new SessionRequest();
 
-    request.setSessionUuid(token)
-    request.setLanguage(language)
-    request.setClientVersion(this.version)
-    this.getAccessService().getSession(request, callback)
+    request.setSessionUuid(token);
+    request.setLanguage(language);
+    request.setClientVersion(this.version);
+
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getAccessService().getSession(
+      request,
+      metadata,
+      callback
+    );
   }
 
   //  Change role
@@ -145,15 +183,20 @@ class Access {
     language
   }, callback) {
     const { ChangeRoleRequest } = this.stubFile;
-    const request = new ChangeRoleRequest()
+    const request = new ChangeRoleRequest();
 
-    request.setSessionUuid(token)
-    request.setRoleUuid(role)
-    request.setOrganizationUuid(organization)
-    request.setWarehouseUuid(warehouse)
-    request.setLanguage(language)
-    request.setClientVersion(this.version)
-    this.getAccessService().runChangeRole(request, callback)
+    request.setSessionUuid(token);
+    request.setRoleUuid(role);
+    request.setOrganizationUuid(organization);
+    request.setWarehouseUuid(warehouse);
+    request.setLanguage(language);
+    request.setClientVersion(this.version);
+
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getAccessService().runChangeRole(request, metadata, callback)
   }
 
   //  Login with a user
@@ -162,12 +205,21 @@ class Access {
     language
   }, callback) {
     const { LogoutRequest } = this.stubFile;
-    const request = new LogoutRequest()
+    const request = new LogoutRequest();
 
-    request.setSessionUuid(token)
-    request.setLanguage(language)
-    request.setClientVersion(this.version)
-    this.getAccessService().runLogout(request, callback)
+    request.setSessionUuid(token);
+    request.setLanguage(language);
+    request.setClientVersion(this.version);
+
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getAccessService().runLogout(
+      request,
+      metadata,
+      callback
+    );
   }
 
 }

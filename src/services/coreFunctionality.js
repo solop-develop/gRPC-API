@@ -1,6 +1,6 @@
 /*************************************************************************************
  * Product: ADempiere gRPC Core Functionality Client                                 *
- * Copyright (C) 2012-2022 E.R.P. Consultores y Asociados, C.A.                      *
+ * Copyright (C) 2012-2023 E.R.P. Consultores y Asociados, C.A.                      *
  * Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                      *
  * This program is free software: you can redistribute it and/or modify              *
  * it under the terms of the GNU General Public License as published by              *
@@ -8,15 +8,22 @@
  * (at your option) any later version.                                               *
  * This program is distributed in the hope that it will be useful,                   *
  * but WITHOUT ANY WARRANTY; without even the implied warranty of                    *
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                     *
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the                      *
  * GNU General Public License for more details.                                      *
  * You should have received a copy of the GNU General Public License                 *
  * along with this program. If not, see <https://www.gnu.org/licenses/>.             *
  ************************************************************************************/
 
 const { createClientRequest } = require('@adempiere/grpc-api/lib/clientRequest')
+const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
+const { getValidId } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
 
 class CoreFunctionality {
+
+  /**
+   * File on generated stub
+   */
+  stubFile = require('@adempiere/grpc-api/src/grpc/proto/core_functionality_pb.js');
 
   /**
    * Constructor, No authentication required
@@ -52,6 +59,164 @@ class CoreFunctionality {
     return this.coreFunctionality;
   }
 
+  // Get Country
+  getCountry({
+    token,
+    uuid,
+    id,
+    language
+  }, callback) {
+    const { GetCountryRequest } = this.stubFile;
+    const request = new GetCountryRequest();
+
+    request.setUuid(uuid);
+    request.setId(
+      getValidId(id)
+    );
+
+    request.setClientRequest(
+      createClientRequest({ token, language })
+    );
+
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getCoreFunctionalityService().getCountry(
+      request,
+      metadata,
+      callback
+    );
+  }
+
+  // List Languages
+  listLanguages({
+    token,
+    pageSize,
+    pageToken,
+    language
+  }, callback) {
+    const { ListLanguagesRequest } = this.stubFile;
+    const request = new ListLanguagesRequest();
+
+    request.setPageSize(pageSize);
+    request.setPageToken(pageToken);
+
+    request.setClientRequest(
+      createClientRequest({ token, language })
+    );
+
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getCoreFunctionalityService().listLanguages(
+      request,
+      metadata,
+      callback
+    );
+  }
+
+  // List Organizations
+  listOrganizations({
+    token,
+    roleUuid,
+    roleId,
+    pageSize,
+    pageToken,
+    language
+  }, callback) {
+    const { ListOrganizationsRequest } = this.stubFile;
+    const request = new ListOrganizationsRequest();
+
+    request.setRoleUuid(roleUuid);
+    request.setRoleId(
+      getValidId(roleId)
+    );
+    request.setPageSize(pageSize);
+    request.setPageToken(pageToken);
+    request.setClientRequest(
+      createClientRequest({ token, language })
+    );
+
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getCoreFunctionalityService().listOrganizations(
+      request,
+      metadata,
+      callback
+    );
+  }
+
+  // List Warehouses
+  listWarehouses({
+    token,
+    organizationUuid,
+    organizationId,
+    pageSize,
+    pageToken,
+    language
+  }, callback) {
+    const { ListWarehousesRequest } = this.stubFile;
+    const request = new ListWarehousesRequest();
+
+    request.setOrganizationUuid(organizationUuid);
+    request.setOrganizationId(
+      getValidId(organizationId)
+    );
+    request.setPageSize(pageSize);
+    request.setPageToken(pageToken);
+
+    request.setClientRequest(
+      createClientRequest({ token, language })
+    );
+
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getCoreFunctionalityService().listWarehouses(
+      request,
+      metadata,
+      callback
+    );
+  }
+
+  // Get Conversion Rate
+  getConversionRate({
+    token,
+    conversionTypeUuid,
+    currencyFromUuid,
+    currencyToUuid,
+    conversionDate,
+    language
+  }, callback) {
+    const { GetConversionRateRequest } = this.stubFile;
+    const request = new GetConversionRateRequest();
+
+    request.setConversionTypeUuid(conversionTypeUuid);
+    request.setCurrencyFromUuid(currencyFromUuid);
+    request.setCurrencyToUuid(currencyToUuid);
+    if (conversionDate) {
+      request.setConversionDate(conversionDate)
+    }
+    request.setClientRequest(
+      createClientRequest({ token, language })
+    );
+
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getCoreFunctionalityService().getConversionRate(
+      request,
+      metadata,
+      callback
+    );
+  }
+
   //  List Product Conversion UOM
   listProductConversion({
     token,
@@ -62,10 +227,12 @@ class CoreFunctionality {
     pageToken,
     language
   }, callback) {
-    const { ListProductConversionRequest } = require('@adempiere/grpc-api/src/grpc/proto/core_functionality_pb.js');
+    const { ListProductConversionRequest } = this.stubFile;
     const request = new ListProductConversionRequest();
 
-    request.setProductId(productId);
+    request.setProductId(
+      getValidId(productId)
+    );
     request.setProductUuid(productUuid);
     request.setPageSize(pageSize);
     request.setPageToken(pageToken);
@@ -73,7 +240,199 @@ class CoreFunctionality {
       createClientRequest({ token, language })
     );
 
-    this.getCoreFunctionalityService().listProductConversion(request, callback);
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getCoreFunctionalityService().listProductConversion(
+      request,
+      metadata,
+      callback
+    );
+  }
+
+  // Get Business Partner
+  getBusinessPartner({
+    token,
+    searchValue,
+    value,
+    name,
+    contactName,
+    email,
+    postalCode,
+    phone,
+    tableName,
+    //  DSL
+    filters,
+    //  Custom Query
+    query,
+    whereClause,
+    orderByClause,
+    limit,
+    language
+  }, callback) {
+    const { GetBusinessPartnerRequest } = this.stubFile
+    const request = new GetBusinessPartnerRequest()
+    const { getCriteriaToGRPC } = require('@adempiere/grpc-api/src/utils/baseDataTypeToGRPC.js');
+
+    // TODO: Add support to all parameters
+    request.setCriteria(
+      getCriteriaToGRPC({
+        tableName,
+        filters,
+        query,
+        whereClause,
+        orderByClause,
+        limit
+      })
+    );
+    request.setSearchValue(searchValue);
+    request.setValue(value);
+    request.setName(name);
+    request.setContactName(contactName);
+    request.setEmail(email);
+    request.setPostalCode(postalCode);
+    request.setPhone(phone);
+    request.setClientRequest(
+      createClientRequest({ token, language })
+    );
+
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getCoreFunctionalityService().getBusinessPartner(
+      request,
+      metadata,
+      callback
+    );
+  }
+
+  // Create Business Partner
+  createBusinessPartner({
+    token,
+    value,
+    taxId,
+    duns,
+    naics,
+    name,
+    lastName,
+    description,
+    contactName,
+    email,
+    phone,
+    businessPartnerGroupUuid,
+    address1,
+    address2,
+    address3,
+    address4,
+    cityUuid,
+    cityName,
+    postalCode,
+    regionUuid,
+    regionName,
+    countryUuid,
+    posUuid,
+    language
+  }, callback) {
+    const { CreateBusinessPartnerRequest } = this.stubFile;
+    const request = new CreateBusinessPartnerRequest();
+
+    request.setValue(value);
+    request.setTaxId(taxId);
+    request.setDuns(duns);
+    request.setNaics(naics);
+    request.setName(name);
+    request.setLastName(lastName);
+    request.setDescription(description);
+    request.setContactName(contactName);
+    request.setEmail(email);
+    request.setPhone(phone);
+    request.setBusinessPartnerGroupUuid(businessPartnerGroupUuid);
+    request.setAddress1(address1);
+    request.setAddress2(address2);
+    request.setAddress3(address3);
+    request.setAddress4(address4);
+    request.setCityUuid(cityUuid);
+    request.setCityName(cityName);
+    request.setPostalCode(postalCode);
+    request.setRegionUuid(regionUuid);
+    request.setRegionName(regionName);
+    request.setCountryUuid(countryUuid);
+    request.setPosUuid(posUuid);
+    request.setClientRequest(
+      createClientRequest({ token, language })
+    );
+
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getCoreFunctionalityService().createBusinessPartner(
+      request,
+      metadata,
+      callback
+    );
+  }
+
+  //  List Business Partner
+  listBusinessPartners({
+    token,
+    searchValue,
+    value,
+    name,
+    contactName,
+    email,
+    postalCode,
+    phone,
+    tableName,
+    //  DSL
+    filters,
+    //  Custom Query
+    query,
+    whereClause,
+    orderByClause,
+    limit,
+    pageSize,
+    pageToken,
+    language
+  }, callback) {
+    const { ListBusinessPartnersRequest } = this.stubFile;
+    const request = new ListBusinessPartnersRequest();
+    const { getCriteriaToGRPC } = require('@adempiere/grpc-api/src/utils/baseDataTypeToGRPC.js');
+    //  TODO: Add support to all parameters
+    request.setCriteria(
+      getCriteriaToGRPC({
+        tableName,
+        filters,
+        query,
+        whereClause,
+        orderByClause,
+        limit
+      })
+    );
+    request.setSearchValue(searchValue);
+    request.setValue(value);
+    request.setName(name);
+    request.setContactName(contactName);
+    request.setEmail(email);
+    request.setPostalCode(postalCode);
+    request.setPhone(phone);
+    request.setPageSize(pageSize);
+    request.setPageToken(pageToken);
+    request.setClientRequest(
+      createClientRequest({ token, language })
+    );
+
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getCoreFunctionalityService().listBusinessPartners(
+      request,
+      metadata,
+      callback
+    );
   }
 
 }

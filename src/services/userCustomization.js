@@ -1,6 +1,6 @@
 /*************************************************************************************
  * Product: ADempiere gRPC User Customization Client                                 *
- * Copyright (C) 2012-2022 E.R.P. Consultores y Asociados, C.A.                      *
+ * Copyright (C) 2012-2023 E.R.P. Consultores y Asociados, C.A.                      *
  * Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                      *
  * This program is free software: you can redistribute it and/or modify              *
  * it under the terms of the GNU General Public License as published by              *
@@ -15,7 +15,8 @@
  ************************************************************************************/
 
 const { createClientRequest } = require('@adempiere/grpc-api/lib/clientRequest');
-const { isEmptyValue } = require('@adempiere/grpc-api/lib/convertValues.js');
+const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
+const { isEmptyValue, getValidId } = require('@adempiere/grpc-api/lib/convertValues.js');
 
 class UserCustomization {
 
@@ -83,7 +84,15 @@ class UserCustomization {
       createClientRequest({ token, language })
     );
 
-    this.getUserCustomizationService().listUsers(request, callback);
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getUserCustomizationService().listUsers(
+      request,
+      metadata,
+      callback
+    );
   }
 
 
@@ -112,7 +121,15 @@ class UserCustomization {
       createClientRequest({ token, language })
     );
 
-    this.getUserCustomizationService().listRoles(request, callback);
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getUserCustomizationService().listRoles(
+      request,
+      metadata,
+      callback
+    );
   }
 
 
@@ -141,7 +158,15 @@ class UserCustomization {
       createClientRequest({ token, language })
     );
 
-    this.getUserCustomizationService().listCustomizationsLevel(request, callback);
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getUserCustomizationService().listCustomizationsLevel(
+      request,
+      metadata,
+      callback
+    );
   }
 
 
@@ -172,7 +197,9 @@ class UserCustomization {
     request.setTabUuid(tabUuid);
 
     request.setLevel(level);
-    request.setLevelId(levelId);
+    request.setLevelId(
+      getValidId(levelId)
+    );
     request.setLevelUuid(levelUuid);
 
     if (!isEmptyValue(fieldAttributes)) {
@@ -198,7 +225,15 @@ class UserCustomization {
       createClientRequest({ token, language })
     );
 
-    this.getUserCustomizationService().saveWindowCustomization(request, callback);
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getUserCustomizationService().saveWindowCustomization(
+      request,
+      metadata,
+      callback
+    );
   }
 
 
@@ -229,7 +264,9 @@ class UserCustomization {
     request.setBrowseUuid(browseUuid);
 
     request.setLevel(level);
-    request.setLevelId(levelId);
+    request.setLevelId(
+      getValidId(levelId)
+    );
     request.setLevelUuid(levelUuid);
 
     if (!isEmptyValue(fieldAttributes)) {
@@ -255,7 +292,15 @@ class UserCustomization {
       createClientRequest({ token, language })
     );
 
-    this.getUserCustomizationService().saveBrowseCustomization(request, callback);
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getUserCustomizationService().saveBrowseCustomization(
+      request,
+      metadata,
+      callback
+    );
   }
 
 
@@ -286,7 +331,9 @@ class UserCustomization {
     request.setProcessUuid(processUuid);
 
     request.setLevel(level);
-    request.setLevelId(levelId);
+    request.setLevelId(
+      getValidId(levelId)
+    );
     request.setLevelUuid(levelUuid);
 
     if (!isEmptyValue(fieldAttributes)) {
@@ -312,7 +359,15 @@ class UserCustomization {
       createClientRequest({ token, language })
     );
 
-    this.getUserCustomizationService().saveProcessCustomization(request, callback);
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getUserCustomizationService().saveProcessCustomization(
+      request,
+      metadata,
+      callback
+    );
   }
 
 }

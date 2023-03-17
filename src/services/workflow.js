@@ -1,6 +1,6 @@
 /*************************************************************************************
  * Product: ADempiere gRPC Workflow Client                                           *
- * Copyright (C) 2012-2022 E.R.P. Consultores y Asociados, C.A.                      *
+ * Copyright (C) 2012-2023 E.R.P. Consultores y Asociados, C.A.                      *
  * Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                      *
  * This program is free software: you can redistribute it and/or modify              *
  * it under the terms of the GNU General Public License as published by              *
@@ -8,13 +8,14 @@
  * (at your option) any later version.                                               *
  * This program is distributed in the hope that it will be useful,                   *
  * but WITHOUT ANY WARRANTY; without even the implied warranty of                    *
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                     *
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the                      *
  * GNU General Public License for more details.                                      *
  * You should have received a copy of the GNU General Public License                 *
  * along with this program. If not, see <https://www.gnu.org/licenses/>.             *
  ************************************************************************************/
 
 const { createClientRequest } = require('@adempiere/grpc-api/lib/clientRequest');
+const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
 const { getValidId } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
 
 class Workflow {
@@ -65,16 +66,26 @@ class Workflow {
     const { WorkflowDefinitionRequest } = this.stubFile;
     const request = new WorkflowDefinitionRequest();
 
-    request.setId(id);
+    request.setId(
+      getValidId(id)
+    );
     request.setUuid(uuid);
     request.setClientRequest(
       createClientRequest({ token, language })
     );
 
-    this.getWorkflowService().getWorkflow(request, callback);
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getWorkflowService().getWorkflow(
+      request,
+      metadata,
+      callback
+    );
   }
 
-  //  List workflow
+  // List workflow
   listWorkflows({
     token,
     tableName,
@@ -82,18 +93,28 @@ class Workflow {
     pageToken,
     language
   }, callback) {
-    const { ListWorkflowsRequest } = this.stubFile
-    const request = new ListWorkflowsRequest()
-    request.setTableName(tableName)
-    request.setPageSize(pageSize)
-    request.setPageToken(pageToken)
+    const { ListWorkflowsRequest } = this.stubFile;
+    const request = new ListWorkflowsRequest();
+
+    request.setTableName(tableName);
+    request.setPageSize(pageSize);
+    request.setPageToken(pageToken);
     request.setClientRequest(
       createClientRequest({ token, language })
     );
-    this.getWorkflowService().listWorkflows(request, callback)
+
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getWorkflowService().listWorkflows(
+      request,
+      metadata,
+      callback
+    );
   }
 
-  //  List workflow
+  // List workflow
   listDocumentActions({
     token,
     tableName,
@@ -105,22 +126,34 @@ class Workflow {
     pageToken,
     language
   }, callback) {
-    const { ListDocumentActionsRequest } = this.stubFile
-    const request = new ListDocumentActionsRequest()
-    request.setTableName(tableName)
-    request.setId(id)
-    request.setUuid(uuid)
-    request.setDocumentStatus(documentStatus)
-    request.setDocumentAction(documentAction)
-    request.setPageSize(pageSize)
-    request.setPageToken(pageToken)
+    const { ListDocumentActionsRequest } = this.stubFile;
+    const request = new ListDocumentActionsRequest();
+
+    request.setTableName(tableName);
+    request.setId(
+      getValidId(id)
+    );
+    request.setUuid(uuid);
+    request.setDocumentStatus(documentStatus);
+    request.setDocumentAction(documentAction);
+    request.setPageSize(pageSize);
+    request.setPageToken(pageToken);
     request.setClientRequest(
       createClientRequest({ token, language })
     );
-    this.getWorkflowService().listDocumentActions(request, callback)
+
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getWorkflowService().listDocumentActions(
+      request,
+      metadata,
+      callback
+    );
   }
 
-  //  List Document Statuses
+  // List Document Statuses
   listDocumentStatuses({
     token,
     tableName,
@@ -131,21 +164,33 @@ class Workflow {
     pageToken,
     language
   }, callback) {
-    const { ListDocumentStatusesRequest } = this.stubFile
-    const request = new ListDocumentStatusesRequest()
-    request.setTableName(tableName)
-    request.setId(id)
-    request.setUuid(uuid)
-    request.setDocumentStatus(documentStatus)
-    request.setPageSize(pageSize)
-    request.setPageToken(pageToken)
+    const { ListDocumentStatusesRequest } = this.stubFile;
+    const request = new ListDocumentStatusesRequest();
+
+    request.setTableName(tableName);
+    request.setId(
+      getValidId(id)
+    );
+    request.setUuid(uuid);
+    request.setDocumentStatus(documentStatus);
+    request.setPageSize(pageSize);
+    request.setPageToken(pageToken);
     request.setClientRequest(
       createClientRequest({ token, language })
-    )
-    this.getWorkflowService().listDocumentStatuses(request, callback)
+    );
+
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getWorkflowService().listDocumentStatuses(
+      request,
+      metadata,
+      callback
+    );
   }
 
-  //  List workflow Activities
+  // List workflow Activities
   listWorkflowActivities({
     token,
     userUuid,
@@ -153,16 +198,25 @@ class Workflow {
     pageToken,
     language
   }, callback) {
-    const { ListWorkflowActivitiesRequest } = this.stubFile
-    const request = new ListWorkflowActivitiesRequest()
+    const { ListWorkflowActivitiesRequest } = this.stubFile;
+    const request = new ListWorkflowActivitiesRequest();
 
-    request.setUserUuid(userUuid)
-    request.setPageSize(pageSize)
-    request.setPageToken(pageToken)
+    request.setUserUuid(userUuid);
+    request.setPageSize(pageSize);
+    request.setPageToken(pageToken);
     request.setClientRequest(
       createClientRequest({ token, language })
     );
-    this.getWorkflowService().listWorkflowActivities(request, callback)
+
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getWorkflowService().listWorkflowActivities(
+      request,
+      metadata,
+      callback
+    );
   }
 
   // Run Document Action
@@ -177,14 +231,25 @@ class Workflow {
     const { RunDocumentActionRequest } = this.stubFile
     const request = new RunDocumentActionRequest();
 
-    request.setId(id);
+    request.setId(
+      getValidId(id)
+    );
     request.setUuid(uuid);
     request.setTableName(tableName);
     request.setDocumentAction(documentAction);
     request.setClientRequest(
       createClientRequest({ token, language })
     );
-    this.getWorkflowService().runDocumentAction(request, callback)
+
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getWorkflowService().runDocumentAction(
+      request,
+      metadata,
+      callback
+    );
   }
 
   /**
@@ -202,7 +267,7 @@ class Workflow {
     isApproved,
     language
   }, callback) {
-    const { ProcessRequest } = this.stubFile
+    const { ProcessRequest } = this.stubFile;
     const request = new ProcessRequest();
 
     request.setId(
@@ -215,7 +280,16 @@ class Workflow {
     request.setClientRequest(
       createClientRequest({ token, language })
     );
-    this.getWorkflowService().process(request, callback)
+
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getWorkflowService().process(
+      request,
+      metadata,
+      callback
+    );
   }
 
   /**
@@ -250,7 +324,16 @@ class Workflow {
     request.setClientRequest(
       createClientRequest({ token, language })
     );
-    this.getWorkflowService().forward(request, callback)
+
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getWorkflowService().forward(
+      request,
+      metadata,
+      callback
+    );
   }
 }
 

@@ -1,6 +1,6 @@
 /*************************************************************************************
  * Product: ADempiere gRPC Issue Management Client                                   *
- * Copyright (C) 2012-2022 E.R.P. Consultores y Asociados, C.A.                      *
+ * Copyright (C) 2012-2023 E.R.P. Consultores y Asociados, C.A.                      *
  * Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                      *
  * This program is free software: you can redistribute it and/or modify              *
  * it under the terms of the GNU General Public License as published by              *
@@ -15,6 +15,7 @@
  ************************************************************************************/
 
 const { createClientRequest } = require('@adempiere/grpc-api/lib/clientRequest');
+const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
 const { getValidId, getTimestamp } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
 
 class IssueManagement {
@@ -47,7 +48,10 @@ class IssueManagement {
   initIssueManagementService() {
     const grpc = require('@grpc/grpc-js');
     const services = require('@adempiere/grpc-api/src/grpc/proto/issue_management_grpc_pb');
-    this.issue_management = new services.IssueManagementClient(this.businessHost, grpc.credentials.createInsecure());
+    this.issue_management = new services.IssueManagementClient(
+      this.businessHost,
+      grpc.credentials.createInsecure()
+    );
   }
 
   // Get IssueManagement Service
@@ -77,7 +81,15 @@ class IssueManagement {
       createClientRequest({ token, language })
     );
 
-    this.getIssueManagementService().listRequestTypes(request, callback);
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getIssueManagementService().listRequestTypes(
+      request,
+      metadata,
+      callback
+    );
   }
 
 
@@ -103,7 +115,15 @@ class IssueManagement {
       createClientRequest({ token, language })
     );
 
-    this.getIssueManagementService().listSalesRepresentatives(request, callback);
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getIssueManagementService().listSalesRepresentatives(
+      request,
+      metadata,
+      callback
+    );
   }
 
 
@@ -129,7 +149,15 @@ class IssueManagement {
       createClientRequest({ token, language })
     );
 
-    this.getIssueManagementService().listPriorities(request, callback);
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getIssueManagementService().listPriorities(
+      request,
+      metadata,
+      callback
+    );
   }
 
 
@@ -164,7 +192,15 @@ class IssueManagement {
       createClientRequest({ token, language })
     );
 
-    this.getIssueManagementService().listStatuses(request, callback);
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getIssueManagementService().listPriorities(
+      request,
+      metadata,
+      callback
+    );
   }
 
 
@@ -197,7 +233,15 @@ class IssueManagement {
       createClientRequest({ token, language })
     );
 
-    this.getIssueManagementService().existsIssues(request, callback);
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getIssueManagementService().existsIssues(
+      request,
+      metadata,
+      callback
+    );
   }
 
   /**
@@ -234,7 +278,15 @@ class IssueManagement {
       createClientRequest({ token, language })
     );
 
-    this.getIssueManagementService().listIssues(request, callback);
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getIssueManagementService().listIssues(
+      request,
+      metadata,
+      callback
+    );
   }
 
   /**
@@ -299,7 +351,15 @@ class IssueManagement {
       createClientRequest({ token, language })
     );
 
-    this.getIssueManagementService().createIssue(request, callback);
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getIssueManagementService().createIssue(
+      request,
+      metadata,
+      callback
+    );
   }
 
   /**
@@ -361,7 +421,15 @@ class IssueManagement {
       createClientRequest({ token, language })
     );
 
-    this.getIssueManagementService().updateIssue(request, callback)
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getIssueManagementService().updateIssue(
+      request,
+      metadata,
+      callback
+    );
   }
 
   /**
@@ -378,7 +446,7 @@ class IssueManagement {
     language
   }, callback) {
     const { DeleteIssueRequest } = this.stubFile;
-    const request = new DeleteIssueRequest()
+    const request = new DeleteIssueRequest();
 
     request.setUuid(uuid);
     request.setId(
@@ -387,9 +455,17 @@ class IssueManagement {
 
     request.setClientRequest(
       createClientRequest({ token, language })
-    )
+    );
 
-    this.getIssueManagementService().deleteIssue(request, callback)
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getIssueManagementService().deleteIssue(
+      request,
+      metadata,
+      callback
+    );
   }
 
 
@@ -424,7 +500,15 @@ class IssueManagement {
       createClientRequest({ token, language })
     );
 
-    this.getIssueManagementService().listIssueComments(request, callback);
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getIssueManagementService().listIssueComments(
+      request,
+      metadata,
+      callback
+    );
   }
 
   /**
@@ -454,7 +538,15 @@ class IssueManagement {
       createClientRequest({ token, language })
     );
 
-    this.getIssueManagementService().createIssueComment(request, callback);
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getIssueManagementService().createIssueComment(
+      request,
+      metadata,
+      callback
+    );
   }
 
   /**
@@ -484,9 +576,17 @@ class IssueManagement {
 
     request.setClientRequest(
       createClientRequest({ token, language })
-    )
+    );
 
-    this.getIssueManagementService().updateIssueComment(request, callback)
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getIssueManagementService().updateIssueComment(
+      request,
+      metadata,
+      callback
+    );
   }
 
   /**
@@ -512,9 +612,13 @@ class IssueManagement {
 
     request.setClientRequest(
       createClientRequest({ token, language })
-    )
+    );
 
-    this.getIssueManagementService().deleteIssueComment(request, callback)
+    this.getIssueManagementService().deleteIssueComment(
+      request,
+      metadata,
+      callback
+    );
   }
 
 }

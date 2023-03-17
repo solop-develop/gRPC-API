@@ -1,6 +1,6 @@
 /*************************************************************************************
- * Logs: ADempiere gRPC Dictionary Client                                         *
- * Copyright (C) 2012-2022 E.R.P. Consultores y Asociados, C.A.                      *
+ * Logs: ADempiere gRPC Logs Client                                                  *
+ * Copyright (C) 2012-2023 E.R.P. Consultores y Asociados, C.A.                      *
  * Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                      *
  * This program is free software: you can redistribute it and/or modify              *
  * it under the terms of the GNU General Public License as published by              *
@@ -15,6 +15,7 @@
  ************************************************************************************/
 
 const { createClientRequest } = require('@adempiere/grpc-api/lib/clientRequest');
+const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
 const { getValidId } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
 
 class Logs {
@@ -46,8 +47,11 @@ class Logs {
   // Init connection
   initLogsService() {
     const grpc = require('@grpc/grpc-js');
-    const services = require('../grpc/proto/logs_grpc_pb');
-    this.logs = new services.LogsClient(this.businessHost, grpc.credentials.createInsecure());
+    const services = require('@adempiere/grpc-api/src/grpc/proto/logs_grpc_pb');
+    this.logs = new services.LogsClient(
+      this.businessHost,
+      grpc.credentials.createInsecure()
+    );
   }
 
   // Get Logs Service
@@ -55,7 +59,7 @@ class Logs {
     return this.logs;
   }
 
-  //  List logs
+  // List logs
   listLogs({
     token,
     tableName,
@@ -65,16 +69,26 @@ class Logs {
   }, callback) {
     const { ListLogsRequest } = this.stubFile;
     const request = new ListLogsRequest();
+
     request.setTableName(tableName);
     request.setPageSize(pageSize);
     request.setPageToken(pageToken);
     request.setClientRequest(
       this.createClientRequest({ token, language })
     );
-    this.getLogsService().listLogs(request, callback);
+
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getLogsService().listLogs(
+      request,
+      metadata,
+      callback
+    );
   }
 
-  //  List process logs
+  // List process logs
   listProcessLogs({
     token,
     tableName,
@@ -87,25 +101,33 @@ class Logs {
     language
   }, callback) {
     const { ListProcessLogsRequest } = this.stubFile;
-    const request = new ListProcessLogsRequest()
+    const request = new ListProcessLogsRequest();
 
-    request.setTableName(tableName)
-    request.setUuid(uuid)
+    request.setTableName(tableName);
+    request.setUuid(uuid);
     request.setId(
       getValidId(id)
     );
-    request.setUserUuid(userUuid)
-    request.setInstanceUuid(instanceUuid)
-    request.setPageSize(pageSize)
-    request.setPageToken(pageToken)
+    request.setUserUuid(userUuid);
+    request.setInstanceUuid(instanceUuid);
+    request.setPageSize(pageSize);
+    request.setPageToken(pageToken);
     request.setClientRequest(
       createClientRequest({ token, language })
-    )
+    );
 
-    this.getLogsService().listProcessLogs(request, callback)
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getLogsService().listProcessLogs(
+      request,
+      metadata,
+      callback
+    );
   }
 
-  //  List record logs
+  // List record logs
   listEntityLogs({
     token,
     tableName,
@@ -116,20 +138,28 @@ class Logs {
     language
   }, callback) {
     const { ListEntityLogsRequest } = this.stubFile;
-    const request = new ListEntityLogsRequest()
+    const request = new ListEntityLogsRequest();
 
-    request.setTableName(tableName)
-    request.setUuid(uuid)
+    request.setTableName(tableName);
+    request.setUuid(uuid);
     request.setId(
       getValidId(id)
     );
-    request.setPageSize(pageSize)
-    request.setPageToken(pageToken)
+    request.setPageSize(pageSize);
+    request.setPageToken(pageToken);
     request.setClientRequest(
       createClientRequest({ token, language })
-    )
+    );
 
-    this.getLogsService().listEntityLogs(request, callback)
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getLogsService().listEntityLogs(
+      request,
+      metadata,
+      callback
+    );
   }
 
   //  List entity chats
@@ -143,7 +173,7 @@ class Logs {
     language
   }, callback) {
     const { ListEntityChatsRequest } = this.stubFile;
-    const request = new ListEntityChatsRequest()
+    const request = new ListEntityChatsRequest();
 
     request.setTableName(tableName)
     request.setUuid(uuid)
@@ -154,9 +184,17 @@ class Logs {
     request.setPageToken(pageToken)
     request.setClientRequest(
       createClientRequest({ token, language })
-    )
+    );
 
-    this.getLogsService().listEntityChats(request, callback)
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getLogsService().listEntityChats(
+      request,
+      metadata,
+      callback
+    );
   }
 
   /**
@@ -188,10 +226,18 @@ class Logs {
       createClientRequest({ token, language })
     );
 
-    this.getLogsService().existsChatEntries(request, callback);
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getLogsService().existsChatEntries(
+      request,
+      metadata,
+      callback
+    );
   }
 
-  //  List chats entries
+  // List chats entries
   listChatEntries({
     token,
     id,
@@ -201,23 +247,30 @@ class Logs {
     language
   }, callback) {
     const { ListChatEntriesRequest } = this.stubFile;
-    const request = new ListChatEntriesRequest()
+    const request = new ListChatEntriesRequest();
 
-    request.setUuid(uuid)
-    request.setId(id)
+    request.setUuid(uuid);
     request.setId(
       getValidId(id)
     );
-    request.setPageSize(pageSize)
-    request.setPageToken(pageToken)
+    request.setPageSize(pageSize);
+    request.setPageToken(pageToken);
     request.setClientRequest(
       createClientRequest({ token, language })
-    )
+    );
 
-    this.getLogsService().listChatEntries(request, callback)
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getLogsService().listChatEntries(
+      request,
+      metadata,
+      callback
+    );
   }
 
-  //  List workflow logs
+  // List workflow logs
   listWorkflowLogs({
     token,
     tableName,
@@ -228,23 +281,31 @@ class Logs {
     language
   }, callback) {
     const { ListWorkflowLogsRequest } = this.stubFile;
-    const request = new ListWorkflowLogsRequest()
+    const request = new ListWorkflowLogsRequest();
 
-    request.setTableName(tableName)
-    request.setUuid(uuid)
+    request.setTableName(tableName);
+    request.setUuid(uuid);
     request.setId(
       getValidId(id)
     );
-    request.setPageSize(pageSize)
-    request.setPageToken(pageToken)
+    request.setPageSize(pageSize);
+    request.setPageToken(pageToken);
     request.setClientRequest(
       createClientRequest({ token, language })
-    )
+    );
 
-    this.getLogsService().listWorkflowLogs(request, callback)
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getLogsService().listWorkflowLogs(
+      request,
+      metadata,
+      callback
+    );
   }
 
-  //  List recent items
+  // List recent items
   listRecentItems({
     token,
     userUuid,
@@ -255,18 +316,26 @@ class Logs {
     language
   }, callback) {
     const { ListRecentItemsRequest } = this.stubFile;
-    const request = new ListRecentItemsRequest()
+    const request = new ListRecentItemsRequest();
 
-    request.setUserUuid(userUuid)
-    request.setRoleUuid(roleUuid)
-    request.setCurrentSession(currentSession)
-    request.setPageSize(pageSize)
-    request.setPageToken(pageToken)
+    request.setUserUuid(userUuid);
+    request.setRoleUuid(roleUuid);
+    request.setCurrentSession(currentSession);
+    request.setPageSize(pageSize);
+    request.setPageToken(pageToken);
     request.setClientRequest(
       createClientRequest({ token, language })
-    )
+    );
 
-    this.getLogsService().listRecentItems(request, callback)
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getLogsService().listRecentItems(
+      request,
+      metadata,
+      callback
+    );
   }
 
 }

@@ -1,6 +1,6 @@
 /*************************************************************************************
  * Product: ADempiere gRPC Payment Print/Export Client                               *
- * Copyright (C) 2012-2022 E.R.P. Consultores y Asociados, C.A.                      *
+ * Copyright (C) 2012-2023 E.R.P. Consultores y Asociados, C.A.                      *
  * Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                      *
  * This program is free software: you can redistribute it and/or modify              *
  * it under the terms of the GNU General Public License as published by              *
@@ -8,13 +8,14 @@
  * (at your option) any later version.                                               *
  * This program is distributed in the hope that it will be useful,                   *
  * but WITHOUT ANY WARRANTY; without even the implied warranty of                    *
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                     *
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the                      *
  * GNU General Public License for more details.                                      *
  * You should have received a copy of the GNU General Public License                 *
  * along with this program. If not, see <https://www.gnu.org/licenses/>.             *
  ************************************************************************************/
 
 const { createClientRequest } = require('@adempiere/grpc-api/lib/clientRequest');
+const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
 const { getValidId } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
 
 class PaymentPrintExport {
@@ -47,7 +48,10 @@ class PaymentPrintExport {
   initPaymentPrintExportService() {
     const grpc = require('@grpc/grpc-js');
     const { PaymentPrintExportClient } = require('@adempiere/grpc-api/src/grpc/proto/payment_print_export_grpc_pb');
-    this.paymentPrintExport = new PaymentPrintExportClient(this.businessHost, grpc.credentials.createInsecure());
+    this.paymentPrintExport = new PaymentPrintExportClient(
+      this.businessHost,
+      grpc.credentials.createInsecure()
+    );
   }
 
   // Get Payment Print/Export Service
@@ -79,7 +83,15 @@ class PaymentPrintExport {
       createClientRequest({ token, language })
     );
 
-    this.getPaymentPrintExport().listPaymentSelections(request, callback);
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getPaymentPrintExport().listPaymentSelections(
+      request,
+      metadata,
+      callback
+    );
   }
 
   /**
@@ -105,7 +117,15 @@ class PaymentPrintExport {
       createClientRequest({ token, language })
     );
 
-    this.getPaymentPrintExport().getPaymentSelection(request, callback);
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getPaymentPrintExport().getPaymentSelection(
+      request,
+      metadata,
+      callback
+    );
   }
 
   /**
@@ -141,7 +161,15 @@ class PaymentPrintExport {
       createClientRequest({ token, language })
     );
 
-    this.getPaymentPrintExport().listPaymentRules(request, callback);
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getPaymentPrintExport().listPaymentRules(
+      request,
+      metadata,
+      callback
+    );
   }
 
   /**
@@ -184,7 +212,15 @@ class PaymentPrintExport {
       createClientRequest({ token, language })
     );
 
-    this.getPaymentPrintExport().listPayments(request, callback);
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getPaymentPrintExport().listPayments(
+      request,
+      metadata,
+      callback
+    );
   }
 
   /**
@@ -220,7 +256,15 @@ class PaymentPrintExport {
       createClientRequest({ token, language })
     );
 
-    this.getPaymentPrintExport().getDocumentNo(request, callback);
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getPaymentPrintExport().getDocumentNo(
+      request,
+      metadata,
+      callback
+    );
   }
 
   /**
@@ -259,7 +303,15 @@ class PaymentPrintExport {
       createClientRequest({ token, language })
     );
 
-    this.getPaymentPrintExport().process(request, callback);
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getPaymentPrintExport().process(
+      request,
+      metadata,
+      callback
+    );
   }
 
   /**
@@ -298,7 +350,15 @@ class PaymentPrintExport {
       createClientRequest({ token, language })
     );
 
-    this.getPaymentPrintExport().export(request, callback);
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getPaymentPrintExport().export(
+      request,
+      metadata,
+      callback
+    );
   }
 
   /**
@@ -337,7 +397,15 @@ class PaymentPrintExport {
       createClientRequest({ token, language })
     );
 
-    this.getPaymentPrintExport().print(request, callback);
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getPaymentPrintExport().print(
+      request,
+      metadata,
+      callback
+    );
   }
 
   /**
@@ -376,7 +444,15 @@ class PaymentPrintExport {
       createClientRequest({ token, language })
     );
 
-    this.getPaymentPrintExport().confirmPrint(request, callback);
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getPaymentPrintExport().confirmPrint(
+      request,
+      metadata,
+      callback
+    );
   }
 
   /**
@@ -415,7 +491,15 @@ class PaymentPrintExport {
       createClientRequest({ token, language })
     );
 
-    this.getPaymentPrintExport().printRemittance(request, callback);
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getPaymentPrintExport().printRemittance(
+      request,
+      metadata,
+      callback
+    );
   }
 
 }

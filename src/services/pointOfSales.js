@@ -1,6 +1,6 @@
 /*************************************************************************************
  * Product: ADempiere gRPC Point Of Sales Client                                     *
- * Copyright (C) 2012-2022 E.R.P. Consultores y Asociados, C.A.                      *
+ * Copyright (C) 2012-2023 E.R.P. Consultores y Asociados, C.A.                      *
  * Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                      *
  * This program is free software: you can redistribute it and/or modify              *
  * it under the terms of the GNU General Public License as published by              *
@@ -8,15 +8,21 @@
  * (at your option) any later version.                                               *
  * This program is distributed in the hope that it will be useful,                   *
  * but WITHOUT ANY WARRANTY; without even the implied warranty of                    *
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                     *
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the                      *
  * GNU General Public License for more details.                                      *
  * You should have received a copy of the GNU General Public License                 *
  * along with this program. If not, see <https://www.gnu.org/licenses/>.             *
  ************************************************************************************/
 
-const { createClientRequest } = require('../../lib/clientRequest')
+const { createClientRequest } = require('@adempiere/grpc-api/lib/clientRequest');
+const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
 
 class PointOfSales {
+
+  /**
+   * File on generated stub
+   */
+  stubFile = require('@adempiere/grpc-api/src/grpc/proto/point_of_sales_pb.js');
 
   /**
    * Constructor, No authentication required
@@ -40,7 +46,7 @@ class PointOfSales {
   // Init connection
   initPointOfSalesService() {
     const grpc = require('@grpc/grpc-js');
-    const services = require('../grpc/proto/point_of_sales_grpc_pb');
+    const services = require('@adempiere/grpc-api/src/grpc/proto/point_of_sales_grpc_pb');
     this.pointOfSales = new services.StoreClient(
       this.businessHost,
       grpc.credentials.createInsecure()
@@ -61,7 +67,7 @@ class PointOfSales {
     pageToken,
     language
   }, callback) {
-    const { ListPointOfSalesRequest } = require('../grpc/proto/point_of_sales_pb.js')
+    const { ListPointOfSalesRequest } = this.stubFile;
     const request = new ListPointOfSalesRequest()
 
     request.setUserUuid(userUuid)
@@ -71,7 +77,15 @@ class PointOfSales {
       createClientRequest({ token, language })
     );
 
-    this.getPointOfSalesService().listPointOfSales(request, callback)
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getPointOfSalesService().listPointOfSales(
+      request,
+      metadata,
+      callback
+    );
   }
 
   //  Get Point of Sales
@@ -80,14 +94,22 @@ class PointOfSales {
     posUuid,
     language
   }, callback) {
-    const { PointOfSalesRequest } = require('../grpc/proto/point_of_sales_pb.js');
+    const { PointOfSalesRequest } = this.stubFile;
     const request = new PointOfSalesRequest()
     request.setPosUuid(posUuid)
     request.setClientRequest(
       createClientRequest({ token, language })
     );
 
-    this.getPointOfSalesService().getPointOfSales(request, callback)
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getPointOfSalesService().getPointOfSales(
+      request,
+      metadata,
+      callback
+    );
   }
 
   //  Get Product Price
@@ -104,7 +126,7 @@ class PointOfSales {
     warehouseUuid,
     language
   }, callback) {
-    const { GetProductPriceRequest } = require('../grpc/proto/point_of_sales_pb.js');
+    const { GetProductPriceRequest } = this.stubFile;
     const request = new GetProductPriceRequest()
     request.setSearchValue(searchValue)
     request.setUpc(upc)
@@ -119,7 +141,15 @@ class PointOfSales {
       createClientRequest({ token, language })
     );
 
-    this.getPointOfSalesService().getProductPrice(request, callback)
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getPointOfSalesService().getProductPrice(
+      request,
+      metadata,
+      callback
+    );
   }
 
   //  List Product Price
@@ -143,7 +173,7 @@ class PointOfSales {
     pageToken,
     language
   }, callback) {
-    const { ListProductPriceRequest } = require('../grpc/proto/point_of_sales_pb.js');
+    const { ListProductPriceRequest } = this.stubFile;
     const request = new ListProductPriceRequest()
     request.setSearchValue(searchValue)
     request.setPosUuid(posUuid)
@@ -168,7 +198,15 @@ class PointOfSales {
       createClientRequest({ token, language })
     );
 
-    this.getPointOfSalesService().listProductPrice(request, callback)
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getPointOfSalesService().listProductPrice(
+      request,
+      metadata,
+      callback
+    );
   }
 
   //  Create Sales Order
@@ -183,7 +221,7 @@ class PointOfSales {
     campaignUuid,
     language
   }, callback) {
-    const { CreateOrderRequest } = require('../grpc/proto/point_of_sales_pb.js');
+    const { CreateOrderRequest } = this.stubFile;
     const request = new CreateOrderRequest()
     request.setPosUuid(posUuid)
     request.setCampaignUuid(campaignUuid)
@@ -200,7 +238,15 @@ class PointOfSales {
       createClientRequest({ token, language })
     );
 
-    this.getPointOfSalesService().createOrder(request, callback)
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getPointOfSalesService().createOrder(
+      request,
+      metadata,
+      callback
+    );
   }
 
   //  Release Sales Order
@@ -211,7 +257,7 @@ class PointOfSales {
     salesRepresentativeUuid,
     language
   }, callback) {
-    const { ReleaseOrderRequest } = require('../grpc/proto/point_of_sales_pb.js');
+    const { ReleaseOrderRequest } = this.stubFile;
     const request = new ReleaseOrderRequest()
     request.setPosUuid(posUuid)
     request.setOrderUuid(orderUuid)
@@ -220,7 +266,15 @@ class PointOfSales {
       createClientRequest({ token, language })
     );
 
-    this.getPointOfSalesService().releaseOrder(request, callback)
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getPointOfSalesService().releaseOrder(
+      request,
+      metadata,
+      callback
+    );
   }
 
   //  Hold Sales Order
@@ -231,7 +285,7 @@ class PointOfSales {
     salesRepresentativeUuid,
     language
   }, callback) {
-    const { HoldOrderRequest } = require('../grpc/proto/point_of_sales_pb.js');
+    const { HoldOrderRequest } = this.stubFile;
     const request = new HoldOrderRequest()
     request.setPosUuid(posUuid)
     request.setOrderUuid(orderUuid)
@@ -240,7 +294,15 @@ class PointOfSales {
       createClientRequest({ token, language })
     );
 
-    this.getPointOfSalesService().holdOrder(request, callback)
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getPointOfSalesService().holdOrder(
+      request,
+      metadata,
+      callback
+    );
   }
 
   //  Delete Sales Order
@@ -250,7 +312,7 @@ class PointOfSales {
     orderUuid,
     language
   }, callback) {
-    const { DeleteOrderRequest } = require('../grpc/proto/point_of_sales_pb.js');
+    const { DeleteOrderRequest } = this.stubFile;
     const request = new DeleteOrderRequest()
 
     request.setPosUuid(posUuid);
@@ -259,7 +321,15 @@ class PointOfSales {
       createClientRequest({ token, language })
     );
 
-    this.getPointOfSalesService().deleteOrder(request, callback)
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getPointOfSalesService().deleteOrder(
+      request,
+      metadata,
+      callback
+    );
   }
 
   //  Create Sales Order Line
@@ -277,7 +347,7 @@ class PointOfSales {
     warehouseUuid,
     language
   }, callback) {
-    const { CreateOrderLineRequest } = require('../grpc/proto/point_of_sales_pb.js');
+    const { CreateOrderLineRequest } = this.stubFile;
     const request = new CreateOrderLineRequest()
     const { getDecimalFromNumber } = require('../../lib/convertValues.js')
 
@@ -303,7 +373,15 @@ class PointOfSales {
       createClientRequest({ token, language })
     );
 
-    this.getPointOfSalesService().createOrderLine(request, callback)
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getPointOfSalesService().createOrderLine(
+      request,
+      metadata,
+      callback
+    );
   }
 
   //  Delete Sales Order Line
@@ -313,7 +391,7 @@ class PointOfSales {
     orderLineUuid,
     language
   }, callback) {
-    const { DeleteOrderLineRequest } = require('../grpc/proto/point_of_sales_pb.js');
+    const { DeleteOrderLineRequest } = this.stubFile;
     const request = new DeleteOrderLineRequest()
 
     request.setPosUuid(posUuid);
@@ -322,7 +400,15 @@ class PointOfSales {
       createClientRequest({ token, language })
     );
 
-    this.getPointOfSalesService().deleteOrderLine(request, callback)
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getPointOfSalesService().deleteOrderLine(
+      request,
+      metadata,
+      callback
+    );
   }
 
   //  Update Sales Order
@@ -342,7 +428,7 @@ class PointOfSales {
     salesRepresentativeUuid,
     language
   }, callback) {
-    const { UpdateOrderRequest } = require('../grpc/proto/point_of_sales_pb.js');
+    const { UpdateOrderRequest } = this.stubFile;
     const { getDecimalFromNumber } = require('../../lib/convertValues.js')
     const request = new UpdateOrderRequest()
     request.setOrderUuid(orderUuid)
@@ -366,7 +452,15 @@ class PointOfSales {
       createClientRequest({ token, language })
     );
 
-    this.getPointOfSalesService().updateOrder(request, callback)
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getPointOfSalesService().updateOrder(
+      request,
+      metadata,
+      callback
+    );
   }
 
   //  Update Sales Order Line
@@ -383,7 +477,7 @@ class PointOfSales {
     warehouseUuid,
     language
   }, callback) {
-    const { UpdateOrderLineRequest } = require('@adempiere/grpc-api/src/grpc/proto/point_of_sales_pb.js');
+    const { UpdateOrderLineRequest } = this.stubFile;
     const { getDecimalFromNumber } = require('@adempiere/grpc-api/lib/convertValues.js');
     const request = new UpdateOrderLineRequest();
     
@@ -400,7 +494,15 @@ class PointOfSales {
       createClientRequest({ token, language })
     );
 
-    this.getPointOfSalesService().updateOrderLine(request, callback)
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getPointOfSalesService().updateOrderLine(
+      request,
+      metadata,
+      callback
+    );
   }
 
   //  Get Sales Order
@@ -410,7 +512,7 @@ class PointOfSales {
     orderUuid,
     language
   }, callback) {
-    const { GetOrderRequest } = require('../grpc/proto/point_of_sales_pb.js');
+    const { GetOrderRequest } = this.stubFile;
     const request = new GetOrderRequest()
 
     request.setPosUuid(posUuid);
@@ -419,7 +521,15 @@ class PointOfSales {
       createClientRequest({ token, language })
     );
 
-    this.getPointOfSalesService().getOrder(request, callback)
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getPointOfSalesService().getOrder(
+      request,
+      metadata,
+      callback
+    );
   }
 
   //  List Orders
@@ -450,7 +560,7 @@ class PointOfSales {
     pageToken,
     language
   }, callback) {
-    const { ListOrdersRequest } = require('../grpc/proto/point_of_sales_pb.js');
+    const { ListOrdersRequest } = this.stubFile;
     const request = new ListOrdersRequest()
     const { convertCriteriaToGRPC, getDecimalFromNumber } = require('../../lib/convertValues.js')
     request.setCriteria(convertCriteriaToGRPC({
@@ -490,7 +600,15 @@ class PointOfSales {
       createClientRequest({ token, language })
     );
 
-    this.getPointOfSalesService().listOrders(request, callback)
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getPointOfSalesService().listOrders(
+      request,
+      metadata,
+      callback
+    );
   }
 
   //  List Sales Order Lines
@@ -502,7 +620,7 @@ class PointOfSales {
     pageToken,
     language
   }, callback) {
-    const { ListOrderLinesRequest } = require('../grpc/proto/point_of_sales_pb.js');
+    const { ListOrderLinesRequest } = this.stubFile;
     const request = new ListOrderLinesRequest()
 
     request.setPosUuid(posUuid);
@@ -513,7 +631,15 @@ class PointOfSales {
       createClientRequest({ token, language })
     );
 
-    this.getPointOfSalesService().listOrderLines(request, callback)
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getPointOfSalesService().listOrderLines(
+      request,
+      metadata,
+      callback
+    );
   }
 
   //  Create Shipment
@@ -525,7 +651,7 @@ class PointOfSales {
     isCreateLinesFromOrder,
     language
   }, callback) {
-    const { CreateShipmentRequest } = require('../grpc/proto/point_of_sales_pb.js');
+    const { CreateShipmentRequest } = this.stubFile;
     const request = new CreateShipmentRequest();
 
     request.setPosUuid(posUuid);
@@ -536,7 +662,15 @@ class PointOfSales {
       createClientRequest({ token, language })
     );
 
-    this.getPointOfSalesService().createShipment(request, callback);
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getPointOfSalesService().createShipment(
+      request,
+      metadata,
+      callback
+    );
   }
 
     //  Create Shipment Line
@@ -549,7 +683,7 @@ class PointOfSales {
     quantity,
     language
   }, callback) {
-    const { CreateShipmentLineRequest } = require('../grpc/proto/point_of_sales_pb.js');
+    const { CreateShipmentLineRequest } = this.stubFile;
     const request = new CreateShipmentLineRequest()
     const { getDecimalFromNumber } = require('../../lib/convertValues.js')
 
@@ -564,7 +698,15 @@ class PointOfSales {
       createClientRequest({ token, language })
     );
 
-    this.getPointOfSalesService().createShipmentLine(request, callback)
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getPointOfSalesService().createShipmentLine(
+      request,
+      metadata,
+      callback
+    );
   }
 
   //  Delete Shipment Line
@@ -574,7 +716,7 @@ class PointOfSales {
     shipmentLineUuid,
     language
   }, callback) {
-    const { DeleteShipmentLineRequest } = require('../grpc/proto/point_of_sales_pb.js');
+    const { DeleteShipmentLineRequest } = this.stubFile;
     const request = new DeleteShipmentLineRequest()
 
     request.setPosUuid(posUuid);
@@ -583,7 +725,15 @@ class PointOfSales {
       createClientRequest({ token, language })
     );
 
-    this.getPointOfSalesService().deleteShipmentLine(request, callback)
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getPointOfSalesService().deleteShipmentLine(
+      request,
+      metadata,
+      callback
+    );
   }
 
   //  List Shipment Lines
@@ -595,7 +745,7 @@ class PointOfSales {
     pageToken,
     language
   }, callback) {
-    const { ListShipmentLinesRequest } = require('../grpc/proto/point_of_sales_pb.js');
+    const { ListShipmentLinesRequest } = this.stubFile;
     const request = new ListShipmentLinesRequest()
 
     request.setPosUuid(posUuid);
@@ -606,7 +756,15 @@ class PointOfSales {
       createClientRequest({ token, language })
     );
 
-    this.getPointOfSalesService().listShipmentLines(request, callback)
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getPointOfSalesService().listShipmentLines(
+      request,
+      metadata,
+      callback
+    );
   }
 
   //  Process Shipment
@@ -618,7 +776,7 @@ class PointOfSales {
     documentAction,
     language
   }, callback) {
-    const { ProcessShipmentRequest } = require('../grpc/proto/point_of_sales_pb.js');
+    const { ProcessShipmentRequest } = this.stubFile;
     const request = new ProcessShipmentRequest()
 
     request.setPosUuid(posUuid);
@@ -629,7 +787,15 @@ class PointOfSales {
       createClientRequest({ token, language })
     );
 
-    this.getPointOfSalesService().processShipment(request, callback)
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getPointOfSalesService().processShipment(
+      request,
+      metadata,
+      callback
+    );
   }
 
   //  Reverse Sales transaction
@@ -640,7 +806,7 @@ class PointOfSales {
     description,
     language
   }, callback) {
-    const { ReverseSalesRequest } = require('../grpc/proto/point_of_sales_pb.js');
+    const { ReverseSalesRequest } = this.stubFile;
     const request = new ReverseSalesRequest()
     request.setOrderUuid(orderUuid)
     request.setPosUuid(posUuid)
@@ -649,7 +815,15 @@ class PointOfSales {
       createClientRequest({ token, language })
     );
 
-    this.getPointOfSalesService().reverseSales(request, callback)
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getPointOfSalesService().reverseSales(
+      request,
+      metadata,
+      callback
+    );
   }
 
   //  Payments
@@ -674,7 +848,7 @@ class PointOfSales {
     referenceBankAccountUuid,
     language
   }, callback) {
-    const { CreatePaymentRequest } = require('@adempiere/grpc-api/src/grpc/proto/point_of_sales_pb.js');
+    const { CreatePaymentRequest } = this.stubFile;
     const { getDecimalFromNumber } = require('@adempiere/grpc-api/lib/convertValues.js');
     const request = new CreatePaymentRequest()
 
@@ -725,7 +899,15 @@ class PointOfSales {
       createClientRequest({ token, language })
     );
 
-    this.getPointOfSalesService().createPayment(request, callback)
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getPointOfSalesService().createPayment(
+      request,
+      metadata,
+      callback
+    );
   }
 
   //  Create Payment Refund Reference
@@ -748,7 +930,7 @@ class PointOfSales {
     paymentMethodUuid,
     language
   }, callback) {
-    const { CreatePaymentReferenceRequest } = require('../grpc/proto/point_of_sales_pb.js');
+    const { CreatePaymentReferenceRequest } = this.stubFile;
     const { getDecimalFromNumber } = require('../../lib/convertValues.js')
     const request = new CreatePaymentReferenceRequest()
     request.setPosUuid(posUuid)
@@ -793,7 +975,15 @@ class PointOfSales {
       createClientRequest({ token, language })
     );
 
-    this.getPointOfSalesService().createPaymentReference(request, callback)
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getPointOfSalesService().createPaymentReference(
+      request,
+      metadata,
+      callback
+    );
   }
 
   //  Update Payment
@@ -812,7 +1002,7 @@ class PointOfSales {
     referenceBankAccountUuid,
     language
   }, callback) {
-    const { UpdatePaymentRequest } = require('@adempiere/grpc-api/src/grpc/proto/point_of_sales_pb.js');
+    const { UpdatePaymentRequest } = this.stubFile;
     const { getDecimalFromNumber } = require('@adempiere/grpc-api/lib/convertValues.js');
     const request = new UpdatePaymentRequest();
 
@@ -848,7 +1038,15 @@ class PointOfSales {
       createClientRequest({ token, language })
     );
 
-    this.getPointOfSalesService().updatePayment(request, callback)
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getPointOfSalesService().updatePayment(
+      request,
+      metadata,
+      callback
+    );
   }
 
   //  List Cash summary movements
@@ -859,7 +1057,7 @@ class PointOfSales {
     pageToken,
     language
   }, callback) {
-    const { ListCashSummaryMovementsRequest } = require('../grpc/proto/point_of_sales_pb.js');
+    const { ListCashSummaryMovementsRequest } = this.stubFile;
     const request = new ListCashSummaryMovementsRequest()
     if (posUuid) {
       request.setPosUuid(posUuid)
@@ -870,7 +1068,15 @@ class PointOfSales {
       createClientRequest({ token, language })
     );
 
-    this.getPointOfSalesService().listCashSummaryMovements(request, callback)
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getPointOfSalesService().listCashSummaryMovements(
+      request,
+      metadata,
+      callback
+    );
   }
 
   //  Cash Closing
@@ -881,7 +1087,7 @@ class PointOfSales {
     id,
     language
   }, callback) {
-    const { CashClosingRequest } = require('../grpc/proto/point_of_sales_pb.js');
+    const { CashClosingRequest } = this.stubFile;
     const request = new CashClosingRequest()
     if (posUuid) {
       request.setPosUuid(posUuid)
@@ -894,7 +1100,15 @@ class PointOfSales {
       createClientRequest({ token, language })
     );
 
-    this.getPointOfSalesService().processCashClosing(request, callback)
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getPointOfSalesService().processCashClosing(
+      request,
+      metadata,
+      callback
+    );
   }
 
   //  Cash Opening service
@@ -906,7 +1120,7 @@ class PointOfSales {
     payments,
     language
   }, callback) {
-    const { CashOpeningRequest, CreatePaymentRequest } = require('../grpc/proto/point_of_sales_pb.js');
+    const { CashOpeningRequest, CreatePaymentRequest } = this.stubFile;
     const { convertValueToGRPC, getDecimalFromNumber } = require('../../lib/convertValues.js')
     const request = new CashOpeningRequest()
     request.setPosUuid(posUuid)
@@ -958,7 +1172,15 @@ class PointOfSales {
       createClientRequest({ token, language })
     );
 
-    this.getPointOfSalesService().processCashOpening(request, callback)
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getPointOfSalesService().processCashOpening(
+      request,
+      metadata,
+      callback
+    );
   }
 
     //  Cash Withdrawal service
@@ -970,7 +1192,7 @@ class PointOfSales {
     payments,
     language
   }, callback) {
-    const { CashWithdrawalRequest, CreatePaymentRequest } = require('../grpc/proto/point_of_sales_pb.js');
+    const { CashWithdrawalRequest, CreatePaymentRequest } = this.stubFile;
     const { convertValueToGRPC, getDecimalFromNumber } = require('../../lib/convertValues.js')
     const request = new CashWithdrawalRequest()
     request.setPosUuid(posUuid)
@@ -1022,7 +1244,15 @@ class PointOfSales {
       createClientRequest({ token, language })
     );
 
-    this.getPointOfSalesService().processCashWithdrawal(request, callback)
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getPointOfSalesService().processCashWithdrawal(
+      request,
+      metadata,
+      callback
+    );
   }
 
   //  allocate Seller
@@ -1032,7 +1262,7 @@ class PointOfSales {
     salesRepresentativeUuid,
     language
   }, callback) {
-    const { AllocateSellerRequest } = require('../grpc/proto/point_of_sales_pb.js');
+    const { AllocateSellerRequest } = this.stubFile;
     const request = new AllocateSellerRequest()
     request.setPosUuid(posUuid)
     request.setSalesRepresentativeUuid(salesRepresentativeUuid)
@@ -1040,7 +1270,15 @@ class PointOfSales {
       createClientRequest({ token, language })
     );
 
-    this.getPointOfSalesService().allocateSeller(request, callback)
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getPointOfSalesService().allocateSeller(
+      request,
+      metadata,
+      callback
+    );
   }
 
   //  deallocate Seller
@@ -1050,7 +1288,7 @@ class PointOfSales {
     salesRepresentativeUuid,
     language
   }, callback) {
-    const { DeallocateSellerRequest } = require('../grpc/proto/point_of_sales_pb.js');
+    const { DeallocateSellerRequest } = this.stubFile;
     const request = new DeallocateSellerRequest()
     request.setPosUuid(posUuid)
     request.setSalesRepresentativeUuid(salesRepresentativeUuid)
@@ -1058,7 +1296,15 @@ class PointOfSales {
       createClientRequest({ token, language })
     );
 
-    this.getPointOfSalesService().allocateSeller(request, callback)
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getPointOfSalesService().allocateSeller(
+      request,
+      metadata,
+      callback
+    );
   }
 
   //  Delete Payment
@@ -1068,7 +1314,7 @@ class PointOfSales {
     paymentUuid,
     language
   }, callback) {
-    const { DeletePaymentRequest } = require('../grpc/proto/point_of_sales_pb.js');
+    const { DeletePaymentRequest } = this.stubFile;
     const request = new DeletePaymentRequest()
 
     request.setPosUuid(posUuid);
@@ -1077,7 +1323,15 @@ class PointOfSales {
       createClientRequest({ token, language })
     );
 
-    this.getPointOfSalesService().deletePayment(request, callback)
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getPointOfSalesService().deletePayment(
+      request,
+      metadata,
+      callback
+    );
   }
 
   //  Delete Refund Reference
@@ -1088,7 +1342,7 @@ class PointOfSales {
     id,
     language
   }, callback) {
-    const { DeletePaymentReferenceRequest } = require('../grpc/proto/point_of_sales_pb.js');
+    const { DeletePaymentReferenceRequest } = this.stubFile;
     const request = new DeletePaymentReferenceRequest()
 
     request.setPosUuid(posUuid);
@@ -1098,7 +1352,15 @@ class PointOfSales {
       createClientRequest({ token, language })
     );
 
-    this.getPointOfSalesService().deletePaymentReference(request, callback)
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getPointOfSalesService().deletePaymentReference(
+      request,
+      metadata,
+      callback
+    );
   }
 
   //  List Payments
@@ -1120,7 +1382,7 @@ class PointOfSales {
     pageToken,
     language
   }, callback) {
-    const { ListPaymentsRequest } = require('../grpc/proto/point_of_sales_pb.js');
+    const { ListPaymentsRequest } = this.stubFile;
     const { convertCriteriaToGRPC } = require('../../lib/convertValues.js')
     const request = new ListPaymentsRequest()
     request.setCriteria(convertCriteriaToGRPC({
@@ -1145,7 +1407,15 @@ class PointOfSales {
       createClientRequest({ token, language })
     );
 
-    this.getPointOfSalesService().listPayments(request, callback)
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getPointOfSalesService().listPayments(
+      request,
+      metadata,
+      callback
+    );
   }
 
   //  Create Payment
@@ -1157,7 +1427,7 @@ class PointOfSales {
     payments,
     language
   }, callback) {
-    const { CreatePaymentRequest, ProcessOrderRequest } = require('../grpc/proto/point_of_sales_pb.js');
+    const { CreatePaymentRequest, ProcessOrderRequest } = this.stubFile;
     const { convertValueToGRPC, getDecimalFromNumber } = require('../../lib/convertValues.js')
     const request = new ProcessOrderRequest()
     request.setPosUuid(posUuid)
@@ -1209,7 +1479,15 @@ class PointOfSales {
       createClientRequest({ token, language })
     );
 
-    this.getPointOfSalesService().processOrder(request, callback)
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getPointOfSalesService().processOrder(
+      request,
+      metadata,
+      callback
+    );
   }
 
   //  Get Sales Order
@@ -1219,7 +1497,7 @@ class PointOfSales {
     keyLayoutUuid,
     language
   }, callback) {
-    const { GetKeyLayoutRequest } = require('../grpc/proto/point_of_sales_pb.js');
+    const { GetKeyLayoutRequest } = this.stubFile;
     const request = new GetKeyLayoutRequest()
 
     request.setPosUuid(posUuid);
@@ -1228,7 +1506,15 @@ class PointOfSales {
       createClientRequest({ token, language })
     );
 
-    this.getPointOfSalesService().getKeyLayout(request, callback)
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getPointOfSalesService().getKeyLayout(
+      request,
+      metadata,
+      callback
+    );
   }
 
   //  Validate User PIN
@@ -1240,7 +1526,7 @@ class PointOfSales {
     requestedAmount,
     language
   }, callback) {
-    const { ValidatePINRequest } = require('../grpc/proto/point_of_sales_pb.js');
+    const { ValidatePINRequest } = this.stubFile;
     const { getDecimalFromNumber } = require('../../lib/convertValues.js')
     const request = new ValidatePINRequest()
 
@@ -1254,7 +1540,15 @@ class PointOfSales {
       createClientRequest({ token, language })
     );
 
-    this.getPointOfSalesService().validatePIN(request, callback)
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getPointOfSalesService().validatePIN(
+      request,
+      metadata,
+      callback
+    );
   }
 
   //  List Available Warehouses
@@ -1265,7 +1559,7 @@ class PointOfSales {
     pageToken,
     language
   }, callback) {
-    const { ListAvailableWarehousesRequest } = require('../grpc/proto/point_of_sales_pb.js');
+    const { ListAvailableWarehousesRequest } = this.stubFile;
     const request = new ListAvailableWarehousesRequest()
     if (posUuid) {
       request.setPosUuid(posUuid)
@@ -1276,7 +1570,15 @@ class PointOfSales {
       createClientRequest({ token, language })
     );
 
-    this.getPointOfSalesService().listAvailableWarehouses(request, callback)
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getPointOfSalesService().listAvailableWarehouses(
+      request,
+      metadata,
+      callback
+    );
   }
 
   //  List Available Tender Types
@@ -1287,7 +1589,7 @@ class PointOfSales {
     pageToken,
     language
   }, callback) {
-    const { ListAvailablePaymentMethodsRequest } = require('../grpc/proto/point_of_sales_pb.js');
+    const { ListAvailablePaymentMethodsRequest } = this.stubFile;
     const request = new ListAvailablePaymentMethodsRequest()
     if (posUuid) {
       request.setPosUuid(posUuid)
@@ -1298,7 +1600,15 @@ class PointOfSales {
       createClientRequest({ token, language })
     );
 
-    this.getPointOfSalesService().listAvailablePaymentMethods(request, callback)
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getPointOfSalesService().listAvailablePaymentMethods(
+      request,
+      metadata,
+      callback
+    );
   }
 
   //  List Available Price List
@@ -1309,7 +1619,7 @@ class PointOfSales {
     pageToken,
     language
   }, callback) {
-    const { ListAvailablePriceListRequest } = require('../grpc/proto/point_of_sales_pb.js');
+    const { ListAvailablePriceListRequest } = this.stubFile;
     const request = new ListAvailablePriceListRequest()
     if (posUuid) {
       request.setPosUuid(posUuid)
@@ -1320,7 +1630,15 @@ class PointOfSales {
       createClientRequest({ token, language })
     );
 
-    this.getPointOfSalesService().listAvailablePriceList(request, callback)
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getPointOfSalesService().listAvailablePriceList(
+      request,
+      metadata,
+      callback
+    );
   }
 
   //  List Available Price List
@@ -1331,7 +1649,7 @@ class PointOfSales {
     pageToken,
     language
   }, callback) {
-    const { ListAvailableCurrenciesRequest } = require('../grpc/proto/point_of_sales_pb.js');
+    const { ListAvailableCurrenciesRequest } = this.stubFile;
     const request = new ListAvailableCurrenciesRequest()
     if (posUuid) {
       request.setPosUuid(posUuid)
@@ -1342,7 +1660,15 @@ class PointOfSales {
       createClientRequest({ token, language })
     );
 
-    this.getPointOfSalesService().listAvailableCurrencies(request, callback)
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getPointOfSalesService().listAvailableCurrencies(
+      request,
+      metadata,
+      callback
+    );
   }
 
   //  List Available Document Types
@@ -1353,7 +1679,7 @@ class PointOfSales {
     pageToken,
     language
   }, callback) {
-    const { ListAvailableDocumentTypesRequest } = require('../grpc/proto/point_of_sales_pb.js');
+    const { ListAvailableDocumentTypesRequest } = this.stubFile;
     const request = new ListAvailableDocumentTypesRequest()
     if (posUuid) {
       request.setPosUuid(posUuid)
@@ -1364,7 +1690,15 @@ class PointOfSales {
       createClientRequest({ token, language })
     );
 
-    this.getPointOfSalesService().listAvailableDocumentTypes(request, callback)
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getPointOfSalesService().listAvailableDocumentTypes(
+      request,
+      metadata,
+      callback
+    );
   }
 
   //  Create Customer from POS
@@ -1383,7 +1717,7 @@ class PointOfSales {
     additionalAttributes,
     language
   }, callback) {
-    const { CreateCustomerRequest, AddressRequest } = require('../grpc/proto/point_of_sales_pb.js');
+    const { CreateCustomerRequest, AddressRequest } = this.stubFile;
     const { convertParameterToGRPC } = require('../../lib/convertValues.js');
     const request = new CreateCustomerRequest()
     request.setValue(value)
@@ -1439,7 +1773,15 @@ class PointOfSales {
       createClientRequest({ token, language })
     );
 
-    this.getPointOfSalesService().createCustomer(request, callback)
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getPointOfSalesService().createCustomer(
+      request,
+      metadata,
+      callback
+    );
   }
 
   //  Update Customer from POS
@@ -1458,7 +1800,7 @@ class PointOfSales {
     additionalAttributes,
     language
   }, callback) {
-    const { UpdateCustomerRequest, AddressRequest } = require('../grpc/proto/point_of_sales_pb.js');
+    const { UpdateCustomerRequest, AddressRequest } = this.stubFile;
     const { convertParameterToGRPC } = require('../../lib/convertValues.js');
     const request = new UpdateCustomerRequest()
 
@@ -1516,7 +1858,15 @@ class PointOfSales {
       createClientRequest({ token, language })
     );
 
-    this.getPointOfSalesService().updateCustomer(request, callback)
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getPointOfSalesService().updateCustomer(
+      request,
+      metadata,
+      callback
+    );
   }
 
   //  Get Customer
@@ -1532,7 +1882,7 @@ class PointOfSales {
     phone,
     language
   }, callback) {
-    const { GetCustomerRequest } = require('../grpc/proto/point_of_sales_pb.js');
+    const { GetCustomerRequest } = this.stubFile;
     const request = new GetCustomerRequest()
 
     request.setPosUuid(posUuid);
@@ -1547,7 +1897,15 @@ class PointOfSales {
       createClientRequest({ token, language })
     );
 
-    this.getPointOfSalesService().getCustomer(request, callback)
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getPointOfSalesService().getCustomer(
+      request,
+      metadata,
+      callback
+    );
   }
 
   //  Get Customer Bank Account
@@ -1557,7 +1915,7 @@ class PointOfSales {
     customerBankAccountUuid,
     language
   }, callback) {
-    const { GetCustomerBankAccountRequest } = require('../grpc/proto/point_of_sales_pb.js');
+    const { GetCustomerBankAccountRequest } = this.stubFile;
     const request = new GetCustomerBankAccountRequest()
 
     request.setPosUuid(posUuid);
@@ -1566,7 +1924,15 @@ class PointOfSales {
       createClientRequest({ token, language })
     );
 
-    this.getPointOfSalesService().getCustomerBankAccount(request, callback)
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getPointOfSalesService().getCustomerBankAccount(
+      request,
+      metadata,
+      callback
+    );
   }
 
   //  Create Customer Bank Account
@@ -1594,7 +1960,7 @@ class PointOfSales {
     accountNo,
     language
   }, callback) {
-    const { CreateCustomerBankAccountRequest } = require('../grpc/proto/point_of_sales_pb.js');
+    const { CreateCustomerBankAccountRequest } = this.stubFile;
     const request = new CreateCustomerBankAccountRequest()
     request.setCustomerUuid(customerUuid)
     request.setPosUuid(posUuid)
@@ -1620,7 +1986,15 @@ class PointOfSales {
       createClientRequest({ token, language })
     );
 
-    this.getPointOfSalesService().createCustomerBankAccount(request, callback)
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getPointOfSalesService().createCustomerBankAccount(
+      request,
+      metadata,
+      callback
+    );
   }
 
   //  Update Customer Bank Account
@@ -1648,7 +2022,7 @@ class PointOfSales {
     accountNo,
     language
   }, callback) {
-    const { UpdateCustomerBankAccountRequest } = require('../grpc/proto/point_of_sales_pb.js');
+    const { UpdateCustomerBankAccountRequest } = this.stubFile;
     const request = new UpdateCustomerBankAccountRequest()
     request.setCustomerBankAccountUuid(customerBankAccountUuid)
     request.setPosUuid(posUuid)
@@ -1674,7 +2048,15 @@ class PointOfSales {
       createClientRequest({ token, language })
     );
 
-    this.getPointOfSalesService().updateCustomerBankAccount(request, callback)
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getPointOfSalesService().updateCustomerBankAccount(
+      request,
+      metadata,
+      callback
+    );
   }
 
   //  Get Customer Bank Accoount
@@ -1684,7 +2066,7 @@ class PointOfSales {
     customerBankAccountUuid,
     language
   }, callback) {
-    const { GetCustomerBankAccountRequest } = require('../grpc/proto/point_of_sales_pb.js');
+    const { GetCustomerBankAccountRequest } = this.stubFile;
     const request = new GetCustomerBankAccountRequest()
 
     request.setPosUuid(posUuid);
@@ -1693,7 +2075,15 @@ class PointOfSales {
       createClientRequest({ token, language })
     );
 
-    this.getPointOfSalesService().getCustomerBankAccount(request, callback)
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getPointOfSalesService().getCustomerBankAccount(
+      request,
+      metadata,
+      callback
+    );
   }
 
   //  Delete Customer Bank Accoount
@@ -1703,7 +2093,7 @@ class PointOfSales {
     customerBankAccountUuid,
     language
   }, callback) {
-    const { DeleteCustomerBankAccountRequest } = require('../grpc/proto/point_of_sales_pb.js');
+    const { DeleteCustomerBankAccountRequest } = this.stubFile;
     const request = new DeleteCustomerBankAccountRequest()
 
     request.setPosUuid(posUuid);
@@ -1712,7 +2102,15 @@ class PointOfSales {
       createClientRequest({ token, language })
     );
 
-    this.getPointOfSalesService().deleteCustomerBankAccount(request, callback)
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getPointOfSalesService().deleteCustomerBankAccount(
+      request,
+      metadata,
+      callback
+    );
   }
 
   //  List Customer Bank Accounts
@@ -1724,7 +2122,7 @@ class PointOfSales {
     pageToken,
     language
   }, callback) {
-    const { ListCustomerBankAccountsRequest } = require('../grpc/proto/point_of_sales_pb.js');
+    const { ListCustomerBankAccountsRequest } = this.stubFile;
     const request = new ListCustomerBankAccountsRequest()
 
     request.setPosUuid(posUuid);
@@ -1735,7 +2133,15 @@ class PointOfSales {
       createClientRequest({ token, language })
     );
 
-    this.getPointOfSalesService().listCustomerBankAccounts(request, callback)
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getPointOfSalesService().listCustomerBankAccounts(
+      request,
+      metadata,
+      callback
+    );
   }
 
   //  List Customer Refund References
@@ -1748,7 +2154,7 @@ class PointOfSales {
     pageToken,
     language
   }, callback) {
-    const { ListPaymentReferencesRequest } = require('../grpc/proto/point_of_sales_pb.js');
+    const { ListPaymentReferencesRequest } = this.stubFile;
     const request = new ListPaymentReferencesRequest()
     request.setCustomerUuid(customerUuid)
     request.setPosUuid(posUuid)
@@ -1759,7 +2165,15 @@ class PointOfSales {
       createClientRequest({ token, language })
     );
 
-    this.getPointOfSalesService().listPaymentReferences(request, callback)
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getPointOfSalesService().listPaymentReferences(
+      request,
+      metadata,
+      callback
+    );
   }
 
   //  Get Available Refund
@@ -1769,7 +2183,7 @@ class PointOfSales {
     date,
     language
   }, callback) {
-    const { GetAvailableRefundRequest } = require('../grpc/proto/point_of_sales_pb.js');
+    const { GetAvailableRefundRequest } = this.stubFile;
     const request = new GetAvailableRefundRequest()
     if (date) {
       request.setDate(date)
@@ -1779,7 +2193,15 @@ class PointOfSales {
       createClientRequest({ token, language })
     );
 
-    this.getPointOfSalesService().getAvailableRefund(request, callback)
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getPointOfSalesService().getAvailableRefund(
+      request,
+      metadata,
+      callback
+    );
   }
 
   //  List Available Sellers
@@ -1791,7 +2213,7 @@ class PointOfSales {
     pageToken,
     language
   }, callback) {
-    const { ListAvailableSellersRequest } = require('../grpc/proto/point_of_sales_pb.js');
+    const { ListAvailableSellersRequest } = this.stubFile;
     const request = new ListAvailableSellersRequest()
     if (posUuid) {
       request.setPosUuid(posUuid)
@@ -1805,7 +2227,15 @@ class PointOfSales {
       createClientRequest({ token, language })
     );
 
-    this.getPointOfSalesService().listAvailableSellers(request, callback)
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getPointOfSalesService().listAvailableSellers(
+      request,
+      metadata,
+      callback
+    );
   }
 
   //  Print Ticket
@@ -1815,7 +2245,7 @@ class PointOfSales {
     orderUuid,
     language
   }, callback) {
-    const { PrintTicketRequest } = require('../grpc/proto/point_of_sales_pb.js');
+    const { PrintTicketRequest } = this.stubFile;
     const request = new PrintTicketRequest()
     request.setPosUuid(posUuid)
     request.setOrderUuid(orderUuid)
@@ -1823,7 +2253,15 @@ class PointOfSales {
       createClientRequest({ token, language })
     );
 
-    this.getPointOfSalesService().printTicket(request, callback)
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getPointOfSalesService().printTicket(
+      request,
+      metadata,
+      callback
+    );
   }
 
   //  Print Ticket Preview
@@ -1834,7 +2272,7 @@ class PointOfSales {
     reportType,
     language
   }, callback) {
-    const { PrintPreviewRequest } = require('../grpc/proto/point_of_sales_pb.js');
+    const { PrintPreviewRequest } = this.stubFile;
     const request = new PrintPreviewRequest();
 
     request.setPosUuid(posUuid);
@@ -1844,7 +2282,15 @@ class PointOfSales {
       createClientRequest({ token, language })
     );
 
-    this.getPointOfSalesService().printPreview(request, callback);
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getPointOfSalesService().printPreview(
+      request,
+      metadata,
+      callback
+    );
   }
 
   //  Print Ticket shipment Preview
@@ -1855,7 +2301,7 @@ class PointOfSales {
     reportType,
     language
   }, callback) {
-    const { PrintShipmentPreviewRequest } = require('../grpc/proto/point_of_sales_pb.js');
+    const { PrintShipmentPreviewRequest } = this.stubFile;
     const request = new PrintShipmentPreviewRequest();
 
     request.setPosUuid(posUuid);
@@ -1865,7 +2311,15 @@ class PointOfSales {
       createClientRequest({ token, language })
     );
 
-    this.getPointOfSalesService().printShipmentPreview(request, callback);
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getPointOfSalesService().printShipmentPreview(
+      request,
+      metadata,
+      callback
+    );
   }
 
   //  Print Ticket
@@ -1878,7 +2332,7 @@ class PointOfSales {
     pageToken,
     language
   }, callback) {
-    const { ListStocksRequest } = require('../grpc/proto/point_of_sales_pb.js');
+    const { ListStocksRequest } = this.stubFile;
     const request = new ListStocksRequest();
 
     request.setPosUuid(posUuid);
@@ -1890,7 +2344,15 @@ class PointOfSales {
       createClientRequest({ token, language })
     );
 
-    this.getPointOfSalesService().listStocks(request, callback);
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getPointOfSalesService().listStocks(
+      request,
+      metadata,
+      callback
+    );
   }
 
   // List Available Warehouses
@@ -1901,7 +2363,7 @@ class PointOfSales {
     pageToken,
     language
   }, callback) {
-    const { ListAvailableCashRequest } = require('@adempiere/grpc-api/src/grpc/proto/point_of_sales_pb.js');
+    const { ListAvailableCashRequest } = this.stubFile;
     const request = new ListAvailableCashRequest();
 
     request.setPosUuid(posUuid);
@@ -1911,7 +2373,15 @@ class PointOfSales {
       createClientRequest({ token, language })
     );
 
-    this.getPointOfSalesService().listAvailableCash(request, callback)
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getPointOfSalesService().listAvailableCash(
+      request,
+      metadata,
+      callback
+    );
   }
 }
 

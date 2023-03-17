@@ -1,6 +1,6 @@
 /*************************************************************************************
  * Product: ADempiere gRPC Dictionary Client                                         *
- * Copyright (C) 2012-2022 E.R.P. Consultores y Asociados, C.A.                      *
+ * Copyright (C) 2012-2023 E.R.P. Consultores y Asociados, C.A.                      *
  * Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                      *
  * This program is free software: you can redistribute it and/or modify              *
  * it under the terms of the GNU General Public License as published by              *
@@ -8,13 +8,20 @@
  * (at your option) any later version.                                               *
  * This program is distributed in the hope that it will be useful,                   *
  * but WITHOUT ANY WARRANTY; without even the implied warranty of                    *
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                     *
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the                      *
  * GNU General Public License for more details.                                      *
  * You should have received a copy of the GNU General Public License                 *
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.            *
+ * along with this program. If not, see <https://www.gnu.org/licenses/>.             *
  ************************************************************************************/
 
+const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
+
 class Dictionary {
+
+  /**
+   * File on generated stub
+   */
+  stubFile = require('@adempiere/grpc-api/src/grpc/proto/dictionary_pb.js');
 
   /**
   * Constructor, No authentication required
@@ -38,7 +45,7 @@ class Dictionary {
   // Init connection
   initDictionaryService() {
     const grpc = require('@grpc/grpc-js');
-    const services = require('../grpc/proto/dictionary_grpc_pb');
+    const services = require('@adempiere/grpc-api/src/grpc/proto/dictionary_grpc_pb');
     this.dictionary = new services.DictionaryClient(
       this.dictionaryHost,
       grpc.credentials.createInsecure()
@@ -52,7 +59,7 @@ class Dictionary {
 
   //  Create Application request from token
   createApplicationRequest({ token, language }) {
-    const { ApplicationRequest } = require('../grpc/proto/dictionary_pb');
+    const { ApplicationRequest } = this.stubFile;
     const application = new ApplicationRequest();
     application.setSessionUuid(token);
     application.setLanguage(language);
@@ -65,7 +72,7 @@ class Dictionary {
     uuid,
     language
   ) {
-    const { EntityRequest } = require('../grpc/proto/dictionary_pb.js');
+    const { EntityRequest } = this.stubFile;
     const request = new EntityRequest();
 
     request.setId(id);
@@ -78,57 +85,107 @@ class Dictionary {
     return request;
   }
 
-  //  Get Window
+  // Get Window
   getWindow({
     token,
     id,
     uuid,
     language
   }, callback) {
-    this.getDictionaryService().getWindow(this.getDictionaryRequest(token, id, uuid, language), callback)
+    const request = this.getDictionaryRequest(token, id, uuid, language);
+
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getDictionaryService().getWindow(
+      request,
+      metadata,
+      callback
+    );
   }
 
-  //  Get Process
+  // Get Process
   getProcess({
     token,
     id,
     uuid,
     language
   }, callback) {
-    this.getDictionaryService().getProcess(this.getDictionaryRequest(token, id, uuid, language), callback)
+    const request = this.getDictionaryRequest(token, id, uuid, language);
+
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getDictionaryService().getProcess(
+      request,
+      metadata,
+      callback
+    );
   }
 
-  //  Get Browser
+  // Get Browser
   getBrowser({
     token,
     id,
     uuid,
     language
   }, callback) {
-    this.getDictionaryService().getBrowser(this.getDictionaryRequest(token, id, uuid, language), callback)
+    const request = this.getDictionaryRequest(token, id, uuid, language);
+
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getDictionaryService().getBrowser(
+      request,
+      metadata,
+      callback
+    );
   }
 
-  //  Get Form
+  // Get Form
   getForm({
     token,
     id,
     uuid,
     language
   }, callback) {
-    this.getDictionaryService().getForm(this.getDictionaryRequest(token, id, uuid, language), callback)
+    const request = this.getDictionaryRequest(token, id, uuid, language);
+
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getDictionaryService().getForm(
+      request,
+      metadata,
+      callback
+    );
   }
 
-  //  Get Validation Rule
+  // Get Validation Rule
   getValidationRule({
     token,
     id,
     uuid,
     language
   }, callback) {
-    this.getDictionaryService().getValidationRule(this.getDictionaryRequest(token, id, uuid, language), callback)
+    const request = this.getDictionaryRequest(token, id, uuid, language);
+
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getDictionaryService().getValidationRule(
+      request,
+      metadata,
+      callback
+    );
   }
 
-  //  Get Field
+  // Get Field
   getField({
     token,
     uuid,
@@ -140,46 +197,63 @@ class Dictionary {
     elementColumnName,
     language
   }, callback) {
-    const { FieldRequest } = require('../grpc/proto/dictionary_pb.js')
-    const request = new FieldRequest()
+    const { FieldRequest } = this.stubFile;
+    const request = new FieldRequest();
 
-    request.setFieldUuid(uuid)
-    request.setColumnUuid(columnUuid)
-    request.setElementUuid(elementUuid)
-    if(fieldUuid) {
-      request.setFieldUuid(fieldUuid)
+    request.setFieldUuid(uuid);
+    request.setColumnUuid(columnUuid);
+    request.setElementUuid(elementUuid);
+    if (fieldUuid) {
+      request.setFieldUuid(fieldUuid);
     }
-    request.setColumnName(columnName)
-    request.setTableName(tableName)
-    request.setElementColumnName(elementColumnName)
+    request.setColumnName(columnName);
+    request.setTableName(tableName);
+    request.setElementColumnName(elementColumnName);
 
     request.setApplicationRequest(
       this.createApplicationRequest({ token, language })
     );
 
-    this.getDictionaryService().getField(request, callback)
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getDictionaryService().getField(
+      request,
+      metadata,
+      callback
+    );
   }
 
-  //  Get Reference
+  // Get Reference
   getReference({
     token,
     uuid,
     columnName,
     language
   }, callback) {
-    const { ReferenceRequest } = require('../grpc/proto/dictionary_pb.js')
-    const request = new ReferenceRequest()
-    request.setReferenceUuid(uuid)
-    request.setColumnName(columnName)
+    const { ReferenceRequest } = this.stubFile;
+    const request = new ReferenceRequest();
+
+    request.setReferenceUuid(uuid);
+    request.setColumnName(columnName);
 
     request.setApplicationRequest(
       this.createApplicationRequest({ token, language })
     );
 
-    this.getDictionaryService().getReference(request, callback)
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getDictionaryService().getReference(
+      request,
+      metadata,
+      callback
+    );
   }
 
-  //  List Identifiers Fields
+  // List Identifiers Fields
   listIdentifiersFields({
     token,
     tableUuid,
@@ -189,7 +263,7 @@ class Dictionary {
     tabId,
     language
   }, callback) {
-    const { ListFieldsRequest } = require('../grpc/proto/dictionary_pb.js');
+    const { ListFieldsRequest } = this.stubFile;
     const request = new ListFieldsRequest();
 
     request.setTableUuid(tableUuid);
@@ -203,7 +277,15 @@ class Dictionary {
       this.createApplicationRequest({ token, language })
     );
 
-    this.getDictionaryService().listIdentifiersFields(request, callback);
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getDictionaryService().listIdentifiersFields(
+      request,
+      metadata,
+      callback
+    );
   }
 
   //  List Table Search Fields
@@ -216,7 +298,7 @@ class Dictionary {
     tabId,
     language
   }, callback) {
-    const { ListFieldsRequest } = require('../grpc/proto/dictionary_pb.js');
+    const { ListFieldsRequest } = this.stubFile;
     const request = new ListFieldsRequest();
 
     request.setTableUuid(tableUuid);
@@ -230,7 +312,15 @@ class Dictionary {
       this.createApplicationRequest({ token, language })
     );
 
-    this.getDictionaryService().listTableSearchFields(request, callback);
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getDictionaryService().listTableSearchFields(
+      request,
+      metadata,
+      callback
+    );
   }
 
 }
