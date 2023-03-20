@@ -653,6 +653,192 @@ class UserInterface {
     );
   }
 
+
+  // Get Report Output
+  getReportOutput({
+    token,
+    tableName,
+    // Reference
+    printFormatUuid,
+    reportViewUuid,
+    isSummary,
+    reportName,
+    reportType,
+    // DSL
+    filters,
+    // Custom Query
+    query,
+    whereClause,
+    orderByClause,
+    limit,
+    language
+  }, callback) {
+    const { GetReportOutputRequest } = this.stubFile;
+    const request = new GetReportOutputRequest();
+    const { getCriteriaToGRPC } = require('@adempiere/grpc-api/src/utils/baseDataTypeToGRPC.js');
+
+    request.setCriteria(
+      getCriteriaToGRPC({
+        tableName,
+        filters,
+        query,
+        whereClause,
+        orderByClause,
+        limit
+      })
+    );
+
+    //
+    if (!isEmptyValue(printFormatUuid)) {
+      request.setPrintFormatUuid(printFormatUuid);
+    }
+    if (!isEmptyValue(reportViewUuid)) {
+      request.setReportViewUuid(reportViewUuid);
+    }
+    request.setIsSummary(isSummary);
+    request.setReportName(reportName);
+    request.setReportType(reportType);
+    request.setClientRequest(
+      createClientRequest({ token, language })
+    );
+
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getUserInterfaceService().getReportOutput(
+      request,
+      metadata,
+      callback
+    );
+  }
+
+  // List Drill Tables
+  listDrillTables({
+    token,
+    tableName,
+    pageSize,
+    pageToken,
+    language
+  }, callback) {
+    const { ListDrillTablesRequest } = this.stubFile;
+    const request = new ListDrillTablesRequest();
+
+    request.setTableName(tableName);
+    request.setPageSize(pageSize);
+    request.setPageToken(pageToken);
+    request.setClientRequest(
+      createClientRequest({ token, language })
+    );
+    
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getUserInterfaceService().listDrillTables(
+      request,
+      metadata,
+      callback
+    );
+  }
+
+  // List Print Formats
+  listPrintFormats({
+    token,
+    tableName,
+    reportViewUuid,
+    processUuid,
+    pageSize,
+    pageToken,
+    language
+  }, callback) {
+    const { ListPrintFormatsRequest } = this.stubFile;
+    const request = new ListPrintFormatsRequest();
+
+    request.setTableName(tableName);
+    request.setReportViewUuid(reportViewUuid);
+    request.setProcessUuid(processUuid);
+    request.setPageSize(pageSize);
+    request.setPageToken(pageToken);
+    request.setClientRequest(
+      createClientRequest({ token, language })
+    );
+    
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getUserInterfaceService().listPrintFormats(
+      request,
+      metadata,
+      callback
+    );
+  }
+
+  // List Print Formats
+  listPrintFormats({
+    token,
+    tableName,
+    reportViewUuid,
+    processUuid,
+    pageSize,
+    pageToken,
+    language
+  }, callback) {
+    const { ListPrintFormatsRequest } = this.stubFile;
+    const request = new ListPrintFormatsRequest();
+
+    request.setTableName(tableName);
+    request.setReportViewUuid(reportViewUuid);
+    request.setProcessUuid(processUuid);
+    request.setPageSize(pageSize);
+    request.setPageToken(pageToken);
+    request.setClientRequest(
+      createClientRequest({ token, language })
+    );
+    
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getUserInterfaceService().listPrintFormats(
+      request,
+      metadata,
+      callback
+    );
+  }
+
+  // List Report Views
+  listReportViews({
+    token,
+    tableName,
+    processUuid,
+    pageSize,
+    pageToken,
+    language
+  }, callback) {
+    const { ListReportViewsRequest } = this.stubFile;
+    const request = new ListReportViewsRequest();
+
+    request.setTableName(tableName);
+    request.setProcessUuid(processUuid);
+    request.setPageSize(pageSize);
+    request.setPageToken(pageToken);
+    request.setClientRequest(
+      createClientRequest({ token, language })
+    );
+    
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getUserInterfaceService().listReportViews(
+      request,
+      metadata,
+      callback
+    );
+  }
+
   /**
    * List Mail Templates
    * @param {string} token session
