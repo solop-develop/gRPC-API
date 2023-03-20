@@ -57,7 +57,7 @@ class Access {
     return this.access;
   }
 
-  //  Login with a user
+  // Login with a user
   login({
     user,
     password,
@@ -82,7 +82,7 @@ class Access {
     this.getAccessService().runLogin(request, callback);
   }
 
-  //  Get User Information
+  // Get User Information
   getUserInfo({
     token,
     language
@@ -105,7 +105,7 @@ class Access {
     );
   }
 
-  //  Get User Information
+  // Get User Information
   getUserRoles({
     token,
     language
@@ -128,7 +128,7 @@ class Access {
     );
   }
 
-  //  Get User Menu
+  // Get User Menu
   getMenu({
     token,
     language
@@ -151,7 +151,7 @@ class Access {
     );
   }
 
-  //  Get User Menu
+  // Get User Menu
   getSessionInfo({
     token,
     language
@@ -174,9 +174,10 @@ class Access {
     );
   }
 
-  //  Change role
+  // Change role
   changeRole({
     token,
+    sessionUuid,
     role,
     organization,
     warehouse,
@@ -185,7 +186,7 @@ class Access {
     const { ChangeRoleRequest } = this.stubFile;
     const request = new ChangeRoleRequest();
 
-    request.setSessionUuid(token);
+    request.setSessionUuid(sessionUuid);
     request.setRoleUuid(role);
     request.setOrganizationUuid(organization);
     request.setWarehouseUuid(warehouse);
@@ -199,15 +200,21 @@ class Access {
     this.getAccessService().runChangeRole(request, metadata, callback)
   }
 
-  //  Login with a user
+  /**
+   * Logout with current session
+   * @param {String} sessionUuid
+   * @param {String} token
+   * @param {String} language
+   */
   logout({
+    sessionUuid,
     token,
     language
   }, callback) {
     const { LogoutRequest } = this.stubFile;
     const request = new LogoutRequest();
 
-    request.setSessionUuid(token);
+    request.setSessionUuid(sessionUuid);
     request.setLanguage(language);
     request.setClientVersion(this.version);
 
