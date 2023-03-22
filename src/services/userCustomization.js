@@ -14,9 +14,9 @@
  * along with this program. If not, see <https://www.gnu.org/licenses/>.             *
  ************************************************************************************/
 
-const { createClientRequest } = require('@adempiere/grpc-api/lib/clientRequest');
+const { getClientRequestToGRPC } = require('@adempiere/grpc-api/src/utils/clientToGRPC');
 const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
-const { isEmptyValue, getValidId } = require('@adempiere/grpc-api/lib/convertValues.js');
+const { isEmptyValue, getValidId } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
 
 class UserCustomization {
 
@@ -81,7 +81,7 @@ class UserCustomization {
     request.setPageToken(pageToken);
 
     request.setClientRequest(
-      createClientRequest({ token, language })
+      getClientRequestToGRPC({ token, language })
     );
 
     const metadata = getMetadata({
@@ -118,7 +118,7 @@ class UserCustomization {
     request.setPageToken(pageToken);
 
     request.setClientRequest(
-      createClientRequest({ token, language })
+      getClientRequestToGRPC({ token, language })
     );
 
     const metadata = getMetadata({
@@ -155,7 +155,7 @@ class UserCustomization {
     request.setPageToken(pageToken);
 
     request.setClientRequest(
-      createClientRequest({ token, language })
+      getClientRequestToGRPC({ token, language })
     );
 
     const metadata = getMetadata({
@@ -222,7 +222,7 @@ class UserCustomization {
     }
 
     request.setClientRequest(
-      createClientRequest({ token, language })
+      getClientRequestToGRPC({ token, language })
     );
 
     const metadata = getMetadata({
@@ -289,7 +289,7 @@ class UserCustomization {
     }
 
     request.setClientRequest(
-      createClientRequest({ token, language })
+      getClientRequestToGRPC({ token, language })
     );
 
     const metadata = getMetadata({
@@ -356,7 +356,7 @@ class UserCustomization {
     }
 
     request.setClientRequest(
-      createClientRequest({ token, language })
+      getClientRequestToGRPC({ token, language })
     );
 
     const metadata = getMetadata({
