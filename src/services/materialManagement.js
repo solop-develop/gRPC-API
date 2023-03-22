@@ -14,8 +14,8 @@
  * along with this program. If not, see <https://www.gnu.org/licenses/>.             *
  ************************************************************************************/
 
-const { createClientRequest } = require('@adempiere/grpc-api/lib/clientRequest');
 const { getClientRequestToGRPC } = require('@adempiere/grpc-api/src/utils/clientToGRPC');
+const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
 const { isEmptyValue, getValidId } = require('@adempiere/grpc-api/src/utils/valueUtils.js')
 
 class MaterialManagement {
@@ -82,7 +82,7 @@ class MaterialManagement {
     request.setPageSize(pageSize);
     request.setPageToken(pageToken);
     request.setClientRequest(
-      createClientRequest({ token, language })
+      getClientRequestToGRPC({ token, language })
     );
 
     const metadata = getMetadata({
@@ -131,7 +131,7 @@ class MaterialManagement {
     request.setProductAttributeSetInstanceUuid(productAttributeSetInstanceUuid);
 
     request.setClientRequest(
-      createClientRequest({ token, language })
+      getClientRequestToGRPC({ token, language })
     );
 
     const metadata = getMetadata({
@@ -177,7 +177,7 @@ class MaterialManagement {
     request.setProductUuid(productUuid);
 
     request.setClientRequest(
-      createClientRequest({ token, language })
+      getClientRequestToGRPC({ token, language })
     );
 
     const metadata = getMetadata({
@@ -236,7 +236,7 @@ class MaterialManagement {
     request.setPageSize(pageSize);
     request.setPageToken(pageToken);
     request.setClientRequest(
-      createClientRequest({ token, language })
+      getClientRequestToGRPC({ token, language })
     );
 
     const metadata = getMetadata({
@@ -302,7 +302,7 @@ class MaterialManagement {
     }
 
     request.setClientRequest(
-      createClientRequest({ token, language })
+      getClientRequestToGRPC({ token, language })
     );
 
     const metadata = getMetadata({
