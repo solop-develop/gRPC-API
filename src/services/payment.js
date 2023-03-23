@@ -14,9 +14,9 @@
  * along with this program. If not, see <https://www.gnu.org/licenses/>.             *
  ************************************************************************************/
 
-const { createClientRequest } = require('@adempiere/grpc-api/lib/clientRequest');
+const { getClientRequestToGRPC } = require('@adempiere/grpc-api/src/utils/clientToGRPC');
 const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
-const { isEmptyValue } = require('@adempiere/grpc-api/lib/convertValues.js');
+const { isEmptyValue } = require('@adempiere/grpc-api/src/utils/valueUtils.js')
 
 class Payment {
 
@@ -46,8 +46,8 @@ class Payment {
 
   // Init connection
   initPaymentService() {
-    var grpc = require('@grpc/grpc-js');
-    var services = require('@adempiere/grpc-api/src/grpc/proto/payment_grpc_pb.js');
+    const grpc = require('@grpc/grpc-js');
+    const services = require('@adempiere/grpc-api/src/grpc/proto/payment_grpc_pb.js');
     this.payment = new services.PaymentClient(
       this.businessHost,
       grpc.credentials.createInsecure()
@@ -77,9 +77,8 @@ class Payment {
     pageToken,
     language
   }, callback) {
-    const { ListPaymentInfo } = require('../grpc/proto/payment_grpc_pb');
+    const { ListPaymentInfo } = this.stubFile;
     const request = new ListPaymentInfo();
-    const { convertCriteriaToGRPC } = require('../../lib/convertValues');
 
     request.setFieldUuid(fieldUuid);
     request.setProcessParameterUuid(processParameterUuid);
@@ -88,26 +87,30 @@ class Payment {
     request.setColumnName(columnName);
     request.setReferenceUuid(referenceUuid);
 
-    request.setFilters(
-      convertCriteriaToGRPC({
-        filters
-      })
-    );
+    if (!isEmptyValue(filters)) {
+      const { getCriteriaToGRPC } = require('@adempiere/grpc-api/src/utils/baseDataTypeToGRPC.js');
+      request.setFilters(
+        getCriteriaToGRPC({
+          filters
+        })
+      );
+    }
 
     request.setSearchValue(searchValue);
     if (!isEmptyValue(contextAttributes)) {
-      const { convertParameterToGRPC, typeOfValue } = require('../../lib/convertValues.js');
+      const { getTypeOfValue } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
+      const { getKeyValueToGRPC } = require('@adempiere/grpc-api/src/utils/baseDataTypeToGRPC.js');
 
-      if (typeOfValue(contextAttributes) === 'String') {
+      if (getTypeOfValue(contextAttributes) === 'String') {
         contextAttributes = JSON.parse(contextAttributes);
       }
       contextAttributes.forEach(attribute => {
         let parsedAttribute = attribute;
-        if (typeOfValue(attribute) === 'String') {
+        if (getTypeOfValue(attribute) === 'String') {
           parsedAttribute = JSON.parse(attribute);
         }
         request.addContextAttributes(
-          convertParameterToGRPC({
+          getKeyValueToGRPC({
             columnName: parsedAttribute.key,
             value: parsedAttribute.value
           })
@@ -118,10 +121,18 @@ class Payment {
     request.setPageSize(pageSize);
     request.setPageToken(pageToken);
     request.setClientRequest(
-      createClientRequest({ token, language })
+      getClientRequestToGRPC({ token, language })
     );
 
-    this.getPaymentService().listPaymentInfo(request, callback);
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getPaymentService().listPaymentInfo(
+      request,
+      metadata,
+      callback
+    );
   }
 
 }
