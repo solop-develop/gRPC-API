@@ -14,9 +14,9 @@
  * along with this program. If not, see <https://www.gnu.org/licenses/>.             *
  ************************************************************************************/
 
-const { createClientRequest } = require('@adempiere/grpc-api/lib/clientRequest');
+const { getClientRequestToGRPC } = require('@adempiere/grpc-api/src/utils/clientToGRPC');
 const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
-const { isEmptyValue } = require('@adempiere/grpc-api/lib/convertValues.js');
+const { getValidId } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
 
 class FileManagement {
 
@@ -79,13 +79,13 @@ class FileManagement {
     const request = new ExistsAttachmentRequest();
 
     request.setTableName(tableName);
-    if (!isEmptyValue(recordId) && !Number.isNaN(recordId)) {
-      request.setRecordId(Number(recordId));
-    }
+    request.setRecordId(
+      getValidId(recordId)
+    );
     request.setRecordUuid(recordUuid);
 
     request.setClientRequest(
-      createClientRequest({ token, language })
+      getClientRequestToGRPC({ token, language })
     );
 
     const metadata = getMetadata({
@@ -116,13 +116,13 @@ class FileManagement {
     const request = new GetAttachmentRequest();
 
     request.setTableName(tableName);
-    if (!isEmptyValue(id) && !Number.isNaN(id)) {
-      request.setId(Number(id));
-    }
+    request.setId(
+      getValidId(id)
+    );
     request.setUuid(uuid);
 
     request.setClientRequest(
-      createClientRequest({ token, language })
+      getClientRequestToGRPC({ token, language })
     );
 
     const metadata = getMetadata({
@@ -153,14 +153,20 @@ class FileManagement {
     const request = new GetResourceRequest();
 
     request.setClientRequest(
-      createClientRequest({ token, language })
+      getClientRequestToGRPC({ token, language })
     );
 
     request.setResourceName(resourceName);
     request.setResourceUuid(resourceUuid);
 
-    const stream = this.getFileManagementService().getResource(request)
-    let result = new Uint8Array()
+    const metadata = getMetadata({
+      token
+    });
+    const stream = this.getFileManagementService().getResource(
+      request,
+      metadata
+    );
+    let result = new Uint8Array();
     stream.on('data', (response) => {
       result = this.mergeByteArray(result, response.getData());
     });
@@ -168,6 +174,9 @@ class FileManagement {
       if (status && status.code === 13) {
         callback(status, undefined);
       }
+    });
+    stream.on('error', (error) => {
+      callback(undefined, error);
     });
     stream.on('end', (end) => {
       callback(undefined, result);
@@ -187,7 +196,14 @@ class FileManagement {
     language,
     token
   }, callback) {
-    return this.getFileManagementService().loadResource(callback);
+    const metadata = getMetadata({
+      token
+    });
+
+    return this.getFileManagementService().loadResource(
+      metadata,
+      callback
+    );
   }
 
   /**
@@ -215,17 +231,16 @@ class FileManagement {
     const request = new SetResourceReferenceRequest();
 
     request.setTableName(tableName);
-    if (!isEmptyValue(recordId) && !Number.isNaN(recordId)) {
-      request.setRecordId(Number(recordId));
-    }
-
+    request.setRecordId(
+      getValidId(recordId)
+    );
     request.setRecordUuid(recordUuid);
     request.setTextMessage(textMessage);
     request.setFileName(fileName);
     request.setFileSize(fileSize);
 
     request.setClientRequest(
-      createClientRequest({ token, language })
+      getClientRequestToGRPC({ token, language })
     );
 
     const metadata = getMetadata({
@@ -257,13 +272,23 @@ class FileManagement {
     const { GetResourceReferenceRequest } = this.stubFile;
     const request = new GetResourceReferenceRequest();
 
-    request.setImageId(imageId);
-
-    request.setClientRequest(
-      createClientRequest({ token, language })
+    request.setImageId(
+      getValidId(imageId)
     );
 
-    this.getFileManagementService().getResourceReference(request, callback);
+    request.setClientRequest(
+      getClientRequestToGRPC({ token, language })
+    );
+
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getFileManagementService().getResourceReference(
+      request,
+      metadata,
+      callback
+    );
   }
 
   /**
@@ -287,15 +312,23 @@ class FileManagement {
 
     request.setResourceName(resourceName);
     request.setResourceUuid(resourceUuid);
-    if (!isEmptyValue(resourceId) && !Number.isNaN(resourceId)) {
-      request.setResourceId(Number(resourceId));
-    }
-
-    request.setClientRequest(
-      createClientRequest({ token, language })
+    request.setResourceId(
+      getValidId(resourceId)
     );
 
-    this.getFileManagementService().deleteResourceReference(request, callback);
+    request.setClientRequest(
+      getClientRequestToGRPC({ token, language })
+    );
+
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getFileManagementService().deleteResourceReference(
+      request,
+      metadata,
+      callback
+    );
   }
 }
 
