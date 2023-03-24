@@ -23,8 +23,6 @@ var global = (function() {
 
 var proto_base_data_type_pb = require('../proto/base_data_type_pb.js');
 goog.object.extend(proto, proto_base_data_type_pb);
-var proto_client_pb = require('../proto/client_pb.js');
-goog.object.extend(proto, proto_client_pb);
 var proto_business_pb = require('../proto/business_pb.js');
 goog.object.extend(proto, proto_business_pb);
 goog.exportSymbol('proto.invoice.ListInvoiceInfoRequest', null, global);
@@ -88,7 +86,6 @@ proto.invoice.ListInvoiceInfoRequest.prototype.toObject = function(opt_includeIn
  */
 proto.invoice.ListInvoiceInfoRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    clientRequest: (f = msg.getClientRequest()) && proto_client_pb.ClientRequest.toObject(includeInstance, f),
     pageSize: jspb.Message.getFieldWithDefault(msg, 2, 0),
     pageToken: jspb.Message.getFieldWithDefault(msg, 3, ""),
     filters: (f = msg.getFilters()) && proto_base_data_type_pb.Criteria.toObject(includeInstance, f),
@@ -137,11 +134,6 @@ proto.invoice.ListInvoiceInfoRequest.deserializeBinaryFromReader = function(msg,
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 1:
-      var value = new proto_client_pb.ClientRequest;
-      reader.readMessage(value,proto_client_pb.ClientRequest.deserializeBinaryFromReader);
-      msg.setClientRequest(value);
-      break;
     case 2:
       var value = /** @type {number} */ (reader.readInt32());
       msg.setPageSize(value);
@@ -217,14 +209,6 @@ proto.invoice.ListInvoiceInfoRequest.prototype.serializeBinary = function() {
  */
 proto.invoice.ListInvoiceInfoRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getClientRequest();
-  if (f != null) {
-    writer.writeMessage(
-      1,
-      f,
-      proto_client_pb.ClientRequest.serializeBinaryToWriter
-    );
-  }
   f = message.getPageSize();
   if (f !== 0) {
     writer.writeInt32(
@@ -304,43 +288,6 @@ proto.invoice.ListInvoiceInfoRequest.serializeBinaryToWriter = function(message,
       f
     );
   }
-};
-
-
-/**
- * optional data.ClientRequest client_request = 1;
- * @return {?proto.data.ClientRequest}
- */
-proto.invoice.ListInvoiceInfoRequest.prototype.getClientRequest = function() {
-  return /** @type{?proto.data.ClientRequest} */ (
-    jspb.Message.getWrapperField(this, proto_client_pb.ClientRequest, 1));
-};
-
-
-/**
- * @param {?proto.data.ClientRequest|undefined} value
- * @return {!proto.invoice.ListInvoiceInfoRequest} returns this
-*/
-proto.invoice.ListInvoiceInfoRequest.prototype.setClientRequest = function(value) {
-  return jspb.Message.setWrapperField(this, 1, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.invoice.ListInvoiceInfoRequest} returns this
- */
-proto.invoice.ListInvoiceInfoRequest.prototype.clearClientRequest = function() {
-  return this.setClientRequest(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.invoice.ListInvoiceInfoRequest.prototype.hasClientRequest = function() {
-  return jspb.Message.getField(this, 1) != null;
 };
 
 

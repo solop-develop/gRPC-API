@@ -38,15 +38,6 @@ const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
     console.log('ADempiere Api Client Started')
   }
 
-  //  Create Client request from token
-  createClientRequest(token, language) {
-    const { ClientRequest } = require('./src/grpc/proto/client_pb.js')
-    const client = new ClientRequest()
-    client.setSessionUuid(token)
-    client.setLanguage(language)
-    return client
-  }
-
   // Init connection
   initUIService() {
     const grpc = require('@grpc/grpc-js');
@@ -83,16 +74,14 @@ const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
     token,
     id,
     uuid,
-    tableName,
-    language
+    tableName
   }, callback) {
     const { GetEntityRequest } = require('./src/grpc/proto/business_pb.js')
     const request = new GetEntityRequest()
     request.setId(id)
     request.setUuid(uuid)
     request.setTableName(tableName)
-    request.setClientRequest(this.createClientRequest(token, language))
-    
+
     const metadata = getMetadata({
       token
     });
@@ -108,8 +97,7 @@ const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
   createEntity({
     token,
     tableName,
-    attributes,
-    language
+    attributes
   }, callback) {
     const { CreateEntityRequest } = require('./src/grpc/proto/business_pb.js')
     const { convertParameterToGRPC } = require('./lib/convertValues.js');
@@ -123,8 +111,7 @@ const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
         }))
       })
     }
-    request.setClientRequest(this.createClientRequest(token, language))
-    
+
     const metadata = getMetadata({
       token
     });
@@ -142,8 +129,7 @@ const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
     tableName,
     id,
     uuid,
-    attributes,
-    language
+    attributes
   }, callback) {
     const { UpdateEntityRequest } = require('./src/grpc/proto/business_pb.js')
     const { convertParameterToGRPC } = require('./lib/convertValues.js');
@@ -159,8 +145,7 @@ const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
         }))
       })
     }
-    request.setClientRequest(this.createClientRequest(token, language))
-    
+
     const metadata = getMetadata({
       token
     });
@@ -176,8 +161,7 @@ const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
   createEntity({
     token,
     tableName,
-    attributes,
-    language
+    attributes
   }, callback) {
     const { CreateEntityRequest } = require('./src/grpc/proto/business_pb.js')
     const { convertParameterToGRPC } = require('./lib/convertValues.js');
@@ -191,8 +175,7 @@ const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
         }))
       })
     }
-    request.setClientRequest(this.createClientRequest(token, language))
-    
+
     const metadata = getMetadata({
       token
     });
@@ -210,8 +193,7 @@ const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
     id,
     uuid,
     ids = [],
-    tableName,
-    language
+    tableName
   }, callback) {
     const { DeleteEntityRequest } = require('./src/grpc/proto/business_pb.js');
     const request = new DeleteEntityRequest();
@@ -225,8 +207,6 @@ const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
       request.setIdsList(ids);
     }
 
-    request.setClientRequest(this.createClientRequest(token, language));
-    
     const metadata = getMetadata({
       token
     });
@@ -252,8 +232,7 @@ const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
     limit,
     //  Page Data
     pageSize,
-    pageToken,
-    language
+    pageToken
   }, callback) {
     const { ListEntitiesRequest } = require('./src/grpc/proto/business_pb.js')
     const request = new ListEntitiesRequest()
@@ -268,14 +247,13 @@ const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
       limit
     }))
     //  For columns
-    if(columns) {
+    if (columns) {
       columns.forEach(column => request.addColumns(column))
     }
     request.setPageSize(pageSize)
     request.setPageToken(pageToken)
     //  TODO: Add Criteria
-    request.setClientRequest(this.createClientRequest(token, language))
-    
+
     const metadata = getMetadata({
       token
     });
@@ -293,7 +271,6 @@ const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
   //  Create Chat Entry
   createChatEntry({
     token,
-    language,
     tableName,
     id,
     uuid,
@@ -305,8 +282,7 @@ const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
     request.setId(id)
     request.setUuid(uuid)
     request.setComment(comment)
-    request.setClientRequest(this.createClientRequest(token, language))
-    
+
     const metadata = getMetadata({
       token
     });
@@ -323,16 +299,14 @@ const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
     token,
     tableName,
     id,
-    uuid,
-    language
+    uuid
   }, callback) {
     const { UnlockPrivateAccessRequest } = require('./src/grpc/proto/business_pb.js')
     const request = new UnlockPrivateAccessRequest()
     request.setTableName(tableName)
     request.setId(id)
     request.setUuid(uuid)
-    request.setClientRequest(this.createClientRequest(token, language))
-    
+
     const metadata = getMetadata({
       token
     });
@@ -349,16 +323,14 @@ const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
     token,
     tableName,
     id,
-    uuid,
-    language
+    uuid
   }, callback) {
     const { LockPrivateAccessRequest } = require('./src/grpc/proto/business_pb.js')
     const request = new LockPrivateAccessRequest()
     request.setTableName(tableName)
     request.setId(id)
     request.setUuid(uuid)
-    request.setClientRequest(this.createClientRequest(token, language))
-    
+
     const metadata = getMetadata({
       token
     });
@@ -375,16 +347,14 @@ const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
     token,
     tableName,
     id,
-    uuid,
-    language
+    uuid
   }, callback) {
     const { GetPrivateAccessRequest } = require('./src/grpc/proto/business_pb.js')
     const request = new GetPrivateAccessRequest()
     request.setTableName(tableName)
     request.setId(id)
     request.setUuid(uuid)
-    request.setClientRequest(this.createClientRequest(token, language))
-    
+
     const metadata = getMetadata({
       token
     });
@@ -401,16 +371,14 @@ const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
     token,
     tableName,
     id,
-    uuid,
-    language
+    uuid
   }, callback) {
     const { GetRecordAccessRequest } = require('./src/grpc/proto/business_pb.js')
     const request = new GetRecordAccessRequest()
     request.setTableName(tableName)
     request.setId(id)
     request.setUuid(uuid)
-    request.setClientRequest(this.createClientRequest(token, language))
-    
+
     const metadata = getMetadata({
       token
     });
@@ -428,8 +396,7 @@ const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
     tableName,
     id,
     uuid,
-    recordAccesses,
-    language
+    recordAccesses
   }, callback) {
     const { SetRecordAccessRequest, RecordAccessRole } = require('./src/grpc/proto/business_pb.js')
     const request = new SetRecordAccessRequest()
@@ -454,8 +421,7 @@ const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
         request.addRecordAccesses(recordAccessRole)
       })
     }
-    request.setClientRequest(this.createClientRequest(token, language))
-    
+
     const metadata = getMetadata({
       token
     });
@@ -476,8 +442,7 @@ const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
     isForCurrentClient,
     isForCurrentOrganization,
     isForCurrentContainer,
-    value,
-    language
+    value
   }, callback) {
     const { SetPreferenceRequest } = require('./src/grpc/proto/business_pb.js')
     const request = new SetPreferenceRequest()
@@ -490,8 +455,7 @@ const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
     request.setIsForCurrentClient(isForCurrentClient)
     request.setIsForCurrentOrganization(isForCurrentOrganization)
     request.setIsForCurrentContainer(isForCurrentContainer)
-    request.setClientRequest(this.createClientRequest(token, language))
-    
+
     const metadata = getMetadata({
       token
     });
@@ -512,8 +476,7 @@ const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
     isForCurrentClient,
     isForCurrentOrganization,
     isForCurrentContainer,
-    value,
-    language
+    value
   }, callback) {
     const { DeletePreferenceRequest } = require('./src/grpc/proto/business_pb.js')
     const request = new DeletePreferenceRequest()
@@ -525,8 +488,7 @@ const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
     request.setIsForCurrentClient(isForCurrentClient)
     request.setIsForCurrentOrganization(isForCurrentOrganization)
     request.setIsForCurrentContainer(isForCurrentContainer)
-    request.setClientRequest(this.createClientRequest(token, language))
-    
+
     const metadata = getMetadata({
       token
     });
@@ -543,16 +505,14 @@ const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
     token,
     query,
     uuid,
-    id,
-    language
+    id
   }, callback) {
     const { GetContextInfoValueRequest } = require('./src/grpc/proto/business_pb.js')
     const request = new GetContextInfoValueRequest()
     request.setQuery(query)
     request.setUuid(uuid)
     request.setId(id)
-    request.setClientRequest(this.createClientRequest(token, language))
-    
+
     const metadata = getMetadata({
       token
     });
@@ -572,8 +532,7 @@ const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
     id,
     uuid,
     pageSize,
-    pageToken,
-    language
+    pageToken
   }, callback) {
     const { ListReferencesRequest } = require('./src/grpc/proto/business_pb.js')
     const request = new ListReferencesRequest()
@@ -583,8 +542,7 @@ const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
     request.setWindowUuid(windowUuid)
     request.setPageSize(pageSize)
     request.setPageToken(pageToken)
-    request.setClientRequest(this.createClientRequest(token, language))
-    
+
     const metadata = getMetadata({
       token
     });
@@ -605,8 +563,7 @@ const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
     filters,
     contextAttributes,
     pageSize,
-    pageToken,
-    language
+    pageToken
   }, callback) {
     const { ListBrowserItemsRequest } = require('./src/grpc/proto/business_pb.js');
     const request = new ListBrowserItemsRequest();
@@ -642,8 +599,7 @@ const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
     request.setUuid(uuid);
     request.setPageSize(pageSize);
     request.setPageToken(pageToken);
-    request.setClientRequest(this.createClientRequest(token, language));
-    
+
     const metadata = getMetadata({
       token
     });
@@ -667,8 +623,7 @@ const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
     id,
     uuid,
     recordId,
-    attributes,
-    language
+    attributes
   }, callback) {
     const { UpdateBrowserEntityRequest } = require('./src/grpc/proto/business_pb.js');
     const request = new UpdateBrowserEntityRequest();
@@ -700,8 +655,6 @@ const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
       });
     }
 
-    request.setClientRequest(this.createClientRequest(token, language));
-    
     const metadata = getMetadata({
       token
     });
@@ -726,8 +679,7 @@ const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
     searchValue,
     contextAttributes,
     pageSize,
-    pageToken,
-    language
+    pageToken
   }, callback) {
     const { ListLookupItemsRequest } = require('./src/grpc/proto/business_pb.js');
     const request = new ListLookupItemsRequest();
@@ -762,8 +714,7 @@ const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
     }
     request.setPageSize(pageSize);
     request.setPageToken(pageToken);
-    request.setClientRequest(this.createClientRequest(token, language));
-    
+
     const metadata = getMetadata({
       token
     });
@@ -787,8 +738,7 @@ const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
     tableName,
     contextAttributes,
     id,
-    uuid,
-    language
+    uuid
   }, callback) {
     const { GetLookupItemRequest } = require('./src/grpc/proto/business_pb.js');
     const request = new GetLookupItemRequest();
@@ -821,8 +771,7 @@ const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
         );
       })
     }
-    request.setClientRequest(this.createClientRequest(token, language));
-    
+
     const metadata = getMetadata({
       token
     });
@@ -841,8 +790,7 @@ const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
     uuid,
     id,
     pageSize,
-    pageToken,
-    language
+    pageToken
   }, callback) {
     const { ListTranslationsRequest } = require('./src/grpc/proto/business_pb.js')
     const request = new ListTranslationsRequest()
@@ -851,8 +799,7 @@ const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
     request.setId(id)
     request.setPageSize(pageSize)
     request.setPageToken(pageToken)
-    request.setClientRequest(this.createClientRequest(token, language))
-    
+
     const metadata = getMetadata({
       token
     });
@@ -867,7 +814,6 @@ const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
   //  Rollback a value from entity
   rollbackEntity({
     token,
-    language,
     tableName,
     id,
     uuid,
@@ -879,8 +825,7 @@ const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
     request.setId(id)
     request.setUuid(uuid)
     request.setLogId(logId)
-    request.setClientRequest(this.createClientRequest(token, language))
-    
+
     const metadata = getMetadata({
       token
     });
@@ -909,8 +854,7 @@ const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
     referenceUuid,
     // Page Data
     pageSize,
-    pageToken,
-    language
+    pageToken
   }, callback) {
     const { ListGeneralInfoRequest } = require('./src/grpc/proto/business_pb.js');
     const request = new ListGeneralInfoRequest();
@@ -954,9 +898,7 @@ const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
 
     request.setPageSize(pageSize);
     request.setPageToken(pageToken);
-    request.setClientRequest(this.createClientRequest(token, language));
 
-    
     const metadata = getMetadata({
       token
     });

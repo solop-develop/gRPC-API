@@ -14,7 +14,6 @@
  * along with this program. If not, see <https://www.gnu.org/licenses/>.             *
  ************************************************************************************/
 
-const { getClientRequestToGRPC } = require('@adempiere/grpc-api/src/utils/clientToGRPC');
 const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
 const { getValidId } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
 
@@ -64,7 +63,6 @@ class FileManagement {
    * @param {string} tableName
    * @param {number} recordId
    * @param {string} recordUuid
-   * @param {string} language
    * @param {string} token
    */
   existsAttachment({
@@ -72,8 +70,7 @@ class FileManagement {
     // DSL
     tableName,
     recordId,
-    recordUuid,
-    language
+    recordUuid
   }, callback) {
     const { ExistsAttachmentRequest } = this.stubFile;
     const request = new ExistsAttachmentRequest();
@@ -83,10 +80,6 @@ class FileManagement {
       getValidId(recordId)
     );
     request.setRecordUuid(recordUuid);
-
-    request.setClientRequest(
-      getClientRequestToGRPC({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -109,8 +102,7 @@ class FileManagement {
     // DSL
     tableName,
     id,
-    uuid,
-    language
+    uuid
   }, callback) {
     const { GetAttachmentRequest } = this.stubFile;
     const request = new GetAttachmentRequest();
@@ -120,10 +112,6 @@ class FileManagement {
       getValidId(id)
     );
     request.setUuid(uuid);
-
-    request.setClientRequest(
-      getClientRequestToGRPC({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -140,21 +128,15 @@ class FileManagement {
    * Get Resource Image from name
    * @param {string} resourceName
    * @param {string} resourceUuid
-   * @param {string} language
    * @param {string} token
    */
   getResource({
     resourceName,
     resourceUuid,
-    language,
     token
   }, callback) {
     const { GetResourceRequest } = this.stubFile;
     const request = new GetResourceRequest();
-
-    request.setClientRequest(
-      getClientRequestToGRPC({ token, language })
-    );
 
     request.setResourceName(resourceName);
     request.setResourceUuid(resourceUuid);
@@ -193,7 +175,6 @@ class FileManagement {
   loadResource({
     fileName,
     resourceUuid,
-    language,
     token
   }, callback) {
     const metadata = getMetadata({
@@ -224,8 +205,7 @@ class FileManagement {
     recordUuid,
     textMessage,
     fileName,
-    fileSize,
-    language
+    fileSize
   }, callback) {
     const { SetResourceReferenceRequest } = this.stubFile;
     const request = new SetResourceReferenceRequest();
@@ -238,10 +218,6 @@ class FileManagement {
     request.setTextMessage(textMessage);
     request.setFileName(fileName);
     request.setFileSize(fileSize);
-
-    request.setClientRequest(
-      getClientRequestToGRPC({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -266,18 +242,13 @@ class FileManagement {
    */
    getResourceReference({
     token,
-    imageId,
-    language
+    imageId
   }, callback) {
     const { GetResourceReferenceRequest } = this.stubFile;
     const request = new GetResourceReferenceRequest();
 
     request.setImageId(
       getValidId(imageId)
-    );
-
-    request.setClientRequest(
-      getClientRequestToGRPC({ token, language })
     );
 
     const metadata = getMetadata({
@@ -296,7 +267,6 @@ class FileManagement {
    * @param {string} resourceName
    * @param {string} resourceUuid
    * @param {number} resourceId
-   * @param {string} language
    * @param {string} token
    * @param {function} callback
    */
@@ -304,8 +274,7 @@ class FileManagement {
     token,
     resourceId,
     resourceUuid,
-    resourceName,
-    language
+    resourceName
   }, callback) {
     const { DeleteResourceReferenceRequest } = this.stubFile;
     const request = new DeleteResourceReferenceRequest();
@@ -314,10 +283,6 @@ class FileManagement {
     request.setResourceUuid(resourceUuid);
     request.setResourceId(
       getValidId(resourceId)
-    );
-
-    request.setClientRequest(
-      getClientRequestToGRPC({ token, language })
     );
 
     const metadata = getMetadata({

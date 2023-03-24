@@ -23,8 +23,6 @@ var global = (function() {
 
 var proto_base_data_type_pb = require('../proto/base_data_type_pb.js');
 goog.object.extend(proto, proto_base_data_type_pb);
-var proto_client_pb = require('../proto/client_pb.js');
-goog.object.extend(proto, proto_client_pb);
 goog.exportSymbol('proto.issue_management.CreateIssueCommentRequest', null, global);
 goog.exportSymbol('proto.issue_management.CreateIssueRequest', null, global);
 goog.exportSymbol('proto.issue_management.DeleteIssueCommentRequest', null, global);
@@ -902,7 +900,6 @@ proto.issue_management.ListRequestTypesRequest.prototype.toObject = function(opt
  */
 proto.issue_management.ListRequestTypesRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    clientRequest: (f = msg.getClientRequest()) && proto_client_pb.ClientRequest.toObject(includeInstance, f),
     pageSize: jspb.Message.getFieldWithDefault(msg, 2, 0),
     pageToken: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
@@ -941,11 +938,6 @@ proto.issue_management.ListRequestTypesRequest.deserializeBinaryFromReader = fun
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 1:
-      var value = new proto_client_pb.ClientRequest;
-      reader.readMessage(value,proto_client_pb.ClientRequest.deserializeBinaryFromReader);
-      msg.setClientRequest(value);
-      break;
     case 2:
       var value = /** @type {number} */ (reader.readInt32());
       msg.setPageSize(value);
@@ -983,14 +975,6 @@ proto.issue_management.ListRequestTypesRequest.prototype.serializeBinary = funct
  */
 proto.issue_management.ListRequestTypesRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getClientRequest();
-  if (f != null) {
-    writer.writeMessage(
-      1,
-      f,
-      proto_client_pb.ClientRequest.serializeBinaryToWriter
-    );
-  }
   f = message.getPageSize();
   if (f !== 0) {
     writer.writeInt32(
@@ -1005,43 +989,6 @@ proto.issue_management.ListRequestTypesRequest.serializeBinaryToWriter = functio
       f
     );
   }
-};
-
-
-/**
- * optional data.ClientRequest client_request = 1;
- * @return {?proto.data.ClientRequest}
- */
-proto.issue_management.ListRequestTypesRequest.prototype.getClientRequest = function() {
-  return /** @type{?proto.data.ClientRequest} */ (
-    jspb.Message.getWrapperField(this, proto_client_pb.ClientRequest, 1));
-};
-
-
-/**
- * @param {?proto.data.ClientRequest|undefined} value
- * @return {!proto.issue_management.ListRequestTypesRequest} returns this
-*/
-proto.issue_management.ListRequestTypesRequest.prototype.setClientRequest = function(value) {
-  return jspb.Message.setWrapperField(this, 1, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.issue_management.ListRequestTypesRequest} returns this
- */
-proto.issue_management.ListRequestTypesRequest.prototype.clearClientRequest = function() {
-  return this.setClientRequest(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.issue_management.ListRequestTypesRequest.prototype.hasClientRequest = function() {
-  return jspb.Message.getField(this, 1) != null;
 };
 
 
@@ -1553,7 +1500,6 @@ proto.issue_management.ListSalesRepresentativesRequest.prototype.toObject = func
  */
 proto.issue_management.ListSalesRepresentativesRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    clientRequest: (f = msg.getClientRequest()) && proto_client_pb.ClientRequest.toObject(includeInstance, f),
     pageSize: jspb.Message.getFieldWithDefault(msg, 2, 0),
     pageToken: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
@@ -1592,11 +1538,6 @@ proto.issue_management.ListSalesRepresentativesRequest.deserializeBinaryFromRead
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 1:
-      var value = new proto_client_pb.ClientRequest;
-      reader.readMessage(value,proto_client_pb.ClientRequest.deserializeBinaryFromReader);
-      msg.setClientRequest(value);
-      break;
     case 2:
       var value = /** @type {number} */ (reader.readInt32());
       msg.setPageSize(value);
@@ -1634,14 +1575,6 @@ proto.issue_management.ListSalesRepresentativesRequest.prototype.serializeBinary
  */
 proto.issue_management.ListSalesRepresentativesRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getClientRequest();
-  if (f != null) {
-    writer.writeMessage(
-      1,
-      f,
-      proto_client_pb.ClientRequest.serializeBinaryToWriter
-    );
-  }
   f = message.getPageSize();
   if (f !== 0) {
     writer.writeInt32(
@@ -1656,43 +1589,6 @@ proto.issue_management.ListSalesRepresentativesRequest.serializeBinaryToWriter =
       f
     );
   }
-};
-
-
-/**
- * optional data.ClientRequest client_request = 1;
- * @return {?proto.data.ClientRequest}
- */
-proto.issue_management.ListSalesRepresentativesRequest.prototype.getClientRequest = function() {
-  return /** @type{?proto.data.ClientRequest} */ (
-    jspb.Message.getWrapperField(this, proto_client_pb.ClientRequest, 1));
-};
-
-
-/**
- * @param {?proto.data.ClientRequest|undefined} value
- * @return {!proto.issue_management.ListSalesRepresentativesRequest} returns this
-*/
-proto.issue_management.ListSalesRepresentativesRequest.prototype.setClientRequest = function(value) {
-  return jspb.Message.setWrapperField(this, 1, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.issue_management.ListSalesRepresentativesRequest} returns this
- */
-proto.issue_management.ListSalesRepresentativesRequest.prototype.clearClientRequest = function() {
-  return this.setClientRequest(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.issue_management.ListSalesRepresentativesRequest.prototype.hasClientRequest = function() {
-  return jspb.Message.getField(this, 1) != null;
 };
 
 
@@ -2234,7 +2130,6 @@ proto.issue_management.ListPrioritiesRequest.prototype.toObject = function(opt_i
  */
 proto.issue_management.ListPrioritiesRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    clientRequest: (f = msg.getClientRequest()) && proto_client_pb.ClientRequest.toObject(includeInstance, f),
     pageSize: jspb.Message.getFieldWithDefault(msg, 2, 0),
     pageToken: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
@@ -2273,11 +2168,6 @@ proto.issue_management.ListPrioritiesRequest.deserializeBinaryFromReader = funct
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 1:
-      var value = new proto_client_pb.ClientRequest;
-      reader.readMessage(value,proto_client_pb.ClientRequest.deserializeBinaryFromReader);
-      msg.setClientRequest(value);
-      break;
     case 2:
       var value = /** @type {number} */ (reader.readInt32());
       msg.setPageSize(value);
@@ -2315,14 +2205,6 @@ proto.issue_management.ListPrioritiesRequest.prototype.serializeBinary = functio
  */
 proto.issue_management.ListPrioritiesRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getClientRequest();
-  if (f != null) {
-    writer.writeMessage(
-      1,
-      f,
-      proto_client_pb.ClientRequest.serializeBinaryToWriter
-    );
-  }
   f = message.getPageSize();
   if (f !== 0) {
     writer.writeInt32(
@@ -2337,43 +2219,6 @@ proto.issue_management.ListPrioritiesRequest.serializeBinaryToWriter = function(
       f
     );
   }
-};
-
-
-/**
- * optional data.ClientRequest client_request = 1;
- * @return {?proto.data.ClientRequest}
- */
-proto.issue_management.ListPrioritiesRequest.prototype.getClientRequest = function() {
-  return /** @type{?proto.data.ClientRequest} */ (
-    jspb.Message.getWrapperField(this, proto_client_pb.ClientRequest, 1));
-};
-
-
-/**
- * @param {?proto.data.ClientRequest|undefined} value
- * @return {!proto.issue_management.ListPrioritiesRequest} returns this
-*/
-proto.issue_management.ListPrioritiesRequest.prototype.setClientRequest = function(value) {
-  return jspb.Message.setWrapperField(this, 1, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.issue_management.ListPrioritiesRequest} returns this
- */
-proto.issue_management.ListPrioritiesRequest.prototype.clearClientRequest = function() {
-  return this.setClientRequest(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.issue_management.ListPrioritiesRequest.prototype.hasClientRequest = function() {
-  return jspb.Message.getField(this, 1) != null;
 };
 
 
@@ -2885,7 +2730,6 @@ proto.issue_management.ListStatusesRequest.prototype.toObject = function(opt_inc
  */
 proto.issue_management.ListStatusesRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    clientRequest: (f = msg.getClientRequest()) && proto_client_pb.ClientRequest.toObject(includeInstance, f),
     pageSize: jspb.Message.getFieldWithDefault(msg, 2, 0),
     pageToken: jspb.Message.getFieldWithDefault(msg, 3, ""),
     requestTypeId: jspb.Message.getFieldWithDefault(msg, 4, 0),
@@ -2926,11 +2770,6 @@ proto.issue_management.ListStatusesRequest.deserializeBinaryFromReader = functio
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 1:
-      var value = new proto_client_pb.ClientRequest;
-      reader.readMessage(value,proto_client_pb.ClientRequest.deserializeBinaryFromReader);
-      msg.setClientRequest(value);
-      break;
     case 2:
       var value = /** @type {number} */ (reader.readInt32());
       msg.setPageSize(value);
@@ -2976,14 +2815,6 @@ proto.issue_management.ListStatusesRequest.prototype.serializeBinary = function(
  */
 proto.issue_management.ListStatusesRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getClientRequest();
-  if (f != null) {
-    writer.writeMessage(
-      1,
-      f,
-      proto_client_pb.ClientRequest.serializeBinaryToWriter
-    );
-  }
   f = message.getPageSize();
   if (f !== 0) {
     writer.writeInt32(
@@ -3012,43 +2843,6 @@ proto.issue_management.ListStatusesRequest.serializeBinaryToWriter = function(me
       f
     );
   }
-};
-
-
-/**
- * optional data.ClientRequest client_request = 1;
- * @return {?proto.data.ClientRequest}
- */
-proto.issue_management.ListStatusesRequest.prototype.getClientRequest = function() {
-  return /** @type{?proto.data.ClientRequest} */ (
-    jspb.Message.getWrapperField(this, proto_client_pb.ClientRequest, 1));
-};
-
-
-/**
- * @param {?proto.data.ClientRequest|undefined} value
- * @return {!proto.issue_management.ListStatusesRequest} returns this
-*/
-proto.issue_management.ListStatusesRequest.prototype.setClientRequest = function(value) {
-  return jspb.Message.setWrapperField(this, 1, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.issue_management.ListStatusesRequest} returns this
- */
-proto.issue_management.ListStatusesRequest.prototype.clearClientRequest = function() {
-  return this.setClientRequest(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.issue_management.ListStatusesRequest.prototype.hasClientRequest = function() {
-  return jspb.Message.getField(this, 1) != null;
 };
 
 
@@ -4311,7 +4105,6 @@ proto.issue_management.ExistsIssuesRequest.prototype.toObject = function(opt_inc
  */
 proto.issue_management.ExistsIssuesRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    clientRequest: (f = msg.getClientRequest()) && proto_client_pb.ClientRequest.toObject(includeInstance, f),
     tableName: jspb.Message.getFieldWithDefault(msg, 2, ""),
     recordId: jspb.Message.getFieldWithDefault(msg, 3, 0),
     recordUuid: jspb.Message.getFieldWithDefault(msg, 4, "")
@@ -4351,11 +4144,6 @@ proto.issue_management.ExistsIssuesRequest.deserializeBinaryFromReader = functio
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 1:
-      var value = new proto_client_pb.ClientRequest;
-      reader.readMessage(value,proto_client_pb.ClientRequest.deserializeBinaryFromReader);
-      msg.setClientRequest(value);
-      break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
       msg.setTableName(value);
@@ -4397,14 +4185,6 @@ proto.issue_management.ExistsIssuesRequest.prototype.serializeBinary = function(
  */
 proto.issue_management.ExistsIssuesRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getClientRequest();
-  if (f != null) {
-    writer.writeMessage(
-      1,
-      f,
-      proto_client_pb.ClientRequest.serializeBinaryToWriter
-    );
-  }
   f = message.getTableName();
   if (f.length > 0) {
     writer.writeString(
@@ -4426,43 +4206,6 @@ proto.issue_management.ExistsIssuesRequest.serializeBinaryToWriter = function(me
       f
     );
   }
-};
-
-
-/**
- * optional data.ClientRequest client_request = 1;
- * @return {?proto.data.ClientRequest}
- */
-proto.issue_management.ExistsIssuesRequest.prototype.getClientRequest = function() {
-  return /** @type{?proto.data.ClientRequest} */ (
-    jspb.Message.getWrapperField(this, proto_client_pb.ClientRequest, 1));
-};
-
-
-/**
- * @param {?proto.data.ClientRequest|undefined} value
- * @return {!proto.issue_management.ExistsIssuesRequest} returns this
-*/
-proto.issue_management.ExistsIssuesRequest.prototype.setClientRequest = function(value) {
-  return jspb.Message.setWrapperField(this, 1, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.issue_management.ExistsIssuesRequest} returns this
- */
-proto.issue_management.ExistsIssuesRequest.prototype.clearClientRequest = function() {
-  return this.setClientRequest(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.issue_management.ExistsIssuesRequest.prototype.hasClientRequest = function() {
-  return jspb.Message.getField(this, 1) != null;
 };
 
 
@@ -4682,7 +4425,6 @@ proto.issue_management.ListIssuesRequest.prototype.toObject = function(opt_inclu
  */
 proto.issue_management.ListIssuesRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    clientRequest: (f = msg.getClientRequest()) && proto_client_pb.ClientRequest.toObject(includeInstance, f),
     pageSize: jspb.Message.getFieldWithDefault(msg, 2, 0),
     pageToken: jspb.Message.getFieldWithDefault(msg, 3, ""),
     tableName: jspb.Message.getFieldWithDefault(msg, 4, ""),
@@ -4724,11 +4466,6 @@ proto.issue_management.ListIssuesRequest.deserializeBinaryFromReader = function(
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 1:
-      var value = new proto_client_pb.ClientRequest;
-      reader.readMessage(value,proto_client_pb.ClientRequest.deserializeBinaryFromReader);
-      msg.setClientRequest(value);
-      break;
     case 2:
       var value = /** @type {number} */ (reader.readInt32());
       msg.setPageSize(value);
@@ -4778,14 +4515,6 @@ proto.issue_management.ListIssuesRequest.prototype.serializeBinary = function() 
  */
 proto.issue_management.ListIssuesRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getClientRequest();
-  if (f != null) {
-    writer.writeMessage(
-      1,
-      f,
-      proto_client_pb.ClientRequest.serializeBinaryToWriter
-    );
-  }
   f = message.getPageSize();
   if (f !== 0) {
     writer.writeInt32(
@@ -4821,43 +4550,6 @@ proto.issue_management.ListIssuesRequest.serializeBinaryToWriter = function(mess
       f
     );
   }
-};
-
-
-/**
- * optional data.ClientRequest client_request = 1;
- * @return {?proto.data.ClientRequest}
- */
-proto.issue_management.ListIssuesRequest.prototype.getClientRequest = function() {
-  return /** @type{?proto.data.ClientRequest} */ (
-    jspb.Message.getWrapperField(this, proto_client_pb.ClientRequest, 1));
-};
-
-
-/**
- * @param {?proto.data.ClientRequest|undefined} value
- * @return {!proto.issue_management.ListIssuesRequest} returns this
-*/
-proto.issue_management.ListIssuesRequest.prototype.setClientRequest = function(value) {
-  return jspb.Message.setWrapperField(this, 1, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.issue_management.ListIssuesRequest} returns this
- */
-proto.issue_management.ListIssuesRequest.prototype.clearClientRequest = function() {
-  return this.setClientRequest(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.issue_management.ListIssuesRequest.prototype.hasClientRequest = function() {
-  return jspb.Message.getField(this, 1) != null;
 };
 
 
@@ -5203,7 +4895,6 @@ proto.issue_management.CreateIssueRequest.prototype.toObject = function(opt_incl
  */
 proto.issue_management.CreateIssueRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    clientRequest: (f = msg.getClientRequest()) && proto_client_pb.ClientRequest.toObject(includeInstance, f),
     tableName: jspb.Message.getFieldWithDefault(msg, 2, ""),
     recordId: jspb.Message.getFieldWithDefault(msg, 3, 0),
     recordUuid: jspb.Message.getFieldWithDefault(msg, 4, ""),
@@ -5253,11 +4944,6 @@ proto.issue_management.CreateIssueRequest.deserializeBinaryFromReader = function
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 1:
-      var value = new proto_client_pb.ClientRequest;
-      reader.readMessage(value,proto_client_pb.ClientRequest.deserializeBinaryFromReader);
-      msg.setClientRequest(value);
-      break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
       msg.setTableName(value);
@@ -5339,14 +5025,6 @@ proto.issue_management.CreateIssueRequest.prototype.serializeBinary = function()
  */
 proto.issue_management.CreateIssueRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getClientRequest();
-  if (f != null) {
-    writer.writeMessage(
-      1,
-      f,
-      proto_client_pb.ClientRequest.serializeBinaryToWriter
-    );
-  }
   f = message.getTableName();
   if (f.length > 0) {
     writer.writeString(
@@ -5438,43 +5116,6 @@ proto.issue_management.CreateIssueRequest.serializeBinaryToWriter = function(mes
       f
     );
   }
-};
-
-
-/**
- * optional data.ClientRequest client_request = 1;
- * @return {?proto.data.ClientRequest}
- */
-proto.issue_management.CreateIssueRequest.prototype.getClientRequest = function() {
-  return /** @type{?proto.data.ClientRequest} */ (
-    jspb.Message.getWrapperField(this, proto_client_pb.ClientRequest, 1));
-};
-
-
-/**
- * @param {?proto.data.ClientRequest|undefined} value
- * @return {!proto.issue_management.CreateIssueRequest} returns this
-*/
-proto.issue_management.CreateIssueRequest.prototype.setClientRequest = function(value) {
-  return jspb.Message.setWrapperField(this, 1, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.issue_management.CreateIssueRequest} returns this
- */
-proto.issue_management.CreateIssueRequest.prototype.clearClientRequest = function() {
-  return this.setClientRequest(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.issue_management.CreateIssueRequest.prototype.hasClientRequest = function() {
-  return jspb.Message.getField(this, 1) != null;
 };
 
 
@@ -5744,7 +5385,6 @@ proto.issue_management.UpdateIssueRequest.prototype.toObject = function(opt_incl
  */
 proto.issue_management.UpdateIssueRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    clientRequest: (f = msg.getClientRequest()) && proto_client_pb.ClientRequest.toObject(includeInstance, f),
     id: jspb.Message.getFieldWithDefault(msg, 2, 0),
     uuid: jspb.Message.getFieldWithDefault(msg, 3, ""),
     subject: jspb.Message.getFieldWithDefault(msg, 5, ""),
@@ -5793,11 +5433,6 @@ proto.issue_management.UpdateIssueRequest.deserializeBinaryFromReader = function
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 1:
-      var value = new proto_client_pb.ClientRequest;
-      reader.readMessage(value,proto_client_pb.ClientRequest.deserializeBinaryFromReader);
-      msg.setClientRequest(value);
-      break;
     case 2:
       var value = /** @type {number} */ (reader.readInt32());
       msg.setId(value);
@@ -5875,14 +5510,6 @@ proto.issue_management.UpdateIssueRequest.prototype.serializeBinary = function()
  */
 proto.issue_management.UpdateIssueRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getClientRequest();
-  if (f != null) {
-    writer.writeMessage(
-      1,
-      f,
-      proto_client_pb.ClientRequest.serializeBinaryToWriter
-    );
-  }
   f = message.getId();
   if (f !== 0) {
     writer.writeInt32(
@@ -5967,43 +5594,6 @@ proto.issue_management.UpdateIssueRequest.serializeBinaryToWriter = function(mes
       f
     );
   }
-};
-
-
-/**
- * optional data.ClientRequest client_request = 1;
- * @return {?proto.data.ClientRequest}
- */
-proto.issue_management.UpdateIssueRequest.prototype.getClientRequest = function() {
-  return /** @type{?proto.data.ClientRequest} */ (
-    jspb.Message.getWrapperField(this, proto_client_pb.ClientRequest, 1));
-};
-
-
-/**
- * @param {?proto.data.ClientRequest|undefined} value
- * @return {!proto.issue_management.UpdateIssueRequest} returns this
-*/
-proto.issue_management.UpdateIssueRequest.prototype.setClientRequest = function(value) {
-  return jspb.Message.setWrapperField(this, 1, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.issue_management.UpdateIssueRequest} returns this
- */
-proto.issue_management.UpdateIssueRequest.prototype.clearClientRequest = function() {
-  return this.setClientRequest(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.issue_management.UpdateIssueRequest.prototype.hasClientRequest = function() {
-  return jspb.Message.getField(this, 1) != null;
 };
 
 
@@ -6255,7 +5845,6 @@ proto.issue_management.DeleteIssueRequest.prototype.toObject = function(opt_incl
  */
 proto.issue_management.DeleteIssueRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    clientRequest: (f = msg.getClientRequest()) && proto_client_pb.ClientRequest.toObject(includeInstance, f),
     id: jspb.Message.getFieldWithDefault(msg, 2, 0),
     uuid: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
@@ -6294,11 +5883,6 @@ proto.issue_management.DeleteIssueRequest.deserializeBinaryFromReader = function
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 1:
-      var value = new proto_client_pb.ClientRequest;
-      reader.readMessage(value,proto_client_pb.ClientRequest.deserializeBinaryFromReader);
-      msg.setClientRequest(value);
-      break;
     case 2:
       var value = /** @type {number} */ (reader.readInt32());
       msg.setId(value);
@@ -6336,14 +5920,6 @@ proto.issue_management.DeleteIssueRequest.prototype.serializeBinary = function()
  */
 proto.issue_management.DeleteIssueRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getClientRequest();
-  if (f != null) {
-    writer.writeMessage(
-      1,
-      f,
-      proto_client_pb.ClientRequest.serializeBinaryToWriter
-    );
-  }
   f = message.getId();
   if (f !== 0) {
     writer.writeInt32(
@@ -6358,43 +5934,6 @@ proto.issue_management.DeleteIssueRequest.serializeBinaryToWriter = function(mes
       f
     );
   }
-};
-
-
-/**
- * optional data.ClientRequest client_request = 1;
- * @return {?proto.data.ClientRequest}
- */
-proto.issue_management.DeleteIssueRequest.prototype.getClientRequest = function() {
-  return /** @type{?proto.data.ClientRequest} */ (
-    jspb.Message.getWrapperField(this, proto_client_pb.ClientRequest, 1));
-};
-
-
-/**
- * @param {?proto.data.ClientRequest|undefined} value
- * @return {!proto.issue_management.DeleteIssueRequest} returns this
-*/
-proto.issue_management.DeleteIssueRequest.prototype.setClientRequest = function(value) {
-  return jspb.Message.setWrapperField(this, 1, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.issue_management.DeleteIssueRequest} returns this
- */
-proto.issue_management.DeleteIssueRequest.prototype.clearClientRequest = function() {
-  return this.setClientRequest(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.issue_management.DeleteIssueRequest.prototype.hasClientRequest = function() {
-  return jspb.Message.getField(this, 1) != null;
 };
 
 
@@ -6917,7 +6456,6 @@ proto.issue_management.ListIssueCommentsRequest.prototype.toObject = function(op
  */
 proto.issue_management.ListIssueCommentsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    clientRequest: (f = msg.getClientRequest()) && proto_client_pb.ClientRequest.toObject(includeInstance, f),
     pageSize: jspb.Message.getFieldWithDefault(msg, 2, 0),
     pageToken: jspb.Message.getFieldWithDefault(msg, 3, ""),
     issueId: jspb.Message.getFieldWithDefault(msg, 4, 0),
@@ -6958,11 +6496,6 @@ proto.issue_management.ListIssueCommentsRequest.deserializeBinaryFromReader = fu
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 1:
-      var value = new proto_client_pb.ClientRequest;
-      reader.readMessage(value,proto_client_pb.ClientRequest.deserializeBinaryFromReader);
-      msg.setClientRequest(value);
-      break;
     case 2:
       var value = /** @type {number} */ (reader.readInt32());
       msg.setPageSize(value);
@@ -7008,14 +6541,6 @@ proto.issue_management.ListIssueCommentsRequest.prototype.serializeBinary = func
  */
 proto.issue_management.ListIssueCommentsRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getClientRequest();
-  if (f != null) {
-    writer.writeMessage(
-      1,
-      f,
-      proto_client_pb.ClientRequest.serializeBinaryToWriter
-    );
-  }
   f = message.getPageSize();
   if (f !== 0) {
     writer.writeInt32(
@@ -7044,43 +6569,6 @@ proto.issue_management.ListIssueCommentsRequest.serializeBinaryToWriter = functi
       f
     );
   }
-};
-
-
-/**
- * optional data.ClientRequest client_request = 1;
- * @return {?proto.data.ClientRequest}
- */
-proto.issue_management.ListIssueCommentsRequest.prototype.getClientRequest = function() {
-  return /** @type{?proto.data.ClientRequest} */ (
-    jspb.Message.getWrapperField(this, proto_client_pb.ClientRequest, 1));
-};
-
-
-/**
- * @param {?proto.data.ClientRequest|undefined} value
- * @return {!proto.issue_management.ListIssueCommentsRequest} returns this
-*/
-proto.issue_management.ListIssueCommentsRequest.prototype.setClientRequest = function(value) {
-  return jspb.Message.setWrapperField(this, 1, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.issue_management.ListIssueCommentsRequest} returns this
- */
-proto.issue_management.ListIssueCommentsRequest.prototype.clearClientRequest = function() {
-  return this.setClientRequest(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.issue_management.ListIssueCommentsRequest.prototype.hasClientRequest = function() {
-  return jspb.Message.getField(this, 1) != null;
 };
 
 
@@ -7408,7 +6896,6 @@ proto.issue_management.CreateIssueCommentRequest.prototype.toObject = function(o
  */
 proto.issue_management.CreateIssueCommentRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    clientRequest: (f = msg.getClientRequest()) && proto_client_pb.ClientRequest.toObject(includeInstance, f),
     issueId: jspb.Message.getFieldWithDefault(msg, 2, 0),
     issueUuid: jspb.Message.getFieldWithDefault(msg, 3, ""),
     result: jspb.Message.getFieldWithDefault(msg, 4, "")
@@ -7448,11 +6935,6 @@ proto.issue_management.CreateIssueCommentRequest.deserializeBinaryFromReader = f
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 1:
-      var value = new proto_client_pb.ClientRequest;
-      reader.readMessage(value,proto_client_pb.ClientRequest.deserializeBinaryFromReader);
-      msg.setClientRequest(value);
-      break;
     case 2:
       var value = /** @type {number} */ (reader.readInt32());
       msg.setIssueId(value);
@@ -7494,14 +6976,6 @@ proto.issue_management.CreateIssueCommentRequest.prototype.serializeBinary = fun
  */
 proto.issue_management.CreateIssueCommentRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getClientRequest();
-  if (f != null) {
-    writer.writeMessage(
-      1,
-      f,
-      proto_client_pb.ClientRequest.serializeBinaryToWriter
-    );
-  }
   f = message.getIssueId();
   if (f !== 0) {
     writer.writeInt32(
@@ -7523,43 +6997,6 @@ proto.issue_management.CreateIssueCommentRequest.serializeBinaryToWriter = funct
       f
     );
   }
-};
-
-
-/**
- * optional data.ClientRequest client_request = 1;
- * @return {?proto.data.ClientRequest}
- */
-proto.issue_management.CreateIssueCommentRequest.prototype.getClientRequest = function() {
-  return /** @type{?proto.data.ClientRequest} */ (
-    jspb.Message.getWrapperField(this, proto_client_pb.ClientRequest, 1));
-};
-
-
-/**
- * @param {?proto.data.ClientRequest|undefined} value
- * @return {!proto.issue_management.CreateIssueCommentRequest} returns this
-*/
-proto.issue_management.CreateIssueCommentRequest.prototype.setClientRequest = function(value) {
-  return jspb.Message.setWrapperField(this, 1, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.issue_management.CreateIssueCommentRequest} returns this
- */
-proto.issue_management.CreateIssueCommentRequest.prototype.clearClientRequest = function() {
-  return this.setClientRequest(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.issue_management.CreateIssueCommentRequest.prototype.hasClientRequest = function() {
-  return jspb.Message.getField(this, 1) != null;
 };
 
 
@@ -7649,7 +7086,6 @@ proto.issue_management.UpdateIssueCommentRequest.prototype.toObject = function(o
  */
 proto.issue_management.UpdateIssueCommentRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    clientRequest: (f = msg.getClientRequest()) && proto_client_pb.ClientRequest.toObject(includeInstance, f),
     id: jspb.Message.getFieldWithDefault(msg, 2, 0),
     uuid: jspb.Message.getFieldWithDefault(msg, 3, ""),
     result: jspb.Message.getFieldWithDefault(msg, 4, "")
@@ -7689,11 +7125,6 @@ proto.issue_management.UpdateIssueCommentRequest.deserializeBinaryFromReader = f
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 1:
-      var value = new proto_client_pb.ClientRequest;
-      reader.readMessage(value,proto_client_pb.ClientRequest.deserializeBinaryFromReader);
-      msg.setClientRequest(value);
-      break;
     case 2:
       var value = /** @type {number} */ (reader.readInt32());
       msg.setId(value);
@@ -7735,14 +7166,6 @@ proto.issue_management.UpdateIssueCommentRequest.prototype.serializeBinary = fun
  */
 proto.issue_management.UpdateIssueCommentRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getClientRequest();
-  if (f != null) {
-    writer.writeMessage(
-      1,
-      f,
-      proto_client_pb.ClientRequest.serializeBinaryToWriter
-    );
-  }
   f = message.getId();
   if (f !== 0) {
     writer.writeInt32(
@@ -7764,43 +7187,6 @@ proto.issue_management.UpdateIssueCommentRequest.serializeBinaryToWriter = funct
       f
     );
   }
-};
-
-
-/**
- * optional data.ClientRequest client_request = 1;
- * @return {?proto.data.ClientRequest}
- */
-proto.issue_management.UpdateIssueCommentRequest.prototype.getClientRequest = function() {
-  return /** @type{?proto.data.ClientRequest} */ (
-    jspb.Message.getWrapperField(this, proto_client_pb.ClientRequest, 1));
-};
-
-
-/**
- * @param {?proto.data.ClientRequest|undefined} value
- * @return {!proto.issue_management.UpdateIssueCommentRequest} returns this
-*/
-proto.issue_management.UpdateIssueCommentRequest.prototype.setClientRequest = function(value) {
-  return jspb.Message.setWrapperField(this, 1, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.issue_management.UpdateIssueCommentRequest} returns this
- */
-proto.issue_management.UpdateIssueCommentRequest.prototype.clearClientRequest = function() {
-  return this.setClientRequest(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.issue_management.UpdateIssueCommentRequest.prototype.hasClientRequest = function() {
-  return jspb.Message.getField(this, 1) != null;
 };
 
 
@@ -7890,7 +7276,6 @@ proto.issue_management.DeleteIssueCommentRequest.prototype.toObject = function(o
  */
 proto.issue_management.DeleteIssueCommentRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    clientRequest: (f = msg.getClientRequest()) && proto_client_pb.ClientRequest.toObject(includeInstance, f),
     id: jspb.Message.getFieldWithDefault(msg, 2, 0),
     uuid: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
@@ -7929,11 +7314,6 @@ proto.issue_management.DeleteIssueCommentRequest.deserializeBinaryFromReader = f
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 1:
-      var value = new proto_client_pb.ClientRequest;
-      reader.readMessage(value,proto_client_pb.ClientRequest.deserializeBinaryFromReader);
-      msg.setClientRequest(value);
-      break;
     case 2:
       var value = /** @type {number} */ (reader.readInt32());
       msg.setId(value);
@@ -7971,14 +7351,6 @@ proto.issue_management.DeleteIssueCommentRequest.prototype.serializeBinary = fun
  */
 proto.issue_management.DeleteIssueCommentRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getClientRequest();
-  if (f != null) {
-    writer.writeMessage(
-      1,
-      f,
-      proto_client_pb.ClientRequest.serializeBinaryToWriter
-    );
-  }
   f = message.getId();
   if (f !== 0) {
     writer.writeInt32(
@@ -7993,43 +7365,6 @@ proto.issue_management.DeleteIssueCommentRequest.serializeBinaryToWriter = funct
       f
     );
   }
-};
-
-
-/**
- * optional data.ClientRequest client_request = 1;
- * @return {?proto.data.ClientRequest}
- */
-proto.issue_management.DeleteIssueCommentRequest.prototype.getClientRequest = function() {
-  return /** @type{?proto.data.ClientRequest} */ (
-    jspb.Message.getWrapperField(this, proto_client_pb.ClientRequest, 1));
-};
-
-
-/**
- * @param {?proto.data.ClientRequest|undefined} value
- * @return {!proto.issue_management.DeleteIssueCommentRequest} returns this
-*/
-proto.issue_management.DeleteIssueCommentRequest.prototype.setClientRequest = function(value) {
-  return jspb.Message.setWrapperField(this, 1, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.issue_management.DeleteIssueCommentRequest} returns this
- */
-proto.issue_management.DeleteIssueCommentRequest.prototype.clearClientRequest = function() {
-  return this.setClientRequest(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.issue_management.DeleteIssueCommentRequest.prototype.hasClientRequest = function() {
-  return jspb.Message.getField(this, 1) != null;
 };
 
 

@@ -23,8 +23,6 @@ var global = (function() {
 
 var proto_base_data_type_pb = require('../proto/base_data_type_pb.js');
 goog.object.extend(proto, proto_base_data_type_pb);
-var proto_client_pb = require('../proto/client_pb.js');
-goog.object.extend(proto, proto_client_pb);
 var proto_business_pb = require('../proto/business_pb.js');
 goog.object.extend(proto, proto_business_pb);
 goog.exportSymbol('proto.payroll_action_notice.DeletePayrollMovementsRequest', null, global);
@@ -220,7 +218,6 @@ proto.payroll_action_notice.ListPayrollProcessRequest.prototype.toObject = funct
  */
 proto.payroll_action_notice.ListPayrollProcessRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    clientRequest: (f = msg.getClientRequest()) && proto_client_pb.ClientRequest.toObject(includeInstance, f),
     pageSize: jspb.Message.getFieldWithDefault(msg, 2, 0),
     pageToken: jspb.Message.getFieldWithDefault(msg, 3, ""),
     searchValue: jspb.Message.getFieldWithDefault(msg, 4, ""),
@@ -262,11 +259,6 @@ proto.payroll_action_notice.ListPayrollProcessRequest.deserializeBinaryFromReade
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 1:
-      var value = new proto_client_pb.ClientRequest;
-      reader.readMessage(value,proto_client_pb.ClientRequest.deserializeBinaryFromReader);
-      msg.setClientRequest(value);
-      break;
     case 2:
       var value = /** @type {number} */ (reader.readInt32());
       msg.setPageSize(value);
@@ -313,14 +305,6 @@ proto.payroll_action_notice.ListPayrollProcessRequest.prototype.serializeBinary 
  */
 proto.payroll_action_notice.ListPayrollProcessRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getClientRequest();
-  if (f != null) {
-    writer.writeMessage(
-      1,
-      f,
-      proto_client_pb.ClientRequest.serializeBinaryToWriter
-    );
-  }
   f = message.getPageSize();
   if (f !== 0) {
     writer.writeInt32(
@@ -350,43 +334,6 @@ proto.payroll_action_notice.ListPayrollProcessRequest.serializeBinaryToWriter = 
       proto_base_data_type_pb.KeyValue.serializeBinaryToWriter
     );
   }
-};
-
-
-/**
- * optional data.ClientRequest client_request = 1;
- * @return {?proto.data.ClientRequest}
- */
-proto.payroll_action_notice.ListPayrollProcessRequest.prototype.getClientRequest = function() {
-  return /** @type{?proto.data.ClientRequest} */ (
-    jspb.Message.getWrapperField(this, proto_client_pb.ClientRequest, 1));
-};
-
-
-/**
- * @param {?proto.data.ClientRequest|undefined} value
- * @return {!proto.payroll_action_notice.ListPayrollProcessRequest} returns this
-*/
-proto.payroll_action_notice.ListPayrollProcessRequest.prototype.setClientRequest = function(value) {
-  return jspb.Message.setWrapperField(this, 1, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.payroll_action_notice.ListPayrollProcessRequest} returns this
- */
-proto.payroll_action_notice.ListPayrollProcessRequest.prototype.clearClientRequest = function() {
-  return this.setClientRequest(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.payroll_action_notice.ListPayrollProcessRequest.prototype.hasClientRequest = function() {
-  return jspb.Message.getField(this, 1) != null;
 };
 
 
@@ -521,7 +468,6 @@ proto.payroll_action_notice.ListEmployeeValidRequest.prototype.toObject = functi
  */
 proto.payroll_action_notice.ListEmployeeValidRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    clientRequest: (f = msg.getClientRequest()) && proto_client_pb.ClientRequest.toObject(includeInstance, f),
     pageSize: jspb.Message.getFieldWithDefault(msg, 2, 0),
     pageToken: jspb.Message.getFieldWithDefault(msg, 3, ""),
     searchValue: jspb.Message.getFieldWithDefault(msg, 4, ""),
@@ -563,11 +509,6 @@ proto.payroll_action_notice.ListEmployeeValidRequest.deserializeBinaryFromReader
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 1:
-      var value = new proto_client_pb.ClientRequest;
-      reader.readMessage(value,proto_client_pb.ClientRequest.deserializeBinaryFromReader);
-      msg.setClientRequest(value);
-      break;
     case 2:
       var value = /** @type {number} */ (reader.readInt32());
       msg.setPageSize(value);
@@ -614,14 +555,6 @@ proto.payroll_action_notice.ListEmployeeValidRequest.prototype.serializeBinary =
  */
 proto.payroll_action_notice.ListEmployeeValidRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getClientRequest();
-  if (f != null) {
-    writer.writeMessage(
-      1,
-      f,
-      proto_client_pb.ClientRequest.serializeBinaryToWriter
-    );
-  }
   f = message.getPageSize();
   if (f !== 0) {
     writer.writeInt32(
@@ -651,43 +584,6 @@ proto.payroll_action_notice.ListEmployeeValidRequest.serializeBinaryToWriter = f
       proto_base_data_type_pb.KeyValue.serializeBinaryToWriter
     );
   }
-};
-
-
-/**
- * optional data.ClientRequest client_request = 1;
- * @return {?proto.data.ClientRequest}
- */
-proto.payroll_action_notice.ListEmployeeValidRequest.prototype.getClientRequest = function() {
-  return /** @type{?proto.data.ClientRequest} */ (
-    jspb.Message.getWrapperField(this, proto_client_pb.ClientRequest, 1));
-};
-
-
-/**
- * @param {?proto.data.ClientRequest|undefined} value
- * @return {!proto.payroll_action_notice.ListEmployeeValidRequest} returns this
-*/
-proto.payroll_action_notice.ListEmployeeValidRequest.prototype.setClientRequest = function(value) {
-  return jspb.Message.setWrapperField(this, 1, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.payroll_action_notice.ListEmployeeValidRequest} returns this
- */
-proto.payroll_action_notice.ListEmployeeValidRequest.prototype.clearClientRequest = function() {
-  return this.setClientRequest(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.payroll_action_notice.ListEmployeeValidRequest.prototype.hasClientRequest = function() {
-  return jspb.Message.getField(this, 1) != null;
 };
 
 
@@ -822,7 +718,6 @@ proto.payroll_action_notice.ListPayrollConceptsRequest.prototype.toObject = func
  */
 proto.payroll_action_notice.ListPayrollConceptsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    clientRequest: (f = msg.getClientRequest()) && proto_client_pb.ClientRequest.toObject(includeInstance, f),
     pageSize: jspb.Message.getFieldWithDefault(msg, 2, 0),
     pageToken: jspb.Message.getFieldWithDefault(msg, 3, ""),
     contextAttributesList: jspb.Message.toObjectList(msg.getContextAttributesList(),
@@ -864,11 +759,6 @@ proto.payroll_action_notice.ListPayrollConceptsRequest.deserializeBinaryFromRead
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 1:
-      var value = new proto_client_pb.ClientRequest;
-      reader.readMessage(value,proto_client_pb.ClientRequest.deserializeBinaryFromReader);
-      msg.setClientRequest(value);
-      break;
     case 2:
       var value = /** @type {number} */ (reader.readInt32());
       msg.setPageSize(value);
@@ -915,14 +805,6 @@ proto.payroll_action_notice.ListPayrollConceptsRequest.prototype.serializeBinary
  */
 proto.payroll_action_notice.ListPayrollConceptsRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getClientRequest();
-  if (f != null) {
-    writer.writeMessage(
-      1,
-      f,
-      proto_client_pb.ClientRequest.serializeBinaryToWriter
-    );
-  }
   f = message.getPageSize();
   if (f !== 0) {
     writer.writeInt32(
@@ -952,43 +834,6 @@ proto.payroll_action_notice.ListPayrollConceptsRequest.serializeBinaryToWriter =
       f
     );
   }
-};
-
-
-/**
- * optional data.ClientRequest client_request = 1;
- * @return {?proto.data.ClientRequest}
- */
-proto.payroll_action_notice.ListPayrollConceptsRequest.prototype.getClientRequest = function() {
-  return /** @type{?proto.data.ClientRequest} */ (
-    jspb.Message.getWrapperField(this, proto_client_pb.ClientRequest, 1));
-};
-
-
-/**
- * @param {?proto.data.ClientRequest|undefined} value
- * @return {!proto.payroll_action_notice.ListPayrollConceptsRequest} returns this
-*/
-proto.payroll_action_notice.ListPayrollConceptsRequest.prototype.setClientRequest = function(value) {
-  return jspb.Message.setWrapperField(this, 1, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.payroll_action_notice.ListPayrollConceptsRequest} returns this
- */
-proto.payroll_action_notice.ListPayrollConceptsRequest.prototype.clearClientRequest = function() {
-  return this.setClientRequest(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.payroll_action_notice.ListPayrollConceptsRequest.prototype.hasClientRequest = function() {
-  return jspb.Message.getField(this, 1) != null;
 };
 
 
@@ -1116,7 +961,6 @@ proto.payroll_action_notice.GetPayrollConceptDefinitionRequest.prototype.toObjec
  */
 proto.payroll_action_notice.GetPayrollConceptDefinitionRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    clientRequest: (f = msg.getClientRequest()) && proto_client_pb.ClientRequest.toObject(includeInstance, f),
     id: jspb.Message.getFieldWithDefault(msg, 2, 0),
     uuid: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
@@ -1155,11 +999,6 @@ proto.payroll_action_notice.GetPayrollConceptDefinitionRequest.deserializeBinary
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 1:
-      var value = new proto_client_pb.ClientRequest;
-      reader.readMessage(value,proto_client_pb.ClientRequest.deserializeBinaryFromReader);
-      msg.setClientRequest(value);
-      break;
     case 2:
       var value = /** @type {number} */ (reader.readInt32());
       msg.setId(value);
@@ -1197,14 +1036,6 @@ proto.payroll_action_notice.GetPayrollConceptDefinitionRequest.prototype.seriali
  */
 proto.payroll_action_notice.GetPayrollConceptDefinitionRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getClientRequest();
-  if (f != null) {
-    writer.writeMessage(
-      1,
-      f,
-      proto_client_pb.ClientRequest.serializeBinaryToWriter
-    );
-  }
   f = message.getId();
   if (f !== 0) {
     writer.writeInt32(
@@ -1219,43 +1050,6 @@ proto.payroll_action_notice.GetPayrollConceptDefinitionRequest.serializeBinaryTo
       f
     );
   }
-};
-
-
-/**
- * optional data.ClientRequest client_request = 1;
- * @return {?proto.data.ClientRequest}
- */
-proto.payroll_action_notice.GetPayrollConceptDefinitionRequest.prototype.getClientRequest = function() {
-  return /** @type{?proto.data.ClientRequest} */ (
-    jspb.Message.getWrapperField(this, proto_client_pb.ClientRequest, 1));
-};
-
-
-/**
- * @param {?proto.data.ClientRequest|undefined} value
- * @return {!proto.payroll_action_notice.GetPayrollConceptDefinitionRequest} returns this
-*/
-proto.payroll_action_notice.GetPayrollConceptDefinitionRequest.prototype.setClientRequest = function(value) {
-  return jspb.Message.setWrapperField(this, 1, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.payroll_action_notice.GetPayrollConceptDefinitionRequest} returns this
- */
-proto.payroll_action_notice.GetPayrollConceptDefinitionRequest.prototype.clearClientRequest = function() {
-  return this.setClientRequest(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.payroll_action_notice.GetPayrollConceptDefinitionRequest.prototype.hasClientRequest = function() {
-  return jspb.Message.getField(this, 1) != null;
 };
 
 
@@ -1334,7 +1128,6 @@ proto.payroll_action_notice.ListPayrollMovementsRequest.prototype.toObject = fun
  */
 proto.payroll_action_notice.ListPayrollMovementsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    clientRequest: (f = msg.getClientRequest()) && proto_client_pb.ClientRequest.toObject(includeInstance, f),
     pageSize: jspb.Message.getFieldWithDefault(msg, 2, 0),
     pageToken: jspb.Message.getFieldWithDefault(msg, 3, ""),
     filters: (f = msg.getFilters()) && proto_base_data_type_pb.Criteria.toObject(includeInstance, f),
@@ -1377,11 +1170,6 @@ proto.payroll_action_notice.ListPayrollMovementsRequest.deserializeBinaryFromRea
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 1:
-      var value = new proto_client_pb.ClientRequest;
-      reader.readMessage(value,proto_client_pb.ClientRequest.deserializeBinaryFromReader);
-      msg.setClientRequest(value);
-      break;
     case 2:
       var value = /** @type {number} */ (reader.readInt32());
       msg.setPageSize(value);
@@ -1433,14 +1221,6 @@ proto.payroll_action_notice.ListPayrollMovementsRequest.prototype.serializeBinar
  */
 proto.payroll_action_notice.ListPayrollMovementsRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getClientRequest();
-  if (f != null) {
-    writer.writeMessage(
-      1,
-      f,
-      proto_client_pb.ClientRequest.serializeBinaryToWriter
-    );
-  }
   f = message.getPageSize();
   if (f !== 0) {
     writer.writeInt32(
@@ -1478,43 +1258,6 @@ proto.payroll_action_notice.ListPayrollMovementsRequest.serializeBinaryToWriter 
       f
     );
   }
-};
-
-
-/**
- * optional data.ClientRequest client_request = 1;
- * @return {?proto.data.ClientRequest}
- */
-proto.payroll_action_notice.ListPayrollMovementsRequest.prototype.getClientRequest = function() {
-  return /** @type{?proto.data.ClientRequest} */ (
-    jspb.Message.getWrapperField(this, proto_client_pb.ClientRequest, 1));
-};
-
-
-/**
- * @param {?proto.data.ClientRequest|undefined} value
- * @return {!proto.payroll_action_notice.ListPayrollMovementsRequest} returns this
-*/
-proto.payroll_action_notice.ListPayrollMovementsRequest.prototype.setClientRequest = function(value) {
-  return jspb.Message.setWrapperField(this, 1, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.payroll_action_notice.ListPayrollMovementsRequest} returns this
- */
-proto.payroll_action_notice.ListPayrollMovementsRequest.prototype.clearClientRequest = function() {
-  return this.setClientRequest(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.payroll_action_notice.ListPayrollMovementsRequest.prototype.hasClientRequest = function() {
-  return jspb.Message.getField(this, 1) != null;
 };
 
 
@@ -1686,7 +1429,6 @@ proto.payroll_action_notice.SavePayrollMovementRequest.prototype.toObject = func
  */
 proto.payroll_action_notice.SavePayrollMovementRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    clientRequest: (f = msg.getClientRequest()) && proto_client_pb.ClientRequest.toObject(includeInstance, f),
     contextAttributesList: jspb.Message.toObjectList(msg.getContextAttributesList(),
     proto_base_data_type_pb.KeyValue.toObject, includeInstance),
     uuid: jspb.Message.getFieldWithDefault(msg, 3, ""),
@@ -1729,11 +1471,6 @@ proto.payroll_action_notice.SavePayrollMovementRequest.deserializeBinaryFromRead
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 1:
-      var value = new proto_client_pb.ClientRequest;
-      reader.readMessage(value,proto_client_pb.ClientRequest.deserializeBinaryFromReader);
-      msg.setClientRequest(value);
-      break;
     case 2:
       var value = new proto_base_data_type_pb.KeyValue;
       reader.readMessage(value,proto_base_data_type_pb.KeyValue.deserializeBinaryFromReader);
@@ -1781,14 +1518,6 @@ proto.payroll_action_notice.SavePayrollMovementRequest.prototype.serializeBinary
  */
 proto.payroll_action_notice.SavePayrollMovementRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getClientRequest();
-  if (f != null) {
-    writer.writeMessage(
-      1,
-      f,
-      proto_client_pb.ClientRequest.serializeBinaryToWriter
-    );
-  }
   f = message.getContextAttributesList();
   if (f.length > 0) {
     writer.writeRepeatedMessage(
@@ -1819,43 +1548,6 @@ proto.payroll_action_notice.SavePayrollMovementRequest.serializeBinaryToWriter =
       proto_base_data_type_pb.KeyValue.serializeBinaryToWriter
     );
   }
-};
-
-
-/**
- * optional data.ClientRequest client_request = 1;
- * @return {?proto.data.ClientRequest}
- */
-proto.payroll_action_notice.SavePayrollMovementRequest.prototype.getClientRequest = function() {
-  return /** @type{?proto.data.ClientRequest} */ (
-    jspb.Message.getWrapperField(this, proto_client_pb.ClientRequest, 1));
-};
-
-
-/**
- * @param {?proto.data.ClientRequest|undefined} value
- * @return {!proto.payroll_action_notice.SavePayrollMovementRequest} returns this
-*/
-proto.payroll_action_notice.SavePayrollMovementRequest.prototype.setClientRequest = function(value) {
-  return jspb.Message.setWrapperField(this, 1, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.payroll_action_notice.SavePayrollMovementRequest} returns this
- */
-proto.payroll_action_notice.SavePayrollMovementRequest.prototype.clearClientRequest = function() {
-  return this.setClientRequest(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.payroll_action_notice.SavePayrollMovementRequest.prototype.hasClientRequest = function() {
-  return jspb.Message.getField(this, 1) != null;
 };
 
 
@@ -2010,7 +1702,6 @@ proto.payroll_action_notice.DeletePayrollMovementsRequest.prototype.toObject = f
  */
 proto.payroll_action_notice.DeletePayrollMovementsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    clientRequest: (f = msg.getClientRequest()) && proto_client_pb.ClientRequest.toObject(includeInstance, f),
     contextAttributesList: jspb.Message.toObjectList(msg.getContextAttributesList(),
     proto_base_data_type_pb.KeyValue.toObject, includeInstance),
     uuidsList: (f = jspb.Message.getRepeatedField(msg, 3)) == null ? undefined : f,
@@ -2051,11 +1742,6 @@ proto.payroll_action_notice.DeletePayrollMovementsRequest.deserializeBinaryFromR
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 1:
-      var value = new proto_client_pb.ClientRequest;
-      reader.readMessage(value,proto_client_pb.ClientRequest.deserializeBinaryFromReader);
-      msg.setClientRequest(value);
-      break;
     case 2:
       var value = new proto_base_data_type_pb.KeyValue;
       reader.readMessage(value,proto_base_data_type_pb.KeyValue.deserializeBinaryFromReader);
@@ -2100,14 +1786,6 @@ proto.payroll_action_notice.DeletePayrollMovementsRequest.prototype.serializeBin
  */
 proto.payroll_action_notice.DeletePayrollMovementsRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getClientRequest();
-  if (f != null) {
-    writer.writeMessage(
-      1,
-      f,
-      proto_client_pb.ClientRequest.serializeBinaryToWriter
-    );
-  }
   f = message.getContextAttributesList();
   if (f.length > 0) {
     writer.writeRepeatedMessage(
@@ -2130,43 +1808,6 @@ proto.payroll_action_notice.DeletePayrollMovementsRequest.serializeBinaryToWrite
       f
     );
   }
-};
-
-
-/**
- * optional data.ClientRequest client_request = 1;
- * @return {?proto.data.ClientRequest}
- */
-proto.payroll_action_notice.DeletePayrollMovementsRequest.prototype.getClientRequest = function() {
-  return /** @type{?proto.data.ClientRequest} */ (
-    jspb.Message.getWrapperField(this, proto_client_pb.ClientRequest, 1));
-};
-
-
-/**
- * @param {?proto.data.ClientRequest|undefined} value
- * @return {!proto.payroll_action_notice.DeletePayrollMovementsRequest} returns this
-*/
-proto.payroll_action_notice.DeletePayrollMovementsRequest.prototype.setClientRequest = function(value) {
-  return jspb.Message.setWrapperField(this, 1, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.payroll_action_notice.DeletePayrollMovementsRequest} returns this
- */
-proto.payroll_action_notice.DeletePayrollMovementsRequest.prototype.clearClientRequest = function() {
-  return this.setClientRequest(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.payroll_action_notice.DeletePayrollMovementsRequest.prototype.hasClientRequest = function() {
-  return jspb.Message.getField(this, 1) != null;
 };
 
 

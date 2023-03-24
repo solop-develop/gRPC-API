@@ -14,7 +14,6 @@
  * along with this program. If not, see <https://www.gnu.org/licenses/>.             *
  ************************************************************************************/
 
-const { createClientRequest } = require('@adempiere/grpc-api/lib/clientRequest');
 const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
 const { isEmptyValue, getValidId } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
 
@@ -68,8 +67,7 @@ class UserInterface {
     browseFieldUuid,
     columnUuid,
     value,
-    contextAttributes,
-    language
+    contextAttributes
   }, callback) {
     const { GetDefaultValueRequest } = this.stubFile;
     const request = new GetDefaultValueRequest();
@@ -111,10 +109,6 @@ class UserInterface {
       request.setValue(convertedValue);
     }
 
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
-
     const metadata = getMetadata({
       token
     });
@@ -130,7 +124,6 @@ class UserInterface {
   /**
    * Get a Tab Entity
    * @param {string} token session uuid
-   * @param {string} language
    * @param {string} tabUuid
    * @param {number} id record id
    * @param {string} uuid record uuid
@@ -139,8 +132,7 @@ class UserInterface {
     token,
     tabUuid,
     id,
-    uuid,
-    language
+    uuid
   }, callback) {
     const { GetTabEntityRequest } = this.stubFile;
     const request = new GetTabEntityRequest();
@@ -149,10 +141,6 @@ class UserInterface {
     request.setUuid(uuid);
     request.setId(
       getValidId(id)
-    );
-
-    request.setClientRequest(
-      createClientRequest({ token, language })
     );
 
     const metadata = getMetadata({
@@ -169,7 +157,6 @@ class UserInterface {
   /**
    * List Tab Entities
    * @param {string} token session uuid
-   * @param {string} language
    * @param {string} tabUuid
    * @param {number} id record id
    * @param {string} uuid record uuid
@@ -188,8 +175,7 @@ class UserInterface {
     // Page Data
     searchValue,
     pageSize,
-    pageToken,
-    language
+    pageToken
   }, callback) {
     const { ListTabEntitiesRequest } = this.stubFile;
     const request = new ListTabEntitiesRequest();
@@ -249,9 +235,6 @@ class UserInterface {
     if (pageToken) {
       request.setPageToken(pageToken);
     }
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -268,8 +251,7 @@ class UserInterface {
   createTabEntity({
     token,
     tabUuid,
-    attributes,
-    language
+    attributes
   }, callback) {
     const { CreateTabEntityRequest } = this.stubFile;
     const request = new CreateTabEntityRequest();
@@ -299,10 +281,6 @@ class UserInterface {
       })
     }
 
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
-
     const metadata = getMetadata({
       token
     });
@@ -320,8 +298,7 @@ class UserInterface {
     tabUuid,
     id,
     uuid,
-    attributes,
-    language
+    attributes
   }, callback) {
     const { UpdateTabEntityRequest } = this.stubFile;
     const request = new UpdateTabEntityRequest();
@@ -353,10 +330,6 @@ class UserInterface {
       })
     }
 
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
-
     const metadata = getMetadata({
       token
     });
@@ -370,7 +343,6 @@ class UserInterface {
 
   existsReferences({
     token,
-    language,
     tabId,
     tabUuid,
     recordId,
@@ -389,10 +361,6 @@ class UserInterface {
     );
     request.setRecordUuid(recordUuid);
 
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
-
     const metadata = getMetadata({
       token
     });
@@ -410,8 +378,7 @@ class UserInterface {
     tabUuid,
     contextAttributes,
     pageSize,
-    pageToken,
-    language
+    pageToken
   }, callback) {
     const { ListTabSequencesRequest } = this.stubFile;
     const request = new ListTabSequencesRequest();
@@ -443,9 +410,6 @@ class UserInterface {
 
     request.setPageSize(pageSize);
     request.setPageToken(pageToken);
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -463,8 +427,7 @@ class UserInterface {
     token,
     tabUuid,
     contextAttributes,
-    entitiesList,
-    language
+    entitiesList
   }, callback) {
     const { SaveTabSequencesRequest } = this.stubFile;
     const request = new SaveTabSequencesRequest();
@@ -510,10 +473,6 @@ class UserInterface {
       });
     }
 
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
-
     const metadata = getMetadata({
       token
     });
@@ -528,7 +487,6 @@ class UserInterface {
   // Run a callout to server
   runCallout({
     token,
-    language,
     tableName,
     windowUuid,
     tabUuid,
@@ -597,10 +555,6 @@ class UserInterface {
       });
     }
 
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
-
     const metadata = getMetadata({
       token
     });
@@ -618,8 +572,7 @@ class UserInterface {
     id,
     uuid,
     elementId,
-    elementUuid,
-    language
+    elementUuid
   }, callback) {
     const { ListTreeNodesRequest } = this.stubFile;
     const request = new ListTreeNodesRequest();
@@ -632,14 +585,6 @@ class UserInterface {
     request.setElementUuid(elementUuid);
     request.setElementId(
       getValidId(elementId)
-    );
-
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
-
-    request.setClientRequest(
-      createClientRequest({ token, language })
     );
 
     const metadata = getMetadata({
@@ -670,8 +615,7 @@ class UserInterface {
     query,
     whereClause,
     orderByClause,
-    limit,
-    language
+    limit
   }, callback) {
     const { GetReportOutputRequest } = this.stubFile;
     const request = new GetReportOutputRequest();
@@ -698,9 +642,6 @@ class UserInterface {
     request.setIsSummary(isSummary);
     request.setReportName(reportName);
     request.setReportType(reportType);
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -718,8 +659,7 @@ class UserInterface {
     token,
     tableName,
     pageSize,
-    pageToken,
-    language
+    pageToken
   }, callback) {
     const { ListDrillTablesRequest } = this.stubFile;
     const request = new ListDrillTablesRequest();
@@ -727,10 +667,7 @@ class UserInterface {
     request.setTableName(tableName);
     request.setPageSize(pageSize);
     request.setPageToken(pageToken);
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
-    
+
     const metadata = getMetadata({
       token
     });
@@ -749,8 +686,7 @@ class UserInterface {
     reportViewUuid,
     processUuid,
     pageSize,
-    pageToken,
-    language
+    pageToken
   }, callback) {
     const { ListPrintFormatsRequest } = this.stubFile;
     const request = new ListPrintFormatsRequest();
@@ -760,10 +696,7 @@ class UserInterface {
     request.setProcessUuid(processUuid);
     request.setPageSize(pageSize);
     request.setPageToken(pageToken);
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
-    
+
     const metadata = getMetadata({
       token
     });
@@ -782,8 +715,7 @@ class UserInterface {
     reportViewUuid,
     processUuid,
     pageSize,
-    pageToken,
-    language
+    pageToken
   }, callback) {
     const { ListPrintFormatsRequest } = this.stubFile;
     const request = new ListPrintFormatsRequest();
@@ -793,10 +725,7 @@ class UserInterface {
     request.setProcessUuid(processUuid);
     request.setPageSize(pageSize);
     request.setPageToken(pageToken);
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
-    
+
     const metadata = getMetadata({
       token
     });
@@ -814,8 +743,7 @@ class UserInterface {
     tableName,
     processUuid,
     pageSize,
-    pageToken,
-    language
+    pageToken
   }, callback) {
     const { ListReportViewsRequest } = this.stubFile;
     const request = new ListReportViewsRequest();
@@ -824,10 +752,7 @@ class UserInterface {
     request.setProcessUuid(processUuid);
     request.setPageSize(pageSize);
     request.setPageToken(pageToken);
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
-    
+
     const metadata = getMetadata({
       token
     });
@@ -845,14 +770,12 @@ class UserInterface {
    * @param {string} searchValue filter records
    * @param {number} pageSize records per page
    * @param {string} pageToken
-   * @param {string} language to translation
    */
   listMailTemplates({
     token,
     searchValue,
     pageSize,
-    pageToken,
-    language
+    pageToken
   }, callback) {
     const { ListMailTemplatesRequest } = this.stubFile;
     const request = new ListMailTemplatesRequest();
@@ -860,9 +783,6 @@ class UserInterface {
     request.setSearchValue(searchValue);
     request.setPageSize(pageSize);
     request.setPageToken(pageToken);
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token

@@ -23,8 +23,6 @@ var global = (function() {
 
 var proto_base_data_type_pb = require('../proto/base_data_type_pb.js');
 goog.object.extend(proto, proto_base_data_type_pb);
-var proto_client_pb = require('../proto/client_pb.js');
-goog.object.extend(proto, proto_client_pb);
 goog.exportSymbol('proto.dashboarding.Action', null, global);
 goog.exportSymbol('proto.dashboarding.Chart', null, global);
 goog.exportSymbol('proto.dashboarding.ChartData', null, global);
@@ -982,7 +980,6 @@ proto.dashboarding.ListDashboardsRequest.prototype.toObject = function(opt_inclu
  */
 proto.dashboarding.ListDashboardsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    clientRequest: (f = msg.getClientRequest()) && proto_client_pb.ClientRequest.toObject(includeInstance, f),
     roleUuid: jspb.Message.getFieldWithDefault(msg, 2, ""),
     roleId: jspb.Message.getFieldWithDefault(msg, 3, 0),
     pageSize: jspb.Message.getFieldWithDefault(msg, 4, 0),
@@ -1023,11 +1020,6 @@ proto.dashboarding.ListDashboardsRequest.deserializeBinaryFromReader = function(
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 1:
-      var value = new proto_client_pb.ClientRequest;
-      reader.readMessage(value,proto_client_pb.ClientRequest.deserializeBinaryFromReader);
-      msg.setClientRequest(value);
-      break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
       msg.setRoleUuid(value);
@@ -1073,14 +1065,6 @@ proto.dashboarding.ListDashboardsRequest.prototype.serializeBinary = function() 
  */
 proto.dashboarding.ListDashboardsRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getClientRequest();
-  if (f != null) {
-    writer.writeMessage(
-      1,
-      f,
-      proto_client_pb.ClientRequest.serializeBinaryToWriter
-    );
-  }
   f = message.getRoleUuid();
   if (f.length > 0) {
     writer.writeString(
@@ -1109,43 +1093,6 @@ proto.dashboarding.ListDashboardsRequest.serializeBinaryToWriter = function(mess
       f
     );
   }
-};
-
-
-/**
- * optional data.ClientRequest client_request = 1;
- * @return {?proto.data.ClientRequest}
- */
-proto.dashboarding.ListDashboardsRequest.prototype.getClientRequest = function() {
-  return /** @type{?proto.data.ClientRequest} */ (
-    jspb.Message.getWrapperField(this, proto_client_pb.ClientRequest, 1));
-};
-
-
-/**
- * @param {?proto.data.ClientRequest|undefined} value
- * @return {!proto.dashboarding.ListDashboardsRequest} returns this
-*/
-proto.dashboarding.ListDashboardsRequest.prototype.setClientRequest = function(value) {
-  return jspb.Message.setWrapperField(this, 1, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.dashboarding.ListDashboardsRequest} returns this
- */
-proto.dashboarding.ListDashboardsRequest.prototype.clearClientRequest = function() {
-  return this.setClientRequest(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.dashboarding.ListDashboardsRequest.prototype.hasClientRequest = function() {
-  return jspb.Message.getField(this, 1) != null;
 };
 
 
@@ -1473,7 +1420,6 @@ proto.dashboarding.ListFavoritesRequest.prototype.toObject = function(opt_includ
  */
 proto.dashboarding.ListFavoritesRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    clientRequest: (f = msg.getClientRequest()) && proto_client_pb.ClientRequest.toObject(includeInstance, f),
     userUuid: jspb.Message.getFieldWithDefault(msg, 2, ""),
     userId: jspb.Message.getFieldWithDefault(msg, 3, 0),
     pageSize: jspb.Message.getFieldWithDefault(msg, 4, 0),
@@ -1514,11 +1460,6 @@ proto.dashboarding.ListFavoritesRequest.deserializeBinaryFromReader = function(m
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 1:
-      var value = new proto_client_pb.ClientRequest;
-      reader.readMessage(value,proto_client_pb.ClientRequest.deserializeBinaryFromReader);
-      msg.setClientRequest(value);
-      break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
       msg.setUserUuid(value);
@@ -1564,14 +1505,6 @@ proto.dashboarding.ListFavoritesRequest.prototype.serializeBinary = function() {
  */
 proto.dashboarding.ListFavoritesRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getClientRequest();
-  if (f != null) {
-    writer.writeMessage(
-      1,
-      f,
-      proto_client_pb.ClientRequest.serializeBinaryToWriter
-    );
-  }
   f = message.getUserUuid();
   if (f.length > 0) {
     writer.writeString(
@@ -1600,43 +1533,6 @@ proto.dashboarding.ListFavoritesRequest.serializeBinaryToWriter = function(messa
       f
     );
   }
-};
-
-
-/**
- * optional data.ClientRequest client_request = 1;
- * @return {?proto.data.ClientRequest}
- */
-proto.dashboarding.ListFavoritesRequest.prototype.getClientRequest = function() {
-  return /** @type{?proto.data.ClientRequest} */ (
-    jspb.Message.getWrapperField(this, proto_client_pb.ClientRequest, 1));
-};
-
-
-/**
- * @param {?proto.data.ClientRequest|undefined} value
- * @return {!proto.dashboarding.ListFavoritesRequest} returns this
-*/
-proto.dashboarding.ListFavoritesRequest.prototype.setClientRequest = function(value) {
-  return jspb.Message.setWrapperField(this, 1, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.dashboarding.ListFavoritesRequest} returns this
- */
-proto.dashboarding.ListFavoritesRequest.prototype.clearClientRequest = function() {
-  return this.setClientRequest(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.dashboarding.ListFavoritesRequest.prototype.hasClientRequest = function() {
-  return jspb.Message.getField(this, 1) != null;
 };
 
 
@@ -2214,7 +2110,6 @@ proto.dashboarding.ListPendingDocumentsRequest.prototype.toObject = function(opt
  */
 proto.dashboarding.ListPendingDocumentsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    clientRequest: (f = msg.getClientRequest()) && proto_client_pb.ClientRequest.toObject(includeInstance, f),
     userUuid: jspb.Message.getFieldWithDefault(msg, 2, ""),
     userId: jspb.Message.getFieldWithDefault(msg, 3, 0),
     roleUuid: jspb.Message.getFieldWithDefault(msg, 4, ""),
@@ -2257,11 +2152,6 @@ proto.dashboarding.ListPendingDocumentsRequest.deserializeBinaryFromReader = fun
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 1:
-      var value = new proto_client_pb.ClientRequest;
-      reader.readMessage(value,proto_client_pb.ClientRequest.deserializeBinaryFromReader);
-      msg.setClientRequest(value);
-      break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
       msg.setUserUuid(value);
@@ -2315,14 +2205,6 @@ proto.dashboarding.ListPendingDocumentsRequest.prototype.serializeBinary = funct
  */
 proto.dashboarding.ListPendingDocumentsRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getClientRequest();
-  if (f != null) {
-    writer.writeMessage(
-      1,
-      f,
-      proto_client_pb.ClientRequest.serializeBinaryToWriter
-    );
-  }
   f = message.getUserUuid();
   if (f.length > 0) {
     writer.writeString(
@@ -2365,43 +2247,6 @@ proto.dashboarding.ListPendingDocumentsRequest.serializeBinaryToWriter = functio
       f
     );
   }
-};
-
-
-/**
- * optional data.ClientRequest client_request = 1;
- * @return {?proto.data.ClientRequest}
- */
-proto.dashboarding.ListPendingDocumentsRequest.prototype.getClientRequest = function() {
-  return /** @type{?proto.data.ClientRequest} */ (
-    jspb.Message.getWrapperField(this, proto_client_pb.ClientRequest, 1));
-};
-
-
-/**
- * @param {?proto.data.ClientRequest|undefined} value
- * @return {!proto.dashboarding.ListPendingDocumentsRequest} returns this
-*/
-proto.dashboarding.ListPendingDocumentsRequest.prototype.setClientRequest = function(value) {
-  return jspb.Message.setWrapperField(this, 1, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.dashboarding.ListPendingDocumentsRequest} returns this
- */
-proto.dashboarding.ListPendingDocumentsRequest.prototype.clearClientRequest = function() {
-  return this.setClientRequest(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.dashboarding.ListPendingDocumentsRequest.prototype.hasClientRequest = function() {
-  return jspb.Message.getField(this, 1) != null;
 };
 
 
@@ -3096,7 +2941,6 @@ proto.dashboarding.GetChartRequest.prototype.toObject = function(opt_includeInst
  */
 proto.dashboarding.GetChartRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    clientRequest: (f = msg.getClientRequest()) && proto_client_pb.ClientRequest.toObject(includeInstance, f),
     uuid: jspb.Message.getFieldWithDefault(msg, 2, ""),
     id: jspb.Message.getFieldWithDefault(msg, 3, 0)
   };
@@ -3135,11 +2979,6 @@ proto.dashboarding.GetChartRequest.deserializeBinaryFromReader = function(msg, r
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 1:
-      var value = new proto_client_pb.ClientRequest;
-      reader.readMessage(value,proto_client_pb.ClientRequest.deserializeBinaryFromReader);
-      msg.setClientRequest(value);
-      break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
       msg.setUuid(value);
@@ -3177,14 +3016,6 @@ proto.dashboarding.GetChartRequest.prototype.serializeBinary = function() {
  */
 proto.dashboarding.GetChartRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getClientRequest();
-  if (f != null) {
-    writer.writeMessage(
-      1,
-      f,
-      proto_client_pb.ClientRequest.serializeBinaryToWriter
-    );
-  }
   f = message.getUuid();
   if (f.length > 0) {
     writer.writeString(
@@ -3199,43 +3030,6 @@ proto.dashboarding.GetChartRequest.serializeBinaryToWriter = function(message, w
       f
     );
   }
-};
-
-
-/**
- * optional data.ClientRequest client_request = 1;
- * @return {?proto.data.ClientRequest}
- */
-proto.dashboarding.GetChartRequest.prototype.getClientRequest = function() {
-  return /** @type{?proto.data.ClientRequest} */ (
-    jspb.Message.getWrapperField(this, proto_client_pb.ClientRequest, 1));
-};
-
-
-/**
- * @param {?proto.data.ClientRequest|undefined} value
- * @return {!proto.dashboarding.GetChartRequest} returns this
-*/
-proto.dashboarding.GetChartRequest.prototype.setClientRequest = function(value) {
-  return jspb.Message.setWrapperField(this, 1, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.dashboarding.GetChartRequest} returns this
- */
-proto.dashboarding.GetChartRequest.prototype.clearClientRequest = function() {
-  return this.setClientRequest(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.dashboarding.GetChartRequest.prototype.hasClientRequest = function() {
-  return jspb.Message.getField(this, 1) != null;
 };
 
 
@@ -4583,7 +4377,6 @@ proto.dashboarding.ListNotificationsRequest.prototype.toObject = function(opt_in
  */
 proto.dashboarding.ListNotificationsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    clientRequest: (f = msg.getClientRequest()) && proto_client_pb.ClientRequest.toObject(includeInstance, f),
     pageSize: jspb.Message.getFieldWithDefault(msg, 2, 0),
     pageToken: jspb.Message.getFieldWithDefault(msg, 3, ""),
     searchValue: jspb.Message.getFieldWithDefault(msg, 4, "")
@@ -4623,11 +4416,6 @@ proto.dashboarding.ListNotificationsRequest.deserializeBinaryFromReader = functi
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 1:
-      var value = new proto_client_pb.ClientRequest;
-      reader.readMessage(value,proto_client_pb.ClientRequest.deserializeBinaryFromReader);
-      msg.setClientRequest(value);
-      break;
     case 2:
       var value = /** @type {number} */ (reader.readInt32());
       msg.setPageSize(value);
@@ -4669,14 +4457,6 @@ proto.dashboarding.ListNotificationsRequest.prototype.serializeBinary = function
  */
 proto.dashboarding.ListNotificationsRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getClientRequest();
-  if (f != null) {
-    writer.writeMessage(
-      1,
-      f,
-      proto_client_pb.ClientRequest.serializeBinaryToWriter
-    );
-  }
   f = message.getPageSize();
   if (f !== 0) {
     writer.writeInt32(
@@ -4698,43 +4478,6 @@ proto.dashboarding.ListNotificationsRequest.serializeBinaryToWriter = function(m
       f
     );
   }
-};
-
-
-/**
- * optional data.ClientRequest client_request = 1;
- * @return {?proto.data.ClientRequest}
- */
-proto.dashboarding.ListNotificationsRequest.prototype.getClientRequest = function() {
-  return /** @type{?proto.data.ClientRequest} */ (
-    jspb.Message.getWrapperField(this, proto_client_pb.ClientRequest, 1));
-};
-
-
-/**
- * @param {?proto.data.ClientRequest|undefined} value
- * @return {!proto.dashboarding.ListNotificationsRequest} returns this
-*/
-proto.dashboarding.ListNotificationsRequest.prototype.setClientRequest = function(value) {
-  return jspb.Message.setWrapperField(this, 1, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.dashboarding.ListNotificationsRequest} returns this
- */
-proto.dashboarding.ListNotificationsRequest.prototype.clearClientRequest = function() {
-  return this.setClientRequest(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.dashboarding.ListNotificationsRequest.prototype.hasClientRequest = function() {
-  return jspb.Message.getField(this, 1) != null;
 };
 
 

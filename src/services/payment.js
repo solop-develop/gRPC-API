@@ -14,7 +14,6 @@
  * along with this program. If not, see <https://www.gnu.org/licenses/>.             *
  ************************************************************************************/
 
-const { getClientRequestToGRPC } = require('@adempiere/grpc-api/src/utils/clientToGRPC');
 const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
 const { isEmptyValue } = require('@adempiere/grpc-api/src/utils/valueUtils.js')
 
@@ -74,8 +73,7 @@ class Payment {
     referenceUuid,
     // Page Data
     pageSize,
-    pageToken,
-    language
+    pageToken
   }, callback) {
     const { ListPaymentInfo } = this.stubFile;
     const request = new ListPaymentInfo();
@@ -120,9 +118,6 @@ class Payment {
 
     request.setPageSize(pageSize);
     request.setPageToken(pageToken);
-    request.setClientRequest(
-      getClientRequestToGRPC({ token, language })
-    );
 
     const metadata = getMetadata({
       token

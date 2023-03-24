@@ -23,8 +23,6 @@ var global = (function() {
 
 var proto_base_data_type_pb = require('../proto/base_data_type_pb.js');
 goog.object.extend(proto, proto_base_data_type_pb);
-var proto_client_pb = require('../proto/client_pb.js');
-goog.object.extend(proto, proto_client_pb);
 goog.exportSymbol('proto.file_management.Attachment', null, global);
 goog.exportSymbol('proto.file_management.DeleteResourceReferenceRequest', null, global);
 goog.exportSymbol('proto.file_management.ExistsAttachmentRequest', null, global);
@@ -1240,7 +1238,6 @@ proto.file_management.GetResourceRequest.prototype.toObject = function(opt_inclu
  */
 proto.file_management.GetResourceRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    clientRequest: (f = msg.getClientRequest()) && proto_client_pb.ClientRequest.toObject(includeInstance, f),
     resourceUuid: jspb.Message.getFieldWithDefault(msg, 2, ""),
     resourceName: jspb.Message.getFieldWithDefault(msg, 3, ""),
     width: jspb.Message.getFieldWithDefault(msg, 4, 0),
@@ -1282,11 +1279,6 @@ proto.file_management.GetResourceRequest.deserializeBinaryFromReader = function(
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 1:
-      var value = new proto_client_pb.ClientRequest;
-      reader.readMessage(value,proto_client_pb.ClientRequest.deserializeBinaryFromReader);
-      msg.setClientRequest(value);
-      break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
       msg.setResourceUuid(value);
@@ -1336,14 +1328,6 @@ proto.file_management.GetResourceRequest.prototype.serializeBinary = function() 
  */
 proto.file_management.GetResourceRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getClientRequest();
-  if (f != null) {
-    writer.writeMessage(
-      1,
-      f,
-      proto_client_pb.ClientRequest.serializeBinaryToWriter
-    );
-  }
   f = message.getResourceUuid();
   if (f.length > 0) {
     writer.writeString(
@@ -1391,43 +1375,6 @@ proto.file_management.GetResourceRequest.Operation = {
   FIX: 2,
   IDENTIFY: 3
 };
-
-/**
- * optional data.ClientRequest client_request = 1;
- * @return {?proto.data.ClientRequest}
- */
-proto.file_management.GetResourceRequest.prototype.getClientRequest = function() {
-  return /** @type{?proto.data.ClientRequest} */ (
-    jspb.Message.getWrapperField(this, proto_client_pb.ClientRequest, 1));
-};
-
-
-/**
- * @param {?proto.data.ClientRequest|undefined} value
- * @return {!proto.file_management.GetResourceRequest} returns this
-*/
-proto.file_management.GetResourceRequest.prototype.setClientRequest = function(value) {
-  return jspb.Message.setWrapperField(this, 1, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.file_management.GetResourceRequest} returns this
- */
-proto.file_management.GetResourceRequest.prototype.clearClientRequest = function() {
-  return this.setClientRequest(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.file_management.GetResourceRequest.prototype.hasClientRequest = function() {
-  return jspb.Message.getField(this, 1) != null;
-};
-
 
 /**
  * optional string resource_uuid = 2;
@@ -1551,7 +1498,6 @@ proto.file_management.GetResourceReferenceRequest.prototype.toObject = function(
  */
 proto.file_management.GetResourceReferenceRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    clientRequest: (f = msg.getClientRequest()) && proto_client_pb.ClientRequest.toObject(includeInstance, f),
     imageId: jspb.Message.getFieldWithDefault(msg, 2, 0)
   };
 
@@ -1589,11 +1535,6 @@ proto.file_management.GetResourceReferenceRequest.deserializeBinaryFromReader = 
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 1:
-      var value = new proto_client_pb.ClientRequest;
-      reader.readMessage(value,proto_client_pb.ClientRequest.deserializeBinaryFromReader);
-      msg.setClientRequest(value);
-      break;
     case 2:
       var value = /** @type {number} */ (reader.readInt32());
       msg.setImageId(value);
@@ -1627,14 +1568,6 @@ proto.file_management.GetResourceReferenceRequest.prototype.serializeBinary = fu
  */
 proto.file_management.GetResourceReferenceRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getClientRequest();
-  if (f != null) {
-    writer.writeMessage(
-      1,
-      f,
-      proto_client_pb.ClientRequest.serializeBinaryToWriter
-    );
-  }
   f = message.getImageId();
   if (f !== 0) {
     writer.writeInt32(
@@ -1642,43 +1575,6 @@ proto.file_management.GetResourceReferenceRequest.serializeBinaryToWriter = func
       f
     );
   }
-};
-
-
-/**
- * optional data.ClientRequest client_request = 1;
- * @return {?proto.data.ClientRequest}
- */
-proto.file_management.GetResourceReferenceRequest.prototype.getClientRequest = function() {
-  return /** @type{?proto.data.ClientRequest} */ (
-    jspb.Message.getWrapperField(this, proto_client_pb.ClientRequest, 1));
-};
-
-
-/**
- * @param {?proto.data.ClientRequest|undefined} value
- * @return {!proto.file_management.GetResourceReferenceRequest} returns this
-*/
-proto.file_management.GetResourceReferenceRequest.prototype.setClientRequest = function(value) {
-  return jspb.Message.setWrapperField(this, 1, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.file_management.GetResourceReferenceRequest} returns this
- */
-proto.file_management.GetResourceReferenceRequest.prototype.clearClientRequest = function() {
-  return this.setClientRequest(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.file_management.GetResourceReferenceRequest.prototype.hasClientRequest = function() {
-  return jspb.Message.getField(this, 1) != null;
 };
 
 
@@ -1732,7 +1628,6 @@ proto.file_management.GetAttachmentRequest.prototype.toObject = function(opt_inc
  */
 proto.file_management.GetAttachmentRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    clientRequest: (f = msg.getClientRequest()) && proto_client_pb.ClientRequest.toObject(includeInstance, f),
     tableName: jspb.Message.getFieldWithDefault(msg, 2, ""),
     id: jspb.Message.getFieldWithDefault(msg, 3, 0),
     uuid: jspb.Message.getFieldWithDefault(msg, 4, "")
@@ -1772,11 +1667,6 @@ proto.file_management.GetAttachmentRequest.deserializeBinaryFromReader = functio
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 1:
-      var value = new proto_client_pb.ClientRequest;
-      reader.readMessage(value,proto_client_pb.ClientRequest.deserializeBinaryFromReader);
-      msg.setClientRequest(value);
-      break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
       msg.setTableName(value);
@@ -1818,14 +1708,6 @@ proto.file_management.GetAttachmentRequest.prototype.serializeBinary = function(
  */
 proto.file_management.GetAttachmentRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getClientRequest();
-  if (f != null) {
-    writer.writeMessage(
-      1,
-      f,
-      proto_client_pb.ClientRequest.serializeBinaryToWriter
-    );
-  }
   f = message.getTableName();
   if (f.length > 0) {
     writer.writeString(
@@ -1847,43 +1729,6 @@ proto.file_management.GetAttachmentRequest.serializeBinaryToWriter = function(me
       f
     );
   }
-};
-
-
-/**
- * optional data.ClientRequest client_request = 1;
- * @return {?proto.data.ClientRequest}
- */
-proto.file_management.GetAttachmentRequest.prototype.getClientRequest = function() {
-  return /** @type{?proto.data.ClientRequest} */ (
-    jspb.Message.getWrapperField(this, proto_client_pb.ClientRequest, 1));
-};
-
-
-/**
- * @param {?proto.data.ClientRequest|undefined} value
- * @return {!proto.file_management.GetAttachmentRequest} returns this
-*/
-proto.file_management.GetAttachmentRequest.prototype.setClientRequest = function(value) {
-  return jspb.Message.setWrapperField(this, 1, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.file_management.GetAttachmentRequest} returns this
- */
-proto.file_management.GetAttachmentRequest.prototype.clearClientRequest = function() {
-  return this.setClientRequest(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.file_management.GetAttachmentRequest.prototype.hasClientRequest = function() {
-  return jspb.Message.getField(this, 1) != null;
 };
 
 
@@ -1973,7 +1818,6 @@ proto.file_management.SetResourceReferenceRequest.prototype.toObject = function(
  */
 proto.file_management.SetResourceReferenceRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    clientRequest: (f = msg.getClientRequest()) && proto_client_pb.ClientRequest.toObject(includeInstance, f),
     tableName: jspb.Message.getFieldWithDefault(msg, 2, ""),
     recordId: jspb.Message.getFieldWithDefault(msg, 3, 0),
     recordUuid: jspb.Message.getFieldWithDefault(msg, 4, ""),
@@ -2016,11 +1860,6 @@ proto.file_management.SetResourceReferenceRequest.deserializeBinaryFromReader = 
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 1:
-      var value = new proto_client_pb.ClientRequest;
-      reader.readMessage(value,proto_client_pb.ClientRequest.deserializeBinaryFromReader);
-      msg.setClientRequest(value);
-      break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
       msg.setTableName(value);
@@ -2074,14 +1913,6 @@ proto.file_management.SetResourceReferenceRequest.prototype.serializeBinary = fu
  */
 proto.file_management.SetResourceReferenceRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getClientRequest();
-  if (f != null) {
-    writer.writeMessage(
-      1,
-      f,
-      proto_client_pb.ClientRequest.serializeBinaryToWriter
-    );
-  }
   f = message.getTableName();
   if (f.length > 0) {
     writer.writeString(
@@ -2124,43 +1955,6 @@ proto.file_management.SetResourceReferenceRequest.serializeBinaryToWriter = func
       f
     );
   }
-};
-
-
-/**
- * optional data.ClientRequest client_request = 1;
- * @return {?proto.data.ClientRequest}
- */
-proto.file_management.SetResourceReferenceRequest.prototype.getClientRequest = function() {
-  return /** @type{?proto.data.ClientRequest} */ (
-    jspb.Message.getWrapperField(this, proto_client_pb.ClientRequest, 1));
-};
-
-
-/**
- * @param {?proto.data.ClientRequest|undefined} value
- * @return {!proto.file_management.SetResourceReferenceRequest} returns this
-*/
-proto.file_management.SetResourceReferenceRequest.prototype.setClientRequest = function(value) {
-  return jspb.Message.setWrapperField(this, 1, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.file_management.SetResourceReferenceRequest} returns this
- */
-proto.file_management.SetResourceReferenceRequest.prototype.clearClientRequest = function() {
-  return this.setClientRequest(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.file_management.SetResourceReferenceRequest.prototype.hasClientRequest = function() {
-  return jspb.Message.getField(this, 1) != null;
 };
 
 
@@ -2304,7 +2098,6 @@ proto.file_management.DeleteResourceReferenceRequest.prototype.toObject = functi
  */
 proto.file_management.DeleteResourceReferenceRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    clientRequest: (f = msg.getClientRequest()) && proto_client_pb.ClientRequest.toObject(includeInstance, f),
     resourceId: jspb.Message.getFieldWithDefault(msg, 2, 0),
     resourceUuid: jspb.Message.getFieldWithDefault(msg, 3, ""),
     resourceName: jspb.Message.getFieldWithDefault(msg, 4, "")
@@ -2344,11 +2137,6 @@ proto.file_management.DeleteResourceReferenceRequest.deserializeBinaryFromReader
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 1:
-      var value = new proto_client_pb.ClientRequest;
-      reader.readMessage(value,proto_client_pb.ClientRequest.deserializeBinaryFromReader);
-      msg.setClientRequest(value);
-      break;
     case 2:
       var value = /** @type {number} */ (reader.readInt32());
       msg.setResourceId(value);
@@ -2390,14 +2178,6 @@ proto.file_management.DeleteResourceReferenceRequest.prototype.serializeBinary =
  */
 proto.file_management.DeleteResourceReferenceRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getClientRequest();
-  if (f != null) {
-    writer.writeMessage(
-      1,
-      f,
-      proto_client_pb.ClientRequest.serializeBinaryToWriter
-    );
-  }
   f = message.getResourceId();
   if (f !== 0) {
     writer.writeInt32(
@@ -2419,43 +2199,6 @@ proto.file_management.DeleteResourceReferenceRequest.serializeBinaryToWriter = f
       f
     );
   }
-};
-
-
-/**
- * optional data.ClientRequest client_request = 1;
- * @return {?proto.data.ClientRequest}
- */
-proto.file_management.DeleteResourceReferenceRequest.prototype.getClientRequest = function() {
-  return /** @type{?proto.data.ClientRequest} */ (
-    jspb.Message.getWrapperField(this, proto_client_pb.ClientRequest, 1));
-};
-
-
-/**
- * @param {?proto.data.ClientRequest|undefined} value
- * @return {!proto.file_management.DeleteResourceReferenceRequest} returns this
-*/
-proto.file_management.DeleteResourceReferenceRequest.prototype.setClientRequest = function(value) {
-  return jspb.Message.setWrapperField(this, 1, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.file_management.DeleteResourceReferenceRequest} returns this
- */
-proto.file_management.DeleteResourceReferenceRequest.prototype.clearClientRequest = function() {
-  return this.setClientRequest(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.file_management.DeleteResourceReferenceRequest.prototype.hasClientRequest = function() {
-  return jspb.Message.getField(this, 1) != null;
 };
 
 
@@ -2545,7 +2288,6 @@ proto.file_management.ExistsAttachmentRequest.prototype.toObject = function(opt_
  */
 proto.file_management.ExistsAttachmentRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    clientRequest: (f = msg.getClientRequest()) && proto_client_pb.ClientRequest.toObject(includeInstance, f),
     tableName: jspb.Message.getFieldWithDefault(msg, 2, ""),
     recordId: jspb.Message.getFieldWithDefault(msg, 3, 0),
     recordUuid: jspb.Message.getFieldWithDefault(msg, 4, "")
@@ -2585,11 +2327,6 @@ proto.file_management.ExistsAttachmentRequest.deserializeBinaryFromReader = func
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 1:
-      var value = new proto_client_pb.ClientRequest;
-      reader.readMessage(value,proto_client_pb.ClientRequest.deserializeBinaryFromReader);
-      msg.setClientRequest(value);
-      break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
       msg.setTableName(value);
@@ -2631,14 +2368,6 @@ proto.file_management.ExistsAttachmentRequest.prototype.serializeBinary = functi
  */
 proto.file_management.ExistsAttachmentRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getClientRequest();
-  if (f != null) {
-    writer.writeMessage(
-      1,
-      f,
-      proto_client_pb.ClientRequest.serializeBinaryToWriter
-    );
-  }
   f = message.getTableName();
   if (f.length > 0) {
     writer.writeString(
@@ -2660,43 +2389,6 @@ proto.file_management.ExistsAttachmentRequest.serializeBinaryToWriter = function
       f
     );
   }
-};
-
-
-/**
- * optional data.ClientRequest client_request = 1;
- * @return {?proto.data.ClientRequest}
- */
-proto.file_management.ExistsAttachmentRequest.prototype.getClientRequest = function() {
-  return /** @type{?proto.data.ClientRequest} */ (
-    jspb.Message.getWrapperField(this, proto_client_pb.ClientRequest, 1));
-};
-
-
-/**
- * @param {?proto.data.ClientRequest|undefined} value
- * @return {!proto.file_management.ExistsAttachmentRequest} returns this
-*/
-proto.file_management.ExistsAttachmentRequest.prototype.setClientRequest = function(value) {
-  return jspb.Message.setWrapperField(this, 1, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.file_management.ExistsAttachmentRequest} returns this
- */
-proto.file_management.ExistsAttachmentRequest.prototype.clearClientRequest = function() {
-  return this.setClientRequest(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.file_management.ExistsAttachmentRequest.prototype.hasClientRequest = function() {
-  return jspb.Message.getField(this, 1) != null;
 };
 
 

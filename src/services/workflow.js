@@ -14,7 +14,6 @@
  * along with this program. If not, see <https://www.gnu.org/licenses/>.             *
  ************************************************************************************/
 
-const { createClientRequest } = require('@adempiere/grpc-api/lib/clientRequest');
 const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
 const { getValidId } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
 
@@ -60,8 +59,7 @@ class Workflow {
   getWorkflow({
     token,
     id,
-    uuid,
-    language
+    uuid
   }, callback) {
     const { WorkflowDefinitionRequest } = this.stubFile;
     const request = new WorkflowDefinitionRequest();
@@ -70,9 +68,6 @@ class Workflow {
       getValidId(id)
     );
     request.setUuid(uuid);
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -90,8 +85,7 @@ class Workflow {
     token,
     tableName,
     pageSize,
-    pageToken,
-    language
+    pageToken
   }, callback) {
     const { ListWorkflowsRequest } = this.stubFile;
     const request = new ListWorkflowsRequest();
@@ -99,9 +93,6 @@ class Workflow {
     request.setTableName(tableName);
     request.setPageSize(pageSize);
     request.setPageToken(pageToken);
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -123,8 +114,7 @@ class Workflow {
     documentStatus,
     documentAction,
     pageSize,
-    pageToken,
-    language
+    pageToken
   }, callback) {
     const { ListDocumentActionsRequest } = this.stubFile;
     const request = new ListDocumentActionsRequest();
@@ -138,9 +128,6 @@ class Workflow {
     request.setDocumentAction(documentAction);
     request.setPageSize(pageSize);
     request.setPageToken(pageToken);
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -161,8 +148,7 @@ class Workflow {
     uuid,
     documentStatus,
     pageSize,
-    pageToken,
-    language
+    pageToken
   }, callback) {
     const { ListDocumentStatusesRequest } = this.stubFile;
     const request = new ListDocumentStatusesRequest();
@@ -175,9 +161,6 @@ class Workflow {
     request.setDocumentStatus(documentStatus);
     request.setPageSize(pageSize);
     request.setPageToken(pageToken);
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -195,8 +178,7 @@ class Workflow {
     token,
     userUuid,
     pageSize,
-    pageToken,
-    language
+    pageToken
   }, callback) {
     const { ListWorkflowActivitiesRequest } = this.stubFile;
     const request = new ListWorkflowActivitiesRequest();
@@ -204,9 +186,6 @@ class Workflow {
     request.setUserUuid(userUuid);
     request.setPageSize(pageSize);
     request.setPageToken(pageToken);
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -225,8 +204,7 @@ class Workflow {
     id,
     uuid,
     tableName,
-    documentAction,
-    language
+    documentAction
   }, callback) {
     const { RunDocumentActionRequest } = this.stubFile
     const request = new RunDocumentActionRequest();
@@ -237,9 +215,6 @@ class Workflow {
     request.setUuid(uuid);
     request.setTableName(tableName);
     request.setDocumentAction(documentAction);
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -264,8 +239,7 @@ class Workflow {
     id,
     uuid,
     message,
-    isApproved,
-    language
+    isApproved
   }, callback) {
     const { ProcessRequest } = this.stubFile;
     const request = new ProcessRequest();
@@ -276,10 +250,6 @@ class Workflow {
     request.setUuid(uuid);
     request.setMessage(message);
     request.setIsApproved(isApproved);
-
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -305,8 +275,7 @@ class Workflow {
     uuid,
     message,
     userId,
-    userUuid,
-    language
+    userUuid
   }, callback) {
     const { ForwardRequest } = this.stubFile
     const request = new ForwardRequest();
@@ -320,10 +289,6 @@ class Workflow {
       getValidId(userId)
     );
     request.setUserUuid(userUuid);
-
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token

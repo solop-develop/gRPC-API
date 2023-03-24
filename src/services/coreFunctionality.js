@@ -14,7 +14,6 @@
  * along with this program. If not, see <https://www.gnu.org/licenses/>.             *
  ************************************************************************************/
 
-const { createClientRequest } = require('@adempiere/grpc-api/lib/clientRequest')
 const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
 const { getValidId } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
 
@@ -63,8 +62,7 @@ class CoreFunctionality {
   getCountry({
     token,
     uuid,
-    id,
-    language
+    id
   }, callback) {
     const { GetCountryRequest } = this.stubFile;
     const request = new GetCountryRequest();
@@ -72,10 +70,6 @@ class CoreFunctionality {
     request.setUuid(uuid);
     request.setId(
       getValidId(id)
-    );
-
-    request.setClientRequest(
-      createClientRequest({ token, language })
     );
 
     const metadata = getMetadata({
@@ -93,18 +87,13 @@ class CoreFunctionality {
   listLanguages({
     token,
     pageSize,
-    pageToken,
-    language
+    pageToken
   }, callback) {
     const { ListLanguagesRequest } = this.stubFile;
     const request = new ListLanguagesRequest();
 
     request.setPageSize(pageSize);
     request.setPageToken(pageToken);
-
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -123,8 +112,7 @@ class CoreFunctionality {
     roleUuid,
     roleId,
     pageSize,
-    pageToken,
-    language
+    pageToken
   }, callback) {
     const { ListOrganizationsRequest } = this.stubFile;
     const request = new ListOrganizationsRequest();
@@ -135,9 +123,6 @@ class CoreFunctionality {
     );
     request.setPageSize(pageSize);
     request.setPageToken(pageToken);
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -156,8 +141,7 @@ class CoreFunctionality {
     organizationUuid,
     organizationId,
     pageSize,
-    pageToken,
-    language
+    pageToken
   }, callback) {
     const { ListWarehousesRequest } = this.stubFile;
     const request = new ListWarehousesRequest();
@@ -168,10 +152,6 @@ class CoreFunctionality {
     );
     request.setPageSize(pageSize);
     request.setPageToken(pageToken);
-
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -190,8 +170,7 @@ class CoreFunctionality {
     conversionTypeUuid,
     currencyFromUuid,
     currencyToUuid,
-    conversionDate,
-    language
+    conversionDate
   }, callback) {
     const { GetConversionRateRequest } = this.stubFile;
     const request = new GetConversionRateRequest();
@@ -202,9 +181,6 @@ class CoreFunctionality {
     if (conversionDate) {
       request.setConversionDate(conversionDate)
     }
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -224,8 +200,7 @@ class CoreFunctionality {
     productUuid,
     //  Page Data
     pageSize,
-    pageToken,
-    language
+    pageToken
   }, callback) {
     const { ListProductConversionRequest } = this.stubFile;
     const request = new ListProductConversionRequest();
@@ -236,9 +211,6 @@ class CoreFunctionality {
     request.setProductUuid(productUuid);
     request.setPageSize(pageSize);
     request.setPageToken(pageToken);
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -268,8 +240,7 @@ class CoreFunctionality {
     query,
     whereClause,
     orderByClause,
-    limit,
-    language
+    limit
   }, callback) {
     const { GetBusinessPartnerRequest } = this.stubFile
     const request = new GetBusinessPartnerRequest()
@@ -293,9 +264,6 @@ class CoreFunctionality {
     request.setEmail(email);
     request.setPostalCode(postalCode);
     request.setPhone(phone);
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -332,8 +300,7 @@ class CoreFunctionality {
     regionUuid,
     regionName,
     countryUuid,
-    posUuid,
-    language
+    posUuid
   }, callback) {
     const { CreateBusinessPartnerRequest } = this.stubFile;
     const request = new CreateBusinessPartnerRequest();
@@ -360,9 +327,6 @@ class CoreFunctionality {
     request.setRegionName(regionName);
     request.setCountryUuid(countryUuid);
     request.setPosUuid(posUuid);
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -394,8 +358,7 @@ class CoreFunctionality {
     orderByClause,
     limit,
     pageSize,
-    pageToken,
-    language
+    pageToken
   }, callback) {
     const { ListBusinessPartnersRequest } = this.stubFile;
     const request = new ListBusinessPartnersRequest();
@@ -420,9 +383,6 @@ class CoreFunctionality {
     request.setPhone(phone);
     request.setPageSize(pageSize);
     request.setPageToken(pageToken);
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token

@@ -19,7 +19,6 @@
 var grpc = require('@grpc/grpc-js');
 var proto_dashboarding_pb = require('../proto/dashboarding_pb.js');
 var proto_base_data_type_pb = require('../proto/base_data_type_pb.js');
-var proto_client_pb = require('../proto/client_pb.js');
 
 function serialize_dashboarding_Chart(arg) {
   if (!(arg instanceof proto_dashboarding_pb.Chart)) {

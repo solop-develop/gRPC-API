@@ -21,8 +21,6 @@ var global = (function() {
   return Function('return this')();
 }.call(null));
 
-var proto_client_pb = require('../proto/client_pb.js');
-goog.object.extend(proto, proto_client_pb);
 var proto_base_data_type_pb = require('../proto/base_data_type_pb.js');
 goog.object.extend(proto, proto_base_data_type_pb);
 var proto_core_functionality_pb = require('../proto/core_functionality_pb.js');
@@ -257,7 +255,6 @@ proto.time_control.CreateResourceAssignmentRequest.prototype.toObject = function
  */
 proto.time_control.CreateResourceAssignmentRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    clientRequest: (f = msg.getClientRequest()) && proto_client_pb.ClientRequest.toObject(includeInstance, f),
     resourceTypeId: jspb.Message.getFieldWithDefault(msg, 2, 0),
     resourceTypeUuid: jspb.Message.getFieldWithDefault(msg, 3, ""),
     name: jspb.Message.getFieldWithDefault(msg, 4, ""),
@@ -298,11 +295,6 @@ proto.time_control.CreateResourceAssignmentRequest.deserializeBinaryFromReader =
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 1:
-      var value = new proto_client_pb.ClientRequest;
-      reader.readMessage(value,proto_client_pb.ClientRequest.deserializeBinaryFromReader);
-      msg.setClientRequest(value);
-      break;
     case 2:
       var value = /** @type {number} */ (reader.readInt32());
       msg.setResourceTypeId(value);
@@ -348,14 +340,6 @@ proto.time_control.CreateResourceAssignmentRequest.prototype.serializeBinary = f
  */
 proto.time_control.CreateResourceAssignmentRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getClientRequest();
-  if (f != null) {
-    writer.writeMessage(
-      1,
-      f,
-      proto_client_pb.ClientRequest.serializeBinaryToWriter
-    );
-  }
   f = message.getResourceTypeId();
   if (f !== 0) {
     writer.writeInt32(
@@ -384,43 +368,6 @@ proto.time_control.CreateResourceAssignmentRequest.serializeBinaryToWriter = fun
       f
     );
   }
-};
-
-
-/**
- * optional data.ClientRequest client_request = 1;
- * @return {?proto.data.ClientRequest}
- */
-proto.time_control.CreateResourceAssignmentRequest.prototype.getClientRequest = function() {
-  return /** @type{?proto.data.ClientRequest} */ (
-    jspb.Message.getWrapperField(this, proto_client_pb.ClientRequest, 1));
-};
-
-
-/**
- * @param {?proto.data.ClientRequest|undefined} value
- * @return {!proto.time_control.CreateResourceAssignmentRequest} returns this
-*/
-proto.time_control.CreateResourceAssignmentRequest.prototype.setClientRequest = function(value) {
-  return jspb.Message.setWrapperField(this, 1, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.time_control.CreateResourceAssignmentRequest} returns this
- */
-proto.time_control.CreateResourceAssignmentRequest.prototype.clearClientRequest = function() {
-  return this.setClientRequest(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.time_control.CreateResourceAssignmentRequest.prototype.hasClientRequest = function() {
-  return jspb.Message.getField(this, 1) != null;
 };
 
 
@@ -528,7 +475,6 @@ proto.time_control.ListResourcesAssignmentRequest.prototype.toObject = function(
  */
 proto.time_control.ListResourcesAssignmentRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    clientRequest: (f = msg.getClientRequest()) && proto_client_pb.ClientRequest.toObject(includeInstance, f),
     pageSize: jspb.Message.getFieldWithDefault(msg, 2, 0),
     pageToken: jspb.Message.getFieldWithDefault(msg, 3, ""),
     resourceTypeId: jspb.Message.getFieldWithDefault(msg, 4, 0),
@@ -575,11 +521,6 @@ proto.time_control.ListResourcesAssignmentRequest.deserializeBinaryFromReader = 
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 1:
-      var value = new proto_client_pb.ClientRequest;
-      reader.readMessage(value,proto_client_pb.ClientRequest.deserializeBinaryFromReader);
-      msg.setClientRequest(value);
-      break;
     case 2:
       var value = /** @type {number} */ (reader.readInt32());
       msg.setPageSize(value);
@@ -649,14 +590,6 @@ proto.time_control.ListResourcesAssignmentRequest.prototype.serializeBinary = fu
  */
 proto.time_control.ListResourcesAssignmentRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getClientRequest();
-  if (f != null) {
-    writer.writeMessage(
-      1,
-      f,
-      proto_client_pb.ClientRequest.serializeBinaryToWriter
-    );
-  }
   f = message.getPageSize();
   if (f !== 0) {
     writer.writeInt32(
@@ -727,43 +660,6 @@ proto.time_control.ListResourcesAssignmentRequest.serializeBinaryToWriter = func
       f
     );
   }
-};
-
-
-/**
- * optional data.ClientRequest client_request = 1;
- * @return {?proto.data.ClientRequest}
- */
-proto.time_control.ListResourcesAssignmentRequest.prototype.getClientRequest = function() {
-  return /** @type{?proto.data.ClientRequest} */ (
-    jspb.Message.getWrapperField(this, proto_client_pb.ClientRequest, 1));
-};
-
-
-/**
- * @param {?proto.data.ClientRequest|undefined} value
- * @return {!proto.time_control.ListResourcesAssignmentRequest} returns this
-*/
-proto.time_control.ListResourcesAssignmentRequest.prototype.setClientRequest = function(value) {
-  return jspb.Message.setWrapperField(this, 1, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.time_control.ListResourcesAssignmentRequest} returns this
- */
-proto.time_control.ListResourcesAssignmentRequest.prototype.clearClientRequest = function() {
-  return this.setClientRequest(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.time_control.ListResourcesAssignmentRequest.prototype.hasClientRequest = function() {
-  return jspb.Message.getField(this, 1) != null;
 };
 
 
@@ -979,7 +875,6 @@ proto.time_control.UpdateResourceAssignmentRequest.prototype.toObject = function
  */
 proto.time_control.UpdateResourceAssignmentRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    clientRequest: (f = msg.getClientRequest()) && proto_client_pb.ClientRequest.toObject(includeInstance, f),
     id: jspb.Message.getFieldWithDefault(msg, 2, 0),
     uuid: jspb.Message.getFieldWithDefault(msg, 3, ""),
     name: jspb.Message.getFieldWithDefault(msg, 4, ""),
@@ -1020,11 +915,6 @@ proto.time_control.UpdateResourceAssignmentRequest.deserializeBinaryFromReader =
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 1:
-      var value = new proto_client_pb.ClientRequest;
-      reader.readMessage(value,proto_client_pb.ClientRequest.deserializeBinaryFromReader);
-      msg.setClientRequest(value);
-      break;
     case 2:
       var value = /** @type {number} */ (reader.readInt32());
       msg.setId(value);
@@ -1070,14 +960,6 @@ proto.time_control.UpdateResourceAssignmentRequest.prototype.serializeBinary = f
  */
 proto.time_control.UpdateResourceAssignmentRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getClientRequest();
-  if (f != null) {
-    writer.writeMessage(
-      1,
-      f,
-      proto_client_pb.ClientRequest.serializeBinaryToWriter
-    );
-  }
   f = message.getId();
   if (f !== 0) {
     writer.writeInt32(
@@ -1106,43 +988,6 @@ proto.time_control.UpdateResourceAssignmentRequest.serializeBinaryToWriter = fun
       f
     );
   }
-};
-
-
-/**
- * optional data.ClientRequest client_request = 1;
- * @return {?proto.data.ClientRequest}
- */
-proto.time_control.UpdateResourceAssignmentRequest.prototype.getClientRequest = function() {
-  return /** @type{?proto.data.ClientRequest} */ (
-    jspb.Message.getWrapperField(this, proto_client_pb.ClientRequest, 1));
-};
-
-
-/**
- * @param {?proto.data.ClientRequest|undefined} value
- * @return {!proto.time_control.UpdateResourceAssignmentRequest} returns this
-*/
-proto.time_control.UpdateResourceAssignmentRequest.prototype.setClientRequest = function(value) {
-  return jspb.Message.setWrapperField(this, 1, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.time_control.UpdateResourceAssignmentRequest} returns this
- */
-proto.time_control.UpdateResourceAssignmentRequest.prototype.clearClientRequest = function() {
-  return this.setClientRequest(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.time_control.UpdateResourceAssignmentRequest.prototype.hasClientRequest = function() {
-  return jspb.Message.getField(this, 1) != null;
 };
 
 
@@ -1250,7 +1095,6 @@ proto.time_control.DeleteResourceAssignmentRequest.prototype.toObject = function
  */
 proto.time_control.DeleteResourceAssignmentRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    clientRequest: (f = msg.getClientRequest()) && proto_client_pb.ClientRequest.toObject(includeInstance, f),
     id: jspb.Message.getFieldWithDefault(msg, 2, 0),
     uuid: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
@@ -1289,11 +1133,6 @@ proto.time_control.DeleteResourceAssignmentRequest.deserializeBinaryFromReader =
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 1:
-      var value = new proto_client_pb.ClientRequest;
-      reader.readMessage(value,proto_client_pb.ClientRequest.deserializeBinaryFromReader);
-      msg.setClientRequest(value);
-      break;
     case 2:
       var value = /** @type {number} */ (reader.readInt32());
       msg.setId(value);
@@ -1331,14 +1170,6 @@ proto.time_control.DeleteResourceAssignmentRequest.prototype.serializeBinary = f
  */
 proto.time_control.DeleteResourceAssignmentRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getClientRequest();
-  if (f != null) {
-    writer.writeMessage(
-      1,
-      f,
-      proto_client_pb.ClientRequest.serializeBinaryToWriter
-    );
-  }
   f = message.getId();
   if (f !== 0) {
     writer.writeInt32(
@@ -1353,43 +1184,6 @@ proto.time_control.DeleteResourceAssignmentRequest.serializeBinaryToWriter = fun
       f
     );
   }
-};
-
-
-/**
- * optional data.ClientRequest client_request = 1;
- * @return {?proto.data.ClientRequest}
- */
-proto.time_control.DeleteResourceAssignmentRequest.prototype.getClientRequest = function() {
-  return /** @type{?proto.data.ClientRequest} */ (
-    jspb.Message.getWrapperField(this, proto_client_pb.ClientRequest, 1));
-};
-
-
-/**
- * @param {?proto.data.ClientRequest|undefined} value
- * @return {!proto.time_control.DeleteResourceAssignmentRequest} returns this
-*/
-proto.time_control.DeleteResourceAssignmentRequest.prototype.setClientRequest = function(value) {
-  return jspb.Message.setWrapperField(this, 1, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.time_control.DeleteResourceAssignmentRequest} returns this
- */
-proto.time_control.DeleteResourceAssignmentRequest.prototype.clearClientRequest = function() {
-  return this.setClientRequest(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.time_control.DeleteResourceAssignmentRequest.prototype.hasClientRequest = function() {
-  return jspb.Message.getField(this, 1) != null;
 };
 
 
@@ -2635,7 +2429,6 @@ proto.time_control.ConfirmResourceAssignmentRequest.prototype.toObject = functio
  */
 proto.time_control.ConfirmResourceAssignmentRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    clientRequest: (f = msg.getClientRequest()) && proto_client_pb.ClientRequest.toObject(includeInstance, f),
     id: jspb.Message.getFieldWithDefault(msg, 2, 0),
     uuid: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
@@ -2674,11 +2467,6 @@ proto.time_control.ConfirmResourceAssignmentRequest.deserializeBinaryFromReader 
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 1:
-      var value = new proto_client_pb.ClientRequest;
-      reader.readMessage(value,proto_client_pb.ClientRequest.deserializeBinaryFromReader);
-      msg.setClientRequest(value);
-      break;
     case 2:
       var value = /** @type {number} */ (reader.readInt32());
       msg.setId(value);
@@ -2716,14 +2504,6 @@ proto.time_control.ConfirmResourceAssignmentRequest.prototype.serializeBinary = 
  */
 proto.time_control.ConfirmResourceAssignmentRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getClientRequest();
-  if (f != null) {
-    writer.writeMessage(
-      1,
-      f,
-      proto_client_pb.ClientRequest.serializeBinaryToWriter
-    );
-  }
   f = message.getId();
   if (f !== 0) {
     writer.writeInt32(
@@ -2738,43 +2518,6 @@ proto.time_control.ConfirmResourceAssignmentRequest.serializeBinaryToWriter = fu
       f
     );
   }
-};
-
-
-/**
- * optional data.ClientRequest client_request = 1;
- * @return {?proto.data.ClientRequest}
- */
-proto.time_control.ConfirmResourceAssignmentRequest.prototype.getClientRequest = function() {
-  return /** @type{?proto.data.ClientRequest} */ (
-    jspb.Message.getWrapperField(this, proto_client_pb.ClientRequest, 1));
-};
-
-
-/**
- * @param {?proto.data.ClientRequest|undefined} value
- * @return {!proto.time_control.ConfirmResourceAssignmentRequest} returns this
-*/
-proto.time_control.ConfirmResourceAssignmentRequest.prototype.setClientRequest = function(value) {
-  return jspb.Message.setWrapperField(this, 1, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.time_control.ConfirmResourceAssignmentRequest} returns this
- */
-proto.time_control.ConfirmResourceAssignmentRequest.prototype.clearClientRequest = function() {
-  return this.setClientRequest(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.time_control.ConfirmResourceAssignmentRequest.prototype.hasClientRequest = function() {
-  return jspb.Message.getField(this, 1) != null;
 };
 
 

@@ -19,7 +19,6 @@
 var grpc = require('@grpc/grpc-js');
 var proto_business_partner_pb = require('../proto/business_partner_pb.js');
 var proto_base_data_type_pb = require('../proto/base_data_type_pb.js');
-var proto_client_pb = require('../proto/client_pb.js');
 var proto_business_pb = require('../proto/business_pb.js');
 
 function serialize_business_partner_ListBusinessPartnerInfoRequest(arg) {

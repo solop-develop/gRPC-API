@@ -14,7 +14,6 @@
  * along with this program. If not, see <https://www.gnu.org/licenses/>.             *
  ************************************************************************************/
 
-const { createClientRequest } = require('@adempiere/grpc-api/lib/clientRequest');
 const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
 
 class Dashboarding {
@@ -64,8 +63,7 @@ class Dashboarding {
     roleUuid,
     roleId,
     pageSize,
-    pageToken,
-    language
+    pageToken
   }, callback) {
     const { ListDashboardsRequest } = this.stubFile;
     const request = new ListDashboardsRequest();
@@ -75,13 +73,6 @@ class Dashboarding {
 
     request.setPageSize(pageSize);
     request.setPageToken(pageToken);
-
-    request.setClientRequest(
-      createClientRequest({
-        token,
-        language
-      })
-    );
 
     const metadata = getMetadata({
       token
@@ -100,8 +91,7 @@ class Dashboarding {
     userUuid,
     userId,
     pageSize,
-    pageToken,
-    language
+    pageToken
   }, callback) {
     const { ListFavoritesRequest } = this.stubFile;
     const request = new ListFavoritesRequest()
@@ -111,13 +101,6 @@ class Dashboarding {
 
     request.setPageSize(pageSize);
     request.setPageToken(pageToken);
-
-    request.setClientRequest(
-      createClientRequest({
-        token,
-        language
-      })
-    );
 
     const metadata = getMetadata({
       token
@@ -138,8 +121,7 @@ class Dashboarding {
     roleUuid,
     roleId,
     pageSize,
-    pageToken,
-    language
+    pageToken
   }, callback) {
     const { ListPendingDocumentsRequest } = this.stubFile;
     const request = new ListPendingDocumentsRequest();
@@ -151,13 +133,6 @@ class Dashboarding {
 
     request.setPageSize(pageSize);
     request.setPageToken(pageToken);
-
-    request.setClientRequest(
-      createClientRequest({
-        token,
-        language
-      })
-    );
 
     const metadata = getMetadata({
       token
@@ -174,21 +149,13 @@ class Dashboarding {
   getChart({
     token,
     uuid,
-    id,
-    language
+    id
   }, callback) {
     const { GetChartRequest } = this.stubFile;
     const request = new GetChartRequest();
 
     request.setUuid(uuid);
     request.setId(id);
-
-    request.setClientRequest(
-      createClientRequest({
-        token,
-        language
-      })
-    );
 
     const metadata = getMetadata({
       token
@@ -211,8 +178,7 @@ class Dashboarding {
     token,
     searchValue,
     pageSize,
-    pageToken,
-    language
+    pageToken
   }, callback) {
     const { ListNotificationsRequest } = this.stubFile;
     const request = new ListNotificationsRequest();
@@ -220,13 +186,6 @@ class Dashboarding {
     request.setSearchValue(searchValue);
     request.setPageSize(pageSize);
     request.setPageToken(pageToken);
-
-    request.setClientRequest(
-      createClientRequest({
-        token,
-        language
-      })
-    );
 
     const metadata = getMetadata({
       token
