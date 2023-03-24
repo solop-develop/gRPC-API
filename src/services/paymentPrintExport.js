@@ -14,7 +14,6 @@
  * along with this program. If not, see <https://www.gnu.org/licenses/>.             *
  ************************************************************************************/
 
-const { createClientRequest } = require('@adempiere/grpc-api/lib/clientRequest');
 const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
 const { getValidId } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
 
@@ -70,8 +69,7 @@ class PaymentPrintExport {
     token,
     searchValue,
     pageSize,
-    pageToken,
-    language
+    pageToken
   }, callback) {
     const { ListPaymentSelectionsRequest } = this.stubFile;
     const request = new ListPaymentSelectionsRequest();
@@ -79,9 +77,6 @@ class PaymentPrintExport {
 
     request.setPageSize(pageSize);
     request.setPageToken(pageToken);
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -102,8 +97,7 @@ class PaymentPrintExport {
   getPaymentSelection({
     token,
     id,
-    uuid,
-    language
+    uuid
   }, callback) {
     const { GetPaymentSelectionRequest } = this.stubFile;
     const request = new GetPaymentSelectionRequest();
@@ -111,10 +105,6 @@ class PaymentPrintExport {
     request.setUuid(uuid);
     request.setId(
       getValidId(id)
-    );
-
-    request.setClientRequest(
-      createClientRequest({ token, language })
     );
 
     const metadata = getMetadata({
@@ -142,8 +132,7 @@ class PaymentPrintExport {
     paymentSelectionId,
     paymentSelectionUuid,
     pageSize,
-    pageToken,
-    language
+    pageToken
   }, callback) {
     const { ListPaymentRulesRequest } = this.stubFile;
     const request = new ListPaymentRulesRequest();
@@ -157,9 +146,6 @@ class PaymentPrintExport {
 
     request.setPageSize(pageSize);
     request.setPageToken(pageToken);
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -188,8 +174,7 @@ class PaymentPrintExport {
     paymentRuleId,
     paymentRuleUuid,
     pageSize,
-    pageToken,
-    language
+    pageToken
   }, callback) {
     const { ListPaymentsRequest } = this.stubFile;
     const request = new ListPaymentsRequest();
@@ -208,9 +193,6 @@ class PaymentPrintExport {
 
     request.setPageSize(pageSize);
     request.setPageToken(pageToken);
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -236,8 +218,7 @@ class PaymentPrintExport {
     bankAccountId,
     bankAccountUuid,
     paymentRuleId,
-    paymentRuleUuid,
-    language
+    paymentRuleUuid
   }, callback) {
     const { GetDocumentNoRequest } = this.stubFile;
     const request = new GetDocumentNoRequest();
@@ -251,10 +232,6 @@ class PaymentPrintExport {
       getValidId(paymentRuleId)
     );
     request.setPaymentRuleUuid(paymentRuleUuid);
-
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -277,7 +254,6 @@ class PaymentPrintExport {
    */
   process({
     token,
-    language,
     paymentSelectionId,
     paymentSelectionUuid,
     paymentRuleId,
@@ -298,10 +274,6 @@ class PaymentPrintExport {
     request.setPaymentRuleUuid(paymentRuleUuid);
 
     request.setDocumentNo(documentNo);
-
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -324,7 +296,6 @@ class PaymentPrintExport {
    */
   export({
     token,
-    language,
     paymentSelectionId,
     paymentSelectionUuid,
     paymentRuleId,
@@ -345,10 +316,6 @@ class PaymentPrintExport {
     request.setPaymentRuleUuid(paymentRuleUuid);
 
     request.setDocumentNo(documentNo);
-
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -371,7 +338,6 @@ class PaymentPrintExport {
    */
   print({
     token,
-    language,
     paymentSelectionId,
     paymentSelectionUuid,
     paymentRuleId,
@@ -392,10 +358,6 @@ class PaymentPrintExport {
     request.setPaymentRuleUuid(paymentRuleUuid);
 
     request.setDocumentNo(documentNo);
-
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -418,7 +380,6 @@ class PaymentPrintExport {
    */
   confirmPrint({
     token,
-    language,
     paymentSelectionId,
     paymentSelectionUuid,
     paymentRuleId,
@@ -439,10 +400,6 @@ class PaymentPrintExport {
     request.setPaymentRuleUuid(paymentRuleUuid);
 
     request.setDocumentNo(documentNo);
-
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -465,7 +422,6 @@ class PaymentPrintExport {
    */
   printRemittance({
     token,
-    language,
     paymentSelectionId,
     paymentSelectionUuid,
     paymentRuleId,
@@ -486,10 +442,6 @@ class PaymentPrintExport {
     request.setPaymentRuleUuid(paymentRuleUuid);
 
     request.setDocumentNo(documentNo);
-
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token

@@ -14,7 +14,6 @@
  * along with this program. If not, see <https://www.gnu.org/licenses/>.             *
  ************************************************************************************/
 
-const { createClientRequest } = require('@adempiere/grpc-api/lib/clientRequest');
 const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
 const { getValidId } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
 
@@ -64,8 +63,7 @@ class Logs {
     token,
     tableName,
     pageSize,
-    pageToken,
-    language
+    pageToken
   }, callback) {
     const { ListLogsRequest } = this.stubFile;
     const request = new ListLogsRequest();
@@ -73,9 +71,6 @@ class Logs {
     request.setTableName(tableName);
     request.setPageSize(pageSize);
     request.setPageToken(pageToken);
-    request.setClientRequest(
-      this.createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -97,8 +92,7 @@ class Logs {
     userUuid,
     instanceUuid,
     pageSize,
-    pageToken,
-    language
+    pageToken
   }, callback) {
     const { ListProcessLogsRequest } = this.stubFile;
     const request = new ListProcessLogsRequest();
@@ -112,9 +106,6 @@ class Logs {
     request.setInstanceUuid(instanceUuid);
     request.setPageSize(pageSize);
     request.setPageToken(pageToken);
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -134,8 +125,7 @@ class Logs {
     uuid,
     id,
     pageSize,
-    pageToken,
-    language
+    pageToken
   }, callback) {
     const { ListEntityLogsRequest } = this.stubFile;
     const request = new ListEntityLogsRequest();
@@ -147,9 +137,6 @@ class Logs {
     );
     request.setPageSize(pageSize);
     request.setPageToken(pageToken);
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -169,8 +156,7 @@ class Logs {
     uuid,
     id,
     pageSize,
-    pageToken,
-    language
+    pageToken
   }, callback) {
     const { ListEntityChatsRequest } = this.stubFile;
     const request = new ListEntityChatsRequest();
@@ -182,9 +168,6 @@ class Logs {
     );
     request.setPageSize(pageSize)
     request.setPageToken(pageToken)
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -210,8 +193,7 @@ class Logs {
     // DSL
     tableName,
     recordId,
-    recordUuid,
-    language
+    recordUuid
   }, callback) {
     const { ExistsChatEntriesRequest } = this.stubFile;
     const request = new ExistsChatEntriesRequest();
@@ -221,10 +203,6 @@ class Logs {
       getValidId(recordId)
     );
     request.setRecordUuid(recordUuid);
-
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -243,8 +221,7 @@ class Logs {
     id,
     uuid,
     pageSize,
-    pageToken,
-    language
+    pageToken
   }, callback) {
     const { ListChatEntriesRequest } = this.stubFile;
     const request = new ListChatEntriesRequest();
@@ -255,9 +232,6 @@ class Logs {
     );
     request.setPageSize(pageSize);
     request.setPageToken(pageToken);
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -277,8 +251,7 @@ class Logs {
     uuid,
     id,
     pageSize,
-    pageToken,
-    language
+    pageToken
   }, callback) {
     const { ListWorkflowLogsRequest } = this.stubFile;
     const request = new ListWorkflowLogsRequest();
@@ -290,9 +263,6 @@ class Logs {
     );
     request.setPageSize(pageSize);
     request.setPageToken(pageToken);
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -312,8 +282,7 @@ class Logs {
     roleUuid,
     currentSession,
     pageSize,
-    pageToken,
-    language
+    pageToken
   }, callback) {
     const { ListRecentItemsRequest } = this.stubFile;
     const request = new ListRecentItemsRequest();
@@ -323,9 +292,6 @@ class Logs {
     request.setCurrentSession(currentSession);
     request.setPageSize(pageSize);
     request.setPageToken(pageToken);
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token

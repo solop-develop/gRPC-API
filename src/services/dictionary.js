@@ -57,30 +57,15 @@ class Dictionary {
     return this.dictionary;
   }
 
-  //  Create Application request from token
-  createApplicationRequest({ token, language }) {
-    const { ApplicationRequest } = this.stubFile;
-    const application = new ApplicationRequest();
-    application.setSessionUuid(token);
-    application.setLanguage(language);
-    return application;
-  }
-
-  getDictionaryRequest(
-    token,
+  getDictionaryRequest({
     id,
-    uuid,
-    language
-  ) {
+    uuid
+  }) {
     const { EntityRequest } = this.stubFile;
     const request = new EntityRequest();
 
     request.setId(id);
     request.setUuid(uuid);
-
-    request.setApplicationRequest(
-      this.createApplicationRequest({ token, language })
-    );
 
     return request;
   }
@@ -90,9 +75,11 @@ class Dictionary {
     token,
     id,
     uuid,
-    language
   }, callback) {
-    const request = this.getDictionaryRequest(token, id, uuid, language);
+    const request = this.getDictionaryRequest({
+      id,
+      uuid
+    });
 
     const metadata = getMetadata({
       token
@@ -110,9 +97,11 @@ class Dictionary {
     token,
     id,
     uuid,
-    language
   }, callback) {
-    const request = this.getDictionaryRequest(token, id, uuid, language);
+    const request = this.getDictionaryRequest({
+      id,
+      uuid
+    });
 
     const metadata = getMetadata({
       token
@@ -130,9 +119,11 @@ class Dictionary {
     token,
     id,
     uuid,
-    language
   }, callback) {
-    const request = this.getDictionaryRequest(token, id, uuid, language);
+    const request = this.getDictionaryRequest({
+      id,
+      uuid
+    });
 
     const metadata = getMetadata({
       token
@@ -150,9 +141,11 @@ class Dictionary {
     token,
     id,
     uuid,
-    language
   }, callback) {
-    const request = this.getDictionaryRequest(token, id, uuid, language);
+    const request = this.getDictionaryRequest({
+      id,
+      uuid
+    });
 
     const metadata = getMetadata({
       token
@@ -169,10 +162,12 @@ class Dictionary {
   getValidationRule({
     token,
     id,
-    uuid,
-    language
+    uuid
   }, callback) {
-    const request = this.getDictionaryRequest(token, id, uuid, language);
+    const request = this.getDictionaryRequest({
+      id,
+      uuid
+    });
 
     const metadata = getMetadata({
       token
@@ -194,8 +189,7 @@ class Dictionary {
     fieldUuid,
     tableName,
     columnName,
-    elementColumnName,
-    language
+    elementColumnName
   }, callback) {
     const { FieldRequest } = this.stubFile;
     const request = new FieldRequest();
@@ -209,10 +203,6 @@ class Dictionary {
     request.setColumnName(columnName);
     request.setTableName(tableName);
     request.setElementColumnName(elementColumnName);
-
-    request.setApplicationRequest(
-      this.createApplicationRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -229,18 +219,13 @@ class Dictionary {
   getReference({
     token,
     uuid,
-    columnName,
-    language
+    columnName
   }, callback) {
     const { ReferenceRequest } = this.stubFile;
     const request = new ReferenceRequest();
 
     request.setReferenceUuid(uuid);
     request.setColumnName(columnName);
-
-    request.setApplicationRequest(
-      this.createApplicationRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -260,8 +245,7 @@ class Dictionary {
     tableId,
     tableName,
     tabUuid,
-    tabId,
-    language
+    tabId
   }, callback) {
     const { ListFieldsRequest } = this.stubFile;
     const request = new ListFieldsRequest();
@@ -272,10 +256,6 @@ class Dictionary {
 
     request.setTabUuid(tabUuid);
     request.setTabId(tabId);
-
-    request.setApplicationRequest(
-      this.createApplicationRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -295,8 +275,7 @@ class Dictionary {
     tableId,
     tableName,
     tabUuid,
-    tabId,
-    language
+    tabId
   }, callback) {
     const { ListFieldsRequest } = this.stubFile;
     const request = new ListFieldsRequest();
@@ -307,10 +286,6 @@ class Dictionary {
 
     request.setTabUuid(tabUuid);
     request.setTabId(tabId);
-
-    request.setApplicationRequest(
-      this.createApplicationRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token

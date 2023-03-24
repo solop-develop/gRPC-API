@@ -14,7 +14,6 @@
  * along with this program. If not, see <https://www.gnu.org/licenses/>.             *
  ************************************************************************************/
 
-const { createClientRequest } = require('@adempiere/grpc-api/lib/clientRequest');
 const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
 const { getValidId, getTimestamp } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
 
@@ -63,23 +62,18 @@ class IssueManagement {
    * List Request Types
    * @param {number} pageSize
    * @param {string} pageToken
-   * @param {string} language
    * @param {string} token
    */
   listRequestTypes({
     token,
     pageSize,
-    pageToken,
-    language
+    pageToken
   }, callback) {
     const { ListRequestTypesRequest } = this.stubFile;
     const request = new ListRequestTypesRequest();
 
     request.setPageSize(pageSize);
     request.setPageToken(pageToken);
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -97,23 +91,18 @@ class IssueManagement {
    * List Request Types
    * @param {number} pageSize
    * @param {string} pageToken
-   * @param {string} language
    * @param {string} token
    */
   listSalesRepresentatives({
     token,
     pageSize,
-    pageToken,
-    language
+    pageToken
   }, callback) {
     const { ListSalesRepresentativesRequest } = this.stubFile;
     const request = new ListSalesRepresentativesRequest();
 
     request.setPageSize(pageSize);
     request.setPageToken(pageToken);
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -131,23 +120,18 @@ class IssueManagement {
    * List Priorities
    * @param {number} pageSize
    * @param {string} pageToken
-   * @param {string} language
    * @param {string} token
    */
   listPriorities({
     token,
     pageSize,
-    pageToken,
-    language
+    pageToken
   }, callback) {
     const { ListPrioritiesRequest } = this.stubFile;
     const request = new ListPrioritiesRequest();
 
     request.setPageSize(pageSize);
     request.setPageToken(pageToken);
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -167,7 +151,6 @@ class IssueManagement {
    * @param {string} requestTypeUuid
    * @param {number} pageSize
    * @param {string} pageToken
-   * @param {string} language
    * @param {string} token
    */
   listStatuses({
@@ -175,8 +158,7 @@ class IssueManagement {
     requestTypeId,
     requestTypeUuid,
     pageSize,
-    pageToken,
-    language
+    pageToken
   }, callback) {
     const { ListStatusesRequest } = this.stubFile;
     const request = new ListStatusesRequest();
@@ -188,9 +170,6 @@ class IssueManagement {
 
     request.setPageSize(pageSize);
     request.setPageToken(pageToken);
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -209,7 +188,6 @@ class IssueManagement {
    * @param {string} tableName
    * @param {number} recordId
    * @param {string} recordUuid
-   * @param {string} language
    * @param {string} token
    */
   existsIssues({
@@ -217,8 +195,7 @@ class IssueManagement {
     // DSL
     tableName,
     recordId,
-    recordUuid,
-    language
+    recordUuid
   }, callback) {
     const { ExistsIssuesRequest } = this.stubFile;
     const request = new ExistsIssuesRequest();
@@ -228,10 +205,6 @@ class IssueManagement {
       getValidId(recordId)
     );
     request.setRecordUuid(recordUuid);
-
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -251,7 +224,6 @@ class IssueManagement {
    * @param {string} recordUuid
    * @param {number} pageSize
    * @param {string} pageToken
-   * @param {string} language
    * @param {string} token
    */
   listIssues({
@@ -260,8 +232,7 @@ class IssueManagement {
     recordId,
     recordUuid,
     pageSize,
-    pageToken,
-    language
+    pageToken
   }, callback) {
     const { ListIssuesRequest } = this.stubFile;
     const request = new ListIssuesRequest();
@@ -274,9 +245,6 @@ class IssueManagement {
 
     request.setPageSize(pageSize);
     request.setPageToken(pageToken);
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -298,7 +266,6 @@ class IssueManagement {
    * @param {string} summary
    * @param {number} requestTypeId
    * @param {string} requestTypeUuid
-   * @param {string} language
    * @param {date} dateNextAction
    * @param {string} token
    */
@@ -316,8 +283,7 @@ class IssueManagement {
     statusId,
     statusUuid,
     priorityValue,
-    dateNextAction,
-    language
+    dateNextAction
   }, callback) {
     const { CreateIssueRequest } = this.stubFile;
     const request = new CreateIssueRequest();
@@ -347,10 +313,6 @@ class IssueManagement {
       getTimestamp(dateNextAction)
     );
 
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
-
     const metadata = getMetadata({
       token
     });
@@ -370,7 +332,6 @@ class IssueManagement {
    * @param {string} summary
    * @param {number} requestTypeId
    * @param {string} requestTypeUuid
-   * @param {string} language
    * @param {date} dateNextAction
    * @param {string} token
    */
@@ -387,8 +348,7 @@ class IssueManagement {
     statusId,
     statusUuid,
     priorityValue,
-    dateNextAction,
-    language
+    dateNextAction
   }, callback) {
     const { UpdateIssueRequest } = this.stubFile;
     const request = new UpdateIssueRequest();
@@ -417,10 +377,6 @@ class IssueManagement {
       getTimestamp(dateNextAction)
     );
 
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
-
     const metadata = getMetadata({
       token
     });
@@ -436,14 +392,12 @@ class IssueManagement {
    * Delete Issue
    * @param {number} id
    * @param {string} uuid
-   * @param {string} language
    * @param {string} token
    */
   deleteIssue({
     token,
     id,
-    uuid,
-    language
+    uuid
   }, callback) {
     const { DeleteIssueRequest } = this.stubFile;
     const request = new DeleteIssueRequest();
@@ -451,10 +405,6 @@ class IssueManagement {
     request.setUuid(uuid);
     request.setId(
       getValidId(id)
-    );
-
-    request.setClientRequest(
-      createClientRequest({ token, language })
     );
 
     const metadata = getMetadata({
@@ -475,7 +425,6 @@ class IssueManagement {
    * @param {string} issueUuid
    * @param {number} pageSize
    * @param {string} pageToken
-   * @param {string} language
    * @param {string} token
    */
   listIssueComments({
@@ -483,8 +432,7 @@ class IssueManagement {
     issueId,
     issueUuid,
     pageSize,
-    pageToken,
-    language
+    pageToken
   }, callback) {
     const { ListIssueCommentsRequest } = this.stubFile;
     const request = new ListIssueCommentsRequest();
@@ -496,9 +444,6 @@ class IssueManagement {
 
     request.setPageSize(pageSize);
     request.setPageToken(pageToken);
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -521,8 +466,7 @@ class IssueManagement {
     token,
     issueId,
     issueUuid,
-    result,
-    language
+    result
   }, callback) {
     const { CreateIssueCommentRequest } = this.stubFile;
     const request = new CreateIssueCommentRequest();
@@ -533,10 +477,6 @@ class IssueManagement {
     request.setIssueUuid(issueUuid);
 
     request.setResult(result);
-
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -554,15 +494,13 @@ class IssueManagement {
    * @param {number} id
    * @param {string} uuid
    * @param {string} result
-   * @param {string} language
    * @param {string} token
    */
   updateIssueComment({
     token,
     id,
     uuid,
-    result,
-    language
+    result
   }, callback) {
     const { UpdateIssueCommentRequest } = this.stubFile;
     const request = new UpdateIssueCommentRequest();
@@ -573,10 +511,6 @@ class IssueManagement {
     );
 
     request.setResult(result);
-
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -593,14 +527,12 @@ class IssueManagement {
    * Delete Issue Comment
    * @param {number} id
    * @param {string} uuid
-   * @param {string} language
    * @param {string} token
    */
   deleteIssueComment({
     token,
     id,
-    uuid,
-    language
+    uuid
   }, callback) {
     const { DeleteIssueCommentRequest } = this.stubFile;
     const request = new DeleteIssueCommentRequest();
@@ -610,9 +542,9 @@ class IssueManagement {
       getValidId(id)
     );
 
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
+    const metadata = getMetadata({
+      token
+    });
 
     this.getIssueManagementService().deleteIssueComment(
       request,

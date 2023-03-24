@@ -14,7 +14,6 @@
  * along with this program. If not, see <https://www.gnu.org/licenses/>.             *
  ************************************************************************************/
 
-const { getClientRequestToGRPC } = require('@adempiere/grpc-api/src/utils/clientToGRPC');
 const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
 const { isEmptyValue, getValidId } = require('@adempiere/grpc-api/src/utils/valueUtils.js')
 
@@ -67,8 +66,7 @@ class MaterialManagement {
     recordUuid,
     // Page Data
     pageSize,
-    pageToken,
-    language
+    pageToken
   }, callback) {
     const { ListProductStorageRequest } = this.stubFile;
     const request = new ListProductStorageRequest();
@@ -81,9 +79,6 @@ class MaterialManagement {
 
     request.setPageSize(pageSize);
     request.setPageToken(pageToken);
-    request.setClientRequest(
-      getClientRequestToGRPC({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -113,8 +108,7 @@ class MaterialManagement {
     productId,
     productUuid,
     productAttributeSetInstanceId,
-    productAttributeSetInstanceUuid,
-    language
+    productAttributeSetInstanceUuid
   }, callback) {
     const { GetProductAttributeSetRequest } = this.stubFile;
     const request = new GetProductAttributeSetRequest();
@@ -129,10 +123,6 @@ class MaterialManagement {
     request.setProductUuid(productUuid);
     request.setProductAttributeSetInstanceId(productAttributeSetInstanceId);
     request.setProductAttributeSetInstanceUuid(productAttributeSetInstanceUuid);
-
-    request.setClientRequest(
-      getClientRequestToGRPC({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -161,8 +151,7 @@ class MaterialManagement {
     id,
     uuid,
     productId,
-    productUuid,
-    language
+    productUuid
   }, callback) {
     const { GetProductAttributeSetInstanceRequest } = this.stubFile;
     const request = new GetProductAttributeSetInstanceRequest();
@@ -175,10 +164,6 @@ class MaterialManagement {
       getValidId(productId)
     );
     request.setProductUuid(productUuid);
-
-    request.setClientRequest(
-      getClientRequestToGRPC({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -210,8 +195,7 @@ class MaterialManagement {
     filters,
     // Page Data
     pageSize,
-    pageToken,
-    language
+    pageToken
   }, callback) {
     const { ListProductAttributeSetInstancesRequest } = this.stubFile;
     const request = new ListProductAttributeSetInstancesRequest();
@@ -235,9 +219,6 @@ class MaterialManagement {
 
     request.setPageSize(pageSize);
     request.setPageToken(pageToken);
-    request.setClientRequest(
-      getClientRequestToGRPC({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -270,8 +251,7 @@ class MaterialManagement {
     productUuid,
     productAttributeSetId,
     productAttributeSetUuid,
-    attributes,
-    language
+    attributes
   }, callback) {
     const { SaveProductAttributeSetInstanceRequest } = this.stubFile;
     const request = new SaveProductAttributeSetInstanceRequest();
@@ -301,10 +281,6 @@ class MaterialManagement {
       });
     }
 
-    request.setClientRequest(
-      getClientRequestToGRPC({ token, language })
-    );
-
     const metadata = getMetadata({
       token
     });
@@ -333,8 +309,7 @@ class MaterialManagement {
     searchValue,
     // Page Data
     pageSize,
-    pageToken,
-    language
+    pageToken
   }, callback) {
     const { ListAvailableWarehousesRequest } = this.stubFile;
     const request = new ListAvailableWarehousesRequest();
@@ -348,9 +323,6 @@ class MaterialManagement {
 
     request.setPageSize(pageSize);
     request.setPageToken(pageToken);
-    request.setClientRequest(
-      getClientRequestToGRPC({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -389,8 +361,7 @@ class MaterialManagement {
     columnName,
     // Page Data
     pageSize,
-    pageToken,
-    language
+    pageToken
   }, callback) {
     const { ListLocatorsRequest } = this.stubFile;
     const request = new ListLocatorsRequest();
@@ -434,9 +405,6 @@ class MaterialManagement {
 
     request.setPageSize(pageSize);
     request.setPageToken(pageToken);
-    request.setClientRequest(
-      getClientRequestToGRPC({ token, language })
-    );
 
     const metadata = getMetadata({
       token

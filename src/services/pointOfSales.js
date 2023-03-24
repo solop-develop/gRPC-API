@@ -14,7 +14,6 @@
  * along with this program. If not, see <https://www.gnu.org/licenses/>.             *
  ************************************************************************************/
 
-const { createClientRequest } = require('@adempiere/grpc-api/lib/clientRequest');
 const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
 
 class PointOfSales {
@@ -64,8 +63,7 @@ class PointOfSales {
     userUuid,
     //  Page Data
     pageSize,
-    pageToken,
-    language
+    pageToken
   }, callback) {
     const { ListPointOfSalesRequest } = this.stubFile;
     const request = new ListPointOfSalesRequest()
@@ -73,9 +71,6 @@ class PointOfSales {
     request.setUserUuid(userUuid)
     request.setPageSize(pageSize)
     request.setPageToken(pageToken)
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -91,15 +86,11 @@ class PointOfSales {
   //  Get Point of Sales
   getPointOfSales({
     token,
-    posUuid,
-    language
+    posUuid
   }, callback) {
     const { PointOfSalesRequest } = this.stubFile;
     const request = new PointOfSalesRequest()
     request.setPosUuid(posUuid)
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -123,8 +114,7 @@ class PointOfSales {
     businessPartnerUuid,
     validFrom,
     priceListUuid,
-    warehouseUuid,
-    language
+    warehouseUuid
   }, callback) {
     const { GetProductPriceRequest } = this.stubFile;
     const request = new GetProductPriceRequest()
@@ -137,9 +127,6 @@ class PointOfSales {
     request.setPriceListUuid(priceListUuid)
     request.setWarehouseUuid(warehouseUuid)
     request.setValidFrom(validFrom)
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -170,8 +157,7 @@ class PointOfSales {
     orderByClause,
     limit,
     pageSize,
-    pageToken,
-    language
+    pageToken
   }, callback) {
     const { ListProductPriceRequest } = this.stubFile;
     const request = new ListProductPriceRequest()
@@ -194,9 +180,6 @@ class PointOfSales {
     }))
     request.setPageSize(pageSize)
     request.setPageToken(pageToken)
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -218,8 +201,7 @@ class PointOfSales {
     warehouseUuid,
     priceListUuid,
     salesRepresentativeUuid,
-    campaignUuid,
-    language
+    campaignUuid
   }, callback) {
     const { CreateOrderRequest } = this.stubFile;
     const request = new CreateOrderRequest()
@@ -234,9 +216,6 @@ class PointOfSales {
     if(priceListUuid) {
       request.setPriceListUuid(priceListUuid)
     }
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -254,17 +233,12 @@ class PointOfSales {
     token,
     posUuid,
     orderUuid,
-    salesRepresentativeUuid,
-    language
+    salesRepresentativeUuid
   }, callback) {
     const { ReleaseOrderRequest } = this.stubFile;
     const request = new ReleaseOrderRequest()
     request.setPosUuid(posUuid)
     request.setOrderUuid(orderUuid)
-    request.setSalesRepresentativeUuid(salesRepresentativeUuid)
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -282,17 +256,13 @@ class PointOfSales {
     token,
     posUuid,
     orderUuid,
-    salesRepresentativeUuid,
-    language
+    salesRepresentativeUuid
   }, callback) {
     const { HoldOrderRequest } = this.stubFile;
     const request = new HoldOrderRequest()
     request.setPosUuid(posUuid)
     request.setOrderUuid(orderUuid)
     request.setSalesRepresentativeUuid(salesRepresentativeUuid)
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -309,17 +279,13 @@ class PointOfSales {
   deleteOrder({
     token,
     posUuid,
-    orderUuid,
-    language
+    orderUuid
   }, callback) {
     const { DeleteOrderRequest } = this.stubFile;
     const request = new DeleteOrderRequest()
 
     request.setPosUuid(posUuid);
     request.setOrderUuid(orderUuid)
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -344,8 +310,7 @@ class PointOfSales {
     quantity,
     price,
     discountRate,
-    warehouseUuid,
-    language
+    warehouseUuid
   }, callback) {
     const { CreateOrderLineRequest } = this.stubFile;
     const request = new CreateOrderLineRequest()
@@ -369,9 +334,6 @@ class PointOfSales {
     if(warehouseUuid) {
       request.setWarehouseUuid(warehouseUuid)
     }
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -388,17 +350,13 @@ class PointOfSales {
   deleteOrderLine({
     token,
     posUuid,
-    orderLineUuid,
-    language
+    orderLineUuid
   }, callback) {
     const { DeleteOrderLineRequest } = this.stubFile;
     const request = new DeleteOrderLineRequest()
 
     request.setPosUuid(posUuid);
     request.setOrderLineUuid(orderLineUuid)
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -425,8 +383,7 @@ class PointOfSales {
     discountRate,
     discountRateOff,
     discountAmountOff,
-    salesRepresentativeUuid,
-    language
+    salesRepresentativeUuid
   }, callback) {
     const { UpdateOrderRequest } = this.stubFile;
     const { getDecimalFromNumber } = require('../../lib/convertValues.js')
@@ -448,9 +405,6 @@ class PointOfSales {
     if(priceListUuid) {
       request.setPriceListUuid(priceListUuid)
     }
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -474,8 +428,7 @@ class PointOfSales {
     price,
     discountRate,
     isAddQuantity,
-    warehouseUuid,
-    language
+    warehouseUuid
   }, callback) {
     const { UpdateOrderLineRequest } = this.stubFile;
     const { getDecimalFromNumber } = require('@adempiere/grpc-api/lib/convertValues.js');
@@ -490,9 +443,6 @@ class PointOfSales {
     request.setWarehouseUuid(warehouseUuid)
     request.setIsAddQuantity(isAddQuantity)
     request.setUomUuid(uomUuid);
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -509,17 +459,13 @@ class PointOfSales {
   getOrder({
     token,
     posUuid,
-    orderUuid,
-    language
+    orderUuid
   }, callback) {
     const { GetOrderRequest } = this.stubFile;
     const request = new GetOrderRequest()
 
     request.setPosUuid(posUuid);
     request.setOrderUuid(orderUuid)
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -557,8 +503,7 @@ class PointOfSales {
     orderByClause,
     limit,
     pageSize,
-    pageToken,
-    language
+    pageToken
   }, callback) {
     const { ListOrdersRequest } = this.stubFile;
     const request = new ListOrdersRequest()
@@ -596,9 +541,6 @@ class PointOfSales {
     request.setSalesRepresentativeUuid(salesRepresentativeUuid)
     request.setPageSize(pageSize)
     request.setPageToken(pageToken)
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -617,8 +559,7 @@ class PointOfSales {
     posUuid,
     orderUuid,
     pageSize,
-    pageToken,
-    language
+    pageToken
   }, callback) {
     const { ListOrderLinesRequest } = this.stubFile;
     const request = new ListOrderLinesRequest()
@@ -627,9 +568,6 @@ class PointOfSales {
     request.setOrderUuid(orderUuid)
     request.setPageSize(pageSize)
     request.setPageToken(pageToken)
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -648,8 +586,7 @@ class PointOfSales {
     posUuid,
     orderUuid,
     salesRepresentativeUuid,
-    isCreateLinesFromOrder,
-    language
+    isCreateLinesFromOrder
   }, callback) {
     const { CreateShipmentRequest } = this.stubFile;
     const request = new CreateShipmentRequest();
@@ -658,9 +595,6 @@ class PointOfSales {
     request.setOrderUuid(orderUuid);
     request.setIsCreateLinesFromOrder(isCreateLinesFromOrder);
     request.setSalesRepresentativeUuid(salesRepresentativeUuid);
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -680,8 +614,7 @@ class PointOfSales {
     shipmentUuid,
     orderLineUuid,
     description,
-    quantity,
-    language
+    quantity
   }, callback) {
     const { CreateShipmentLineRequest } = this.stubFile;
     const request = new CreateShipmentLineRequest()
@@ -694,9 +627,6 @@ class PointOfSales {
     if(quantity) {
       request.setQuantity(getDecimalFromNumber(quantity))
     }
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -713,17 +643,13 @@ class PointOfSales {
   deleteShipmentLine({
     token,
     posUuid,
-    shipmentLineUuid,
-    language
+    shipmentLineUuid
   }, callback) {
     const { DeleteShipmentLineRequest } = this.stubFile;
     const request = new DeleteShipmentLineRequest()
 
     request.setPosUuid(posUuid);
     request.setShipmentLineUuid(shipmentLineUuid)
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -742,8 +668,7 @@ class PointOfSales {
     posUuid,
     shipmentUuid,
     pageSize,
-    pageToken,
-    language
+    pageToken
   }, callback) {
     const { ListShipmentLinesRequest } = this.stubFile;
     const request = new ListShipmentLinesRequest()
@@ -752,9 +677,6 @@ class PointOfSales {
     request.setShipmentUuid(shipmentUuid)
     request.setPageSize(pageSize)
     request.setPageToken(pageToken)
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -773,8 +695,7 @@ class PointOfSales {
     posUuid,
     shipmentUuid,
     description,
-    documentAction,
-    language
+    documentAction
   }, callback) {
     const { ProcessShipmentRequest } = this.stubFile;
     const request = new ProcessShipmentRequest()
@@ -783,9 +704,6 @@ class PointOfSales {
     request.setShipmentUuid(shipmentUuid)
     request.setDescription(description)
     request.setDocumentAction(documentAction)
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -803,17 +721,13 @@ class PointOfSales {
     token,
     posUuid,
     orderUuid,
-    description,
-    language
+    description
   }, callback) {
     const { ReverseSalesRequest } = this.stubFile;
     const request = new ReverseSalesRequest()
     request.setOrderUuid(orderUuid)
     request.setPosUuid(posUuid)
     request.setDescription(description)
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -845,8 +759,7 @@ class PointOfSales {
     currencyUuid,
     paymentMethodUuid,
     isRefund,
-    referenceBankAccountUuid,
-    language
+    referenceBankAccountUuid
   }, callback) {
     const { CreatePaymentRequest } = this.stubFile;
     const { getDecimalFromNumber } = require('@adempiere/grpc-api/lib/convertValues.js');
@@ -895,9 +808,6 @@ class PointOfSales {
       request.setPaymentAccountDate(paymentAccountDate)
     }
     request.setReferenceBankAccountUuid(referenceBankAccountUuid);
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -927,8 +837,7 @@ class PointOfSales {
     tenderTypeCode,
     currencyUuid,
     conversionTypeUuid,
-    paymentMethodUuid,
-    language
+    paymentMethodUuid
   }, callback) {
     const { CreatePaymentReferenceRequest } = this.stubFile;
     const { getDecimalFromNumber } = require('../../lib/convertValues.js')
@@ -971,9 +880,6 @@ class PointOfSales {
     if (paymentAccountDate) {
       request.setPaymentAccountDate(paymentAccountDate)
     }
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -999,8 +905,7 @@ class PointOfSales {
     tenderTypeCode,
     paymentMethodUuid,
     paymentAccountDate,
-    referenceBankAccountUuid,
-    language
+    referenceBankAccountUuid
   }, callback) {
     const { UpdatePaymentRequest } = this.stubFile;
     const { getDecimalFromNumber } = require('@adempiere/grpc-api/lib/convertValues.js');
@@ -1034,9 +939,6 @@ class PointOfSales {
       request.setPaymentAccountDate(paymentAccountDate)
     }
     request.setReferenceBankAccountUuid(referenceBankAccountUuid);
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -1054,8 +956,7 @@ class PointOfSales {
     token,
     posUuid,
     pageSize,
-    pageToken,
-    language
+    pageToken
   }, callback) {
     const { ListCashSummaryMovementsRequest } = this.stubFile;
     const request = new ListCashSummaryMovementsRequest()
@@ -1064,9 +965,6 @@ class PointOfSales {
     }
     request.setPageSize(pageSize)
     request.setPageToken(pageToken)
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -1084,8 +982,7 @@ class PointOfSales {
     token,
     posUuid,
     uuid,
-    id,
-    language
+    id
   }, callback) {
     const { CashClosingRequest } = this.stubFile;
     const request = new CashClosingRequest()
@@ -1096,9 +993,6 @@ class PointOfSales {
       request.setUuid(uuid)
     }
     request.setId(id)
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -1117,8 +1011,7 @@ class PointOfSales {
     posUuid,
     collectingAgentUuid,
     description,
-    payments,
-    language
+    payments
   }, callback) {
     const { CashOpeningRequest, CreatePaymentRequest } = this.stubFile;
     const { convertValueToGRPC, getDecimalFromNumber } = require('../../lib/convertValues.js')
@@ -1168,9 +1061,6 @@ class PointOfSales {
       }
       request.addPayments(paymentRequest)
     })
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -1189,8 +1079,7 @@ class PointOfSales {
     posUuid,
     collectingAgentUuid,
     description,
-    payments,
-    language
+    payments
   }, callback) {
     const { CashWithdrawalRequest, CreatePaymentRequest } = this.stubFile;
     const { convertValueToGRPC, getDecimalFromNumber } = require('../../lib/convertValues.js')
@@ -1240,9 +1129,6 @@ class PointOfSales {
       }
       request.addPayments(paymentRequest)
     })
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -1259,16 +1145,12 @@ class PointOfSales {
   allocateSeller({
     token,
     posUuid,
-    salesRepresentativeUuid,
-    language
+    salesRepresentativeUuid
   }, callback) {
     const { AllocateSellerRequest } = this.stubFile;
     const request = new AllocateSellerRequest()
     request.setPosUuid(posUuid)
     request.setSalesRepresentativeUuid(salesRepresentativeUuid)
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -1285,16 +1167,12 @@ class PointOfSales {
   deallocateSeller({
     token,
     posUuid,
-    salesRepresentativeUuid,
-    language
+    salesRepresentativeUuid
   }, callback) {
     const { DeallocateSellerRequest } = this.stubFile;
     const request = new DeallocateSellerRequest()
     request.setPosUuid(posUuid)
     request.setSalesRepresentativeUuid(salesRepresentativeUuid)
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -1311,17 +1189,13 @@ class PointOfSales {
   deletePayment({
     token,
     posUuid,
-    paymentUuid,
-    language
+    paymentUuid
   }, callback) {
     const { DeletePaymentRequest } = this.stubFile;
     const request = new DeletePaymentRequest()
 
     request.setPosUuid(posUuid);
     request.setPaymentUuid(paymentUuid)
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -1339,8 +1213,7 @@ class PointOfSales {
     token,
     posUuid,
     uuid,
-    id,
-    language
+    id
   }, callback) {
     const { DeletePaymentReferenceRequest } = this.stubFile;
     const request = new DeletePaymentReferenceRequest()
@@ -1348,9 +1221,6 @@ class PointOfSales {
     request.setPosUuid(posUuid);
     request.setUuid(uuid)
     request.setId(id)
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -1379,8 +1249,7 @@ class PointOfSales {
     orderByClause,
     limit,
     pageSize,
-    pageToken,
-    language
+    pageToken
   }, callback) {
     const { ListPaymentsRequest } = this.stubFile;
     const { convertCriteriaToGRPC } = require('../../lib/convertValues.js')
@@ -1403,9 +1272,6 @@ class PointOfSales {
     request.setIsOnlyReceipt(isOnlyReceipt)
     request.setPageSize(pageSize)
     request.setPageToken(pageToken)
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -1424,8 +1290,7 @@ class PointOfSales {
     posUuid,
     orderUuid,
     isOpenRefund,
-    payments,
-    language
+    payments
   }, callback) {
     const { CreatePaymentRequest, ProcessOrderRequest } = this.stubFile;
     const { convertValueToGRPC, getDecimalFromNumber } = require('../../lib/convertValues.js')
@@ -1475,9 +1340,6 @@ class PointOfSales {
       }
       request.addPayments(paymentRequest)
     })
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -1494,17 +1356,13 @@ class PointOfSales {
   getKeyLayout({
     token,
     posUuid,
-    keyLayoutUuid,
-    language
+    keyLayoutUuid
   }, callback) {
     const { GetKeyLayoutRequest } = this.stubFile;
     const request = new GetKeyLayoutRequest()
 
     request.setPosUuid(posUuid);
     request.setKeyLayoutUuid(keyLayoutUuid)
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -1523,8 +1381,7 @@ class PointOfSales {
     posUuid,
     pin,
     requestedAccess,
-    requestedAmount,
-    language
+    requestedAmount
   }, callback) {
     const { ValidatePINRequest } = this.stubFile;
     const { getDecimalFromNumber } = require('../../lib/convertValues.js')
@@ -1536,9 +1393,6 @@ class PointOfSales {
     }
     request.setPin(pin)
     request.setPosUuid(posUuid)
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -1556,8 +1410,7 @@ class PointOfSales {
     token,
     posUuid,
     pageSize,
-    pageToken,
-    language
+    pageToken
   }, callback) {
     const { ListAvailableWarehousesRequest } = this.stubFile;
     const request = new ListAvailableWarehousesRequest()
@@ -1566,9 +1419,6 @@ class PointOfSales {
     }
     request.setPageSize(pageSize)
     request.setPageToken(pageToken)
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -1586,8 +1436,7 @@ class PointOfSales {
     token,
     posUuid,
     pageSize,
-    pageToken,
-    language
+    pageToken
   }, callback) {
     const { ListAvailablePaymentMethodsRequest } = this.stubFile;
     const request = new ListAvailablePaymentMethodsRequest()
@@ -1596,9 +1445,6 @@ class PointOfSales {
     }
     request.setPageSize(pageSize)
     request.setPageToken(pageToken)
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -1616,8 +1462,7 @@ class PointOfSales {
     token,
     posUuid,
     pageSize,
-    pageToken,
-    language
+    pageToken
   }, callback) {
     const { ListAvailablePriceListRequest } = this.stubFile;
     const request = new ListAvailablePriceListRequest()
@@ -1626,9 +1471,6 @@ class PointOfSales {
     }
     request.setPageSize(pageSize)
     request.setPageToken(pageToken)
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -1646,8 +1488,7 @@ class PointOfSales {
     token,
     posUuid,
     pageSize,
-    pageToken,
-    language
+    pageToken
   }, callback) {
     const { ListAvailableCurrenciesRequest } = this.stubFile;
     const request = new ListAvailableCurrenciesRequest()
@@ -1656,9 +1497,6 @@ class PointOfSales {
     }
     request.setPageSize(pageSize)
     request.setPageToken(pageToken)
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -1676,8 +1514,7 @@ class PointOfSales {
     token,
     posUuid,
     pageSize,
-    pageToken,
-    language
+    pageToken
   }, callback) {
     const { ListAvailableDocumentTypesRequest } = this.stubFile;
     const request = new ListAvailableDocumentTypesRequest()
@@ -1686,9 +1523,6 @@ class PointOfSales {
     }
     request.setPageSize(pageSize)
     request.setPageToken(pageToken)
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -1714,8 +1548,7 @@ class PointOfSales {
     posUuid,
     businessPartnerGroupUuid,
     addresses,
-    additionalAttributes,
-    language
+    additionalAttributes
   }, callback) {
     const { CreateCustomerRequest, AddressRequest } = this.stubFile;
     const { convertParameterToGRPC } = require('../../lib/convertValues.js');
@@ -1769,9 +1602,6 @@ class PointOfSales {
         request.addAddresses(addressRequest)
       })
     }
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -1797,8 +1627,7 @@ class PointOfSales {
     lastName,
     description,
     addresses,
-    additionalAttributes,
-    language
+    additionalAttributes
   }, callback) {
     const { UpdateCustomerRequest, AddressRequest } = this.stubFile;
     const { convertParameterToGRPC } = require('../../lib/convertValues.js');
@@ -1854,9 +1683,6 @@ class PointOfSales {
         request.addAddresses(addressRequest)
       })
     }
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -1879,8 +1705,7 @@ class PointOfSales {
     contactName,
     email,
     postalCode,
-    phone,
-    language
+    phone
   }, callback) {
     const { GetCustomerRequest } = this.stubFile;
     const request = new GetCustomerRequest()
@@ -1893,9 +1718,6 @@ class PointOfSales {
     request.setEmail(email)
     request.setPostalCode(postalCode)
     request.setPhone(phone)
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -1912,17 +1734,13 @@ class PointOfSales {
   getCustomerBankAccount({
     token,
     posUuid,
-    customerBankAccountUuid,
-    language
+    customerBankAccountUuid
   }, callback) {
     const { GetCustomerBankAccountRequest } = this.stubFile;
     const request = new GetCustomerBankAccountRequest()
 
     request.setPosUuid(posUuid);
     request.setCustomerBankAccountUuid(customerBankAccountUuid)
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -1957,8 +1775,7 @@ class PointOfSales {
     routingNo,
     iban,
     isPayrollAccount,
-    accountNo,
-    language
+    accountNo
   }, callback) {
     const { CreateCustomerBankAccountRequest } = this.stubFile;
     const request = new CreateCustomerBankAccountRequest()
@@ -1982,9 +1799,6 @@ class PointOfSales {
     request.setIsPayrollAccount(isPayrollAccount)
     request.setEmail(email)
     request.setAccountNo(accountNo)
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -2019,8 +1833,7 @@ class PointOfSales {
     routingNo,
     iban,
     isPayrollAccount,
-    accountNo,
-    language
+    accountNo
   }, callback) {
     const { UpdateCustomerBankAccountRequest } = this.stubFile;
     const request = new UpdateCustomerBankAccountRequest()
@@ -2044,9 +1857,6 @@ class PointOfSales {
     request.setIsPayrollAccount(isPayrollAccount)
     request.setEmail(email)
     request.setAccountNo(accountNo)
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -2063,17 +1873,13 @@ class PointOfSales {
   getCustomerBankAccount({
     token,
     posUuid,
-    customerBankAccountUuid,
-    language
+    customerBankAccountUuid
   }, callback) {
     const { GetCustomerBankAccountRequest } = this.stubFile;
     const request = new GetCustomerBankAccountRequest()
 
     request.setPosUuid(posUuid);
     request.setCustomerBankAccountUuid(customerBankAccountUuid)
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -2090,17 +1896,13 @@ class PointOfSales {
   deleteCustomerBankAccount({
     token,
     posUuid,
-    customerBankAccountUuid,
-    language
+    customerBankAccountUuid
   }, callback) {
     const { DeleteCustomerBankAccountRequest } = this.stubFile;
     const request = new DeleteCustomerBankAccountRequest()
 
     request.setPosUuid(posUuid);
     request.setCustomerBankAccountUuid(customerBankAccountUuid)
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -2119,8 +1921,7 @@ class PointOfSales {
     posUuid,
     customerUuid,
     pageSize,
-    pageToken,
-    language
+    pageToken
   }, callback) {
     const { ListCustomerBankAccountsRequest } = this.stubFile;
     const request = new ListCustomerBankAccountsRequest()
@@ -2129,9 +1930,6 @@ class PointOfSales {
     request.setCustomerUuid(customerUuid)
     request.setPageSize(pageSize)
     request.setPageToken(pageToken)
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -2151,8 +1949,7 @@ class PointOfSales {
     orderUuid,
     customerUuid,
     pageSize,
-    pageToken,
-    language
+    pageToken
   }, callback) {
     const { ListPaymentReferencesRequest } = this.stubFile;
     const request = new ListPaymentReferencesRequest()
@@ -2161,9 +1958,6 @@ class PointOfSales {
     request.setOrderUuid(orderUuid)
     request.setPageSize(pageSize)
     request.setPageToken(pageToken)
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -2180,8 +1974,7 @@ class PointOfSales {
   getAvailableRefund({
     token,
     posUuid,
-    date,
-    language
+    date
   }, callback) {
     const { GetAvailableRefundRequest } = this.stubFile;
     const request = new GetAvailableRefundRequest()
@@ -2189,9 +1982,6 @@ class PointOfSales {
       request.setDate(date)
     }
     request.setPosUuid(posUuid)
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -2210,8 +2000,7 @@ class PointOfSales {
     posUuid,
     isOnlyAllocated,
     pageSize,
-    pageToken,
-    language
+    pageToken
   }, callback) {
     const { ListAvailableSellersRequest } = this.stubFile;
     const request = new ListAvailableSellersRequest()
@@ -2223,9 +2012,6 @@ class PointOfSales {
     }
     request.setPageSize(pageSize)
     request.setPageToken(pageToken)
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -2242,16 +2028,12 @@ class PointOfSales {
   printTicket({
     token,
     posUuid,
-    orderUuid,
-    language
+    orderUuid
   }, callback) {
     const { PrintTicketRequest } = this.stubFile;
     const request = new PrintTicketRequest()
     request.setPosUuid(posUuid)
     request.setOrderUuid(orderUuid)
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -2269,8 +2051,7 @@ class PointOfSales {
     token,
     posUuid,
     orderUuid,
-    reportType,
-    language
+    reportType
   }, callback) {
     const { PrintPreviewRequest } = this.stubFile;
     const request = new PrintPreviewRequest();
@@ -2278,9 +2059,6 @@ class PointOfSales {
     request.setPosUuid(posUuid);
     request.setOrderUuid(orderUuid);
     request.setReportType(reportType);
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -2298,8 +2076,7 @@ class PointOfSales {
     token,
     posUuid,
     shipmentUuid,
-    reportType,
-    language
+    reportType
   }, callback) {
     const { PrintShipmentPreviewRequest } = this.stubFile;
     const request = new PrintShipmentPreviewRequest();
@@ -2307,9 +2084,6 @@ class PointOfSales {
     request.setPosUuid(posUuid);
     request.setShipmentUuid(shipmentUuid);
     request.setReportType(reportType);
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -2329,8 +2103,7 @@ class PointOfSales {
     sku,
     value,
     pageSize,
-    pageToken,
-    language
+    pageToken
   }, callback) {
     const { ListStocksRequest } = this.stubFile;
     const request = new ListStocksRequest();
@@ -2340,9 +2113,6 @@ class PointOfSales {
     request.setValue(value);
     request.setPageSize(pageSize);
     request.setPageToken(pageToken);
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -2360,8 +2130,7 @@ class PointOfSales {
     token,
     posUuid,
     pageSize,
-    pageToken,
-    language
+    pageToken
   }, callback) {
     const { ListAvailableCashRequest } = this.stubFile;
     const request = new ListAvailableCashRequest();
@@ -2369,9 +2138,6 @@ class PointOfSales {
     request.setPosUuid(posUuid);
     request.setPageSize(pageSize);
     request.setPageToken(pageToken);
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token

@@ -14,7 +14,6 @@
  * along with this program. If not, see <https://www.gnu.org/licenses/>.             *
  ************************************************************************************/
 
-const { createClientRequest } = require('@adempiere/grpc-api/lib/clientRequest');
 const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
 const { isEmptyValue, getTypeOfValue, getValidId } = require('@adempiere/grpc-api/lib/convertValues.js');
 
@@ -66,8 +65,7 @@ class PayrollActionNotice {
     contextAttributes,
     // Page Data
     pageSize,
-    pageToken,
-    language
+    pageToken
   }, callback) {
     const { ListPayrollProcessRequest } = this.stubFile;
     const request = new ListPayrollProcessRequest();
@@ -96,9 +94,6 @@ class PayrollActionNotice {
 
     request.setPageSize(pageSize);
     request.setPageToken(pageToken);
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -118,8 +113,7 @@ class PayrollActionNotice {
     contextAttributes,
     // Page Data
     pageSize,
-    pageToken,
-    language
+    pageToken
   }, callback) {
     const { ListEmployeeValidRequest } = this.stubFile;
     const request = new ListEmployeeValidRequest();
@@ -148,9 +142,6 @@ class PayrollActionNotice {
 
     request.setPageSize(pageSize);
     request.setPageToken(pageToken);
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -170,8 +161,7 @@ class PayrollActionNotice {
     contextAttributes,
     // Page Data
     pageSize,
-    pageToken,
-    language
+    pageToken
   }, callback) {
     const { ListPayrollConceptsRequest } = this.stubFile;
     const request = new ListPayrollConceptsRequest();
@@ -200,9 +190,6 @@ class PayrollActionNotice {
 
     request.setPageSize(pageSize);
     request.setPageToken(pageToken);
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -219,18 +206,13 @@ class PayrollActionNotice {
     token,
     // DSL
     id,
-    uuid,
-    language
+    uuid
   }, callback) {
     const { GetPayrollConceptDefinitionRequest } = this.stubFile;
     const request = new GetPayrollConceptDefinitionRequest();
 
     request.setId(id);
     request.setUuid(uuid);
-
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -251,8 +233,7 @@ class PayrollActionNotice {
     contextAttributes,
     // Page Data
     pageSize,
-    pageToken,
-    language
+    pageToken
   }, callback) {
     const { ListPayrollMovementsRequest } = this.stubFile;
     const request = new ListPayrollMovementsRequest();
@@ -289,9 +270,6 @@ class PayrollActionNotice {
 
     request.setPageSize(pageSize);
     request.setPageToken(pageToken);
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -310,8 +288,7 @@ class PayrollActionNotice {
     id,
     uuid,
     contextAttributes,
-    attributes,
-    language
+    attributes
   }, callback) {
     const { SavePayrollMovementRequest } = this.stubFile;
     const request = new SavePayrollMovementRequest();
@@ -358,10 +335,6 @@ class PayrollActionNotice {
       });
     }
 
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
-
     const metadata = getMetadata({
       token
     });
@@ -378,8 +351,7 @@ class PayrollActionNotice {
     //  DSL
     contextAttributes,
     ids = [],
-    uuids = [],
-    language
+    uuids = []
   }, callback) {
     const { DeletePayrollMovementsRequest } = this.stubFile;
     const request = new DeletePayrollMovementsRequest();
@@ -413,10 +385,6 @@ class PayrollActionNotice {
     if (!isEmptyValue(uuids)) {
       request.setUuidsList(uuids);
     }
-
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token

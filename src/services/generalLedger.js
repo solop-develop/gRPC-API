@@ -14,7 +14,6 @@
  * along with this program. If not, see <https://www.gnu.org/licenses/>.             *
  ************************************************************************************/
 
-const { createClientRequest } = require('@adempiere/grpc-api/lib/clientRequest');
 const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
 const { isEmptyValue, getTypeOfValue, getValidId } = require('@adempiere/grpc-api/lib/convertValues.js');
 
@@ -67,8 +66,7 @@ class GeneralLedger {
     searchValue,
     // Page Data
     pageSize,
-    pageToken,
-    language
+    pageToken
   }, callback) {
     const {
       ListAccountingCombinationsRequest
@@ -109,9 +107,6 @@ class GeneralLedger {
 
     request.setPageSize(pageSize);
     request.setPageToken(pageToken);
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -129,8 +124,7 @@ class GeneralLedger {
     // DSL
     id,
     uuid,
-    value,
-    language
+    value
   }, callback) {
     const { GetAccountingCombinationRequest } = this.stubFile
     const request = new GetAccountingCombinationRequest();
@@ -140,10 +134,6 @@ class GeneralLedger {
     );
     request.setUuid(uuid);
     request.setValue(value);
-
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -162,8 +152,7 @@ class GeneralLedger {
     contextAttributes = [],
     id,
     uuid,
-    attributes = [],
-    language
+    attributes = []
   }, callback) {
     const {
       SaveAccountingCombinationRequest
@@ -214,10 +203,6 @@ class GeneralLedger {
       });
     }
 
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
-
     const metadata = getMetadata({
       token
     });
@@ -234,8 +219,7 @@ class GeneralLedger {
     tableName,
     recordId,
     recordUuid,
-    isForce = false,
-    language
+    isForce = false
   }, callback) {
     const { StartRePostRequest } = this.stubFile
     const request = new StartRePostRequest();
@@ -246,13 +230,6 @@ class GeneralLedger {
     );
     request.setRecordUuid(recordUuid);
     request.setIsForce(isForce);
-
-    request.setClientRequest(
-      createClientRequest({
-        token,
-        language
-      })
-    );
 
     const metadata = getMetadata({
       token
@@ -274,8 +251,7 @@ class GeneralLedger {
     filters = [],
     // Page Data
     pageSize,
-    pageToken,
-    language
+    pageToken
   }, callback) {
     const {
       ListAccoutingFactsRequest
@@ -300,9 +276,6 @@ class GeneralLedger {
 
     request.setPageSize(pageSize);
     request.setPageToken(pageToken);
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token

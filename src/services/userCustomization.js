@@ -14,7 +14,6 @@
  * along with this program. If not, see <https://www.gnu.org/licenses/>.             *
  ************************************************************************************/
 
-const { getClientRequestToGRPC } = require('@adempiere/grpc-api/src/utils/clientToGRPC');
 const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
 const { isEmptyValue, getValidId } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
 
@@ -69,8 +68,7 @@ class UserCustomization {
     token,
     searchValue,
     pageSize,
-    pageToken,
-    language
+    pageToken
   }, callback) {
     const { ListUsersRequest } = this.stubFile;
     const request = new ListUsersRequest();
@@ -79,10 +77,6 @@ class UserCustomization {
 
     request.setPageSize(pageSize);
     request.setPageToken(pageToken);
-
-    request.setClientRequest(
-      getClientRequestToGRPC({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -106,8 +100,7 @@ class UserCustomization {
     token,
     searchValue,
     pageSize,
-    pageToken,
-    language
+    pageToken
   }, callback) {
     const { ListRolesRequest } = this.stubFile;
     const request = new ListRolesRequest();
@@ -116,10 +109,6 @@ class UserCustomization {
 
     request.setPageSize(pageSize);
     request.setPageToken(pageToken);
-
-    request.setClientRequest(
-      getClientRequestToGRPC({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -143,8 +132,7 @@ class UserCustomization {
     token,
     searchValue,
     pageSize,
-    pageToken,
-    language
+    pageToken
   }, callback) {
     const { ListCustomizationsLevelRequest } = this.stubFile;
     const request = new ListCustomizationsLevelRequest();
@@ -153,10 +141,6 @@ class UserCustomization {
 
     request.setPageSize(pageSize);
     request.setPageToken(pageToken);
-
-    request.setClientRequest(
-      getClientRequestToGRPC({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -188,8 +172,7 @@ class UserCustomization {
     level,
     levelId,
     levelUuid,
-    fieldAttributes,
-    language
+    fieldAttributes
   }, callback) {
     const { SaveWindowCustomizationRequest } = this.stubFile;
     const request = new SaveWindowCustomizationRequest();
@@ -221,10 +204,6 @@ class UserCustomization {
       });
     }
 
-    request.setClientRequest(
-      getClientRequestToGRPC({ token, language })
-    );
-
     const metadata = getMetadata({
       token
     });
@@ -255,8 +234,7 @@ class UserCustomization {
     level,
     levelId,
     levelUuid,
-    fieldAttributes,
-    language
+    fieldAttributes
   }, callback) {
     const { SaveBrowseCustomizationRequest } = this.stubFile;
     const request = new SaveBrowseCustomizationRequest();
@@ -288,10 +266,6 @@ class UserCustomization {
       });
     }
 
-    request.setClientRequest(
-      getClientRequestToGRPC({ token, language })
-    );
-
     const metadata = getMetadata({
       token
     });
@@ -322,8 +296,7 @@ class UserCustomization {
     level,
     levelId,
     levelUuid,
-    fieldAttributes,
-    language
+    fieldAttributes
   }, callback) {
     const { SaveProcessCustomizationRequest } = this.stubFile;
     const request = new SaveProcessCustomizationRequest();
@@ -354,10 +327,6 @@ class UserCustomization {
         request.addFieldAttributes(convertedFieldAttribute);
       });
     }
-
-    request.setClientRequest(
-      getClientRequestToGRPC({ token, language })
-    );
 
     const metadata = getMetadata({
       token

@@ -14,7 +14,6 @@
  * along with this program. If not, see <https://www.gnu.org/licenses/>.             *
  ************************************************************************************/
 
-const { createClientRequest } = require('@adempiere/grpc-api/lib/clientRequest');
 const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
 const { isEmptyValue, getValidId } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
 
@@ -70,8 +69,7 @@ class TimeRecord {
     searhValue,
     // Page Data
     pageSize,
-    pageToken,
-    language
+    pageToken
   }, callback) {
     const {
       ListIssuesRequest
@@ -83,10 +81,6 @@ class TimeRecord {
       request.setPageSize(Number(pageSize));
     }
     request.setPageToken(pageToken);
-
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -112,8 +106,7 @@ class TimeRecord {
     searhValue,
     // Page Data
     pageSize,
-    pageToken,
-    language
+    pageToken
   }, callback) {
     const {
       ListProjectsRequest
@@ -125,10 +118,6 @@ class TimeRecord {
       request.setPageSize(Number(pageSize));
     }
     request.setPageToken(pageToken);
-
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -155,9 +144,7 @@ class TimeRecord {
     quantity,
     name,
     description,
-    date,
-    //
-    language
+    date
   }, callback) {
     const {
       CreateTimeRecordRequest
@@ -189,10 +176,6 @@ class TimeRecord {
       getDecimalToGRPC(quantity)
     );
 
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
-
     const metadata = getMetadata({
       token
     });
@@ -213,8 +196,7 @@ class TimeRecord {
     dateTo,
     // Page Data
     pageSize,
-    pageToken,
-    language
+    pageToken
   }, callback) {
     const {
       ListTimeRecordRequest
@@ -244,9 +226,6 @@ class TimeRecord {
       request.setPageSize(Number(pageSize));
     }
     request.setPageToken(pageToken);
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token

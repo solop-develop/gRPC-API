@@ -14,7 +14,6 @@
  * along with this program. If not, see <https://www.gnu.org/licenses/>.             *
  ************************************************************************************/
 
-const { createClientRequest } = require('@adempiere/grpc-api/lib/clientRequest');
 const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
 const { isEmptyValue, getValidId } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
 
@@ -75,8 +74,7 @@ class BusinessData {
     isSummary,
     parametersList,
     tableSelectedId,
-    selectionsList,
-    language
+    selectionsList
   }, callback) {
     const { RunBusinessProcessRequest } = this.stubFile;
     const request = new RunBusinessProcessRequest();
@@ -124,10 +122,6 @@ class BusinessData {
         request.addSelections(convertedRecord);
       });
     }
-
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token

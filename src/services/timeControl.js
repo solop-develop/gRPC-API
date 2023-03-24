@@ -14,7 +14,6 @@
  * along with this program. If not, see <https://www.gnu.org/licenses/>.             *
  ************************************************************************************/
 
-const { createClientRequest } = require('@adempiere/grpc-api/lib/clientRequest');
 const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
 const { isEmptyValue, getValidId } = require('@adempiere/grpc-api/lib/convertValues.js');
 
@@ -60,9 +59,7 @@ class TimeControl {
     resourceTypeId,
     resourceTypeUuid,
     name,
-    description,
-    //
-    language
+    description
   }, callback) {
     const {
       CreateResourceAssignmentRequest
@@ -75,10 +72,6 @@ class TimeControl {
     request.setResourceTypeUuid(resourceTypeUuid);
     request.setName(name);
     request.setDescription(description);
-
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -104,8 +97,7 @@ class TimeControl {
     dateTo,
     // Page Data
     pageSize,
-    pageToken,
-    language
+    pageToken
   }, callback) {
     const {
       ListResourcesAssignmentRequest
@@ -127,9 +119,6 @@ class TimeControl {
       request.setPageSize(Number(pageSize));
     }
     request.setPageToken(pageToken);
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -148,9 +137,7 @@ class TimeControl {
     id,
     uuid,
     name,
-    description,
-    //
-    language
+    description
   }, callback) {
     const {
       UpdateResourceAssignmentRequest
@@ -163,10 +150,6 @@ class TimeControl {
     request.setUuid(uuid);
     request.setName(name);
     request.setDescription(description);
-
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -184,8 +167,6 @@ class TimeControl {
     // DSL
     id,
     uuid,
-    //
-    language
   }, callback) {
     const {
       DeleteResourceAssignmentRequest
@@ -196,10 +177,6 @@ class TimeControl {
       getValidId(id)
     );
     request.setUuid(uuid);
-
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token
@@ -216,9 +193,7 @@ class TimeControl {
     token,
     // DSL
     id,
-    uuid,
-    //
-    language
+    uuid
   }, callback) {
     const {
       ConfirmResourceAssignmentRequest
@@ -229,10 +204,6 @@ class TimeControl {
       getValidId(id)
     );
     request.setUuid(uuid);
-
-    request.setClientRequest(
-      createClientRequest({ token, language })
-    );
 
     const metadata = getMetadata({
       token

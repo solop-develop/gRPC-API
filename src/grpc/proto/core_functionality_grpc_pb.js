@@ -19,7 +19,6 @@
 var grpc = require('@grpc/grpc-js');
 var proto_core_functionality_pb = require('../proto/core_functionality_pb.js');
 var proto_base_data_type_pb = require('../proto/base_data_type_pb.js');
-var proto_client_pb = require('../proto/client_pb.js');
 
 function serialize_data_BusinessPartner(arg) {
   if (!(arg instanceof proto_core_functionality_pb.BusinessPartner)) {
