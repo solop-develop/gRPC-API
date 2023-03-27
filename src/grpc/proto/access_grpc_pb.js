@@ -2,7 +2,7 @@
 
 // Original file comments:
 // ************************************************************************************
-// Copyright (C) 2012-2018 E.R.P. Consultores y Asociados, C.A.                      *
+// Copyright (C) 2012-2023 E.R.P. Consultores y Asociados, C.A.                      *
 // Contributor(s): Yamel Senih ysenih@erpya.com                                      *
 // This program is free software: you can redistribute it and/or modify              *
 // it under the terms of the GNU General Public License as published by              *
@@ -107,15 +107,26 @@ function deserialize_access_Session(buffer_arg) {
   return proto_access_pb.Session.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_access_SessionRequest(arg) {
-  if (!(arg instanceof proto_access_pb.SessionRequest)) {
-    throw new Error('Expected argument of type access.SessionRequest');
+function serialize_access_SessionInfo(arg) {
+  if (!(arg instanceof proto_access_pb.SessionInfo)) {
+    throw new Error('Expected argument of type access.SessionInfo');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_access_SessionRequest(buffer_arg) {
-  return proto_access_pb.SessionRequest.deserializeBinary(new Uint8Array(buffer_arg));
+function deserialize_access_SessionInfo(buffer_arg) {
+  return proto_access_pb.SessionInfo.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_access_SessionInfoRequest(arg) {
+  if (!(arg instanceof proto_access_pb.SessionInfoRequest)) {
+    throw new Error('Expected argument of type access.SessionInfoRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_access_SessionInfoRequest(buffer_arg) {
+  return proto_access_pb.SessionInfoRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_access_UserInfo(arg) {
@@ -167,7 +178,7 @@ runLogout: {
     responseSerialize: serialize_access_Session,
     responseDeserialize: deserialize_access_Session,
   },
-  // Request user roles from Session
+  // Request user roles from SessionInfo
 getUserInfo: {
     path: '/access.Security/GetUserInfo',
     requestStream: false,
@@ -204,16 +215,16 @@ runChangeRole: {
     responseDeserialize: deserialize_access_Session,
   },
   // Request session
-getSession: {
-    path: '/access.Security/GetSession',
+getSessionInfo: {
+    path: '/access.Security/GetSessionInfo',
     requestStream: false,
     responseStream: false,
-    requestType: proto_access_pb.SessionRequest,
-    responseType: proto_access_pb.Session,
-    requestSerialize: serialize_access_SessionRequest,
-    requestDeserialize: deserialize_access_SessionRequest,
-    responseSerialize: serialize_access_Session,
-    responseDeserialize: deserialize_access_Session,
+    requestType: proto_access_pb.SessionInfoRequest,
+    responseType: proto_access_pb.SessionInfo,
+    requestSerialize: serialize_access_SessionInfoRequest,
+    requestDeserialize: deserialize_access_SessionInfoRequest,
+    responseSerialize: serialize_access_SessionInfo,
+    responseDeserialize: deserialize_access_SessionInfo,
   },
   // List Roles
 listRoles: {

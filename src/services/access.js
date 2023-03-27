@@ -61,7 +61,7 @@ class Access {
   login({
     user,
     password,
-    token,
+    token, // token as password
     roleUuid,
     organizationUuid,
     warehouseUuid,
@@ -77,22 +77,20 @@ class Access {
     request.setOrganizationUuid(organizationUuid);
     request.setWarehouseUuid(warehouseUuid);
     request.setLanguage(language);
-    request.setClientVersion(this.version);
+    // request.setClientVersion(this.version);
 
-    this.getAccessService().runLogin(request, callback);
+    this.getAccessService().runLogin(
+      request,
+      callback
+    );
   }
 
   // Get User Information
   getUserInfo({
-    token,
-    language
+    token
   }, callback) {
     const { UserInfoRequest } = this.stubFile;
     const request = new UserInfoRequest();
-
-    request.setSessionUuid(token);
-    request.setLanguage(language);
-    request.setClientVersion(this.version);
 
     const metadata = getMetadata({
       token
@@ -108,14 +106,14 @@ class Access {
   // Get User Information
   getUserRoles({
     token,
-    language
+    pageSize,
+    pageToken
   }, callback) {
     const { ListRolesRequest } = this.stubFile;
     const request = new ListRolesRequest();
 
-    request.setSessionUuid(token);
-    request.setLanguage(language);
-    request.setClientVersion(this.version);
+    request.setPageSize(pageSize);
+    request.setPageToken(pageToken);
 
     const metadata = getMetadata({
       token
@@ -130,15 +128,10 @@ class Access {
 
   // Get User Menu
   getMenu({
-    token,
-    language
+    token
   }, callback) {
     const { MenuRequest } = this.stubFile;
     const request = new MenuRequest();
-
-    request.setSessionUuid(token);
-    request.setLanguage(language);
-    request.setClientVersion(this.version);
 
     const metadata = getMetadata({
       token
@@ -151,23 +144,18 @@ class Access {
     );
   }
 
-  // Get User Menu
+  // Get User Session
   getSessionInfo({
     token,
-    language
   }, callback) {
-    const { SessionRequest } = this.stubFile;
-    const request = new SessionRequest();
-
-    request.setSessionUuid(token);
-    request.setLanguage(language);
-    request.setClientVersion(this.version);
+    const { SessionInfoRequest } = this.stubFile;
+    const request = new SessionInfoRequest();
 
     const metadata = getMetadata({
       token
     });
 
-    this.getAccessService().getSession(
+    this.getAccessService().getSessionInfo(
       request,
       metadata,
       callback
@@ -177,46 +165,39 @@ class Access {
   // Change role
   changeRole({
     token,
-    sessionUuid,
-    role,
-    organization,
-    warehouse,
+    roleUuid,
+    organizationUuid,
+    warehouseUuid,
     language
   }, callback) {
     const { ChangeRoleRequest } = this.stubFile;
     const request = new ChangeRoleRequest();
 
-    request.setSessionUuid(sessionUuid);
-    request.setRoleUuid(role);
-    request.setOrganizationUuid(organization);
-    request.setWarehouseUuid(warehouse);
+    request.setRoleUuid(roleUuid);
+    request.setOrganizationUuid(organizationUuid);
+    request.setWarehouseUuid(warehouseUuid);
     request.setLanguage(language);
-    request.setClientVersion(this.version);
 
     const metadata = getMetadata({
       token
     });
 
-    this.getAccessService().runChangeRole(request, metadata, callback)
+    this.getAccessService().runChangeRole(
+      request,
+      metadata,
+      callback
+    );
   }
 
   /**
    * Logout with current session
-   * @param {String} sessionUuid
    * @param {String} token
-   * @param {String} language
    */
   logout({
-    sessionUuid,
     token,
-    language
   }, callback) {
     const { LogoutRequest } = this.stubFile;
     const request = new LogoutRequest();
-
-    request.setSessionUuid(sessionUuid);
-    request.setLanguage(language);
-    request.setClientVersion(this.version);
 
     const metadata = getMetadata({
       token
