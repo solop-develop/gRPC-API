@@ -15,6 +15,7 @@
  ************************************************************************************/
 
 const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
+const { getValidId } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
 
 class Security {
 
@@ -193,21 +194,18 @@ class Security {
   // Set session attribute
   setSessionAttribute({
     token,
-    key,
-    value,
-    valueType
+    language,
+    warehouseId,
+    warehouseUuid
   }, callback) {
     const { SetSessionAttributeRequest } = this.stubFile;
     const request = new SetSessionAttributeRequest();
 
-    request.setKey(key);
-
-    const { getContextValueToGRPC } = require('@adempiere/grpc-api/src/utils/securityToGRPC.js');
-    const convertedValue = getContextValueToGRPC({
-      value,
-      valueType
-    });
-    request.setValue(convertedValue);
+    request.setLanguage(language);
+    request.setWarehouseId(
+      getValidId(warehouseId)
+    );
+    request.setWarehouseUuid(warehouseUuid);
 
     const metadata = getMetadata({
       token
