@@ -1,5 +1,5 @@
 /*************************************************************************************
- * Product: ADempiere gRPC Access Client                                             *
+ * Product: ADempiere gRPC Security Client                                           *
  * Copyright (C) 2012-2023 E.R.P. Consultores y Asociados, C.A.                      *
  * Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                      *
  * This program is free software: you can redistribute it and/or modify              *
@@ -16,12 +16,12 @@
 
 const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
 
-class Access {
+class Security {
 
   /**
    * File on generated stub
    */
-  stubFile = require('@adempiere/grpc-api/src/grpc/proto/access_pb.js');
+  stubFile = require('@adempiere/grpc-api/src/grpc/proto/security_pb.js');
 
   /**
    * Constructor, No authentication required
@@ -38,30 +38,30 @@ class Access {
       this.token = adempiereConfig.token;
     }
 
-    this.initAccessService();
-    console.log('ADempiere Access Client Started');
+    this.initSecurityService();
+    console.log('ADempiere Security Client Started');
   }
 
   // Init connection
-  initAccessService() {
+  initSecurityService() {
     const grpc = require('@grpc/grpc-js');
-    const services = require('@adempiere/grpc-api/src/grpc/proto/access_grpc_pb');
-    this.access = new services.SecurityClient(
+    const services = require('@adempiere/grpc-api/src/grpc/proto/security_grpc_pb');
+    this.security = new services.SecurityClient(
       this.accessHost,
       grpc.credentials.createInsecure()
     );
   }
 
-  // Get Access Service
-  getAccessService() {
-    return this.access;
+  // Get Security Service
+  getSecurityService() {
+    return this.security;
   }
 
   // Login with a user
   login({
     user,
     password,
-    token,
+    token, // token as password
     roleUuid,
     organizationUuid,
     warehouseUuid,
@@ -79,26 +79,24 @@ class Access {
     request.setLanguage(language);
     request.setClientVersion(this.version);
 
-    this.getAccessService().runLogin(request, callback);
+    this.getSecurityService().runLogin(
+      request,
+      callback
+    );
   }
 
   // Get User Information
   getUserInfo({
-    token,
-    language
+    token
   }, callback) {
     const { UserInfoRequest } = this.stubFile;
     const request = new UserInfoRequest();
-
-    request.setSessionUuid(token);
-    request.setLanguage(language);
-    request.setClientVersion(this.version);
 
     const metadata = getMetadata({
       token
     });
 
-    this.getAccessService().getUserInfo(
+    this.getSecurityService().getUserInfo(
       request,
       metadata,
       callback
@@ -108,20 +106,20 @@ class Access {
   // Get User Information
   getUserRoles({
     token,
-    language
+    pageSize,
+    pageToken
   }, callback) {
     const { ListRolesRequest } = this.stubFile;
     const request = new ListRolesRequest();
 
-    request.setSessionUuid(token);
-    request.setLanguage(language);
-    request.setClientVersion(this.version);
+    request.setPageSize(pageSize);
+    request.setPageToken(pageToken);
 
     const metadata = getMetadata({
       token
     });
 
-    this.getAccessService().listRoles(
+    this.getSecurityService().listRoles(
       request,
       metadata,
       callback
@@ -130,44 +128,34 @@ class Access {
 
   // Get User Menu
   getMenu({
-    token,
-    language
+    token
   }, callback) {
     const { MenuRequest } = this.stubFile;
     const request = new MenuRequest();
-
-    request.setSessionUuid(token);
-    request.setLanguage(language);
-    request.setClientVersion(this.version);
 
     const metadata = getMetadata({
       token
     });
 
-    this.getAccessService().getMenu(
+    this.getSecurityService().getMenu(
       request,
       metadata,
       callback
     );
   }
 
-  // Get User Menu
+  // Get User Session
   getSessionInfo({
     token,
-    language
   }, callback) {
-    const { SessionRequest } = this.stubFile;
-    const request = new SessionRequest();
-
-    request.setSessionUuid(token);
-    request.setLanguage(language);
-    request.setClientVersion(this.version);
+    const { SessionInfoRequest } = this.stubFile;
+    const request = new SessionInfoRequest();
 
     const metadata = getMetadata({
       token
     });
 
-    this.getAccessService().getSession(
+    this.getSecurityService().getSessionInfo(
       request,
       metadata,
       callback
@@ -177,52 +165,45 @@ class Access {
   // Change role
   changeRole({
     token,
-    sessionUuid,
-    role,
-    organization,
-    warehouse,
+    roleUuid,
+    organizationUuid,
+    warehouseUuid,
     language
   }, callback) {
     const { ChangeRoleRequest } = this.stubFile;
     const request = new ChangeRoleRequest();
 
-    request.setSessionUuid(sessionUuid);
-    request.setRoleUuid(role);
-    request.setOrganizationUuid(organization);
-    request.setWarehouseUuid(warehouse);
+    request.setRoleUuid(roleUuid);
+    request.setOrganizationUuid(organizationUuid);
+    request.setWarehouseUuid(warehouseUuid);
     request.setLanguage(language);
-    request.setClientVersion(this.version);
 
     const metadata = getMetadata({
       token
     });
 
-    this.getAccessService().runChangeRole(request, metadata, callback)
+    this.getSecurityService().runChangeRole(
+      request,
+      metadata,
+      callback
+    );
   }
 
   /**
    * Logout with current session
-   * @param {String} sessionUuid
    * @param {String} token
-   * @param {String} language
    */
   logout({
-    sessionUuid,
     token,
-    language
   }, callback) {
     const { LogoutRequest } = this.stubFile;
     const request = new LogoutRequest();
-
-    request.setSessionUuid(sessionUuid);
-    request.setLanguage(language);
-    request.setClientVersion(this.version);
 
     const metadata = getMetadata({
       token
     });
 
-    this.getAccessService().runLogout(
+    this.getSecurityService().runLogout(
       request,
       metadata,
       callback
@@ -231,4 +212,4 @@ class Access {
 
 }
 
-module.exports = Access;
+module.exports = Security;
