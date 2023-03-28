@@ -189,6 +189,37 @@ class Security {
     );
   }
 
+
+  // Set session attribute
+  setSessionAttribute({
+    token,
+    key,
+    value,
+    valueType
+  }, callback) {
+    const { SetSessionAttributeRequest } = this.stubFile;
+    const request = new SetSessionAttributeRequest();
+
+    request.setKey(key);
+
+    const { getContextValueToGRPC } = require('@adempiere/grpc-api/src/utils/securityToGRPC.js');
+    const convertedValue = getContextValueToGRPC({
+      value,
+      valueType
+    });
+    request.setValue(convertedValue);
+
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getSecurityService().setSessionAttribute(
+      request,
+      metadata,
+      callback
+    );
+  }
+
   /**
    * Logout with current session
    * @param {String} token

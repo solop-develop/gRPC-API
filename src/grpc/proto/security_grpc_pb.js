@@ -129,6 +129,17 @@ function deserialize_security_SessionInfoRequest(buffer_arg) {
   return proto_security_pb.SessionInfoRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_security_SetSessionAttributeRequest(arg) {
+  if (!(arg instanceof proto_security_pb.SetSessionAttributeRequest)) {
+    throw new Error('Expected argument of type security.SetSessionAttributeRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_security_SetSessionAttributeRequest(buffer_arg) {
+  return proto_security_pb.SetSessionAttributeRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_security_UserInfo(arg) {
   if (!(arg instanceof proto_security_pb.UserInfo)) {
     throw new Error('Expected argument of type security.UserInfo');
@@ -225,6 +236,17 @@ getSessionInfo: {
     requestDeserialize: deserialize_security_SessionInfoRequest,
     responseSerialize: serialize_security_SessionInfo,
     responseDeserialize: deserialize_security_SessionInfo,
+  },
+  setSessionAttribute: {
+    path: '/security.Security/SetSessionAttribute',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_security_pb.SetSessionAttributeRequest,
+    responseType: proto_security_pb.Session,
+    requestSerialize: serialize_security_SetSessionAttributeRequest,
+    requestDeserialize: deserialize_security_SetSessionAttributeRequest,
+    responseSerialize: serialize_security_Session,
+    responseDeserialize: deserialize_security_Session,
   },
   // List Roles
 listRoles: {
