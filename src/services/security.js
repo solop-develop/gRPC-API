@@ -1,5 +1,5 @@
 /*************************************************************************************
- * Product: ADempiere gRPC Access Client                                             *
+ * Product: ADempiere gRPC Security Client                                           *
  * Copyright (C) 2012-2023 E.R.P. Consultores y Asociados, C.A.                      *
  * Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                      *
  * This program is free software: you can redistribute it and/or modify              *
@@ -16,12 +16,12 @@
 
 const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
 
-class Access {
+class Security {
 
   /**
    * File on generated stub
    */
-  stubFile = require('@adempiere/grpc-api/src/grpc/proto/access_pb.js');
+  stubFile = require('@adempiere/grpc-api/src/grpc/proto/security_pb.js');
 
   /**
    * Constructor, No authentication required
@@ -38,23 +38,23 @@ class Access {
       this.token = adempiereConfig.token;
     }
 
-    this.initAccessService();
-    console.log('ADempiere Access Client Started');
+    this.initSecurityService();
+    console.log('ADempiere Security Client Started');
   }
 
   // Init connection
-  initAccessService() {
+  initSecurityService() {
     const grpc = require('@grpc/grpc-js');
-    const services = require('@adempiere/grpc-api/src/grpc/proto/access_grpc_pb');
-    this.access = new services.SecurityClient(
+    const services = require('@adempiere/grpc-api/src/grpc/proto/security_grpc_pb');
+    this.security = new services.SecurityClient(
       this.accessHost,
       grpc.credentials.createInsecure()
     );
   }
 
-  // Get Access Service
-  getAccessService() {
-    return this.access;
+  // Get Security Service
+  getSecurityService() {
+    return this.security;
   }
 
   // Login with a user
@@ -77,9 +77,9 @@ class Access {
     request.setOrganizationUuid(organizationUuid);
     request.setWarehouseUuid(warehouseUuid);
     request.setLanguage(language);
-    // request.setClientVersion(this.version);
+    request.setClientVersion(this.version);
 
-    this.getAccessService().runLogin(
+    this.getSecurityService().runLogin(
       request,
       callback
     );
@@ -96,7 +96,7 @@ class Access {
       token
     });
 
-    this.getAccessService().getUserInfo(
+    this.getSecurityService().getUserInfo(
       request,
       metadata,
       callback
@@ -119,7 +119,7 @@ class Access {
       token
     });
 
-    this.getAccessService().listRoles(
+    this.getSecurityService().listRoles(
       request,
       metadata,
       callback
@@ -137,7 +137,7 @@ class Access {
       token
     });
 
-    this.getAccessService().getMenu(
+    this.getSecurityService().getMenu(
       request,
       metadata,
       callback
@@ -155,7 +155,7 @@ class Access {
       token
     });
 
-    this.getAccessService().getSessionInfo(
+    this.getSecurityService().getSessionInfo(
       request,
       metadata,
       callback
@@ -182,7 +182,7 @@ class Access {
       token
     });
 
-    this.getAccessService().runChangeRole(
+    this.getSecurityService().runChangeRole(
       request,
       metadata,
       callback
@@ -203,7 +203,7 @@ class Access {
       token
     });
 
-    this.getAccessService().runLogout(
+    this.getSecurityService().runLogout(
       request,
       metadata,
       callback
@@ -212,4 +212,4 @@ class Access {
 
 }
 
-module.exports = Access;
+module.exports = Security;
