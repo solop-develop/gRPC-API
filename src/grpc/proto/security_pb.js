@@ -3103,8 +3103,9 @@ proto.security.SetSessionAttributeRequest.prototype.toObject = function(opt_incl
  */
 proto.security.SetSessionAttributeRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    key: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    value: (f = msg.getValue()) && proto.security.ContextValue.toObject(includeInstance, f)
+    language: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    warehouseId: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    warehouseUuid: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
 
   if (includeInstance) {
@@ -3143,12 +3144,15 @@ proto.security.SetSessionAttributeRequest.deserializeBinaryFromReader = function
     switch (field) {
     case 1:
       var value = /** @type {string} */ (reader.readString());
-      msg.setKey(value);
+      msg.setLanguage(value);
       break;
     case 2:
-      var value = new proto.security.ContextValue;
-      reader.readMessage(value,proto.security.ContextValue.deserializeBinaryFromReader);
-      msg.setValue(value);
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setWarehouseId(value);
+      break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setWarehouseUuid(value);
       break;
     default:
       reader.skipField();
@@ -3179,29 +3183,35 @@ proto.security.SetSessionAttributeRequest.prototype.serializeBinary = function()
  */
 proto.security.SetSessionAttributeRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getKey();
+  f = message.getLanguage();
   if (f.length > 0) {
     writer.writeString(
       1,
       f
     );
   }
-  f = message.getValue();
-  if (f != null) {
-    writer.writeMessage(
+  f = message.getWarehouseId();
+  if (f !== 0) {
+    writer.writeInt32(
       2,
-      f,
-      proto.security.ContextValue.serializeBinaryToWriter
+      f
+    );
+  }
+  f = message.getWarehouseUuid();
+  if (f.length > 0) {
+    writer.writeString(
+      3,
+      f
     );
   }
 };
 
 
 /**
- * optional string key = 1;
+ * optional string language = 1;
  * @return {string}
  */
-proto.security.SetSessionAttributeRequest.prototype.getKey = function() {
+proto.security.SetSessionAttributeRequest.prototype.getLanguage = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
@@ -3210,45 +3220,44 @@ proto.security.SetSessionAttributeRequest.prototype.getKey = function() {
  * @param {string} value
  * @return {!proto.security.SetSessionAttributeRequest} returns this
  */
-proto.security.SetSessionAttributeRequest.prototype.setKey = function(value) {
+proto.security.SetSessionAttributeRequest.prototype.setLanguage = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
 /**
- * optional ContextValue value = 2;
- * @return {?proto.security.ContextValue}
+ * optional int32 warehouse_id = 2;
+ * @return {number}
  */
-proto.security.SetSessionAttributeRequest.prototype.getValue = function() {
-  return /** @type{?proto.security.ContextValue} */ (
-    jspb.Message.getWrapperField(this, proto.security.ContextValue, 2));
+proto.security.SetSessionAttributeRequest.prototype.getWarehouseId = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
 };
 
 
 /**
- * @param {?proto.security.ContextValue|undefined} value
- * @return {!proto.security.SetSessionAttributeRequest} returns this
-*/
-proto.security.SetSessionAttributeRequest.prototype.setValue = function(value) {
-  return jspb.Message.setWrapperField(this, 2, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
+ * @param {number} value
  * @return {!proto.security.SetSessionAttributeRequest} returns this
  */
-proto.security.SetSessionAttributeRequest.prototype.clearValue = function() {
-  return this.setValue(undefined);
+proto.security.SetSessionAttributeRequest.prototype.setWarehouseId = function(value) {
+  return jspb.Message.setProto3IntField(this, 2, value);
 };
 
 
 /**
- * Returns whether this field is set.
- * @return {boolean}
+ * optional string warehouse_uuid = 3;
+ * @return {string}
  */
-proto.security.SetSessionAttributeRequest.prototype.hasValue = function() {
-  return jspb.Message.getField(this, 2) != null;
+proto.security.SetSessionAttributeRequest.prototype.getWarehouseUuid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.security.SetSessionAttributeRequest} returns this
+ */
+proto.security.SetSessionAttributeRequest.prototype.setWarehouseUuid = function(value) {
+  return jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
