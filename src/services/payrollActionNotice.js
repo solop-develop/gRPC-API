@@ -15,7 +15,7 @@
  ************************************************************************************/
 
 const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
-const { isEmptyValue, getTypeOfValue, getValidId } = require('@adempiere/grpc-api/lib/convertValues.js');
+const { isEmptyValue, getTypeOfValue, getValidId } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
 
 class PayrollActionNotice {
 
