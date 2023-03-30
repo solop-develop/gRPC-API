@@ -94,8 +94,18 @@ function isEmptyValue(value) {
  * Get Valid Identifier
  * @param {string|numner} id
  * @param {number}
+ * @deprecated Use {@link #getValidInteger(id)} instead
  */
 function getValidId(id) {
+  return getValidInteger(id)
+}
+
+/**
+ * Get Valid Integer
+ * @param {string|numner} id
+ * @param {number}
+ */
+function getValidInteger(id) {
   if (!isEmptyValue(id) && !Number.isNaN(id)) {
     return Number.parseInt(id, 10);
   }
@@ -133,5 +143,6 @@ module.exports = {
   getTypeOfValue,
   isEmptyValue,
   getTimestamp,
-  getValidId
+  getValidId,
+  getValidInteger
 };
