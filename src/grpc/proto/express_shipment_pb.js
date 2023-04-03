@@ -2105,7 +2105,10 @@ proto.express_shipment.Shipment.toObject = function(includeInstance, msg) {
     uuid: jspb.Message.getFieldWithDefault(msg, 2, ""),
     documentNo: jspb.Message.getFieldWithDefault(msg, 3, ""),
     dateOrdered: jspb.Message.getFieldWithDefault(msg, 4, 0),
-    movementDate: jspb.Message.getFieldWithDefault(msg, 5, 0)
+    movementDate: jspb.Message.getFieldWithDefault(msg, 5, 0),
+    orderId: jspb.Message.getFieldWithDefault(msg, 6, 0),
+    orderUuid: jspb.Message.getFieldWithDefault(msg, 7, ""),
+    isCompleted: jspb.Message.getBooleanFieldWithDefault(msg, 8, false)
   };
 
   if (includeInstance) {
@@ -2161,6 +2164,18 @@ proto.express_shipment.Shipment.deserializeBinaryFromReader = function(msg, read
     case 5:
       var value = /** @type {number} */ (reader.readInt64());
       msg.setMovementDate(value);
+      break;
+    case 6:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setOrderId(value);
+      break;
+    case 7:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setOrderUuid(value);
+      break;
+    case 8:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setIsCompleted(value);
       break;
     default:
       reader.skipField();
@@ -2223,6 +2238,27 @@ proto.express_shipment.Shipment.serializeBinaryToWriter = function(message, writ
   if (f !== 0) {
     writer.writeInt64(
       5,
+      f
+    );
+  }
+  f = message.getOrderId();
+  if (f !== 0) {
+    writer.writeInt32(
+      6,
+      f
+    );
+  }
+  f = message.getOrderUuid();
+  if (f.length > 0) {
+    writer.writeString(
+      7,
+      f
+    );
+  }
+  f = message.getIsCompleted();
+  if (f) {
+    writer.writeBool(
+      8,
       f
     );
   }
@@ -2316,6 +2352,60 @@ proto.express_shipment.Shipment.prototype.getMovementDate = function() {
  */
 proto.express_shipment.Shipment.prototype.setMovementDate = function(value) {
   return jspb.Message.setProto3IntField(this, 5, value);
+};
+
+
+/**
+ * optional int32 order_id = 6;
+ * @return {number}
+ */
+proto.express_shipment.Shipment.prototype.getOrderId = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 6, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.express_shipment.Shipment} returns this
+ */
+proto.express_shipment.Shipment.prototype.setOrderId = function(value) {
+  return jspb.Message.setProto3IntField(this, 6, value);
+};
+
+
+/**
+ * optional string order_uuid = 7;
+ * @return {string}
+ */
+proto.express_shipment.Shipment.prototype.getOrderUuid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 7, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.express_shipment.Shipment} returns this
+ */
+proto.express_shipment.Shipment.prototype.setOrderUuid = function(value) {
+  return jspb.Message.setProto3StringField(this, 7, value);
+};
+
+
+/**
+ * optional bool is_completed = 8;
+ * @return {boolean}
+ */
+proto.express_shipment.Shipment.prototype.getIsCompleted = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 8, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.express_shipment.Shipment} returns this
+ */
+proto.express_shipment.Shipment.prototype.setIsCompleted = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 8, value);
 };
 
 
