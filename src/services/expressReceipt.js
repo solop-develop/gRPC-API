@@ -87,7 +87,7 @@ class ExpressReceipt {
       token
     });
 
-    this.getExpressShipmentService().listBusinessPartners(
+    this.getExpressReceiptService().listBusinessPartners(
       request,
       metadata,
       callback
