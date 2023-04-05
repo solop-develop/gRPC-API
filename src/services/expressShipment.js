@@ -159,7 +159,8 @@ class ExpressShipment {
     token,
     // DSL
     orderId,
-    orderUuid
+    orderUuid,
+    isCreateLinesFromOrder
   }, callback) {
     const { CreateShipmentRequest } = this.stubFile;
     const request = new CreateShipmentRequest();
@@ -168,6 +169,7 @@ class ExpressShipment {
       getValidInteger(orderId)
     );
     request.setOrderUuid(orderUuid);
+    request.setIsCreateLinesFromOrder(isCreateLinesFromOrder);
 
     const metadata = getMetadata({
       token
@@ -266,7 +268,8 @@ class ExpressShipment {
     description,
     productId,
     productUuid,
-    quantity
+    quantity,
+    isQuantityFromOrderLine
   }, callback) {
     const { CreateShipmentLineRequest } = this.stubFile;
     const request = new CreateShipmentLineRequest();
@@ -285,6 +288,7 @@ class ExpressShipment {
     request.setQuantity(
       getDecimalToGRPC(quantity)
     );
+    request.setIsQuantityFromOrderLine(isQuantityFromOrderLine);
 
     const metadata = getMetadata({
       token

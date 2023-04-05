@@ -1942,7 +1942,8 @@ proto.express_receipt.CreateReceiptRequest.prototype.toObject = function(opt_inc
 proto.express_receipt.CreateReceiptRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     orderId: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    orderUuid: jspb.Message.getFieldWithDefault(msg, 2, "")
+    orderUuid: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    isCreateLinesFromOrder: jspb.Message.getBooleanFieldWithDefault(msg, 3, false)
   };
 
   if (includeInstance) {
@@ -1987,6 +1988,10 @@ proto.express_receipt.CreateReceiptRequest.deserializeBinaryFromReader = functio
       var value = /** @type {string} */ (reader.readString());
       msg.setOrderUuid(value);
       break;
+    case 3:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setIsCreateLinesFromOrder(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -2030,6 +2035,13 @@ proto.express_receipt.CreateReceiptRequest.serializeBinaryToWriter = function(me
       f
     );
   }
+  f = message.getIsCreateLinesFromOrder();
+  if (f) {
+    writer.writeBool(
+      3,
+      f
+    );
+  }
 };
 
 
@@ -2066,6 +2078,24 @@ proto.express_receipt.CreateReceiptRequest.prototype.getOrderUuid = function() {
  */
 proto.express_receipt.CreateReceiptRequest.prototype.setOrderUuid = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * optional bool is_create_lines_from_order = 3;
+ * @return {boolean}
+ */
+proto.express_receipt.CreateReceiptRequest.prototype.getIsCreateLinesFromOrder = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 3, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.express_receipt.CreateReceiptRequest} returns this
+ */
+proto.express_receipt.CreateReceiptRequest.prototype.setIsCreateLinesFromOrder = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 3, value);
 };
 
 
@@ -2796,7 +2826,8 @@ proto.express_receipt.CreateReceiptLineRequest.toObject = function(includeInstan
     description: jspb.Message.getFieldWithDefault(msg, 3, ""),
     productId: jspb.Message.getFieldWithDefault(msg, 4, 0),
     productUuid: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    quantity: (f = msg.getQuantity()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f)
+    quantity: (f = msg.getQuantity()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
+    isQuantityFromOrderLine: jspb.Message.getBooleanFieldWithDefault(msg, 7, false)
   };
 
   if (includeInstance) {
@@ -2857,6 +2888,10 @@ proto.express_receipt.CreateReceiptLineRequest.deserializeBinaryFromReader = fun
       var value = new proto_base_data_type_pb.Decimal;
       reader.readMessage(value,proto_base_data_type_pb.Decimal.deserializeBinaryFromReader);
       msg.setQuantity(value);
+      break;
+    case 7:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setIsQuantityFromOrderLine(value);
       break;
     default:
       reader.skipField();
@@ -2928,6 +2963,13 @@ proto.express_receipt.CreateReceiptLineRequest.serializeBinaryToWriter = functio
       6,
       f,
       proto_base_data_type_pb.Decimal.serializeBinaryToWriter
+    );
+  }
+  f = message.getIsQuantityFromOrderLine();
+  if (f) {
+    writer.writeBool(
+      7,
+      f
     );
   }
 };
@@ -3057,6 +3099,24 @@ proto.express_receipt.CreateReceiptLineRequest.prototype.clearQuantity = functio
  */
 proto.express_receipt.CreateReceiptLineRequest.prototype.hasQuantity = function() {
   return jspb.Message.getField(this, 6) != null;
+};
+
+
+/**
+ * optional bool is_quantity_from_order_line = 7;
+ * @return {boolean}
+ */
+proto.express_receipt.CreateReceiptLineRequest.prototype.getIsQuantityFromOrderLine = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 7, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.express_receipt.CreateReceiptLineRequest} returns this
+ */
+proto.express_receipt.CreateReceiptLineRequest.prototype.setIsQuantityFromOrderLine = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 7, value);
 };
 
 

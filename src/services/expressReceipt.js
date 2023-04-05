@@ -159,7 +159,8 @@ class ExpressReceipt {
     token,
     // DSL
     orderId,
-    orderUuid
+    orderUuid,
+    isCreateLinesFromOrder
   }, callback) {
     const { CreateReceiptRequest } = this.stubFile;
     const request = new CreateReceiptRequest();
@@ -168,6 +169,7 @@ class ExpressReceipt {
       getValidInteger(orderId)
     );
     request.setOrderUuid(orderUuid);
+    request.setIsCreateLinesFromOrder(isCreateLinesFromOrder);
 
     const metadata = getMetadata({
       token
@@ -266,7 +268,8 @@ class ExpressReceipt {
     description,
     productId,
     productUuid,
-    quantity
+    quantity,
+    isQuantityFromOrderLine
   }, callback) {
     const { CreateReceiptLineRequest } = this.stubFile;
     const request = new CreateReceiptLineRequest();
@@ -285,6 +288,7 @@ class ExpressReceipt {
     request.setQuantity(
       getDecimalToGRPC(quantity)
     );
+    request.setIsQuantityFromOrderLine(isQuantityFromOrderLine);
 
     const metadata = getMetadata({
       token
