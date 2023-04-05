@@ -89,6 +89,17 @@ function deserialize_data_CashWithdrawalRequest(buffer_arg) {
   return proto_point_of_sales_pb.CashWithdrawalRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_data_CommandShortcut(arg) {
+  if (!(arg instanceof proto_point_of_sales_pb.CommandShortcut)) {
+    throw new Error('Expected argument of type data.CommandShortcut');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_CommandShortcut(buffer_arg) {
+  return proto_point_of_sales_pb.CommandShortcut.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_data_CreateCustomerBankAccountRequest(arg) {
   if (!(arg instanceof proto_point_of_sales_pb.CreateCustomerBankAccountRequest)) {
     throw new Error('Expected argument of type data.CreateCustomerBankAccountRequest');
@@ -208,6 +219,17 @@ function serialize_data_DeallocateSellerRequest(arg) {
 
 function deserialize_data_DeallocateSellerRequest(buffer_arg) {
   return proto_point_of_sales_pb.DeallocateSellerRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_data_DeleteCommandShortcutRequest(arg) {
+  if (!(arg instanceof proto_point_of_sales_pb.DeleteCommandShortcutRequest)) {
+    throw new Error('Expected argument of type data.DeleteCommandShortcutRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_DeleteCommandShortcutRequest(buffer_arg) {
+  return proto_point_of_sales_pb.DeleteCommandShortcutRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_data_DeleteCustomerBankAccountRequest(arg) {
@@ -617,6 +639,28 @@ function deserialize_data_ListCashSummaryMovementsResponse(buffer_arg) {
   return proto_point_of_sales_pb.ListCashSummaryMovementsResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_data_ListCommandShortcutsRequest(arg) {
+  if (!(arg instanceof proto_point_of_sales_pb.ListCommandShortcutsRequest)) {
+    throw new Error('Expected argument of type data.ListCommandShortcutsRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_ListCommandShortcutsRequest(buffer_arg) {
+  return proto_point_of_sales_pb.ListCommandShortcutsRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_data_ListCommandShortcutsResponse(arg) {
+  if (!(arg instanceof proto_point_of_sales_pb.ListCommandShortcutsResponse)) {
+    throw new Error('Expected argument of type data.ListCommandShortcutsResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_ListCommandShortcutsResponse(buffer_arg) {
+  return proto_point_of_sales_pb.ListCommandShortcutsResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_data_ListCustomerBankAccountsRequest(arg) {
   if (!(arg instanceof proto_point_of_sales_pb.ListCustomerBankAccountsRequest)) {
     throw new Error('Expected argument of type data.ListCustomerBankAccountsRequest');
@@ -1000,6 +1044,17 @@ function serialize_data_ReverseSalesRequest(arg) {
 
 function deserialize_data_ReverseSalesRequest(buffer_arg) {
   return proto_point_of_sales_pb.ReverseSalesRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_data_SaveCommandShortcutRequest(arg) {
+  if (!(arg instanceof proto_point_of_sales_pb.SaveCommandShortcutRequest)) {
+    throw new Error('Expected argument of type data.SaveCommandShortcutRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_SaveCommandShortcutRequest(buffer_arg) {
+  return proto_point_of_sales_pb.SaveCommandShortcutRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_data_Shipment(arg) {
@@ -1851,6 +1906,40 @@ listAvailableCash: {
     requestDeserialize: deserialize_data_ListAvailableCashRequest,
     responseSerialize: serialize_data_ListAvailableCashResponse,
     responseDeserialize: deserialize_data_ListAvailableCashResponse,
+  },
+  // Command Shortcut
+saveCommandShortcut: {
+    path: '/data.Store/SaveCommandShortcut',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_point_of_sales_pb.SaveCommandShortcutRequest,
+    responseType: proto_point_of_sales_pb.CommandShortcut,
+    requestSerialize: serialize_data_SaveCommandShortcutRequest,
+    requestDeserialize: deserialize_data_SaveCommandShortcutRequest,
+    responseSerialize: serialize_data_CommandShortcut,
+    responseDeserialize: deserialize_data_CommandShortcut,
+  },
+  listCommandShortcuts: {
+    path: '/data.Store/ListCommandShortcuts',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_point_of_sales_pb.ListCommandShortcutsRequest,
+    responseType: proto_point_of_sales_pb.ListCommandShortcutsResponse,
+    requestSerialize: serialize_data_ListCommandShortcutsRequest,
+    requestDeserialize: deserialize_data_ListCommandShortcutsRequest,
+    responseSerialize: serialize_data_ListCommandShortcutsResponse,
+    responseDeserialize: deserialize_data_ListCommandShortcutsResponse,
+  },
+  deleteCommandShortcut: {
+    path: '/data.Store/DeleteCommandShortcut',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_point_of_sales_pb.DeleteCommandShortcutRequest,
+    responseType: proto_base_data_type_pb.Empty,
+    requestSerialize: serialize_data_DeleteCommandShortcutRequest,
+    requestDeserialize: deserialize_data_DeleteCommandShortcutRequest,
+    responseSerialize: serialize_data_Empty,
+    responseDeserialize: deserialize_data_Empty,
   },
 };
 
