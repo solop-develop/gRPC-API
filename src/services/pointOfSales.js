@@ -15,6 +15,7 @@
  ************************************************************************************/
 
 const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
+const { getValidInteger } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
 
 class PointOfSales {
 
@@ -2149,6 +2150,108 @@ class PointOfSales {
       callback
     );
   }
+
+
+  /**
+   * Save Command Shortcut
+   * @param {string} token
+   * @param {string} posUuid
+   * @param {string} command
+   * @param {string} shortcut
+   */
+  saveCommandShortcut({
+    token,
+    posUuid,
+    command,
+    shortcut
+  }, callback) {
+    const { SaveCommandShortcutRequest } = this.stubFile;
+    const request = new SaveCommandShortcutRequest();
+
+    request.setPosUuid(posUuid);
+    request.setCommand(command);
+    request.setShortcut(shortcut);
+
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getPointOfSalesService().saveCommandShortcut(
+      request,
+      metadata,
+      callback
+    );
+  }
+
+  /**
+   * List Command Shortcuts
+   * @param {string} token
+   * @param {string} posUuid
+   * @param {string} searchValue
+   * @param {number} pageSize
+   * @param {string} pageToken
+   */
+  listCommandShortcuts({
+    token,
+    posUuid,
+    searchValue,
+    pageSize,
+    pageToken
+  }, callback) {
+    const { ListCommandShortcutsRequest } = this.stubFile;
+    const request = new ListCommandShortcutsRequest();
+
+    request.setPosUuid(posUuid);
+    request.setSearchValue(searchValue);
+    request.setPageSize(
+      getValidInteger(pageSize)
+    );
+    request.setPageToken(pageToken);
+
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getPointOfSalesService().listCommandShortcuts(
+      request,
+      metadata,
+      callback
+    );
+  }
+
+  /**
+   * Delete Command Shortcut
+   * @param {string} token
+   * @param {string} posUuid
+   * @param {number} id
+   * @param {string} uuid
+   */
+  deleteCommandShortcut({
+    token,
+    posUuid,
+    id,
+    uuid
+  }, callback) {
+    const { DeleteCommandShortcutRequest } = this.stubFile;
+    const request = new DeleteCommandShortcutRequest();
+
+    request.setPosUuid(posUuid);
+    request.setId(
+      getValidInteger(id)
+    );
+    request.setUuid(uuid);
+
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getPointOfSalesService().deleteCommandShortcut(
+      request,
+      metadata,
+      callback
+    );
+  }
+
 }
 
 module.exports = PointOfSales;
