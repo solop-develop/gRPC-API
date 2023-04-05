@@ -77,6 +77,28 @@ function deserialize_express_receipt_DeleteReceiptRequest(buffer_arg) {
   return proto_express_receipt_pb.DeleteReceiptRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_express_receipt_ListBusinessPartnersRequest(arg) {
+  if (!(arg instanceof proto_express_receipt_pb.ListBusinessPartnersRequest)) {
+    throw new Error('Expected argument of type express_receipt.ListBusinessPartnersRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_express_receipt_ListBusinessPartnersRequest(buffer_arg) {
+  return proto_express_receipt_pb.ListBusinessPartnersRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_express_receipt_ListBusinessPartnersResponse(arg) {
+  if (!(arg instanceof proto_express_receipt_pb.ListBusinessPartnersResponse)) {
+    throw new Error('Expected argument of type express_receipt.ListBusinessPartnersResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_express_receipt_ListBusinessPartnersResponse(buffer_arg) {
+  return proto_express_receipt_pb.ListBusinessPartnersResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_express_receipt_ListProductsRequest(arg) {
   if (!(arg instanceof proto_express_receipt_pb.ListProductsRequest)) {
     throw new Error('Expected argument of type express_receipt.ListProductsRequest');
@@ -189,6 +211,17 @@ function deserialize_express_receipt_UpdateReceiptLineRequest(buffer_arg) {
 
 
 var ExpressReceiptService = exports.ExpressReceiptService = {
+  listBusinessPartners: {
+    path: '/express_receipt.ExpressReceipt/ListBusinessPartners',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_express_receipt_pb.ListBusinessPartnersRequest,
+    responseType: proto_express_receipt_pb.ListBusinessPartnersResponse,
+    requestSerialize: serialize_express_receipt_ListBusinessPartnersRequest,
+    requestDeserialize: deserialize_express_receipt_ListBusinessPartnersRequest,
+    responseSerialize: serialize_express_receipt_ListBusinessPartnersResponse,
+    responseDeserialize: deserialize_express_receipt_ListBusinessPartnersResponse,
+  },
   listPurchaseOrders: {
     path: '/express_receipt.ExpressReceipt/ListPurchaseOrders',
     requestStream: false,

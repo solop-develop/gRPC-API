@@ -60,6 +60,42 @@ class ExpressReceipt {
 
 
   /**
+   * Get List Business Partners
+   * @param {string} token
+   * @param {string} searchValue
+   * @param {number} pageSize
+   * @param {string} pageToken
+   */
+  listBusinessPartners({
+    token,
+    // DSL
+    searchValue,
+    // Page Data
+    pageSize,
+    pageToken
+  }, callback) {
+    const { ListBusinessPartnersRequest } = this.stubFile;
+    const request = new ListBusinessPartnersRequest();
+
+    request.setSearchValue(searchValue);
+    request.setPageSize(
+      getValidInteger(pageSize)
+    );
+    request.setPageToken(pageToken);
+
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getExpressShipmentService().listBusinessPartners(
+      request,
+      metadata,
+      callback
+    );
+  }
+
+
+  /**
    * Get List Purchase Orders
    * @param {string} token
    * @param {string} searchValue
@@ -70,6 +106,8 @@ class ExpressReceipt {
     token,
     // DSL
     searchValue = '',
+    businessPartnerId,
+    businessPartnerUuid,
     // Page Data
     pageSize,
     pageToken
@@ -77,6 +115,10 @@ class ExpressReceipt {
     const { ListPurchaseOrdersRequest } = this.stubFile;
     const request = new ListPurchaseOrdersRequest();
 
+    request.setBusinessPartnerId(
+      getValidInteger(businessPartnerId)
+    );
+    request.setBusinessPartnerUuid(businessPartnerUuid);
     request.setSearchValue(searchValue);
     request.setPageSize(
       getValidInteger(pageSize)

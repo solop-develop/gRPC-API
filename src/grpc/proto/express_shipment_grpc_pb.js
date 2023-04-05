@@ -77,6 +77,28 @@ function deserialize_express_shipment_DeleteShipmentRequest(buffer_arg) {
   return proto_express_shipment_pb.DeleteShipmentRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_express_shipment_ListBusinessPartnersRequest(arg) {
+  if (!(arg instanceof proto_express_shipment_pb.ListBusinessPartnersRequest)) {
+    throw new Error('Expected argument of type express_shipment.ListBusinessPartnersRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_express_shipment_ListBusinessPartnersRequest(buffer_arg) {
+  return proto_express_shipment_pb.ListBusinessPartnersRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_express_shipment_ListBusinessPartnersResponse(arg) {
+  if (!(arg instanceof proto_express_shipment_pb.ListBusinessPartnersResponse)) {
+    throw new Error('Expected argument of type express_shipment.ListBusinessPartnersResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_express_shipment_ListBusinessPartnersResponse(buffer_arg) {
+  return proto_express_shipment_pb.ListBusinessPartnersResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_express_shipment_ListProductsRequest(arg) {
   if (!(arg instanceof proto_express_shipment_pb.ListProductsRequest)) {
     throw new Error('Expected argument of type express_shipment.ListProductsRequest');
@@ -189,6 +211,17 @@ function deserialize_express_shipment_UpdateShipmentLineRequest(buffer_arg) {
 
 
 var ExpressShipmentService = exports.ExpressShipmentService = {
+  listBusinessPartners: {
+    path: '/express_shipment.ExpressShipment/ListBusinessPartners',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_express_shipment_pb.ListBusinessPartnersRequest,
+    responseType: proto_express_shipment_pb.ListBusinessPartnersResponse,
+    requestSerialize: serialize_express_shipment_ListBusinessPartnersRequest,
+    requestDeserialize: deserialize_express_shipment_ListBusinessPartnersRequest,
+    responseSerialize: serialize_express_shipment_ListBusinessPartnersResponse,
+    responseDeserialize: deserialize_express_shipment_ListBusinessPartnersResponse,
+  },
   listSalesOrders: {
     path: '/express_shipment.ExpressShipment/ListSalesOrders',
     requestStream: false,
