@@ -1,5 +1,5 @@
 /*************************************************************************************
- * Product: ADempiere gRPC Express Shipment Client                                   *
+ * Product: ADempiere gRPC Express Receipt Client                                    *
  * Copyright (C) 2012-2023 E.R.P. Consultores y Asociados, C.A.                      *
  * Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                      *
  * This program is free software: you can redistribute it and/or modify              *
@@ -17,12 +17,12 @@
 const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
 const { getValidInteger } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
 
-class ExpressShipment {
+class ExpressReceipt {
 
   /**
    * File on generated stub
    */
-  stubFile = require('@adempiere/grpc-api/src/grpc/proto/express_shipment_pb.js');
+  stubFile = require('@adempiere/grpc-api/src/grpc/proto/express_receipt_pb.js');
 
   /**
    * Constructor, No authentication required
@@ -39,23 +39,23 @@ class ExpressShipment {
       this.token = adempiereConfig.token;
     }
 
-    this.initExpressShipmentService();
-    console.log('ADempiere Express Shipment Client Started');
+    this.initExpressReceiptService();
+    console.log('ADempiere Express Receipt Client Started');
   }
 
   // Init connection
-  initExpressShipmentService() {
+  initExpressReceiptService() {
     const grpc = require('@grpc/grpc-js');
-    const services = require('@adempiere/grpc-api/src/grpc/proto/express_shipment_grpc_pb.js');
-    this.expressShipment = new services.ExpressShipmentClient(
+    const services = require('@adempiere/grpc-api/src/grpc/proto/express_receipt_grpc_pb.js');
+    this.expressReceipt = new services.ExpressReceiptClient(
       this.businessHost,
       grpc.credentials.createInsecure()
     );
   }
 
-  // Get Express Shipment Service
-  getExpressShipmentService() {
-    return this.expressShipment;
+  // Get Express Receipt Service
+  getExpressReceiptService() {
+    return this.expressReceipt;
   }
 
 
@@ -96,13 +96,13 @@ class ExpressShipment {
 
 
   /**
-   * Get List Sales Orders
+   * Get List Purchase Orders
    * @param {string} token
    * @param {string} searchValue
    * @param {number} pageSize
    * @param {string} pageToken
    */
-  listSalesOrders({
+  listPurchaseOrders({
     token,
     // DSL
     searchValue = '',
@@ -112,8 +112,8 @@ class ExpressShipment {
     pageSize,
     pageToken
   }, callback) {
-    const { ListSalesOrdersRequest } = this.stubFile;
-    const request = new ListSalesOrdersRequest();
+    const { ListPurchaseOrdersRequest } = this.stubFile;
+    const request = new ListPurchaseOrdersRequest();
 
     request.setBusinessPartnerId(
       getValidInteger(businessPartnerId)
@@ -129,7 +129,7 @@ class ExpressShipment {
       token
     });
 
-    this.getExpressShipmentService().listSalesOrders(
+    this.getExpressReceiptService().listPurchaseOrders(
       request,
       metadata,
       callback
@@ -183,7 +183,7 @@ class ExpressShipment {
       token
     });
 
-    this.getExpressShipmentService().listProducts(
+    this.getExpressReceiptService().listProducts(
       request,
       metadata,
       callback
@@ -192,20 +192,20 @@ class ExpressShipment {
 
 
   /**
-   * Create Shipment
+   * Create Receipt
    * @param {string} token
    * @param {number} orderId
    * @param {string} orderUuid
    */
-  createShipment({
+  createReceipt({
     token,
     // DSL
     orderId,
     orderUuid,
     isCreateLinesFromOrder
   }, callback) {
-    const { CreateShipmentRequest } = this.stubFile;
-    const request = new CreateShipmentRequest();
+    const { CreateReceiptRequest } = this.stubFile;
+    const request = new CreateReceiptRequest();
 
     request.setOrderId(
       getValidInteger(orderId)
@@ -217,7 +217,7 @@ class ExpressShipment {
       token
     });
 
-    this.getExpressShipmentService().createShipment(
+    this.getExpressReceiptService().createReceipt(
       request,
       metadata,
       callback
@@ -226,19 +226,19 @@ class ExpressShipment {
 
 
   /**
-   * Delete Shipment
+   * Delete Receipt
    * @param {string} token
    * @param {number} id
    * @param {string} uuid
    */
-  deleteShipment({
+  deleteReceipt({
     token,
     // DSL
     id,
     uuid
   }, callback) {
-    const { DeleteShipmentRequest } = this.stubFile;
-    const request = new DeleteShipmentRequest();
+    const { DeleteReceiptRequest } = this.stubFile;
+    const request = new DeleteReceiptRequest();
 
     request.setId(
       getValidInteger(id)
@@ -249,7 +249,7 @@ class ExpressShipment {
       token
     });
 
-    this.getExpressShipmentService().deleteShipment(
+    this.getExpressReceiptService().deleteReceipt(
       request,
       metadata,
       callback
@@ -258,21 +258,21 @@ class ExpressShipment {
 
 
   /**
-   * Process Shipment
+   * Process Receipt
    * @param {string} token
    * @param {number} id
    * @param {string} uuid
    * @param {string} description
    */
-  processShipment({
+  processReceipt({
     token,
     // DSL
     id,
     uuid,
     description
   }, callback) {
-    const { ProcessShipmentRequest } = this.stubFile;
-    const request = new ProcessShipmentRequest();
+    const { ProcessReceiptRequest } = this.stubFile;
+    const request = new ProcessReceiptRequest();
 
     request.setId(
       getValidInteger(id)
@@ -284,7 +284,7 @@ class ExpressShipment {
       token
     });
 
-    this.getExpressShipmentService().processShipment(
+    this.getExpressReceiptService().processReceipt(
       request,
       metadata,
       callback
@@ -293,33 +293,33 @@ class ExpressShipment {
 
 
   /**
-   * Create Shipment Line
+   * Create Receipt Line
    * @param {string} token
-   * @param {number} shipmentId
-   * @param {string} shipmentUuid
+   * @param {number} receiptId
+   * @param {string} receiptUuid
    * @param {string} description
    * @param {number} productId
    * @param {string} productUuid
    * @param {number} quantity
    */
-  createShipmentLine({
+  createReceiptLine({
     token,
     // DSL
-    shipmentId,
-    shipmentUuid,
+    receiptId,
+    receiptUuid,
     description,
     productId,
     productUuid,
     quantity,
     isQuantityFromOrderLine
   }, callback) {
-    const { CreateShipmentLineRequest } = this.stubFile;
-    const request = new CreateShipmentLineRequest();
+    const { CreateReceiptLineRequest } = this.stubFile;
+    const request = new CreateReceiptLineRequest();
 
-    request.setShipmentId(
-      getValidInteger(shipmentId)
+    request.setReceiptId(
+      getValidInteger(receiptId)
     );
-    request.setShipmentUuid(shipmentUuid);
+    request.setReceiptUuid(receiptUuid);
     request.setDescription(description);
     request.setProductId(
       getValidInteger(productId)
@@ -336,7 +336,7 @@ class ExpressShipment {
       token
     });
 
-    this.getExpressShipmentService().createShipmentLine(
+    this.getExpressReceiptService().createReceiptLine(
       request,
       metadata,
       callback
@@ -345,32 +345,32 @@ class ExpressShipment {
 
 
   /**
-   * List Shipment Lines
+   * List Receipt Lines
    * @param {string} token
-   * @param {number} shipmentId
-   * @param {string} shipmentUuid
+   * @param {number} receiptId
+   * @param {string} receiptUuid
    * @param {string} searchValue
    * @param {number} pageSize
    * @param {string} pageToken
    */
-  listShipmentLines({
+  listReceiptLines({
     token,
     // DSL
-    shipmentId,
-    shipmentUuid,
+    receiptId,
+    receiptUuid,
     // DSL
     searchValue = '',
     // Page Data
     pageSize,
     pageToken
   }, callback) {
-    const { ListShipmentLinesRequest } = this.stubFile;
-    const request = new ListShipmentLinesRequest();
+    const { ListReceiptLinesRequest } = this.stubFile;
+    const request = new ListReceiptLinesRequest();
 
-    request.setShipmentId(
-      getValidInteger(shipmentId)
+    request.setReceiptId(
+      getValidInteger(receiptId)
     );
-    request.setShipmentUuid(shipmentUuid);
+    request.setReceiptUuid(receiptUuid);
     request.setSearchValue(searchValue);
     request.setPageSize(
       getValidInteger(pageSize)
@@ -381,7 +381,7 @@ class ExpressShipment {
       token
     });
 
-    this.getExpressShipmentService().listShipmentLines(
+    this.getExpressReceiptService().listReceiptLines(
       request,
       metadata,
       callback
@@ -390,19 +390,19 @@ class ExpressShipment {
 
 
   /**
-   * Delete Shipment Line
+   * Delete Receipt Line
    * @param {string} token
    * @param {number} id
    * @param {string} uuid
    */
-  deleteShipmentLine({
+  deleteReceiptLine({
     token,
     // DSL
     id,
     uuid
   }, callback) {
-    const { DeleteShipmentLineRequest } = this.stubFile;
-    const request = new DeleteShipmentLineRequest();
+    const { DeleteReceiptLineRequest } = this.stubFile;
+    const request = new DeleteReceiptLineRequest();
 
     request.setId(
       getValidInteger(id)
@@ -413,7 +413,7 @@ class ExpressShipment {
       token
     });
 
-    this.getExpressShipmentService().deleteShipmentLine(
+    this.getExpressReceiptService().deleteReceiptLine(
       request,
       metadata,
       callback
@@ -422,14 +422,14 @@ class ExpressShipment {
 
 
   /**
-   * Update Shipment Line
+   * Update Receipt Line
    * @param {string} token
    * @param {number} id
    * @param {string} uuid
    * @param {string} description
    * @param {number} quantity
    */
-  updateShipmentLine({
+  updateReceiptLine({
     token,
     // DSL
     id,
@@ -437,8 +437,8 @@ class ExpressShipment {
     description,
     quantity
   }, callback) {
-    const { UpdateShipmentLineRequest } = this.stubFile;
-    const request = new UpdateShipmentLineRequest();
+    const { UpdateReceiptLineRequest } = this.stubFile;
+    const request = new UpdateReceiptLineRequest();
 
     request.setId(
       getValidInteger(id)
@@ -455,7 +455,7 @@ class ExpressShipment {
       token
     });
 
-    this.getExpressShipmentService().updateShipmentLine(
+    this.getExpressReceiptService().updateReceiptLine(
       request,
       metadata,
       callback
@@ -465,4 +465,4 @@ class ExpressShipment {
 
 }
 
-module.exports = ExpressShipment;
+module.exports = ExpressReceipt;
