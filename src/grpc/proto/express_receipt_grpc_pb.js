@@ -19,8 +19,6 @@
 var grpc = require('@grpc/grpc-js');
 var proto_express_receipt_pb = require('../proto/express_receipt_pb.js');
 var proto_base_data_type_pb = require('../proto/base_data_type_pb.js');
-var proto_business_pb = require('../proto/business_pb.js');
-var proto_core_functionality_pb = require('../proto/core_functionality_pb.js');
 
 function serialize_data_Empty(arg) {
   if (!(arg instanceof proto_base_data_type_pb.Empty)) {

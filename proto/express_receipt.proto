@@ -19,8 +19,6 @@ option java_package = "org.spin.backend.grpc.form.express_receipt";
 option java_outer_classname = "ADempiereExpressReceipt";
 
 import "proto/base_data_type.proto";
-import "proto/business.proto";
-import "proto/core_functionality.proto";
 
 package express_receipt;
 
