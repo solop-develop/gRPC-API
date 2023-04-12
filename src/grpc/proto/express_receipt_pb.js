@@ -23,10 +23,6 @@ var global = (function() {
 
 var proto_base_data_type_pb = require('../proto/base_data_type_pb.js');
 goog.object.extend(proto, proto_base_data_type_pb);
-var proto_business_pb = require('../proto/business_pb.js');
-goog.object.extend(proto, proto_business_pb);
-var proto_core_functionality_pb = require('../proto/core_functionality_pb.js');
-goog.object.extend(proto, proto_core_functionality_pb);
 goog.exportSymbol('proto.express_receipt.BusinessPartner', null, global);
 goog.exportSymbol('proto.express_receipt.CreateReceiptLineRequest', null, global);
 goog.exportSymbol('proto.express_receipt.CreateReceiptRequest', null, global);
