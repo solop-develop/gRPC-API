@@ -238,6 +238,7 @@ class PaymentAllocation {
     );
     request.setBusinessPartnerUuid(businessPartnerUuid);
 
+    const { getTimestamp } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
     request.setDate(
       getTimestamp(date)
     );
@@ -308,6 +309,7 @@ class PaymentAllocation {
     );
     request.setBusinessPartnerUuid(businessPartnerUuid);
 
+    const { getTimestamp } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
     request.setDate(
       getTimestamp(date)
     );
