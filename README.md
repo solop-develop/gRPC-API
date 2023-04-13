@@ -74,6 +74,9 @@ Note to generate specific proto definition:
 * To core functionality: `npm run stub:core_functionality`
 * To dictionary: `npm run stub:dictionary`
 * To enrollment: `npm run stub:enrollment`
+* To express movement: `npm run stub:express_movement`
+* To express receipt: `npm run stub:express_receipt`
+* To express shipment: `npm run stub:express_shipment`
 * To file management: `npm run stub:file_management`
 * To general ledger: `npm run stub:general_ledger`
 * To in-out: `npm run stub:in_out`
@@ -81,6 +84,7 @@ Note to generate specific proto definition:
 * To material management: `npm run stub:material_management`
 * To order: `npm run stub:order`
 * To payment: `npm run stub:payment`
+* To payment allocation: `npm run stub:payment_allocation`
 * To payroll action notice: `npm run stub:payroll_action_notice`
 * To point of sales: `npm run stub:point_of_sales`
 * To product: `npm run stub:product`
@@ -147,6 +151,12 @@ The result is generated on: `src/grpc/proto/` folder
 - `dictionary_pb.js`
 - `enrollment_grpc_pb.js`
 - `enrollment_pb.js`
+- `express_movement_grpc_pb.js`
+- `express_movement_pb.js`
+- `express_receipt_grpc_pb.js`
+- `express_receipt_pb.js`
+- `express_shipment_grpc_pb.js`
+- `express_shipment_pb.js`
 - `general_ledger_pb.js`
 - `general_ledger_grpc_pb.js`
 - `in_out_grpc_pb.js`
@@ -157,6 +167,8 @@ The result is generated on: `src/grpc/proto/` folder
 - `order_pb.js`
 - `payment_grpc_pb.js`
 - `payment_pb.js`
+- `payment_allocation_grpc_pb.js`
+- `payment_allocation_pb.js`
 - `payroll_action_notice_grpc_pb.js`
 - `payroll_action_notice_pb.js`
 - `point_of_sales_grpc_pb.js`
