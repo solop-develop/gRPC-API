@@ -2,7 +2,7 @@
 
 // Original file comments:
 // ***********************************************************************************
-// Copyright (C) 2012-2022 E.R.P. Consultores y Asociados, C.A.                     *
+// Copyright (C) 2012-2023 E.R.P. Consultores y Asociados, C.A.                     *
 // Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                     *
 // This program is free software: you can redistribute it and/or modify             *
 // it under the terms of the GNU General Public License as published by             *
@@ -40,6 +40,17 @@ function serialize_dashboarding_GetChartRequest(arg) {
 
 function deserialize_dashboarding_GetChartRequest(buffer_arg) {
   return proto_dashboarding_pb.GetChartRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_dashboarding_GetWindowMetricsRequest(arg) {
+  if (!(arg instanceof proto_dashboarding_pb.GetWindowMetricsRequest)) {
+    throw new Error('Expected argument of type dashboarding.GetWindowMetricsRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_dashboarding_GetWindowMetricsRequest(buffer_arg) {
+  return proto_dashboarding_pb.GetWindowMetricsRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_dashboarding_ListDashboardsRequest(arg) {
@@ -130,6 +141,39 @@ function deserialize_dashboarding_ListPendingDocumentsResponse(buffer_arg) {
   return proto_dashboarding_pb.ListPendingDocumentsResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_dashboarding_ListWindowChartsRequest(arg) {
+  if (!(arg instanceof proto_dashboarding_pb.ListWindowChartsRequest)) {
+    throw new Error('Expected argument of type dashboarding.ListWindowChartsRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_dashboarding_ListWindowChartsRequest(buffer_arg) {
+  return proto_dashboarding_pb.ListWindowChartsRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_dashboarding_ListWindowChartsResponse(arg) {
+  if (!(arg instanceof proto_dashboarding_pb.ListWindowChartsResponse)) {
+    throw new Error('Expected argument of type dashboarding.ListWindowChartsResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_dashboarding_ListWindowChartsResponse(buffer_arg) {
+  return proto_dashboarding_pb.ListWindowChartsResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_dashboarding_WindowMetrics(arg) {
+  if (!(arg instanceof proto_dashboarding_pb.WindowMetrics)) {
+    throw new Error('Expected argument of type dashboarding.WindowMetrics');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_dashboarding_WindowMetrics(buffer_arg) {
+  return proto_dashboarding_pb.WindowMetrics.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 
 // 	All related to Dashboarding
 var DashboardingService = exports.DashboardingService = {
@@ -192,6 +236,29 @@ listNotifications: {
     requestDeserialize: deserialize_dashboarding_ListNotificationsRequest,
     responseSerialize: serialize_dashboarding_ListNotificationsResponse,
     responseDeserialize: deserialize_dashboarding_ListNotificationsResponse,
+  },
+  // Custom Window Charts
+listWindowCharts: {
+    path: '/dashboarding.Dashboarding/ListWindowCharts',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_dashboarding_pb.ListWindowChartsRequest,
+    responseType: proto_dashboarding_pb.ListWindowChartsResponse,
+    requestSerialize: serialize_dashboarding_ListWindowChartsRequest,
+    requestDeserialize: deserialize_dashboarding_ListWindowChartsRequest,
+    responseSerialize: serialize_dashboarding_ListWindowChartsResponse,
+    responseDeserialize: deserialize_dashboarding_ListWindowChartsResponse,
+  },
+  getWindowMetrics: {
+    path: '/dashboarding.Dashboarding/GetWindowMetrics',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_dashboarding_pb.GetWindowMetricsRequest,
+    responseType: proto_dashboarding_pb.WindowMetrics,
+    requestSerialize: serialize_dashboarding_GetWindowMetricsRequest,
+    requestDeserialize: deserialize_dashboarding_GetWindowMetricsRequest,
+    responseSerialize: serialize_dashboarding_WindowMetrics,
+    responseDeserialize: deserialize_dashboarding_WindowMetrics,
   },
 };
 

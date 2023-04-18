@@ -1,6 +1,6 @@
 /*************************************************************************************
  * Product: ADempiere gRPC Dashboarding Client Convert Utils                         *
- * Copyright (C) 2012-2020 E.R.P. Consultores y Asociados, C.A.                      *
+ * Copyright (C) 2012-2023 E.R.P. Consultores y Asociados, C.A.                      *
  * Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                      *
  * This program is free software: you can redistribute it and/or modify              *
  * it under the terms of the GNU General Public License as published by              *
@@ -81,7 +81,7 @@ function getChartFromGRPC(chart) {
     }),
     color_schemas: chart.getColorSchemasList().map(colorSchema => {
       return {
-        name: undefined,
+        name: colorSchema.getName(),
         color: colorSchema.getColor(),
         percent: getDecimalFromGRPC(
           colorSchema.getPercent()
@@ -165,6 +165,59 @@ function getNotificationFromGRPC(notificationToConvert) {
   };
 }
 
+function getWindowChartFromGRPC(windowChartToConvert) {
+  if (!windowChartToConvert) {
+    return undefined;
+  }
+  return {
+    id: windowChartToConvert.getId(),
+    uuid: windowChartToConvert.getUuid(),
+    name: windowChartToConvert.getName(),
+    description: windowChartToConvert.getDescription(),
+    sequence: windowChartToConvert.getSequence(),
+    is_collapsible: windowChartToConvert.getIsCollapsible(),
+    is_open_by_default: windowChartToConvert.getIsOpenByDefault(),
+    dashboard_type: windowChartToConvert.getDashboardType(),
+    chart_type: windowChartToConvert.getChartType(),
+    context_column_names: windowChartToConvert.getContextColumnNamesList().map(columnName => {
+      return columnName;
+    })
+  };
+}
+
+function getWindowMetricsFromGRPC(windowMetricsToConvert) {
+  if (!windowMetricsToConvert) {
+    return undefined;
+  }
+  const {
+    getDecimalFromGRPC
+  } = require('@adempiere/grpc-api/src/utils/baseDataTypeFromGRPC.js');
+
+  return {
+    id: windowMetricsToConvert.getId(),
+    uuid: windowMetricsToConvert.getUuid(),
+    name: windowMetricsToConvert.getName(),
+    description: windowMetricsToConvert.getDescription(),
+    x_axis_label: windowMetricsToConvert.getXAxisLabel(),
+    y_axis_label: windowMetricsToConvert.getYAxisLabel(),
+    measure_target: getDecimalFromGRPC(
+      windowMetricsToConvert.getMeasureTarget()
+    ),
+    series: windowMetricsToConvert.getSeriesList().map(serie => {
+      return getChartSerieFromGRPC(serie);
+    }),
+    color_schemas: windowMetricsToConvert.getColorSchemasList().map(colorSchema => {
+      return {
+        name: colorSchema.getName(),
+        color: colorSchema.getColor(),
+        percent: getDecimalFromGRPC(
+          colorSchema.getPercent()
+        )
+      };
+    })
+  };
+}
+
 module.exports = {
   getAction,
   getDashboardFromGRPC,
@@ -172,5 +225,7 @@ module.exports = {
   getChartFromGRPC,
   getPendingDocumentFromGRPC,
   getFavoriteFromGRPC,
-  getNotificationFromGRPC
+  getNotificationFromGRPC,
+  getWindowChartFromGRPC,
+  getWindowMetricsFromGRPC
 };
