@@ -100,15 +100,18 @@ const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
     attributes
   }, callback) {
     const { CreateEntityRequest } = require('./src/grpc/proto/business_pb.js')
-    const { convertParameterToGRPC } = require('./lib/convertValues.js');
-    const request = new CreateEntityRequest()
-    request.setTableName(tableName)
-    if(attributes) {
+    const request = new CreateEntityRequest();
+
+    request.setTableName(tableName);
+    if (attributes) {
+      const { getKeyValueToGRPC } = require('@adempiere/grpc-api/src/utils/baseDataTypeToGRPC.js');
       attributes.forEach(attribute => {
-        request.addAttributes(convertParameterToGRPC({
-          columnName: attribute.key,
-          value: attribute.value
-        }))
+        request.addAttributes(
+          getKeyValueToGRPC({
+            columnName: attribute.key,
+            value: attribute.value
+          })
+        );
       })
     }
 
@@ -132,17 +135,20 @@ const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
     attributes
   }, callback) {
     const { UpdateEntityRequest } = require('./src/grpc/proto/business_pb.js')
-    const { convertParameterToGRPC } = require('./lib/convertValues.js');
-    const request = new UpdateEntityRequest()
+    const request = new UpdateEntityRequest();
+
     request.setTableName(tableName)
     request.setId(id)
     request.setUuid(uuid)
-    if(attributes) {
+    if (attributes) {
+      const { getKeyValueToGRPC } = require('@adempiere/grpc-api/src/utils/baseDataTypeToGRPC.js');
       attributes.forEach(attribute => {
-        request.addAttributes(convertParameterToGRPC({
-          columnName: attribute.key,
-          value: attribute.value
-        }))
+        request.addAttributes(
+          getKeyValueToGRPC({
+            columnName: attribute.key,
+            value: attribute.value
+          })
+        );
       })
     }
 
@@ -164,15 +170,18 @@ const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
     attributes
   }, callback) {
     const { CreateEntityRequest } = require('./src/grpc/proto/business_pb.js')
-    const { convertParameterToGRPC } = require('./lib/convertValues.js');
-    const request = new CreateEntityRequest()
+    const request = new CreateEntityRequest();
+
     request.setTableName(tableName)
-    if(attributes) {
+    if (attributes) {
+      const { getKeyValueToGRPC } = require('@adempiere/grpc-api/src/utils/baseDataTypeToGRPC.js');
       attributes.forEach(attribute => {
-        request.addAttributes(convertParameterToGRPC({
-          columnName: attribute.key,
-          value: attribute.value
-        }))
+        request.addAttributes(
+          getKeyValueToGRPC({
+            columnName: attribute.key,
+            value: attribute.value
+          })
+        );
       })
     }
 
@@ -236,16 +245,19 @@ const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
   }, callback) {
     const { ListEntitiesRequest } = require('./src/grpc/proto/business_pb.js')
     const request = new ListEntitiesRequest()
-    const { convertCriteriaToGRPC } = require('./lib/convertValues.js');
+
+    const { getCriteriaToGRPC } = require('@adempiere/grpc-api/src/utils/baseDataTypeToGRPC.js');
     //  TODO: Add support to all parameters
-    request.setCriteria(convertCriteriaToGRPC({
-      tableName,
-      filters,
-      query,
-      whereClause,
-      orderByClause,
-      limit
-    }))
+    request.setCriteria(
+      getCriteriaToGRPC({
+        tableName,
+        filters,
+        query,
+        whereClause,
+        orderByClause,
+        limit
+      })
+    );
     //  For columns
     if (columns) {
       columns.forEach(column => request.addColumns(column))
@@ -567,16 +579,16 @@ const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
   }, callback) {
     const { ListBrowserItemsRequest } = require('./src/grpc/proto/business_pb.js');
     const request = new ListBrowserItemsRequest();
-    const { convertCriteriaToGRPC } = require('./lib/convertValues.js');
 
-    const criteriaGrpc = convertCriteriaToGRPC({
+    const { getCriteriaToGRPC } = require('@adempiere/grpc-api/src/utils/baseDataTypeToGRPC.js');
+    const criteriaGrpc = getCriteriaToGRPC({
       tableName,
       filters
     });
     request.setCriteria(criteriaGrpc);
 
     if (!this.isEmptyValue(contextAttributes)) {
-      const { convertParameterToGRPC, typeOfValue } = require('./lib/convertValues.js');
+      const { getKeyValueToGRPC } = require('@adempiere/grpc-api/src/utils/baseDataTypeToGRPC.js');
 
       if (typeOfValue(contextAttributes) === 'String') {
         contextAttributes = JSON.parse(contextAttributes);
@@ -588,7 +600,7 @@ const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
           parsedAttribute = JSON.parse(attribute);
         }
         request.addContextAttributes(
-          convertParameterToGRPC({
+          getKeyValueToGRPC({
             columnName: parsedAttribute.key,
             value: parsedAttribute.value
           })
@@ -634,19 +646,20 @@ const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
 
     // browser records selections list
     if (!this.isEmptyValue(attributes)) {
-      const { convertParameterToGRPC, typeOfValue } = require('./lib/convertValues.js');
+      const { getKeyValueToGRPC } = require('@adempiere/grpc-api/src/utils/baseDataTypeToGRPC.js');
+      const { getTypeOfValue } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
   
-      if (typeOfValue(attributes) === 'String') {
+      if (getTypeOfValue(attributes) === 'String') {
         attributes = JSON.parse(attributes);
       }
 
       attributes.forEach(attribute => {
         let parsedAttribute = attribute;
-        if (typeOfValue(attribute) === 'String') {
+        if (getTypeOfValue(attribute) === 'String') {
           parsedAttribute = JSON.parse(attribute);
         }
   
-        const attributeConverted = convertParameterToGRPC({
+        const attributeConverted = getKeyValueToGRPC({
           columnName: parsedAttribute.key,
           value: parsedAttribute.value
         });
@@ -694,18 +707,19 @@ const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
     request.setColumnName(columnName);
     request.setSearchValue(searchValue);
     if (!this.isEmptyValue(contextAttributes)) {
-      const { convertParameterToGRPC, typeOfValue } = require('./lib/convertValues.js');
+      const { getKeyValueToGRPC } = require('@adempiere/grpc-api/src/utils/baseDataTypeToGRPC.js');
+      const { getTypeOfValue } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
 
-      if (typeOfValue(contextAttributes) === 'String') {
+      if (getTypeOfValue(contextAttributes) === 'String') {
         contextAttributes = JSON.parse(contextAttributes);
       }
       contextAttributes.forEach(attribute => {
         let parsedAttribute = attribute;
-        if (typeOfValue(attribute) === 'String') {
+        if (getTypeOfValue(attribute) === 'String') {
           parsedAttribute = JSON.parse(attribute);
         }
         request.addContextAttributes(
-          convertParameterToGRPC({
+          getKeyValueToGRPC({
             columnName: parsedAttribute.key,
             value: parsedAttribute.value
           })
@@ -752,19 +766,21 @@ const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
     request.setTableName(tableName);
     request.setColumnUuid(columnUuid);
     request.setColumnName(columnName);
-    if (!this.isEmptyValue(contextAttributes)) {
-      const { convertParameterToGRPC, typeOfValue } = require('./lib/convertValues.js');
 
-      if (typeOfValue(contextAttributes) === 'String') {
+    if (!this.isEmptyValue(contextAttributes)) {
+      const { getKeyValueToGRPC } = require('@adempiere/grpc-api/src/utils/baseDataTypeToGRPC.js');
+      const { getTypeOfValue } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
+
+      if (getTypeOfValue(contextAttributes) === 'String') {
         contextAttributes = JSON.parse(contextAttributes);
       }
       contextAttributes.forEach(attribute => {
         let parsedAttribute = attribute;
-        if (typeOfValue(attribute) === 'String') {
+        if (getTypeOfValue(attribute) === 'String') {
           parsedAttribute = JSON.parse(attribute);
         }
         request.addContextAttributes(
-          convertParameterToGRPC({
+          getKeyValueToGRPC({
             columnName: parsedAttribute.key,
             value: parsedAttribute.value
           })
@@ -858,7 +874,6 @@ const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
   }, callback) {
     const { ListGeneralInfoRequest } = require('./src/grpc/proto/business_pb.js');
     const request = new ListGeneralInfoRequest();
-    const { convertCriteriaToGRPC } = require('./lib/convertValues.js');
 
     request.setFieldUuid(fieldUuid);
     request.setProcessParameterUuid(processParameterUuid);
@@ -868,8 +883,9 @@ const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
     request.setColumnName(columnName);
     request.setReferenceUuid(referenceUuid);
 
+    const { getCriteriaToGRPC } = require('@adempiere/grpc-api/src/utils/baseDataTypeToGRPC.js');
     request.setFilters(
-      convertCriteriaToGRPC({
+      getCriteriaToGRPC({
         tableName,
         filters
       })
@@ -877,18 +893,19 @@ const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
 
     request.setSearchValue(searchValue);
     if (!this.isEmptyValue(contextAttributes)) {
-      const { convertParameterToGRPC, typeOfValue } = require('./lib/convertValues.js');
+      const { getKeyValueToGRPC } = require('@adempiere/grpc-api/src/utils/baseDataTypeToGRPC.js');
+      const { getTypeOfValue } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
 
-      if (typeOfValue(contextAttributes) === 'String') {
+      if (getTypeOfValue(contextAttributes) === 'String') {
         contextAttributes = JSON.parse(contextAttributes);
       }
       contextAttributes.forEach(attribute => {
         let parsedAttribute = attribute;
-        if (typeOfValue(attribute) === 'String') {
+        if (getTypeOfValue(attribute) === 'String') {
           parsedAttribute = JSON.parse(attribute);
         }
         request.addContextAttributes(
-          convertParameterToGRPC({
+          getKeyValueToGRPC({
             columnName: parsedAttribute.key,
             value: parsedAttribute.value
           })

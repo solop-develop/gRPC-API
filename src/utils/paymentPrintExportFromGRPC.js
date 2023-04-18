@@ -1,6 +1,6 @@
 /*************************************************************************************
- * Product: ADempiere gRPC Business Data Client Convert Utils                        *
- * Copyright (C) 2012-2020 E.R.P. Consultores y Asociados, C.A.                      *
+ * Product: ADempiere gRPC Paymemt Print Export Client Convert Utils                 *
+ * Copyright (C) 2012-2023 E.R.P. Consultores y Asociados, C.A.                      *
  * Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                      *
  * This program is free software: you can redistribute it and/or modify              *
  * it under the terms of the GNU General Public License as published by              *
@@ -19,7 +19,7 @@ function getBankAccountFromGRPC(bankAccountToConvert) {
   if (!bankAccountToConvert) {
     return undefined
   }
-  const { getDecimalFromGRPC } = require('./baseDataTypeFromGRPC');
+  const { getDecimalFromGRPC } = require('@adempiere/grpc-api/src/utils/baseDataTypeFromGRPC.js');
   return {
     id: bankAccountToConvert.getId(),
     uuid: bankAccountToConvert.getUuid(),
@@ -37,7 +37,7 @@ function getPaymentSelectionFromGRPC(paymentSelectionToConvert) {
     return undefined
   }
   const { getCurrencyFromGRPC } = require('./coreFunctionalityFromGRPC');
-  const { getDecimalFromGRPC } = require('./baseDataTypeFromGRPC');
+  const { getDecimalFromGRPC } = require('@adempiere/grpc-api/src/utils/baseDataTypeFromGRPC.js');
   return {
     id: paymentSelectionToConvert.getId(),
     uuid: paymentSelectionToConvert.getUuid(),
@@ -59,7 +59,7 @@ function getPaymentFromGRPC(paymentToConvert) {
   if (!paymentToConvert) {
     return undefined
   }
-  const { getDecimalFromGRPC } = require('./baseDataTypeFromGRPC');
+  const { getDecimalFromGRPC } = require('@adempiere/grpc-api/src/utils/baseDataTypeFromGRPC.js');
   return {
     id: paymentToConvert.getId(),
     uuid: paymentToConvert.getUuid(),

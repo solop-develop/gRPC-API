@@ -1,6 +1,6 @@
 /*************************************************************************************
- * Product: ADempiere gRPC Business Data Client Convert Utils                        *
- * Copyright (C) 2012-2020 E.R.P. Consultores y Asociados, C.A.                      *
+ * Product: ADempiere gRPC Base Data Type Client Convert Utils                       *
+ * Copyright (C) 2012-2023 E.R.P. Consultores y Asociados, C.A.                      *
  * Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                      *
  * This program is free software: you can redistribute it and/or modify              *
  * it under the terms of the GNU General Public License as published by              *
@@ -18,10 +18,10 @@ const stubFile = require('@adempiere/grpc-api/src/grpc/proto/base_data_type_pb.j
 
 /**
  * Get integer from a grpc value
- * @param integerValueToConvert
+ * @param {Value.INTEGER} integerValueToConvert
  * @return {number}
  */
-function getIntegerFromGRPC(integerValueToConvert) {
+function getIntegerValueFromGRPC(integerValueToConvert) {
   const { isEmptyValue } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
 
   if (isEmptyValue(integerValueToConvert)) {
@@ -32,7 +32,7 @@ function getIntegerFromGRPC(integerValueToConvert) {
 
 /**
  * Get value from Decimal definition
- * @param {Decimal} decimalToConvert
+ * @param {DECIMAL.decimal_value} decimalToConvert
  * @return {number}
  */
 function getDecimalFromGRPC(decimalToConvert) {
@@ -53,7 +53,7 @@ function getDecimalFromGRPC(decimalToConvert) {
 
 /**
  * Get Decimal from Value definition
- * @param Value.Decicimal
+ * @param {Value.DECIMAL} decimalValueToConvert
  * @return {number}
  */
 function getDecimalValueFromGRPC(decimalValueToConvert) {
@@ -70,7 +70,7 @@ function getDecimalValueFromGRPC(decimalValueToConvert) {
 
 /**
  * Get Boolean from a grpc value
- * @param booleanValueToConvert
+ * @param {Value.BOOLEAN} booleanValueToConvert
  * @return
  */
 function getBooleanValueFromGRPC(booleanValueToConvert) {
@@ -84,7 +84,7 @@ function getBooleanValueFromGRPC(booleanValueToConvert) {
 
 /**
  * Get String from a grpc value
- * @param stringValueToConvert
+ * @param {Value.STRING} stringValueToConvert
  * @param uppercase
  * @return {string}
  */
@@ -105,7 +105,7 @@ function getStringValueFromGRPC(stringValueToConvert, uppercase = false) {
 
 /**
  * Get Date from a grpc value
- * @param dateValueToConvert value to convert
+ * @param {Value.DATE} dateValueToConvert value to convert
  * @return {date}
  */
 function getDateValueFromGRPC(dateValueToConvert) {
@@ -130,7 +130,7 @@ function getValueFromGRPC(valueToConvert) {
   let returnValue;
   switch (valueToConvert.getValueType()) {
     case ValueType.INTEGER:
-      returnValue = getIntegerFromGRPC(valueToConvert);
+      returnValue = getIntegerValueFromGRPC(valueToConvert);
       break;
     // data type Number (float)
     case ValueType.DECIMAL:
@@ -258,7 +258,7 @@ module.exports = {
   getDateValueFromGRPC,
   getDecimalFromGRPC,
   getDecimalValueFromGRPC,
-  getIntegerFromGRPC,
+  getIntegerValueFromGRPC,
   getStringValueFromGRPC,
   getValueFromGRPC,
   //
