@@ -5,7 +5,7 @@ ADempiere gRPC-API library to Node.js
 	<img src="https://camo.githubusercontent.com/911c5d54ded447403e56de3f96f332c06bceb8bd/68747470733a2f2f75706c6f61642e77696b696d656469612e6f72672f77696b6970656469612f636f6d6d6f6e732f622f62312f4164656d70696572652d6c6f676f2e706e67" style="text-align:center;" width="400" />
 </div>
 
-![node version](https://img.shields.io/badge/node-v10.x-blue.svg)
+![node version](https://img.shields.io/badge/node-v14.x-blue.svg)
 [![npm version](https://img.shields.io/npm/v/@adempiere/grpc-api.svg)](https://www.npmjs.com/package/@adempiere/grpc-api)
 [![License](https://img.shields.io/npm/l/@adempiere/grpc-api.svg)](https://github.com/adempiere/gRPC-API/blob/master/LICENSE)
 [![Downloads](https://img.shields.io/npm/dm/@adempiere/grpc-api.svg)](https://www.npmjs.com/package/@adempiere/grpc-api)
@@ -66,12 +66,13 @@ yarn stub
 ```
 
 Note to generate specific proto definition:
-* To access: `npm run stub:access`
+* To base bank statement match: `npm run stub:bank_statement_match`
 * To base data type: `npm run stub:base_data_type`
 * To business: `npm run stub:business`
 * To business partner: `npm run stub:business_partner`
 * To client: `npm run stub:client`
 * To core functionality: `npm run stub:core_functionality`
+* To dashboarding: `npm run stub:dashboarding`
 * To dictionary: `npm run stub:dictionary`
 * To enrollment: `npm run stub:enrollment`
 * To express movement: `npm run stub:express_movement`
@@ -88,6 +89,7 @@ Note to generate specific proto definition:
 * To payroll action notice: `npm run stub:payroll_action_notice`
 * To point of sales: `npm run stub:point_of_sales`
 * To product: `npm run stub:product`
+* To security: `npm run stub:security`
 * To time control: `npm run stub:time_control`
 * To time record: `npm run stub:time_record`
 * To workflow: `npm run stub:workflow`
@@ -135,8 +137,8 @@ grpc_tools_node_protoc \
 
 ### Output proto stub
 The result is generated on: `src/grpc/proto/` folder
-- `access_grpc_pb.js`
-- `access_pb.js`
+- `bank_statement_match_grpc_pb.js`
+- `bank_statement_match_pb.js`
 - `base_data_type_grpc_pb.js`
 - `base_data_type_pb.js`
 - `business_grpc_pb.js`
@@ -147,6 +149,8 @@ The result is generated on: `src/grpc/proto/` folder
 - `client_pb.js`
 - `core_functionality_grpc_pb.js`
 - `core_functionality_pb.js`
+- `dashboarding_grpc_pb.js`
+- `dashboarding_pb.js`
 - `dictionary_grpc_pb.js`
 - `dictionary_pb.js`
 - `enrollment_grpc_pb.js`
@@ -175,6 +179,8 @@ The result is generated on: `src/grpc/proto/` folder
 - `point_of_sales_pb.js`
 - `product_grpc_pb.js`
 - `product_pb.js`
+- `security_grpc_pb.js`
+- `security_pb.js`
 - `time_control_grpc_pb.js`
 - `time_control_pb.js`
 - `time_record_grpc_pb.js`

@@ -31,6 +31,28 @@ function deserialize_dashboarding_Chart(buffer_arg) {
   return proto_dashboarding_pb.Chart.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_dashboarding_ExistsWindowChartsRequest(arg) {
+  if (!(arg instanceof proto_dashboarding_pb.ExistsWindowChartsRequest)) {
+    throw new Error('Expected argument of type dashboarding.ExistsWindowChartsRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_dashboarding_ExistsWindowChartsRequest(buffer_arg) {
+  return proto_dashboarding_pb.ExistsWindowChartsRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_dashboarding_ExistsWindowChartsResponse(arg) {
+  if (!(arg instanceof proto_dashboarding_pb.ExistsWindowChartsResponse)) {
+    throw new Error('Expected argument of type dashboarding.ExistsWindowChartsResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_dashboarding_ExistsWindowChartsResponse(buffer_arg) {
+  return proto_dashboarding_pb.ExistsWindowChartsResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_dashboarding_GetChartRequest(arg) {
   if (!(arg instanceof proto_dashboarding_pb.GetChartRequest)) {
     throw new Error('Expected argument of type dashboarding.GetChartRequest');
@@ -238,7 +260,18 @@ listNotifications: {
     responseDeserialize: deserialize_dashboarding_ListNotificationsResponse,
   },
   // Custom Window Charts
-listWindowCharts: {
+existsWindowCharts: {
+    path: '/dashboarding.Dashboarding/ExistsWindowCharts',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_dashboarding_pb.ExistsWindowChartsRequest,
+    responseType: proto_dashboarding_pb.ExistsWindowChartsResponse,
+    requestSerialize: serialize_dashboarding_ExistsWindowChartsRequest,
+    requestDeserialize: deserialize_dashboarding_ExistsWindowChartsRequest,
+    responseSerialize: serialize_dashboarding_ExistsWindowChartsResponse,
+    responseDeserialize: deserialize_dashboarding_ExistsWindowChartsResponse,
+  },
+  listWindowCharts: {
     path: '/dashboarding.Dashboarding/ListWindowCharts',
     requestStream: false,
     responseStream: false,

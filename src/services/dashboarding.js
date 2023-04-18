@@ -201,7 +201,45 @@ class Dashboarding {
 
 
   /**
-   * List Window Charts
+   * Get Exists Window Charts
+   * @param {string} token Json Web Token
+   * @param {number} windowId window identifier
+   * @param {string} windowUuid window uuid
+   * @param {number} tabId tab identifier
+   * @param {string} token window uuid
+   */
+  existsWindowCharts({
+    token,
+    windowId,
+    windowUuid,
+    tabId,
+    tabUuid
+  }, callback) {
+    const { ExistsWindowChartsRequest } = this.stubFile;
+    const request = new ExistsWindowChartsRequest();
+
+    request.setWindowId(
+      getValidInteger(windowId)
+    );
+    request.setWindowUuid(windowUuid);
+    request.setTabId(
+      getValidInteger(tabId)
+    );
+    request.setTabUuid(tabUuid);
+
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getDashboardingService().existsWindowCharts(
+      request,
+      metadata,
+      callback
+    );
+  }
+
+  /**
+   * List Window Charts Definition
    * @param {string} token Json Web Token
    * @param {number} windowId window identifier
    * @param {string} windowUuid window uuid
@@ -246,7 +284,7 @@ class Dashboarding {
   }
 
   /**
-   * List Window Charts
+   * Get Window Metrics Data
    * @param {string} token Json Web Token
    * @param {number} id chart id
    * @param {string} uuid chart uuid

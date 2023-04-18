@@ -181,7 +181,8 @@ function getWindowChartFromGRPC(windowChartToConvert) {
     chart_type: windowChartToConvert.getChartType(),
     context_column_names: windowChartToConvert.getContextColumnNamesList().map(columnName => {
       return columnName;
-    })
+    }),
+    transformation_script: windowChartToConvert.getTransformationScript()
   };
 }
 
