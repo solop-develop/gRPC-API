@@ -161,7 +161,8 @@ class PointOfSales {
     pageToken
   }, callback) {
     const { ListProductPriceRequest } = this.stubFile;
-    const request = new ListProductPriceRequest()
+    const request = new ListProductPriceRequest();
+
     request.setSearchValue(searchValue)
     request.setPosUuid(posUuid)
     request.setBusinessPartnerUuid(businessPartnerUuid)
@@ -169,16 +170,18 @@ class PointOfSales {
     request.setWarehouseUuid(warehouseUuid)
     request.setValidFrom(validFrom)
     //
-    const { convertCriteriaToGRPC } = require('../../lib/convertValues.js');
+    const { getCriteriaToGRPC } = require('@adempiere/grpc-api/src/utils/baseDataTypeToGRPC.js');
     //  TODO: Add support to all parameters
-    request.setCriteria(convertCriteriaToGRPC({
-      tableName,
-      filters,
-      query,
-      whereClause,
-      orderByClause,
-      limit
-    }))
+    request.setCriteria(
+      getCriteriaToGRPC({
+        tableName,
+        filters,
+        query,
+        whereClause,
+        orderByClause,
+        limit
+      })
+    );
     request.setPageSize(pageSize)
     request.setPageToken(pageToken)
 
@@ -314,8 +317,7 @@ class PointOfSales {
     warehouseUuid
   }, callback) {
     const { CreateOrderLineRequest } = this.stubFile;
-    const request = new CreateOrderLineRequest()
-    const { getDecimalFromNumber } = require('../../lib/convertValues.js')
+    const request = new CreateOrderLineRequest();
 
     request.setPosUuid(posUuid);
     request.setOrderUuid(orderUuid)
@@ -323,14 +325,16 @@ class PointOfSales {
     request.setChargeUuid(chargeUuid)
     request.setResourceAssignmentUuid(resourceAssignmentUuid);
     request.setDescription(description)
-    if(quantity) {
-      request.setQuantity(getDecimalFromNumber(quantity))
+
+    const { getDecimalToGRPC } = require('@adempiere/grpc-api/src/utils/baseDataTypeToGRPC');
+    if (quantity) {
+      request.setQuantity(getDecimalToGRPC(quantity))
     }
-    if(price) {
-      request.setPrice(getDecimalFromNumber(price))
+    if (price) {
+      request.setPrice(getDecimalToGRPC(price))
     }
-    if(discountRate) {
-      request.setDiscountRate(getDecimalFromNumber(discountRate))
+    if (discountRate) {
+      request.setDiscountRate(getDecimalToGRPC(discountRate))
     }
     if(warehouseUuid) {
       request.setWarehouseUuid(warehouseUuid)
@@ -387,17 +391,24 @@ class PointOfSales {
     salesRepresentativeUuid
   }, callback) {
     const { UpdateOrderRequest } = this.stubFile;
-    const { getDecimalFromNumber } = require('../../lib/convertValues.js')
-    const request = new UpdateOrderRequest()
+    const request = new UpdateOrderRequest();
     request.setOrderUuid(orderUuid)
     request.setCampaignUuid(campaignUuid)
     request.setPosUuid(posUuid)
     request.setCustomerUuid(customerUuid)
     request.setDocumentTypeUuid(documentTypeUuid)
     request.setDescription(description)
-    request.setDiscountRate(getDecimalFromNumber(discountRate))
-    request.setDiscountRateOff(getDecimalFromNumber(discountRateOff))
-    request.setDiscountAmountOff(getDecimalFromNumber(discountAmountOff))
+
+    const { getDecimalToGRPC } = require('@adempiere/grpc-api/src/utils/baseDataTypeToGRPC');
+    request.setDiscountRate(
+      getDecimalToGRPC(discountRate)
+    );
+    request.setDiscountRateOff(
+      getDecimalToGRPC(discountRateOff)
+    );
+    request.setDiscountAmountOff(
+      getDecimalToGRPC(discountAmountOff)
+    );
     request.setSalesRepresentativeUuid(salesRepresentativeUuid);
 
     if(warehouseUuid) {
@@ -432,15 +443,23 @@ class PointOfSales {
     warehouseUuid
   }, callback) {
     const { UpdateOrderLineRequest } = this.stubFile;
-    const { getDecimalFromNumber } = require('@adempiere/grpc-api/lib/convertValues.js');
     const request = new UpdateOrderLineRequest();
     
     request.setPosUuid(posUuid);
     request.setOrderLineUuid(orderLineUuid)
     request.setDescription(description)
-    request.setQuantity(getDecimalFromNumber(quantity))
-    request.setPrice(getDecimalFromNumber(price))
-    request.setDiscountRate(getDecimalFromNumber(discountRate))
+
+    const { getDecimalToGRPC } = require('@adempiere/grpc-api/src/utils/baseDataTypeToGRPC');
+    request.setQuantity(
+      getDecimalToGRPC(quantity)
+    );
+    request.setPrice(
+      getDecimalToGRPC(price)
+    );
+    request.setDiscountRate(
+      getDecimalToGRPC(discountRate)
+    );
+
     request.setWarehouseUuid(warehouseUuid)
     request.setIsAddQuantity(isAddQuantity)
     request.setUomUuid(uomUuid);
@@ -507,24 +526,33 @@ class PointOfSales {
     pageToken
   }, callback) {
     const { ListOrdersRequest } = this.stubFile;
-    const request = new ListOrdersRequest()
-    const { convertCriteriaToGRPC, getDecimalFromNumber } = require('../../lib/convertValues.js')
-    request.setCriteria(convertCriteriaToGRPC({
-      tableName,
-      filters,
-      query,
-      whereClause,
-      orderByClause,
-      limit
-    }))
+    const request = new ListOrdersRequest();
+
+    const { getCriteriaToGRPC } = require('@adempiere/grpc-api/src/utils/baseDataTypeToGRPC.js');
+    request.setCriteria(
+      getCriteriaToGRPC({
+        tableName,
+        filters,
+        query,
+        whereClause,
+        orderByClause,
+        limit
+      })
+    );
     request.setPosUuid(posUuid)
     request.setDocumentNo(documentNo)
     request.setBusinessPartnerUuid(businessPartnerUuid)
-    if(grandTotal) {
-      request.setGrandTotal(getDecimalFromNumber(grandTotal))
+
+    const { getDecimalToGRPC } = require('@adempiere/grpc-api/src/utils/baseDataTypeToGRPC');
+    if (grandTotal) {
+      request.setGrandTotal(
+        getDecimalToGRPC(grandTotal)
+      );
     }
-    if(openAmount) {
-      request.setOpenAmount(getDecimalFromNumber(openAmount))
+    if (openAmount) {
+      request.setOpenAmount(
+        getDecimalToGRPC(openAmount)
+      );
     }
     //  Date Order From
     if (dateOrderedFrom) {
@@ -618,15 +646,17 @@ class PointOfSales {
     quantity
   }, callback) {
     const { CreateShipmentLineRequest } = this.stubFile;
-    const request = new CreateShipmentLineRequest()
-    const { getDecimalFromNumber } = require('../../lib/convertValues.js')
+    const request = new CreateShipmentLineRequest();
 
     request.setPosUuid(posUuid);
     request.setShipmentUuid(shipmentUuid)
     request.setOrderLineUuid(orderLineUuid)
     request.setDescription(description)
-    if(quantity) {
-      request.setQuantity(getDecimalFromNumber(quantity))
+    if (quantity) {
+      const { getDecimalToGRPC } = require('@adempiere/grpc-api/src/utils/baseDataTypeToGRPC');
+      request.setQuantity(
+        getDecimalToGRPC(quantity)
+      );
     }
 
     const metadata = getMetadata({
@@ -763,8 +793,7 @@ class PointOfSales {
     referenceBankAccountUuid
   }, callback) {
     const { CreatePaymentRequest } = this.stubFile;
-    const { getDecimalFromNumber } = require('@adempiere/grpc-api/lib/convertValues.js');
-    const request = new CreatePaymentRequest()
+    const request = new CreatePaymentRequest();
 
     request.setPosUuid(posUuid)
     if(orderUuid) {
@@ -797,8 +826,11 @@ class PointOfSales {
     if (currencyUuid) {
       request.setCurrencyUuid(currencyUuid)
     }
-    if(amount) {
-      request.setAmount(getDecimalFromNumber(amount))
+    if (amount) {
+      const { getDecimalToGRPC } = require('@adempiere/grpc-api/src/utils/baseDataTypeToGRPC');
+      request.setAmount(
+        getDecimalToGRPC(amount)
+      );
     }
     //  Date of Payment
     if (paymentDate) {
@@ -841,8 +873,8 @@ class PointOfSales {
     paymentMethodUuid
   }, callback) {
     const { CreatePaymentReferenceRequest } = this.stubFile;
-    const { getDecimalFromNumber } = require('../../lib/convertValues.js')
-    const request = new CreatePaymentReferenceRequest()
+    const request = new CreatePaymentReferenceRequest();
+
     request.setPosUuid(posUuid)
     request.setOrderUuid(orderUuid)
     if(salesRepresentativeUuid) {
@@ -867,11 +899,17 @@ class PointOfSales {
     if (currencyUuid) {
       request.setCurrencyUuid(currencyUuid)
     }
-    if(amount) {
-      request.setAmount(getDecimalFromNumber(amount))
+
+    const { getDecimalToGRPC } = require('@adempiere/grpc-api/src/utils/baseDataTypeToGRPC');
+    if (amount) {
+      request.setAmount(
+        getDecimalToGRPC(amount)
+      );
     }
-    if(sourceAmount) {
-      request.setSourceAmount(getDecimalFromNumber(sourceAmount))
+    if (sourceAmount) {
+      request.setSourceAmount(
+        getDecimalToGRPC(sourceAmount)
+      );
     }
     request.setIsReceipt(isReceipt)
     //  Date of Payment
@@ -909,7 +947,6 @@ class PointOfSales {
     referenceBankAccountUuid
   }, callback) {
     const { UpdatePaymentRequest } = this.stubFile;
-    const { getDecimalFromNumber } = require('@adempiere/grpc-api/lib/convertValues.js');
     const request = new UpdatePaymentRequest();
 
     request.setPosUuid(posUuid);
@@ -929,8 +966,11 @@ class PointOfSales {
     if(paymentMethodUuid) {
       request.setPaymentMethodUuid(paymentMethodUuid)
     }
-    if(amount) {
-      request.setAmount(getDecimalFromNumber(amount))
+    if (amount) {
+      const { getDecimalToGRPC } = require('@adempiere/grpc-api/src/utils/baseDataTypeToGRPC');
+      request.setAmount(
+        getDecimalToGRPC(amount)
+      );
     }
     //  Date of Payment
     if (paymentDate) {
@@ -1015,8 +1055,8 @@ class PointOfSales {
     payments
   }, callback) {
     const { CashOpeningRequest, CreatePaymentRequest } = this.stubFile;
-    const { convertValueToGRPC, getDecimalFromNumber } = require('../../lib/convertValues.js')
-    const request = new CashOpeningRequest()
+    const request = new CashOpeningRequest();
+
     request.setPosUuid(posUuid)
     request.setCollectingAgentUuid(collectingAgentUuid)
     request.setDescription(description)
@@ -1052,13 +1092,19 @@ class PointOfSales {
       if (payment.currencyUuid) {
         paymentRequest.setCurrencyUuid(payment.currencyUuid)
       }
-      if(payment.amount) {
-        paymentRequest.setAmount(getDecimalFromNumber(payment.amount))
+      if (payment.amount) {
+        const { getDecimalToGRPC } = require('@adempiere/grpc-api/src/utils/baseDataTypeToGRPC');
+        paymentRequest.setAmount(
+          getDecimalToGRPC(payment.amount)
+        );
       }
       if (payment.paymentDate) {
-        paymentRequest.setPaymentDate(convertValueToGRPC({
-          value: payment.paymentDate
-        }))
+        const { getValueToGRPC } = require('@adempiere/grpc-api/src/utils/baseDataTypeToGRPC.js');
+        paymentRequest.setPaymentDate(
+          getValueToGRPC({
+            value: payment.paymentDate
+          })
+        );
       }
       request.addPayments(paymentRequest)
     })
@@ -1083,8 +1129,8 @@ class PointOfSales {
     payments
   }, callback) {
     const { CashWithdrawalRequest, CreatePaymentRequest } = this.stubFile;
-    const { convertValueToGRPC, getDecimalFromNumber } = require('../../lib/convertValues.js')
-    const request = new CashWithdrawalRequest()
+    const request = new CashWithdrawalRequest();
+
     request.setPosUuid(posUuid)
     request.setCollectingAgentUuid(collectingAgentUuid)
     request.setDescription(description)
@@ -1120,13 +1166,19 @@ class PointOfSales {
       if (payment.currencyUuid) {
         paymentRequest.setCurrencyUuid(payment.currencyUuid)
       }
-      if(payment.amount) {
-        paymentRequest.setAmount(getDecimalFromNumber(payment.amount))
+      if (payment.amount) {
+        const { getDecimalToGRPC } = require('@adempiere/grpc-api/src/utils/baseDataTypeToGRPC');
+        paymentRequest.setAmount(
+          getDecimalToGRPC(payment.amount)
+        );
       }
       if (payment.paymentDate) {
-        paymentRequest.setPaymentDate(convertValueToGRPC({
-          value: payment.paymentDate
-        }))
+        const { getValueToGRPC } = require('@adempiere/grpc-api/src/utils/baseDataTypeToGRPC.js');
+        paymentRequest.setPaymentDate(
+          getValueToGRPC({
+            value: payment.paymentDate
+          })
+        );
       }
       request.addPayments(paymentRequest)
     })
@@ -1253,16 +1305,19 @@ class PointOfSales {
     pageToken
   }, callback) {
     const { ListPaymentsRequest } = this.stubFile;
-    const { convertCriteriaToGRPC } = require('../../lib/convertValues.js')
-    const request = new ListPaymentsRequest()
-    request.setCriteria(convertCriteriaToGRPC({
-      tableName,
-      filters,
-      query,
-      whereClause,
-      orderByClause,
-      limit
-    }))
+    const request = new ListPaymentsRequest();
+
+    const { getCriteriaToGRPC } = require('@adempiere/grpc-api/src/utils/baseDataTypeToGRPC.js');
+    request.setCriteria(
+      getCriteriaToGRPC({
+        tableName,
+        filters,
+        query,
+        whereClause,
+        orderByClause,
+        limit
+      })
+    );
     if (posUuid) {
       request.setPosUuid(posUuid)
     }
@@ -1294,8 +1349,8 @@ class PointOfSales {
     payments
   }, callback) {
     const { CreatePaymentRequest, ProcessOrderRequest } = this.stubFile;
-    const { convertValueToGRPC, getDecimalFromNumber } = require('../../lib/convertValues.js')
-    const request = new ProcessOrderRequest()
+    const request = new ProcessOrderRequest();
+
     request.setPosUuid(posUuid)
     request.setOrderUuid(orderUuid)
     request.setIsOpenRefund(isOpenRefund)
@@ -1331,13 +1386,19 @@ class PointOfSales {
       if (payment.currencyUuid) {
         paymentRequest.setCurrencyUuid(payment.currencyUuid)
       }
-      if(payment.amount) {
-        paymentRequest.setAmount(getDecimalFromNumber(payment.amount))
+      if (payment.amount) {
+        const { getDecimalToGRPC } = require('@adempiere/grpc-api/src/utils/baseDataTypeToGRPC');
+        paymentRequest.setAmount(
+          getDecimalToGRPC(payment.amount)
+        );
       }
       if (payment.paymentDate) {
-        paymentRequest.setPaymentDate(convertValueToGRPC({
-          value: payment.paymentDate
-        }))
+        const { getValueToGRPC } = require('@adempiere/grpc-api/src/utils/baseDataTypeToGRPC.js');
+        paymentRequest.setPaymentDate(
+          getValueToGRPC({
+            value: payment.paymentDate
+          })
+        );
       }
       request.addPayments(paymentRequest)
     })
@@ -1385,12 +1446,14 @@ class PointOfSales {
     requestedAmount
   }, callback) {
     const { ValidatePINRequest } = this.stubFile;
-    const { getDecimalFromNumber } = require('../../lib/convertValues.js')
-    const request = new ValidatePINRequest()
+    const request = new ValidatePINRequest();
 
     request.setRequestedAccess(requestedAccess);
-    if(requestedAmount) {
-      request.setRequestedAmount(getDecimalFromNumber(requestedAmount))
+    if (requestedAmount) {
+      const { getDecimalToGRPC } = require('@adempiere/grpc-api/src/utils/baseDataTypeToGRPC');
+      request.setRequestedAmount(
+        getDecimalToGRPC(requestedAmount)
+      );
     }
     request.setPin(pin)
     request.setPosUuid(posUuid)
@@ -1552,8 +1615,9 @@ class PointOfSales {
     additionalAttributes
   }, callback) {
     const { CreateCustomerRequest, AddressRequest } = this.stubFile;
-    const { convertParameterToGRPC } = require('../../lib/convertValues.js');
-    const request = new CreateCustomerRequest()
+    const { getKeyValueToGRPC } = require('@adempiere/grpc-api/src/utils/baseDataTypeToGRPC.js');
+    const request = new CreateCustomerRequest();
+
     request.setValue(value)
     request.setTaxId(taxId)
     request.setDuns(duns)
@@ -1563,13 +1627,15 @@ class PointOfSales {
     request.setDescription(description)
     request.setPosUuid(posUuid)
     request.setBusinessPartnerGroupUuid(businessPartnerGroupUuid)
-    if(additionalAttributes) {
+    if (additionalAttributes) {
       additionalAttributes.forEach(attribute => {
-        request.addAdditionalAttributes(convertParameterToGRPC({
-          columnName: attribute.key,
-          value: attribute.value
-        }))
-      })
+        request.addAdditionalAttributes(
+          getKeyValueToGRPC({
+            columnName: attribute.key,
+            value: attribute.value
+          })
+        );
+      });
     }
     if(addresses) {
       addresses.forEach(address => {
@@ -1592,13 +1658,16 @@ class PointOfSales {
         addressRequest.setCountryUuid(address.countryUuid)
         addressRequest.setIsDefaultBilling(address.isDefaultBilling)
         addressRequest.setIsDefaultShipping(address.isDefaultShipping)
-        if(address.additionalAttributes) {
+
+        if (address.additionalAttributes) {
           address.additionalAttributes.forEach(attribute => {
-            addressRequest.addAdditionalAttributes(convertParameterToGRPC({
-              columnName: attribute.key,
-              value: attribute.value
-            }))
-          })
+            addressRequest.addAdditionalAttributes(
+              getKeyValueToGRPC({
+                columnName: attribute.key,
+                value: attribute.value
+              })
+            );
+          });
         }
         request.addAddresses(addressRequest)
       })
@@ -1631,8 +1700,8 @@ class PointOfSales {
     additionalAttributes
   }, callback) {
     const { UpdateCustomerRequest, AddressRequest } = this.stubFile;
-    const { convertParameterToGRPC } = require('../../lib/convertValues.js');
-    const request = new UpdateCustomerRequest()
+    const { getKeyValueToGRPC } = require('@adempiere/grpc-api/src/utils/baseDataTypeToGRPC.js');
+    const request = new UpdateCustomerRequest();
 
     request.setPosUuid(posUuid);
     request.setUuid(uuid)
@@ -1645,11 +1714,13 @@ class PointOfSales {
     request.setDescription(description)
     if(additionalAttributes) {
       additionalAttributes.forEach(attribute => {
-        request.addAdditionalAttributes(convertParameterToGRPC({
-          columnName: attribute.key,
-          value: attribute.value
-        }))
-      })
+        request.addAdditionalAttributes(
+          getKeyValueToGRPC({
+            columnName: attribute.key,
+            value: attribute.value
+          })
+        );
+      });
     }
     if(addresses) {
       addresses.forEach(address => {
@@ -1675,10 +1746,12 @@ class PointOfSales {
         addressRequest.setUuid(address.uuid)
         if(address.additionalAttributes) {
           address.additionalAttributes.forEach(attribute => {
-            addressRequest.addAdditionalAttributes(convertParameterToGRPC({
-              columnName: attribute.key,
-              value: attribute.value
-            }))
+            addressRequest.addAdditionalAttributes(
+              getKeyValueToGRPC({
+                columnName: attribute.key,
+                value: attribute.value
+              })
+            );
           })
         }
         request.addAddresses(addressRequest)

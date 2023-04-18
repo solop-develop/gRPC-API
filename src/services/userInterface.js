@@ -102,8 +102,8 @@ class UserInterface {
 
     // set value as default value
     if (!isEmptyValue(value)) {
-    const { convertValueToGRPC } = require('@adempiere/grpc-api/lib/convertValues.js');
-      const convertedValue = convertValueToGRPC({
+      const { getValueToGRPC } = require('@adempiere/grpc-api/src/utils/baseDataTypeToGRPC.js');
+      const convertedValue = getValueToGRPC({
         value
       });
       request.setValue(convertedValue);
@@ -499,7 +499,6 @@ class UserInterface {
     contextAttributes
   }, callback) {
     const { RunCalloutRequest } = this.stubFile;
-    const { convertValueToGRPC } = require('@adempiere/grpc-api/lib/convertValues.js');
     const request = new RunCalloutRequest();
 
     request.setWindowNo(windowNo);
@@ -509,14 +508,15 @@ class UserInterface {
     request.setCallout(callout);
     request.setColumnName(columnName);
 
+    const { getValueToGRPC } = require('@adempiere/grpc-api/src/utils/baseDataTypeToGRPC.js');
     request.setOldValue(
-      convertValueToGRPC({
+      getValueToGRPC({
         value: oldValue,
         valueType
       })
     );
     request.setValue(
-      convertValueToGRPC({
+      getValueToGRPC({
         value,
         valueType
       })

@@ -1,6 +1,6 @@
 /*************************************************************************************
  * Product: ADempiere gRPC User Interface Client Convert Utils                       *
- * Copyright (C) 2012-2020 E.R.P. Consultores y Asociados, C.A.                      *
+ * Copyright (C) 2012-2023 E.R.P. Consultores y Asociados, C.A.                      *
  * Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                      *
  * This program is free software: you can redistribute it and/or modify              *
  * it under the terms of the GNU General Public License as published by              *
@@ -16,6 +16,23 @@
 
 const stubFile = require('@adempiere/grpc-api/src/grpc/proto/business_pb.js');
 
+function getLookupItemFromGRPC(lookupItemToConvert) {
+  if (!lookupItemToConvert) {
+    return undefined;
+  }
+  const { getValuesMapFromGRPC } = require('@adempiere/grpc-api/src/utils/valueUtilsFromGRPC');
+
+  return {
+    id: lookupItemToConvert.getId(),
+    uuid: lookupItemToConvert.getUuid(),
+    table_name: lookupItemToConvert.getTableName(),
+    values: getValuesMapFromGRPC({
+      mapToConvert: lookupItemToConvert.getValuesMap(),
+      returnType: 'object'
+    })
+  };
+}
+
 function getMailTemplateFromGRPC(mailTemplateToConvert) {
   if (!mailTemplateToConvert) {
     return undefined;
@@ -30,5 +47,6 @@ function getMailTemplateFromGRPC(mailTemplateToConvert) {
 }
 
 module.exports = {
+  getLookupItemFromGRPC,
   getMailTemplateFromGRPC
 };
