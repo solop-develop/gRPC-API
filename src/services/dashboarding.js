@@ -278,7 +278,6 @@ class Dashboarding {
     );
     request.setRecordUuid(recordUuid);
 
-
     if (!isEmptyValue(contextAttributes)) {
       const { getTypeOfValue } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
       const { getKeyValueToGRPC } = require('@adempiere/grpc-api/src/utils/baseDataTypeToGRPC.js');
