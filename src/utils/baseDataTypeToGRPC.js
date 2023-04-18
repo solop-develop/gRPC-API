@@ -87,7 +87,8 @@ function getValueIntegerToGRPC(value) {
   const valueInstance = new Value();
 
   valueInstance.setValueType(ValueType.INTEGER);
-  if (!valueInstance.isEmptyValue(value) && !Number.isNaN(value)) {
+  const { isEmptyValue } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
+  if (!isEmptyValue(value) && !Number.isNaN(value)) {
     valueInstance.setIntValue(Number(value));
   }
   return valueInstance;
