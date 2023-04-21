@@ -146,14 +146,14 @@ class Dashboarding {
     );
   }
 
-  //  Get Chart Data
-  getChart({
+  //  Get Metrics Data
+  getMetrics({
     token,
     uuid,
     id
   }, callback) {
-    const { GetChartRequest } = this.stubFile;
-    const request = new GetChartRequest();
+    const { GetMetricsRequest } = this.stubFile;
+    const request = new GetMetricsRequest();
 
     request.setUuid(uuid);
     request.setId(id);
@@ -162,7 +162,7 @@ class Dashboarding {
       token
     });
 
-    this.getDashboardingService().getChart(
+    this.getDashboardingService().getMetrics(
       request,
       metadata,
       callback
@@ -201,22 +201,22 @@ class Dashboarding {
 
 
   /**
-   * Get Exists Window Charts
+   * Get Exists Window Dashboards
    * @param {string} token Json Web Token
    * @param {number} windowId window identifier
    * @param {string} windowUuid window uuid
    * @param {number} tabId tab identifier
    * @param {string} token window uuid
    */
-  existsWindowCharts({
+  existsWindowDashboards({
     token,
     windowId,
     windowUuid,
     tabId,
     tabUuid
   }, callback) {
-    const { ExistsWindowChartsRequest } = this.stubFile;
-    const request = new ExistsWindowChartsRequest();
+    const { ExistsWindowDashboardsRequest } = this.stubFile;
+    const request = new ExistsWindowDashboardsRequest();
 
     request.setWindowId(
       getValidInteger(windowId)
@@ -231,7 +231,7 @@ class Dashboarding {
       token
     });
 
-    this.getDashboardingService().existsWindowCharts(
+    this.getDashboardingService().existsWindowDashboards(
       request,
       metadata,
       callback
@@ -239,14 +239,14 @@ class Dashboarding {
   }
 
   /**
-   * List Window Charts Definition
+   * List Window Dashboards Definition
    * @param {string} token Json Web Token
    * @param {number} windowId window identifier
    * @param {string} windowUuid window uuid
    * @param {number} tabId tab identifier
    * @param {string} token window uuid
    */
-  listWindowCharts({
+  listWindowDashboards({
     token,
     windowId,
     windowUuid,
@@ -256,8 +256,8 @@ class Dashboarding {
     pageSize,
     pageToken
   }, callback) {
-    const { ListWindowChartsRequest } = this.stubFile;
-    const request = new ListWindowChartsRequest();
+    const { ListWindowDashboardsRequest } = this.stubFile;
+    const request = new ListWindowDashboardsRequest();
 
     request.setWindowId(
       getValidInteger(windowId)
@@ -276,7 +276,7 @@ class Dashboarding {
       token
     });
 
-    this.getDashboardingService().listWindowCharts(
+    this.getDashboardingService().listWindowDashboards(
       request,
       metadata,
       callback
