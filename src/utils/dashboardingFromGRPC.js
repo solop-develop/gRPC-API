@@ -58,8 +58,21 @@ function getChartSerieFromGRPC(serie) {
   };
 }
 
-function getChartFromGRPC(chart) {
-  if (!chart) {
+function getColorSchemaFromGRPC(colorSchemaToConvert) {
+  if (!colorSchemaToConvert) {
+    return undefined;
+  }
+  return {
+    name: colorSchemaToConvert.getName(),
+    color: colorSchemaToConvert.getColor(),
+    percent: getDecimalFromGRPC(
+      colorSchemaToConvert.getPercent()
+    )
+  };
+}
+
+function getMetricsFromGRPC(metricsToConvert) {
+  if (!metricsToConvert) {
     return undefined;
   }
   const {
@@ -67,26 +80,20 @@ function getChartFromGRPC(chart) {
   } = require('@adempiere/grpc-api/src/utils/baseDataTypeFromGRPC.js');
 
   return {
-    uuid: chart.getUuid(),
-    id: chart.getId(),
-    name: chart.getName(),
-    description: chart.getDescription(),
-    x_axis_label: chart.getXAxisLabel(),
-    y_axis_label: chart.getYAxisLabel(),
+    uuid: metricsToConvert.getUuid(),
+    id: metricsToConvert.getId(),
+    name: metricsToConvert.getName(),
+    description: metricsToConvert.getDescription(),
+    x_axis_label: metricsToConvert.getXAxisLabel(),
+    y_axis_label: metricsToConvert.getYAxisLabel(),
     measure_target: getDecimalFromGRPC(
-      chart.getMeasureTarget()
+      metricsToConvert.getMeasureTarget()
     ),
-    series: chart.getSeriesList().map(serie => {
+    series: metricsToConvert.getSeriesList().map(serie => {
       return getChartSerieFromGRPC(serie);
     }),
-    color_schemas: chart.getColorSchemasList().map(colorSchema => {
-      return {
-        name: colorSchema.getName(),
-        color: colorSchema.getColor(),
-        percent: getDecimalFromGRPC(
-          colorSchema.getPercent()
-        )
-      }
+    color_schemas: metricsToConvert.getColorSchemasList().map(colorSchema => {
+      return getColorSchemaFromGRPC(colorSchema);
     })
   };
 }
@@ -165,7 +172,7 @@ function getNotificationFromGRPC(notificationToConvert) {
   };
 }
 
-function getWindowChartFromGRPC(windowChartToConvert) {
+function getWindowDashboardFromGRPC(windowChartToConvert) {
   if (!windowChartToConvert) {
     return undefined;
   }
@@ -207,14 +214,8 @@ function getWindowMetricsFromGRPC(windowMetricsToConvert) {
     series: windowMetricsToConvert.getSeriesList().map(serie => {
       return getChartSerieFromGRPC(serie);
     }),
-    color_schemas: windowMetricsToConvert.getColorSchemasList().map(colorSchema => {
-      return {
-        name: colorSchema.getName(),
-        color: colorSchema.getColor(),
-        percent: getDecimalFromGRPC(
-          colorSchema.getPercent()
-        )
-      };
+    color_schemas: metricsToConvert.getColorSchemasList().map(colorSchema => {
+      return getColorSchemaFromGRPC(colorSchema);
     })
   };
 }
@@ -223,10 +224,11 @@ module.exports = {
   getAction,
   getDashboardFromGRPC,
   getChartSerieFromGRPC,
-  getChartFromGRPC,
+  getColorSchemaFromGRPC,
+  getMetricsFromGRPC,
   getPendingDocumentFromGRPC,
   getFavoriteFromGRPC,
   getNotificationFromGRPC,
-  getWindowChartFromGRPC,
+  getWindowDashboardFromGRPC,
   getWindowMetricsFromGRPC
 };

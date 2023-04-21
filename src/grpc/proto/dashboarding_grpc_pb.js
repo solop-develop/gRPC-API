@@ -20,48 +20,37 @@ var grpc = require('@grpc/grpc-js');
 var proto_dashboarding_pb = require('../proto/dashboarding_pb.js');
 var proto_base_data_type_pb = require('../proto/base_data_type_pb.js');
 
-function serialize_dashboarding_Chart(arg) {
-  if (!(arg instanceof proto_dashboarding_pb.Chart)) {
-    throw new Error('Expected argument of type dashboarding.Chart');
+function serialize_dashboarding_ExistsWindowDashboardsRequest(arg) {
+  if (!(arg instanceof proto_dashboarding_pb.ExistsWindowDashboardsRequest)) {
+    throw new Error('Expected argument of type dashboarding.ExistsWindowDashboardsRequest');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_dashboarding_Chart(buffer_arg) {
-  return proto_dashboarding_pb.Chart.deserializeBinary(new Uint8Array(buffer_arg));
+function deserialize_dashboarding_ExistsWindowDashboardsRequest(buffer_arg) {
+  return proto_dashboarding_pb.ExistsWindowDashboardsRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_dashboarding_ExistsWindowChartsRequest(arg) {
-  if (!(arg instanceof proto_dashboarding_pb.ExistsWindowChartsRequest)) {
-    throw new Error('Expected argument of type dashboarding.ExistsWindowChartsRequest');
+function serialize_dashboarding_ExistsWindowDashboardsResponse(arg) {
+  if (!(arg instanceof proto_dashboarding_pb.ExistsWindowDashboardsResponse)) {
+    throw new Error('Expected argument of type dashboarding.ExistsWindowDashboardsResponse');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_dashboarding_ExistsWindowChartsRequest(buffer_arg) {
-  return proto_dashboarding_pb.ExistsWindowChartsRequest.deserializeBinary(new Uint8Array(buffer_arg));
+function deserialize_dashboarding_ExistsWindowDashboardsResponse(buffer_arg) {
+  return proto_dashboarding_pb.ExistsWindowDashboardsResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_dashboarding_ExistsWindowChartsResponse(arg) {
-  if (!(arg instanceof proto_dashboarding_pb.ExistsWindowChartsResponse)) {
-    throw new Error('Expected argument of type dashboarding.ExistsWindowChartsResponse');
+function serialize_dashboarding_GetMetricsRequest(arg) {
+  if (!(arg instanceof proto_dashboarding_pb.GetMetricsRequest)) {
+    throw new Error('Expected argument of type dashboarding.GetMetricsRequest');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_dashboarding_ExistsWindowChartsResponse(buffer_arg) {
-  return proto_dashboarding_pb.ExistsWindowChartsResponse.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
-function serialize_dashboarding_GetChartRequest(arg) {
-  if (!(arg instanceof proto_dashboarding_pb.GetChartRequest)) {
-    throw new Error('Expected argument of type dashboarding.GetChartRequest');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_dashboarding_GetChartRequest(buffer_arg) {
-  return proto_dashboarding_pb.GetChartRequest.deserializeBinary(new Uint8Array(buffer_arg));
+function deserialize_dashboarding_GetMetricsRequest(buffer_arg) {
+  return proto_dashboarding_pb.GetMetricsRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_dashboarding_GetWindowMetricsRequest(arg) {
@@ -163,26 +152,37 @@ function deserialize_dashboarding_ListPendingDocumentsResponse(buffer_arg) {
   return proto_dashboarding_pb.ListPendingDocumentsResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_dashboarding_ListWindowChartsRequest(arg) {
-  if (!(arg instanceof proto_dashboarding_pb.ListWindowChartsRequest)) {
-    throw new Error('Expected argument of type dashboarding.ListWindowChartsRequest');
+function serialize_dashboarding_ListWindowDashboardsRequest(arg) {
+  if (!(arg instanceof proto_dashboarding_pb.ListWindowDashboardsRequest)) {
+    throw new Error('Expected argument of type dashboarding.ListWindowDashboardsRequest');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_dashboarding_ListWindowChartsRequest(buffer_arg) {
-  return proto_dashboarding_pb.ListWindowChartsRequest.deserializeBinary(new Uint8Array(buffer_arg));
+function deserialize_dashboarding_ListWindowDashboardsRequest(buffer_arg) {
+  return proto_dashboarding_pb.ListWindowDashboardsRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_dashboarding_ListWindowChartsResponse(arg) {
-  if (!(arg instanceof proto_dashboarding_pb.ListWindowChartsResponse)) {
-    throw new Error('Expected argument of type dashboarding.ListWindowChartsResponse');
+function serialize_dashboarding_ListWindowDashboardsResponse(arg) {
+  if (!(arg instanceof proto_dashboarding_pb.ListWindowDashboardsResponse)) {
+    throw new Error('Expected argument of type dashboarding.ListWindowDashboardsResponse');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_dashboarding_ListWindowChartsResponse(buffer_arg) {
-  return proto_dashboarding_pb.ListWindowChartsResponse.deserializeBinary(new Uint8Array(buffer_arg));
+function deserialize_dashboarding_ListWindowDashboardsResponse(buffer_arg) {
+  return proto_dashboarding_pb.ListWindowDashboardsResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_dashboarding_Metrics(arg) {
+  if (!(arg instanceof proto_dashboarding_pb.Metrics)) {
+    throw new Error('Expected argument of type dashboarding.Metrics');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_dashboarding_Metrics(buffer_arg) {
+  return proto_dashboarding_pb.Metrics.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_dashboarding_WindowMetrics(arg) {
@@ -235,19 +235,19 @@ listPendingDocuments: {
     responseSerialize: serialize_dashboarding_ListPendingDocumentsResponse,
     responseDeserialize: deserialize_dashboarding_ListPendingDocumentsResponse,
   },
-  // 	Get Chart
-getChart: {
-    path: '/dashboarding.Dashboarding/GetChart',
+  // 	Get Metrics
+getMetrics: {
+    path: '/dashboarding.Dashboarding/GetMetrics',
     requestStream: false,
     responseStream: false,
-    requestType: proto_dashboarding_pb.GetChartRequest,
-    responseType: proto_dashboarding_pb.Chart,
-    requestSerialize: serialize_dashboarding_GetChartRequest,
-    requestDeserialize: deserialize_dashboarding_GetChartRequest,
-    responseSerialize: serialize_dashboarding_Chart,
-    responseDeserialize: deserialize_dashboarding_Chart,
+    requestType: proto_dashboarding_pb.GetMetricsRequest,
+    responseType: proto_dashboarding_pb.Metrics,
+    requestSerialize: serialize_dashboarding_GetMetricsRequest,
+    requestDeserialize: deserialize_dashboarding_GetMetricsRequest,
+    responseSerialize: serialize_dashboarding_Metrics,
+    responseDeserialize: deserialize_dashboarding_Metrics,
   },
-  // Notification
+  // NotificationWindowChart
 listNotifications: {
     path: '/dashboarding.Dashboarding/ListNotifications',
     requestStream: false,
@@ -259,28 +259,28 @@ listNotifications: {
     responseSerialize: serialize_dashboarding_ListNotificationsResponse,
     responseDeserialize: deserialize_dashboarding_ListNotificationsResponse,
   },
-  // Custom Window Charts
-existsWindowCharts: {
-    path: '/dashboarding.Dashboarding/ExistsWindowCharts',
+  // Custom Window Metrics
+existsWindowDashboards: {
+    path: '/dashboarding.Dashboarding/ExistsWindowDashboards',
     requestStream: false,
     responseStream: false,
-    requestType: proto_dashboarding_pb.ExistsWindowChartsRequest,
-    responseType: proto_dashboarding_pb.ExistsWindowChartsResponse,
-    requestSerialize: serialize_dashboarding_ExistsWindowChartsRequest,
-    requestDeserialize: deserialize_dashboarding_ExistsWindowChartsRequest,
-    responseSerialize: serialize_dashboarding_ExistsWindowChartsResponse,
-    responseDeserialize: deserialize_dashboarding_ExistsWindowChartsResponse,
+    requestType: proto_dashboarding_pb.ExistsWindowDashboardsRequest,
+    responseType: proto_dashboarding_pb.ExistsWindowDashboardsResponse,
+    requestSerialize: serialize_dashboarding_ExistsWindowDashboardsRequest,
+    requestDeserialize: deserialize_dashboarding_ExistsWindowDashboardsRequest,
+    responseSerialize: serialize_dashboarding_ExistsWindowDashboardsResponse,
+    responseDeserialize: deserialize_dashboarding_ExistsWindowDashboardsResponse,
   },
-  listWindowCharts: {
-    path: '/dashboarding.Dashboarding/ListWindowCharts',
+  listWindowDashboards: {
+    path: '/dashboarding.Dashboarding/ListWindowDashboards',
     requestStream: false,
     responseStream: false,
-    requestType: proto_dashboarding_pb.ListWindowChartsRequest,
-    responseType: proto_dashboarding_pb.ListWindowChartsResponse,
-    requestSerialize: serialize_dashboarding_ListWindowChartsRequest,
-    requestDeserialize: deserialize_dashboarding_ListWindowChartsRequest,
-    responseSerialize: serialize_dashboarding_ListWindowChartsResponse,
-    responseDeserialize: deserialize_dashboarding_ListWindowChartsResponse,
+    requestType: proto_dashboarding_pb.ListWindowDashboardsRequest,
+    responseType: proto_dashboarding_pb.ListWindowDashboardsResponse,
+    requestSerialize: serialize_dashboarding_ListWindowDashboardsRequest,
+    requestDeserialize: deserialize_dashboarding_ListWindowDashboardsRequest,
+    responseSerialize: serialize_dashboarding_ListWindowDashboardsResponse,
+    responseDeserialize: deserialize_dashboarding_ListWindowDashboardsResponse,
   },
   getWindowMetrics: {
     path: '/dashboarding.Dashboarding/GetWindowMetrics',
