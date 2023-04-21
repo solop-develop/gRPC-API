@@ -62,6 +62,9 @@ function getColorSchemaFromGRPC(colorSchemaToConvert) {
   if (!colorSchemaToConvert) {
     return undefined;
   }
+  const {
+    getDecimalFromGRPC
+  } = require('@adempiere/grpc-api/src/utils/baseDataTypeFromGRPC.js');
   return {
     name: colorSchemaToConvert.getName(),
     color: colorSchemaToConvert.getColor(),
