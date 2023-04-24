@@ -82,32 +82,11 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
 
-  # Check secrets to push image in GitHub Packages registry
-  check-ghpr-secrets:
-    name: Check if GitHub Packages registry information was set on secrets
-    needs:
-      - build-app
-    runs-on: ubuntu-latest
-    outputs:
-      is_have_secrets: ${{ steps.check_secret_job.outputs.is_have_secrets }}
-    steps:
-      - id: check_secret_job
-        run: |
-          if [[ "${{ secrets.GITHUB_TOKEN }}" != "" ]]; \
-          then
-            echo "Secrets to use a GitHub are configured in the repo"
-            echo "is_have_secrets=true" >> $GITHUB_OUTPUT
-          else
-            echo "Secrets to use a GitHub were not configured in the repo"
-            echo "is_have_secrets=false" >> $GITHUB_OUTPUT
-          fi
-
+  # Publish in GitHub Packages registry
   publish-ghpr:
     name: Publish GitHub Packages Registry
     needs:
-      - check-ghpr-secrets
-    # Skip step based on secret
-    if: needs.check-ghpr-secrets.outputs.is_have_secrets == 'true'
+      - build-app
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -120,35 +99,17 @@ jobs:
         with:
           name: grpc-api
 
-      - run: ls
-
-      - name: Set Lower Case to owner and repository
-        run: |
-          echo "OWNER_LC=${OWNER,,}" >> ${GITHUB_ENV}
-        env:
-          OWNER: '${{ github.repository_owner }}'
-
-      - name: Echo org
-        run: |
-          echo {{ env.OWNER_LC }}
-          echo $OWNER_LC
-      
-      - name: Echo repo
-        run: |
-          echo ${{ github.repository_owner }}
-          echo ${{ github.repository_name }}
-
       - name: Node configuration
         uses: actions/setup-node@v3
         with:
           node-version: 14
-          registry-url: https://npm.pkg.github.com/
+          registry-url: https://npm.pkg.github.com
           cache: 'npm'
           # Defaults to the user or organization that owns the workflow file
-          scope: '@${{ github.repository_owner }}'
+          # scope: '@${{ github.repository_owner }}'
 
       - run: ls
-  
+
       - run: cat $NPM_CONFIG_USERCONFIG
 
       - name: Publish GitHub Package Registry
@@ -159,7 +120,7 @@ jobs:
 
   # Publish dist binaries to application
   publish-app-dist:
-    name: Upload Binaries ADempiere-Proxy
+    name: Upload gRPC-API dist binaries
     needs:
       - build-app
     runs-on: ubuntu-latest
@@ -169,15 +130,11 @@ jobs:
         with:
           name: grpc-api
 
-      - run: ls
-
       - name: Compress files for application dist
         uses: TheDoctor0/zip-release@0.6.2
         with:
           filename: 'gRPC-API.zip'
           path: './'
-
-      - run: ls
 
       - name: Publish application binary in repository
         uses: skx/github-action-publish-binaries@master
