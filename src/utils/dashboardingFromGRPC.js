@@ -217,7 +217,7 @@ function getWindowMetricsFromGRPC(windowMetricsToConvert) {
     series: windowMetricsToConvert.getSeriesList().map(serie => {
       return getChartSerieFromGRPC(serie);
     }),
-    color_schemas: metricsToConvert.getColorSchemasList().map(colorSchema => {
+    color_schemas: windowMetricsToConvert.getColorSchemasList().map(colorSchema => {
       return getColorSchemaFromGRPC(colorSchema);
     })
   };
