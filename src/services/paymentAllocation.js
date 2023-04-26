@@ -417,58 +417,6 @@ class PaymentAllocation {
 
 
   /**
-   * Calculate and Get Difference
-   * @param {string} token
-   * @param {Array} paymentSelectionsList
-   * @param {Array} invoiceSelectionList
-   */
-  calculateDifference({
-    token,
-    // DSL
-    paymentSelectionsList = [],
-    invoiceSelectionList = []
-  }, callback) {
-    const { CalculateDifferenceRequest } = this.stubFile;
-    const request = new CalculateDifferenceRequest();
-
-    const { getKeyValueSelectionToGRPC } = require('@adempiere/grpc-api/src/utils/baseDataTypeToGRPC.js');
-    // payment selections list
-    paymentSelectionsList.forEach(payment => {
-      // selection format = { selectionId: number, selectionValues: [{ columName, value, valueType }] }
-      const convertedRecord = getKeyValueSelectionToGRPC({
-        selectionId: payment.recordId,
-        selectionUuid: payment.recordUuid,
-        selectionValues: payment.attributesList
-      });
-
-      request.addPayments(convertedRecord);
-    });
-
-    // invoice selections list
-    invoiceSelectionList.forEach(invoice => {
-      // selection format = { selectionId: number, selectionValues: [{ columName, value, valueType }] }
-      const convertedRecord = getKeyValueSelectionToGRPC({
-        selectionId: invoice.recordId,
-        selectionUuid: invoice.recordUuid,
-        selectionValues: invoice.attributesList
-      });
-
-      request.addInvocies(convertedRecord);
-    });
-
-    const metadata = getMetadata({
-      token
-    });
-
-    this.getPaymentAllocationService().getDifference(
-      request,
-      metadata,
-      callback
-    );
-  }
-
-
-  /**
    * Process Payment Allocation
    * @param {string} token
    * @param {number} businessPartnerId
@@ -499,7 +447,9 @@ class PaymentAllocation {
     paymentSelectionsList = [],
     invoiceSelectionList = []
   }, callback) {
-    const { ProcessRequest } = this.stubFile;
+    const {
+      ProcessRequest, PaymentSelection, InvoiceSelection
+    } = this.stubFile;
     const request = new ProcessRequest();
 
     request.setBusinessPartnerId(
@@ -522,8 +472,8 @@ class PaymentAllocation {
     );
     request.setTransactionOrganizationUuid(transactionOrganizationUuid);
     
+    const { getTimestamp } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
     if (!isEmptyValue(date)) {
-      const { getTimestamp } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
       request.setDate(
         getTimestamp(date)
       );
@@ -531,29 +481,46 @@ class PaymentAllocation {
 
     request.setDescription(description);
 
-    const { getKeyValueSelectionToGRPC } = require('@adempiere/grpc-api/src/utils/baseDataTypeToGRPC.js');
+    const { getDecimalToGRPC } = require('@adempiere/grpc-api/src/utils/baseDataTypeToGRPC.js');
     // payment selections list
-    paymentSelectionsList.forEach(payment => {
-      // selection format = { selectionId: number, selectionValues: [{ columName, value, valueType }] }
-      const convertedRecord = getKeyValueSelectionToGRPC({
-        selectionId: payment.recordId,
-        selectionUuid: payment.recordUuid,
-        selectionValues: payment.attributesList
-      });
+    paymentSelectionsList.forEach(paymentSelection => {
+      const paymentSelectionInstance = new PaymentSelection();
 
-      request.addPayments(convertedRecord);
+      paymentSelectionInstance.setId(paymentSelection.id);
+      paymentSelectionInstance.setUuid(paymentSelection.uuid);
+      paymentSelectionInstance.setTransactionDate(
+        getTimestamp(paymentSelection.transaction_date)
+      );
+      paymentSelectionInstance.setAppliedAmount(
+        getDecimalToGRPC(paymentSelection.applied_amount)
+      );
+
+      request.addPaymentsSelections(paymentSelectionInstance);
     });
 
     // invoice selections list
-    invoiceSelectionList.forEach(invoice => {
-      // selection format = { selectionId: number, selectionValues: [{ columName, value, valueType }] }
-      const convertedRecord = getKeyValueSelectionToGRPC({
-        selectionId: invoice.recordId,
-        selectionUuid: invoice.recordUuid,
-        selectionValues: invoice.attributesList
-      });
+    invoiceSelectionList.forEach(invoiceSelection => {
+      const invoiceSelectionInstance = new InvoiceSelection();
 
-      request.addInvocies(convertedRecord);
+      invoiceSelectionInstance.setId(invoiceSelection.id);
+      invoiceSelectionInstance.setUuid(invoiceSelection.uuid);
+      invoiceSelectionInstance.setDateInvoiced(
+        getTimestamp(invoiceSelection.date_invoiced)
+      );
+      invoiceSelectionInstance.setAppliedAmount(
+        getDecimalToGRPC(invoiceSelection.applied_amount)
+      );
+      invoiceSelectionInstance.setDiscountAmount(
+        getDecimalToGRPC(invoiceSelection.discount_amount)
+      );
+      invoiceSelectionInstance.setWriteOffAmount(
+        getDecimalToGRPC(invoiceSelection.write_off_amount)
+      );
+      invoiceSelectionInstance.setOpenAmount(
+        getDecimalToGRPC(invoiceSelection.open_amount)
+      );
+
+      request.addInvocieSelections(invoiceSelectionInstance);
     });
 
     const metadata = getMetadata({
