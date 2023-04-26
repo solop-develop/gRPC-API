@@ -32,28 +32,6 @@ function deserialize_data_ListLookupItemsResponse(buffer_arg) {
   return proto_business_pb.ListLookupItemsResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_payment_allocation_CalculateDifferenceRequest(arg) {
-  if (!(arg instanceof proto_payment_allocation_pb.CalculateDifferenceRequest)) {
-    throw new Error('Expected argument of type payment_allocation.CalculateDifferenceRequest');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_payment_allocation_CalculateDifferenceRequest(buffer_arg) {
-  return proto_payment_allocation_pb.CalculateDifferenceRequest.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
-function serialize_payment_allocation_CalculateDifferenceResponse(arg) {
-  if (!(arg instanceof proto_payment_allocation_pb.CalculateDifferenceResponse)) {
-    throw new Error('Expected argument of type payment_allocation.CalculateDifferenceResponse');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_payment_allocation_CalculateDifferenceResponse(buffer_arg) {
-  return proto_payment_allocation_pb.CalculateDifferenceResponse.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
 function serialize_payment_allocation_ListBusinessPartnersRequest(arg) {
   if (!(arg instanceof proto_payment_allocation_pb.ListBusinessPartnersRequest)) {
     throw new Error('Expected argument of type payment_allocation.ListBusinessPartnersRequest');
@@ -282,17 +260,6 @@ listCharges: {
     requestDeserialize: deserialize_payment_allocation_ListTransactionOrganizationsRequest,
     responseSerialize: serialize_data_ListLookupItemsResponse,
     responseDeserialize: deserialize_data_ListLookupItemsResponse,
-  },
-  calculateDifference: {
-    path: '/payment_allocation.PaymentAllocation/CalculateDifference',
-    requestStream: false,
-    responseStream: false,
-    requestType: proto_payment_allocation_pb.CalculateDifferenceRequest,
-    responseType: proto_payment_allocation_pb.CalculateDifferenceResponse,
-    requestSerialize: serialize_payment_allocation_CalculateDifferenceRequest,
-    requestDeserialize: deserialize_payment_allocation_CalculateDifferenceRequest,
-    responseSerialize: serialize_payment_allocation_CalculateDifferenceResponse,
-    responseDeserialize: deserialize_payment_allocation_CalculateDifferenceResponse,
   },
   process: {
     path: '/payment_allocation.PaymentAllocation/Process',
