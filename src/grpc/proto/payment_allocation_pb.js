@@ -3268,8 +3268,7 @@ proto.payment_allocation.Payment.toObject = function(includeInstance, msg) {
     documentNo: jspb.Message.getFieldWithDefault(msg, 5, ""),
     transactionType: (f = msg.getTransactionType()) && proto.payment_allocation.TransactionType.toObject(includeInstance, f),
     organization: (f = msg.getOrganization()) && proto.payment_allocation.Organization.toObject(includeInstance, f),
-    businessPartner: (f = msg.getBusinessPartner()) && proto.payment_allocation.BusinessPartner.toObject(includeInstance, f),
-    description: jspb.Message.getFieldWithDefault(msg, 9, ""),
+    description: jspb.Message.getFieldWithDefault(msg, 8, ""),
     currency: (f = msg.getCurrency()) && proto.payment_allocation.Currency.toObject(includeInstance, f),
     paymentAmount: (f = msg.getPaymentAmount()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
     convertedAmount: (f = msg.getConvertedAmount()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
@@ -3341,30 +3340,25 @@ proto.payment_allocation.Payment.deserializeBinaryFromReader = function(msg, rea
       msg.setOrganization(value);
       break;
     case 8:
-      var value = new proto.payment_allocation.BusinessPartner;
-      reader.readMessage(value,proto.payment_allocation.BusinessPartner.deserializeBinaryFromReader);
-      msg.setBusinessPartner(value);
-      break;
-    case 9:
       var value = /** @type {string} */ (reader.readString());
       msg.setDescription(value);
       break;
-    case 10:
+    case 9:
       var value = new proto.payment_allocation.Currency;
       reader.readMessage(value,proto.payment_allocation.Currency.deserializeBinaryFromReader);
       msg.setCurrency(value);
       break;
-    case 11:
+    case 10:
       var value = new proto_base_data_type_pb.Decimal;
       reader.readMessage(value,proto_base_data_type_pb.Decimal.deserializeBinaryFromReader);
       msg.setPaymentAmount(value);
       break;
-    case 12:
+    case 11:
       var value = new proto_base_data_type_pb.Decimal;
       reader.readMessage(value,proto_base_data_type_pb.Decimal.deserializeBinaryFromReader);
       msg.setConvertedAmount(value);
       break;
-    case 13:
+    case 12:
       var value = new proto_base_data_type_pb.Decimal;
       reader.readMessage(value,proto_base_data_type_pb.Decimal.deserializeBinaryFromReader);
       msg.setOpenAmount(value);
@@ -3449,25 +3443,17 @@ proto.payment_allocation.Payment.serializeBinaryToWriter = function(message, wri
       proto.payment_allocation.Organization.serializeBinaryToWriter
     );
   }
-  f = message.getBusinessPartner();
-  if (f != null) {
-    writer.writeMessage(
-      8,
-      f,
-      proto.payment_allocation.BusinessPartner.serializeBinaryToWriter
-    );
-  }
   f = message.getDescription();
   if (f.length > 0) {
     writer.writeString(
-      9,
+      8,
       f
     );
   }
   f = message.getCurrency();
   if (f != null) {
     writer.writeMessage(
-      10,
+      9,
       f,
       proto.payment_allocation.Currency.serializeBinaryToWriter
     );
@@ -3475,7 +3461,7 @@ proto.payment_allocation.Payment.serializeBinaryToWriter = function(message, wri
   f = message.getPaymentAmount();
   if (f != null) {
     writer.writeMessage(
-      11,
+      10,
       f,
       proto_base_data_type_pb.Decimal.serializeBinaryToWriter
     );
@@ -3483,7 +3469,7 @@ proto.payment_allocation.Payment.serializeBinaryToWriter = function(message, wri
   f = message.getConvertedAmount();
   if (f != null) {
     writer.writeMessage(
-      12,
+      11,
       f,
       proto_base_data_type_pb.Decimal.serializeBinaryToWriter
     );
@@ -3491,7 +3477,7 @@ proto.payment_allocation.Payment.serializeBinaryToWriter = function(message, wri
   f = message.getOpenAmount();
   if (f != null) {
     writer.writeMessage(
-      13,
+      12,
       f,
       proto_base_data_type_pb.Decimal.serializeBinaryToWriter
     );
@@ -3664,48 +3650,11 @@ proto.payment_allocation.Payment.prototype.hasOrganization = function() {
 
 
 /**
- * optional BusinessPartner business_partner = 8;
- * @return {?proto.payment_allocation.BusinessPartner}
- */
-proto.payment_allocation.Payment.prototype.getBusinessPartner = function() {
-  return /** @type{?proto.payment_allocation.BusinessPartner} */ (
-    jspb.Message.getWrapperField(this, proto.payment_allocation.BusinessPartner, 8));
-};
-
-
-/**
- * @param {?proto.payment_allocation.BusinessPartner|undefined} value
- * @return {!proto.payment_allocation.Payment} returns this
-*/
-proto.payment_allocation.Payment.prototype.setBusinessPartner = function(value) {
-  return jspb.Message.setWrapperField(this, 8, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.payment_allocation.Payment} returns this
- */
-proto.payment_allocation.Payment.prototype.clearBusinessPartner = function() {
-  return this.setBusinessPartner(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.payment_allocation.Payment.prototype.hasBusinessPartner = function() {
-  return jspb.Message.getField(this, 8) != null;
-};
-
-
-/**
- * optional string description = 9;
+ * optional string description = 8;
  * @return {string}
  */
 proto.payment_allocation.Payment.prototype.getDescription = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 9, ""));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 8, ""));
 };
 
 
@@ -3714,17 +3663,17 @@ proto.payment_allocation.Payment.prototype.getDescription = function() {
  * @return {!proto.payment_allocation.Payment} returns this
  */
 proto.payment_allocation.Payment.prototype.setDescription = function(value) {
-  return jspb.Message.setProto3StringField(this, 9, value);
+  return jspb.Message.setProto3StringField(this, 8, value);
 };
 
 
 /**
- * optional Currency currency = 10;
+ * optional Currency currency = 9;
  * @return {?proto.payment_allocation.Currency}
  */
 proto.payment_allocation.Payment.prototype.getCurrency = function() {
   return /** @type{?proto.payment_allocation.Currency} */ (
-    jspb.Message.getWrapperField(this, proto.payment_allocation.Currency, 10));
+    jspb.Message.getWrapperField(this, proto.payment_allocation.Currency, 9));
 };
 
 
@@ -3733,7 +3682,7 @@ proto.payment_allocation.Payment.prototype.getCurrency = function() {
  * @return {!proto.payment_allocation.Payment} returns this
 */
 proto.payment_allocation.Payment.prototype.setCurrency = function(value) {
-  return jspb.Message.setWrapperField(this, 10, value);
+  return jspb.Message.setWrapperField(this, 9, value);
 };
 
 
@@ -3751,17 +3700,17 @@ proto.payment_allocation.Payment.prototype.clearCurrency = function() {
  * @return {boolean}
  */
 proto.payment_allocation.Payment.prototype.hasCurrency = function() {
-  return jspb.Message.getField(this, 10) != null;
+  return jspb.Message.getField(this, 9) != null;
 };
 
 
 /**
- * optional data.Decimal payment_amount = 11;
+ * optional data.Decimal payment_amount = 10;
  * @return {?proto.data.Decimal}
  */
 proto.payment_allocation.Payment.prototype.getPaymentAmount = function() {
   return /** @type{?proto.data.Decimal} */ (
-    jspb.Message.getWrapperField(this, proto_base_data_type_pb.Decimal, 11));
+    jspb.Message.getWrapperField(this, proto_base_data_type_pb.Decimal, 10));
 };
 
 
@@ -3770,7 +3719,7 @@ proto.payment_allocation.Payment.prototype.getPaymentAmount = function() {
  * @return {!proto.payment_allocation.Payment} returns this
 */
 proto.payment_allocation.Payment.prototype.setPaymentAmount = function(value) {
-  return jspb.Message.setWrapperField(this, 11, value);
+  return jspb.Message.setWrapperField(this, 10, value);
 };
 
 
@@ -3788,17 +3737,17 @@ proto.payment_allocation.Payment.prototype.clearPaymentAmount = function() {
  * @return {boolean}
  */
 proto.payment_allocation.Payment.prototype.hasPaymentAmount = function() {
-  return jspb.Message.getField(this, 11) != null;
+  return jspb.Message.getField(this, 10) != null;
 };
 
 
 /**
- * optional data.Decimal converted_amount = 12;
+ * optional data.Decimal converted_amount = 11;
  * @return {?proto.data.Decimal}
  */
 proto.payment_allocation.Payment.prototype.getConvertedAmount = function() {
   return /** @type{?proto.data.Decimal} */ (
-    jspb.Message.getWrapperField(this, proto_base_data_type_pb.Decimal, 12));
+    jspb.Message.getWrapperField(this, proto_base_data_type_pb.Decimal, 11));
 };
 
 
@@ -3807,7 +3756,7 @@ proto.payment_allocation.Payment.prototype.getConvertedAmount = function() {
  * @return {!proto.payment_allocation.Payment} returns this
 */
 proto.payment_allocation.Payment.prototype.setConvertedAmount = function(value) {
-  return jspb.Message.setWrapperField(this, 12, value);
+  return jspb.Message.setWrapperField(this, 11, value);
 };
 
 
@@ -3825,17 +3774,17 @@ proto.payment_allocation.Payment.prototype.clearConvertedAmount = function() {
  * @return {boolean}
  */
 proto.payment_allocation.Payment.prototype.hasConvertedAmount = function() {
-  return jspb.Message.getField(this, 12) != null;
+  return jspb.Message.getField(this, 11) != null;
 };
 
 
 /**
- * optional data.Decimal open_amount = 13;
+ * optional data.Decimal open_amount = 12;
  * @return {?proto.data.Decimal}
  */
 proto.payment_allocation.Payment.prototype.getOpenAmount = function() {
   return /** @type{?proto.data.Decimal} */ (
-    jspb.Message.getWrapperField(this, proto_base_data_type_pb.Decimal, 13));
+    jspb.Message.getWrapperField(this, proto_base_data_type_pb.Decimal, 12));
 };
 
 
@@ -3844,7 +3793,7 @@ proto.payment_allocation.Payment.prototype.getOpenAmount = function() {
  * @return {!proto.payment_allocation.Payment} returns this
 */
 proto.payment_allocation.Payment.prototype.setOpenAmount = function(value) {
-  return jspb.Message.setWrapperField(this, 13, value);
+  return jspb.Message.setWrapperField(this, 12, value);
 };
 
 
@@ -3862,7 +3811,7 @@ proto.payment_allocation.Payment.prototype.clearOpenAmount = function() {
  * @return {boolean}
  */
 proto.payment_allocation.Payment.prototype.hasOpenAmount = function() {
-  return jspb.Message.getField(this, 13) != null;
+  return jspb.Message.getField(this, 12) != null;
 };
 
 
@@ -4615,8 +4564,7 @@ proto.payment_allocation.Invoice.toObject = function(includeInstance, msg) {
     documentNo: jspb.Message.getFieldWithDefault(msg, 5, ""),
     transactionType: (f = msg.getTransactionType()) && proto.payment_allocation.TransactionType.toObject(includeInstance, f),
     organization: (f = msg.getOrganization()) && proto.payment_allocation.Organization.toObject(includeInstance, f),
-    businessPartner: (f = msg.getBusinessPartner()) && proto.payment_allocation.BusinessPartner.toObject(includeInstance, f),
-    description: jspb.Message.getFieldWithDefault(msg, 9, ""),
+    description: jspb.Message.getFieldWithDefault(msg, 8, ""),
     currency: (f = msg.getCurrency()) && proto.payment_allocation.Currency.toObject(includeInstance, f),
     originalAmount: (f = msg.getOriginalAmount()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
     convertedAmount: (f = msg.getConvertedAmount()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
@@ -4689,35 +4637,30 @@ proto.payment_allocation.Invoice.deserializeBinaryFromReader = function(msg, rea
       msg.setOrganization(value);
       break;
     case 8:
-      var value = new proto.payment_allocation.BusinessPartner;
-      reader.readMessage(value,proto.payment_allocation.BusinessPartner.deserializeBinaryFromReader);
-      msg.setBusinessPartner(value);
-      break;
-    case 9:
       var value = /** @type {string} */ (reader.readString());
       msg.setDescription(value);
       break;
-    case 10:
+    case 9:
       var value = new proto.payment_allocation.Currency;
       reader.readMessage(value,proto.payment_allocation.Currency.deserializeBinaryFromReader);
       msg.setCurrency(value);
       break;
-    case 11:
+    case 10:
       var value = new proto_base_data_type_pb.Decimal;
       reader.readMessage(value,proto_base_data_type_pb.Decimal.deserializeBinaryFromReader);
       msg.setOriginalAmount(value);
       break;
-    case 12:
+    case 11:
       var value = new proto_base_data_type_pb.Decimal;
       reader.readMessage(value,proto_base_data_type_pb.Decimal.deserializeBinaryFromReader);
       msg.setConvertedAmount(value);
       break;
-    case 13:
+    case 12:
       var value = new proto_base_data_type_pb.Decimal;
       reader.readMessage(value,proto_base_data_type_pb.Decimal.deserializeBinaryFromReader);
       msg.setOpenAmount(value);
       break;
-    case 14:
+    case 13:
       var value = new proto_base_data_type_pb.Decimal;
       reader.readMessage(value,proto_base_data_type_pb.Decimal.deserializeBinaryFromReader);
       msg.setDiscountAmount(value);
@@ -4802,25 +4745,17 @@ proto.payment_allocation.Invoice.serializeBinaryToWriter = function(message, wri
       proto.payment_allocation.Organization.serializeBinaryToWriter
     );
   }
-  f = message.getBusinessPartner();
-  if (f != null) {
-    writer.writeMessage(
-      8,
-      f,
-      proto.payment_allocation.BusinessPartner.serializeBinaryToWriter
-    );
-  }
   f = message.getDescription();
   if (f.length > 0) {
     writer.writeString(
-      9,
+      8,
       f
     );
   }
   f = message.getCurrency();
   if (f != null) {
     writer.writeMessage(
-      10,
+      9,
       f,
       proto.payment_allocation.Currency.serializeBinaryToWriter
     );
@@ -4828,7 +4763,7 @@ proto.payment_allocation.Invoice.serializeBinaryToWriter = function(message, wri
   f = message.getOriginalAmount();
   if (f != null) {
     writer.writeMessage(
-      11,
+      10,
       f,
       proto_base_data_type_pb.Decimal.serializeBinaryToWriter
     );
@@ -4836,7 +4771,7 @@ proto.payment_allocation.Invoice.serializeBinaryToWriter = function(message, wri
   f = message.getConvertedAmount();
   if (f != null) {
     writer.writeMessage(
-      12,
+      11,
       f,
       proto_base_data_type_pb.Decimal.serializeBinaryToWriter
     );
@@ -4844,7 +4779,7 @@ proto.payment_allocation.Invoice.serializeBinaryToWriter = function(message, wri
   f = message.getOpenAmount();
   if (f != null) {
     writer.writeMessage(
-      13,
+      12,
       f,
       proto_base_data_type_pb.Decimal.serializeBinaryToWriter
     );
@@ -4852,7 +4787,7 @@ proto.payment_allocation.Invoice.serializeBinaryToWriter = function(message, wri
   f = message.getDiscountAmount();
   if (f != null) {
     writer.writeMessage(
-      14,
+      13,
       f,
       proto_base_data_type_pb.Decimal.serializeBinaryToWriter
     );
@@ -5025,48 +4960,11 @@ proto.payment_allocation.Invoice.prototype.hasOrganization = function() {
 
 
 /**
- * optional BusinessPartner business_partner = 8;
- * @return {?proto.payment_allocation.BusinessPartner}
- */
-proto.payment_allocation.Invoice.prototype.getBusinessPartner = function() {
-  return /** @type{?proto.payment_allocation.BusinessPartner} */ (
-    jspb.Message.getWrapperField(this, proto.payment_allocation.BusinessPartner, 8));
-};
-
-
-/**
- * @param {?proto.payment_allocation.BusinessPartner|undefined} value
- * @return {!proto.payment_allocation.Invoice} returns this
-*/
-proto.payment_allocation.Invoice.prototype.setBusinessPartner = function(value) {
-  return jspb.Message.setWrapperField(this, 8, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.payment_allocation.Invoice} returns this
- */
-proto.payment_allocation.Invoice.prototype.clearBusinessPartner = function() {
-  return this.setBusinessPartner(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.payment_allocation.Invoice.prototype.hasBusinessPartner = function() {
-  return jspb.Message.getField(this, 8) != null;
-};
-
-
-/**
- * optional string description = 9;
+ * optional string description = 8;
  * @return {string}
  */
 proto.payment_allocation.Invoice.prototype.getDescription = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 9, ""));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 8, ""));
 };
 
 
@@ -5075,17 +4973,17 @@ proto.payment_allocation.Invoice.prototype.getDescription = function() {
  * @return {!proto.payment_allocation.Invoice} returns this
  */
 proto.payment_allocation.Invoice.prototype.setDescription = function(value) {
-  return jspb.Message.setProto3StringField(this, 9, value);
+  return jspb.Message.setProto3StringField(this, 8, value);
 };
 
 
 /**
- * optional Currency currency = 10;
+ * optional Currency currency = 9;
  * @return {?proto.payment_allocation.Currency}
  */
 proto.payment_allocation.Invoice.prototype.getCurrency = function() {
   return /** @type{?proto.payment_allocation.Currency} */ (
-    jspb.Message.getWrapperField(this, proto.payment_allocation.Currency, 10));
+    jspb.Message.getWrapperField(this, proto.payment_allocation.Currency, 9));
 };
 
 
@@ -5094,7 +4992,7 @@ proto.payment_allocation.Invoice.prototype.getCurrency = function() {
  * @return {!proto.payment_allocation.Invoice} returns this
 */
 proto.payment_allocation.Invoice.prototype.setCurrency = function(value) {
-  return jspb.Message.setWrapperField(this, 10, value);
+  return jspb.Message.setWrapperField(this, 9, value);
 };
 
 
@@ -5112,17 +5010,17 @@ proto.payment_allocation.Invoice.prototype.clearCurrency = function() {
  * @return {boolean}
  */
 proto.payment_allocation.Invoice.prototype.hasCurrency = function() {
-  return jspb.Message.getField(this, 10) != null;
+  return jspb.Message.getField(this, 9) != null;
 };
 
 
 /**
- * optional data.Decimal original_amount = 11;
+ * optional data.Decimal original_amount = 10;
  * @return {?proto.data.Decimal}
  */
 proto.payment_allocation.Invoice.prototype.getOriginalAmount = function() {
   return /** @type{?proto.data.Decimal} */ (
-    jspb.Message.getWrapperField(this, proto_base_data_type_pb.Decimal, 11));
+    jspb.Message.getWrapperField(this, proto_base_data_type_pb.Decimal, 10));
 };
 
 
@@ -5131,7 +5029,7 @@ proto.payment_allocation.Invoice.prototype.getOriginalAmount = function() {
  * @return {!proto.payment_allocation.Invoice} returns this
 */
 proto.payment_allocation.Invoice.prototype.setOriginalAmount = function(value) {
-  return jspb.Message.setWrapperField(this, 11, value);
+  return jspb.Message.setWrapperField(this, 10, value);
 };
 
 
@@ -5149,17 +5047,17 @@ proto.payment_allocation.Invoice.prototype.clearOriginalAmount = function() {
  * @return {boolean}
  */
 proto.payment_allocation.Invoice.prototype.hasOriginalAmount = function() {
-  return jspb.Message.getField(this, 11) != null;
+  return jspb.Message.getField(this, 10) != null;
 };
 
 
 /**
- * optional data.Decimal converted_amount = 12;
+ * optional data.Decimal converted_amount = 11;
  * @return {?proto.data.Decimal}
  */
 proto.payment_allocation.Invoice.prototype.getConvertedAmount = function() {
   return /** @type{?proto.data.Decimal} */ (
-    jspb.Message.getWrapperField(this, proto_base_data_type_pb.Decimal, 12));
+    jspb.Message.getWrapperField(this, proto_base_data_type_pb.Decimal, 11));
 };
 
 
@@ -5168,7 +5066,7 @@ proto.payment_allocation.Invoice.prototype.getConvertedAmount = function() {
  * @return {!proto.payment_allocation.Invoice} returns this
 */
 proto.payment_allocation.Invoice.prototype.setConvertedAmount = function(value) {
-  return jspb.Message.setWrapperField(this, 12, value);
+  return jspb.Message.setWrapperField(this, 11, value);
 };
 
 
@@ -5186,17 +5084,17 @@ proto.payment_allocation.Invoice.prototype.clearConvertedAmount = function() {
  * @return {boolean}
  */
 proto.payment_allocation.Invoice.prototype.hasConvertedAmount = function() {
-  return jspb.Message.getField(this, 12) != null;
+  return jspb.Message.getField(this, 11) != null;
 };
 
 
 /**
- * optional data.Decimal open_amount = 13;
+ * optional data.Decimal open_amount = 12;
  * @return {?proto.data.Decimal}
  */
 proto.payment_allocation.Invoice.prototype.getOpenAmount = function() {
   return /** @type{?proto.data.Decimal} */ (
-    jspb.Message.getWrapperField(this, proto_base_data_type_pb.Decimal, 13));
+    jspb.Message.getWrapperField(this, proto_base_data_type_pb.Decimal, 12));
 };
 
 
@@ -5205,7 +5103,7 @@ proto.payment_allocation.Invoice.prototype.getOpenAmount = function() {
  * @return {!proto.payment_allocation.Invoice} returns this
 */
 proto.payment_allocation.Invoice.prototype.setOpenAmount = function(value) {
-  return jspb.Message.setWrapperField(this, 13, value);
+  return jspb.Message.setWrapperField(this, 12, value);
 };
 
 
@@ -5223,17 +5121,17 @@ proto.payment_allocation.Invoice.prototype.clearOpenAmount = function() {
  * @return {boolean}
  */
 proto.payment_allocation.Invoice.prototype.hasOpenAmount = function() {
-  return jspb.Message.getField(this, 13) != null;
+  return jspb.Message.getField(this, 12) != null;
 };
 
 
 /**
- * optional data.Decimal discount_amount = 14;
+ * optional data.Decimal discount_amount = 13;
  * @return {?proto.data.Decimal}
  */
 proto.payment_allocation.Invoice.prototype.getDiscountAmount = function() {
   return /** @type{?proto.data.Decimal} */ (
-    jspb.Message.getWrapperField(this, proto_base_data_type_pb.Decimal, 14));
+    jspb.Message.getWrapperField(this, proto_base_data_type_pb.Decimal, 13));
 };
 
 
@@ -5242,7 +5140,7 @@ proto.payment_allocation.Invoice.prototype.getDiscountAmount = function() {
  * @return {!proto.payment_allocation.Invoice} returns this
 */
 proto.payment_allocation.Invoice.prototype.setDiscountAmount = function(value) {
-  return jspb.Message.setWrapperField(this, 14, value);
+  return jspb.Message.setWrapperField(this, 13, value);
 };
 
 
@@ -5260,7 +5158,7 @@ proto.payment_allocation.Invoice.prototype.clearDiscountAmount = function() {
  * @return {boolean}
  */
 proto.payment_allocation.Invoice.prototype.hasDiscountAmount = function() {
-  return jspb.Message.getField(this, 14) != null;
+  return jspb.Message.getField(this, 13) != null;
 };
 
 
