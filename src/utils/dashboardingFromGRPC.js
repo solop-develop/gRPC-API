@@ -175,6 +175,32 @@ function getNotificationFromGRPC(notificationToConvert) {
   };
 }
 
+function getWindowDashboardParameterFromGRPC(windowChartParameterToConvert) {
+  if (!windowChartParameterToConvert) {
+    return undefined;
+  }
+  return {
+    id: windowChartParameterToConvert.getId(),
+    uuid: windowChartParameterToConvert.getUuid(),
+    name: windowChartParameterToConvert.getName(),
+    description: windowChartParameterToConvert.getDescription(),
+    sequence: windowChartParameterToConvert.getSequence(),
+    column_name: windowChartParameterToConvert.getColumnName(),
+    column_sql: windowChartParameterToConvert.getColumnSql(),
+    element_id: windowChartParameterToConvert.getElementId(),
+    field_id: windowChartParameterToConvert.getFieldId(),
+    is_mandatory: windowChartParameterToConvert.getIsMandatory(),
+    is_range: windowChartParameterToConvert.getIsRange(),
+    default_value: windowChartParameterToConvert.getDefaultValue(),
+    display_type: windowChartParameterToConvert.getDisplayType(),
+    v_format: windowChartParameterToConvert.getVFormat(),
+    value_min: windowChartParameterToConvert.getValueMin(),
+    value_max: windowChartParameterToConvert.getValueMax(),
+    display_logic: windowChartParameterToConvert.getDisplayLogic(),
+    read_only_logic: windowChartParameterToConvert.getReadOnlyLogic()
+  }
+}
+
 function getWindowDashboardFromGRPC(windowChartToConvert) {
   if (!windowChartToConvert) {
     return undefined;
@@ -192,7 +218,10 @@ function getWindowDashboardFromGRPC(windowChartToConvert) {
     context_column_names: windowChartToConvert.getContextColumnNamesList().map(columnName => {
       return columnName;
     }),
-    transformation_script: windowChartToConvert.getTransformationScript()
+    transformation_script: windowChartToConvert.getTransformationScript(),
+    parameters: windowChartToConvert.getParametersList().map(dashboardParameter => {
+      return getWindowDashboardParameterFromGRPC(dashboardParameter);
+    })
   };
 }
 
@@ -232,6 +261,7 @@ module.exports = {
   getPendingDocumentFromGRPC,
   getFavoriteFromGRPC,
   getNotificationFromGRPC,
+  getWindowDashboardParameterFromGRPC,
   getWindowDashboardFromGRPC,
   getWindowMetricsFromGRPC
 };
