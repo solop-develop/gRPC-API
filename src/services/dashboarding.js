@@ -1,5 +1,5 @@
 /*************************************************************************************
- * Product: ADempiere gRPC Dashboardimg Client                                       *
+ * Product: ADempiere gRPC Dashboarding Client                                       *
  * Copyright (C) 2012-2023 E.R.P. Consultores y Asociados, C.A.                      *
  * Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                      *
  * This program is free software: you can redistribute it and/or modify              *
@@ -292,6 +292,7 @@ class Dashboarding {
    * @param {number} recordId record id
    * @param {string} recordUuid record uuid
    * @param {Array} contextAttributes context attributes to set
+   * @param {Array} filters parameters as filters
    */
   getWindowMetrics({
     token,
@@ -300,7 +301,8 @@ class Dashboarding {
     tableName,
     recordId,
     recordUuid,
-    contextAttributes
+    contextAttributes,
+    filters
   }, callback) {
     const { GetWindowMetricsRequest } = this.stubFile;
     const request = new GetWindowMetricsRequest();
@@ -316,10 +318,9 @@ class Dashboarding {
     );
     request.setRecordUuid(recordUuid);
 
+    const { getTypeOfValue } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
+    const { getKeyValueToGRPC } = require('@adempiere/grpc-api/src/utils/baseDataTypeToGRPC.js');
     if (!isEmptyValue(contextAttributes)) {
-      const { getTypeOfValue } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
-      const { getKeyValueToGRPC } = require('@adempiere/grpc-api/src/utils/baseDataTypeToGRPC.js');
-
       if (getTypeOfValue(contextAttributes) === 'String') {
         contextAttributes = JSON.parse(contextAttributes);
       }
@@ -332,6 +333,24 @@ class Dashboarding {
           getKeyValueToGRPC({
             columnName: parsedAttribute.key,
             value: parsedAttribute.value
+          })
+        );
+      });
+    }
+    // client custom filters
+    if (!isEmptyValue(filters)) {
+      if (getTypeOfValue(filters) === 'String') {
+        filters = JSON.parse(filters);
+      }
+      filters.forEach(filter => {
+        let parsedFilter = filter;
+        if (getTypeOfValue(filter) === 'String') {
+          parsedFilter = JSON.parse(filter);
+        }
+        request.addFilters(
+          getKeyValueToGRPC({
+            columnName: parsedFilter.key,
+            value: parsedFilter.value
           })
         );
       });
