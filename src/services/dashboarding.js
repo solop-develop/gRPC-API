@@ -319,8 +319,8 @@ class Dashboarding {
     request.setRecordUuid(recordUuid);
 
     const { getTypeOfValue } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
-    const { getKeyValueToGRPC } = require('@adempiere/grpc-api/src/utils/baseDataTypeToGRPC.js');
     if (!isEmptyValue(contextAttributes)) {
+      const { getKeyValueToGRPC } = require('@adempiere/grpc-api/src/utils/baseDataTypeToGRPC.js');
       if (getTypeOfValue(contextAttributes) === 'String') {
         contextAttributes = JSON.parse(contextAttributes);
       }
@@ -337,22 +337,46 @@ class Dashboarding {
         );
       });
     }
+
     // client custom filters
     if (!isEmptyValue(filters)) {
       if (getTypeOfValue(filters) === 'String') {
         filters = JSON.parse(filters);
       }
+      const { getValueToGRPC } = require('@adempiere/grpc-api/src/utils/baseDataTypeToGRPC.js');
+      const { Filter } = this.stubFile;
       filters.forEach(filter => {
         let parsedFilter = filter;
         if (getTypeOfValue(filter) === 'String') {
           parsedFilter = JSON.parse(filter);
         }
-        request.addFilters(
-          getKeyValueToGRPC({
-            columnName: parsedFilter.key,
-            value: parsedFilter.value
+        const filterInstance = new Filter();
+        filterInstance.setColumnName(parsedFilter.key);
+
+        if (getTypeOfValue(parsedFilter.value) === 'Array') {
+          parsedFilter.value.forEach(val => {
+            const valueInstance = getValueToGRPC({
+              value: val,
+              valueType: parsedFilter.valueType
+            });
+            filterInstance.addValues(valueInstance);
           })
-        );
+        } else {
+          const valueInstance = getValueToGRPC({
+            value: parsedFilter.value,
+            valueType: parsedFilter.valueType
+          });
+          if (!isEmptyValue(parsedFilter.value_to)) {
+            const valueToInstance = getValueToGRPC({
+              value: parsedFilter.value_to,
+              valueType: parsedFilter.valueType
+            });
+            filterInstance.setValueTo(valueToInstance);
+          }
+          filterInstance.setValue(valueInstance);
+        }
+
+        request.addFilters(filterInstance);
       });
     }
 
