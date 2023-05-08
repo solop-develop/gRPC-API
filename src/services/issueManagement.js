@@ -175,7 +175,7 @@ class IssueManagement {
       token
     });
 
-    this.getIssueManagementService().listPriorities(
+    this.getIssueManagementService().listStatuses(
       request,
       metadata,
       callback
