@@ -82,6 +82,7 @@ Note to generate specific proto definition:
 * To general ledger: `npm run stub:general_ledger`
 * To in-out: `npm run stub:in_out`
 * To invoice: `npm run stub:invoice`
+* To match po receipt invoice: `npm run stub:match_po_receipt_invoice`
 * To material management: `npm run stub:material_management`
 * To order: `npm run stub:order`
 * To payment: `npm run stub:payment`

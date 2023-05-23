@@ -139,10 +139,69 @@ function getTimestamp(dateValue) {
   return value;
 }
 
+/**
+ * Remove double/single quotation mark:
+ * 'N' -> N, "Y" -> Y
+ * 'DR' -> DR, "CO" -> CO
+ * @param {string} stringValue
+ * @returns {string}
+ */
+
+function removeQuotationMark(stringValue) {
+  if (isEmptyValue(stringValue)) {
+    return stringValue
+  }
+  if (getTypeOfValue(stringValue) !== 'STRING') {
+    return stringValue
+  }
+
+  const withoutQuotationMark = String(stringValue)
+    .trim()
+    // (') (text) (') or (") (text) (")
+    .replace(/(^\'|^\")(\w+)(\1)/g, '$2')
+
+  return withoutQuotationMark
+}
+
+/**
+ * Convert string values ('Y' or 'N') to component compatible Boolean values
+ * @param {mixed} valueToParsed
+ * @returns {boolean}
+ */
+function convertStringToBoolean(valueToParsed) {
+  let valReturn = valueToParsed
+
+  // remove single/double quotation mark 'N' -> N, "Y" -> Y
+  const evaluatedValue = removeQuotationMark(valueToParsed)
+  switch (evaluatedValue) {
+    case 'N':
+    case 'No':
+    case 'Not':
+    case 'false':
+    case false:
+      valReturn = false
+      break
+
+    case 'Y':
+    case 'Yes':
+    case 'true':
+    case true:
+      valReturn = true
+      break
+
+    default:
+      valReturn = valueToParsed
+      break
+  }
+
+  return valReturn
+}
+
 module.exports = {
   getTypeOfValue,
   isEmptyValue,
   getTimestamp,
   getValidId,
-  getValidInteger
+  getValidInteger,
+  convertStringToBoolean
 };
