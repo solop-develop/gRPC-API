@@ -3,7 +3,7 @@
 // Original file comments:
 // ***********************************************************************************
 // Copyright (C) 2012-2023 E.R.P. Consultores y Asociados, C.A.                     *
-// Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                     *
+// Contributor(s): Elsio Sanchez Elsiosanchez@outlook.com                           *
 // This program is free software: you can redistribute it and/or modify             *
 // it under the terms of the GNU General Public License as published by             *
 // the Free Software Foundation, either version 2 of the License, or                *
