@@ -15,7 +15,7 @@
  ***********************************************************************************************/
 
 const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
-const { getValidId, getTimestamp, convertStringToBoolean } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
+const { getValidId, getTimestamp, convertStringToBoolean, getTypeOfValue } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
 
 class MatchPORReceiptInvoice 
 {
@@ -270,7 +270,8 @@ class MatchPORReceiptInvoice
     productId,
     dateFrom,
     dateto,
-    isSameQuantity
+    isSameQuantity,
+    matchFromSelectedId
   }, callback) {
     const { ListMatchedToRequest } = this.stubFile;
     const request = new ListMatchedToRequest();
@@ -280,10 +281,14 @@ class MatchPORReceiptInvoice
     request.setSearchValue(searchValue);
     request.setMatchFromType(matchFromType);
     request.setMatchToType(matchToType);
-    request.setVendorId(vendorId);
-    request.setProductId(productId);
+    const vendorIdConverted = parseInt(vendorId);
+    request.setVendorId(vendorIdConverted);
+    const productIdConverted = parseInt(productId);
+    request.setProductId(productIdConverted);
     request.setDateFrom(dateFrom);
     request.setDateTo(dateto);
+    const matchFromSelectedIdConverted = parseInt(matchFromSelectedId)
+    request.setMatchFromSelectedId(matchFromSelectedIdConverted);
     const isSameQuantityConverted = convertStringToBoolean(isSameQuantity)
     request.setIsSameQuantity(isSameQuantityConverted);
     const metadata = getMetadata({
@@ -300,28 +305,50 @@ class MatchPORReceiptInvoice
   /**
    * Process
    */
-
   Process({
     token,
-    pageSize,
-    pageToken,
     matchMode,
     matchFromType,
     matchToType,
     matchFromSelectedId,
-    matchedToSelections,
+    matchedToSelectionsList = [],
     quantity
   }, callback) {
-    const { ProcessRequest } = this.stubFile;
+    const { ProcessRequest, Matched } = this.stubFile;
     const request = new ProcessRequest();
-    request.setPageSize(pageSize);
-    request.setPageToken(pageToken);
     request.setMatchMode(matchMode);
     request.setMatchFromType(matchFromType);
     request.setMatchToType(matchToType);
     request.setMatchFromSelectedId(matchFromSelectedId);
-    request.setMatchedToSelections(matchedToSelections);
-    request.setQuantity(quantity);
+
+
+    const { getDecimalToGRPC } = require('@adempiere/grpc-api/src/utils/baseDataTypeToGRPC.js');
+    request.setQuantity(
+      getDecimalToGRPC(quantity)
+    );
+        
+    if (getTypeOfValue(matchedToSelectionsList) === 'String') {
+      matchedToSelectionsList = JSON.parse(matchedToSelectionsList);
+    }
+    // payment selections list
+    matchedToSelectionsList.forEach(matchSelection => {
+      let parsedMatchSelection = matchSelection;
+      if (getTypeOfValue(matchSelection) === 'String') {
+        parsedMatchSelection = JSON.parse(matchSelection);
+      }
+      const matchedInstance = new Matched();
+
+      matchedInstance.setId(matchSelection.id);
+      matchedInstance.setUuid(matchSelection.uuid);
+      matchedInstance.setQuantity(
+        getDecimalToGRPC(matchSelection.quantity)
+      );
+      matchedInstance.getMatchedQuantity(
+        getDecimalToGRPC(matchSelection.matchedQuantity)
+      );
+      request.addMatchedToSelections(matchedInstance);
+    });
+    
     const metadata = getMetadata({
       token
     });
