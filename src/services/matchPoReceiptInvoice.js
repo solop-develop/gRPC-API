@@ -311,8 +311,8 @@ class MatchPORReceiptInvoice
     matchFromType,
     matchToType,
     matchFromSelectedId,
-    matchedToSelectionsList = []
-    // quantity
+    matchedToSelectionsList = [],
+    quantity
   }, callback) {
     const { ProcessRequest, Matched } = this.stubFile;
     const request = new ProcessRequest();
@@ -344,6 +344,9 @@ class MatchPORReceiptInvoice
       );
       request.addMatchedToSelections(matchedInstance);
     });
+
+    const quantityConverted = parseInt(quantity);
+    request.setQuantity(quantityConverted);
     
     // request.setQuantity(quantity);
     const metadata = getMetadata({
