@@ -321,7 +321,11 @@ class MatchPORReceiptInvoice
     request.setMatchToType(matchToType);
     request.setMatchFromSelectedId(matchFromSelectedId);
 
+
     const { getDecimalToGRPC } = require('@adempiere/grpc-api/src/utils/baseDataTypeToGRPC.js');
+    request.setQuantity(
+      getDecimalToGRPC(quantity)
+    );
         
     if (getTypeOfValue(matchedToSelectionsList) === 'String') {
       matchedToSelectionsList = JSON.parse(matchedToSelectionsList);
@@ -344,11 +348,7 @@ class MatchPORReceiptInvoice
       );
       request.addMatchedToSelections(matchedInstance);
     });
-
-    const quantityConverted = parseInt(quantity);
-    request.setQuantity(quantityConverted);
     
-    // request.setQuantity(quantity);
     const metadata = getMetadata({
       token
     });
