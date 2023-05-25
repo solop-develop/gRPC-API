@@ -310,8 +310,7 @@ class PaymentPrintExport {
     token,
     paymentSelectionId,
     paymentRuleId,
-    documentNo,
-    bankAccountId
+    documentNo
   }, callback) {
     const { PrintRequest } = this.stubFile;
     const request = new PrintRequest();
@@ -325,8 +324,6 @@ class PaymentPrintExport {
     );
 
     request.setDocumentNo(documentNo);
-
-    request.setBankAccountId(bankAccountId);
 
     const metadata = getMetadata({
       token
