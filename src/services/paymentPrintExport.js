@@ -61,7 +61,6 @@ class PaymentPrintExport {
   /**
    * List Payment Selection
    * @param {string} searchValue
-   * @param {array} contextAttributes
    * @param {number} pageSize
    * @param {string} pageToken
    */
@@ -122,7 +121,6 @@ class PaymentPrintExport {
    * List Payment Rules
    * @param {string} searchValue
    * @param {number} paymentSelectionId
-   * @param {string} paymentSelectionUuid
    * @param {number} pageSize
    * @param {string} pageToken
    */
@@ -159,7 +157,7 @@ class PaymentPrintExport {
    * List Payments
    * @param {string} searchValue
    * @param {number} paymentSelectionId
-   * @param {string} paymentSelectionUuid
+   * @param {number} paymentRuleId
    * @param {number} pageSize
    * @param {string} pageToken
    */
@@ -198,11 +196,8 @@ class PaymentPrintExport {
 
   /**
    * Get Document No
-   * @param {string} searchValue
-   * @param {number} paymentSelectionId
-   * @param {string} paymentSelectionUuid
-   * @param {number} pageSize
-   * @param {string} pageToken
+   * @param {number} bankAccountId
+   * @param {number} paymentRuleId
    */
   getDocumentNo({
     token,
@@ -232,10 +227,9 @@ class PaymentPrintExport {
   /**
    * Process and Create EFT Payment
    * @param {number} paymentSelectionId
-   * @param {string} paymentSelectionUuid
    * @param {number} paymentRuleId
-   * @param {string} paymentRuleUuid
-   * @param {string} documentNo
+   * @param {number} documentNo
+   * @param {number} bankAccountId
    */
   process({
     token,
@@ -272,10 +266,9 @@ class PaymentPrintExport {
   /**
    * Process and Create EFT Payment
    * @param {number} paymentSelectionId
-   * @param {string} paymentSelectionUuid
    * @param {number} paymentRuleId
-   * @param {string} paymentRuleUuid
-   * @param {string} documentNo
+   * @param {number} documentNo
+   * @param {number} bankAccountId
    */
   export({
     token,
@@ -310,10 +303,8 @@ class PaymentPrintExport {
   /**
    * Print Payments
    * @param {number} paymentSelectionId
-   * @param {string} paymentSelectionUuid
    * @param {number} paymentRuleId
-   * @param {string} paymentRuleUuid
-   * @param {string} documentNo
+   * @param {number} documentNo
    */
   print({
     token,
@@ -351,10 +342,9 @@ class PaymentPrintExport {
   /**
    * Confirm Print
    * @param {number} paymentSelectionId
-   * @param {string} paymentSelectionUuid
    * @param {number} paymentRuleId
-   * @param {string} paymentRuleUuid
-   * @param {string} documentNo
+   * @param {number} bankAccountId
+   * @param {number} documentNo
    */
   confirmPrint({
     token,
@@ -369,7 +359,7 @@ class PaymentPrintExport {
     request.setPaymentSelectionId(
       getValidInteger(paymentSelectionId)
     );
-      
+
     request.setPaymentRule(
       paymentRuleId
     );
@@ -394,17 +384,13 @@ class PaymentPrintExport {
   /**
    * Print Remittance
    * @param {number} paymentSelectionId
-   * @param {string} paymentSelectionUuid
    * @param {number} paymentRuleId
-   * @param {string} paymentRuleUuid
-   * @param {string} documentNo
+   * @param {number} documentNo
    */
   printRemittance({
     token,
     paymentSelectionId,
-    paymentSelectionUuid,
     paymentRuleId,
-    paymentRuleUuid,
     documentNo
   }, callback) {
     const { PrintRemittanceRequest } = this.stubFile;
@@ -413,7 +399,7 @@ class PaymentPrintExport {
     request.setPaymentSelectionId(
       getValidInteger(paymentSelectionId)
     );
-      
+
     request.setPaymentRule(
       paymentRuleId
     );
