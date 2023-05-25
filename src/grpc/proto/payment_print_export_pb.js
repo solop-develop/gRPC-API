@@ -1173,9 +1173,9 @@ proto.payment_print_export.ListPaymentSelectionsRequest.prototype.toObject = fun
  */
 proto.payment_print_export.ListPaymentSelectionsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    pageSize: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    pageToken: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    searchValue: jspb.Message.getFieldWithDefault(msg, 4, "")
+    pageSize: jspb.Message.getFieldWithDefault(msg, 1, 0),
+    pageToken: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    searchValue: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
 
   if (includeInstance) {
@@ -1212,15 +1212,15 @@ proto.payment_print_export.ListPaymentSelectionsRequest.deserializeBinaryFromRea
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 2:
+    case 1:
       var value = /** @type {number} */ (reader.readInt32());
       msg.setPageSize(value);
       break;
-    case 3:
+    case 2:
       var value = /** @type {string} */ (reader.readString());
       msg.setPageToken(value);
       break;
-    case 4:
+    case 3:
       var value = /** @type {string} */ (reader.readString());
       msg.setSearchValue(value);
       break;
@@ -1256,21 +1256,21 @@ proto.payment_print_export.ListPaymentSelectionsRequest.serializeBinaryToWriter 
   f = message.getPageSize();
   if (f !== 0) {
     writer.writeInt32(
-      2,
+      1,
       f
     );
   }
   f = message.getPageToken();
   if (f.length > 0) {
     writer.writeString(
-      3,
+      2,
       f
     );
   }
   f = message.getSearchValue();
   if (f.length > 0) {
     writer.writeString(
-      4,
+      3,
       f
     );
   }
@@ -1278,11 +1278,11 @@ proto.payment_print_export.ListPaymentSelectionsRequest.serializeBinaryToWriter 
 
 
 /**
- * optional int32 page_size = 2;
+ * optional int32 page_size = 1;
  * @return {number}
  */
 proto.payment_print_export.ListPaymentSelectionsRequest.prototype.getPageSize = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
 };
 
 
@@ -1291,16 +1291,16 @@ proto.payment_print_export.ListPaymentSelectionsRequest.prototype.getPageSize = 
  * @return {!proto.payment_print_export.ListPaymentSelectionsRequest} returns this
  */
 proto.payment_print_export.ListPaymentSelectionsRequest.prototype.setPageSize = function(value) {
-  return jspb.Message.setProto3IntField(this, 2, value);
+  return jspb.Message.setProto3IntField(this, 1, value);
 };
 
 
 /**
- * optional string page_token = 3;
+ * optional string page_token = 2;
  * @return {string}
  */
 proto.payment_print_export.ListPaymentSelectionsRequest.prototype.getPageToken = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
 
@@ -1309,16 +1309,16 @@ proto.payment_print_export.ListPaymentSelectionsRequest.prototype.getPageToken =
  * @return {!proto.payment_print_export.ListPaymentSelectionsRequest} returns this
  */
 proto.payment_print_export.ListPaymentSelectionsRequest.prototype.setPageToken = function(value) {
-  return jspb.Message.setProto3StringField(this, 3, value);
+  return jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
 /**
- * optional string search_value = 4;
+ * optional string search_value = 3;
  * @return {string}
  */
 proto.payment_print_export.ListPaymentSelectionsRequest.prototype.getSearchValue = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
 
 
@@ -1327,7 +1327,7 @@ proto.payment_print_export.ListPaymentSelectionsRequest.prototype.getSearchValue
  * @return {!proto.payment_print_export.ListPaymentSelectionsRequest} returns this
  */
 proto.payment_print_export.ListPaymentSelectionsRequest.prototype.setSearchValue = function(value) {
-  return jspb.Message.setProto3StringField(this, 4, value);
+  return jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
@@ -1363,8 +1363,8 @@ proto.payment_print_export.GetPaymentSelectionRequest.prototype.toObject = funct
  */
 proto.payment_print_export.GetPaymentSelectionRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    uuid: jspb.Message.getFieldWithDefault(msg, 3, "")
+    id: jspb.Message.getFieldWithDefault(msg, 1, 0),
+    uuid: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -1401,11 +1401,11 @@ proto.payment_print_export.GetPaymentSelectionRequest.deserializeBinaryFromReade
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 2:
+    case 1:
       var value = /** @type {number} */ (reader.readInt32());
       msg.setId(value);
       break;
-    case 3:
+    case 2:
       var value = /** @type {string} */ (reader.readString());
       msg.setUuid(value);
       break;
@@ -1441,14 +1441,14 @@ proto.payment_print_export.GetPaymentSelectionRequest.serializeBinaryToWriter = 
   f = message.getId();
   if (f !== 0) {
     writer.writeInt32(
-      2,
+      1,
       f
     );
   }
   f = message.getUuid();
   if (f.length > 0) {
     writer.writeString(
-      3,
+      2,
       f
     );
   }
@@ -1456,11 +1456,11 @@ proto.payment_print_export.GetPaymentSelectionRequest.serializeBinaryToWriter = 
 
 
 /**
- * optional int32 id = 2;
+ * optional int32 id = 1;
  * @return {number}
  */
 proto.payment_print_export.GetPaymentSelectionRequest.prototype.getId = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
 };
 
 
@@ -1469,16 +1469,16 @@ proto.payment_print_export.GetPaymentSelectionRequest.prototype.getId = function
  * @return {!proto.payment_print_export.GetPaymentSelectionRequest} returns this
  */
 proto.payment_print_export.GetPaymentSelectionRequest.prototype.setId = function(value) {
-  return jspb.Message.setProto3IntField(this, 2, value);
+  return jspb.Message.setProto3IntField(this, 1, value);
 };
 
 
 /**
- * optional string uuid = 3;
+ * optional string uuid = 2;
  * @return {string}
  */
 proto.payment_print_export.GetPaymentSelectionRequest.prototype.getUuid = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
 
@@ -1487,7 +1487,7 @@ proto.payment_print_export.GetPaymentSelectionRequest.prototype.getUuid = functi
  * @return {!proto.payment_print_export.GetPaymentSelectionRequest} returns this
  */
 proto.payment_print_export.GetPaymentSelectionRequest.prototype.setUuid = function(value) {
-  return jspb.Message.setProto3StringField(this, 3, value);
+  return jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -1523,10 +1523,10 @@ proto.payment_print_export.ListPaymentRulesRequest.prototype.toObject = function
  */
 proto.payment_print_export.ListPaymentRulesRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    pageSize: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    pageToken: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    searchValue: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    paymentSelectionId: jspb.Message.getFieldWithDefault(msg, 5, 0)
+    pageSize: jspb.Message.getFieldWithDefault(msg, 1, 0),
+    pageToken: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    searchValue: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    paymentSelectionId: jspb.Message.getFieldWithDefault(msg, 4, 0)
   };
 
   if (includeInstance) {
@@ -1563,19 +1563,19 @@ proto.payment_print_export.ListPaymentRulesRequest.deserializeBinaryFromReader =
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 2:
+    case 1:
       var value = /** @type {number} */ (reader.readInt32());
       msg.setPageSize(value);
       break;
-    case 3:
+    case 2:
       var value = /** @type {string} */ (reader.readString());
       msg.setPageToken(value);
       break;
-    case 4:
+    case 3:
       var value = /** @type {string} */ (reader.readString());
       msg.setSearchValue(value);
       break;
-    case 5:
+    case 4:
       var value = /** @type {number} */ (reader.readInt32());
       msg.setPaymentSelectionId(value);
       break;
@@ -1611,28 +1611,28 @@ proto.payment_print_export.ListPaymentRulesRequest.serializeBinaryToWriter = fun
   f = message.getPageSize();
   if (f !== 0) {
     writer.writeInt32(
-      2,
+      1,
       f
     );
   }
   f = message.getPageToken();
   if (f.length > 0) {
     writer.writeString(
-      3,
+      2,
       f
     );
   }
   f = message.getSearchValue();
   if (f.length > 0) {
     writer.writeString(
-      4,
+      3,
       f
     );
   }
   f = message.getPaymentSelectionId();
   if (f !== 0) {
     writer.writeInt32(
-      5,
+      4,
       f
     );
   }
@@ -1640,11 +1640,11 @@ proto.payment_print_export.ListPaymentRulesRequest.serializeBinaryToWriter = fun
 
 
 /**
- * optional int32 page_size = 2;
+ * optional int32 page_size = 1;
  * @return {number}
  */
 proto.payment_print_export.ListPaymentRulesRequest.prototype.getPageSize = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
 };
 
 
@@ -1653,16 +1653,16 @@ proto.payment_print_export.ListPaymentRulesRequest.prototype.getPageSize = funct
  * @return {!proto.payment_print_export.ListPaymentRulesRequest} returns this
  */
 proto.payment_print_export.ListPaymentRulesRequest.prototype.setPageSize = function(value) {
-  return jspb.Message.setProto3IntField(this, 2, value);
+  return jspb.Message.setProto3IntField(this, 1, value);
 };
 
 
 /**
- * optional string page_token = 3;
+ * optional string page_token = 2;
  * @return {string}
  */
 proto.payment_print_export.ListPaymentRulesRequest.prototype.getPageToken = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
 
@@ -1671,16 +1671,16 @@ proto.payment_print_export.ListPaymentRulesRequest.prototype.getPageToken = func
  * @return {!proto.payment_print_export.ListPaymentRulesRequest} returns this
  */
 proto.payment_print_export.ListPaymentRulesRequest.prototype.setPageToken = function(value) {
-  return jspb.Message.setProto3StringField(this, 3, value);
+  return jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
 /**
- * optional string search_value = 4;
+ * optional string search_value = 3;
  * @return {string}
  */
 proto.payment_print_export.ListPaymentRulesRequest.prototype.getSearchValue = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
 
 
@@ -1689,16 +1689,16 @@ proto.payment_print_export.ListPaymentRulesRequest.prototype.getSearchValue = fu
  * @return {!proto.payment_print_export.ListPaymentRulesRequest} returns this
  */
 proto.payment_print_export.ListPaymentRulesRequest.prototype.setSearchValue = function(value) {
-  return jspb.Message.setProto3StringField(this, 4, value);
+  return jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
 /**
- * optional int32 payment_selection_id = 5;
+ * optional int32 payment_selection_id = 4;
  * @return {number}
  */
 proto.payment_print_export.ListPaymentRulesRequest.prototype.getPaymentSelectionId = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 5, 0));
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
 };
 
 
@@ -1707,7 +1707,7 @@ proto.payment_print_export.ListPaymentRulesRequest.prototype.getPaymentSelection
  * @return {!proto.payment_print_export.ListPaymentRulesRequest} returns this
  */
 proto.payment_print_export.ListPaymentRulesRequest.prototype.setPaymentSelectionId = function(value) {
-  return jspb.Message.setProto3IntField(this, 5, value);
+  return jspb.Message.setProto3IntField(this, 4, value);
 };
 
 
@@ -2033,11 +2033,11 @@ proto.payment_print_export.ListPaymentsRequest.prototype.toObject = function(opt
  */
 proto.payment_print_export.ListPaymentsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    pageSize: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    pageToken: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    searchValue: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    paymentSelectionId: jspb.Message.getFieldWithDefault(msg, 5, 0),
-    paymentRule: jspb.Message.getFieldWithDefault(msg, 6, "")
+    pageSize: jspb.Message.getFieldWithDefault(msg, 1, 0),
+    pageToken: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    searchValue: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    paymentSelectionId: jspb.Message.getFieldWithDefault(msg, 4, 0),
+    paymentRule: jspb.Message.getFieldWithDefault(msg, 5, "")
   };
 
   if (includeInstance) {
@@ -2074,23 +2074,23 @@ proto.payment_print_export.ListPaymentsRequest.deserializeBinaryFromReader = fun
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 2:
+    case 1:
       var value = /** @type {number} */ (reader.readInt32());
       msg.setPageSize(value);
       break;
-    case 3:
+    case 2:
       var value = /** @type {string} */ (reader.readString());
       msg.setPageToken(value);
       break;
-    case 4:
+    case 3:
       var value = /** @type {string} */ (reader.readString());
       msg.setSearchValue(value);
       break;
-    case 5:
+    case 4:
       var value = /** @type {number} */ (reader.readInt32());
       msg.setPaymentSelectionId(value);
       break;
-    case 6:
+    case 5:
       var value = /** @type {string} */ (reader.readString());
       msg.setPaymentRule(value);
       break;
@@ -2126,35 +2126,35 @@ proto.payment_print_export.ListPaymentsRequest.serializeBinaryToWriter = functio
   f = message.getPageSize();
   if (f !== 0) {
     writer.writeInt32(
-      2,
+      1,
       f
     );
   }
   f = message.getPageToken();
   if (f.length > 0) {
     writer.writeString(
-      3,
+      2,
       f
     );
   }
   f = message.getSearchValue();
   if (f.length > 0) {
     writer.writeString(
-      4,
+      3,
       f
     );
   }
   f = message.getPaymentSelectionId();
   if (f !== 0) {
     writer.writeInt32(
-      5,
+      4,
       f
     );
   }
   f = message.getPaymentRule();
   if (f.length > 0) {
     writer.writeString(
-      6,
+      5,
       f
     );
   }
@@ -2162,11 +2162,11 @@ proto.payment_print_export.ListPaymentsRequest.serializeBinaryToWriter = functio
 
 
 /**
- * optional int32 page_size = 2;
+ * optional int32 page_size = 1;
  * @return {number}
  */
 proto.payment_print_export.ListPaymentsRequest.prototype.getPageSize = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
 };
 
 
@@ -2175,16 +2175,16 @@ proto.payment_print_export.ListPaymentsRequest.prototype.getPageSize = function(
  * @return {!proto.payment_print_export.ListPaymentsRequest} returns this
  */
 proto.payment_print_export.ListPaymentsRequest.prototype.setPageSize = function(value) {
-  return jspb.Message.setProto3IntField(this, 2, value);
+  return jspb.Message.setProto3IntField(this, 1, value);
 };
 
 
 /**
- * optional string page_token = 3;
+ * optional string page_token = 2;
  * @return {string}
  */
 proto.payment_print_export.ListPaymentsRequest.prototype.getPageToken = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
 
@@ -2193,16 +2193,16 @@ proto.payment_print_export.ListPaymentsRequest.prototype.getPageToken = function
  * @return {!proto.payment_print_export.ListPaymentsRequest} returns this
  */
 proto.payment_print_export.ListPaymentsRequest.prototype.setPageToken = function(value) {
-  return jspb.Message.setProto3StringField(this, 3, value);
+  return jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
 /**
- * optional string search_value = 4;
+ * optional string search_value = 3;
  * @return {string}
  */
 proto.payment_print_export.ListPaymentsRequest.prototype.getSearchValue = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
 
 
@@ -2211,16 +2211,16 @@ proto.payment_print_export.ListPaymentsRequest.prototype.getSearchValue = functi
  * @return {!proto.payment_print_export.ListPaymentsRequest} returns this
  */
 proto.payment_print_export.ListPaymentsRequest.prototype.setSearchValue = function(value) {
-  return jspb.Message.setProto3StringField(this, 4, value);
+  return jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
 /**
- * optional int32 payment_selection_id = 5;
+ * optional int32 payment_selection_id = 4;
  * @return {number}
  */
 proto.payment_print_export.ListPaymentsRequest.prototype.getPaymentSelectionId = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 5, 0));
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
 };
 
 
@@ -2229,16 +2229,16 @@ proto.payment_print_export.ListPaymentsRequest.prototype.getPaymentSelectionId =
  * @return {!proto.payment_print_export.ListPaymentsRequest} returns this
  */
 proto.payment_print_export.ListPaymentsRequest.prototype.setPaymentSelectionId = function(value) {
-  return jspb.Message.setProto3IntField(this, 5, value);
+  return jspb.Message.setProto3IntField(this, 4, value);
 };
 
 
 /**
- * optional string payment_rule = 6;
+ * optional string payment_rule = 5;
  * @return {string}
  */
 proto.payment_print_export.ListPaymentsRequest.prototype.getPaymentRule = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
 };
 
 
@@ -2247,7 +2247,7 @@ proto.payment_print_export.ListPaymentsRequest.prototype.getPaymentRule = functi
  * @return {!proto.payment_print_export.ListPaymentsRequest} returns this
  */
 proto.payment_print_export.ListPaymentsRequest.prototype.setPaymentRule = function(value) {
-  return jspb.Message.setProto3StringField(this, 6, value);
+  return jspb.Message.setProto3StringField(this, 5, value);
 };
 
 
@@ -3812,8 +3812,7 @@ proto.payment_print_export.PrintRequest.toObject = function(includeInstance, msg
   var f, obj = {
     paymentSelectionId: jspb.Message.getFieldWithDefault(msg, 1, 0),
     paymentRule: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    bankAccountId: jspb.Message.getFieldWithDefault(msg, 3, 0),
-    documentNo: jspb.Message.getFieldWithDefault(msg, 4, 0)
+    documentNo: jspb.Message.getFieldWithDefault(msg, 3, 0)
   };
 
   if (includeInstance) {
@@ -3860,10 +3859,6 @@ proto.payment_print_export.PrintRequest.deserializeBinaryFromReader = function(m
       break;
     case 3:
       var value = /** @type {number} */ (reader.readInt32());
-      msg.setBankAccountId(value);
-      break;
-    case 4:
-      var value = /** @type {number} */ (reader.readInt32());
       msg.setDocumentNo(value);
       break;
     default:
@@ -3909,17 +3904,10 @@ proto.payment_print_export.PrintRequest.serializeBinaryToWriter = function(messa
       f
     );
   }
-  f = message.getBankAccountId();
-  if (f !== 0) {
-    writer.writeInt32(
-      3,
-      f
-    );
-  }
   f = message.getDocumentNo();
   if (f !== 0) {
     writer.writeInt32(
-      4,
+      3,
       f
     );
   }
@@ -3963,10 +3951,10 @@ proto.payment_print_export.PrintRequest.prototype.setPaymentRule = function(valu
 
 
 /**
- * optional int32 bank_account_id = 3;
+ * optional int32 document_no = 3;
  * @return {number}
  */
-proto.payment_print_export.PrintRequest.prototype.getBankAccountId = function() {
+proto.payment_print_export.PrintRequest.prototype.getDocumentNo = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
 };
 
@@ -3975,26 +3963,8 @@ proto.payment_print_export.PrintRequest.prototype.getBankAccountId = function() 
  * @param {number} value
  * @return {!proto.payment_print_export.PrintRequest} returns this
  */
-proto.payment_print_export.PrintRequest.prototype.setBankAccountId = function(value) {
-  return jspb.Message.setProto3IntField(this, 3, value);
-};
-
-
-/**
- * optional int32 document_no = 4;
- * @return {number}
- */
-proto.payment_print_export.PrintRequest.prototype.getDocumentNo = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
-};
-
-
-/**
- * @param {number} value
- * @return {!proto.payment_print_export.PrintRequest} returns this
- */
 proto.payment_print_export.PrintRequest.prototype.setDocumentNo = function(value) {
-  return jspb.Message.setProto3IntField(this, 4, value);
+  return jspb.Message.setProto3IntField(this, 3, value);
 };
 
 
