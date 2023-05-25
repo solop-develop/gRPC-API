@@ -15,7 +15,7 @@
  ************************************************************************************/
 
 const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
-const { getValidId } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
+const { getValidInteger } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
 
 class PaymentPrintExport {
 
@@ -104,7 +104,7 @@ class PaymentPrintExport {
 
     request.setUuid(uuid);
     request.setId(
-      getValidId(id)
+      getValidInteger(id)
     );
 
     const metadata = getMetadata({
@@ -139,7 +139,7 @@ class PaymentPrintExport {
     request.setSearchValue(searchValue);
 
     request.setPaymentSelectionId(
-      getValidId(paymentSelectionId)
+      getValidInteger(paymentSelectionId)
     );
     request.setPageSize(pageSize);
     request.setPageToken(pageToken);
@@ -177,12 +177,10 @@ class PaymentPrintExport {
     request.setSearchValue(searchValue);
 
     request.setPaymentSelectionId(
-      getValidId(paymentSelectionId)
+      getValidInteger(paymentSelectionId)
     );
 
-    request.setPaymentRuleId(
-      getValidId(paymentRuleId)
-    );
+    request.setPaymentRule(paymentRuleId);
 
     request.setPageSize(pageSize);
     request.setPageToken(pageToken);
@@ -215,12 +213,10 @@ class PaymentPrintExport {
     const request = new GetDocumentNoRequest();
 
     request.setBankAccountId(
-      getValidId(bankAccountId)
+      getValidInteger(bankAccountId)
     );
 
-    request.setPaymentRuleId(
-      getValidId(paymentRuleId)
-    );
+    request.setPaymentRule(paymentRuleId);
 
     const metadata = getMetadata({
       token
@@ -245,20 +241,22 @@ class PaymentPrintExport {
     token,
     paymentSelectionId,
     paymentRuleId,
-    documentNo
+    documentNo,
+    bankAccountId
   }, callback) {
     const { ProcessRequest } = this.stubFile;
     const request = new ProcessRequest();
 
     request.setPaymentSelectionId(
-      getValidId(paymentSelectionId)
+      getValidInteger(paymentSelectionId)
     );
 
-    request.setPaymentRuleId(
-      getValidId(paymentRuleId)
+    request.setPaymentRule(
+      paymentRuleId
     );
 
     request.setDocumentNo(documentNo);
+    request.setBankAccountId(bankAccountId);
 
     const metadata = getMetadata({
       token
@@ -283,18 +281,20 @@ class PaymentPrintExport {
     token,
     paymentSelectionId,
     paymentRuleId,
-    documentNo
+    documentNo,
+    bankAccountId
   }, callback) {
     const { ExportRequest } = this.stubFile;
     const request = new ExportRequest();
 
     request.setPaymentSelectionId(
-      getValidId(paymentSelectionId)
+      getValidInteger(paymentSelectionId)
     );
-    request.setPaymentRuleId(
-      getValidId(paymentRuleId)
+    request.setPaymentRule(
+      paymentRuleId
     );
     request.setDocumentNo(documentNo);
+    request.setBankAccountId(bankAccountId);
 
     const metadata = getMetadata({
       token
@@ -319,20 +319,23 @@ class PaymentPrintExport {
     token,
     paymentSelectionId,
     paymentRuleId,
-    documentNo
+    documentNo,
+    bankAccountId
   }, callback) {
     const { PrintRequest } = this.stubFile;
     const request = new PrintRequest();
 
     request.setPaymentSelectionId(
-      getValidId(paymentSelectionId)
+      getValidInteger(paymentSelectionId)
     );
 
-    request.setPaymentRuleId(
-      getValidId(paymentRuleId)
+    request.setPaymentRule(
+      paymentRuleId
     );
 
     request.setDocumentNo(documentNo);
+
+    request.setBankAccountId(bankAccountId);
 
     const metadata = getMetadata({
       token
@@ -356,23 +359,24 @@ class PaymentPrintExport {
   confirmPrint({
     token,
     paymentSelectionId,
-    paymentSelectionUuid,
     paymentRuleId,
-    paymentRuleUuid,
+    bankAccountId,
     documentNo
   }, callback) {
     const { ConfirmPrintRequest } = this.stubFile;
     const request = new ConfirmPrintRequest();
 
     request.setPaymentSelectionId(
-      getValidId(paymentSelectionId)
+      getValidInteger(paymentSelectionId)
     );
-    request.setPaymentSelectionUuid(paymentSelectionUuid);
+      
+    request.setPaymentRule(
+      paymentRuleId
+    );
 
-    request.setPaymentRuleId(
-      getValidId(paymentRuleId)
+    request.setBankAccountId(
+      getValidInteger(bankAccountId)
     );
-    request.setPaymentRuleUuid(paymentRuleUuid);
 
     request.setDocumentNo(documentNo);
 
@@ -407,14 +411,16 @@ class PaymentPrintExport {
     const request = new PrintRemittanceRequest();
 
     request.setPaymentSelectionId(
-      getValidId(paymentSelectionId)
+      getValidInteger(paymentSelectionId)
     );
-    request.setPaymentSelectionUuid(paymentSelectionUuid);
+      
+    request.setPaymentRule(
+      paymentRuleId
+    );
 
-    request.setPaymentRuleId(
-      getValidId(paymentRuleId)
+    request.setBankAccountId(
+      getValidInteger(bankAccountId)
     );
-    request.setPaymentRuleUuid(paymentRuleUuid);
 
     request.setDocumentNo(documentNo);
 
