@@ -3851,15 +3851,12 @@ proto.payment_allocation.ListPaymentsRequest.toObject = function(includeInstance
     pageToken: jspb.Message.getFieldWithDefault(msg, 2, ""),
     searchValue: jspb.Message.getFieldWithDefault(msg, 3, ""),
     businessPartnerId: jspb.Message.getFieldWithDefault(msg, 4, 0),
-    businessPartnerUuid: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    date: jspb.Message.getFieldWithDefault(msg, 6, 0),
-    organizationId: jspb.Message.getFieldWithDefault(msg, 7, 0),
-    organizationUuid: jspb.Message.getFieldWithDefault(msg, 8, ""),
-    currencyId: jspb.Message.getFieldWithDefault(msg, 9, 0),
-    currencyUuid: jspb.Message.getFieldWithDefault(msg, 10, ""),
-    isMultiCurrency: jspb.Message.getBooleanFieldWithDefault(msg, 11, false),
-    transactionType: jspb.Message.getFieldWithDefault(msg, 12, ""),
-    isAutomaticWriteOff: jspb.Message.getBooleanFieldWithDefault(msg, 13, false)
+    date: jspb.Message.getFieldWithDefault(msg, 5, 0),
+    organizationId: jspb.Message.getFieldWithDefault(msg, 6, 0),
+    currencyId: jspb.Message.getFieldWithDefault(msg, 7, 0),
+    isMultiCurrency: jspb.Message.getBooleanFieldWithDefault(msg, 8, false),
+    transactionType: jspb.Message.getFieldWithDefault(msg, 9, ""),
+    isAutomaticWriteOff: jspb.Message.getBooleanFieldWithDefault(msg, 10, false)
   };
 
   if (includeInstance) {
@@ -3913,38 +3910,26 @@ proto.payment_allocation.ListPaymentsRequest.deserializeBinaryFromReader = funct
       msg.setBusinessPartnerId(value);
       break;
     case 5:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setBusinessPartnerUuid(value);
-      break;
-    case 6:
       var value = /** @type {number} */ (reader.readInt64());
       msg.setDate(value);
       break;
-    case 7:
+    case 6:
       var value = /** @type {number} */ (reader.readInt32());
       msg.setOrganizationId(value);
       break;
-    case 8:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setOrganizationUuid(value);
-      break;
-    case 9:
+    case 7:
       var value = /** @type {number} */ (reader.readInt32());
       msg.setCurrencyId(value);
       break;
-    case 10:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setCurrencyUuid(value);
-      break;
-    case 11:
+    case 8:
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setIsMultiCurrency(value);
       break;
-    case 12:
+    case 9:
       var value = /** @type {string} */ (reader.readString());
       msg.setTransactionType(value);
       break;
-    case 13:
+    case 10:
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setIsAutomaticWriteOff(value);
       break;
@@ -4005,66 +3990,45 @@ proto.payment_allocation.ListPaymentsRequest.serializeBinaryToWriter = function(
       f
     );
   }
-  f = message.getBusinessPartnerUuid();
-  if (f.length > 0) {
-    writer.writeString(
-      5,
-      f
-    );
-  }
   f = message.getDate();
   if (f !== 0) {
     writer.writeInt64(
-      6,
+      5,
       f
     );
   }
   f = message.getOrganizationId();
   if (f !== 0) {
     writer.writeInt32(
-      7,
-      f
-    );
-  }
-  f = message.getOrganizationUuid();
-  if (f.length > 0) {
-    writer.writeString(
-      8,
+      6,
       f
     );
   }
   f = message.getCurrencyId();
   if (f !== 0) {
     writer.writeInt32(
-      9,
-      f
-    );
-  }
-  f = message.getCurrencyUuid();
-  if (f.length > 0) {
-    writer.writeString(
-      10,
+      7,
       f
     );
   }
   f = message.getIsMultiCurrency();
   if (f) {
     writer.writeBool(
-      11,
+      8,
       f
     );
   }
   f = message.getTransactionType();
   if (f.length > 0) {
     writer.writeString(
-      12,
+      9,
       f
     );
   }
   f = message.getIsAutomaticWriteOff();
   if (f) {
     writer.writeBool(
-      13,
+      10,
       f
     );
   }
@@ -4144,29 +4108,11 @@ proto.payment_allocation.ListPaymentsRequest.prototype.setBusinessPartnerId = fu
 
 
 /**
- * optional string business_partner_uuid = 5;
- * @return {string}
- */
-proto.payment_allocation.ListPaymentsRequest.prototype.getBusinessPartnerUuid = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.payment_allocation.ListPaymentsRequest} returns this
- */
-proto.payment_allocation.ListPaymentsRequest.prototype.setBusinessPartnerUuid = function(value) {
-  return jspb.Message.setProto3StringField(this, 5, value);
-};
-
-
-/**
- * optional int64 date = 6;
+ * optional int64 date = 5;
  * @return {number}
  */
 proto.payment_allocation.ListPaymentsRequest.prototype.getDate = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 6, 0));
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 5, 0));
 };
 
 
@@ -4175,16 +4121,16 @@ proto.payment_allocation.ListPaymentsRequest.prototype.getDate = function() {
  * @return {!proto.payment_allocation.ListPaymentsRequest} returns this
  */
 proto.payment_allocation.ListPaymentsRequest.prototype.setDate = function(value) {
-  return jspb.Message.setProto3IntField(this, 6, value);
+  return jspb.Message.setProto3IntField(this, 5, value);
 };
 
 
 /**
- * optional int32 organization_id = 7;
+ * optional int32 organization_id = 6;
  * @return {number}
  */
 proto.payment_allocation.ListPaymentsRequest.prototype.getOrganizationId = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 7, 0));
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 6, 0));
 };
 
 
@@ -4193,34 +4139,16 @@ proto.payment_allocation.ListPaymentsRequest.prototype.getOrganizationId = funct
  * @return {!proto.payment_allocation.ListPaymentsRequest} returns this
  */
 proto.payment_allocation.ListPaymentsRequest.prototype.setOrganizationId = function(value) {
-  return jspb.Message.setProto3IntField(this, 7, value);
+  return jspb.Message.setProto3IntField(this, 6, value);
 };
 
 
 /**
- * optional string organization_uuid = 8;
- * @return {string}
- */
-proto.payment_allocation.ListPaymentsRequest.prototype.getOrganizationUuid = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 8, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.payment_allocation.ListPaymentsRequest} returns this
- */
-proto.payment_allocation.ListPaymentsRequest.prototype.setOrganizationUuid = function(value) {
-  return jspb.Message.setProto3StringField(this, 8, value);
-};
-
-
-/**
- * optional int32 currency_id = 9;
+ * optional int32 currency_id = 7;
  * @return {number}
  */
 proto.payment_allocation.ListPaymentsRequest.prototype.getCurrencyId = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 9, 0));
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 7, 0));
 };
 
 
@@ -4229,34 +4157,16 @@ proto.payment_allocation.ListPaymentsRequest.prototype.getCurrencyId = function(
  * @return {!proto.payment_allocation.ListPaymentsRequest} returns this
  */
 proto.payment_allocation.ListPaymentsRequest.prototype.setCurrencyId = function(value) {
-  return jspb.Message.setProto3IntField(this, 9, value);
+  return jspb.Message.setProto3IntField(this, 7, value);
 };
 
 
 /**
- * optional string currency_uuid = 10;
- * @return {string}
- */
-proto.payment_allocation.ListPaymentsRequest.prototype.getCurrencyUuid = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 10, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.payment_allocation.ListPaymentsRequest} returns this
- */
-proto.payment_allocation.ListPaymentsRequest.prototype.setCurrencyUuid = function(value) {
-  return jspb.Message.setProto3StringField(this, 10, value);
-};
-
-
-/**
- * optional bool is_multi_currency = 11;
+ * optional bool is_multi_currency = 8;
  * @return {boolean}
  */
 proto.payment_allocation.ListPaymentsRequest.prototype.getIsMultiCurrency = function() {
-  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 11, false));
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 8, false));
 };
 
 
@@ -4265,16 +4175,16 @@ proto.payment_allocation.ListPaymentsRequest.prototype.getIsMultiCurrency = func
  * @return {!proto.payment_allocation.ListPaymentsRequest} returns this
  */
 proto.payment_allocation.ListPaymentsRequest.prototype.setIsMultiCurrency = function(value) {
-  return jspb.Message.setProto3BooleanField(this, 11, value);
+  return jspb.Message.setProto3BooleanField(this, 8, value);
 };
 
 
 /**
- * optional string transaction_type = 12;
+ * optional string transaction_type = 9;
  * @return {string}
  */
 proto.payment_allocation.ListPaymentsRequest.prototype.getTransactionType = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 12, ""));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 9, ""));
 };
 
 
@@ -4283,16 +4193,16 @@ proto.payment_allocation.ListPaymentsRequest.prototype.getTransactionType = func
  * @return {!proto.payment_allocation.ListPaymentsRequest} returns this
  */
 proto.payment_allocation.ListPaymentsRequest.prototype.setTransactionType = function(value) {
-  return jspb.Message.setProto3StringField(this, 12, value);
+  return jspb.Message.setProto3StringField(this, 9, value);
 };
 
 
 /**
- * optional bool is_automatic_write_off = 13;
+ * optional bool is_automatic_write_off = 10;
  * @return {boolean}
  */
 proto.payment_allocation.ListPaymentsRequest.prototype.getIsAutomaticWriteOff = function() {
-  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 13, false));
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 10, false));
 };
 
 
@@ -4301,7 +4211,7 @@ proto.payment_allocation.ListPaymentsRequest.prototype.getIsAutomaticWriteOff = 
  * @return {!proto.payment_allocation.ListPaymentsRequest} returns this
  */
 proto.payment_allocation.ListPaymentsRequest.prototype.setIsAutomaticWriteOff = function(value) {
-  return jspb.Message.setProto3BooleanField(this, 13, value);
+  return jspb.Message.setProto3BooleanField(this, 10, value);
 };
 
 
@@ -5198,15 +5108,12 @@ proto.payment_allocation.ListInvoicesRequest.toObject = function(includeInstance
     pageToken: jspb.Message.getFieldWithDefault(msg, 2, ""),
     searchValue: jspb.Message.getFieldWithDefault(msg, 3, ""),
     businessPartnerId: jspb.Message.getFieldWithDefault(msg, 4, 0),
-    businessPartnerUuid: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    date: jspb.Message.getFieldWithDefault(msg, 6, 0),
-    organizationId: jspb.Message.getFieldWithDefault(msg, 7, 0),
-    organizationUuid: jspb.Message.getFieldWithDefault(msg, 8, ""),
-    currencyId: jspb.Message.getFieldWithDefault(msg, 9, 0),
-    currencyUuid: jspb.Message.getFieldWithDefault(msg, 10, ""),
-    isMultiCurrency: jspb.Message.getBooleanFieldWithDefault(msg, 11, false),
-    transactionType: jspb.Message.getFieldWithDefault(msg, 12, ""),
-    isAutomaticWriteOff: jspb.Message.getBooleanFieldWithDefault(msg, 13, false)
+    date: jspb.Message.getFieldWithDefault(msg, 5, 0),
+    organizationId: jspb.Message.getFieldWithDefault(msg, 6, 0),
+    currencyId: jspb.Message.getFieldWithDefault(msg, 7, 0),
+    isMultiCurrency: jspb.Message.getBooleanFieldWithDefault(msg, 8, false),
+    transactionType: jspb.Message.getFieldWithDefault(msg, 9, ""),
+    isAutomaticWriteOff: jspb.Message.getBooleanFieldWithDefault(msg, 10, false)
   };
 
   if (includeInstance) {
@@ -5260,38 +5167,26 @@ proto.payment_allocation.ListInvoicesRequest.deserializeBinaryFromReader = funct
       msg.setBusinessPartnerId(value);
       break;
     case 5:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setBusinessPartnerUuid(value);
-      break;
-    case 6:
       var value = /** @type {number} */ (reader.readInt64());
       msg.setDate(value);
       break;
-    case 7:
+    case 6:
       var value = /** @type {number} */ (reader.readInt32());
       msg.setOrganizationId(value);
       break;
-    case 8:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setOrganizationUuid(value);
-      break;
-    case 9:
+    case 7:
       var value = /** @type {number} */ (reader.readInt32());
       msg.setCurrencyId(value);
       break;
-    case 10:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setCurrencyUuid(value);
-      break;
-    case 11:
+    case 8:
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setIsMultiCurrency(value);
       break;
-    case 12:
+    case 9:
       var value = /** @type {string} */ (reader.readString());
       msg.setTransactionType(value);
       break;
-    case 13:
+    case 10:
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setIsAutomaticWriteOff(value);
       break;
@@ -5352,66 +5247,45 @@ proto.payment_allocation.ListInvoicesRequest.serializeBinaryToWriter = function(
       f
     );
   }
-  f = message.getBusinessPartnerUuid();
-  if (f.length > 0) {
-    writer.writeString(
-      5,
-      f
-    );
-  }
   f = message.getDate();
   if (f !== 0) {
     writer.writeInt64(
-      6,
+      5,
       f
     );
   }
   f = message.getOrganizationId();
   if (f !== 0) {
     writer.writeInt32(
-      7,
-      f
-    );
-  }
-  f = message.getOrganizationUuid();
-  if (f.length > 0) {
-    writer.writeString(
-      8,
+      6,
       f
     );
   }
   f = message.getCurrencyId();
   if (f !== 0) {
     writer.writeInt32(
-      9,
-      f
-    );
-  }
-  f = message.getCurrencyUuid();
-  if (f.length > 0) {
-    writer.writeString(
-      10,
+      7,
       f
     );
   }
   f = message.getIsMultiCurrency();
   if (f) {
     writer.writeBool(
-      11,
+      8,
       f
     );
   }
   f = message.getTransactionType();
   if (f.length > 0) {
     writer.writeString(
-      12,
+      9,
       f
     );
   }
   f = message.getIsAutomaticWriteOff();
   if (f) {
     writer.writeBool(
-      13,
+      10,
       f
     );
   }
@@ -5491,29 +5365,11 @@ proto.payment_allocation.ListInvoicesRequest.prototype.setBusinessPartnerId = fu
 
 
 /**
- * optional string business_partner_uuid = 5;
- * @return {string}
- */
-proto.payment_allocation.ListInvoicesRequest.prototype.getBusinessPartnerUuid = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.payment_allocation.ListInvoicesRequest} returns this
- */
-proto.payment_allocation.ListInvoicesRequest.prototype.setBusinessPartnerUuid = function(value) {
-  return jspb.Message.setProto3StringField(this, 5, value);
-};
-
-
-/**
- * optional int64 date = 6;
+ * optional int64 date = 5;
  * @return {number}
  */
 proto.payment_allocation.ListInvoicesRequest.prototype.getDate = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 6, 0));
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 5, 0));
 };
 
 
@@ -5522,16 +5378,16 @@ proto.payment_allocation.ListInvoicesRequest.prototype.getDate = function() {
  * @return {!proto.payment_allocation.ListInvoicesRequest} returns this
  */
 proto.payment_allocation.ListInvoicesRequest.prototype.setDate = function(value) {
-  return jspb.Message.setProto3IntField(this, 6, value);
+  return jspb.Message.setProto3IntField(this, 5, value);
 };
 
 
 /**
- * optional int32 organization_id = 7;
+ * optional int32 organization_id = 6;
  * @return {number}
  */
 proto.payment_allocation.ListInvoicesRequest.prototype.getOrganizationId = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 7, 0));
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 6, 0));
 };
 
 
@@ -5540,34 +5396,16 @@ proto.payment_allocation.ListInvoicesRequest.prototype.getOrganizationId = funct
  * @return {!proto.payment_allocation.ListInvoicesRequest} returns this
  */
 proto.payment_allocation.ListInvoicesRequest.prototype.setOrganizationId = function(value) {
-  return jspb.Message.setProto3IntField(this, 7, value);
+  return jspb.Message.setProto3IntField(this, 6, value);
 };
 
 
 /**
- * optional string organization_uuid = 8;
- * @return {string}
- */
-proto.payment_allocation.ListInvoicesRequest.prototype.getOrganizationUuid = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 8, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.payment_allocation.ListInvoicesRequest} returns this
- */
-proto.payment_allocation.ListInvoicesRequest.prototype.setOrganizationUuid = function(value) {
-  return jspb.Message.setProto3StringField(this, 8, value);
-};
-
-
-/**
- * optional int32 currency_id = 9;
+ * optional int32 currency_id = 7;
  * @return {number}
  */
 proto.payment_allocation.ListInvoicesRequest.prototype.getCurrencyId = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 9, 0));
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 7, 0));
 };
 
 
@@ -5576,34 +5414,16 @@ proto.payment_allocation.ListInvoicesRequest.prototype.getCurrencyId = function(
  * @return {!proto.payment_allocation.ListInvoicesRequest} returns this
  */
 proto.payment_allocation.ListInvoicesRequest.prototype.setCurrencyId = function(value) {
-  return jspb.Message.setProto3IntField(this, 9, value);
+  return jspb.Message.setProto3IntField(this, 7, value);
 };
 
 
 /**
- * optional string currency_uuid = 10;
- * @return {string}
- */
-proto.payment_allocation.ListInvoicesRequest.prototype.getCurrencyUuid = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 10, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.payment_allocation.ListInvoicesRequest} returns this
- */
-proto.payment_allocation.ListInvoicesRequest.prototype.setCurrencyUuid = function(value) {
-  return jspb.Message.setProto3StringField(this, 10, value);
-};
-
-
-/**
- * optional bool is_multi_currency = 11;
+ * optional bool is_multi_currency = 8;
  * @return {boolean}
  */
 proto.payment_allocation.ListInvoicesRequest.prototype.getIsMultiCurrency = function() {
-  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 11, false));
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 8, false));
 };
 
 
@@ -5612,16 +5432,16 @@ proto.payment_allocation.ListInvoicesRequest.prototype.getIsMultiCurrency = func
  * @return {!proto.payment_allocation.ListInvoicesRequest} returns this
  */
 proto.payment_allocation.ListInvoicesRequest.prototype.setIsMultiCurrency = function(value) {
-  return jspb.Message.setProto3BooleanField(this, 11, value);
+  return jspb.Message.setProto3BooleanField(this, 8, value);
 };
 
 
 /**
- * optional string transaction_type = 12;
+ * optional string transaction_type = 9;
  * @return {string}
  */
 proto.payment_allocation.ListInvoicesRequest.prototype.getTransactionType = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 12, ""));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 9, ""));
 };
 
 
@@ -5630,16 +5450,16 @@ proto.payment_allocation.ListInvoicesRequest.prototype.getTransactionType = func
  * @return {!proto.payment_allocation.ListInvoicesRequest} returns this
  */
 proto.payment_allocation.ListInvoicesRequest.prototype.setTransactionType = function(value) {
-  return jspb.Message.setProto3StringField(this, 12, value);
+  return jspb.Message.setProto3StringField(this, 9, value);
 };
 
 
 /**
- * optional bool is_automatic_write_off = 13;
+ * optional bool is_automatic_write_off = 10;
  * @return {boolean}
  */
 proto.payment_allocation.ListInvoicesRequest.prototype.getIsAutomaticWriteOff = function() {
-  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 13, false));
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 10, false));
 };
 
 
@@ -5648,7 +5468,7 @@ proto.payment_allocation.ListInvoicesRequest.prototype.getIsAutomaticWriteOff = 
  * @return {!proto.payment_allocation.ListInvoicesRequest} returns this
  */
 proto.payment_allocation.ListInvoicesRequest.prototype.setIsAutomaticWriteOff = function(value) {
-  return jspb.Message.setProto3BooleanField(this, 13, value);
+  return jspb.Message.setProto3BooleanField(this, 10, value);
 };
 
 
@@ -7604,7 +7424,7 @@ proto.payment_allocation.InvoiceSelection.prototype.hasOpenAmount = function() {
  * @private {!Array<number>}
  * @const
  */
-proto.payment_allocation.ProcessRequest.repeatedFields_ = [11,12];
+proto.payment_allocation.ProcessRequest.repeatedFields_ = [9,10];
 
 
 
@@ -7638,15 +7458,13 @@ proto.payment_allocation.ProcessRequest.prototype.toObject = function(opt_includ
 proto.payment_allocation.ProcessRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     businessPartnerId: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    businessPartnerUuid: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    currencyId: jspb.Message.getFieldWithDefault(msg, 3, 0),
-    currencyUuid: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    chargeId: jspb.Message.getFieldWithDefault(msg, 5, 0),
-    chargeUuid: jspb.Message.getFieldWithDefault(msg, 6, ""),
-    transactionOrganizationId: jspb.Message.getFieldWithDefault(msg, 7, 0),
-    transactionOrganizationUuid: jspb.Message.getFieldWithDefault(msg, 8, ""),
-    date: jspb.Message.getFieldWithDefault(msg, 9, 0),
-    description: jspb.Message.getFieldWithDefault(msg, 10, ""),
+    currencyId: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    isMultiCurrency: jspb.Message.getBooleanFieldWithDefault(msg, 3, false),
+    chargeId: jspb.Message.getFieldWithDefault(msg, 4, 0),
+    transactionOrganizationId: jspb.Message.getFieldWithDefault(msg, 5, 0),
+    date: jspb.Message.getFieldWithDefault(msg, 6, 0),
+    description: jspb.Message.getFieldWithDefault(msg, 7, ""),
+    totalDifference: (f = msg.getTotalDifference()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
     paymentSelectionsList: jspb.Message.toObjectList(msg.getPaymentSelectionsList(),
     proto.payment_allocation.PaymentSelection.toObject, includeInstance),
     invoiceSelectionsList: jspb.Message.toObjectList(msg.getInvoiceSelectionsList(),
@@ -7692,47 +7510,40 @@ proto.payment_allocation.ProcessRequest.deserializeBinaryFromReader = function(m
       msg.setBusinessPartnerId(value);
       break;
     case 2:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setBusinessPartnerUuid(value);
-      break;
-    case 3:
       var value = /** @type {number} */ (reader.readInt32());
       msg.setCurrencyId(value);
       break;
-    case 4:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setCurrencyUuid(value);
+    case 3:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setIsMultiCurrency(value);
       break;
-    case 5:
+    case 4:
       var value = /** @type {number} */ (reader.readInt32());
       msg.setChargeId(value);
       break;
-    case 6:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setChargeUuid(value);
-      break;
-    case 7:
+    case 5:
       var value = /** @type {number} */ (reader.readInt32());
       msg.setTransactionOrganizationId(value);
       break;
-    case 8:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setTransactionOrganizationUuid(value);
-      break;
-    case 9:
+    case 6:
       var value = /** @type {number} */ (reader.readInt64());
       msg.setDate(value);
       break;
-    case 10:
+    case 7:
       var value = /** @type {string} */ (reader.readString());
       msg.setDescription(value);
       break;
-    case 11:
+    case 8:
+      var value = new proto_base_data_type_pb.Decimal;
+      reader.readMessage(value,proto_base_data_type_pb.Decimal.deserializeBinaryFromReader);
+      msg.setTotalDifference(value);
+      break;
+    case 9:
       var value = new proto.payment_allocation.PaymentSelection;
       reader.readMessage(value,proto.payment_allocation.PaymentSelection.deserializeBinaryFromReader);
       msg.addPaymentSelections(value);
       break;
-    case 12:
+    case 10:
       var value = new proto.payment_allocation.InvoiceSelection;
       reader.readMessage(value,proto.payment_allocation.InvoiceSelection.deserializeBinaryFromReader);
       msg.addInvoiceSelections(value);
@@ -7773,73 +7584,60 @@ proto.payment_allocation.ProcessRequest.serializeBinaryToWriter = function(messa
       f
     );
   }
-  f = message.getBusinessPartnerUuid();
-  if (f.length > 0) {
-    writer.writeString(
+  f = message.getCurrencyId();
+  if (f !== 0) {
+    writer.writeInt32(
       2,
       f
     );
   }
-  f = message.getCurrencyId();
-  if (f !== 0) {
-    writer.writeInt32(
+  f = message.getIsMultiCurrency();
+  if (f) {
+    writer.writeBool(
       3,
-      f
-    );
-  }
-  f = message.getCurrencyUuid();
-  if (f.length > 0) {
-    writer.writeString(
-      4,
       f
     );
   }
   f = message.getChargeId();
   if (f !== 0) {
     writer.writeInt32(
-      5,
-      f
-    );
-  }
-  f = message.getChargeUuid();
-  if (f.length > 0) {
-    writer.writeString(
-      6,
+      4,
       f
     );
   }
   f = message.getTransactionOrganizationId();
   if (f !== 0) {
     writer.writeInt32(
-      7,
-      f
-    );
-  }
-  f = message.getTransactionOrganizationUuid();
-  if (f.length > 0) {
-    writer.writeString(
-      8,
+      5,
       f
     );
   }
   f = message.getDate();
   if (f !== 0) {
     writer.writeInt64(
-      9,
+      6,
       f
     );
   }
   f = message.getDescription();
   if (f.length > 0) {
     writer.writeString(
-      10,
+      7,
       f
+    );
+  }
+  f = message.getTotalDifference();
+  if (f != null) {
+    writer.writeMessage(
+      8,
+      f,
+      proto_base_data_type_pb.Decimal.serializeBinaryToWriter
     );
   }
   f = message.getPaymentSelectionsList();
   if (f.length > 0) {
     writer.writeRepeatedMessage(
-      11,
+      9,
       f,
       proto.payment_allocation.PaymentSelection.serializeBinaryToWriter
     );
@@ -7847,7 +7645,7 @@ proto.payment_allocation.ProcessRequest.serializeBinaryToWriter = function(messa
   f = message.getInvoiceSelectionsList();
   if (f.length > 0) {
     writer.writeRepeatedMessage(
-      12,
+      10,
       f,
       proto.payment_allocation.InvoiceSelection.serializeBinaryToWriter
     );
@@ -7874,29 +7672,11 @@ proto.payment_allocation.ProcessRequest.prototype.setBusinessPartnerId = functio
 
 
 /**
- * optional string business_partner_uuid = 2;
- * @return {string}
- */
-proto.payment_allocation.ProcessRequest.prototype.getBusinessPartnerUuid = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.payment_allocation.ProcessRequest} returns this
- */
-proto.payment_allocation.ProcessRequest.prototype.setBusinessPartnerUuid = function(value) {
-  return jspb.Message.setProto3StringField(this, 2, value);
-};
-
-
-/**
- * optional int32 currency_id = 3;
+ * optional int32 currency_id = 2;
  * @return {number}
  */
 proto.payment_allocation.ProcessRequest.prototype.getCurrencyId = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
 };
 
 
@@ -7905,34 +7685,34 @@ proto.payment_allocation.ProcessRequest.prototype.getCurrencyId = function() {
  * @return {!proto.payment_allocation.ProcessRequest} returns this
  */
 proto.payment_allocation.ProcessRequest.prototype.setCurrencyId = function(value) {
-  return jspb.Message.setProto3IntField(this, 3, value);
+  return jspb.Message.setProto3IntField(this, 2, value);
 };
 
 
 /**
- * optional string currency_uuid = 4;
- * @return {string}
+ * optional bool is_multi_currency = 3;
+ * @return {boolean}
  */
-proto.payment_allocation.ProcessRequest.prototype.getCurrencyUuid = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+proto.payment_allocation.ProcessRequest.prototype.getIsMultiCurrency = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 3, false));
 };
 
 
 /**
- * @param {string} value
+ * @param {boolean} value
  * @return {!proto.payment_allocation.ProcessRequest} returns this
  */
-proto.payment_allocation.ProcessRequest.prototype.setCurrencyUuid = function(value) {
-  return jspb.Message.setProto3StringField(this, 4, value);
+proto.payment_allocation.ProcessRequest.prototype.setIsMultiCurrency = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 3, value);
 };
 
 
 /**
- * optional int32 charge_id = 5;
+ * optional int32 charge_id = 4;
  * @return {number}
  */
 proto.payment_allocation.ProcessRequest.prototype.getChargeId = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 5, 0));
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
 };
 
 
@@ -7941,34 +7721,16 @@ proto.payment_allocation.ProcessRequest.prototype.getChargeId = function() {
  * @return {!proto.payment_allocation.ProcessRequest} returns this
  */
 proto.payment_allocation.ProcessRequest.prototype.setChargeId = function(value) {
-  return jspb.Message.setProto3IntField(this, 5, value);
+  return jspb.Message.setProto3IntField(this, 4, value);
 };
 
 
 /**
- * optional string charge_uuid = 6;
- * @return {string}
- */
-proto.payment_allocation.ProcessRequest.prototype.getChargeUuid = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.payment_allocation.ProcessRequest} returns this
- */
-proto.payment_allocation.ProcessRequest.prototype.setChargeUuid = function(value) {
-  return jspb.Message.setProto3StringField(this, 6, value);
-};
-
-
-/**
- * optional int32 transaction_organization_id = 7;
+ * optional int32 transaction_organization_id = 5;
  * @return {number}
  */
 proto.payment_allocation.ProcessRequest.prototype.getTransactionOrganizationId = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 7, 0));
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 5, 0));
 };
 
 
@@ -7977,34 +7739,16 @@ proto.payment_allocation.ProcessRequest.prototype.getTransactionOrganizationId =
  * @return {!proto.payment_allocation.ProcessRequest} returns this
  */
 proto.payment_allocation.ProcessRequest.prototype.setTransactionOrganizationId = function(value) {
-  return jspb.Message.setProto3IntField(this, 7, value);
+  return jspb.Message.setProto3IntField(this, 5, value);
 };
 
 
 /**
- * optional string transaction_organization_uuid = 8;
- * @return {string}
- */
-proto.payment_allocation.ProcessRequest.prototype.getTransactionOrganizationUuid = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 8, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.payment_allocation.ProcessRequest} returns this
- */
-proto.payment_allocation.ProcessRequest.prototype.setTransactionOrganizationUuid = function(value) {
-  return jspb.Message.setProto3StringField(this, 8, value);
-};
-
-
-/**
- * optional int64 date = 9;
+ * optional int64 date = 6;
  * @return {number}
  */
 proto.payment_allocation.ProcessRequest.prototype.getDate = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 9, 0));
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 6, 0));
 };
 
 
@@ -8013,16 +7757,16 @@ proto.payment_allocation.ProcessRequest.prototype.getDate = function() {
  * @return {!proto.payment_allocation.ProcessRequest} returns this
  */
 proto.payment_allocation.ProcessRequest.prototype.setDate = function(value) {
-  return jspb.Message.setProto3IntField(this, 9, value);
+  return jspb.Message.setProto3IntField(this, 6, value);
 };
 
 
 /**
- * optional string description = 10;
+ * optional string description = 7;
  * @return {string}
  */
 proto.payment_allocation.ProcessRequest.prototype.getDescription = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 10, ""));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 7, ""));
 };
 
 
@@ -8031,17 +7775,54 @@ proto.payment_allocation.ProcessRequest.prototype.getDescription = function() {
  * @return {!proto.payment_allocation.ProcessRequest} returns this
  */
 proto.payment_allocation.ProcessRequest.prototype.setDescription = function(value) {
-  return jspb.Message.setProto3StringField(this, 10, value);
+  return jspb.Message.setProto3StringField(this, 7, value);
 };
 
 
 /**
- * repeated PaymentSelection payment_selections = 11;
+ * optional data.Decimal total_difference = 8;
+ * @return {?proto.data.Decimal}
+ */
+proto.payment_allocation.ProcessRequest.prototype.getTotalDifference = function() {
+  return /** @type{?proto.data.Decimal} */ (
+    jspb.Message.getWrapperField(this, proto_base_data_type_pb.Decimal, 8));
+};
+
+
+/**
+ * @param {?proto.data.Decimal|undefined} value
+ * @return {!proto.payment_allocation.ProcessRequest} returns this
+*/
+proto.payment_allocation.ProcessRequest.prototype.setTotalDifference = function(value) {
+  return jspb.Message.setWrapperField(this, 8, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.payment_allocation.ProcessRequest} returns this
+ */
+proto.payment_allocation.ProcessRequest.prototype.clearTotalDifference = function() {
+  return this.setTotalDifference(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.payment_allocation.ProcessRequest.prototype.hasTotalDifference = function() {
+  return jspb.Message.getField(this, 8) != null;
+};
+
+
+/**
+ * repeated PaymentSelection payment_selections = 9;
  * @return {!Array<!proto.payment_allocation.PaymentSelection>}
  */
 proto.payment_allocation.ProcessRequest.prototype.getPaymentSelectionsList = function() {
   return /** @type{!Array<!proto.payment_allocation.PaymentSelection>} */ (
-    jspb.Message.getRepeatedWrapperField(this, proto.payment_allocation.PaymentSelection, 11));
+    jspb.Message.getRepeatedWrapperField(this, proto.payment_allocation.PaymentSelection, 9));
 };
 
 
@@ -8050,7 +7831,7 @@ proto.payment_allocation.ProcessRequest.prototype.getPaymentSelectionsList = fun
  * @return {!proto.payment_allocation.ProcessRequest} returns this
 */
 proto.payment_allocation.ProcessRequest.prototype.setPaymentSelectionsList = function(value) {
-  return jspb.Message.setRepeatedWrapperField(this, 11, value);
+  return jspb.Message.setRepeatedWrapperField(this, 9, value);
 };
 
 
@@ -8060,7 +7841,7 @@ proto.payment_allocation.ProcessRequest.prototype.setPaymentSelectionsList = fun
  * @return {!proto.payment_allocation.PaymentSelection}
  */
 proto.payment_allocation.ProcessRequest.prototype.addPaymentSelections = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(this, 11, opt_value, proto.payment_allocation.PaymentSelection, opt_index);
+  return jspb.Message.addToRepeatedWrapperField(this, 9, opt_value, proto.payment_allocation.PaymentSelection, opt_index);
 };
 
 
@@ -8074,12 +7855,12 @@ proto.payment_allocation.ProcessRequest.prototype.clearPaymentSelectionsList = f
 
 
 /**
- * repeated InvoiceSelection invoice_selections = 12;
+ * repeated InvoiceSelection invoice_selections = 10;
  * @return {!Array<!proto.payment_allocation.InvoiceSelection>}
  */
 proto.payment_allocation.ProcessRequest.prototype.getInvoiceSelectionsList = function() {
   return /** @type{!Array<!proto.payment_allocation.InvoiceSelection>} */ (
-    jspb.Message.getRepeatedWrapperField(this, proto.payment_allocation.InvoiceSelection, 12));
+    jspb.Message.getRepeatedWrapperField(this, proto.payment_allocation.InvoiceSelection, 10));
 };
 
 
@@ -8088,7 +7869,7 @@ proto.payment_allocation.ProcessRequest.prototype.getInvoiceSelectionsList = fun
  * @return {!proto.payment_allocation.ProcessRequest} returns this
 */
 proto.payment_allocation.ProcessRequest.prototype.setInvoiceSelectionsList = function(value) {
-  return jspb.Message.setRepeatedWrapperField(this, 12, value);
+  return jspb.Message.setRepeatedWrapperField(this, 10, value);
 };
 
 
@@ -8098,7 +7879,7 @@ proto.payment_allocation.ProcessRequest.prototype.setInvoiceSelectionsList = fun
  * @return {!proto.payment_allocation.InvoiceSelection}
  */
 proto.payment_allocation.ProcessRequest.prototype.addInvoiceSelections = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(this, 12, opt_value, proto.payment_allocation.InvoiceSelection, opt_index);
+  return jspb.Message.addToRepeatedWrapperField(this, 10, opt_value, proto.payment_allocation.InvoiceSelection, opt_index);
 };
 
 
