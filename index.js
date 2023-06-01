@@ -589,14 +589,15 @@ const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
 
     if (!this.isEmptyValue(contextAttributes)) {
       const { getKeyValueToGRPC } = require('@adempiere/grpc-api/src/utils/baseDataTypeToGRPC.js');
+      const { getTypeOfValue } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
 
-      if (typeOfValue(contextAttributes) === 'String') {
+      if (getTypeOfValue(contextAttributes) === 'String') {
         contextAttributes = JSON.parse(contextAttributes);
       }
 
       contextAttributes.forEach(attribute => {
         let parsedAttribute = attribute;
-        if (typeOfValue(attribute) === 'String') {
+        if (getTypeOfValue(attribute) === 'String') {
           parsedAttribute = JSON.parse(attribute);
         }
         request.addContextAttributes(
