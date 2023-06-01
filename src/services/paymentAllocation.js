@@ -1,6 +1,6 @@
 /*************************************************************************************
  * Product: ADempiere gRPC Payment Allocation Client                                 *
- * Copyright (C) 2012-2023 E.R.P. Consultores y Asociados, C.A.                      *
+ * Copyright (C) 2018-2023 E.R.P. Consultores y Asociados, C.A.                      *
  * Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                      *
  * This program is free software: you can redistribute it and/or modify              *
  * it under the terms of the GNU General Public License as published by              *
@@ -230,8 +230,9 @@ class PaymentAllocation {
 
     request.setSearchValue(searchValue);
 
-    request.setBusinessPartnerId(getValidInteger(businessPartnerId));
-    // request.setBusinessPartnerId(businessPartnerId);
+    request.setBusinessPartnerId(
+      getValidInteger(businessPartnerId)
+    );
 
     const { getTimestamp } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
     request.setDate(
@@ -241,12 +242,10 @@ class PaymentAllocation {
     request.setOrganizationId(
       getValidInteger(organizationId)
     );
-    // request.setOrganizationUuid(organizationUuid);
 
     request.setCurrencyId(
       getValidInteger(currencyId)
     );
-    // request.setCurrencyUuid(currencyUuid);
 
     request.setIsMultiCurrency(isMultiCurrency);
     request.setTransactionType(transactionType);
@@ -299,7 +298,6 @@ class PaymentAllocation {
     request.setBusinessPartnerId(
       getValidInteger(businessPartnerId)
     );
-    // request.setBusinessPartnerUuid(businessPartnerUuid);
 
     const { getTimestamp } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
     request.setDate(
@@ -309,12 +307,10 @@ class PaymentAllocation {
     request.setOrganizationId(
       getValidInteger(organizationId)
     );
-    // request.setOrganizationUuid(organizationUuid);
 
     request.setCurrencyId(
       getValidInteger(currencyId)
     );
-    // request.setCurrencyUuid(currencyUuid);
 
     request.setIsMultiCurrency(isMultiCurrency);
     request.setTransactionType(transactionType);
@@ -448,22 +444,18 @@ class PaymentAllocation {
     request.setBusinessPartnerId(
       getValidInteger(businessPartnerId)
     );
-    // request.setBusinessPartnerUuid(businessPartnerUuid);
 
     request.setCurrencyId(
       getValidInteger(currencyId)
     );
-    // request.setCurrencyUuid(currencyUuid);
 
     request.setChargeId(
       getValidInteger(chargeId)
     );
-    // request.setChargeUuid(chargeUuid);
 
     request.setTransactionOrganizationId(
       getValidInteger(transactionOrganizationId)
     );
-    // request.setTransactionOrganizationUuid(transactionOrganizationUuid);
     
     const { getTimestamp } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
     if (!isEmptyValue(date)) {
