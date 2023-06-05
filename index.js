@@ -1,6 +1,6 @@
 /*************************************************************************************
  * Product: ADempiere gRPC Client                                                    *
- * Copyright (C) 2012-2023 E.R.P. Consultores y Asociados, C.A.                      *
+ * Copyright (C) 2018-2023 E.R.P. Consultores y Asociados, C.A.                      *
  * Contributor(s): Yamel Senih ysenih@erpya.com                                      *
  * This program is free software: you can redistribute it and/or modify              *
  * it under the terms of the GNU General Public License as published by              *
@@ -929,7 +929,8 @@ const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
   }
 
   isEmptyValue(value) {
-    const { isEmptyValue } = require('./lib/convertValues.js');
+    const { isEmptyValue } = require('./src/utils/valueUtils.js');
+
     return isEmptyValue(value);
   }
 }

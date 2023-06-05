@@ -1,6 +1,6 @@
 /*************************************************************************************
  * Product: ADempiere gRPC Order Client                                              *
- * Copyright (C) 2012-2023 E.R.P. Consultores y Asociados, C.A.                      *
+ * Copyright (C) 2018-2023 E.R.P. Consultores y Asociados, C.A.                      *
  * Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                      *
  * This program is free software: you can redistribute it and/or modify              *
  * it under the terms of the GNU General Public License as published by              *
@@ -15,7 +15,7 @@
  ************************************************************************************/
 
 const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
-const { isEmptyValue } = require('@adempiere/grpc-api/lib/convertValues.js');
+const { isEmptyValue } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
 
 class Order {
 
