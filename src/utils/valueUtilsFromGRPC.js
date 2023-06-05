@@ -1,6 +1,6 @@
 /*************************************************************************************
  * Product: ADempiere gRPC General Value Utils Convert                               *
- * Copyright (C) 2012-2023 E.R.P. Consultores y Asociados, C.A.                      *
+ * Copyright (C) 2018-2023 E.R.P. Consultores y Asociados, C.A.                      *
  * Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                      *
  * This program is free software: you can redistribute it and/or modify              *
  * it under the terms of the GNU General Public License as published by              *
@@ -24,12 +24,15 @@
 function getValuesMapFromGRPC({ mapToConvert, returnType = 'map', keyName = 'key', valueName = 'value' }) {
   let returnValues;
   const { getValueFromGRPC } = require('@adempiere/grpc-api/src/utils/baseDataTypeFromGRPC.js');
+  const { isEmptyValue } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
 
   switch (returnType) {
     case 'object':
       returnValues = {};
       mapToConvert.forEach((value, key) => {
-        returnValues[key] = getValueFromGRPC(value);
+        const convertedValue = getValueFromGRPC(value);
+        const currentValue = isEmptyValue(convertedValue) ? null : convertedValue;
+        returnValues[key] = currentValue;
       });
       break;
 
@@ -37,8 +40,12 @@ function getValuesMapFromGRPC({ mapToConvert, returnType = 'map', keyName = 'key
       returnValues = [];
       mapToConvert.forEach((value, key) => {
         const item = {}
+        const convertedValue = getValueFromGRPC(value);
+        const currentValue = isEmptyValue(convertedValue) ? null : convertedValue;
+
         item[keyName] = key;
-        item[valueName] = getValueFromGRPC(value);
+        item[valueName] = currentValue;
+
         returnValues.push(item);
       });
       break;
@@ -47,7 +54,9 @@ function getValuesMapFromGRPC({ mapToConvert, returnType = 'map', keyName = 'key
     case 'map':
       returnValues = new Map();
       mapToConvert.forEach((value, key) => {
-        returnValues.set(key, getValueFromGRPC(value));
+        const convertedValue = getValueFromGRPC(value);
+        const currentValue = isEmptyValue(convertedValue) ? null : convertedValue;
+        returnValues.set(key, currentValue);
       });
       break;
   }
