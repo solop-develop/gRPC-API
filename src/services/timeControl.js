@@ -1,6 +1,6 @@
 /*************************************************************************************
  * Product: ADempiere gRPC Time Control Client                                       *
- * Copyright (C) 2012-2023 E.R.P. Consultores y Asociados, C.A.                      *
+ * Copyright (C) 2018-2023 E.R.P. Consultores y Asociados, C.A.                      *
  * Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                      *
  * This program is free software: you can redistribute it and/or modify              *
  * it under the terms of the GNU General Public License as published by              *
@@ -15,7 +15,7 @@
  ************************************************************************************/
 
 const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
-const { isEmptyValue, getValidId } = require('@adempiere/grpc-api/lib/convertValues.js');
+const { isEmptyValue, getValidInteger } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
 
 class TimeControl {
 
@@ -67,7 +67,7 @@ class TimeControl {
     const request = new CreateResourceAssignmentRequest();
 
     request.setResourceTypeId(
-      getValidId(resourceTypeId)
+      getValidInteger(resourceTypeId)
     );
     request.setResourceTypeUuid(resourceTypeUuid);
     request.setName(name);
@@ -105,7 +105,7 @@ class TimeControl {
     const request = new ListResourcesAssignmentRequest();
 
     request.setResourceTypeId(
-      getValidId(resourceTypeId)
+      getValidInteger(resourceTypeId)
     );
     request.setResourceTypeUuid(resourceTypeUuid);
     request.setName(name);
@@ -145,7 +145,7 @@ class TimeControl {
     const request = new UpdateResourceAssignmentRequest();
 
     request.setId(
-      getValidId(id)
+      getValidInteger(id)
     );
     request.setUuid(uuid);
     request.setName(name);
@@ -174,7 +174,7 @@ class TimeControl {
     const request = new DeleteResourceAssignmentRequest();
 
     request.setId(
-      getValidId(id)
+      getValidInteger(id)
     );
     request.setUuid(uuid);
 
@@ -201,7 +201,7 @@ class TimeControl {
     const request = new ConfirmResourceAssignmentRequest();
 
     request.setId(
-      getValidId(id)
+      getValidInteger(id)
     );
     request.setUuid(uuid);
 
