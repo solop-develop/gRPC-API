@@ -23,6 +23,8 @@ var global = (function() {
 
 var proto_base_data_type_pb = require('../proto/base_data_type_pb.js');
 goog.object.extend(proto, proto_base_data_type_pb);
+var proto_dictionary_pb = require('../proto/dictionary_pb.js');
+goog.object.extend(proto, proto_dictionary_pb);
 goog.exportSymbol('proto.dashboarding.Action', null, global);
 goog.exportSymbol('proto.dashboarding.ChartData', null, global);
 goog.exportSymbol('proto.dashboarding.ChartSerie', null, global);
@@ -5353,7 +5355,8 @@ proto.dashboarding.WindowDashboardParameter.toObject = function(includeInstance,
     valueMin: jspb.Message.getFieldWithDefault(msg, 16, ""),
     valueMax: jspb.Message.getFieldWithDefault(msg, 17, ""),
     displayLogic: jspb.Message.getFieldWithDefault(msg, 18, ""),
-    readOnlyLogic: jspb.Message.getFieldWithDefault(msg, 19, "")
+    readOnlyLogic: jspb.Message.getFieldWithDefault(msg, 19, ""),
+    reference: (f = msg.getReference()) && proto_dictionary_pb.Reference.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -5465,6 +5468,11 @@ proto.dashboarding.WindowDashboardParameter.deserializeBinaryFromReader = functi
     case 19:
       var value = /** @type {string} */ (reader.readString());
       msg.setReadOnlyLogic(value);
+      break;
+    case 20:
+      var value = new proto_dictionary_pb.Reference;
+      reader.readMessage(value,proto_dictionary_pb.Reference.deserializeBinaryFromReader);
+      msg.setReference(value);
       break;
     default:
       reader.skipField();
@@ -5626,6 +5634,14 @@ proto.dashboarding.WindowDashboardParameter.serializeBinaryToWriter = function(m
     writer.writeString(
       19,
       f
+    );
+  }
+  f = message.getReference();
+  if (f != null) {
+    writer.writeMessage(
+      20,
+      f,
+      proto_dictionary_pb.Reference.serializeBinaryToWriter
     );
   }
 };
@@ -5970,6 +5986,43 @@ proto.dashboarding.WindowDashboardParameter.prototype.getReadOnlyLogic = functio
  */
 proto.dashboarding.WindowDashboardParameter.prototype.setReadOnlyLogic = function(value) {
   return jspb.Message.setProto3StringField(this, 19, value);
+};
+
+
+/**
+ * optional dictionary.Reference reference = 20;
+ * @return {?proto.dictionary.Reference}
+ */
+proto.dashboarding.WindowDashboardParameter.prototype.getReference = function() {
+  return /** @type{?proto.dictionary.Reference} */ (
+    jspb.Message.getWrapperField(this, proto_dictionary_pb.Reference, 20));
+};
+
+
+/**
+ * @param {?proto.dictionary.Reference|undefined} value
+ * @return {!proto.dashboarding.WindowDashboardParameter} returns this
+*/
+proto.dashboarding.WindowDashboardParameter.prototype.setReference = function(value) {
+  return jspb.Message.setWrapperField(this, 20, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.dashboarding.WindowDashboardParameter} returns this
+ */
+proto.dashboarding.WindowDashboardParameter.prototype.clearReference = function() {
+  return this.setReference(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.dashboarding.WindowDashboardParameter.prototype.hasReference = function() {
+  return jspb.Message.getField(this, 20) != null;
 };
 
 
