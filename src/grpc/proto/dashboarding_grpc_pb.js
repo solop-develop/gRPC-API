@@ -19,6 +19,7 @@
 var grpc = require('@grpc/grpc-js');
 var proto_dashboarding_pb = require('../proto/dashboarding_pb.js');
 var proto_base_data_type_pb = require('../proto/base_data_type_pb.js');
+var proto_dictionary_pb = require('../proto/dictionary_pb.js');
 
 function serialize_dashboarding_ExistsWindowDashboardsRequest(arg) {
   if (!(arg instanceof proto_dashboarding_pb.ExistsWindowDashboardsRequest)) {

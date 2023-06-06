@@ -1,6 +1,6 @@
 /*************************************************************************************
  * Product: ADempiere gRPC Dashboarding Client Convert Utils                         *
- * Copyright (C) 2012-2023 E.R.P. Consultores y Asociados, C.A.                      *
+ * Copyright (C) 2018-2023 E.R.P. Consultores y Asociados, C.A.                      *
  * Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                      *
  * This program is free software: you can redistribute it and/or modify              *
  * it under the terms of the GNU General Public License as published by              *
@@ -179,6 +179,10 @@ function getWindowDashboardParameterFromGRPC(windowChartParameterToConvert) {
   if (!windowChartParameterToConvert) {
     return undefined;
   }
+
+  const {
+    getReferenceFromGRPC
+  } = require('@adempiere/grpc-api/src/utils/dictionaryFromGRPC.js');
   return {
     id: windowChartParameterToConvert.getId(),
     uuid: windowChartParameterToConvert.getUuid(),
@@ -197,7 +201,10 @@ function getWindowDashboardParameterFromGRPC(windowChartParameterToConvert) {
     value_min: windowChartParameterToConvert.getValueMin(),
     value_max: windowChartParameterToConvert.getValueMax(),
     display_logic: windowChartParameterToConvert.getDisplayLogic(),
-    read_only_logic: windowChartParameterToConvert.getReadOnlyLogic()
+    read_only_logic: windowChartParameterToConvert.getReadOnlyLogic(),
+    reference: getReferenceFromGRPC(
+      windowChartParameterToConvert.getReference()
+    )
   }
 }
 
