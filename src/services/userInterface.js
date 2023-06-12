@@ -15,7 +15,7 @@
  ************************************************************************************/
 
 const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
-const { isEmptyValue, getValidId } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
+const { isEmptyValue, getValidInteger } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
 
 class UserInterface {
 
@@ -140,7 +140,7 @@ class UserInterface {
     request.setTabUuid(tabUuid);
     request.setUuid(uuid);
     request.setId(
-      getValidId(id)
+      getValidInteger(id)
     );
 
     const metadata = getMetadata({
@@ -352,12 +352,12 @@ class UserInterface {
     const request = new ExistsReferencesRequest();
 
     request.setTabId(
-      getValidId(tabId)
+      getValidInteger(tabId)
     );
     request.setTabUuid(tabUuid);
 
     request.setRecordId(
-      getValidId(recordId)
+      getValidInteger(recordId)
     );
     request.setRecordUuid(recordUuid);
 
@@ -568,23 +568,51 @@ class UserInterface {
 
   listTreeNodes({
     token,
+    tabId,
     tableName,
     id,
     uuid,
     elementId,
-    elementUuid
+    elementUuid,
+    contextAttributes
   }, callback) {
     const { ListTreeNodesRequest } = this.stubFile;
     const request = new ListTreeNodesRequest();
 
+    request.setTabId(
+      getValidInteger(tabId)
+    );
+    if (!isEmptyValue(contextAttributes)) {
+      const { getTypeOfValue } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
+      const { getKeyValueToGRPC } = require('@adempiere/grpc-api/src/utils/baseDataTypeToGRPC.js');
+
+      if (getTypeOfValue(contextAttributes) === 'String') {
+        contextAttributes = JSON.parse(contextAttributes);
+      }
+
+      contextAttributes.forEach(attribute => {
+        let parsedAttribute = attribute;
+        if (getTypeOfValue(attribute) === 'String') {
+          parsedAttribute = JSON.parse(attribute);
+        }
+
+        request.addContextAttributes(
+          getKeyValueToGRPC({
+            columnName: parsedAttribute.key,
+            value: parsedAttribute.value
+          })
+        );
+      });
+    }
+
     request.setTableName(tableName);
     request.setUuid(uuid);
     request.setId(
-      getValidId(id)
+      getValidInteger(id)
     );
     request.setElementUuid(elementUuid);
     request.setElementId(
-      getValidId(elementId)
+      getValidInteger(elementId)
     );
 
     const metadata = getMetadata({
