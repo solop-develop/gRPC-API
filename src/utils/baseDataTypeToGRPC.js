@@ -1,6 +1,6 @@
 /*************************************************************************************
  * Product: ADempiere gRPC Business Data Client Convert Utils                        *
- * Copyright (C) 2012-2023 E.R.P. Consultores y Asociados, C.A.                      *
+ * Copyright (C) 2018-2023 E.R.P. Consultores y Asociados, C.A.                      *
  * Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                      *
  * This program is free software: you can redistribute it and/or modify              *
  * it under the terms of the GNU General Public License as published by              *
@@ -300,11 +300,13 @@ function getKeyValueSelectionToGRPC({ selectionId, selectionUuid, selectionValue
   const { KeyValueSelection } = stubFile;
   const selectionInstance = new KeyValueSelection();
 
-  const { isEmptyValue, getTypeOfValue, getValidId } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
+  const {
+    isEmptyValue, getTypeOfValue, getValidInteger
+  } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
 
   // set selection id from record
   selectionInstance.setSelectionId(
-    getValidId(selectionId)
+    getValidInteger(selectionId)
   );
 
   // set selection uuid from record
@@ -358,9 +360,13 @@ function getConditionToGRPC({ columnName, value, valueTo, values = [], operator 
   const { isEmptyValue } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
   // set value and value to
   if (!isEmptyValue(value)) {
-    conditionInstance.setValue(
-      getValueToGRPC({ value })
-    );
+    if (isEmptyValue(values) && Array.isArray(value)) {
+      values = value;
+    } else {
+      conditionInstance.setValue(
+        getValueToGRPC({ value })
+      );
+    }
   }
   if (!isEmptyValue(valueTo)) {
     conditionInstance.setValueTo(
