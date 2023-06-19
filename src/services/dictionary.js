@@ -1,6 +1,6 @@
 /*************************************************************************************
  * Product: ADempiere gRPC Dictionary Client                                         *
- * Copyright (C) 2012-2023 E.R.P. Consultores y Asociados, C.A.                      *
+ * Copyright (C) 2018-2023 E.R.P. Consultores y Asociados, C.A.                      *
  * Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                      *
  * This program is free software: you can redistribute it and/or modify              *
  * it under the terms of the GNU General Public License as published by              *
@@ -15,6 +15,7 @@
  ************************************************************************************/
 
 const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
+const { getValidInteger } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
 
 class Dictionary {
 
@@ -251,11 +252,10 @@ class Dictionary {
     const request = new ListFieldsRequest();
 
     request.setTableUuid(tableUuid);
-    request.setTableId(tableId);
+    request.setTableId(
+      getValidInteger(tableId)
+    );
     request.setTableName(tableName);
-
-    request.setTabUuid(tabUuid);
-    request.setTabId(tabId);
 
     const metadata = getMetadata({
       token
@@ -273,25 +273,55 @@ class Dictionary {
     token,
     tableUuid,
     tableId,
-    tableName,
-    tabUuid,
-    tabId
+    tableName
   }, callback) {
     const { ListFieldsRequest } = this.stubFile;
     const request = new ListFieldsRequest();
 
     request.setTableUuid(tableUuid);
-    request.setTableId(tableId);
+    request.setTableId(
+      getValidInteger(tableId)
+    );
     request.setTableName(tableName);
-
-    request.setTabUuid(tabUuid);
-    request.setTabId(tabId);
 
     const metadata = getMetadata({
       token
     });
 
     this.getDictionaryService().listTableSearchFields(
+      request,
+      metadata,
+      callback
+    );
+  }
+
+
+  /**
+   * List Search Info Fields
+   * @param {String} tableUuid
+   * @param {Number} tableId
+   * @param {String} tableName
+   */
+  listSearchInfoFields({
+    token,
+    tableUuid,
+    tableId,
+    tableName
+  }, callback) {
+    const { ListFieldsRequest } = this.stubFile;
+    const request = new ListFieldsRequest();
+
+    request.setTableUuid(tableUuid);
+    request.setTableId(
+      getValidInteger(tableId)
+    );
+    request.setTableName(tableName);
+
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getDictionaryService().listSearchInfoFields(
       request,
       metadata,
       callback

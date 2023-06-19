@@ -9462,11 +9462,7 @@ proto.dictionary.ListFieldsRequest.toObject = function(includeInstance, msg) {
     pageToken: jspb.Message.getFieldWithDefault(msg, 3, ""),
     tableUuid: jspb.Message.getFieldWithDefault(msg, 4, ""),
     tableId: jspb.Message.getFieldWithDefault(msg, 5, 0),
-    tableName: jspb.Message.getFieldWithDefault(msg, 6, ""),
-    windowUuid: jspb.Message.getFieldWithDefault(msg, 7, ""),
-    windowId: jspb.Message.getFieldWithDefault(msg, 8, 0),
-    tabUuid: jspb.Message.getFieldWithDefault(msg, 9, ""),
-    tabId: jspb.Message.getFieldWithDefault(msg, 10, "")
+    tableName: jspb.Message.getFieldWithDefault(msg, 6, "")
   };
 
   if (includeInstance) {
@@ -9522,22 +9518,6 @@ proto.dictionary.ListFieldsRequest.deserializeBinaryFromReader = function(msg, r
     case 6:
       var value = /** @type {string} */ (reader.readString());
       msg.setTableName(value);
-      break;
-    case 7:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setWindowUuid(value);
-      break;
-    case 8:
-      var value = /** @type {number} */ (reader.readInt32());
-      msg.setWindowId(value);
-      break;
-    case 9:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setTabUuid(value);
-      break;
-    case 10:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setTabId(value);
       break;
     default:
       reader.skipField();
@@ -9600,34 +9580,6 @@ proto.dictionary.ListFieldsRequest.serializeBinaryToWriter = function(message, w
   if (f.length > 0) {
     writer.writeString(
       6,
-      f
-    );
-  }
-  f = message.getWindowUuid();
-  if (f.length > 0) {
-    writer.writeString(
-      7,
-      f
-    );
-  }
-  f = message.getWindowId();
-  if (f !== 0) {
-    writer.writeInt32(
-      8,
-      f
-    );
-  }
-  f = message.getTabUuid();
-  if (f.length > 0) {
-    writer.writeString(
-      9,
-      f
-    );
-  }
-  f = message.getTabId();
-  if (f.length > 0) {
-    writer.writeString(
-      10,
       f
     );
   }
@@ -9721,78 +9673,6 @@ proto.dictionary.ListFieldsRequest.prototype.getTableName = function() {
  */
 proto.dictionary.ListFieldsRequest.prototype.setTableName = function(value) {
   return jspb.Message.setProto3StringField(this, 6, value);
-};
-
-
-/**
- * optional string window_uuid = 7;
- * @return {string}
- */
-proto.dictionary.ListFieldsRequest.prototype.getWindowUuid = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 7, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.dictionary.ListFieldsRequest} returns this
- */
-proto.dictionary.ListFieldsRequest.prototype.setWindowUuid = function(value) {
-  return jspb.Message.setProto3StringField(this, 7, value);
-};
-
-
-/**
- * optional int32 window_id = 8;
- * @return {number}
- */
-proto.dictionary.ListFieldsRequest.prototype.getWindowId = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 8, 0));
-};
-
-
-/**
- * @param {number} value
- * @return {!proto.dictionary.ListFieldsRequest} returns this
- */
-proto.dictionary.ListFieldsRequest.prototype.setWindowId = function(value) {
-  return jspb.Message.setProto3IntField(this, 8, value);
-};
-
-
-/**
- * optional string tab_uuid = 9;
- * @return {string}
- */
-proto.dictionary.ListFieldsRequest.prototype.getTabUuid = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 9, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.dictionary.ListFieldsRequest} returns this
- */
-proto.dictionary.ListFieldsRequest.prototype.setTabUuid = function(value) {
-  return jspb.Message.setProto3StringField(this, 9, value);
-};
-
-
-/**
- * optional string tab_id = 10;
- * @return {string}
- */
-proto.dictionary.ListFieldsRequest.prototype.getTabId = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 10, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.dictionary.ListFieldsRequest} returns this
- */
-proto.dictionary.ListFieldsRequest.prototype.setTabId = function(value) {
-  return jspb.Message.setProto3StringField(this, 10, value);
 };
 
 

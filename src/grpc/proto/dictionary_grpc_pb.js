@@ -261,8 +261,19 @@ getForm: {
     responseSerialize: serialize_dictionary_Form,
     responseDeserialize: deserialize_dictionary_Form,
   },
-  // List Identifiers Fields
-listIdentifiersFields: {
+  // List Search Info Fields
+listSearchInfoFields: {
+    path: '/dictionary.Dictionary/ListSearchInfoFields',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_dictionary_pb.ListFieldsRequest,
+    responseType: proto_dictionary_pb.ListFieldsResponse,
+    requestSerialize: serialize_dictionary_ListFieldsRequest,
+    requestDeserialize: deserialize_dictionary_ListFieldsRequest,
+    responseSerialize: serialize_dictionary_ListFieldsResponse,
+    responseDeserialize: deserialize_dictionary_ListFieldsResponse,
+  },
+  listIdentifiersFields: {
     path: '/dictionary.Dictionary/ListIdentifiersFields',
     requestStream: false,
     responseStream: false,
@@ -273,8 +284,7 @@ listIdentifiersFields: {
     responseSerialize: serialize_dictionary_ListFieldsResponse,
     responseDeserialize: deserialize_dictionary_ListFieldsResponse,
   },
-  // List Selections Fields
-listTableSearchFields: {
+  listTableSearchFields: {
     path: '/dictionary.Dictionary/ListTableSearchFields',
     requestStream: false,
     responseStream: false,
