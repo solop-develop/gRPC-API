@@ -23,7 +23,6 @@ var global = (function() {
 
 goog.exportSymbol('proto.data.ChangeLog', null, global);
 goog.exportSymbol('proto.data.Condition', null, global);
-goog.exportSymbol('proto.data.Condition.Operator', null, global);
 goog.exportSymbol('proto.data.Criteria', null, global);
 goog.exportSymbol('proto.data.Decimal', null, global);
 goog.exportSymbol('proto.data.DocumentAction', null, global);
@@ -35,8 +34,9 @@ goog.exportSymbol('proto.data.EntityLog', null, global);
 goog.exportSymbol('proto.data.EntityLog.EventType', null, global);
 goog.exportSymbol('proto.data.KeyValue', null, global);
 goog.exportSymbol('proto.data.KeyValueSelection', null, global);
+goog.exportSymbol('proto.data.Operator', null, global);
 goog.exportSymbol('proto.data.OrderByProperty', null, global);
-goog.exportSymbol('proto.data.OrderByProperty.OrderType', null, global);
+goog.exportSymbol('proto.data.OrderType', null, global);
 goog.exportSymbol('proto.data.PrintFormat', null, global);
 goog.exportSymbol('proto.data.ProcessInfoLog', null, global);
 goog.exportSymbol('proto.data.ProcessLog', null, global);
@@ -1983,7 +1983,7 @@ proto.data.OrderByProperty.deserializeBinaryFromReader = function(msg, reader) {
       msg.setColumnName(value);
       break;
     case 2:
-      var value = /** @type {!proto.data.OrderByProperty.OrderType} */ (reader.readEnum());
+      var value = /** @type {!proto.data.OrderType} */ (reader.readEnum());
       msg.setOrderType(value);
       break;
     default:
@@ -2033,14 +2033,6 @@ proto.data.OrderByProperty.serializeBinaryToWriter = function(message, writer) {
 
 
 /**
- * @enum {number}
- */
-proto.data.OrderByProperty.OrderType = {
-  ASCENDING: 0,
-  DESCENDING: 1
-};
-
-/**
  * optional string column_name = 1;
  * @return {string}
  */
@@ -2060,15 +2052,15 @@ proto.data.OrderByProperty.prototype.setColumnName = function(value) {
 
 /**
  * optional OrderType order_type = 2;
- * @return {!proto.data.OrderByProperty.OrderType}
+ * @return {!proto.data.OrderType}
  */
 proto.data.OrderByProperty.prototype.getOrderType = function() {
-  return /** @type {!proto.data.OrderByProperty.OrderType} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
+  return /** @type {!proto.data.OrderType} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
 };
 
 
 /**
- * @param {!proto.data.OrderByProperty.OrderType} value
+ * @param {!proto.data.OrderType} value
  * @return {!proto.data.OrderByProperty} returns this
  */
 proto.data.OrderByProperty.prototype.setOrderType = function(value) {
@@ -2179,7 +2171,7 @@ proto.data.Condition.deserializeBinaryFromReader = function(msg, reader) {
       msg.addValues(value);
       break;
     case 5:
-      var value = /** @type {!proto.data.Condition.Operator} */ (reader.readEnum());
+      var value = /** @type {!proto.data.Operator} */ (reader.readEnum());
       msg.setOperator(value);
       break;
     case 6:
@@ -2264,26 +2256,6 @@ proto.data.Condition.serializeBinaryToWriter = function(message, writer) {
   }
 };
 
-
-/**
- * @enum {number}
- */
-proto.data.Condition.Operator = {
-  VOID: 0,
-  EQUAL: 1,
-  NOT_EQUAL: 2,
-  LIKE: 3,
-  NOT_LIKE: 4,
-  GREATER: 5,
-  GREATER_EQUAL: 6,
-  LESS: 7,
-  LESS_EQUAL: 8,
-  BETWEEN: 9,
-  NOT_NULL: 10,
-  NULL: 11,
-  IN: 12,
-  NOT_IN: 13
-};
 
 /**
  * optional string column_name = 1;
@@ -2417,15 +2389,15 @@ proto.data.Condition.prototype.clearValuesList = function() {
 
 /**
  * optional Operator operator = 5;
- * @return {!proto.data.Condition.Operator}
+ * @return {!proto.data.Operator}
  */
 proto.data.Condition.prototype.getOperator = function() {
-  return /** @type {!proto.data.Condition.Operator} */ (jspb.Message.getFieldWithDefault(this, 5, 0));
+  return /** @type {!proto.data.Operator} */ (jspb.Message.getFieldWithDefault(this, 5, 0));
 };
 
 
 /**
- * @param {!proto.data.Condition.Operator} value
+ * @param {!proto.data.Operator} value
  * @return {!proto.data.Condition} returns this
  */
 proto.data.Condition.prototype.setOperator = function(value) {
@@ -6344,5 +6316,34 @@ proto.data.ReportOutput.prototype.setReportType = function(value) {
   return jspb.Message.setProto3StringField(this, 15, value);
 };
 
+
+/**
+ * @enum {number}
+ */
+proto.data.OrderType = {
+  ASCENDING: 0,
+  DESCENDING: 1
+};
+
+/**
+ * @enum {number}
+ */
+proto.data.Operator = {
+  VOID: 0,
+  EQUAL: 1,
+  NOT_EQUAL: 2,
+  LIKE: 3,
+  NOT_LIKE: 4,
+  GREATER: 5,
+  GREATER_EQUAL: 6,
+  LESS: 7,
+  LESS_EQUAL: 8,
+  BETWEEN: 9,
+  NOT_BETWEEN: 10,
+  NOT_NULL: 11,
+  NULL: 12,
+  IN: 13,
+  NOT_IN: 14
+};
 
 goog.object.extend(exports, proto.data);
