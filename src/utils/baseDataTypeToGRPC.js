@@ -346,8 +346,7 @@ function getKeyValueSelectionToGRPC({ selectionId, selectionUuid, selectionValue
  * @returns Object
  */
 function getConditionToGRPC({ columnName, value, valueTo, values = [], operator = 'VOID' }) {
-  const { Condition } = stubFile;
-  const { Operator } = Condition;
+  const { Condition, Operator } = stubFile;
   const conditionInstance = new Condition();
   conditionInstance.setColumnName(columnName);
 
@@ -394,8 +393,7 @@ function getConditionToGRPC({ columnName, value, valueTo, values = [], operator 
  * @param {string} orderType 'ASCENDING' or 'DESCENDING'
  */
 function getOrderByPropertyToGRPC({ columnName, orderType }) {
-  const { OrderByProperty } = stubFile;
-  const { OrderType } = OrderByProperty;
+  const { OrderByProperty, OrderType } = stubFile;
   const orderByInstance = new OrderByProperty;
 
   orderByInstance.setColumnName(columnName);

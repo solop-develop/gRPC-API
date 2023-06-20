@@ -172,15 +172,15 @@ function getValueFromGRPC(valueToConvert) {
     LESS = 7;
     LESS_EQUAL = 8;
     BETWEEN = 9;
-    NOT_NULL = 10;
-    NULL = 11;
-    IN = 12;
-    NOT_IN = 13;
+    NOT_BETWEEN = 10;
+    NOT_NULL = 11;
+    NULL = 12;
+    IN = 13;
+    NOT_IN = 14;
  */
-function getCondition_Operator({ key, value }) {
+function getOperator({ key, value }) {
   const { getValueOrKey } = require('@adempiere/grpc-api/src/utils/convertEnums.js')
-  const { Condition } = require('@adempiere/grpc-api/src/grpc/proto/base_data_type_pb.js');
-  const { Operator } = Condition;
+  const { Operator } = require('@adempiere/grpc-api/src/grpc/proto/base_data_type_pb.js');
 
   return getValueOrKey({
     list: Operator,
@@ -263,7 +263,7 @@ module.exports = {
   getValueFromGRPC,
   //
   getRecordReferenceInfoFromGRPC,
-  getCondition_Operator,
+  getOperator,
   getBusinessPartnerFromGRPC,
   getReportOutputFromGRPC
 };
