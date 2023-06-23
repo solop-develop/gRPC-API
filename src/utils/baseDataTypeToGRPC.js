@@ -164,7 +164,8 @@ function getValueToGRPCWithoutValueType({ value }) {
   switch (typeOfValue) {
     case 'Number':
       if (Number.isInteger(value)) {
-        if (String(value).length >= 13 && value && value > 0) {
+        // TODO: Improve this date validation (Date.parse is not working)
+        if (value && value > 0 && String(value).length >= 13) {
           convertedValue = getValueDateToGRPC(value);
         } else {
           convertedValue = getValueIntegerToGRPC(value);
@@ -183,8 +184,17 @@ function getValueToGRPCWithoutValueType({ value }) {
       break;
 
     case 'String':
-      let parsedValue = Date.parse(value)
-      if (String(value).length >= 13 && parsedValue && parsedValue > 0) {
+      // 2021-11-04T22:32:47.142354-10:00
+      const regexISO_8061 = /^(?:\d{4})-(?:\d{2})-(?:\d{2})T(?:\d{2}):(?:\d{2}):(?:\d{2}(?:\.\d*)?)(?:(?:-(?:\d{2}):(?:\d{2})|Z)?)$/
+      const isValidDateISO = regexISO_8061.test(value)
+      // YYYY-mm-dd or YYYY/mm/ddd
+      const regexStandardDate = /(3[01]|[12][0-9]|0?[1-9])(\/|-)(1[0-2]|0?[1-9])\2([0-9]{2})?[0-9]{2}$/
+      const isValidDateStandard = regexStandardDate.test(value)
+      // dd-mm-YYYY or dd/mm/YYYY
+      const regexOtherDate = /^[0-9]{1,2}(\/|-)[0-9]{1,2}(\/|-)[0-9]{4}$/
+      const isValidDateOther = regexOtherDate.test(value)
+
+      if (isValidDateISO || isValidDateStandard || isValidDateOther) {
         convertedValue = getValueDateToGRPC(new Date(parsedValue));
       } else {
         convertedValue = getValueStringToGRPC(value);
