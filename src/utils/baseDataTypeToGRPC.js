@@ -185,17 +185,19 @@ function getValueToGRPCWithoutValueType({ value }) {
 
     case 'String':
       // 2021-11-04T22:32:47.142354-10:00
-      const regexISO_8061 = /^(?:\d{4})-(?:\d{2})-(?:\d{2})T(?:\d{2}):(?:\d{2}):(?:\d{2}(?:\.\d*)?)(?:(?:-(?:\d{2}):(?:\d{2})|Z)?)$/
-      const isValidDateISO = regexISO_8061.test(value)
+      const regexISO_8061 = /^(?:\d{4})-(?:\d{2})-(?:\d{2})T(?:\d{2}):(?:\d{2}):(?:\d{2}(?:\.\d*)?)(?:(?:-(?:\d{2}):(?:\d{2})|Z)?)$/;
+      const isValidDateISO = regexISO_8061.test(value);
       // YYYY-mm-dd or YYYY/mm/ddd
-      const regexStandardDate = /(3[01]|[12][0-9]|0?[1-9])(\/|-)(1[0-2]|0?[1-9])\2([0-9]{2})?[0-9]{2}$/
-      const isValidDateStandard = regexStandardDate.test(value)
+      const regexStandardDate = /(3[01]|[12][0-9]|0?[1-9])(\/|-)(1[0-2]|0?[1-9])\2([0-9]{2})?[0-9]{2}$/;
+      const isValidDateStandard = regexStandardDate.test(value);
       // dd-mm-YYYY or dd/mm/YYYY
-      const regexOtherDate = /^[0-9]{1,2}(\/|-)[0-9]{1,2}(\/|-)[0-9]{4}$/
-      const isValidDateOther = regexOtherDate.test(value)
+      const regexOtherDate = /^[0-9]{1,2}(\/|-)[0-9]{1,2}(\/|-)[0-9]{4}$/;
+      const isValidDateOther = regexOtherDate.test(value);
 
       if (isValidDateISO || isValidDateStandard || isValidDateOther) {
-        convertedValue = getValueDateToGRPC(new Date(parsedValue));
+        convertedValue = getValueDateToGRPC(
+          new Date(value)
+        );
       } else {
         convertedValue = getValueStringToGRPC(value);
       }
@@ -355,7 +357,7 @@ function getKeyValueSelectionToGRPC({ selectionId, selectionUuid, selectionValue
  * @param {string} operator
  * @returns Object
  */
-function getConditionToGRPC({ columnName, value, valueTo, values = [], operator = 'VOID' }) {
+function getConditionToGRPC({ columnName, value, valueTo, values = [], operator = 'VOID', valueType }) {
   const { Condition, Operator } = stubFile;
   const conditionInstance = new Condition();
   conditionInstance.setColumnName(columnName);
@@ -373,14 +375,18 @@ function getConditionToGRPC({ columnName, value, valueTo, values = [], operator 
       values = value;
     } else {
       conditionInstance.setValue(
-        getValueToGRPC({ value })
+        getValueToGRPC({
+          value,
+          valueType
+        })
       );
     }
   }
   if (!isEmptyValue(valueTo)) {
     conditionInstance.setValueTo(
       getValueToGRPC({
-        value: valueTo
+        value: valueTo,
+        valueType
       })
     );
   }
@@ -388,7 +394,8 @@ function getConditionToGRPC({ columnName, value, valueTo, values = [], operator 
   if (!isEmptyValue(values)) {
     values.forEach(itemValue => {
       const convertedValue = getValueToGRPC({
-        value: itemValue
+        value: itemValue,
+        valueType
       });
       conditionInstance.addValues(convertedValue);
     });
@@ -490,10 +497,11 @@ function getCriteriaToGRPC({
 
       const criteriaGrpc = getConditionToGRPC({
         columnName: parsedCondition.column_name,
+        operator: parsedCondition.operator,
         value: parsedCondition.value,
         valueTo: parsedCondition.value_to,
         values: parsedCondition.values,
-        operator: parsedCondition.operator
+        valueType: parsedCondition.value_type
       });
       criteria.addConditions(criteriaGrpc);
     });
