@@ -15,7 +15,9 @@
  ************************************************************************************/
 
 const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
-const { isEmptyValue, getTypeOfValue, getValidId } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
+const {
+  isEmptyValue, getTimestamp, getTypeOfValue, getValidInteger
+} = require('@adempiere/grpc-api/src/utils/valueUtils.js');
 
 class GeneralLedger {
 
@@ -130,7 +132,7 @@ class GeneralLedger {
     const request = new GetAccountingCombinationRequest();
 
     request.setId(
-      getValidId(id)
+      getValidInteger(id)
     );
     request.setUuid(uuid);
     request.setValue(value);
@@ -163,7 +165,7 @@ class GeneralLedger {
     const request = new SaveAccountingCombinationRequest();
 
     request.setId(
-      getValidId(id)
+      getValidInteger(id)
     );
     request.setUuid(uuid);
 
@@ -226,7 +228,7 @@ class GeneralLedger {
 
     request.setTableName(tableName);
     request.setRecordId(
-      getValidId(recordId)
+      getValidInteger(recordId)
     );
     request.setRecordUuid(recordUuid);
     request.setIsForce(isForce);
@@ -242,28 +244,171 @@ class GeneralLedger {
     );
   }
 
-  listAccoutingFacts({
+  listAccountingSchemas({
     token,
     // DSL
+    searchValue,
+    // Page Data
+    pageSize,
+    pageToken
+  }, callback) {
+    const {
+      ListAccountingSchemasRequest
+    } = this.stubFile
+    const request = new ListAccountingSchemasRequest();
+
+    request.setSearchValue(searchValue);
+    request.setPageSize(
+      getValidInteger(pageSize)
+    );
+    request.setPageToken(pageToken);
+
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getGeneralLedgerService().listAccountingSchemas(
+      request,
+      metadata,
+      callback
+    );
+  }
+
+  listPostingTypes({
+    token,
+    // DSL
+    searchValue,
+    // Page Data
+    pageSize,
+    pageToken
+  }, callback) {
+    const {
+      ListPostingTypesRequest
+    } = this.stubFile
+    const request = new ListPostingTypesRequest();
+
+    request.setSearchValue(searchValue);
+    request.setPageSize(
+      getValidInteger(pageSize)
+    );
+    request.setPageToken(pageToken);
+
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getGeneralLedgerService().listPostingTypes(
+      request,
+      metadata,
+      callback
+    );
+  }
+
+  listAccountingDocuments({
+    token,
+    // DSL
+    searchValue,
+    // Page Data
+    pageSize,
+    pageToken
+  }, callback) {
+    const {
+      ListAccountingDocumentsRequest
+    } = this.stubFile
+    const request = new ListAccountingDocumentsRequest();
+
+    request.setSearchValue(searchValue);
+    request.setPageSize(
+      getValidInteger(pageSize)
+    );
+    request.setPageToken(pageToken);
+
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getGeneralLedgerService().listAccountingDocuments(
+      request,
+      metadata,
+      callback
+    );
+  }
+
+  listOrganizations({
+    token,
+    // DSL
+    searchValue,
+    // Page Data
+    pageSize,
+    pageToken
+  }, callback) {
+    const {
+      ListOrganizationsRequest
+    } = this.stubFile
+    const request = new ListOrganizationsRequest();
+
+    request.setSearchValue(searchValue);
+    request.setPageSize(
+      getValidInteger(pageSize)
+    );
+    request.setPageToken(pageToken);
+
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getGeneralLedgerService().listOrganizations(
+      request,
+      metadata,
+      callback
+    );
+  }
+
+  listAccountingFacts({
+    token,
+    // DSL
+    accountingSchemaId,
+    postingType,
     tableName,
     recordId,
     recordUuid,
+    dateFrom,
+    dateTo,
+    organizationId,
     filters = [],
     // Page Data
     pageSize,
     pageToken
   }, callback) {
     const {
-      ListAccoutingFactsRequest
+      ListAccountingFactsRequest
     } = this.stubFile
-    const request = new ListAccoutingFactsRequest();
+    const request = new ListAccountingFactsRequest();
 
+    request.setAccountingSchemaId(
+      getValidInteger(accountingSchemaId)
+    );
+    request.setPostingType(postingType);
+
+    // source record filters
     request.setTableName(tableName);
     request.setRecordId(
-      getValidId(recordId)
+      getValidInteger(recordId)
     );
     request.setRecordUuid(recordUuid);
 
+    // other filters
+    request.setDateFrom(
+      getTimestamp(dateFrom)
+    );
+    request.setDateTo(
+      getTimestamp(dateTo)
+    );
+    request.setOrganizationId(
+      getValidInteger(organizationId)
+    );
+
+  	// accoutiing dimensions filters
     if (!isEmptyValue(filters)) {
       const { getCriteriaToGRPC } = require('@adempiere/grpc-api/src/utils/baseDataTypeToGRPC.js');
 
@@ -274,14 +419,16 @@ class GeneralLedger {
       );
     }
 
-    request.setPageSize(pageSize);
+    request.setPageSize(
+      getValidInteger(pageSize)
+    );
     request.setPageToken(pageToken);
 
     const metadata = getMetadata({
       token
     });
 
-    this.getGeneralLedgerService().listAccoutingFacts(
+    this.getGeneralLedgerService().listAccountingFacts(
       request,
       metadata,
       callback
