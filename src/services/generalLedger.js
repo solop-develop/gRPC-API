@@ -253,9 +253,9 @@ class GeneralLedger {
     pageToken
   }, callback) {
     const {
-      ListAccoutingSchemasRequest
+      ListAccountingSchemasRequest
     } = this.stubFile
-    const request = new ListAccoutingSchemasRequest();
+    const request = new ListAccountingSchemasRequest();
 
     request.setSearchValue(searchValue);
     request.setPageSize(
@@ -304,7 +304,7 @@ class GeneralLedger {
     );
   }
 
-  listAccoutingDocuments({
+  listAccountingDocuments({
     token,
     // DSL
     searchValue,
@@ -313,9 +313,9 @@ class GeneralLedger {
     pageToken
   }, callback) {
     const {
-      ListAccoutingDocumentsRequest
+      ListAccountingDocumentsRequest
     } = this.stubFile
-    const request = new ListAccoutingDocumentsRequest();
+    const request = new ListAccountingDocumentsRequest();
 
     request.setSearchValue(searchValue);
     request.setPageSize(
@@ -327,7 +327,7 @@ class GeneralLedger {
       token
     });
 
-    this.getGeneralLedgerService().listAccoutingDocuments(
+    this.getGeneralLedgerService().listAccountingDocuments(
       request,
       metadata,
       callback
@@ -364,10 +364,10 @@ class GeneralLedger {
     );
   }
 
-  listAccoutingFacts({
+  listAccountingFacts({
     token,
     // DSL
-    accoutingSchemaId,
+    accountingSchemaId,
     postingType,
     tableName,
     recordId,
@@ -381,12 +381,12 @@ class GeneralLedger {
     pageToken
   }, callback) {
     const {
-      ListAccoutingFactsRequest
+      ListAccountingFactsRequest
     } = this.stubFile
-    const request = new ListAccoutingFactsRequest();
+    const request = new ListAccountingFactsRequest();
 
-    request.setAccoutingSchemaId(
-      getValidInteger(accoutingSchemaId)
+    request.setAccountingSchemaId(
+      getValidInteger(accountingSchemaId)
     );
     request.setPostingType(postingType);
 
@@ -428,7 +428,7 @@ class GeneralLedger {
       token
     });
 
-    this.getGeneralLedgerService().listAccoutingFacts(
+    this.getGeneralLedgerService().listAccountingFacts(
       request,
       metadata,
       callback

@@ -76,48 +76,48 @@ function deserialize_general_ledger_ListAccountingCombinationsRequest(buffer_arg
   return proto_general_ledger_pb.ListAccountingCombinationsRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_general_ledger_ListAccoutingDocumentsRequest(arg) {
-  if (!(arg instanceof proto_general_ledger_pb.ListAccoutingDocumentsRequest)) {
-    throw new Error('Expected argument of type general_ledger.ListAccoutingDocumentsRequest');
+function serialize_general_ledger_ListAccountingDocumentsRequest(arg) {
+  if (!(arg instanceof proto_general_ledger_pb.ListAccountingDocumentsRequest)) {
+    throw new Error('Expected argument of type general_ledger.ListAccountingDocumentsRequest');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_general_ledger_ListAccoutingDocumentsRequest(buffer_arg) {
-  return proto_general_ledger_pb.ListAccoutingDocumentsRequest.deserializeBinary(new Uint8Array(buffer_arg));
+function deserialize_general_ledger_ListAccountingDocumentsRequest(buffer_arg) {
+  return proto_general_ledger_pb.ListAccountingDocumentsRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_general_ledger_ListAccoutingDocumentsResponse(arg) {
-  if (!(arg instanceof proto_general_ledger_pb.ListAccoutingDocumentsResponse)) {
-    throw new Error('Expected argument of type general_ledger.ListAccoutingDocumentsResponse');
+function serialize_general_ledger_ListAccountingDocumentsResponse(arg) {
+  if (!(arg instanceof proto_general_ledger_pb.ListAccountingDocumentsResponse)) {
+    throw new Error('Expected argument of type general_ledger.ListAccountingDocumentsResponse');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_general_ledger_ListAccoutingDocumentsResponse(buffer_arg) {
-  return proto_general_ledger_pb.ListAccoutingDocumentsResponse.deserializeBinary(new Uint8Array(buffer_arg));
+function deserialize_general_ledger_ListAccountingDocumentsResponse(buffer_arg) {
+  return proto_general_ledger_pb.ListAccountingDocumentsResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_general_ledger_ListAccoutingFactsRequest(arg) {
-  if (!(arg instanceof proto_general_ledger_pb.ListAccoutingFactsRequest)) {
-    throw new Error('Expected argument of type general_ledger.ListAccoutingFactsRequest');
+function serialize_general_ledger_ListAccountingFactsRequest(arg) {
+  if (!(arg instanceof proto_general_ledger_pb.ListAccountingFactsRequest)) {
+    throw new Error('Expected argument of type general_ledger.ListAccountingFactsRequest');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_general_ledger_ListAccoutingFactsRequest(buffer_arg) {
-  return proto_general_ledger_pb.ListAccoutingFactsRequest.deserializeBinary(new Uint8Array(buffer_arg));
+function deserialize_general_ledger_ListAccountingFactsRequest(buffer_arg) {
+  return proto_general_ledger_pb.ListAccountingFactsRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_general_ledger_ListAccoutingSchemasRequest(arg) {
-  if (!(arg instanceof proto_general_ledger_pb.ListAccoutingSchemasRequest)) {
-    throw new Error('Expected argument of type general_ledger.ListAccoutingSchemasRequest');
+function serialize_general_ledger_ListAccountingSchemasRequest(arg) {
+  if (!(arg instanceof proto_general_ledger_pb.ListAccountingSchemasRequest)) {
+    throw new Error('Expected argument of type general_ledger.ListAccountingSchemasRequest');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_general_ledger_ListAccoutingSchemasRequest(buffer_arg) {
-  return proto_general_ledger_pb.ListAccoutingSchemasRequest.deserializeBinary(new Uint8Array(buffer_arg));
+function deserialize_general_ledger_ListAccountingSchemasRequest(buffer_arg) {
+  return proto_general_ledger_pb.ListAccountingSchemasRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_general_ledger_ListOrganizationsRequest(arg) {
@@ -212,15 +212,15 @@ getAccountingCombination: {
     responseSerialize: serialize_data_Entity,
     responseDeserialize: deserialize_data_Entity,
   },
-  // Accouting Viewer
-listAccoutingSchemas: {
-    path: '/general_ledger.GeneralLedger/ListAccoutingSchemas',
+  // Accounting Viewer
+listAccountingSchemas: {
+    path: '/general_ledger.GeneralLedger/ListAccountingSchemas',
     requestStream: false,
     responseStream: false,
-    requestType: proto_general_ledger_pb.ListAccoutingSchemasRequest,
+    requestType: proto_general_ledger_pb.ListAccountingSchemasRequest,
     responseType: proto_business_pb.ListLookupItemsResponse,
-    requestSerialize: serialize_general_ledger_ListAccoutingSchemasRequest,
-    requestDeserialize: deserialize_general_ledger_ListAccoutingSchemasRequest,
+    requestSerialize: serialize_general_ledger_ListAccountingSchemasRequest,
+    requestDeserialize: deserialize_general_ledger_ListAccountingSchemasRequest,
     responseSerialize: serialize_data_ListLookupItemsResponse,
     responseDeserialize: deserialize_data_ListLookupItemsResponse,
   },
@@ -235,16 +235,16 @@ listAccoutingSchemas: {
     responseSerialize: serialize_data_ListLookupItemsResponse,
     responseDeserialize: deserialize_data_ListLookupItemsResponse,
   },
-  listAccoutingDocuments: {
-    path: '/general_ledger.GeneralLedger/ListAccoutingDocuments',
+  listAccountingDocuments: {
+    path: '/general_ledger.GeneralLedger/ListAccountingDocuments',
     requestStream: false,
     responseStream: false,
-    requestType: proto_general_ledger_pb.ListAccoutingDocumentsRequest,
-    responseType: proto_general_ledger_pb.ListAccoutingDocumentsResponse,
-    requestSerialize: serialize_general_ledger_ListAccoutingDocumentsRequest,
-    requestDeserialize: deserialize_general_ledger_ListAccoutingDocumentsRequest,
-    responseSerialize: serialize_general_ledger_ListAccoutingDocumentsResponse,
-    responseDeserialize: deserialize_general_ledger_ListAccoutingDocumentsResponse,
+    requestType: proto_general_ledger_pb.ListAccountingDocumentsRequest,
+    responseType: proto_general_ledger_pb.ListAccountingDocumentsResponse,
+    requestSerialize: serialize_general_ledger_ListAccountingDocumentsRequest,
+    requestDeserialize: deserialize_general_ledger_ListAccountingDocumentsRequest,
+    responseSerialize: serialize_general_ledger_ListAccountingDocumentsResponse,
+    responseDeserialize: deserialize_general_ledger_ListAccountingDocumentsResponse,
   },
   listOrganizations: {
     path: '/general_ledger.GeneralLedger/ListOrganizations',
@@ -257,14 +257,14 @@ listAccoutingSchemas: {
     responseSerialize: serialize_data_ListLookupItemsResponse,
     responseDeserialize: deserialize_data_ListLookupItemsResponse,
   },
-  listAccoutingFacts: {
-    path: '/general_ledger.GeneralLedger/ListAccoutingFacts',
+  listAccountingFacts: {
+    path: '/general_ledger.GeneralLedger/ListAccountingFacts',
     requestStream: false,
     responseStream: false,
-    requestType: proto_general_ledger_pb.ListAccoutingFactsRequest,
+    requestType: proto_general_ledger_pb.ListAccountingFactsRequest,
     responseType: proto_business_pb.ListEntitiesResponse,
-    requestSerialize: serialize_general_ledger_ListAccoutingFactsRequest,
-    requestDeserialize: deserialize_general_ledger_ListAccoutingFactsRequest,
+    requestSerialize: serialize_general_ledger_ListAccountingFactsRequest,
+    requestDeserialize: deserialize_general_ledger_ListAccountingFactsRequest,
     responseSerialize: serialize_data_ListEntitiesResponse,
     responseDeserialize: deserialize_data_ListEntitiesResponse,
   },
