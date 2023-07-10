@@ -1,6 +1,6 @@
 /*************************************************************************************
  * Product: ADempiere gRPC Business Data Client Convert Utils                        *
- * Copyright (C) 2018-2023 E.R.P. Consultores y Asociados, C.A.                      *
+ * Copyright (C) 2018-present E.R.P. Consultores y Asociados, C.A.                   *
  * Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                      *
  * This program is free software: you can redistribute it and/or modify              *
  * it under the terms of the GNU General Public License as published by              *
@@ -164,7 +164,8 @@ function getValueToGRPCWithoutValueType({ value }) {
   switch (typeOfValue) {
     case 'Number':
       if (Number.isInteger(value)) {
-        if (String(value).length >= 13 && value && value > 0) {
+        // TODO: Improve this date validation (Date.parse is not working)
+        if (value && value > 0 && String(value).length >= 13) {
           convertedValue = getValueDateToGRPC(value);
         } else {
           convertedValue = getValueIntegerToGRPC(value);
@@ -183,9 +184,20 @@ function getValueToGRPCWithoutValueType({ value }) {
       break;
 
     case 'String':
-      let parsedValue = Date.parse(value)
-      if (String(value).length >= 13 && parsedValue && parsedValue > 0) {
-        convertedValue = getValueDateToGRPC(new Date(parsedValue));
+      // 2021-11-04T22:32:47.142354-10:00
+      const regexISO_8061 = /^(?:\d{4})-(?:\d{2})-(?:\d{2})T(?:\d{2}):(?:\d{2}):(?:\d{2}(?:\.\d*)?)(?:(?:-(?:\d{2}):(?:\d{2})|Z)?)$/;
+      const isValidDateISO = regexISO_8061.test(value);
+      // YYYY-mm-dd or YYYY/mm/ddd
+      const regexStandardDate = /(3[01]|[12][0-9]|0?[1-9])(\/|-)(1[0-2]|0?[1-9])\2([0-9]{2})?[0-9]{2}$/;
+      const isValidDateStandard = regexStandardDate.test(value);
+      // dd-mm-YYYY or dd/mm/YYYY
+      const regexOtherDate = /^[0-9]{1,2}(\/|-)[0-9]{1,2}(\/|-)[0-9]{4}$/;
+      const isValidDateOther = regexOtherDate.test(value);
+
+      if (isValidDateISO || isValidDateStandard || isValidDateOther) {
+        convertedValue = getValueDateToGRPC(
+          new Date(value)
+        );
       } else {
         convertedValue = getValueStringToGRPC(value);
       }
@@ -345,9 +357,8 @@ function getKeyValueSelectionToGRPC({ selectionId, selectionUuid, selectionValue
  * @param {string} operator
  * @returns Object
  */
-function getConditionToGRPC({ columnName, value, valueTo, values = [], operator = 'VOID' }) {
-  const { Condition } = stubFile;
-  const { Operator } = Condition;
+function getConditionToGRPC({ columnName, value, valueTo, values = [], operator = 'VOID', valueType }) {
+  const { Condition, Operator } = stubFile;
   const conditionInstance = new Condition();
   conditionInstance.setColumnName(columnName);
 
@@ -364,14 +375,18 @@ function getConditionToGRPC({ columnName, value, valueTo, values = [], operator 
       values = value;
     } else {
       conditionInstance.setValue(
-        getValueToGRPC({ value })
+        getValueToGRPC({
+          value,
+          valueType
+        })
       );
     }
   }
   if (!isEmptyValue(valueTo)) {
     conditionInstance.setValueTo(
       getValueToGRPC({
-        value: valueTo
+        value: valueTo,
+        valueType
       })
     );
   }
@@ -379,7 +394,8 @@ function getConditionToGRPC({ columnName, value, valueTo, values = [], operator 
   if (!isEmptyValue(values)) {
     values.forEach(itemValue => {
       const convertedValue = getValueToGRPC({
-        value: itemValue
+        value: itemValue,
+        valueType
       });
       conditionInstance.addValues(convertedValue);
     });
@@ -394,8 +410,7 @@ function getConditionToGRPC({ columnName, value, valueTo, values = [], operator 
  * @param {string} orderType 'ASCENDING' or 'DESCENDING'
  */
 function getOrderByPropertyToGRPC({ columnName, orderType }) {
-  const { OrderByProperty } = stubFile;
-  const { OrderType } = OrderByProperty;
+  const { OrderByProperty, OrderType } = stubFile;
   const orderByInstance = new OrderByProperty;
 
   orderByInstance.setColumnName(columnName);
@@ -482,10 +497,11 @@ function getCriteriaToGRPC({
 
       const criteriaGrpc = getConditionToGRPC({
         columnName: parsedCondition.column_name,
+        operator: parsedCondition.operator,
         value: parsedCondition.value,
         valueTo: parsedCondition.value_to,
         values: parsedCondition.values,
-        operator: parsedCondition.operator
+        valueType: parsedCondition.value_type
       });
       criteria.addConditions(criteriaGrpc);
     });
