@@ -1,6 +1,6 @@
 /*************************************************************************************
  * Product: ADempiere gRPC Express Receipt Client                                    *
- * Copyright (C) 2012-2023 E.R.P. Consultores y Asociados, C.A.                      *
+ * Copyright (C) 2018-2023 E.R.P. Consultores y Asociados, C.A.                      *
  * Contributor(s): Elsio Sanchez elsiosanchez15@outlook.com                          *
  * This program is free software: you can redistribute it and/or modify              *
  * it under the terms of the GNU General Public License as published by              *
