@@ -134,8 +134,6 @@ class ImportFileLoader {
     request.setId(
       getValidInteger(id)
     );
-    request.setPageToken(pageToken);
-
     const metadata = getMetadata({
       token
     });
