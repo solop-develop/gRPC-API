@@ -1,6 +1,6 @@
 {
   "name": "@adempiere/grpc-api",
-  "version": "4.6.0",
+  "version": "4.6.1",
   "description": "ADempiere Web write in Javascript for a node service",
   "author": "Yamel Senih",
   "contributors": [
@@ -70,7 +70,7 @@
   },
   "homepage": "https://github.com/erpcya/gRPC-API#readme",
   "dependencies": {
-    "@grpc/grpc-js": "1.8.14",
+    "@grpc/grpc-js": "1.8.18",
     "google-protobuf": "3.21.2"
   },
   "devDependencies": {
