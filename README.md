@@ -70,7 +70,6 @@ Note to generate specific proto definition:
 * To base data type: `npm run stub:base_data_type`
 * To business: `npm run stub:business`
 * To business partner: `npm run stub:business_partner`
-* To client: `npm run stub:client`
 * To core functionality: `npm run stub:core_functionality`
 * To dashboarding: `npm run stub:dashboarding`
 * To dictionary: `npm run stub:dictionary`
@@ -80,19 +79,24 @@ Note to generate specific proto definition:
 * To express shipment: `npm run stub:express_shipment`
 * To file management: `npm run stub:file_management`
 * To general ledger: `npm run stub:general_ledger`
+* To import file loader: `npm run stub:import_file_loader`
 * To in-out: `npm run stub:in_out`
 * To invoice: `npm run stub:invoice`
+* To issue management: `npm run stub:issue_management`
+* To logs: `npm run stub:logs`
 * To match po receipt invoice: `npm run stub:match_po_receipt_invoice`
 * To material management: `npm run stub:material_management`
 * To order: `npm run stub:order`
 * To payment: `npm run stub:payment`
 * To payment allocation: `npm run stub:payment_allocation`
+* To payment print export: `npm run stub:payment_print_export`
 * To payroll action notice: `npm run stub:payroll_action_notice`
 * To point of sales: `npm run stub:point_of_sales`
 * To product: `npm run stub:product`
 * To security: `npm run stub:security`
 * To time control: `npm run stub:time_control`
 * To time record: `npm run stub:time_record`
+* To user customization: `npm run stub:user_customization`
 * To workflow: `npm run stub:workflow`
 
 ### Generate directly with grpc-tools:
@@ -146,8 +150,6 @@ The result is generated on: `src/grpc/proto/` folder
 - `business_pb.js`
 - `business_partner_grpc_pb.js`
 - `business_partner_pb.js`
-- `client_grpc_pb.js`
-- `client_pb.js`
 - `core_functionality_grpc_pb.js`
 - `core_functionality_pb.js`
 - `dashboarding_grpc_pb.js`
@@ -162,18 +164,32 @@ The result is generated on: `src/grpc/proto/` folder
 - `express_receipt_pb.js`
 - `express_shipment_grpc_pb.js`
 - `express_shipment_pb.js`
+- `file_management_pb.js`
+- `file_management_grpc_pb.js`
 - `general_ledger_pb.js`
 - `general_ledger_grpc_pb.js`
+- `import_file_loader_pb.js`
+- `import_file_loader_grpc_pb.js`
 - `in_out_grpc_pb.js`
 - `in_out_pb.js`
 - `invoice_grpc_pb.js`
 - `invoice_pb.js`
+- `issue_management_grpc_pb.js`
+- `issue_management_pb.js`
+- `logs_grpc_pb.js`
+- `logs_pb.js`
+- `match_po_receipt_invoice_grpc_pb.js`
+- `match_po_receipt_invoice_pb.js`
+- `material_management_grpc_pb.js`
+- `material_management_pb.js`
 - `order_grpc_pb.js`
 - `order_pb.js`
-- `payment_grpc_pb.js`
-- `payment_pb.js`
 - `payment_allocation_grpc_pb.js`
 - `payment_allocation_pb.js`
+- `payment_grpc_pb.js`
+- `payment_pb.js`
+- `payment_print_export_grpc_pb.js`
+- `payment_print_export_pb.js`
 - `payroll_action_notice_grpc_pb.js`
 - `payroll_action_notice_pb.js`
 - `point_of_sales_grpc_pb.js`
@@ -186,6 +202,8 @@ The result is generated on: `src/grpc/proto/` folder
 - `time_control_pb.js`
 - `time_record_grpc_pb.js`
 - `time_record_pb.js`
+- `user_customization_grpc_pb.js`
+- `user_customization_pb.js`
 - `workflow_grpc_pb.js`
 - `workflow_pb.js`
 

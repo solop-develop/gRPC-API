@@ -15,7 +15,7 @@
  ************************************************************************************/
 
 const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
-const { getValidId } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
+const { getValidInteger } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
 
 class FileManagement {
 
@@ -77,7 +77,7 @@ class FileManagement {
 
     request.setTableName(tableName);
     request.setRecordId(
-      getValidId(recordId)
+      getValidInteger(recordId)
     );
     request.setRecordUuid(recordUuid);
 
@@ -101,17 +101,17 @@ class FileManagement {
     token,
     // DSL
     tableName,
-    id,
-    uuid
+    recordId,
+    recordUuid
   }, callback) {
     const { GetAttachmentRequest } = this.stubFile;
     const request = new GetAttachmentRequest();
 
     request.setTableName(tableName);
-    request.setId(
-      getValidId(id)
+    request.setRecordId(
+      getValidInteger(recordId)
     );
-    request.setUuid(uuid);
+    request.setRecordUuid(recordUuid);
 
     const metadata = getMetadata({
       token
@@ -131,15 +131,19 @@ class FileManagement {
    * @param {string} token
    */
   getResource({
-    resourceName,
+    resourceId,
     resourceUuid,
+    resourceName,
     token
   }, callback) {
     const { GetResourceRequest } = this.stubFile;
     const request = new GetResourceRequest();
 
-    request.setResourceName(resourceName);
+    request.setResourceId(
+      getValidInteger(resourceId)
+    )
     request.setResourceUuid(resourceUuid);
+    request.setResourceName(resourceName);
 
     const metadata = getMetadata({
       token
@@ -212,7 +216,7 @@ class FileManagement {
 
     request.setTableName(tableName);
     request.setRecordId(
-      getValidId(recordId)
+      getValidInteger(recordId)
     );
     request.setRecordUuid(recordUuid);
     request.setTextMessage(textMessage);
@@ -242,14 +246,16 @@ class FileManagement {
    */
    getResourceReference({
     token,
-    imageId
+    imageId,
+    imageUuid,
   }, callback) {
     const { GetResourceReferenceRequest } = this.stubFile;
     const request = new GetResourceReferenceRequest();
 
     request.setImageId(
-      getValidId(imageId)
+      getValidInteger(imageId)
     );
+    request.setImageUuid(imageUuid);
 
     const metadata = getMetadata({
       token
@@ -279,11 +285,11 @@ class FileManagement {
     const { DeleteResourceReferenceRequest } = this.stubFile;
     const request = new DeleteResourceReferenceRequest();
 
-    request.setResourceName(resourceName);
-    request.setResourceUuid(resourceUuid);
     request.setResourceId(
-      getValidId(resourceId)
+      getValidInteger(resourceId)
     );
+    request.setResourceUuid(resourceUuid);
+    request.setResourceName(resourceName);
 
     const metadata = getMetadata({
       token
