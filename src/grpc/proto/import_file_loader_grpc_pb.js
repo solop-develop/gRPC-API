@@ -76,6 +76,17 @@ function deserialize_import_file_loader_ListCharsetsRequest(buffer_arg) {
   return proto_import_file_loader_pb.ListCharsetsRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_import_file_loader_ListClientImportFormatsRequest(arg) {
+  if (!(arg instanceof proto_import_file_loader_pb.ListClientImportFormatsRequest)) {
+    throw new Error('Expected argument of type import_file_loader.ListClientImportFormatsRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_import_file_loader_ListClientImportFormatsRequest(buffer_arg) {
+  return proto_import_file_loader_pb.ListClientImportFormatsRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_import_file_loader_ListFilePreviewRequest(arg) {
   if (!(arg instanceof proto_import_file_loader_pb.ListFilePreviewRequest)) {
     throw new Error('Expected argument of type import_file_loader.ListFilePreviewRequest');
@@ -98,48 +109,59 @@ function deserialize_import_file_loader_ListImportFormatsRequest(buffer_arg) {
   return proto_import_file_loader_pb.ListImportFormatsRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_import_file_loader_LoadImportFileRequest(arg) {
-  if (!(arg instanceof proto_import_file_loader_pb.LoadImportFileRequest)) {
-    throw new Error('Expected argument of type import_file_loader.LoadImportFileRequest');
+function serialize_import_file_loader_ListImportProcessesRequest(arg) {
+  if (!(arg instanceof proto_import_file_loader_pb.ListImportProcessesRequest)) {
+    throw new Error('Expected argument of type import_file_loader.ListImportProcessesRequest');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_import_file_loader_LoadImportFileRequest(buffer_arg) {
-  return proto_import_file_loader_pb.LoadImportFileRequest.deserializeBinary(new Uint8Array(buffer_arg));
+function deserialize_import_file_loader_ListImportProcessesRequest(buffer_arg) {
+  return proto_import_file_loader_pb.ListImportProcessesRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_import_file_loader_ProcessImportRequest(arg) {
-  if (!(arg instanceof proto_import_file_loader_pb.ProcessImportRequest)) {
-    throw new Error('Expected argument of type import_file_loader.ProcessImportRequest');
+function serialize_import_file_loader_ListImportTablesRequest(arg) {
+  if (!(arg instanceof proto_import_file_loader_pb.ListImportTablesRequest)) {
+    throw new Error('Expected argument of type import_file_loader.ListImportTablesRequest');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_import_file_loader_ProcessImportRequest(buffer_arg) {
-  return proto_import_file_loader_pb.ProcessImportRequest.deserializeBinary(new Uint8Array(buffer_arg));
+function deserialize_import_file_loader_ListImportTablesRequest(buffer_arg) {
+  return proto_import_file_loader_pb.ListImportTablesRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_import_file_loader_ProcessImportResponse(arg) {
-  if (!(arg instanceof proto_import_file_loader_pb.ProcessImportResponse)) {
-    throw new Error('Expected argument of type import_file_loader.ProcessImportResponse');
+function serialize_import_file_loader_ListImportTablesResponse(arg) {
+  if (!(arg instanceof proto_import_file_loader_pb.ListImportTablesResponse)) {
+    throw new Error('Expected argument of type import_file_loader.ListImportTablesResponse');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_import_file_loader_ProcessImportResponse(buffer_arg) {
-  return proto_import_file_loader_pb.ProcessImportResponse.deserializeBinary(new Uint8Array(buffer_arg));
+function deserialize_import_file_loader_ListImportTablesResponse(buffer_arg) {
+  return proto_import_file_loader_pb.ListImportTablesResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_import_file_loader_ResourceReference(arg) {
-  if (!(arg instanceof proto_import_file_loader_pb.ResourceReference)) {
-    throw new Error('Expected argument of type import_file_loader.ResourceReference');
+function serialize_import_file_loader_SaveRecordsRequest(arg) {
+  if (!(arg instanceof proto_import_file_loader_pb.SaveRecordsRequest)) {
+    throw new Error('Expected argument of type import_file_loader.SaveRecordsRequest');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_import_file_loader_ResourceReference(buffer_arg) {
-  return proto_import_file_loader_pb.ResourceReference.deserializeBinary(new Uint8Array(buffer_arg));
+function deserialize_import_file_loader_SaveRecordsRequest(buffer_arg) {
+  return proto_import_file_loader_pb.SaveRecordsRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_import_file_loader_SaveRecordsResponse(arg) {
+  if (!(arg instanceof proto_import_file_loader_pb.SaveRecordsResponse)) {
+    throw new Error('Expected argument of type import_file_loader.SaveRecordsResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_import_file_loader_SaveRecordsResponse(buffer_arg) {
+  return proto_import_file_loader_pb.SaveRecordsResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 
@@ -155,6 +177,17 @@ var ImportFileLoaderService = exports.ImportFileLoaderService = {
     responseSerialize: serialize_data_ListLookupItemsResponse,
     responseDeserialize: deserialize_data_ListLookupItemsResponse,
   },
+  listImportTables: {
+    path: '/import_file_loader.ImportFileLoader/ListImportTables',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_import_file_loader_pb.ListImportTablesRequest,
+    responseType: proto_import_file_loader_pb.ListImportTablesResponse,
+    requestSerialize: serialize_import_file_loader_ListImportTablesRequest,
+    requestDeserialize: deserialize_import_file_loader_ListImportTablesRequest,
+    responseSerialize: serialize_import_file_loader_ListImportTablesResponse,
+    responseDeserialize: deserialize_import_file_loader_ListImportTablesResponse,
+  },
   listImportFormats: {
     path: '/import_file_loader.ImportFileLoader/ListImportFormats',
     requestStream: false,
@@ -163,6 +196,17 @@ var ImportFileLoaderService = exports.ImportFileLoaderService = {
     responseType: proto_business_pb.ListLookupItemsResponse,
     requestSerialize: serialize_import_file_loader_ListImportFormatsRequest,
     requestDeserialize: deserialize_import_file_loader_ListImportFormatsRequest,
+    responseSerialize: serialize_data_ListLookupItemsResponse,
+    responseDeserialize: deserialize_data_ListLookupItemsResponse,
+  },
+  listClientImportFormats: {
+    path: '/import_file_loader.ImportFileLoader/ListClientImportFormats',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_import_file_loader_pb.ListClientImportFormatsRequest,
+    responseType: proto_business_pb.ListLookupItemsResponse,
+    requestSerialize: serialize_import_file_loader_ListClientImportFormatsRequest,
+    requestDeserialize: deserialize_import_file_loader_ListClientImportFormatsRequest,
     responseSerialize: serialize_data_ListLookupItemsResponse,
     responseDeserialize: deserialize_data_ListLookupItemsResponse,
   },
@@ -177,16 +221,17 @@ var ImportFileLoaderService = exports.ImportFileLoaderService = {
     responseSerialize: serialize_import_file_loader_ImportFormat,
     responseDeserialize: deserialize_import_file_loader_ImportFormat,
   },
-  loadImportFile: {
-    path: '/import_file_loader.ImportFileLoader/LoadImportFile',
-    requestStream: true,
+  // Manage File
+saveRecords: {
+    path: '/import_file_loader.ImportFileLoader/SaveRecords',
+    requestStream: false,
     responseStream: false,
-    requestType: proto_import_file_loader_pb.LoadImportFileRequest,
-    responseType: proto_import_file_loader_pb.ResourceReference,
-    requestSerialize: serialize_import_file_loader_LoadImportFileRequest,
-    requestDeserialize: deserialize_import_file_loader_LoadImportFileRequest,
-    responseSerialize: serialize_import_file_loader_ResourceReference,
-    responseDeserialize: deserialize_import_file_loader_ResourceReference,
+    requestType: proto_import_file_loader_pb.SaveRecordsRequest,
+    responseType: proto_import_file_loader_pb.SaveRecordsResponse,
+    requestSerialize: serialize_import_file_loader_SaveRecordsRequest,
+    requestDeserialize: deserialize_import_file_loader_SaveRecordsRequest,
+    responseSerialize: serialize_import_file_loader_SaveRecordsResponse,
+    responseDeserialize: deserialize_import_file_loader_SaveRecordsResponse,
   },
   listFilePreview: {
     path: '/import_file_loader.ImportFileLoader/ListFilePreview',
@@ -199,16 +244,17 @@ var ImportFileLoaderService = exports.ImportFileLoaderService = {
     responseSerialize: serialize_data_ListEntitiesResponse,
     responseDeserialize: deserialize_data_ListEntitiesResponse,
   },
-  processImport: {
-    path: '/import_file_loader.ImportFileLoader/ProcessImport',
+  // Process
+listImportProcesses: {
+    path: '/import_file_loader.ImportFileLoader/ListImportProcesses',
     requestStream: false,
     responseStream: false,
-    requestType: proto_import_file_loader_pb.ProcessImportRequest,
-    responseType: proto_import_file_loader_pb.ProcessImportResponse,
-    requestSerialize: serialize_import_file_loader_ProcessImportRequest,
-    requestDeserialize: deserialize_import_file_loader_ProcessImportRequest,
-    responseSerialize: serialize_import_file_loader_ProcessImportResponse,
-    responseDeserialize: deserialize_import_file_loader_ProcessImportResponse,
+    requestType: proto_import_file_loader_pb.ListImportProcessesRequest,
+    responseType: proto_business_pb.ListLookupItemsResponse,
+    requestSerialize: serialize_import_file_loader_ListImportProcessesRequest,
+    requestDeserialize: deserialize_import_file_loader_ListImportProcessesRequest,
+    responseSerialize: serialize_data_ListLookupItemsResponse,
+    responseDeserialize: deserialize_data_ListLookupItemsResponse,
   },
 };
 
