@@ -70,7 +70,7 @@
   },
   "homepage": "https://github.com/erpcya/gRPC-API#readme",
   "dependencies": {
-    "@grpc/grpc-js": "1.8.14",
+    "@grpc/grpc-js": "1.8.18",
     "google-protobuf": "3.21.2"
   },
   "devDependencies": {
