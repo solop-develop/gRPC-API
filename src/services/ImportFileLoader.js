@@ -15,7 +15,7 @@
  ************************************************************************************/
 
 const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
-const { getValidInteger } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
+const { isEmptyValue, getValidInteger } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
 
 class ImportFileLoader {
 
@@ -60,7 +60,7 @@ class ImportFileLoader {
 
 
   /**
-   * Get List Business Partners
+   * Get List Charsets
    * @param {string} token
    * @param {string} searchValue
    * @param {number} pageSize
@@ -94,7 +94,15 @@ class ImportFileLoader {
     );
   }
 
-  listImportFormats({
+
+  /**
+   * Get List Import Tables
+   * @param {string} token
+   * @param {string} searchValue
+   * @param {number} pageSize
+   * @param {string} pageToken
+   */
+  listImportTables({
     token,
     // DSL
     searchValue,
@@ -102,8 +110,44 @@ class ImportFileLoader {
     pageSize,
     pageToken
   }, callback) {
+    const { ListImportTablesRequest } = this.stubFile;
+    const request = new ListImportTablesRequest();
+
+    request.setSearchValue(searchValue);
+    request.setPageSize(
+      getValidInteger(pageSize)
+    );
+    request.setPageToken(pageToken);
+
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getImportFileLoaderService().listImportTables(
+      request,
+      metadata,
+      callback
+    );
+  }
+
+
+  listImportFormats({
+    token,
+    // DSL
+    searchValue,
+    tableId,
+    tableName,
+    // Page Data
+    pageSize,
+    pageToken
+  }, callback) {
     const { ListImportFormatsRequest } = this.stubFile;
     const request = new ListImportFormatsRequest();
+
+    request.setTableId(
+      getValidInteger(tableId)
+    );
+    request.setTableName(tableName);
 
     request.setSearchValue(searchValue);
     request.setPageSize(
@@ -116,6 +160,41 @@ class ImportFileLoader {
     });
 
     this.getImportFileLoaderService().listImportFormats(
+      request,
+      metadata,
+      callback
+    );
+  }
+
+  listClientImportFormats({
+    token,
+    // DSL
+    tableId,
+    tableName,
+    searchValue,
+    // Page Data
+    pageSize,
+    pageToken
+  }, callback) {
+    const { ListClientImportFormatsRequest } = this.stubFile;
+    const request = new ListClientImportFormatsRequest();
+
+    request.setTableId(
+      getValidInteger(tableId)
+    );
+    request.setTableName(tableName);
+
+    request.setSearchValue(searchValue);
+    request.setPageSize(
+      getValidInteger(pageSize)
+    );
+    request.setPageToken(pageToken);
+
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getImportFileLoaderService().listClientImportFormats(
       request,
       metadata,
       callback
@@ -145,29 +224,28 @@ class ImportFileLoader {
     );
   }
 
-  loadImportFile({
+
+  saveRecords({
     token,
     // DSL
-    data,
-    resourceUuid,
-    fileSize
+    importFormatId,
+    resourceId
   }, callback) {
-    const { LoadImportFileRequest } = this.stubFile;
-    const request = new LoadImportFileRequest();
+    const { SaveRecordsRequest } = this.stubFile;
+    const request = new SaveRecordsRequest();
 
-    request.setFileSize(
-      getValidInteger(fileSize)
+    request.setImportFormatId(
+      getValidInteger(importFormatId)
     );
-
-    request.setData(data);
-
-    request.setResourceUuid(resourceUuid);
+    request.setResourceId(
+      getValidInteger(resourceId)
+    );
 
     const metadata = getMetadata({
       token
     });
 
-    this.getImportFileLoaderService().getImportFromat(
+    this.getImportFileLoaderService().saveRecords(
       request,
       metadata,
       callback
@@ -179,13 +257,13 @@ class ImportFileLoader {
     // DSL
     searchValue,
     importFormatId,
-    resourceReferenceId,
+    resourceId,
     // Page Data
     pageSize,
     pageToken
   }, callback) {
-    const { ListCharsetsRequest } = this.stubFile;
-    const request = new ListCharsetsRequest();
+    const { ListFilePreviewRequest } = this.stubFile;
+    const request = new ListFilePreviewRequest();
 
     request.setSearchValue(searchValue);
     request.setPageSize(
@@ -193,43 +271,61 @@ class ImportFileLoader {
     );
     request.setPageToken(pageToken);
 
-    request.setImportFormatId(importFormatId);
-
-    request.setResourceReferenceId(resourceReferenceId);
-
-    const metadata = getMetadata({
-      token
-    });
-
-    this.getImportFileLoaderService().listCharsets(
-      request,
-      metadata,
-      callback
-    );
-  }
-
-  processImport({
-    token,
-    // DSL
-    importFormatId
-  }, callback) {
-    const { ListCharsetsRequest } = this.stubFile;
-    const request = new ListCharsetsRequest();
-
     request.setImportFormatId(
       getValidInteger(importFormatId)
     );
 
+    request.setResourceId(
+      getValidInteger(resourceId)
+    );
+
     const metadata = getMetadata({
       token
     });
 
-    this.getImportFileLoaderService().listCharsets(
+    this.getImportFileLoaderService().listFilePreview(
       request,
       metadata,
       callback
     );
   }
+
+
+  listImportProcesses({
+    token,
+    // DSL
+    searchValue,
+    tableId,
+    tableName,
+    // Page Data
+    pageSize,
+    pageToken
+  }, callback) {
+    const { ListImportProcessesRequest } = this.stubFile;
+    const request = new ListImportProcessesRequest();
+
+    request.setSearchValue(searchValue);
+    request.setPageSize(
+      getValidInteger(pageSize)
+    );
+    request.setPageToken(pageToken);
+
+    request.setTableId(
+      getValidInteger(tableId)
+    );
+    request.setTableName(tableName);
+
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getImportFileLoaderService().listImportProcesses(
+      request,
+      metadata,
+      callback
+    );
+  }
+
 }
 
 module.exports = ImportFileLoader;
