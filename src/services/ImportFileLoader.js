@@ -229,7 +229,8 @@ class ImportFileLoader {
     token,
     // DSL
     importFormatId,
-    resourceId
+    resourceId,
+    charset
   }, callback) {
     const { SaveRecordsRequest } = this.stubFile;
     const request = new SaveRecordsRequest();
@@ -240,6 +241,7 @@ class ImportFileLoader {
     request.setResourceId(
       getValidInteger(resourceId)
     );
+    request.setCharset(charset);
 
     const metadata = getMetadata({
       token
