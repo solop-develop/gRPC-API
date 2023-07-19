@@ -59,6 +59,41 @@ class FileManagement {
   }
 
   /**
+   * Set Attachment Description
+   * @param {string} tableName
+   * @param {number} recordId
+   * @param {string} recordUuid
+   * @param {string} token
+   */
+  setAttachmentDescription({
+    token,
+    // DSL
+    id,
+    uuid,
+    textMessage
+  }, callback) {
+    const { SetAttachmentDescriptionRequest } = this.stubFile;
+    const request = new SetAttachmentDescriptionRequest();
+
+    request.setId(
+      getValidInteger(id)
+    );
+    request.setUuid(uuid);
+
+    request.setTextMessage(textMessage);
+
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getFileManagementService().setAttachmentDescription(
+      request,
+      metadata,
+      callback
+    );
+  }
+
+  /**
    * Exists Attachment On Record
    * @param {string} tableName
    * @param {number} recordId
@@ -207,9 +242,10 @@ class FileManagement {
     tableName,
     recordId,
     recordUuid,
-    textMessage,
     fileName,
-    fileSize
+    fileSize,
+    description,
+    textMessage
   }, callback) {
     const { SetResourceReferenceRequest } = this.stubFile;
     const request = new SetResourceReferenceRequest();
@@ -219,15 +255,48 @@ class FileManagement {
       getValidInteger(recordId)
     );
     request.setRecordUuid(recordUuid);
-    request.setTextMessage(textMessage);
     request.setFileName(fileName);
     request.setFileSize(fileSize);
+
+    request.setDescription(description);
+    request.setTextMessage(textMessage);
 
     const metadata = getMetadata({
       token
     });
 
     this.getFileManagementService().setResourceReference(
+      request,
+      metadata,
+      callback
+    );
+  }
+
+  setResourceReferenceDescription({
+    token,
+    id,
+    uuid,
+    fileName,
+    description,
+    textMessage
+  }, callback) {
+    const { SetResourceReferenceDescriptionRequest } = this.stubFile;
+    const request = new SetResourceReferenceDescriptionRequest();
+
+    request.setId(
+      getValidInteger(id)
+    );
+    request.setUuid(uuid);
+    request.setFileName(fileName);
+
+    request.setDescription(description);
+    request.setTextMessage(textMessage);
+
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getFileManagementService().setResourceReferenceDescription(
       request,
       metadata,
       callback
