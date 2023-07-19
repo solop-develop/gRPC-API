@@ -230,7 +230,11 @@ class ImportFileLoader {
     // DSL
     importFormatId,
     resourceId,
-    charset
+    charset,
+    // process values
+    isProcess,
+    processId,
+    parametersList
   }, callback) {
     const { SaveRecordsRequest } = this.stubFile;
     const request = new SaveRecordsRequest();
@@ -242,6 +246,37 @@ class ImportFileLoader {
       getValidInteger(resourceId)
     );
     request.setCharset(charset);
+
+    // set process values
+    if (isProcess) {
+      request.setIsProcess(isProcess);
+      request.setProcessId(
+        getValidInteger(processId)
+      );
+      // set process parameters list
+      if (!isEmptyValue(parametersList)) {
+        const { getTypeOfValue } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
+        const { getKeyValueToGRPC } = require('@adempiere/grpc-api/src/utils/baseDataTypeToGRPC.js');
+
+        if (getTypeOfValue(parametersList) === 'String') {
+          parametersList = JSON.parse(parametersList);
+        }
+        parametersList.forEach(parameter => {
+          let parsedParameter = parameter;
+          if (getTypeOfValue(parameter) === 'String') {
+            parsedParameter = JSON.parse(parameter);
+          }
+          // parameter format = { columName, value, valueType }
+          const convertedParameter = getKeyValueToGRPC({
+            columnName: parsedParameter.key,
+            value: parsedParameter.value,
+            valueType: parsedParameter.valueType
+          });
+  
+          request.addParameters(convertedParameter);
+        });
+      }
+    }
 
     const metadata = getMetadata({
       token

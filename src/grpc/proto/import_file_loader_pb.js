@@ -281,7 +281,7 @@ if (goog.DEBUG && !COMPILED) {
  * @constructor
  */
 proto.import_file_loader.SaveRecordsRequest = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.import_file_loader.SaveRecordsRequest.repeatedFields_, null);
 };
 goog.inherits(proto.import_file_loader.SaveRecordsRequest, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -3204,6 +3204,13 @@ proto.import_file_loader.ListFilePreviewRequest.prototype.setResourceId = functi
 
 
 
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.import_file_loader.SaveRecordsRequest.repeatedFields_ = [6];
+
 
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
@@ -3237,7 +3244,11 @@ proto.import_file_loader.SaveRecordsRequest.toObject = function(includeInstance,
   var f, obj = {
     importFormatId: jspb.Message.getFieldWithDefault(msg, 1, 0),
     resourceId: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    charset: jspb.Message.getFieldWithDefault(msg, 3, "")
+    charset: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    isProcess: jspb.Message.getBooleanFieldWithDefault(msg, 4, false),
+    processId: jspb.Message.getFieldWithDefault(msg, 5, 0),
+    parametersList: jspb.Message.toObjectList(msg.getParametersList(),
+    proto_base_data_type_pb.KeyValue.toObject, includeInstance)
   };
 
   if (includeInstance) {
@@ -3285,6 +3296,19 @@ proto.import_file_loader.SaveRecordsRequest.deserializeBinaryFromReader = functi
     case 3:
       var value = /** @type {string} */ (reader.readString());
       msg.setCharset(value);
+      break;
+    case 4:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setIsProcess(value);
+      break;
+    case 5:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setProcessId(value);
+      break;
+    case 6:
+      var value = new proto_base_data_type_pb.KeyValue;
+      reader.readMessage(value,proto_base_data_type_pb.KeyValue.deserializeBinaryFromReader);
+      msg.addParameters(value);
       break;
     default:
       reader.skipField();
@@ -3334,6 +3358,28 @@ proto.import_file_loader.SaveRecordsRequest.serializeBinaryToWriter = function(m
     writer.writeString(
       3,
       f
+    );
+  }
+  f = message.getIsProcess();
+  if (f) {
+    writer.writeBool(
+      4,
+      f
+    );
+  }
+  f = message.getProcessId();
+  if (f !== 0) {
+    writer.writeInt32(
+      5,
+      f
+    );
+  }
+  f = message.getParametersList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      6,
+      f,
+      proto_base_data_type_pb.KeyValue.serializeBinaryToWriter
     );
   }
 };
@@ -3393,6 +3439,80 @@ proto.import_file_loader.SaveRecordsRequest.prototype.setCharset = function(valu
 };
 
 
+/**
+ * optional bool is_process = 4;
+ * @return {boolean}
+ */
+proto.import_file_loader.SaveRecordsRequest.prototype.getIsProcess = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 4, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.import_file_loader.SaveRecordsRequest} returns this
+ */
+proto.import_file_loader.SaveRecordsRequest.prototype.setIsProcess = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 4, value);
+};
+
+
+/**
+ * optional int32 process_id = 5;
+ * @return {number}
+ */
+proto.import_file_loader.SaveRecordsRequest.prototype.getProcessId = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 5, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.import_file_loader.SaveRecordsRequest} returns this
+ */
+proto.import_file_loader.SaveRecordsRequest.prototype.setProcessId = function(value) {
+  return jspb.Message.setProto3IntField(this, 5, value);
+};
+
+
+/**
+ * repeated data.KeyValue parameters = 6;
+ * @return {!Array<!proto.data.KeyValue>}
+ */
+proto.import_file_loader.SaveRecordsRequest.prototype.getParametersList = function() {
+  return /** @type{!Array<!proto.data.KeyValue>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto_base_data_type_pb.KeyValue, 6));
+};
+
+
+/**
+ * @param {!Array<!proto.data.KeyValue>} value
+ * @return {!proto.import_file_loader.SaveRecordsRequest} returns this
+*/
+proto.import_file_loader.SaveRecordsRequest.prototype.setParametersList = function(value) {
+  return jspb.Message.setRepeatedWrapperField(this, 6, value);
+};
+
+
+/**
+ * @param {!proto.data.KeyValue=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.data.KeyValue}
+ */
+proto.import_file_loader.SaveRecordsRequest.prototype.addParameters = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 6, opt_value, proto.data.KeyValue, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.import_file_loader.SaveRecordsRequest} returns this
+ */
+proto.import_file_loader.SaveRecordsRequest.prototype.clearParametersList = function() {
+  return this.setParametersList([]);
+};
+
+
 
 
 
@@ -3426,7 +3546,8 @@ proto.import_file_loader.SaveRecordsResponse.prototype.toObject = function(opt_i
 proto.import_file_loader.SaveRecordsResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
     message: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    total: jspb.Message.getFieldWithDefault(msg, 2, 0)
+    total: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    processLog: (f = msg.getProcessLog()) && proto_base_data_type_pb.ProcessLog.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -3471,6 +3592,11 @@ proto.import_file_loader.SaveRecordsResponse.deserializeBinaryFromReader = funct
       var value = /** @type {number} */ (reader.readInt64());
       msg.setTotal(value);
       break;
+    case 3:
+      var value = new proto_base_data_type_pb.ProcessLog;
+      reader.readMessage(value,proto_base_data_type_pb.ProcessLog.deserializeBinaryFromReader);
+      msg.setProcessLog(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -3514,6 +3640,14 @@ proto.import_file_loader.SaveRecordsResponse.serializeBinaryToWriter = function(
       f
     );
   }
+  f = message.getProcessLog();
+  if (f != null) {
+    writer.writeMessage(
+      3,
+      f,
+      proto_base_data_type_pb.ProcessLog.serializeBinaryToWriter
+    );
+  }
 };
 
 
@@ -3550,6 +3684,43 @@ proto.import_file_loader.SaveRecordsResponse.prototype.getTotal = function() {
  */
 proto.import_file_loader.SaveRecordsResponse.prototype.setTotal = function(value) {
   return jspb.Message.setProto3IntField(this, 2, value);
+};
+
+
+/**
+ * optional data.ProcessLog process_log = 3;
+ * @return {?proto.data.ProcessLog}
+ */
+proto.import_file_loader.SaveRecordsResponse.prototype.getProcessLog = function() {
+  return /** @type{?proto.data.ProcessLog} */ (
+    jspb.Message.getWrapperField(this, proto_base_data_type_pb.ProcessLog, 3));
+};
+
+
+/**
+ * @param {?proto.data.ProcessLog|undefined} value
+ * @return {!proto.import_file_loader.SaveRecordsResponse} returns this
+*/
+proto.import_file_loader.SaveRecordsResponse.prototype.setProcessLog = function(value) {
+  return jspb.Message.setWrapperField(this, 3, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.import_file_loader.SaveRecordsResponse} returns this
+ */
+proto.import_file_loader.SaveRecordsResponse.prototype.clearProcessLog = function() {
+  return this.setProcessLog(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.import_file_loader.SaveRecordsResponse.prototype.hasProcessLog = function() {
+  return jspb.Message.getField(this, 3) != null;
 };
 
 
