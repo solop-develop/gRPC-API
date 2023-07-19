@@ -266,26 +266,8 @@ function getResourceReferenceFromGRPC(resourceReferenceToConvert) {
       resourceReferenceToConvert.getFileSize()
     ),
     description: resourceReferenceToConvert.getDescription(),
-    text_msg: resourceReferenceToConvert.getTextMsg(),
+    text_message: resourceReferenceToConvert.getTextMessage(),
     content_type: resourceReferenceToConvert.getContentType()
-  };
-}
-
-function getAttachmentFromGRPC(attachmentToConvert) {
-  if (!attachmentToConvert) {
-    return undefined;
-  }
-  return {
-    id: attachmentToConvert.getId(),
-    uuid: attachmentToConvert.getUuid(),
-    attachment_uuid: attachmentToConvert.getUuid(), // TODO: Remove when add support to uuid attribute
-    title: attachmentToConvert.getTitle(),
-    text_msg: attachmentToConvert.getTextMsg(),
-    resource_references_list: attachmentToConvert.getResourceReferencesList().map(itemResourceReference => {
-      return getResourceReferenceFromGRPC(
-        itemResourceReference
-      );
-    })
   };
 }
 
@@ -299,7 +281,6 @@ module.exports = {
   getValueFromGRPC,
   //
   getRecordReferenceInfoFromGRPC,
-  getAttachmentFromGRPC,
   getResourceReferenceFromGRPC,
   getOperator,
   getBusinessPartnerFromGRPC,

@@ -141,6 +141,28 @@ function deserialize_file_management_ResourceReference(buffer_arg) {
   return proto_file_management_pb.ResourceReference.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_file_management_SetAttachmentDescriptionRequest(arg) {
+  if (!(arg instanceof proto_file_management_pb.SetAttachmentDescriptionRequest)) {
+    throw new Error('Expected argument of type file_management.SetAttachmentDescriptionRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_file_management_SetAttachmentDescriptionRequest(buffer_arg) {
+  return proto_file_management_pb.SetAttachmentDescriptionRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_file_management_SetResourceReferenceDescriptionRequest(arg) {
+  if (!(arg instanceof proto_file_management_pb.SetResourceReferenceDescriptionRequest)) {
+    throw new Error('Expected argument of type file_management.SetResourceReferenceDescriptionRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_file_management_SetResourceReferenceDescriptionRequest(buffer_arg) {
+  return proto_file_management_pb.SetResourceReferenceDescriptionRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_file_management_SetResourceReferenceRequest(arg) {
   if (!(arg instanceof proto_file_management_pb.SetResourceReferenceRequest)) {
     throw new Error('Expected argument of type file_management.SetResourceReferenceRequest');
@@ -155,19 +177,7 @@ function deserialize_file_management_SetResourceReferenceRequest(buffer_arg) {
 
 // The File Management service definition.
 var FileManagementService = exports.FileManagementService = {
-  // 	Service for get a resource from resource uuid
-getResource: {
-    path: '/file_management.FileManagement/GetResource',
-    requestStream: false,
-    responseStream: true,
-    requestType: proto_file_management_pb.GetResourceRequest,
-    responseType: proto_file_management_pb.Resource,
-    requestSerialize: serialize_file_management_GetResourceRequest,
-    requestDeserialize: deserialize_file_management_GetResourceRequest,
-    responseSerialize: serialize_file_management_Resource,
-    responseDeserialize: deserialize_file_management_Resource,
-  },
-  // 	Service for set a resource with resource uuid
+  // 	Resource/File
 loadResource: {
     path: '/file_management.FileManagement/LoadResource',
     requestStream: true,
@@ -179,20 +189,41 @@ loadResource: {
     responseSerialize: serialize_file_management_ResourceReference,
     responseDeserialize: deserialize_file_management_ResourceReference,
   },
-  // 	Service for get a resource reference from image, attachment or archive
-getResourceReference: {
-    path: '/file_management.FileManagement/GetResourceReference',
+  getResource: {
+    path: '/file_management.FileManagement/GetResource',
+    requestStream: false,
+    responseStream: true,
+    requestType: proto_file_management_pb.GetResourceRequest,
+    responseType: proto_file_management_pb.Resource,
+    requestSerialize: serialize_file_management_GetResourceRequest,
+    requestDeserialize: deserialize_file_management_GetResourceRequest,
+    responseSerialize: serialize_file_management_Resource,
+    responseDeserialize: deserialize_file_management_Resource,
+  },
+  // 	Attachment
+setAttachmentDescription: {
+    path: '/file_management.FileManagement/SetAttachmentDescription',
     requestStream: false,
     responseStream: false,
-    requestType: proto_file_management_pb.GetResourceReferenceRequest,
-    responseType: proto_file_management_pb.ResourceReference,
-    requestSerialize: serialize_file_management_GetResourceReferenceRequest,
-    requestDeserialize: deserialize_file_management_GetResourceReferenceRequest,
-    responseSerialize: serialize_file_management_ResourceReference,
-    responseDeserialize: deserialize_file_management_ResourceReference,
+    requestType: proto_file_management_pb.SetAttachmentDescriptionRequest,
+    responseType: proto_file_management_pb.Attachment,
+    requestSerialize: serialize_file_management_SetAttachmentDescriptionRequest,
+    requestDeserialize: deserialize_file_management_SetAttachmentDescriptionRequest,
+    responseSerialize: serialize_file_management_Attachment,
+    responseDeserialize: deserialize_file_management_Attachment,
   },
-  // 	Service for get a attachment from table and record uuid
-getAttachment: {
+  existsAttachment: {
+    path: '/file_management.FileManagement/ExistsAttachment',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_file_management_pb.ExistsAttachmentRequest,
+    responseType: proto_file_management_pb.ExistsAttachmentResponse,
+    requestSerialize: serialize_file_management_ExistsAttachmentRequest,
+    requestDeserialize: deserialize_file_management_ExistsAttachmentRequest,
+    responseSerialize: serialize_file_management_ExistsAttachmentResponse,
+    responseDeserialize: deserialize_file_management_ExistsAttachmentResponse,
+  },
+  getAttachment: {
     path: '/file_management.FileManagement/GetAttachment',
     requestStream: false,
     responseStream: false,
@@ -203,7 +234,7 @@ getAttachment: {
     responseSerialize: serialize_file_management_Attachment,
     responseDeserialize: deserialize_file_management_Attachment,
   },
-  // 	Service for set a resource reference from image, attachment or archive
+  // 	Resource Reference
 setResourceReference: {
     path: '/file_management.FileManagement/SetResourceReference',
     requestStream: false,
@@ -215,8 +246,29 @@ setResourceReference: {
     responseSerialize: serialize_file_management_ResourceReference,
     responseDeserialize: deserialize_file_management_ResourceReference,
   },
-  // Delete resource reference
-deleteResourceReference: {
+  setResourceReferenceDescription: {
+    path: '/file_management.FileManagement/SetResourceReferenceDescription',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_file_management_pb.SetResourceReferenceDescriptionRequest,
+    responseType: proto_file_management_pb.ResourceReference,
+    requestSerialize: serialize_file_management_SetResourceReferenceDescriptionRequest,
+    requestDeserialize: deserialize_file_management_SetResourceReferenceDescriptionRequest,
+    responseSerialize: serialize_file_management_ResourceReference,
+    responseDeserialize: deserialize_file_management_ResourceReference,
+  },
+  getResourceReference: {
+    path: '/file_management.FileManagement/GetResourceReference',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_file_management_pb.GetResourceReferenceRequest,
+    responseType: proto_file_management_pb.ResourceReference,
+    requestSerialize: serialize_file_management_GetResourceReferenceRequest,
+    requestDeserialize: deserialize_file_management_GetResourceReferenceRequest,
+    responseSerialize: serialize_file_management_ResourceReference,
+    responseDeserialize: deserialize_file_management_ResourceReference,
+  },
+  deleteResourceReference: {
     path: '/file_management.FileManagement/DeleteResourceReference',
     requestStream: false,
     responseStream: false,
@@ -226,18 +278,6 @@ deleteResourceReference: {
     requestDeserialize: deserialize_file_management_DeleteResourceReferenceRequest,
     responseSerialize: serialize_data_Empty,
     responseDeserialize: deserialize_data_Empty,
-  },
-  // Exists Attachment on Record
-existsAttachment: {
-    path: '/file_management.FileManagement/ExistsAttachment',
-    requestStream: false,
-    responseStream: false,
-    requestType: proto_file_management_pb.ExistsAttachmentRequest,
-    responseType: proto_file_management_pb.ExistsAttachmentResponse,
-    requestSerialize: serialize_file_management_ExistsAttachmentRequest,
-    requestDeserialize: deserialize_file_management_ExistsAttachmentRequest,
-    responseSerialize: serialize_file_management_ExistsAttachmentResponse,
-    responseDeserialize: deserialize_file_management_ExistsAttachmentResponse,
   },
 };
 
