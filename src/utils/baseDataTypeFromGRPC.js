@@ -260,14 +260,16 @@ function getResourceReferenceFromGRPC(resourceReferenceToConvert) {
   return {
     id: resourceReferenceToConvert.getId(),
     uuid: resourceReferenceToConvert.getUuid(),
-    resource_uuid: resourceReferenceToConvert.getUuid(), // TODO: Remove when add support to uuid attribute
+    name: resourceReferenceToConvert.getName(),
     file_name: resourceReferenceToConvert.getFileName(),
     file_size: getDecimalFromGRPC(
       resourceReferenceToConvert.getFileSize()
     ),
     description: resourceReferenceToConvert.getDescription(),
     text_message: resourceReferenceToConvert.getTextMessage(),
-    content_type: resourceReferenceToConvert.getContentType()
+    content_type: resourceReferenceToConvert.getContentType(),
+    created: resourceReferenceToConvert.getCreated(),
+    updated: resourceReferenceToConvert.getUpdated()
   };
 }
 

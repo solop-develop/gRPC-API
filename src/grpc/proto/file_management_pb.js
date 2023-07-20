@@ -778,11 +778,14 @@ proto.file_management.ResourceReference.toObject = function(includeInstance, msg
   var f, obj = {
     id: jspb.Message.getFieldWithDefault(msg, 1, 0),
     uuid: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    fileName: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    name: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    fileName: jspb.Message.getFieldWithDefault(msg, 4, ""),
     fileSize: (f = msg.getFileSize()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
-    description: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    textMessage: jspb.Message.getFieldWithDefault(msg, 6, ""),
-    contentType: jspb.Message.getFieldWithDefault(msg, 7, "")
+    description: jspb.Message.getFieldWithDefault(msg, 6, ""),
+    textMessage: jspb.Message.getFieldWithDefault(msg, 7, ""),
+    contentType: jspb.Message.getFieldWithDefault(msg, 8, ""),
+    created: jspb.Message.getFieldWithDefault(msg, 9, 0),
+    updated: jspb.Message.getFieldWithDefault(msg, 10, 0)
   };
 
   if (includeInstance) {
@@ -829,24 +832,36 @@ proto.file_management.ResourceReference.deserializeBinaryFromReader = function(m
       break;
     case 3:
       var value = /** @type {string} */ (reader.readString());
-      msg.setFileName(value);
+      msg.setName(value);
       break;
     case 4:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setFileName(value);
+      break;
+    case 5:
       var value = new proto_base_data_type_pb.Decimal;
       reader.readMessage(value,proto_base_data_type_pb.Decimal.deserializeBinaryFromReader);
       msg.setFileSize(value);
       break;
-    case 5:
+    case 6:
       var value = /** @type {string} */ (reader.readString());
       msg.setDescription(value);
       break;
-    case 6:
+    case 7:
       var value = /** @type {string} */ (reader.readString());
       msg.setTextMessage(value);
       break;
-    case 7:
+    case 8:
       var value = /** @type {string} */ (reader.readString());
       msg.setContentType(value);
+      break;
+    case 9:
+      var value = /** @type {number} */ (reader.readInt64());
+      msg.setCreated(value);
+      break;
+    case 10:
+      var value = /** @type {number} */ (reader.readInt64());
+      msg.setUpdated(value);
       break;
     default:
       reader.skipField();
@@ -891,17 +906,24 @@ proto.file_management.ResourceReference.serializeBinaryToWriter = function(messa
       f
     );
   }
-  f = message.getFileName();
+  f = message.getName();
   if (f.length > 0) {
     writer.writeString(
       3,
       f
     );
   }
+  f = message.getFileName();
+  if (f.length > 0) {
+    writer.writeString(
+      4,
+      f
+    );
+  }
   f = message.getFileSize();
   if (f != null) {
     writer.writeMessage(
-      4,
+      5,
       f,
       proto_base_data_type_pb.Decimal.serializeBinaryToWriter
     );
@@ -909,21 +931,35 @@ proto.file_management.ResourceReference.serializeBinaryToWriter = function(messa
   f = message.getDescription();
   if (f.length > 0) {
     writer.writeString(
-      5,
+      6,
       f
     );
   }
   f = message.getTextMessage();
   if (f.length > 0) {
     writer.writeString(
-      6,
+      7,
       f
     );
   }
   f = message.getContentType();
   if (f.length > 0) {
     writer.writeString(
-      7,
+      8,
+      f
+    );
+  }
+  f = message.getCreated();
+  if (f !== 0) {
+    writer.writeInt64(
+      9,
+      f
+    );
+  }
+  f = message.getUpdated();
+  if (f !== 0) {
+    writer.writeInt64(
+      10,
       f
     );
   }
@@ -967,10 +1003,10 @@ proto.file_management.ResourceReference.prototype.setUuid = function(value) {
 
 
 /**
- * optional string file_name = 3;
+ * optional string name = 3;
  * @return {string}
  */
-proto.file_management.ResourceReference.prototype.getFileName = function() {
+proto.file_management.ResourceReference.prototype.getName = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
 
@@ -979,18 +1015,36 @@ proto.file_management.ResourceReference.prototype.getFileName = function() {
  * @param {string} value
  * @return {!proto.file_management.ResourceReference} returns this
  */
-proto.file_management.ResourceReference.prototype.setFileName = function(value) {
+proto.file_management.ResourceReference.prototype.setName = function(value) {
   return jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
 /**
- * optional data.Decimal file_size = 4;
+ * optional string file_name = 4;
+ * @return {string}
+ */
+proto.file_management.ResourceReference.prototype.getFileName = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.file_management.ResourceReference} returns this
+ */
+proto.file_management.ResourceReference.prototype.setFileName = function(value) {
+  return jspb.Message.setProto3StringField(this, 4, value);
+};
+
+
+/**
+ * optional data.Decimal file_size = 5;
  * @return {?proto.data.Decimal}
  */
 proto.file_management.ResourceReference.prototype.getFileSize = function() {
   return /** @type{?proto.data.Decimal} */ (
-    jspb.Message.getWrapperField(this, proto_base_data_type_pb.Decimal, 4));
+    jspb.Message.getWrapperField(this, proto_base_data_type_pb.Decimal, 5));
 };
 
 
@@ -999,7 +1053,7 @@ proto.file_management.ResourceReference.prototype.getFileSize = function() {
  * @return {!proto.file_management.ResourceReference} returns this
 */
 proto.file_management.ResourceReference.prototype.setFileSize = function(value) {
-  return jspb.Message.setWrapperField(this, 4, value);
+  return jspb.Message.setWrapperField(this, 5, value);
 };
 
 
@@ -1017,33 +1071,15 @@ proto.file_management.ResourceReference.prototype.clearFileSize = function() {
  * @return {boolean}
  */
 proto.file_management.ResourceReference.prototype.hasFileSize = function() {
-  return jspb.Message.getField(this, 4) != null;
+  return jspb.Message.getField(this, 5) != null;
 };
 
 
 /**
- * optional string description = 5;
+ * optional string description = 6;
  * @return {string}
  */
 proto.file_management.ResourceReference.prototype.getDescription = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.file_management.ResourceReference} returns this
- */
-proto.file_management.ResourceReference.prototype.setDescription = function(value) {
-  return jspb.Message.setProto3StringField(this, 5, value);
-};
-
-
-/**
- * optional string text_message = 6;
- * @return {string}
- */
-proto.file_management.ResourceReference.prototype.getTextMessage = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
 };
 
@@ -1052,16 +1088,16 @@ proto.file_management.ResourceReference.prototype.getTextMessage = function() {
  * @param {string} value
  * @return {!proto.file_management.ResourceReference} returns this
  */
-proto.file_management.ResourceReference.prototype.setTextMessage = function(value) {
+proto.file_management.ResourceReference.prototype.setDescription = function(value) {
   return jspb.Message.setProto3StringField(this, 6, value);
 };
 
 
 /**
- * optional string content_type = 7;
+ * optional string text_message = 7;
  * @return {string}
  */
-proto.file_management.ResourceReference.prototype.getContentType = function() {
+proto.file_management.ResourceReference.prototype.getTextMessage = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 7, ""));
 };
 
@@ -1070,8 +1106,62 @@ proto.file_management.ResourceReference.prototype.getContentType = function() {
  * @param {string} value
  * @return {!proto.file_management.ResourceReference} returns this
  */
-proto.file_management.ResourceReference.prototype.setContentType = function(value) {
+proto.file_management.ResourceReference.prototype.setTextMessage = function(value) {
   return jspb.Message.setProto3StringField(this, 7, value);
+};
+
+
+/**
+ * optional string content_type = 8;
+ * @return {string}
+ */
+proto.file_management.ResourceReference.prototype.getContentType = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 8, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.file_management.ResourceReference} returns this
+ */
+proto.file_management.ResourceReference.prototype.setContentType = function(value) {
+  return jspb.Message.setProto3StringField(this, 8, value);
+};
+
+
+/**
+ * optional int64 created = 9;
+ * @return {number}
+ */
+proto.file_management.ResourceReference.prototype.getCreated = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 9, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.file_management.ResourceReference} returns this
+ */
+proto.file_management.ResourceReference.prototype.setCreated = function(value) {
+  return jspb.Message.setProto3IntField(this, 9, value);
+};
+
+
+/**
+ * optional int64 updated = 10;
+ * @return {number}
+ */
+proto.file_management.ResourceReference.prototype.getUpdated = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 10, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.file_management.ResourceReference} returns this
+ */
+proto.file_management.ResourceReference.prototype.setUpdated = function(value) {
+  return jspb.Message.setProto3IntField(this, 10, value);
 };
 
 
