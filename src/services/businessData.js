@@ -1,6 +1,6 @@
 /*************************************************************************************
  * Product: ADempiere gRPC Business Data Client                                      *
- * Copyright (C) 2012-2023 E.R.P. Consultores y Asociados, C.A.                      *
+ * Copyright (C) 2018-2023 E.R.P. Consultores y Asociados, C.A.                      *
  * Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                      *
  * This program is free software: you can redistribute it and/or modify              *
  * it under the terms of the GNU General Public License as published by              *
@@ -15,7 +15,7 @@
  ************************************************************************************/
 
 const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
-const { isEmptyValue, getValidId } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
+const { isEmptyValue, getValidId, getValidInteger, getTypeOfValue } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
 
 class BusinessData {
 
@@ -64,12 +64,15 @@ class BusinessData {
    */
   runProcess({
     token,
-    processUuid,
-    tableName,
     id,
     uuid,
+    tableName,
+    recordId,
+    recordUuid,
     reportType,
+    printFormatId,
     printFormatUuid,
+    reportViewId,
     reportViewUuid,
     isSummary,
     parametersList,
@@ -79,29 +82,47 @@ class BusinessData {
     const { RunBusinessProcessRequest } = this.stubFile;
     const request = new RunBusinessProcessRequest();
 
-    // record of window
-    request.setTableName(tableName);
     request.setId(
-      getValidId(id)
+      getValidInteger(id)
     );
     request.setUuid(uuid);
 
+    // record of window
+    request.setTableName(tableName);
+    request.setRecordId(
+      getValidInteger(recordId)
+    );
+    request.setRecordUuid(recordUuid);
+
     // report values
     request.setReportType(reportType);
+    request.setPrintFormatId(
+      getValidInteger(printFormatId)
+    );
     request.setPrintFormatUuid(printFormatUuid);
+    request.setReportViewId(
+      getValidInteger(reportViewId)
+    );
     request.setReportViewUuid(reportViewUuid);
     request.setIsSummary(isSummary);
 
-    request.setProcessUuid(processUuid);
     // set process parameters list
     if (!isEmptyValue(parametersList)) {
+      if (getTypeOfValue(parametersList) === 'String') {
+        parametersList = JSON.parse(parametersList);
+      }
+  
       const { getKeyValueToGRPC } = require('@adempiere/grpc-api/src/utils/baseDataTypeToGRPC.js');
-
       parametersList.forEach(parameter => {
+        let parsedParameter = parameter;
+        if (getTypeOfValue(parameter) === 'String') {
+          parsedParameter = JSON.parse(parameter);
+        }
         // parameter format = { columName, value, valueType }
         const convertedParameter = getKeyValueToGRPC({
-          columnName: parameter.key,
-          value: parameter.value
+          columnName: parsedParameter.key,
+          value: parsedParameter.value,
+          valueType: parsedParameter.valueType
         });
 
         request.addParameters(convertedParameter);
