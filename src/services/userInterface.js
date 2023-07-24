@@ -1,6 +1,6 @@
 /*************************************************************************************
  * Product: ADempiere gRPC User Interface Client                                     *
- * Copyright (C) 2012-2023 E.R.P. Consultores y Asociados, C.A.                      *
+ * Copyright (C) 2018-2023 E.R.P. Consultores y Asociados, C.A.                      *
  * Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                      *
  * This program is free software: you can redistribute it and/or modify              *
  * it under the terms of the GNU General Public License as published by              *
@@ -630,9 +630,13 @@ class UserInterface {
   // Get Report Output
   getReportOutput({
     token,
+    processId,
+    processUuid,
     tableName,
     // Reference
+    printFormatId,
     printFormatUuid,
+    reportViewId,
     reportViewUuid,
     isSummary,
     reportName,
@@ -648,6 +652,11 @@ class UserInterface {
     const { GetReportOutputRequest } = this.stubFile;
     const request = new GetReportOutputRequest();
     const { getCriteriaToGRPC } = require('@adempiere/grpc-api/src/utils/baseDataTypeToGRPC.js');
+    
+    request.setProcessId(
+      getValidInteger(processId)
+    );
+    request.setProcessUuid(processUuid);
 
     request.setCriteria(
       getCriteriaToGRPC({
@@ -661,9 +670,15 @@ class UserInterface {
     );
 
     //
+    request.setPrintFormatId(
+      getValidInteger(printFormatId)
+    );
     if (!isEmptyValue(printFormatUuid)) {
       request.setPrintFormatUuid(printFormatUuid);
     }
+    request.setReportViewId(
+      getValidInteger(reportViewId)
+    );
     if (!isEmptyValue(reportViewUuid)) {
       request.setReportViewUuid(reportViewUuid);
     }
