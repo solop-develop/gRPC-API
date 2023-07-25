@@ -253,11 +253,27 @@ function getRecordReferenceInfoFromGRPC(referenceInfo) {
   };
 }
 
+function getResourceType({ key, value }) {
+  const { getValueOrKeyEnum } = require('@adempiere/grpc-api/src/utils/convertEnums.js')
+  const { ResourceType } = require('@adempiere/grpc-api/src/grpc/proto/file_management_pb');
+
+  return getValueOrKeyEnum({
+    list: ResourceType,
+    key,
+    value
+  });
+}
+
 function getResourceReferenceFromGRPC(resourceReferenceToConvert) {
   if (!resourceReferenceToConvert) {
     return undefined;
   }
   return {
+    reference_type: resourceReferenceToConvert.getResourceType(),
+    reference_type_name: getResourceType({
+      value: resourceReferenceToConvert.getResourceType()
+    }),
+    resource_id: resourceReferenceToConvert.getResourceId(),
     id: resourceReferenceToConvert.getId(),
     uuid: resourceReferenceToConvert.getUuid(),
     name: resourceReferenceToConvert.getName(),

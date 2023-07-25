@@ -1,6 +1,6 @@
 /*************************************************************************************
  * Product: ADempiere gRPC File Management Client                                    *
- * Copyright (C) 2012-2023 E.R.P. Consultores y Asociados, C.A.                      *
+ * Copyright (C) 2018-2023 E.R.P. Consultores y Asociados, C.A.                      *
  * Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                      *
  * This program is free software: you can redistribute it and/or modify              *
  * it under the terms of the GNU General Public License as published by              *
@@ -239,9 +239,14 @@ class FileManagement {
 
   setResourceReference({
     token,
+    // parent reference
+    resourceType,
+    resourceId,
+    // record
     tableName,
     recordId,
     recordUuid,
+    //
     fileName,
     fileSize,
     description,
@@ -249,6 +254,13 @@ class FileManagement {
   }, callback) {
     const { SetResourceReferenceRequest } = this.stubFile;
     const request = new SetResourceReferenceRequest();
+
+    request.setResourceType(
+      getValidInteger(resourceType)
+    );
+    request.setResourceId(
+      getValidInteger(resourceId)
+    );
 
     request.setTableName(tableName);
     request.setRecordId(
