@@ -253,12 +253,12 @@ function getRecordReferenceInfoFromGRPC(referenceInfo) {
   };
 }
 
-function getReferenceType({ key, value }) {
+function getResourceType({ key, value }) {
   const { getValueOrKeyEnum } = require('@adempiere/grpc-api/src/utils/convertEnums.js')
-  const { ReferenceType } = require('@adempiere/grpc-api/src/grpc/proto/file_management_pb');
+  const { ResourceType } = require('@adempiere/grpc-api/src/grpc/proto/file_management_pb');
 
   return getValueOrKeyEnum({
-    list: ReferenceType,
+    list: ResourceType,
     key,
     value
   });
@@ -269,12 +269,13 @@ function getResourceReferenceFromGRPC(resourceReferenceToConvert) {
     return undefined;
   }
   return {
+    reference_type: resourceReferenceToConvert.getResourceType(),
+    reference_type_name: getResourceType({
+      value: resourceReferenceToConvert.getResourceType()
+    }),
+    resource_id: resourceReferenceToConvert.getResourceId(),
     id: resourceReferenceToConvert.getId(),
     uuid: resourceReferenceToConvert.getUuid(),
-    reference_type: resourceReferenceToConvert.getReferenceType(),
-    reference_type_name: getReferenceType({
-      value: resourceReferenceToConvert.getReferenceType()
-    }),
     name: resourceReferenceToConvert.getName(),
     file_name: resourceReferenceToConvert.getFileName(),
     file_size: getDecimalFromGRPC(

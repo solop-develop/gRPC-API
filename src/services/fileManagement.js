@@ -239,17 +239,28 @@ class FileManagement {
 
   setResourceReference({
     token,
+    // parent reference
+    resourceType,
+    resourceId,
+    // record
     tableName,
     recordId,
     recordUuid,
+    //
     fileName,
     fileSize,
     description,
-    textMessage,
-    referenceType
+    textMessage
   }, callback) {
     const { SetResourceReferenceRequest } = this.stubFile;
     const request = new SetResourceReferenceRequest();
+
+    request.setResourceType(
+      getValidInteger(resourceType)
+    );
+    request.setResourceId(
+      getValidInteger(resourceId)
+    );
 
     request.setTableName(tableName);
     request.setRecordId(
@@ -261,9 +272,6 @@ class FileManagement {
 
     request.setDescription(description);
     request.setTextMessage(textMessage);
-    request.setReferenceType(
-      getValidInteger(referenceType)
-    );
 
     const metadata = getMetadata({
       token

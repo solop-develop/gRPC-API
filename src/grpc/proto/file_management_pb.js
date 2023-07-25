@@ -32,9 +32,9 @@ goog.exportSymbol('proto.file_management.GetResourceReferenceRequest', null, glo
 goog.exportSymbol('proto.file_management.GetResourceRequest', null, global);
 goog.exportSymbol('proto.file_management.LoadResourceRequest', null, global);
 goog.exportSymbol('proto.file_management.Operation', null, global);
-goog.exportSymbol('proto.file_management.ReferenceType', null, global);
 goog.exportSymbol('proto.file_management.Resource', null, global);
 goog.exportSymbol('proto.file_management.ResourceReference', null, global);
+goog.exportSymbol('proto.file_management.ResourceType', null, global);
 goog.exportSymbol('proto.file_management.SetAttachmentDescriptionRequest', null, global);
 goog.exportSymbol('proto.file_management.SetResourceReferenceDescriptionRequest', null, global);
 goog.exportSymbol('proto.file_management.SetResourceReferenceRequest', null, global);
@@ -787,7 +787,8 @@ proto.file_management.ResourceReference.toObject = function(includeInstance, msg
     contentType: jspb.Message.getFieldWithDefault(msg, 8, ""),
     created: jspb.Message.getFieldWithDefault(msg, 9, 0),
     updated: jspb.Message.getFieldWithDefault(msg, 10, 0),
-    referenceType: jspb.Message.getFieldWithDefault(msg, 11, 0)
+    resourceType: jspb.Message.getFieldWithDefault(msg, 11, 0),
+    resourceId: jspb.Message.getFieldWithDefault(msg, 12, 0)
   };
 
   if (includeInstance) {
@@ -866,8 +867,12 @@ proto.file_management.ResourceReference.deserializeBinaryFromReader = function(m
       msg.setUpdated(value);
       break;
     case 11:
-      var value = /** @type {!proto.file_management.ReferenceType} */ (reader.readEnum());
-      msg.setReferenceType(value);
+      var value = /** @type {!proto.file_management.ResourceType} */ (reader.readEnum());
+      msg.setResourceType(value);
+      break;
+    case 12:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setResourceId(value);
       break;
     default:
       reader.skipField();
@@ -969,10 +974,17 @@ proto.file_management.ResourceReference.serializeBinaryToWriter = function(messa
       f
     );
   }
-  f = message.getReferenceType();
+  f = message.getResourceType();
   if (f !== 0.0) {
     writer.writeEnum(
       11,
+      f
+    );
+  }
+  f = message.getResourceId();
+  if (f !== 0) {
+    writer.writeInt32(
+      12,
       f
     );
   }
@@ -1179,20 +1191,38 @@ proto.file_management.ResourceReference.prototype.setUpdated = function(value) {
 
 
 /**
- * optional ReferenceType reference_type = 11;
- * @return {!proto.file_management.ReferenceType}
+ * optional ResourceType resource_type = 11;
+ * @return {!proto.file_management.ResourceType}
  */
-proto.file_management.ResourceReference.prototype.getReferenceType = function() {
-  return /** @type {!proto.file_management.ReferenceType} */ (jspb.Message.getFieldWithDefault(this, 11, 0));
+proto.file_management.ResourceReference.prototype.getResourceType = function() {
+  return /** @type {!proto.file_management.ResourceType} */ (jspb.Message.getFieldWithDefault(this, 11, 0));
 };
 
 
 /**
- * @param {!proto.file_management.ReferenceType} value
+ * @param {!proto.file_management.ResourceType} value
  * @return {!proto.file_management.ResourceReference} returns this
  */
-proto.file_management.ResourceReference.prototype.setReferenceType = function(value) {
+proto.file_management.ResourceReference.prototype.setResourceType = function(value) {
   return jspb.Message.setProto3EnumField(this, 11, value);
+};
+
+
+/**
+ * optional int32 resource_id = 12;
+ * @return {number}
+ */
+proto.file_management.ResourceReference.prototype.getResourceId = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 12, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.file_management.ResourceReference} returns this
+ */
+proto.file_management.ResourceReference.prototype.setResourceId = function(value) {
+  return jspb.Message.setProto3IntField(this, 12, value);
 };
 
 
@@ -2313,14 +2343,15 @@ proto.file_management.SetResourceReferenceRequest.prototype.toObject = function(
  */
 proto.file_management.SetResourceReferenceRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    tableName: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    recordId: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    recordUuid: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    fileName: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    fileSize: jspb.Message.getFieldWithDefault(msg, 5, 0),
-    description: jspb.Message.getFieldWithDefault(msg, 6, ""),
-    textMessage: jspb.Message.getFieldWithDefault(msg, 7, ""),
-    referenceType: jspb.Message.getFieldWithDefault(msg, 8, 0)
+    resourceType: jspb.Message.getFieldWithDefault(msg, 1, 0),
+    resourceId: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    tableName: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    recordId: jspb.Message.getFieldWithDefault(msg, 4, 0),
+    recordUuid: jspb.Message.getFieldWithDefault(msg, 5, ""),
+    fileName: jspb.Message.getFieldWithDefault(msg, 6, ""),
+    fileSize: jspb.Message.getFieldWithDefault(msg, 7, 0),
+    description: jspb.Message.getFieldWithDefault(msg, 8, ""),
+    textMessage: jspb.Message.getFieldWithDefault(msg, 9, "")
   };
 
   if (includeInstance) {
@@ -2358,36 +2389,40 @@ proto.file_management.SetResourceReferenceRequest.deserializeBinaryFromReader = 
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setTableName(value);
+      var value = /** @type {!proto.file_management.ResourceType} */ (reader.readEnum());
+      msg.setResourceType(value);
       break;
     case 2:
       var value = /** @type {number} */ (reader.readInt32());
-      msg.setRecordId(value);
+      msg.setResourceId(value);
       break;
     case 3:
       var value = /** @type {string} */ (reader.readString());
-      msg.setRecordUuid(value);
+      msg.setTableName(value);
       break;
     case 4:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setFileName(value);
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setRecordId(value);
       break;
     case 5:
-      var value = /** @type {number} */ (reader.readInt32());
-      msg.setFileSize(value);
+      var value = /** @type {string} */ (reader.readString());
+      msg.setRecordUuid(value);
       break;
     case 6:
       var value = /** @type {string} */ (reader.readString());
-      msg.setDescription(value);
+      msg.setFileName(value);
       break;
     case 7:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setTextMessage(value);
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setFileSize(value);
       break;
     case 8:
-      var value = /** @type {!proto.file_management.ReferenceType} */ (reader.readEnum());
-      msg.setReferenceType(value);
+      var value = /** @type {string} */ (reader.readString());
+      msg.setDescription(value);
+      break;
+    case 9:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setTextMessage(value);
       break;
     default:
       reader.skipField();
@@ -2418,59 +2453,66 @@ proto.file_management.SetResourceReferenceRequest.prototype.serializeBinary = fu
  */
 proto.file_management.SetResourceReferenceRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getTableName();
-  if (f.length > 0) {
-    writer.writeString(
+  f = message.getResourceType();
+  if (f !== 0.0) {
+    writer.writeEnum(
       1,
       f
     );
   }
-  f = message.getRecordId();
+  f = message.getResourceId();
   if (f !== 0) {
     writer.writeInt32(
       2,
       f
     );
   }
-  f = message.getRecordUuid();
+  f = message.getTableName();
   if (f.length > 0) {
     writer.writeString(
       3,
       f
     );
   }
-  f = message.getFileName();
-  if (f.length > 0) {
-    writer.writeString(
+  f = message.getRecordId();
+  if (f !== 0) {
+    writer.writeInt32(
       4,
       f
     );
   }
-  f = message.getFileSize();
-  if (f !== 0) {
-    writer.writeInt32(
+  f = message.getRecordUuid();
+  if (f.length > 0) {
+    writer.writeString(
       5,
       f
     );
   }
-  f = message.getDescription();
+  f = message.getFileName();
   if (f.length > 0) {
     writer.writeString(
       6,
       f
     );
   }
-  f = message.getTextMessage();
-  if (f.length > 0) {
-    writer.writeString(
+  f = message.getFileSize();
+  if (f !== 0) {
+    writer.writeInt32(
       7,
       f
     );
   }
-  f = message.getReferenceType();
-  if (f !== 0.0) {
-    writer.writeEnum(
+  f = message.getDescription();
+  if (f.length > 0) {
+    writer.writeString(
       8,
+      f
+    );
+  }
+  f = message.getTextMessage();
+  if (f.length > 0) {
+    writer.writeString(
+      9,
       f
     );
   }
@@ -2478,28 +2520,28 @@ proto.file_management.SetResourceReferenceRequest.serializeBinaryToWriter = func
 
 
 /**
- * optional string table_name = 1;
- * @return {string}
+ * optional ResourceType resource_type = 1;
+ * @return {!proto.file_management.ResourceType}
  */
-proto.file_management.SetResourceReferenceRequest.prototype.getTableName = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+proto.file_management.SetResourceReferenceRequest.prototype.getResourceType = function() {
+  return /** @type {!proto.file_management.ResourceType} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
 };
 
 
 /**
- * @param {string} value
+ * @param {!proto.file_management.ResourceType} value
  * @return {!proto.file_management.SetResourceReferenceRequest} returns this
  */
-proto.file_management.SetResourceReferenceRequest.prototype.setTableName = function(value) {
-  return jspb.Message.setProto3StringField(this, 1, value);
+proto.file_management.SetResourceReferenceRequest.prototype.setResourceType = function(value) {
+  return jspb.Message.setProto3EnumField(this, 1, value);
 };
 
 
 /**
- * optional int32 record_id = 2;
+ * optional int32 resource_id = 2;
  * @return {number}
  */
-proto.file_management.SetResourceReferenceRequest.prototype.getRecordId = function() {
+proto.file_management.SetResourceReferenceRequest.prototype.getResourceId = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
 };
 
@@ -2508,16 +2550,16 @@ proto.file_management.SetResourceReferenceRequest.prototype.getRecordId = functi
  * @param {number} value
  * @return {!proto.file_management.SetResourceReferenceRequest} returns this
  */
-proto.file_management.SetResourceReferenceRequest.prototype.setRecordId = function(value) {
+proto.file_management.SetResourceReferenceRequest.prototype.setResourceId = function(value) {
   return jspb.Message.setProto3IntField(this, 2, value);
 };
 
 
 /**
- * optional string record_uuid = 3;
+ * optional string table_name = 3;
  * @return {string}
  */
-proto.file_management.SetResourceReferenceRequest.prototype.getRecordUuid = function() {
+proto.file_management.SetResourceReferenceRequest.prototype.getTableName = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
 
@@ -2526,35 +2568,17 @@ proto.file_management.SetResourceReferenceRequest.prototype.getRecordUuid = func
  * @param {string} value
  * @return {!proto.file_management.SetResourceReferenceRequest} returns this
  */
-proto.file_management.SetResourceReferenceRequest.prototype.setRecordUuid = function(value) {
+proto.file_management.SetResourceReferenceRequest.prototype.setTableName = function(value) {
   return jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
 /**
- * optional string file_name = 4;
- * @return {string}
- */
-proto.file_management.SetResourceReferenceRequest.prototype.getFileName = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.file_management.SetResourceReferenceRequest} returns this
- */
-proto.file_management.SetResourceReferenceRequest.prototype.setFileName = function(value) {
-  return jspb.Message.setProto3StringField(this, 4, value);
-};
-
-
-/**
- * optional int32 file_size = 5;
+ * optional int32 record_id = 4;
  * @return {number}
  */
-proto.file_management.SetResourceReferenceRequest.prototype.getFileSize = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 5, 0));
+proto.file_management.SetResourceReferenceRequest.prototype.getRecordId = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
 };
 
 
@@ -2562,16 +2586,34 @@ proto.file_management.SetResourceReferenceRequest.prototype.getFileSize = functi
  * @param {number} value
  * @return {!proto.file_management.SetResourceReferenceRequest} returns this
  */
-proto.file_management.SetResourceReferenceRequest.prototype.setFileSize = function(value) {
-  return jspb.Message.setProto3IntField(this, 5, value);
+proto.file_management.SetResourceReferenceRequest.prototype.setRecordId = function(value) {
+  return jspb.Message.setProto3IntField(this, 4, value);
 };
 
 
 /**
- * optional string description = 6;
+ * optional string record_uuid = 5;
  * @return {string}
  */
-proto.file_management.SetResourceReferenceRequest.prototype.getDescription = function() {
+proto.file_management.SetResourceReferenceRequest.prototype.getRecordUuid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.file_management.SetResourceReferenceRequest} returns this
+ */
+proto.file_management.SetResourceReferenceRequest.prototype.setRecordUuid = function(value) {
+  return jspb.Message.setProto3StringField(this, 5, value);
+};
+
+
+/**
+ * optional string file_name = 6;
+ * @return {string}
+ */
+proto.file_management.SetResourceReferenceRequest.prototype.getFileName = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
 };
 
@@ -2580,17 +2622,53 @@ proto.file_management.SetResourceReferenceRequest.prototype.getDescription = fun
  * @param {string} value
  * @return {!proto.file_management.SetResourceReferenceRequest} returns this
  */
-proto.file_management.SetResourceReferenceRequest.prototype.setDescription = function(value) {
+proto.file_management.SetResourceReferenceRequest.prototype.setFileName = function(value) {
   return jspb.Message.setProto3StringField(this, 6, value);
 };
 
 
 /**
- * optional string text_message = 7;
+ * optional int32 file_size = 7;
+ * @return {number}
+ */
+proto.file_management.SetResourceReferenceRequest.prototype.getFileSize = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 7, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.file_management.SetResourceReferenceRequest} returns this
+ */
+proto.file_management.SetResourceReferenceRequest.prototype.setFileSize = function(value) {
+  return jspb.Message.setProto3IntField(this, 7, value);
+};
+
+
+/**
+ * optional string description = 8;
+ * @return {string}
+ */
+proto.file_management.SetResourceReferenceRequest.prototype.getDescription = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 8, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.file_management.SetResourceReferenceRequest} returns this
+ */
+proto.file_management.SetResourceReferenceRequest.prototype.setDescription = function(value) {
+  return jspb.Message.setProto3StringField(this, 8, value);
+};
+
+
+/**
+ * optional string text_message = 9;
  * @return {string}
  */
 proto.file_management.SetResourceReferenceRequest.prototype.getTextMessage = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 7, ""));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 9, ""));
 };
 
 
@@ -2599,25 +2677,7 @@ proto.file_management.SetResourceReferenceRequest.prototype.getTextMessage = fun
  * @return {!proto.file_management.SetResourceReferenceRequest} returns this
  */
 proto.file_management.SetResourceReferenceRequest.prototype.setTextMessage = function(value) {
-  return jspb.Message.setProto3StringField(this, 7, value);
-};
-
-
-/**
- * optional ReferenceType reference_type = 8;
- * @return {!proto.file_management.ReferenceType}
- */
-proto.file_management.SetResourceReferenceRequest.prototype.getReferenceType = function() {
-  return /** @type {!proto.file_management.ReferenceType} */ (jspb.Message.getFieldWithDefault(this, 8, 0));
-};
-
-
-/**
- * @param {!proto.file_management.ReferenceType} value
- * @return {!proto.file_management.SetResourceReferenceRequest} returns this
- */
-proto.file_management.SetResourceReferenceRequest.prototype.setReferenceType = function(value) {
-  return jspb.Message.setProto3EnumField(this, 8, value);
+  return jspb.Message.setProto3StringField(this, 9, value);
 };
 
 
@@ -3384,7 +3444,7 @@ proto.file_management.ExistsAttachmentResponse.prototype.setRecordCount = functi
 /**
  * @enum {number}
  */
-proto.file_management.ReferenceType = {
+proto.file_management.ResourceType = {
   ATTACHMENT: 0,
   IMAGE: 1,
   ARCHIVE: 2
