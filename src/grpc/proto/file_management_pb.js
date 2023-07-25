@@ -32,6 +32,7 @@ goog.exportSymbol('proto.file_management.GetResourceReferenceRequest', null, glo
 goog.exportSymbol('proto.file_management.GetResourceRequest', null, global);
 goog.exportSymbol('proto.file_management.LoadResourceRequest', null, global);
 goog.exportSymbol('proto.file_management.Operation', null, global);
+goog.exportSymbol('proto.file_management.ReferenceType', null, global);
 goog.exportSymbol('proto.file_management.Resource', null, global);
 goog.exportSymbol('proto.file_management.ResourceReference', null, global);
 goog.exportSymbol('proto.file_management.SetAttachmentDescriptionRequest', null, global);
@@ -785,7 +786,8 @@ proto.file_management.ResourceReference.toObject = function(includeInstance, msg
     textMessage: jspb.Message.getFieldWithDefault(msg, 7, ""),
     contentType: jspb.Message.getFieldWithDefault(msg, 8, ""),
     created: jspb.Message.getFieldWithDefault(msg, 9, 0),
-    updated: jspb.Message.getFieldWithDefault(msg, 10, 0)
+    updated: jspb.Message.getFieldWithDefault(msg, 10, 0),
+    referenceType: jspb.Message.getFieldWithDefault(msg, 11, 0)
   };
 
   if (includeInstance) {
@@ -862,6 +864,10 @@ proto.file_management.ResourceReference.deserializeBinaryFromReader = function(m
     case 10:
       var value = /** @type {number} */ (reader.readInt64());
       msg.setUpdated(value);
+      break;
+    case 11:
+      var value = /** @type {!proto.file_management.ReferenceType} */ (reader.readEnum());
+      msg.setReferenceType(value);
       break;
     default:
       reader.skipField();
@@ -960,6 +966,13 @@ proto.file_management.ResourceReference.serializeBinaryToWriter = function(messa
   if (f !== 0) {
     writer.writeInt64(
       10,
+      f
+    );
+  }
+  f = message.getReferenceType();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      11,
       f
     );
   }
@@ -1162,6 +1175,24 @@ proto.file_management.ResourceReference.prototype.getUpdated = function() {
  */
 proto.file_management.ResourceReference.prototype.setUpdated = function(value) {
   return jspb.Message.setProto3IntField(this, 10, value);
+};
+
+
+/**
+ * optional ReferenceType reference_type = 11;
+ * @return {!proto.file_management.ReferenceType}
+ */
+proto.file_management.ResourceReference.prototype.getReferenceType = function() {
+  return /** @type {!proto.file_management.ReferenceType} */ (jspb.Message.getFieldWithDefault(this, 11, 0));
+};
+
+
+/**
+ * @param {!proto.file_management.ReferenceType} value
+ * @return {!proto.file_management.ResourceReference} returns this
+ */
+proto.file_management.ResourceReference.prototype.setReferenceType = function(value) {
+  return jspb.Message.setProto3EnumField(this, 11, value);
 };
 
 
@@ -2288,7 +2319,8 @@ proto.file_management.SetResourceReferenceRequest.toObject = function(includeIns
     fileName: jspb.Message.getFieldWithDefault(msg, 4, ""),
     fileSize: jspb.Message.getFieldWithDefault(msg, 5, 0),
     description: jspb.Message.getFieldWithDefault(msg, 6, ""),
-    textMessage: jspb.Message.getFieldWithDefault(msg, 7, "")
+    textMessage: jspb.Message.getFieldWithDefault(msg, 7, ""),
+    referenceType: jspb.Message.getFieldWithDefault(msg, 8, 0)
   };
 
   if (includeInstance) {
@@ -2352,6 +2384,10 @@ proto.file_management.SetResourceReferenceRequest.deserializeBinaryFromReader = 
     case 7:
       var value = /** @type {string} */ (reader.readString());
       msg.setTextMessage(value);
+      break;
+    case 8:
+      var value = /** @type {!proto.file_management.ReferenceType} */ (reader.readEnum());
+      msg.setReferenceType(value);
       break;
     default:
       reader.skipField();
@@ -2428,6 +2464,13 @@ proto.file_management.SetResourceReferenceRequest.serializeBinaryToWriter = func
   if (f.length > 0) {
     writer.writeString(
       7,
+      f
+    );
+  }
+  f = message.getReferenceType();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      8,
       f
     );
   }
@@ -2557,6 +2600,24 @@ proto.file_management.SetResourceReferenceRequest.prototype.getTextMessage = fun
  */
 proto.file_management.SetResourceReferenceRequest.prototype.setTextMessage = function(value) {
   return jspb.Message.setProto3StringField(this, 7, value);
+};
+
+
+/**
+ * optional ReferenceType reference_type = 8;
+ * @return {!proto.file_management.ReferenceType}
+ */
+proto.file_management.SetResourceReferenceRequest.prototype.getReferenceType = function() {
+  return /** @type {!proto.file_management.ReferenceType} */ (jspb.Message.getFieldWithDefault(this, 8, 0));
+};
+
+
+/**
+ * @param {!proto.file_management.ReferenceType} value
+ * @return {!proto.file_management.SetResourceReferenceRequest} returns this
+ */
+proto.file_management.SetResourceReferenceRequest.prototype.setReferenceType = function(value) {
+  return jspb.Message.setProto3EnumField(this, 8, value);
 };
 
 
@@ -3319,6 +3380,15 @@ proto.file_management.ExistsAttachmentResponse.prototype.setRecordCount = functi
   return jspb.Message.setProto3IntField(this, 1, value);
 };
 
+
+/**
+ * @enum {number}
+ */
+proto.file_management.ReferenceType = {
+  ATTACHMENT: 0,
+  IMAGE: 1,
+  ARCHIVE: 2
+};
 
 /**
  * @enum {number}
