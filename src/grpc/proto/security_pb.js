@@ -3317,7 +3317,10 @@ proto.security.Role.toObject = function(includeInstance, msg) {
     isAllowInfoPayment: jspb.Message.getBooleanFieldWithDefault(msg, 22, false),
     isAllowInfoResource: jspb.Message.getBooleanFieldWithDefault(msg, 23, false),
     isAllowInfoCrp: jspb.Message.getBooleanFieldWithDefault(msg, 24, false),
-    isAllowXlsView: jspb.Message.getBooleanFieldWithDefault(msg, 25, false)
+    isAllowXlsView: jspb.Message.getBooleanFieldWithDefault(msg, 25, false),
+    clientLogo: jspb.Message.getFieldWithDefault(msg, 26, ""),
+    clientLogoReport: jspb.Message.getFieldWithDefault(msg, 27, ""),
+    clientLogoWeb: jspb.Message.getFieldWithDefault(msg, 28, "")
   };
 
   if (includeInstance) {
@@ -3453,6 +3456,18 @@ proto.security.Role.deserializeBinaryFromReader = function(msg, reader) {
     case 25:
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setIsAllowXlsView(value);
+      break;
+    case 26:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setClientLogo(value);
+      break;
+    case 27:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setClientLogoReport(value);
+      break;
+    case 28:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setClientLogoWeb(value);
       break;
     default:
       reader.skipField();
@@ -3655,6 +3670,27 @@ proto.security.Role.serializeBinaryToWriter = function(message, writer) {
   if (f) {
     writer.writeBool(
       25,
+      f
+    );
+  }
+  f = message.getClientLogo();
+  if (f.length > 0) {
+    writer.writeString(
+      26,
+      f
+    );
+  }
+  f = message.getClientLogoReport();
+  if (f.length > 0) {
+    writer.writeString(
+      27,
+      f
+    );
+  }
+  f = message.getClientLogoWeb();
+  if (f.length > 0) {
+    writer.writeString(
+      28,
       f
     );
   }
@@ -4108,6 +4144,60 @@ proto.security.Role.prototype.getIsAllowXlsView = function() {
  */
 proto.security.Role.prototype.setIsAllowXlsView = function(value) {
   return jspb.Message.setProto3BooleanField(this, 25, value);
+};
+
+
+/**
+ * optional string client_logo = 26;
+ * @return {string}
+ */
+proto.security.Role.prototype.getClientLogo = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 26, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.security.Role} returns this
+ */
+proto.security.Role.prototype.setClientLogo = function(value) {
+  return jspb.Message.setProto3StringField(this, 26, value);
+};
+
+
+/**
+ * optional string client_logo_report = 27;
+ * @return {string}
+ */
+proto.security.Role.prototype.getClientLogoReport = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 27, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.security.Role} returns this
+ */
+proto.security.Role.prototype.setClientLogoReport = function(value) {
+  return jspb.Message.setProto3StringField(this, 27, value);
+};
+
+
+/**
+ * optional string client_logo_web = 28;
+ * @return {string}
+ */
+proto.security.Role.prototype.getClientLogoWeb = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 28, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.security.Role} returns this
+ */
+proto.security.Role.prototype.setClientLogoWeb = function(value) {
+  return jspb.Message.setProto3StringField(this, 28, value);
 };
 
 
