@@ -1803,8 +1803,13 @@ proto.file_management.GetResourceReferenceRequest.prototype.toObject = function(
  */
 proto.file_management.GetResourceReferenceRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    imageId: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    imageUuid: jspb.Message.getFieldWithDefault(msg, 2, "")
+    id: jspb.Message.getFieldWithDefault(msg, 1, 0),
+    uuid: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    resourceName: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    imageId: jspb.Message.getFieldWithDefault(msg, 4, 0),
+    imageUuid: jspb.Message.getFieldWithDefault(msg, 5, ""),
+    archiveId: jspb.Message.getFieldWithDefault(msg, 6, 0),
+    archiveUuid: jspb.Message.getFieldWithDefault(msg, 7, "")
   };
 
   if (includeInstance) {
@@ -1843,11 +1848,31 @@ proto.file_management.GetResourceReferenceRequest.deserializeBinaryFromReader = 
     switch (field) {
     case 1:
       var value = /** @type {number} */ (reader.readInt32());
-      msg.setImageId(value);
+      msg.setId(value);
       break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
+      msg.setUuid(value);
+      break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setResourceName(value);
+      break;
+    case 4:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setImageId(value);
+      break;
+    case 5:
+      var value = /** @type {string} */ (reader.readString());
       msg.setImageUuid(value);
+      break;
+    case 6:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setArchiveId(value);
+      break;
+    case 7:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setArchiveUuid(value);
       break;
     default:
       reader.skipField();
@@ -1878,17 +1903,52 @@ proto.file_management.GetResourceReferenceRequest.prototype.serializeBinary = fu
  */
 proto.file_management.GetResourceReferenceRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getImageId();
+  f = message.getId();
   if (f !== 0) {
     writer.writeInt32(
       1,
       f
     );
   }
-  f = message.getImageUuid();
+  f = message.getUuid();
   if (f.length > 0) {
     writer.writeString(
       2,
+      f
+    );
+  }
+  f = message.getResourceName();
+  if (f.length > 0) {
+    writer.writeString(
+      3,
+      f
+    );
+  }
+  f = message.getImageId();
+  if (f !== 0) {
+    writer.writeInt32(
+      4,
+      f
+    );
+  }
+  f = message.getImageUuid();
+  if (f.length > 0) {
+    writer.writeString(
+      5,
+      f
+    );
+  }
+  f = message.getArchiveId();
+  if (f !== 0) {
+    writer.writeInt32(
+      6,
+      f
+    );
+  }
+  f = message.getArchiveUuid();
+  if (f.length > 0) {
+    writer.writeString(
+      7,
       f
     );
   }
@@ -1896,10 +1956,10 @@ proto.file_management.GetResourceReferenceRequest.serializeBinaryToWriter = func
 
 
 /**
- * optional int32 image_id = 1;
+ * optional int32 id = 1;
  * @return {number}
  */
-proto.file_management.GetResourceReferenceRequest.prototype.getImageId = function() {
+proto.file_management.GetResourceReferenceRequest.prototype.getId = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
 };
 
@@ -1908,16 +1968,16 @@ proto.file_management.GetResourceReferenceRequest.prototype.getImageId = functio
  * @param {number} value
  * @return {!proto.file_management.GetResourceReferenceRequest} returns this
  */
-proto.file_management.GetResourceReferenceRequest.prototype.setImageId = function(value) {
+proto.file_management.GetResourceReferenceRequest.prototype.setId = function(value) {
   return jspb.Message.setProto3IntField(this, 1, value);
 };
 
 
 /**
- * optional string image_uuid = 2;
+ * optional string uuid = 2;
  * @return {string}
  */
-proto.file_management.GetResourceReferenceRequest.prototype.getImageUuid = function() {
+proto.file_management.GetResourceReferenceRequest.prototype.getUuid = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
@@ -1926,8 +1986,98 @@ proto.file_management.GetResourceReferenceRequest.prototype.getImageUuid = funct
  * @param {string} value
  * @return {!proto.file_management.GetResourceReferenceRequest} returns this
  */
-proto.file_management.GetResourceReferenceRequest.prototype.setImageUuid = function(value) {
+proto.file_management.GetResourceReferenceRequest.prototype.setUuid = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * optional string resource_name = 3;
+ * @return {string}
+ */
+proto.file_management.GetResourceReferenceRequest.prototype.getResourceName = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.file_management.GetResourceReferenceRequest} returns this
+ */
+proto.file_management.GetResourceReferenceRequest.prototype.setResourceName = function(value) {
+  return jspb.Message.setProto3StringField(this, 3, value);
+};
+
+
+/**
+ * optional int32 image_id = 4;
+ * @return {number}
+ */
+proto.file_management.GetResourceReferenceRequest.prototype.getImageId = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.file_management.GetResourceReferenceRequest} returns this
+ */
+proto.file_management.GetResourceReferenceRequest.prototype.setImageId = function(value) {
+  return jspb.Message.setProto3IntField(this, 4, value);
+};
+
+
+/**
+ * optional string image_uuid = 5;
+ * @return {string}
+ */
+proto.file_management.GetResourceReferenceRequest.prototype.getImageUuid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.file_management.GetResourceReferenceRequest} returns this
+ */
+proto.file_management.GetResourceReferenceRequest.prototype.setImageUuid = function(value) {
+  return jspb.Message.setProto3StringField(this, 5, value);
+};
+
+
+/**
+ * optional int32 archive_id = 6;
+ * @return {number}
+ */
+proto.file_management.GetResourceReferenceRequest.prototype.getArchiveId = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 6, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.file_management.GetResourceReferenceRequest} returns this
+ */
+proto.file_management.GetResourceReferenceRequest.prototype.setArchiveId = function(value) {
+  return jspb.Message.setProto3IntField(this, 6, value);
+};
+
+
+/**
+ * optional string archive_uuid = 7;
+ * @return {string}
+ */
+proto.file_management.GetResourceReferenceRequest.prototype.getArchiveUuid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 7, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.file_management.GetResourceReferenceRequest} returns this
+ */
+proto.file_management.GetResourceReferenceRequest.prototype.setArchiveUuid = function(value) {
+  return jspb.Message.setProto3StringField(this, 7, value);
 };
 
 

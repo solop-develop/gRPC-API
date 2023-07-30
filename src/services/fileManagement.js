@@ -327,16 +327,32 @@ class FileManagement {
    */
    getResourceReference({
     token,
+    id,
+    uuid,
+    resourceName,
     imageId,
     imageUuid,
+    archiveId,
+    archiveUuid
   }, callback) {
     const { GetResourceReferenceRequest } = this.stubFile;
     const request = new GetResourceReferenceRequest();
+
+    request.setId(
+      getValidInteger(id)
+    );
+    request.setUuid(uuid);
+    request.setResourceName(resourceName);
 
     request.setImageId(
       getValidInteger(imageId)
     );
     request.setImageUuid(imageUuid);
+
+    request.setArchiveId(
+      getValidInteger(archiveId)
+    );
+    request.setArchiveUuid(archiveUuid);
 
     const metadata = getMetadata({
       token
