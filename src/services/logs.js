@@ -1,6 +1,6 @@
 /*************************************************************************************
  * Logs: ADempiere gRPC Logs Client                                                  *
- * Copyright (C) 2012-2023 E.R.P. Consultores y Asociados, C.A.                      *
+ * Copyright (C) 2018-2023 E.R.P. Consultores y Asociados, C.A.                      *
  * Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                      *
  * This program is free software: you can redistribute it and/or modify              *
  * it under the terms of the GNU General Public License as published by              *
@@ -15,7 +15,7 @@
  ************************************************************************************/
 
 const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
-const { getValidId } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
+const { getValidInteger, getTimestamp } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
 
 class Logs {
 
@@ -100,7 +100,7 @@ class Logs {
     request.setTableName(tableName);
     request.setUuid(uuid);
     request.setId(
-      getValidId(id)
+      getValidInteger(id)
     );
     request.setUserUuid(userUuid);
     request.setInstanceUuid(instanceUuid);
@@ -133,7 +133,7 @@ class Logs {
     request.setTableName(tableName);
     request.setUuid(uuid);
     request.setId(
-      getValidId(id)
+      getValidInteger(id)
     );
     request.setPageSize(pageSize);
     request.setPageToken(pageToken);
@@ -164,7 +164,7 @@ class Logs {
     request.setTableName(tableName)
     request.setUuid(uuid)
     request.setId(
-      getValidId(id)
+      getValidInteger(id)
     );
     request.setPageSize(pageSize)
     request.setPageToken(pageToken)
@@ -200,7 +200,7 @@ class Logs {
 
     request.setTableName(tableName);
     request.setRecordId(
-      getValidId(recordId)
+      getValidInteger(recordId)
     );
     request.setRecordUuid(recordUuid);
 
@@ -228,7 +228,7 @@ class Logs {
 
     request.setUuid(uuid);
     request.setId(
-      getValidId(id)
+      getValidInteger(id)
     );
     request.setPageSize(pageSize);
     request.setPageToken(pageToken);
@@ -259,7 +259,7 @@ class Logs {
     request.setTableName(tableName);
     request.setUuid(uuid);
     request.setId(
-      getValidId(id)
+      getValidInteger(id)
     );
     request.setPageSize(pageSize);
     request.setPageToken(pageToken);
@@ -298,6 +298,38 @@ class Logs {
     });
 
     this.getLogsService().listRecentItems(
+      request,
+      metadata,
+      callback
+    );
+  }
+
+  // List recent items
+  listUserActivites({
+    token,
+    date,
+    searchValue,
+    pageSize,
+    pageToken
+  }, callback) {
+    const { ListUserActivitesRequest } = this.stubFile;
+    const request = new ListUserActivitesRequest();
+
+    request.setDate(
+      getTimestamp(date)
+    );
+    request.setSearchValue(searchValue);
+
+    request.setPageSize(
+      getValidInteger(pageSize)
+    );
+    request.setPageToken(pageToken);
+
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getLogsService().listUserActivites(
       request,
       metadata,
       callback

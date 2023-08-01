@@ -2,7 +2,7 @@
 
 // Original file comments:
 // ***********************************************************************************
-// Copyright (C) 2012-2022 E.R.P. Consultores y Asociados, C.A.                     *
+// Copyright (C) 2018-2022 E.R.P. Consultores y Asociados, C.A.                     *
 // Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                     *
 // This program is free software: you can redistribute it and/or modify             *
 // it under the terms of the GNU General Public License as published by             *
@@ -154,6 +154,28 @@ function deserialize_logs_ListRecentItemsResponse(buffer_arg) {
   return proto_logs_pb.ListRecentItemsResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_logs_ListUserActivitesRequest(arg) {
+  if (!(arg instanceof proto_logs_pb.ListUserActivitesRequest)) {
+    throw new Error('Expected argument of type logs.ListUserActivitesRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_logs_ListUserActivitesRequest(buffer_arg) {
+  return proto_logs_pb.ListUserActivitesRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_logs_ListUserActivitesResponse(arg) {
+  if (!(arg instanceof proto_logs_pb.ListUserActivitesResponse)) {
+    throw new Error('Expected argument of type logs.ListUserActivitesResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_logs_ListUserActivitesResponse(buffer_arg) {
+  return proto_logs_pb.ListUserActivitesResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_logs_ListWorkflowLogsRequest(arg) {
   if (!(arg instanceof proto_logs_pb.ListWorkflowLogsRequest)) {
     throw new Error('Expected argument of type logs.ListWorkflowLogsRequest');
@@ -262,6 +284,18 @@ listRecentItems: {
     requestDeserialize: deserialize_logs_ListRecentItemsRequest,
     responseSerialize: serialize_logs_ListRecentItemsResponse,
     responseDeserialize: deserialize_logs_ListRecentItemsResponse,
+  },
+  // Request List User Activities
+listUserActivites: {
+    path: '/logs.Logs/ListUserActivites',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_logs_pb.ListUserActivitesRequest,
+    responseType: proto_logs_pb.ListUserActivitesResponse,
+    requestSerialize: serialize_logs_ListUserActivitesRequest,
+    requestDeserialize: deserialize_logs_ListUserActivitesRequest,
+    responseSerialize: serialize_logs_ListUserActivitesResponse,
+    responseDeserialize: deserialize_logs_ListUserActivitesResponse,
   },
 };
 
