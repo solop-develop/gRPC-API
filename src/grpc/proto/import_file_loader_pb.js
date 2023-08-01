@@ -2989,7 +2989,8 @@ proto.import_file_loader.ListFilePreviewRequest.toObject = function(includeInsta
     pageToken: jspb.Message.getFieldWithDefault(msg, 2, ""),
     searchValue: jspb.Message.getFieldWithDefault(msg, 3, ""),
     importFormatId: jspb.Message.getFieldWithDefault(msg, 4, 0),
-    resourceId: jspb.Message.getFieldWithDefault(msg, 5, 0)
+    resourceId: jspb.Message.getFieldWithDefault(msg, 5, 0),
+    charset: jspb.Message.getFieldWithDefault(msg, 6, "")
   };
 
   if (includeInstance) {
@@ -3045,6 +3046,10 @@ proto.import_file_loader.ListFilePreviewRequest.deserializeBinaryFromReader = fu
     case 5:
       var value = /** @type {number} */ (reader.readInt32());
       msg.setResourceId(value);
+      break;
+    case 6:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setCharset(value);
       break;
     default:
       reader.skipField();
@@ -3107,6 +3112,13 @@ proto.import_file_loader.ListFilePreviewRequest.serializeBinaryToWriter = functi
   if (f !== 0) {
     writer.writeInt32(
       5,
+      f
+    );
+  }
+  f = message.getCharset();
+  if (f.length > 0) {
+    writer.writeString(
+      6,
       f
     );
   }
@@ -3200,6 +3212,24 @@ proto.import_file_loader.ListFilePreviewRequest.prototype.getResourceId = functi
  */
 proto.import_file_loader.ListFilePreviewRequest.prototype.setResourceId = function(value) {
   return jspb.Message.setProto3IntField(this, 5, value);
+};
+
+
+/**
+ * optional string charset = 6;
+ * @return {string}
+ */
+proto.import_file_loader.ListFilePreviewRequest.prototype.getCharset = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.import_file_loader.ListFilePreviewRequest} returns this
+ */
+proto.import_file_loader.ListFilePreviewRequest.prototype.setCharset = function(value) {
+  return jspb.Message.setProto3StringField(this, 6, value);
 };
 
 
