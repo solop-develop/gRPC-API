@@ -295,6 +295,7 @@ class ImportFileLoader {
     searchValue,
     importFormatId,
     resourceId,
+    charset,
     // Page Data
     pageSize,
     pageToken
@@ -311,7 +312,7 @@ class ImportFileLoader {
     request.setImportFormatId(
       getValidInteger(importFormatId)
     );
-
+    request.setCharset(charset);
     request.setResourceId(
       getValidInteger(resourceId)
     );
