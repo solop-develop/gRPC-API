@@ -14,6 +14,8 @@
  * along with this program. If not, see <https://www.gnu.org/licenses/>.             *
  ************************************************************************************/
 
+const stubFile = require('@adempiere/grpc-api/src/grpc/proto/logs_pb.js');
+
 function getRecentItemFromGRPC(recentItem) {
   if (!recentItem) {
     return undefined;
@@ -46,7 +48,7 @@ function getRecentItemFromGRPC(recentItem) {
   */
 function getEntityChat_ConfidentialType({ key, value }) {
   const { getValueOrKey } = require('@adempiere/grpc-api/src/utils/convertEnums.js')
-  const { EntityChat } = require('@adempiere/grpc-api/src/grpc/proto/logs_pb.js');
+  const { EntityChat } = stubFile;
   const { ConfidentialType } = EntityChat;
 
   return getValueOrKey({
@@ -66,7 +68,7 @@ function getEntityChat_ConfidentialType({ key, value }) {
   */
 function getEntityChat_ModerationType({ key, value }) {
   const { getValueOrKey } = require('@adempiere/grpc-api/src/utils/convertEnums.js')
-  const { EntityChat } = require('@adempiere/grpc-api/src/grpc/proto/logs_pb.js');
+  const { EntityChat } = stubFile;
   const { ModerationType } = EntityChat;
 
   return getValueOrKey({
@@ -103,7 +105,111 @@ function getEntityChatsFromGRPC(entityChat) {
   };
 };
 
+/**
+ * Get all event type or get key value type from value
+ * @param {number} value
+ * @param {string} key
+ * @returns {number|string|object}
+    INSERT = 0;
+    UPDATE = 1;
+    DELETE = 2;
+*/
+function getEntityEventType({ key, value }) {
+  const { getValueOrKeyEnum } = require('@adempiere/grpc-api/src/utils/convertEnums.js');
+  const { EntityEventType } = stubFile;
+
+  return getValueOrKeyEnum({
+    list: EntityEventType,
+    key,
+    value
+  });
+}
+
+function getChangeLogFromGRPC(changeLogToConvert) {
+  if (!changeLogToConvert) {
+    return undefined;
+  }
+  return {
+    column_name: changeLogToConvert.getColumnName(),
+    display_column_name: changeLogToConvert.getDisplayColumnName(),
+    old_value: changeLogToConvert.getOldValue(),
+    new_value: changeLogToConvert.getNewValue(),
+    old_display_value: changeLogToConvert.getOldDisplayValue(),
+    new_display_value: changeLogToConvert.getNewDisplayValue(),
+    description: changeLogToConvert.getDescription()
+  };
+}
+
+function getEntityLogFromGRPC(entityLog) {
+  if (!entityLog) {
+    return undefined;
+  }
+  return {
+    log_id: entityLog.getLogId(),
+    id: entityLog.getId(),
+    uuid: entityLog.getUuid(),
+    record_id: entityLog.getId(),
+    record_uuid: entityLog.getUuid(),
+    table_name: entityLog.getTableName(),
+    session_uuid: entityLog.getSessionUuid(),
+    user_uuid: entityLog.getUserUuid(),
+    user_name: entityLog.getUserName(),
+    transaction_name: entityLog.getTransactionName(),
+    event_type: entityLog.getEventType(),
+    event_type_name: getEntityEventType({
+      value: entityLog.getEventType()
+    }),
+    entity_event_type: entityLog.getEventType(),
+    entity_event_type_name: getEntityEventType({
+      value: entityLog.getEventType()
+    }),
+    log_date: new Date(entityLog.getLogDate()),
+    change_logs: entityLog.getChangeLogsList().map(changeLog => {
+      return getChangeLogFromGRPC(
+        changeLog
+      );
+    })
+  };
+}
+
+function getUserActivityType({ key, value }) {
+  const { getValueOrKeyEnum } = require('@adempiere/grpc-api/src/utils/convertEnums.js');
+  const { UserActivityType } = stubFile;
+
+  return getValueOrKeyEnum({
+    list: UserActivityType,
+    key,
+    value
+  });
+}
+
+function getUserActivityFromGRPC(userActivityToConvert) {
+  if (!userActivityToConvert) {
+    return undefined;
+  }
+
+  const {
+    convertProcessLogFromGRPC
+  } = require('@adempiere/grpc-api/lib/convertBaseDataType');
+  return {
+    user_activity_type: userActivityToConvert.getUserActivityType(),
+    user_activity_type_name: getUserActivityType({
+      value: userActivityToConvert.getUserActivityType()
+    }),
+    entity_log: getEntityLogFromGRPC(
+      userActivityToConvert.getEntityLog()
+    ),
+    process_log: convertProcessLogFromGRPC(
+      userActivityToConvert.getProcessLog()
+    )
+  }
+}
+
 module.exports = {
+  getEntityEventType,
   getEntityChatsFromGRPC,
-  getRecentItemFromGRPC
+  getEntityLogFromGRPC,
+  getChangeLogFromGRPC,
+  getRecentItemFromGRPC,
+  getUserActivityFromGRPC
 };

@@ -146,7 +146,6 @@ function getTimestamp(dateValue) {
  * @param {string} stringValue
  * @returns {string}
  */
-
 function removeQuotationMark(stringValue) {
   if (isEmptyValue(stringValue)) {
     return stringValue
