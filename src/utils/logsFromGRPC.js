@@ -1,6 +1,6 @@
 /*************************************************************************************
  * Product: ADempiere gRPC Logs Client Convert Utils                                 *
- * Copyright (C) 2012-2020 E.R.P. Consultores y Asociados, C.A.                      *
+ * Copyright (C) 2018-2023 E.R.P. Consultores y Asociados, C.A.                      *
  * Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                      *
  * This program is free software: you can redistribute it and/or modify              *
  * it under the terms of the GNU General Public License as published by              *
@@ -32,7 +32,7 @@ function getRecentItemFromGRPC(recentItem) {
     id: recentItem.getId(),
     uuid: recentItem.getUuid(),
     display_name: recentItem.getDisplayName(),
-    updated: new Date(recentItem.getUpdated()),
+    updated: recentItem.getUpdated(),
     reference_uuid: recentItem.getReferenceUuid(),
     action: recentItem.getAction()
   };
@@ -148,9 +148,12 @@ function getEntityLogFromGRPC(entityLog) {
     log_id: entityLog.getLogId(),
     id: entityLog.getId(),
     uuid: entityLog.getUuid(),
+    display_name: entityLog.getDisplayedName(),
+    window_id: entityLog.getWindowId(),
+    window_uuid: entityLog.getWindowUuid(),
+    table_name: entityLog.getTableName(),
     record_id: entityLog.getId(),
     record_uuid: entityLog.getUuid(),
-    table_name: entityLog.getTableName(),
     session_uuid: entityLog.getSessionUuid(),
     user_uuid: entityLog.getUserUuid(),
     user_name: entityLog.getUserName(),
@@ -163,7 +166,7 @@ function getEntityLogFromGRPC(entityLog) {
     entity_event_type_name: getEntityEventType({
       value: entityLog.getEventType()
     }),
-    log_date: new Date(entityLog.getLogDate()),
+    log_date: entityLog.getLogDate(),
     change_logs: entityLog.getChangeLogsList().map(changeLog => {
       return getChangeLogFromGRPC(
         changeLog
@@ -189,8 +192,8 @@ function getUserActivityFromGRPC(userActivityToConvert) {
   }
 
   const {
-    convertProcessLogFromGRPC
-  } = require('@adempiere/grpc-api/lib/convertBaseDataType');
+    getProcessLogFromGRPC
+  } = require('@adempiere/grpc-api/src/utils/baseDataTypeFromGRPC');
   return {
     user_activity_type: userActivityToConvert.getUserActivityType(),
     user_activity_type_name: getUserActivityType({
@@ -199,7 +202,7 @@ function getUserActivityFromGRPC(userActivityToConvert) {
     entity_log: getEntityLogFromGRPC(
       userActivityToConvert.getEntityLog()
     ),
-    process_log: convertProcessLogFromGRPC(
+    process_log: getProcessLogFromGRPC(
       userActivityToConvert.getProcessLog()
     )
   }

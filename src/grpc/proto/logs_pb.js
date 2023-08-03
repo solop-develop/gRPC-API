@@ -1589,7 +1589,7 @@ proto.logs.ChangeLog.prototype.setDescription = function(value) {
  * @private {!Array<number>}
  * @const
  */
-proto.logs.EntityLog.repeatedFields_ = [11];
+proto.logs.EntityLog.repeatedFields_ = [15];
 
 
 
@@ -1625,13 +1625,17 @@ proto.logs.EntityLog.toObject = function(includeInstance, msg) {
     logId: jspb.Message.getFieldWithDefault(msg, 1, 0),
     id: jspb.Message.getFieldWithDefault(msg, 2, 0),
     uuid: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    tableName: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    sessionUuid: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    userUuid: jspb.Message.getFieldWithDefault(msg, 6, ""),
-    userName: jspb.Message.getFieldWithDefault(msg, 7, ""),
-    transactionName: jspb.Message.getFieldWithDefault(msg, 8, ""),
-    eventType: jspb.Message.getFieldWithDefault(msg, 9, 0),
-    logDate: jspb.Message.getFieldWithDefault(msg, 10, 0),
+    displayedName: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    windowId: jspb.Message.getFieldWithDefault(msg, 5, 0),
+    windowUuid: jspb.Message.getFieldWithDefault(msg, 6, ""),
+    tableName: jspb.Message.getFieldWithDefault(msg, 7, ""),
+    sessionUuid: jspb.Message.getFieldWithDefault(msg, 8, ""),
+    userId: jspb.Message.getFieldWithDefault(msg, 9, 0),
+    userUuid: jspb.Message.getFieldWithDefault(msg, 10, ""),
+    userName: jspb.Message.getFieldWithDefault(msg, 11, ""),
+    transactionName: jspb.Message.getFieldWithDefault(msg, 12, ""),
+    eventType: jspb.Message.getFieldWithDefault(msg, 13, 0),
+    logDate: jspb.Message.getFieldWithDefault(msg, 14, 0),
     changeLogsList: jspb.Message.toObjectList(msg.getChangeLogsList(),
     proto.logs.ChangeLog.toObject, includeInstance)
   };
@@ -1684,33 +1688,49 @@ proto.logs.EntityLog.deserializeBinaryFromReader = function(msg, reader) {
       break;
     case 4:
       var value = /** @type {string} */ (reader.readString());
-      msg.setTableName(value);
+      msg.setDisplayedName(value);
       break;
     case 5:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setSessionUuid(value);
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setWindowId(value);
       break;
     case 6:
       var value = /** @type {string} */ (reader.readString());
-      msg.setUserUuid(value);
+      msg.setWindowUuid(value);
       break;
     case 7:
       var value = /** @type {string} */ (reader.readString());
-      msg.setUserName(value);
+      msg.setTableName(value);
       break;
     case 8:
       var value = /** @type {string} */ (reader.readString());
-      msg.setTransactionName(value);
+      msg.setSessionUuid(value);
       break;
     case 9:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setUserId(value);
+      break;
+    case 10:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setUserUuid(value);
+      break;
+    case 11:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setUserName(value);
+      break;
+    case 12:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setTransactionName(value);
+      break;
+    case 13:
       var value = /** @type {!proto.logs.EntityEventType} */ (reader.readEnum());
       msg.setEventType(value);
       break;
-    case 10:
+    case 14:
       var value = /** @type {number} */ (reader.readInt64());
       msg.setLogDate(value);
       break;
-    case 11:
+    case 15:
       var value = new proto.logs.ChangeLog;
       reader.readMessage(value,proto.logs.ChangeLog.deserializeBinaryFromReader);
       msg.addChangeLogs(value);
@@ -1765,59 +1785,87 @@ proto.logs.EntityLog.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-  f = message.getTableName();
+  f = message.getDisplayedName();
   if (f.length > 0) {
     writer.writeString(
       4,
       f
     );
   }
-  f = message.getSessionUuid();
-  if (f.length > 0) {
-    writer.writeString(
+  f = message.getWindowId();
+  if (f !== 0) {
+    writer.writeInt32(
       5,
       f
     );
   }
-  f = message.getUserUuid();
+  f = message.getWindowUuid();
   if (f.length > 0) {
     writer.writeString(
       6,
       f
     );
   }
-  f = message.getUserName();
+  f = message.getTableName();
   if (f.length > 0) {
     writer.writeString(
       7,
       f
     );
   }
-  f = message.getTransactionName();
+  f = message.getSessionUuid();
   if (f.length > 0) {
     writer.writeString(
       8,
       f
     );
   }
+  f = message.getUserId();
+  if (f !== 0) {
+    writer.writeInt32(
+      9,
+      f
+    );
+  }
+  f = message.getUserUuid();
+  if (f.length > 0) {
+    writer.writeString(
+      10,
+      f
+    );
+  }
+  f = message.getUserName();
+  if (f.length > 0) {
+    writer.writeString(
+      11,
+      f
+    );
+  }
+  f = message.getTransactionName();
+  if (f.length > 0) {
+    writer.writeString(
+      12,
+      f
+    );
+  }
   f = message.getEventType();
   if (f !== 0.0) {
     writer.writeEnum(
-      9,
+      13,
       f
     );
   }
   f = message.getLogDate();
   if (f !== 0) {
     writer.writeInt64(
-      10,
+      14,
       f
     );
   }
   f = message.getChangeLogsList();
   if (f.length > 0) {
     writer.writeRepeatedMessage(
-      11,
+      15,
       f,
       proto.logs.ChangeLog.serializeBinaryToWriter
     );
@@ -1880,10 +1928,10 @@ proto.logs.EntityLog.prototype.setUuid = function(value) {
 
 
 /**
- * optional string table_name = 4;
+ * optional string displayed_name = 4;
  * @return {string}
  */
-proto.logs.EntityLog.prototype.getTableName = function() {
+proto.logs.EntityLog.prototype.getDisplayedName = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
 };
 
@@ -1892,34 +1940,34 @@ proto.logs.EntityLog.prototype.getTableName = function() {
  * @param {string} value
  * @return {!proto.logs.EntityLog} returns this
  */
-proto.logs.EntityLog.prototype.setTableName = function(value) {
+proto.logs.EntityLog.prototype.setDisplayedName = function(value) {
   return jspb.Message.setProto3StringField(this, 4, value);
 };
 
 
 /**
- * optional string session_uuid = 5;
- * @return {string}
+ * optional int32 window_id = 5;
+ * @return {number}
  */
-proto.logs.EntityLog.prototype.getSessionUuid = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
+proto.logs.EntityLog.prototype.getWindowId = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 5, 0));
 };
 
 
 /**
- * @param {string} value
+ * @param {number} value
  * @return {!proto.logs.EntityLog} returns this
  */
-proto.logs.EntityLog.prototype.setSessionUuid = function(value) {
-  return jspb.Message.setProto3StringField(this, 5, value);
+proto.logs.EntityLog.prototype.setWindowId = function(value) {
+  return jspb.Message.setProto3IntField(this, 5, value);
 };
 
 
 /**
- * optional string user_uuid = 6;
+ * optional string window_uuid = 6;
  * @return {string}
  */
-proto.logs.EntityLog.prototype.getUserUuid = function() {
+proto.logs.EntityLog.prototype.getWindowUuid = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
 };
 
@@ -1928,16 +1976,16 @@ proto.logs.EntityLog.prototype.getUserUuid = function() {
  * @param {string} value
  * @return {!proto.logs.EntityLog} returns this
  */
-proto.logs.EntityLog.prototype.setUserUuid = function(value) {
+proto.logs.EntityLog.prototype.setWindowUuid = function(value) {
   return jspb.Message.setProto3StringField(this, 6, value);
 };
 
 
 /**
- * optional string user_name = 7;
+ * optional string table_name = 7;
  * @return {string}
  */
-proto.logs.EntityLog.prototype.getUserName = function() {
+proto.logs.EntityLog.prototype.getTableName = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 7, ""));
 };
 
@@ -1946,16 +1994,16 @@ proto.logs.EntityLog.prototype.getUserName = function() {
  * @param {string} value
  * @return {!proto.logs.EntityLog} returns this
  */
-proto.logs.EntityLog.prototype.setUserName = function(value) {
+proto.logs.EntityLog.prototype.setTableName = function(value) {
   return jspb.Message.setProto3StringField(this, 7, value);
 };
 
 
 /**
- * optional string transaction_name = 8;
+ * optional string session_uuid = 8;
  * @return {string}
  */
-proto.logs.EntityLog.prototype.getTransactionName = function() {
+proto.logs.EntityLog.prototype.getSessionUuid = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 8, ""));
 };
 
@@ -1964,17 +2012,89 @@ proto.logs.EntityLog.prototype.getTransactionName = function() {
  * @param {string} value
  * @return {!proto.logs.EntityLog} returns this
  */
-proto.logs.EntityLog.prototype.setTransactionName = function(value) {
+proto.logs.EntityLog.prototype.setSessionUuid = function(value) {
   return jspb.Message.setProto3StringField(this, 8, value);
 };
 
 
 /**
- * optional EntityEventType event_type = 9;
+ * optional int32 user_id = 9;
+ * @return {number}
+ */
+proto.logs.EntityLog.prototype.getUserId = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 9, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.logs.EntityLog} returns this
+ */
+proto.logs.EntityLog.prototype.setUserId = function(value) {
+  return jspb.Message.setProto3IntField(this, 9, value);
+};
+
+
+/**
+ * optional string user_uuid = 10;
+ * @return {string}
+ */
+proto.logs.EntityLog.prototype.getUserUuid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 10, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.logs.EntityLog} returns this
+ */
+proto.logs.EntityLog.prototype.setUserUuid = function(value) {
+  return jspb.Message.setProto3StringField(this, 10, value);
+};
+
+
+/**
+ * optional string user_name = 11;
+ * @return {string}
+ */
+proto.logs.EntityLog.prototype.getUserName = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 11, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.logs.EntityLog} returns this
+ */
+proto.logs.EntityLog.prototype.setUserName = function(value) {
+  return jspb.Message.setProto3StringField(this, 11, value);
+};
+
+
+/**
+ * optional string transaction_name = 12;
+ * @return {string}
+ */
+proto.logs.EntityLog.prototype.getTransactionName = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 12, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.logs.EntityLog} returns this
+ */
+proto.logs.EntityLog.prototype.setTransactionName = function(value) {
+  return jspb.Message.setProto3StringField(this, 12, value);
+};
+
+
+/**
+ * optional EntityEventType event_type = 13;
  * @return {!proto.logs.EntityEventType}
  */
 proto.logs.EntityLog.prototype.getEventType = function() {
-  return /** @type {!proto.logs.EntityEventType} */ (jspb.Message.getFieldWithDefault(this, 9, 0));
+  return /** @type {!proto.logs.EntityEventType} */ (jspb.Message.getFieldWithDefault(this, 13, 0));
 };
 
 
@@ -1983,16 +2103,16 @@ proto.logs.EntityLog.prototype.getEventType = function() {
  * @return {!proto.logs.EntityLog} returns this
  */
 proto.logs.EntityLog.prototype.setEventType = function(value) {
-  return jspb.Message.setProto3EnumField(this, 9, value);
+  return jspb.Message.setProto3EnumField(this, 13, value);
 };
 
 
 /**
- * optional int64 log_date = 10;
+ * optional int64 log_date = 14;
  * @return {number}
  */
 proto.logs.EntityLog.prototype.getLogDate = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 10, 0));
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 14, 0));
 };
 
 
@@ -2001,17 +2121,17 @@ proto.logs.EntityLog.prototype.getLogDate = function() {
  * @return {!proto.logs.EntityLog} returns this
  */
 proto.logs.EntityLog.prototype.setLogDate = function(value) {
-  return jspb.Message.setProto3IntField(this, 10, value);
+  return jspb.Message.setProto3IntField(this, 14, value);
 };
 
 
 /**
- * repeated ChangeLog change_logs = 11;
+ * repeated ChangeLog change_logs = 15;
  * @return {!Array<!proto.logs.ChangeLog>}
  */
 proto.logs.EntityLog.prototype.getChangeLogsList = function() {
   return /** @type{!Array<!proto.logs.ChangeLog>} */ (
-    jspb.Message.getRepeatedWrapperField(this, proto.logs.ChangeLog, 11));
+    jspb.Message.getRepeatedWrapperField(this, proto.logs.ChangeLog, 15));
 };
 
 
@@ -2020,7 +2140,7 @@ proto.logs.EntityLog.prototype.getChangeLogsList = function() {
  * @return {!proto.logs.EntityLog} returns this
 */
 proto.logs.EntityLog.prototype.setChangeLogsList = function(value) {
-  return jspb.Message.setRepeatedWrapperField(this, 11, value);
+  return jspb.Message.setRepeatedWrapperField(this, 15, value);
 };
 
 
@@ -2030,7 +2150,7 @@ proto.logs.EntityLog.prototype.setChangeLogsList = function(value) {
  * @return {!proto.logs.ChangeLog}
  */
 proto.logs.EntityLog.prototype.addChangeLogs = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(this, 11, opt_value, proto.logs.ChangeLog, opt_index);
+  return jspb.Message.addToRepeatedWrapperField(this, 15, opt_value, proto.logs.ChangeLog, opt_index);
 };
 
 
