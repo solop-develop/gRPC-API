@@ -1,5 +1,5 @@
 /*************************************************************************************
- * Product: ADempiere gRPC Payment Client                                            *
+ * Product: ADempiere gRPC Record Management Client                                  *
  * Copyright (C) 2018-2023 E.R.P. Consultores y Asociados, C.A.                      *
  * Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                      *
  * This program is free software: you can redistribute it and/or modify              *
@@ -17,12 +17,12 @@
 const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
 const { isEmptyValue, getValidInteger } = require('@adempiere/grpc-api/src/utils/valueUtils.js')
 
-class RecordManager {
+class RecordManagement {
 
   /**
    * File on generated stub
    */
-  stubFile = require('@adempiere/grpc-api/src/grpc/proto/record_manager_pb.js');
+  stubFile = require('@adempiere/grpc-api/src/grpc/proto/record_management_pb.js');
 
   /**
    * Constructor, No authentication required
@@ -39,23 +39,23 @@ class RecordManager {
       this.token = adempiereConfig.token;
     }
 
-    this.initRecordManagerService();
-    console.log('ADempiere Record Manager Client Started');
+    this.initRecordManagementService();
+    console.log('ADempiere Record Management Client Started');
   }
 
   // Init connection
-  initRecordManagerService() {
+  initRecordManagementService() {
     const grpc = require('@grpc/grpc-js');
-    const services = require('@adempiere/grpc-api/src/grpc/proto/record_manager_grpc_pb.js');
-    this.recordManager = new services.RecordManagerClient(
+    const services = require('@adempiere/grpc-api/src/grpc/proto/record_management_grpc_pb.js');
+    this.recordManagement = new services.RecordManagementClient(
       this.businessHost,
       grpc.credentials.createInsecure()
     );
   }
 
-  // Get Record Manager Service
-  getRecordManager() {
-    return this.recordManager;
+  // Get Record Management Service
+  getRecordManagement() {
+    return this.recordManagement;
   }
 
   toggleIsActiveRecords({
@@ -84,7 +84,7 @@ class RecordManager {
         recordsIdsList = JSON.parse(recordsIdsList);
       }
       recordsIdsList.forEach(idItem => {
-        request.addRecordIds(
+        request.addRecordsIds(
           getValidInteger(idItem)
         );
       });
@@ -95,7 +95,7 @@ class RecordManager {
         recordsUuidsList = JSON.parse(recordsUuidsList);
       }
       recordsUuidsList.forEach(uuidItem => {
-        request.addRecordUuids(uuidItem );
+        request.addRecordsUuids(uuidItem );
       });
     }
 
@@ -103,7 +103,7 @@ class RecordManager {
       token
     });
 
-    this.getRecordManager().toggleIsActiveRecords(
+    this.getRecordManagement().toggleIsActiveRecords(
       request,
       metadata,
       callback
@@ -112,4 +112,4 @@ class RecordManager {
 
 }
 
-module.exports = RecordManager;
+module.exports = RecordManagement;
