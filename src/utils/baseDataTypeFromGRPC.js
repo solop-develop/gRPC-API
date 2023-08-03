@@ -234,6 +234,68 @@ function getReportOutputFromGRPC(reportOutputToConvert) {
   };
 }
 
+function getProcessInfoLogFromGRPC(processInfoLog) {
+  if (!processInfoLog) {
+    return undefined;
+  }
+  return {
+    id: processInfoLog.getRecordId(),
+    log: processInfoLog.getLog()
+  };
+}
+
+function getProcesInstanceParameterFromGRPC(processInstanceParameter) {
+  if (!processInstanceParameter) {
+    return undefined;
+  }
+  return {
+    id: processInstanceParameter.getId(),
+    uuid: processInstanceParameter.getUuid(),
+    name: processInstanceParameter.getName(),
+    column_name: processInstanceParameter.getColumnName(),
+    value: getValueFromGRPC(
+      processInstanceParameter.getValue()
+    ),
+    value_to: getValueFromGRPC(
+      processInstanceParameter.getValueTo()
+    )
+  };
+}
+
+function getProcessLogFromGRPC(processLog) {
+  if (!processLog) {
+    return undefined;
+  }
+  const { getValuesMapFromGRPC } = require('@adempiere/grpc-api/src/utils/valueUtilsFromGRPC.js');
+
+  return {
+    uuid: processLog.getUuid(),
+    instance_uuid: processLog.getInstanceUuid(),
+    name: processLog.getName(),
+    description: processLog.getDescription(),
+    is_error: processLog.getIsError(),
+    summary: processLog.getSummary(),
+    result_table_name: processLog.getResultTableName(),
+    is_processing: processLog.getIsProcessing(),
+    last_run: processLog.getLastRun(),
+    logs_list: processLog.getLogsList().map(log => {
+      return getProcessInfoLogFromGRPC(
+        log
+      );
+    }),
+    parameters: getValuesMapFromGRPC({
+      mapToConvert: processLog.getParametersMap(),
+      returnType: 'object'
+    }),
+    process_intance_parameters_list: processLog.getProcessIntanceParametersList().map(processPara => {
+      return getProcesInstanceParameterFromGRPC(processPara);
+    }),
+    output: getReportOutputFromGRPC(
+      processLog.getOutput()
+    )
+  };
+}
+
 function getRecordReferenceInfoFromGRPC(referenceInfo) {
   if (!referenceInfo) {
     return undefined;
@@ -302,5 +364,7 @@ module.exports = {
   getResourceReferenceFromGRPC,
   getOperator,
   getBusinessPartnerFromGRPC,
-  getReportOutputFromGRPC
+  getReportOutputFromGRPC,
+  getProcessInfoLogFromGRPC,
+  getProcessLogFromGRPC
 };
