@@ -196,6 +196,8 @@ The result is generated on: `src/grpc/proto/` folder
 - `point_of_sales_pb.js`
 - `product_grpc_pb.js`
 - `product_pb.js`
+- `record_manager_grpc_pb.js`
+- `record_manager_pb.js`
 - `security_grpc_pb.js`
 - `security_pb.js`
 - `time_control_grpc_pb.js`
