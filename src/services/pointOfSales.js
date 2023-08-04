@@ -790,7 +790,8 @@ class PointOfSales {
     currencyUuid,
     paymentMethodUuid,
     isRefund,
-    referenceBankAccountUuid
+    referenceBankAccountUuid,
+    customerBankAccountUuid
   }, callback) {
     const { CreatePaymentRequest } = this.stubFile;
     const request = new CreatePaymentRequest();
@@ -822,6 +823,9 @@ class PointOfSales {
     }
     if(paymentMethodUuid) {
       request.setPaymentMethodUuid(paymentMethodUuid)
+    }
+    if(customerBankAccountUuid) {
+      request.setCustomerBankAccountUuid(customerBankAccountUuid)
     }
     if (currencyUuid) {
       request.setCurrencyUuid(currencyUuid)
