@@ -29095,7 +29095,8 @@ proto.data.CreatePaymentRequest.toObject = function(includeInstance, msg) {
     isRefund: jspb.Message.getBooleanFieldWithDefault(msg, 16, false),
     chargeUuid: jspb.Message.getFieldWithDefault(msg, 17, ""),
     collectingAgentUuid: jspb.Message.getFieldWithDefault(msg, 18, ""),
-    referenceBankAccountUuid: jspb.Message.getFieldWithDefault(msg, 19, "")
+    referenceBankAccountUuid: jspb.Message.getFieldWithDefault(msg, 19, ""),
+    customerBankAccountUuid: jspb.Message.getFieldWithDefault(msg, 20, "")
   };
 
   if (includeInstance) {
@@ -29204,6 +29205,10 @@ proto.data.CreatePaymentRequest.deserializeBinaryFromReader = function(msg, read
     case 19:
       var value = /** @type {string} */ (reader.readString());
       msg.setReferenceBankAccountUuid(value);
+      break;
+    case 20:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setCustomerBankAccountUuid(value);
       break;
     default:
       reader.skipField();
@@ -29358,6 +29363,13 @@ proto.data.CreatePaymentRequest.serializeBinaryToWriter = function(message, writ
   if (f.length > 0) {
     writer.writeString(
       19,
+      f
+    );
+  }
+  f = message.getCustomerBankAccountUuid();
+  if (f.length > 0) {
+    writer.writeString(
+      20,
       f
     );
   }
@@ -29704,6 +29716,24 @@ proto.data.CreatePaymentRequest.prototype.getReferenceBankAccountUuid = function
  */
 proto.data.CreatePaymentRequest.prototype.setReferenceBankAccountUuid = function(value) {
   return jspb.Message.setProto3StringField(this, 19, value);
+};
+
+
+/**
+ * optional string customer_bank_account_uuid = 20;
+ * @return {string}
+ */
+proto.data.CreatePaymentRequest.prototype.getCustomerBankAccountUuid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 20, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.data.CreatePaymentRequest} returns this
+ */
+proto.data.CreatePaymentRequest.prototype.setCustomerBankAccountUuid = function(value) {
+  return jspb.Message.setProto3StringField(this, 20, value);
 };
 
 
