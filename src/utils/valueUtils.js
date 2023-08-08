@@ -128,12 +128,17 @@ function getTimestamp(dateValue) {
   if (typeOfValue === 'Date') {
     return dateValue.getTime();
   }
-  else if (typeOfValue === 'String' || typeOfValue == 'Number') {
-    value = Date.parse(dateValue);
-    // value = new Date(dateValue)
+  else if (typeOfValue === 'String') {
+    if (!isNaN(dateValue)) {
+      value = Number(dateValue);
+    } else {
+      value = Date.parse(dateValue);
+    }
+  } else if (typeOfValue == 'Number') {
+    value = dateValue;
   }
   if (isNaN(value)) {
-    value = 0
+    value = 0;
   }
 
   return value;
