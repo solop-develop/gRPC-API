@@ -4857,16 +4857,18 @@ proto.bank_statement_match.MatchingMovement.prototype.toObject = function(opt_in
  */
 proto.bank_statement_match.MatchingMovement.toObject = function(includeInstance, msg) {
   var f, obj = {
-    transactionDate: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    isReceipt: jspb.Message.getBooleanFieldWithDefault(msg, 2, false),
-    documentNo: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    id: jspb.Message.getFieldWithDefault(msg, 1, 0),
+    uuid: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    transactionDate: jspb.Message.getFieldWithDefault(msg, 3, 0),
+    isReceipt: jspb.Message.getBooleanFieldWithDefault(msg, 4, false),
+    documentNo: jspb.Message.getFieldWithDefault(msg, 5, ""),
     businessPartner: (f = msg.getBusinessPartner()) && proto.bank_statement_match.BusinessPartner.toObject(includeInstance, f),
     tenderType: (f = msg.getTenderType()) && proto.bank_statement_match.TenderType.toObject(includeInstance, f),
     currency: (f = msg.getCurrency()) && proto.bank_statement_match.Currency.toObject(includeInstance, f),
     amount: (f = msg.getAmount()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
-    description: jspb.Message.getFieldWithDefault(msg, 8, ""),
-    referenceNo: jspb.Message.getFieldWithDefault(msg, 9, ""),
-    memo: jspb.Message.getFieldWithDefault(msg, 10, "")
+    description: jspb.Message.getFieldWithDefault(msg, 10, ""),
+    referenceNo: jspb.Message.getFieldWithDefault(msg, 11, ""),
+    memo: jspb.Message.getFieldWithDefault(msg, 102, "")
   };
 
   if (includeInstance) {
@@ -4904,46 +4906,54 @@ proto.bank_statement_match.MatchingMovement.deserializeBinaryFromReader = functi
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setId(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setUuid(value);
+      break;
+    case 3:
       var value = /** @type {number} */ (reader.readInt64());
       msg.setTransactionDate(value);
       break;
-    case 2:
+    case 4:
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setIsReceipt(value);
       break;
-    case 3:
+    case 5:
       var value = /** @type {string} */ (reader.readString());
       msg.setDocumentNo(value);
       break;
-    case 4:
+    case 6:
       var value = new proto.bank_statement_match.BusinessPartner;
       reader.readMessage(value,proto.bank_statement_match.BusinessPartner.deserializeBinaryFromReader);
       msg.setBusinessPartner(value);
       break;
-    case 5:
+    case 7:
       var value = new proto.bank_statement_match.TenderType;
       reader.readMessage(value,proto.bank_statement_match.TenderType.deserializeBinaryFromReader);
       msg.setTenderType(value);
       break;
-    case 6:
+    case 8:
       var value = new proto.bank_statement_match.Currency;
       reader.readMessage(value,proto.bank_statement_match.Currency.deserializeBinaryFromReader);
       msg.setCurrency(value);
       break;
-    case 7:
+    case 9:
       var value = new proto_base_data_type_pb.Decimal;
       reader.readMessage(value,proto_base_data_type_pb.Decimal.deserializeBinaryFromReader);
       msg.setAmount(value);
       break;
-    case 8:
+    case 10:
       var value = /** @type {string} */ (reader.readString());
       msg.setDescription(value);
       break;
-    case 9:
+    case 11:
       var value = /** @type {string} */ (reader.readString());
       msg.setReferenceNo(value);
       break;
-    case 10:
+    case 102:
       var value = /** @type {string} */ (reader.readString());
       msg.setMemo(value);
       break;
@@ -4976,31 +4986,45 @@ proto.bank_statement_match.MatchingMovement.prototype.serializeBinary = function
  */
 proto.bank_statement_match.MatchingMovement.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
+  f = message.getId();
+  if (f !== 0) {
+    writer.writeInt32(
+      1,
+      f
+    );
+  }
+  f = message.getUuid();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
   f = message.getTransactionDate();
   if (f !== 0) {
     writer.writeInt64(
-      1,
+      3,
       f
     );
   }
   f = message.getIsReceipt();
   if (f) {
     writer.writeBool(
-      2,
+      4,
       f
     );
   }
   f = message.getDocumentNo();
   if (f.length > 0) {
     writer.writeString(
-      3,
+      5,
       f
     );
   }
   f = message.getBusinessPartner();
   if (f != null) {
     writer.writeMessage(
-      4,
+      6,
       f,
       proto.bank_statement_match.BusinessPartner.serializeBinaryToWriter
     );
@@ -5008,7 +5032,7 @@ proto.bank_statement_match.MatchingMovement.serializeBinaryToWriter = function(m
   f = message.getTenderType();
   if (f != null) {
     writer.writeMessage(
-      5,
+      7,
       f,
       proto.bank_statement_match.TenderType.serializeBinaryToWriter
     );
@@ -5016,7 +5040,7 @@ proto.bank_statement_match.MatchingMovement.serializeBinaryToWriter = function(m
   f = message.getCurrency();
   if (f != null) {
     writer.writeMessage(
-      6,
+      8,
       f,
       proto.bank_statement_match.Currency.serializeBinaryToWriter
     );
@@ -5024,7 +5048,7 @@ proto.bank_statement_match.MatchingMovement.serializeBinaryToWriter = function(m
   f = message.getAmount();
   if (f != null) {
     writer.writeMessage(
-      7,
+      9,
       f,
       proto_base_data_type_pb.Decimal.serializeBinaryToWriter
     );
@@ -5032,21 +5056,21 @@ proto.bank_statement_match.MatchingMovement.serializeBinaryToWriter = function(m
   f = message.getDescription();
   if (f.length > 0) {
     writer.writeString(
-      8,
+      10,
       f
     );
   }
   f = message.getReferenceNo();
   if (f.length > 0) {
     writer.writeString(
-      9,
+      11,
       f
     );
   }
   f = message.getMemo();
   if (f.length > 0) {
     writer.writeString(
-      10,
+      102,
       f
     );
   }
@@ -5054,10 +5078,10 @@ proto.bank_statement_match.MatchingMovement.serializeBinaryToWriter = function(m
 
 
 /**
- * optional int64 transaction_date = 1;
+ * optional int32 id = 1;
  * @return {number}
  */
-proto.bank_statement_match.MatchingMovement.prototype.getTransactionDate = function() {
+proto.bank_statement_match.MatchingMovement.prototype.getId = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
 };
 
@@ -5066,17 +5090,53 @@ proto.bank_statement_match.MatchingMovement.prototype.getTransactionDate = funct
  * @param {number} value
  * @return {!proto.bank_statement_match.MatchingMovement} returns this
  */
-proto.bank_statement_match.MatchingMovement.prototype.setTransactionDate = function(value) {
+proto.bank_statement_match.MatchingMovement.prototype.setId = function(value) {
   return jspb.Message.setProto3IntField(this, 1, value);
 };
 
 
 /**
- * optional bool is_receipt = 2;
+ * optional string uuid = 2;
+ * @return {string}
+ */
+proto.bank_statement_match.MatchingMovement.prototype.getUuid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.bank_statement_match.MatchingMovement} returns this
+ */
+proto.bank_statement_match.MatchingMovement.prototype.setUuid = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * optional int64 transaction_date = 3;
+ * @return {number}
+ */
+proto.bank_statement_match.MatchingMovement.prototype.getTransactionDate = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.bank_statement_match.MatchingMovement} returns this
+ */
+proto.bank_statement_match.MatchingMovement.prototype.setTransactionDate = function(value) {
+  return jspb.Message.setProto3IntField(this, 3, value);
+};
+
+
+/**
+ * optional bool is_receipt = 4;
  * @return {boolean}
  */
 proto.bank_statement_match.MatchingMovement.prototype.getIsReceipt = function() {
-  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 2, false));
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 4, false));
 };
 
 
@@ -5085,16 +5145,16 @@ proto.bank_statement_match.MatchingMovement.prototype.getIsReceipt = function() 
  * @return {!proto.bank_statement_match.MatchingMovement} returns this
  */
 proto.bank_statement_match.MatchingMovement.prototype.setIsReceipt = function(value) {
-  return jspb.Message.setProto3BooleanField(this, 2, value);
+  return jspb.Message.setProto3BooleanField(this, 4, value);
 };
 
 
 /**
- * optional string document_no = 3;
+ * optional string document_no = 5;
  * @return {string}
  */
 proto.bank_statement_match.MatchingMovement.prototype.getDocumentNo = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
 };
 
 
@@ -5103,17 +5163,17 @@ proto.bank_statement_match.MatchingMovement.prototype.getDocumentNo = function()
  * @return {!proto.bank_statement_match.MatchingMovement} returns this
  */
 proto.bank_statement_match.MatchingMovement.prototype.setDocumentNo = function(value) {
-  return jspb.Message.setProto3StringField(this, 3, value);
+  return jspb.Message.setProto3StringField(this, 5, value);
 };
 
 
 /**
- * optional BusinessPartner business_partner = 4;
+ * optional BusinessPartner business_partner = 6;
  * @return {?proto.bank_statement_match.BusinessPartner}
  */
 proto.bank_statement_match.MatchingMovement.prototype.getBusinessPartner = function() {
   return /** @type{?proto.bank_statement_match.BusinessPartner} */ (
-    jspb.Message.getWrapperField(this, proto.bank_statement_match.BusinessPartner, 4));
+    jspb.Message.getWrapperField(this, proto.bank_statement_match.BusinessPartner, 6));
 };
 
 
@@ -5122,7 +5182,7 @@ proto.bank_statement_match.MatchingMovement.prototype.getBusinessPartner = funct
  * @return {!proto.bank_statement_match.MatchingMovement} returns this
 */
 proto.bank_statement_match.MatchingMovement.prototype.setBusinessPartner = function(value) {
-  return jspb.Message.setWrapperField(this, 4, value);
+  return jspb.Message.setWrapperField(this, 6, value);
 };
 
 
@@ -5140,17 +5200,17 @@ proto.bank_statement_match.MatchingMovement.prototype.clearBusinessPartner = fun
  * @return {boolean}
  */
 proto.bank_statement_match.MatchingMovement.prototype.hasBusinessPartner = function() {
-  return jspb.Message.getField(this, 4) != null;
+  return jspb.Message.getField(this, 6) != null;
 };
 
 
 /**
- * optional TenderType tender_type = 5;
+ * optional TenderType tender_type = 7;
  * @return {?proto.bank_statement_match.TenderType}
  */
 proto.bank_statement_match.MatchingMovement.prototype.getTenderType = function() {
   return /** @type{?proto.bank_statement_match.TenderType} */ (
-    jspb.Message.getWrapperField(this, proto.bank_statement_match.TenderType, 5));
+    jspb.Message.getWrapperField(this, proto.bank_statement_match.TenderType, 7));
 };
 
 
@@ -5159,7 +5219,7 @@ proto.bank_statement_match.MatchingMovement.prototype.getTenderType = function()
  * @return {!proto.bank_statement_match.MatchingMovement} returns this
 */
 proto.bank_statement_match.MatchingMovement.prototype.setTenderType = function(value) {
-  return jspb.Message.setWrapperField(this, 5, value);
+  return jspb.Message.setWrapperField(this, 7, value);
 };
 
 
@@ -5177,17 +5237,17 @@ proto.bank_statement_match.MatchingMovement.prototype.clearTenderType = function
  * @return {boolean}
  */
 proto.bank_statement_match.MatchingMovement.prototype.hasTenderType = function() {
-  return jspb.Message.getField(this, 5) != null;
+  return jspb.Message.getField(this, 7) != null;
 };
 
 
 /**
- * optional Currency currency = 6;
+ * optional Currency currency = 8;
  * @return {?proto.bank_statement_match.Currency}
  */
 proto.bank_statement_match.MatchingMovement.prototype.getCurrency = function() {
   return /** @type{?proto.bank_statement_match.Currency} */ (
-    jspb.Message.getWrapperField(this, proto.bank_statement_match.Currency, 6));
+    jspb.Message.getWrapperField(this, proto.bank_statement_match.Currency, 8));
 };
 
 
@@ -5196,7 +5256,7 @@ proto.bank_statement_match.MatchingMovement.prototype.getCurrency = function() {
  * @return {!proto.bank_statement_match.MatchingMovement} returns this
 */
 proto.bank_statement_match.MatchingMovement.prototype.setCurrency = function(value) {
-  return jspb.Message.setWrapperField(this, 6, value);
+  return jspb.Message.setWrapperField(this, 8, value);
 };
 
 
@@ -5214,17 +5274,17 @@ proto.bank_statement_match.MatchingMovement.prototype.clearCurrency = function()
  * @return {boolean}
  */
 proto.bank_statement_match.MatchingMovement.prototype.hasCurrency = function() {
-  return jspb.Message.getField(this, 6) != null;
+  return jspb.Message.getField(this, 8) != null;
 };
 
 
 /**
- * optional data.Decimal amount = 7;
+ * optional data.Decimal amount = 9;
  * @return {?proto.data.Decimal}
  */
 proto.bank_statement_match.MatchingMovement.prototype.getAmount = function() {
   return /** @type{?proto.data.Decimal} */ (
-    jspb.Message.getWrapperField(this, proto_base_data_type_pb.Decimal, 7));
+    jspb.Message.getWrapperField(this, proto_base_data_type_pb.Decimal, 9));
 };
 
 
@@ -5233,7 +5293,7 @@ proto.bank_statement_match.MatchingMovement.prototype.getAmount = function() {
  * @return {!proto.bank_statement_match.MatchingMovement} returns this
 */
 proto.bank_statement_match.MatchingMovement.prototype.setAmount = function(value) {
-  return jspb.Message.setWrapperField(this, 7, value);
+  return jspb.Message.setWrapperField(this, 9, value);
 };
 
 
@@ -5251,51 +5311,15 @@ proto.bank_statement_match.MatchingMovement.prototype.clearAmount = function() {
  * @return {boolean}
  */
 proto.bank_statement_match.MatchingMovement.prototype.hasAmount = function() {
-  return jspb.Message.getField(this, 7) != null;
+  return jspb.Message.getField(this, 9) != null;
 };
 
 
 /**
- * optional string description = 8;
+ * optional string description = 10;
  * @return {string}
  */
 proto.bank_statement_match.MatchingMovement.prototype.getDescription = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 8, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.bank_statement_match.MatchingMovement} returns this
- */
-proto.bank_statement_match.MatchingMovement.prototype.setDescription = function(value) {
-  return jspb.Message.setProto3StringField(this, 8, value);
-};
-
-
-/**
- * optional string reference_no = 9;
- * @return {string}
- */
-proto.bank_statement_match.MatchingMovement.prototype.getReferenceNo = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 9, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.bank_statement_match.MatchingMovement} returns this
- */
-proto.bank_statement_match.MatchingMovement.prototype.setReferenceNo = function(value) {
-  return jspb.Message.setProto3StringField(this, 9, value);
-};
-
-
-/**
- * optional string memo = 10;
- * @return {string}
- */
-proto.bank_statement_match.MatchingMovement.prototype.getMemo = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 10, ""));
 };
 
@@ -5304,8 +5328,44 @@ proto.bank_statement_match.MatchingMovement.prototype.getMemo = function() {
  * @param {string} value
  * @return {!proto.bank_statement_match.MatchingMovement} returns this
  */
-proto.bank_statement_match.MatchingMovement.prototype.setMemo = function(value) {
+proto.bank_statement_match.MatchingMovement.prototype.setDescription = function(value) {
   return jspb.Message.setProto3StringField(this, 10, value);
+};
+
+
+/**
+ * optional string reference_no = 11;
+ * @return {string}
+ */
+proto.bank_statement_match.MatchingMovement.prototype.getReferenceNo = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 11, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.bank_statement_match.MatchingMovement} returns this
+ */
+proto.bank_statement_match.MatchingMovement.prototype.setReferenceNo = function(value) {
+  return jspb.Message.setProto3StringField(this, 11, value);
+};
+
+
+/**
+ * optional string memo = 102;
+ * @return {string}
+ */
+proto.bank_statement_match.MatchingMovement.prototype.getMemo = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 102, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.bank_statement_match.MatchingMovement} returns this
+ */
+proto.bank_statement_match.MatchingMovement.prototype.setMemo = function(value) {
+  return jspb.Message.setProto3StringField(this, 102, value);
 };
 
 
