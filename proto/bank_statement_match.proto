@@ -243,6 +243,7 @@ message BankStatement {
 	string description = 7;
 	bool is_manual = 8;
 	string document_status = 9;
+	bool is_processing = 10;
 }
 
 message GetBankStatementRequest {
