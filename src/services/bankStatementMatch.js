@@ -60,6 +60,38 @@ class BankStatementMatch {
 
 
   /**
+   * Get Bank Statement
+   * @param {string} token
+   * @param {number} id
+   * @param {string} uuid
+   */
+  getBankStatement({
+    token,
+    // DSL
+    id,
+    uuid
+  }, callback) {
+    const { GetBankStatementRequest } = this.stubFile;
+    const request = new GetBankStatementRequest();
+
+    request.setUuid(uuid);
+    request.setId(
+      getValidInteger(id)
+    );
+
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getBankStatementMatchService().getBankStatement(
+      request,
+      metadata,
+      callback
+    );
+  }
+
+
+  /**
    * Get List Bank Accounts
    * @param {string} token
    * @param {string} searchValue
@@ -253,6 +285,7 @@ class BankStatementMatch {
     token,
     // DSL
     searchValue,
+    bankStatementId,
     bankAccountId,
     bankAccountUuid,
     businessPartnerId,
@@ -276,6 +309,7 @@ class BankStatementMatch {
     );
     request.setPageToken(pageToken);
 
+    request.setBankStatementId(bankStatementId);
     request.setBankAccountId(
       getValidInteger(bankAccountId)
     );
@@ -328,6 +362,7 @@ class BankStatementMatch {
     token,
     // DSL
     searchValue,
+    bankStatementId,
     bankAccountId,
     bankAccountUuid,
     businessPartnerId,
@@ -350,6 +385,7 @@ class BankStatementMatch {
     );
     request.setPageToken(pageToken);
 
+    request.setBankStatementId(bankStatementId);
     request.setBankAccountId(
       getValidInteger(bankAccountId)
     );
@@ -391,6 +427,40 @@ class BankStatementMatch {
   }
 
 
+  listBankStatements({
+    token,
+    bankAccountId,
+    searchValue,
+    // Page Data
+    pageSize,
+    pageToken
+  }, callback) {
+    const { ListBankStatementsRequest } = this.stubFile;
+    const request = new ListBankStatementsRequest();
+
+    request.setBankAccountId(
+      getValidInteger(bankAccountId)
+    );
+
+    request.setSearchValue(searchValue);
+
+    request.setPageSize(
+      getValidInteger(pageSize)
+    );
+    request.setPageToken(pageToken);
+
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getBankStatementMatchService().listBankStatements(
+      request,
+      metadata,
+      callback
+    );
+  }
+
+
   /**
    * Process Payment Allocation
    * @param {string} token
@@ -411,6 +481,7 @@ class BankStatementMatch {
     // DSL
     bankAccountId,
     bankAccountUuid,
+    bankStatementId,
     businessPartnerId,
     businessPartnerUuid,
     paymentAmountFrom,
@@ -427,6 +498,10 @@ class BankStatementMatch {
       getValidInteger(bankAccountId)
     );
     request.setBankAccountUuid(bankAccountUuid);
+    
+    request.setBankStatementId(
+      getValidInteger(bankStatementId)
+    );
 
     request.setBusinessPartnerId(
       getValidInteger(businessPartnerId)
