@@ -6417,7 +6417,8 @@ proto.bank_statement_match.BankStatement.toObject = function(includeInstance, ms
     statementDate: jspb.Message.getFieldWithDefault(msg, 6, 0),
     description: jspb.Message.getFieldWithDefault(msg, 7, ""),
     isManual: jspb.Message.getBooleanFieldWithDefault(msg, 8, false),
-    documentStatus: jspb.Message.getFieldWithDefault(msg, 9, "")
+    documentStatus: jspb.Message.getFieldWithDefault(msg, 9, ""),
+    isProcessing: jspb.Message.getBooleanFieldWithDefault(msg, 10, false)
   };
 
   if (includeInstance) {
@@ -6489,6 +6490,10 @@ proto.bank_statement_match.BankStatement.deserializeBinaryFromReader = function(
     case 9:
       var value = /** @type {string} */ (reader.readString());
       msg.setDocumentStatus(value);
+      break;
+    case 10:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setIsProcessing(value);
       break;
     default:
       reader.skipField();
@@ -6579,6 +6584,13 @@ proto.bank_statement_match.BankStatement.serializeBinaryToWriter = function(mess
   if (f.length > 0) {
     writer.writeString(
       9,
+      f
+    );
+  }
+  f = message.getIsProcessing();
+  if (f) {
+    writer.writeBool(
+      10,
       f
     );
   }
@@ -6744,6 +6756,24 @@ proto.bank_statement_match.BankStatement.prototype.getDocumentStatus = function(
  */
 proto.bank_statement_match.BankStatement.prototype.setDocumentStatus = function(value) {
   return jspb.Message.setProto3StringField(this, 9, value);
+};
+
+
+/**
+ * optional bool is_processing = 10;
+ * @return {boolean}
+ */
+proto.bank_statement_match.BankStatement.prototype.getIsProcessing = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 10, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.bank_statement_match.BankStatement} returns this
+ */
+proto.bank_statement_match.BankStatement.prototype.setIsProcessing = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 10, value);
 };
 
 
