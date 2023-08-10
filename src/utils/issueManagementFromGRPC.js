@@ -1,6 +1,6 @@
 /*************************************************************************************
  * Product: ADempiere gRPC Issue Management Client Convert Util                      *
- * Copyright (C) 2012-2020 E.R.P. Consultores y Asociados, C.A.                      *
+ * Copyright (C) 2018-2020 E.R.P. Consultores y Asociados, C.A.                      *
  * Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                      *
  * This program is free software: you can redistribute it and/or modify              *
  * it under the terms of the GNU General Public License as published by              *
@@ -16,15 +16,16 @@
 
 const stubFile = require('@adempiere/grpc-api/src/grpc/proto/issue_management_pb.js');
 
-function getSalesRepresentativeFromGRPC(salesRepresentativeToConvert) {
-  if (!salesRepresentativeToConvert) {
+function getUserFromGRPC(userToConvert) {
+  if (!userToConvert) {
     return undefined;
   }
   return {
-    id: salesRepresentativeToConvert.getId(),
-    uuid: salesRepresentativeToConvert.getUuid(),
-    name: salesRepresentativeToConvert.getName(),
-    description: salesRepresentativeToConvert.getDescription()
+    id: userToConvert.getId(),
+    uuid: userToConvert.getUuid(),
+    name: userToConvert.getName(),
+    description: userToConvert.getDescription(),
+    avatar: userToConvert.getAvatar()
   };
 }
 
@@ -94,10 +95,10 @@ function getIssueFromGRPC(issueToConvert) {
     request_type: getRequestTypeFromGRPC(
       issueToConvert.getRequestType()
     ),
-    user_id: issueToConvert.getUserId(),
-    user_uuid: issueToConvert.getUserUuid(),
-    user_name: issueToConvert.getUserName(),
-    sales_representative: getSalesRepresentativeFromGRPC(
+    user: getUserFromGRPC(
+      issueToConvert.getUser()
+    ),
+    sales_representative: getUserFromGRPC(
       issueToConvert.getSalesRepresentative()
     ),
     status: getStatusFromGRPC(
@@ -143,9 +144,9 @@ function getIssueCommentFromGRPC(issueCommentToConvert) {
     uuid: issueCommentToConvert.getUuid(),
     result: issueCommentToConvert.getResult(),
     created: issueCommentToConvert.getCreated(),
-    user_id: issueCommentToConvert.getUserId(),
-    user_uuid: issueCommentToConvert.getUserUuid(),
-    user_name: issueCommentToConvert.getUserName(),
+    user: getUserFromGRPC(
+      issueCommentToConvert.getUser()
+    ),
     issue_comment_type: issueCommentToConvert.getIssueCommentType(),
     issue_comment_type_name: getIssueCommentType({
       value: issueCommentToConvert.getIssueCommentType()
@@ -159,7 +160,7 @@ function getIssueCommentFromGRPC(issueCommentToConvert) {
 }
 
 module.exports = {
-  getSalesRepresentativeFromGRPC,
+  getUserFromGRPC,
   getRequestTypeFromGRPC,
   getPriorityFromGRPC,
   getStatusFromGRPC,
