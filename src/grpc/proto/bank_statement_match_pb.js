@@ -7374,7 +7374,6 @@ proto.bank_statement_match.ListResultMovementsRequest.toObject = function(includ
     searchValue: jspb.Message.getFieldWithDefault(msg, 3, ""),
     bankStatementId: jspb.Message.getFieldWithDefault(msg, 4, 0),
     bankAccountId: jspb.Message.getFieldWithDefault(msg, 5, 0),
-    businessPartnerId: jspb.Message.getFieldWithDefault(msg, 6, 0),
     paymentAmountFrom: (f = msg.getPaymentAmountFrom()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
     paymentAmountTo: (f = msg.getPaymentAmountTo()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
     transactionDateFrom: jspb.Message.getFieldWithDefault(msg, 9, 0),
@@ -7434,10 +7433,6 @@ proto.bank_statement_match.ListResultMovementsRequest.deserializeBinaryFromReade
     case 5:
       var value = /** @type {number} */ (reader.readInt32());
       msg.setBankAccountId(value);
-      break;
-    case 6:
-      var value = /** @type {number} */ (reader.readInt32());
-      msg.setBusinessPartnerId(value);
       break;
     case 7:
       var value = new proto_base_data_type_pb.Decimal;
@@ -7518,13 +7513,6 @@ proto.bank_statement_match.ListResultMovementsRequest.serializeBinaryToWriter = 
   if (f !== 0) {
     writer.writeInt32(
       5,
-      f
-    );
-  }
-  f = message.getBusinessPartnerId();
-  if (f !== 0) {
-    writer.writeInt32(
-      6,
       f
     );
   }
@@ -7648,24 +7636,6 @@ proto.bank_statement_match.ListResultMovementsRequest.prototype.getBankAccountId
  */
 proto.bank_statement_match.ListResultMovementsRequest.prototype.setBankAccountId = function(value) {
   return jspb.Message.setProto3IntField(this, 5, value);
-};
-
-
-/**
- * optional int32 business_partner_id = 6;
- * @return {number}
- */
-proto.bank_statement_match.ListResultMovementsRequest.prototype.getBusinessPartnerId = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 6, 0));
-};
-
-
-/**
- * @param {number} value
- * @return {!proto.bank_statement_match.ListResultMovementsRequest} returns this
- */
-proto.bank_statement_match.ListResultMovementsRequest.prototype.setBusinessPartnerId = function(value) {
-  return jspb.Message.setProto3IntField(this, 6, value);
 };
 
 
@@ -8771,7 +8741,6 @@ proto.bank_statement_match.ProcessMovementsRequest.toObject = function(includeIn
   var f, obj = {
     bankStatementId: jspb.Message.getFieldWithDefault(msg, 1, 0),
     bankAccountId: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    businessPartnerId: jspb.Message.getFieldWithDefault(msg, 3, 0),
     paymentAmountFrom: (f = msg.getPaymentAmountFrom()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
     paymentAmountTo: (f = msg.getPaymentAmountTo()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
     transactionDateFrom: jspb.Message.getFieldWithDefault(msg, 7, 0),
@@ -8819,10 +8788,6 @@ proto.bank_statement_match.ProcessMovementsRequest.deserializeBinaryFromReader =
     case 2:
       var value = /** @type {number} */ (reader.readInt32());
       msg.setBankAccountId(value);
-      break;
-    case 3:
-      var value = /** @type {number} */ (reader.readInt32());
-      msg.setBusinessPartnerId(value);
       break;
     case 5:
       var value = new proto_base_data_type_pb.Decimal;
@@ -8882,13 +8847,6 @@ proto.bank_statement_match.ProcessMovementsRequest.serializeBinaryToWriter = fun
   if (f !== 0) {
     writer.writeInt32(
       2,
-      f
-    );
-  }
-  f = message.getBusinessPartnerId();
-  if (f !== 0) {
-    writer.writeInt32(
-      3,
       f
     );
   }
@@ -8958,24 +8916,6 @@ proto.bank_statement_match.ProcessMovementsRequest.prototype.getBankAccountId = 
  */
 proto.bank_statement_match.ProcessMovementsRequest.prototype.setBankAccountId = function(value) {
   return jspb.Message.setProto3IntField(this, 2, value);
-};
-
-
-/**
- * optional int32 business_partner_id = 3;
- * @return {number}
- */
-proto.bank_statement_match.ProcessMovementsRequest.prototype.getBusinessPartnerId = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
-};
-
-
-/**
- * @param {number} value
- * @return {!proto.bank_statement_match.ProcessMovementsRequest} returns this
- */
-proto.bank_statement_match.ProcessMovementsRequest.prototype.setBusinessPartnerId = function(value) {
-  return jspb.Message.setProto3IntField(this, 3, value);
 };
 
 
