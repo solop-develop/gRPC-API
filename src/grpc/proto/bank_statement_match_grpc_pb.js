@@ -153,6 +153,28 @@ function deserialize_bank_statement_match_ListPaymentsResponse(buffer_arg) {
   return proto_bank_statement_match_pb.ListPaymentsResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_bank_statement_match_ListResultMovementsRequest(arg) {
+  if (!(arg instanceof proto_bank_statement_match_pb.ListResultMovementsRequest)) {
+    throw new Error('Expected argument of type bank_statement_match.ListResultMovementsRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_bank_statement_match_ListResultMovementsRequest(buffer_arg) {
+  return proto_bank_statement_match_pb.ListResultMovementsRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_bank_statement_match_ListResultMovementsResponse(arg) {
+  if (!(arg instanceof proto_bank_statement_match_pb.ListResultMovementsResponse)) {
+    throw new Error('Expected argument of type bank_statement_match.ListResultMovementsResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_bank_statement_match_ListResultMovementsResponse(buffer_arg) {
+  return proto_bank_statement_match_pb.ListResultMovementsResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_bank_statement_match_ListSearchModesRequest(arg) {
   if (!(arg instanceof proto_bank_statement_match_pb.ListSearchModesRequest)) {
     throw new Error('Expected argument of type bank_statement_match.ListSearchModesRequest');
@@ -164,26 +186,26 @@ function deserialize_bank_statement_match_ListSearchModesRequest(buffer_arg) {
   return proto_bank_statement_match_pb.ListSearchModesRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_bank_statement_match_MatchPaymentRequest(arg) {
-  if (!(arg instanceof proto_bank_statement_match_pb.MatchPaymentRequest)) {
-    throw new Error('Expected argument of type bank_statement_match.MatchPaymentRequest');
+function serialize_bank_statement_match_MatchPaymentsRequest(arg) {
+  if (!(arg instanceof proto_bank_statement_match_pb.MatchPaymentsRequest)) {
+    throw new Error('Expected argument of type bank_statement_match.MatchPaymentsRequest');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_bank_statement_match_MatchPaymentRequest(buffer_arg) {
-  return proto_bank_statement_match_pb.MatchPaymentRequest.deserializeBinary(new Uint8Array(buffer_arg));
+function deserialize_bank_statement_match_MatchPaymentsRequest(buffer_arg) {
+  return proto_bank_statement_match_pb.MatchPaymentsRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_bank_statement_match_MatchPaymentResponse(arg) {
-  if (!(arg instanceof proto_bank_statement_match_pb.MatchPaymentResponse)) {
-    throw new Error('Expected argument of type bank_statement_match.MatchPaymentResponse');
+function serialize_bank_statement_match_MatchPaymentsResponse(arg) {
+  if (!(arg instanceof proto_bank_statement_match_pb.MatchPaymentsResponse)) {
+    throw new Error('Expected argument of type bank_statement_match.MatchPaymentsResponse');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_bank_statement_match_MatchPaymentResponse(buffer_arg) {
-  return proto_bank_statement_match_pb.MatchPaymentResponse.deserializeBinary(new Uint8Array(buffer_arg));
+function deserialize_bank_statement_match_MatchPaymentsResponse(buffer_arg) {
+  return proto_bank_statement_match_pb.MatchPaymentsResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_bank_statement_match_ProcessMovementsRequest(arg) {
@@ -208,26 +230,26 @@ function deserialize_bank_statement_match_ProcessMovementsResponse(buffer_arg) {
   return proto_bank_statement_match_pb.ProcessMovementsResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_bank_statement_match_UnmatchPaymentRequest(arg) {
-  if (!(arg instanceof proto_bank_statement_match_pb.UnmatchPaymentRequest)) {
-    throw new Error('Expected argument of type bank_statement_match.UnmatchPaymentRequest');
+function serialize_bank_statement_match_UnmatchPaymentsRequest(arg) {
+  if (!(arg instanceof proto_bank_statement_match_pb.UnmatchPaymentsRequest)) {
+    throw new Error('Expected argument of type bank_statement_match.UnmatchPaymentsRequest');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_bank_statement_match_UnmatchPaymentRequest(buffer_arg) {
-  return proto_bank_statement_match_pb.UnmatchPaymentRequest.deserializeBinary(new Uint8Array(buffer_arg));
+function deserialize_bank_statement_match_UnmatchPaymentsRequest(buffer_arg) {
+  return proto_bank_statement_match_pb.UnmatchPaymentsRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_bank_statement_match_UnmatchPaymentResponse(arg) {
-  if (!(arg instanceof proto_bank_statement_match_pb.UnmatchPaymentResponse)) {
-    throw new Error('Expected argument of type bank_statement_match.UnmatchPaymentResponse');
+function serialize_bank_statement_match_UnmatchPaymentsResponse(arg) {
+  if (!(arg instanceof proto_bank_statement_match_pb.UnmatchPaymentsResponse)) {
+    throw new Error('Expected argument of type bank_statement_match.UnmatchPaymentsResponse');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_bank_statement_match_UnmatchPaymentResponse(buffer_arg) {
-  return proto_bank_statement_match_pb.UnmatchPaymentResponse.deserializeBinary(new Uint8Array(buffer_arg));
+function deserialize_bank_statement_match_UnmatchPaymentsResponse(buffer_arg) {
+  return proto_bank_statement_match_pb.UnmatchPaymentsResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_data_ListLookupItemsResponse(arg) {
@@ -326,28 +348,39 @@ listImportedBankMovements: {
     responseSerialize: serialize_bank_statement_match_ListMatchingMovementsResponse,
     responseDeserialize: deserialize_bank_statement_match_ListMatchingMovementsResponse,
   },
-  // process
-matchPayment: {
-    path: '/bank_statement_match.BankStatementMatch/MatchPayment',
+  listResultMovements: {
+    path: '/bank_statement_match.BankStatementMatch/ListResultMovements',
     requestStream: false,
     responseStream: false,
-    requestType: proto_bank_statement_match_pb.MatchPaymentRequest,
-    responseType: proto_bank_statement_match_pb.MatchPaymentResponse,
-    requestSerialize: serialize_bank_statement_match_MatchPaymentRequest,
-    requestDeserialize: deserialize_bank_statement_match_MatchPaymentRequest,
-    responseSerialize: serialize_bank_statement_match_MatchPaymentResponse,
-    responseDeserialize: deserialize_bank_statement_match_MatchPaymentResponse,
+    requestType: proto_bank_statement_match_pb.ListResultMovementsRequest,
+    responseType: proto_bank_statement_match_pb.ListResultMovementsResponse,
+    requestSerialize: serialize_bank_statement_match_ListResultMovementsRequest,
+    requestDeserialize: deserialize_bank_statement_match_ListResultMovementsRequest,
+    responseSerialize: serialize_bank_statement_match_ListResultMovementsResponse,
+    responseDeserialize: deserialize_bank_statement_match_ListResultMovementsResponse,
   },
-  unmatchPayment: {
-    path: '/bank_statement_match.BankStatementMatch/UnmatchPayment',
+  // process
+matchPayments: {
+    path: '/bank_statement_match.BankStatementMatch/MatchPayments',
     requestStream: false,
     responseStream: false,
-    requestType: proto_bank_statement_match_pb.UnmatchPaymentRequest,
-    responseType: proto_bank_statement_match_pb.UnmatchPaymentResponse,
-    requestSerialize: serialize_bank_statement_match_UnmatchPaymentRequest,
-    requestDeserialize: deserialize_bank_statement_match_UnmatchPaymentRequest,
-    responseSerialize: serialize_bank_statement_match_UnmatchPaymentResponse,
-    responseDeserialize: deserialize_bank_statement_match_UnmatchPaymentResponse,
+    requestType: proto_bank_statement_match_pb.MatchPaymentsRequest,
+    responseType: proto_bank_statement_match_pb.MatchPaymentsResponse,
+    requestSerialize: serialize_bank_statement_match_MatchPaymentsRequest,
+    requestDeserialize: deserialize_bank_statement_match_MatchPaymentsRequest,
+    responseSerialize: serialize_bank_statement_match_MatchPaymentsResponse,
+    responseDeserialize: deserialize_bank_statement_match_MatchPaymentsResponse,
+  },
+  unmatchPayments: {
+    path: '/bank_statement_match.BankStatementMatch/UnmatchPayments',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_bank_statement_match_pb.UnmatchPaymentsRequest,
+    responseType: proto_bank_statement_match_pb.UnmatchPaymentsResponse,
+    requestSerialize: serialize_bank_statement_match_UnmatchPaymentsRequest,
+    requestDeserialize: deserialize_bank_statement_match_UnmatchPaymentsRequest,
+    responseSerialize: serialize_bank_statement_match_UnmatchPaymentsResponse,
+    responseDeserialize: deserialize_bank_statement_match_UnmatchPaymentsResponse,
   },
   listBankStatements: {
     path: '/bank_statement_match.BankStatementMatch/ListBankStatements',
