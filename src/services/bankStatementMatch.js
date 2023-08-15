@@ -238,7 +238,6 @@ class BankStatementMatch {
    * @param {string} token
    * @param {string} searchValue
    * @param {number} bankAccountId
-   * @param {number} businessPartnerId
    * @param {number} paymentAmountFrom
    * @param {number} paymentAmountTo
    * @param {date} transactionDateFrom
@@ -252,7 +251,6 @@ class BankStatementMatch {
     // DSL
     searchValue,
     bankAccountId,
-    businessPartnerId,
     paymentAmountFrom,
     paymentAmountTo,
     transactionDateFrom,
@@ -269,10 +267,6 @@ class BankStatementMatch {
 
     request.setBankAccountId(
       getValidInteger(bankAccountId)
-    );
-
-    request.setBusinessPartnerId(
-      getValidInteger(businessPartnerId)
     );
 
     const { getDecimalToGRPC } = require('@adempiere/grpc-api/src/utils/baseDataTypeToGRPC.js');
@@ -474,7 +468,6 @@ class BankStatementMatch {
    * @param {string} searchValue
    * @param {number} bankStatementId
    * @param {number} bankAccountId
-   * @param {number} businessPartnerId
    * @param {number} paymentAmountFrom
    * @param {number} paymentAmountTo
    * @param {date} transactionDateFrom
@@ -488,7 +481,6 @@ class BankStatementMatch {
     searchValue,
     bankStatementId,
     bankAccountId,
-    businessPartnerId,
     paymentAmountFrom,
     paymentAmountTo,
     transactionDateFrom,
@@ -511,10 +503,6 @@ class BankStatementMatch {
     );
     request.setBankAccountId(
       getValidInteger(bankAccountId)
-    );
-
-    request.setBusinessPartnerId(
-      getValidInteger(businessPartnerId)
     );
 
     const { getDecimalToGRPC } = require('@adempiere/grpc-api/src/utils/baseDataTypeToGRPC.js');
@@ -611,7 +599,6 @@ class BankStatementMatch {
   /**
    * Process Payment Allocation
    * @param {string} token
-   * @param {number} businessPartnerId
    * @param {number} currencyId
    * @param {number} chargeId
    * @param {number} transactionOrganizationId
@@ -624,7 +611,6 @@ class BankStatementMatch {
     // DSL
     bankAccountId,
     bankStatementId,
-    businessPartnerId,
     paymentAmountFrom,
     paymentAmountTo,
     transactionDateFrom,
@@ -641,10 +627,6 @@ class BankStatementMatch {
     
     request.setBankStatementId(
       getValidInteger(bankStatementId)
-    );
-
-    request.setBusinessPartnerId(
-      getValidInteger(businessPartnerId)
     );
 
     const { getDecimalToGRPC } = require('@adempiere/grpc-api/src/utils/baseDataTypeToGRPC.js');
