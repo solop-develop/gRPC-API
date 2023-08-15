@@ -597,14 +597,14 @@ class BankStatementMatch {
 
 
   /**
-   * Process Payment Allocation
+   * Process Bank Statement
    * @param {string} token
-   * @param {number} currencyId
-   * @param {number} chargeId
-   * @param {number} transactionOrganizationId
-   * @param {Date} date
-   * @param {Array} paymentSelectionsList
-   * @param {Array} invoiceSelectionList
+   * @param {number} bankAccountId
+   * @param {number} bankStatementId
+   * @param {number} paymentAmountFrom
+   * @param {number} paymentAmountTo
+   * @param {Date} transactionDateFrom
+   * @param {Date} transactionDateTo
    */
   processMovements({
     token,
@@ -614,9 +614,7 @@ class BankStatementMatch {
     paymentAmountFrom,
     paymentAmountTo,
     transactionDateFrom,
-    transactionDateTo,
-    matchMode,
-    macthingSelectionsList = []
+    transactionDateTo
   }, callback) {
     const { ProcessMovementsRequest } = this.stubFile;
     const request = new ProcessMovementsRequest();
@@ -643,23 +641,6 @@ class BankStatementMatch {
     request.setTransactionDateTo(
       getTimestamp(transactionDateTo)
     );
-
-    request.setMatchMode(
-      getValidInteger(matchMode)
-    );
-
-    const { getKeyValueSelectionToGRPC } = require('@adempiere/grpc-api/src/utils/baseDataTypeToGRPC.js');
-    // payment selections list
-    macthingSelectionsList.forEach(matchMovement => {
-      // selection format = { selectionId: number, selectionValues: [{ columName, value, valueType }] }
-      const convertedRecord = getKeyValueSelectionToGRPC({
-        selectionId: matchMovement.recordId,
-        selectionUuid: matchMovement.recordUuid,
-        selectionValues: matchMovement.attributesList
-      });
-
-      request.addMatchingMovements(convertedRecord);
-    });
 
     const metadata = getMetadata({
       token
