@@ -6013,7 +6013,9 @@ proto.bank_statement_match.MatchingMovement.toObject = function(includeInstance,
     description: jspb.Message.getFieldWithDefault(msg, 10, ""),
     referenceNo: jspb.Message.getFieldWithDefault(msg, 11, ""),
     memo: jspb.Message.getFieldWithDefault(msg, 12, ""),
-    paymentId: jspb.Message.getFieldWithDefault(msg, 13, 0)
+    paymentId: jspb.Message.getFieldWithDefault(msg, 13, 0),
+    isAutomatic: jspb.Message.getBooleanFieldWithDefault(msg, 14, false),
+    paymentAmount: (f = msg.getPaymentAmount()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -6105,6 +6107,15 @@ proto.bank_statement_match.MatchingMovement.deserializeBinaryFromReader = functi
     case 13:
       var value = /** @type {number} */ (reader.readInt32());
       msg.setPaymentId(value);
+      break;
+    case 14:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setIsAutomatic(value);
+      break;
+    case 15:
+      var value = new proto_base_data_type_pb.Decimal;
+      reader.readMessage(value,proto_base_data_type_pb.Decimal.deserializeBinaryFromReader);
+      msg.setPaymentAmount(value);
       break;
     default:
       reader.skipField();
@@ -6228,6 +6239,21 @@ proto.bank_statement_match.MatchingMovement.serializeBinaryToWriter = function(m
     writer.writeInt32(
       13,
       f
+    );
+  }
+  f = message.getIsAutomatic();
+  if (f) {
+    writer.writeBool(
+      14,
+      f
+    );
+  }
+  f = message.getPaymentAmount();
+  if (f != null) {
+    writer.writeMessage(
+      15,
+      f,
+      proto_base_data_type_pb.Decimal.serializeBinaryToWriter
     );
   }
 };
@@ -6543,6 +6569,61 @@ proto.bank_statement_match.MatchingMovement.prototype.setPaymentId = function(va
 };
 
 
+/**
+ * optional bool is_automatic = 14;
+ * @return {boolean}
+ */
+proto.bank_statement_match.MatchingMovement.prototype.getIsAutomatic = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 14, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.bank_statement_match.MatchingMovement} returns this
+ */
+proto.bank_statement_match.MatchingMovement.prototype.setIsAutomatic = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 14, value);
+};
+
+
+/**
+ * optional data.Decimal payment_amount = 15;
+ * @return {?proto.data.Decimal}
+ */
+proto.bank_statement_match.MatchingMovement.prototype.getPaymentAmount = function() {
+  return /** @type{?proto.data.Decimal} */ (
+    jspb.Message.getWrapperField(this, proto_base_data_type_pb.Decimal, 15));
+};
+
+
+/**
+ * @param {?proto.data.Decimal|undefined} value
+ * @return {!proto.bank_statement_match.MatchingMovement} returns this
+*/
+proto.bank_statement_match.MatchingMovement.prototype.setPaymentAmount = function(value) {
+  return jspb.Message.setWrapperField(this, 15, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.bank_statement_match.MatchingMovement} returns this
+ */
+proto.bank_statement_match.MatchingMovement.prototype.clearPaymentAmount = function() {
+  return this.setPaymentAmount(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.bank_statement_match.MatchingMovement.prototype.hasPaymentAmount = function() {
+  return jspb.Message.getField(this, 15) != null;
+};
+
+
 
 /**
  * List of repeated fields within this message type.
@@ -6807,7 +6888,9 @@ proto.bank_statement_match.ResultMovement.toObject = function(includeInstance, m
     description: jspb.Message.getFieldWithDefault(msg, 10, ""),
     referenceNo: jspb.Message.getFieldWithDefault(msg, 11, ""),
     memo: jspb.Message.getFieldWithDefault(msg, 12, ""),
-    paymentId: jspb.Message.getFieldWithDefault(msg, 13, 0)
+    paymentId: jspb.Message.getFieldWithDefault(msg, 13, 0),
+    isAutomatic: jspb.Message.getBooleanFieldWithDefault(msg, 14, false),
+    paymentAmount: (f = msg.getPaymentAmount()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -6899,6 +6982,15 @@ proto.bank_statement_match.ResultMovement.deserializeBinaryFromReader = function
     case 13:
       var value = /** @type {number} */ (reader.readInt32());
       msg.setPaymentId(value);
+      break;
+    case 14:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setIsAutomatic(value);
+      break;
+    case 15:
+      var value = new proto_base_data_type_pb.Decimal;
+      reader.readMessage(value,proto_base_data_type_pb.Decimal.deserializeBinaryFromReader);
+      msg.setPaymentAmount(value);
       break;
     default:
       reader.skipField();
@@ -7022,6 +7114,21 @@ proto.bank_statement_match.ResultMovement.serializeBinaryToWriter = function(mes
     writer.writeInt32(
       13,
       f
+    );
+  }
+  f = message.getIsAutomatic();
+  if (f) {
+    writer.writeBool(
+      14,
+      f
+    );
+  }
+  f = message.getPaymentAmount();
+  if (f != null) {
+    writer.writeMessage(
+      15,
+      f,
+      proto_base_data_type_pb.Decimal.serializeBinaryToWriter
     );
   }
 };
@@ -7334,6 +7441,61 @@ proto.bank_statement_match.ResultMovement.prototype.getPaymentId = function() {
  */
 proto.bank_statement_match.ResultMovement.prototype.setPaymentId = function(value) {
   return jspb.Message.setProto3IntField(this, 13, value);
+};
+
+
+/**
+ * optional bool is_automatic = 14;
+ * @return {boolean}
+ */
+proto.bank_statement_match.ResultMovement.prototype.getIsAutomatic = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 14, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.bank_statement_match.ResultMovement} returns this
+ */
+proto.bank_statement_match.ResultMovement.prototype.setIsAutomatic = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 14, value);
+};
+
+
+/**
+ * optional data.Decimal payment_amount = 15;
+ * @return {?proto.data.Decimal}
+ */
+proto.bank_statement_match.ResultMovement.prototype.getPaymentAmount = function() {
+  return /** @type{?proto.data.Decimal} */ (
+    jspb.Message.getWrapperField(this, proto_base_data_type_pb.Decimal, 15));
+};
+
+
+/**
+ * @param {?proto.data.Decimal|undefined} value
+ * @return {!proto.bank_statement_match.ResultMovement} returns this
+*/
+proto.bank_statement_match.ResultMovement.prototype.setPaymentAmount = function(value) {
+  return jspb.Message.setWrapperField(this, 15, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.bank_statement_match.ResultMovement} returns this
+ */
+proto.bank_statement_match.ResultMovement.prototype.clearPaymentAmount = function() {
+  return this.setPaymentAmount(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.bank_statement_match.ResultMovement.prototype.hasPaymentAmount = function() {
+  return jspb.Message.getField(this, 15) != null;
 };
 
 
