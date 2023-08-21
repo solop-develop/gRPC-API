@@ -1,6 +1,6 @@
 /*************************************************************************************
  * Product: ADempiere gRPC Point Of Sales Client                                     *
- * Copyright (C) 2012-2023 E.R.P. Consultores y Asociados, C.A.                      *
+ * Copyright (C) 2018-2023 E.R.P. Consultores y Asociados, C.A.                      *
  * Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                      *
  * This program is free software: you can redistribute it and/or modify              *
  * it under the terms of the GNU General Public License as published by              *
@@ -511,6 +511,9 @@ class PointOfSales {
     isOnlyAisleSeller,
     isWaitingForInvoice,
     isWaitingForShipment,
+    isBindingOffer,
+    isClosed,
+    isNullified,
     dateOrderedFrom,
     dateOrderedTo,
     salesRepresentativeUuid,
@@ -567,8 +570,13 @@ class PointOfSales {
     request.setIsOnlyAisleSeller(isOnlyAisleSeller)
     request.setIsWaitingForInvoice(isWaitingForInvoice)
     request.setIsWaitingForShipment(isWaitingForShipment)
+    request.setIsBindingOffer(isBindingOffer);
+    request.setIsClosed(isClosed);
+    request.setIsNullified(isNullified);
     request.setSalesRepresentativeUuid(salesRepresentativeUuid)
-    request.setPageSize(pageSize)
+    request.setPageSize(
+      getValidInteger(pageSize)
+    );
     request.setPageToken(pageToken)
 
     const metadata = getMetadata({

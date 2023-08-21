@@ -24369,8 +24369,9 @@ proto.data.ListOrdersRequest.prototype.toObject = function(opt_includeInstance) 
  */
 proto.data.ListOrdersRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    posUuid: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    documentNo: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    posUuid: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    documentNo: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    documentStatus: jspb.Message.getFieldWithDefault(msg, 3, ""),
     businessPartnerUuid: jspb.Message.getFieldWithDefault(msg, 4, ""),
     grandTotal: (f = msg.getGrandTotal()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
     openAmount: (f = msg.getOpenAmount()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
@@ -24379,11 +24380,15 @@ proto.data.ListOrdersRequest.toObject = function(includeInstance, msg) {
     isOnlyAisleSeller: jspb.Message.getBooleanFieldWithDefault(msg, 9, false),
     isWaitingForInvoice: jspb.Message.getBooleanFieldWithDefault(msg, 10, false),
     isWaitingForShipment: jspb.Message.getBooleanFieldWithDefault(msg, 11, false),
-    dateOrderedFrom: jspb.Message.getFieldWithDefault(msg, 12, ""),
-    dateOrderedTo: jspb.Message.getFieldWithDefault(msg, 13, ""),
-    salesRepresentativeUuid: jspb.Message.getFieldWithDefault(msg, 14, ""),
-    pageSize: jspb.Message.getFieldWithDefault(msg, 15, 0),
-    pageToken: jspb.Message.getFieldWithDefault(msg, 16, ""),
+    isBindingOffer: jspb.Message.getBooleanFieldWithDefault(msg, 12, false),
+    isClosed: jspb.Message.getBooleanFieldWithDefault(msg, 13, false),
+    isNullified: jspb.Message.getBooleanFieldWithDefault(msg, 14, false),
+    dateOrderedFrom: jspb.Message.getFieldWithDefault(msg, 15, ""),
+    dateOrderedTo: jspb.Message.getFieldWithDefault(msg, 16, ""),
+    salesRepresentativeUuid: jspb.Message.getFieldWithDefault(msg, 17, ""),
+    searchValue: jspb.Message.getFieldWithDefault(msg, 18, ""),
+    pageSize: jspb.Message.getFieldWithDefault(msg, 19, 0),
+    pageToken: jspb.Message.getFieldWithDefault(msg, 20, ""),
     criteria: (f = msg.getCriteria()) && proto_base_data_type_pb.Criteria.toObject(includeInstance, f)
   };
 
@@ -24421,13 +24426,17 @@ proto.data.ListOrdersRequest.deserializeBinaryFromReader = function(msg, reader)
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 2:
+    case 1:
       var value = /** @type {string} */ (reader.readString());
       msg.setPosUuid(value);
       break;
-    case 3:
+    case 2:
       var value = /** @type {string} */ (reader.readString());
       msg.setDocumentNo(value);
+      break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setDocumentStatus(value);
       break;
     case 4:
       var value = /** @type {string} */ (reader.readString());
@@ -24464,26 +24473,42 @@ proto.data.ListOrdersRequest.deserializeBinaryFromReader = function(msg, reader)
       msg.setIsWaitingForShipment(value);
       break;
     case 12:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setIsBindingOffer(value);
+      break;
+    case 13:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setIsClosed(value);
+      break;
+    case 14:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setIsNullified(value);
+      break;
+    case 15:
       var value = /** @type {string} */ (reader.readString());
       msg.setDateOrderedFrom(value);
       break;
-    case 13:
+    case 16:
       var value = /** @type {string} */ (reader.readString());
       msg.setDateOrderedTo(value);
       break;
-    case 14:
+    case 17:
       var value = /** @type {string} */ (reader.readString());
       msg.setSalesRepresentativeUuid(value);
       break;
-    case 15:
+    case 18:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setSearchValue(value);
+      break;
+    case 19:
       var value = /** @type {number} */ (reader.readInt32());
       msg.setPageSize(value);
       break;
-    case 16:
+    case 20:
       var value = /** @type {string} */ (reader.readString());
       msg.setPageToken(value);
       break;
-    case 17:
+    case 21:
       var value = new proto_base_data_type_pb.Criteria;
       reader.readMessage(value,proto_base_data_type_pb.Criteria.deserializeBinaryFromReader);
       msg.setCriteria(value);
@@ -24520,11 +24545,18 @@ proto.data.ListOrdersRequest.serializeBinaryToWriter = function(message, writer)
   f = message.getPosUuid();
   if (f.length > 0) {
     writer.writeString(
-      2,
+      1,
       f
     );
   }
   f = message.getDocumentNo();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
+  f = message.getDocumentStatus();
   if (f.length > 0) {
     writer.writeString(
       3,
@@ -24589,45 +24621,73 @@ proto.data.ListOrdersRequest.serializeBinaryToWriter = function(message, writer)
       f
     );
   }
+  f = message.getIsBindingOffer();
+  if (f) {
+    writer.writeBool(
+      12,
+      f
+    );
+  }
+  f = message.getIsClosed();
+  if (f) {
+    writer.writeBool(
+      13,
+      f
+    );
+  }
+  f = message.getIsNullified();
+  if (f) {
+    writer.writeBool(
+      14,
+      f
+    );
+  }
   f = message.getDateOrderedFrom();
   if (f.length > 0) {
     writer.writeString(
-      12,
+      15,
       f
     );
   }
   f = message.getDateOrderedTo();
   if (f.length > 0) {
     writer.writeString(
-      13,
+      16,
       f
     );
   }
   f = message.getSalesRepresentativeUuid();
   if (f.length > 0) {
     writer.writeString(
-      14,
+      17,
+      f
+    );
+  }
+  f = message.getSearchValue();
+  if (f.length > 0) {
+    writer.writeString(
+      18,
       f
     );
   }
   f = message.getPageSize();
   if (f !== 0) {
     writer.writeInt32(
-      15,
+      19,
       f
     );
   }
   f = message.getPageToken();
   if (f.length > 0) {
     writer.writeString(
-      16,
+      20,
       f
     );
   }
   f = message.getCriteria();
   if (f != null) {
     writer.writeMessage(
-      17,
+      21,
       f,
       proto_base_data_type_pb.Criteria.serializeBinaryToWriter
     );
@@ -24636,11 +24696,11 @@ proto.data.ListOrdersRequest.serializeBinaryToWriter = function(message, writer)
 
 
 /**
- * optional string pos_uuid = 2;
+ * optional string pos_uuid = 1;
  * @return {string}
  */
 proto.data.ListOrdersRequest.prototype.getPosUuid = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
@@ -24649,16 +24709,16 @@ proto.data.ListOrdersRequest.prototype.getPosUuid = function() {
  * @return {!proto.data.ListOrdersRequest} returns this
  */
 proto.data.ListOrdersRequest.prototype.setPosUuid = function(value) {
-  return jspb.Message.setProto3StringField(this, 2, value);
+  return jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
 /**
- * optional string document_no = 3;
+ * optional string document_no = 2;
  * @return {string}
  */
 proto.data.ListOrdersRequest.prototype.getDocumentNo = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
 
@@ -24667,6 +24727,24 @@ proto.data.ListOrdersRequest.prototype.getDocumentNo = function() {
  * @return {!proto.data.ListOrdersRequest} returns this
  */
 proto.data.ListOrdersRequest.prototype.setDocumentNo = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * optional string document_status = 3;
+ * @return {string}
+ */
+proto.data.ListOrdersRequest.prototype.getDocumentStatus = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.data.ListOrdersRequest} returns this
+ */
+proto.data.ListOrdersRequest.prototype.setDocumentStatus = function(value) {
   return jspb.Message.setProto3StringField(this, 3, value);
 };
 
@@ -24854,11 +24932,65 @@ proto.data.ListOrdersRequest.prototype.setIsWaitingForShipment = function(value)
 
 
 /**
- * optional string date_ordered_from = 12;
+ * optional bool is_binding_offer = 12;
+ * @return {boolean}
+ */
+proto.data.ListOrdersRequest.prototype.getIsBindingOffer = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 12, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.data.ListOrdersRequest} returns this
+ */
+proto.data.ListOrdersRequest.prototype.setIsBindingOffer = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 12, value);
+};
+
+
+/**
+ * optional bool is_closed = 13;
+ * @return {boolean}
+ */
+proto.data.ListOrdersRequest.prototype.getIsClosed = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 13, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.data.ListOrdersRequest} returns this
+ */
+proto.data.ListOrdersRequest.prototype.setIsClosed = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 13, value);
+};
+
+
+/**
+ * optional bool is_nullified = 14;
+ * @return {boolean}
+ */
+proto.data.ListOrdersRequest.prototype.getIsNullified = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 14, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.data.ListOrdersRequest} returns this
+ */
+proto.data.ListOrdersRequest.prototype.setIsNullified = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 14, value);
+};
+
+
+/**
+ * optional string date_ordered_from = 15;
  * @return {string}
  */
 proto.data.ListOrdersRequest.prototype.getDateOrderedFrom = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 12, ""));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 15, ""));
 };
 
 
@@ -24867,69 +24999,15 @@ proto.data.ListOrdersRequest.prototype.getDateOrderedFrom = function() {
  * @return {!proto.data.ListOrdersRequest} returns this
  */
 proto.data.ListOrdersRequest.prototype.setDateOrderedFrom = function(value) {
-  return jspb.Message.setProto3StringField(this, 12, value);
+  return jspb.Message.setProto3StringField(this, 15, value);
 };
 
 
 /**
- * optional string date_ordered_to = 13;
+ * optional string date_ordered_to = 16;
  * @return {string}
  */
 proto.data.ListOrdersRequest.prototype.getDateOrderedTo = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 13, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.data.ListOrdersRequest} returns this
- */
-proto.data.ListOrdersRequest.prototype.setDateOrderedTo = function(value) {
-  return jspb.Message.setProto3StringField(this, 13, value);
-};
-
-
-/**
- * optional string sales_representative_uuid = 14;
- * @return {string}
- */
-proto.data.ListOrdersRequest.prototype.getSalesRepresentativeUuid = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 14, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.data.ListOrdersRequest} returns this
- */
-proto.data.ListOrdersRequest.prototype.setSalesRepresentativeUuid = function(value) {
-  return jspb.Message.setProto3StringField(this, 14, value);
-};
-
-
-/**
- * optional int32 page_size = 15;
- * @return {number}
- */
-proto.data.ListOrdersRequest.prototype.getPageSize = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 15, 0));
-};
-
-
-/**
- * @param {number} value
- * @return {!proto.data.ListOrdersRequest} returns this
- */
-proto.data.ListOrdersRequest.prototype.setPageSize = function(value) {
-  return jspb.Message.setProto3IntField(this, 15, value);
-};
-
-
-/**
- * optional string page_token = 16;
- * @return {string}
- */
-proto.data.ListOrdersRequest.prototype.getPageToken = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 16, ""));
 };
 
@@ -24938,18 +25016,90 @@ proto.data.ListOrdersRequest.prototype.getPageToken = function() {
  * @param {string} value
  * @return {!proto.data.ListOrdersRequest} returns this
  */
-proto.data.ListOrdersRequest.prototype.setPageToken = function(value) {
+proto.data.ListOrdersRequest.prototype.setDateOrderedTo = function(value) {
   return jspb.Message.setProto3StringField(this, 16, value);
 };
 
 
 /**
- * optional Criteria criteria = 17;
+ * optional string sales_representative_uuid = 17;
+ * @return {string}
+ */
+proto.data.ListOrdersRequest.prototype.getSalesRepresentativeUuid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 17, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.data.ListOrdersRequest} returns this
+ */
+proto.data.ListOrdersRequest.prototype.setSalesRepresentativeUuid = function(value) {
+  return jspb.Message.setProto3StringField(this, 17, value);
+};
+
+
+/**
+ * optional string search_value = 18;
+ * @return {string}
+ */
+proto.data.ListOrdersRequest.prototype.getSearchValue = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 18, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.data.ListOrdersRequest} returns this
+ */
+proto.data.ListOrdersRequest.prototype.setSearchValue = function(value) {
+  return jspb.Message.setProto3StringField(this, 18, value);
+};
+
+
+/**
+ * optional int32 page_size = 19;
+ * @return {number}
+ */
+proto.data.ListOrdersRequest.prototype.getPageSize = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 19, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.data.ListOrdersRequest} returns this
+ */
+proto.data.ListOrdersRequest.prototype.setPageSize = function(value) {
+  return jspb.Message.setProto3IntField(this, 19, value);
+};
+
+
+/**
+ * optional string page_token = 20;
+ * @return {string}
+ */
+proto.data.ListOrdersRequest.prototype.getPageToken = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 20, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.data.ListOrdersRequest} returns this
+ */
+proto.data.ListOrdersRequest.prototype.setPageToken = function(value) {
+  return jspb.Message.setProto3StringField(this, 20, value);
+};
+
+
+/**
+ * optional Criteria criteria = 21;
  * @return {?proto.data.Criteria}
  */
 proto.data.ListOrdersRequest.prototype.getCriteria = function() {
   return /** @type{?proto.data.Criteria} */ (
-    jspb.Message.getWrapperField(this, proto_base_data_type_pb.Criteria, 17));
+    jspb.Message.getWrapperField(this, proto_base_data_type_pb.Criteria, 21));
 };
 
 
@@ -24958,7 +25108,7 @@ proto.data.ListOrdersRequest.prototype.getCriteria = function() {
  * @return {!proto.data.ListOrdersRequest} returns this
 */
 proto.data.ListOrdersRequest.prototype.setCriteria = function(value) {
-  return jspb.Message.setWrapperField(this, 17, value);
+  return jspb.Message.setWrapperField(this, 21, value);
 };
 
 
@@ -24976,7 +25126,7 @@ proto.data.ListOrdersRequest.prototype.clearCriteria = function() {
  * @return {boolean}
  */
 proto.data.ListOrdersRequest.prototype.hasCriteria = function() {
-  return jspb.Message.getField(this, 17) != null;
+  return jspb.Message.getField(this, 21) != null;
 };
 
 
