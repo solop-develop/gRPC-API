@@ -654,7 +654,8 @@ proto.issue_management.RequestType.toObject = function(includeInstance, msg) {
     uuid: jspb.Message.getFieldWithDefault(msg, 2, ""),
     name: jspb.Message.getFieldWithDefault(msg, 3, ""),
     description: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    dueDateTolerance: jspb.Message.getFieldWithDefault(msg, 5, 0)
+    dueDateTolerance: jspb.Message.getFieldWithDefault(msg, 5, 0),
+    defaultStatus: (f = msg.getDefaultStatus()) && proto.issue_management.Status.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -710,6 +711,11 @@ proto.issue_management.RequestType.deserializeBinaryFromReader = function(msg, r
     case 5:
       var value = /** @type {number} */ (reader.readInt32());
       msg.setDueDateTolerance(value);
+      break;
+    case 6:
+      var value = new proto.issue_management.Status;
+      reader.readMessage(value,proto.issue_management.Status.deserializeBinaryFromReader);
+      msg.setDefaultStatus(value);
       break;
     default:
       reader.skipField();
@@ -773,6 +779,14 @@ proto.issue_management.RequestType.serializeBinaryToWriter = function(message, w
     writer.writeInt32(
       5,
       f
+    );
+  }
+  f = message.getDefaultStatus();
+  if (f != null) {
+    writer.writeMessage(
+      6,
+      f,
+      proto.issue_management.Status.serializeBinaryToWriter
     );
   }
 };
@@ -868,6 +882,43 @@ proto.issue_management.RequestType.prototype.setDueDateTolerance = function(valu
 };
 
 
+/**
+ * optional Status default_status = 6;
+ * @return {?proto.issue_management.Status}
+ */
+proto.issue_management.RequestType.prototype.getDefaultStatus = function() {
+  return /** @type{?proto.issue_management.Status} */ (
+    jspb.Message.getWrapperField(this, proto.issue_management.Status, 6));
+};
+
+
+/**
+ * @param {?proto.issue_management.Status|undefined} value
+ * @return {!proto.issue_management.RequestType} returns this
+*/
+proto.issue_management.RequestType.prototype.setDefaultStatus = function(value) {
+  return jspb.Message.setWrapperField(this, 6, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.issue_management.RequestType} returns this
+ */
+proto.issue_management.RequestType.prototype.clearDefaultStatus = function() {
+  return this.setDefaultStatus(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.issue_management.RequestType.prototype.hasDefaultStatus = function() {
+  return jspb.Message.getField(this, 6) != null;
+};
+
+
 
 
 
@@ -900,6 +951,7 @@ proto.issue_management.ListRequestTypesRequest.prototype.toObject = function(opt
  */
 proto.issue_management.ListRequestTypesRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
+    searchValue: jspb.Message.getFieldWithDefault(msg, 1, ""),
     pageSize: jspb.Message.getFieldWithDefault(msg, 2, 0),
     pageToken: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
@@ -938,6 +990,10 @@ proto.issue_management.ListRequestTypesRequest.deserializeBinaryFromReader = fun
     }
     var field = reader.getFieldNumber();
     switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setSearchValue(value);
+      break;
     case 2:
       var value = /** @type {number} */ (reader.readInt32());
       msg.setPageSize(value);
@@ -975,6 +1031,13 @@ proto.issue_management.ListRequestTypesRequest.prototype.serializeBinary = funct
  */
 proto.issue_management.ListRequestTypesRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
+  f = message.getSearchValue();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
   f = message.getPageSize();
   if (f !== 0) {
     writer.writeInt32(
@@ -989,6 +1052,24 @@ proto.issue_management.ListRequestTypesRequest.serializeBinaryToWriter = functio
       f
     );
   }
+};
+
+
+/**
+ * optional string search_value = 1;
+ * @return {string}
+ */
+proto.issue_management.ListRequestTypesRequest.prototype.getSearchValue = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.issue_management.ListRequestTypesRequest} returns this
+ */
+proto.issue_management.ListRequestTypesRequest.prototype.setSearchValue = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -1530,6 +1611,7 @@ proto.issue_management.ListSalesRepresentativesRequest.prototype.toObject = func
  */
 proto.issue_management.ListSalesRepresentativesRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
+    searchValue: jspb.Message.getFieldWithDefault(msg, 1, ""),
     pageSize: jspb.Message.getFieldWithDefault(msg, 2, 0),
     pageToken: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
@@ -1568,6 +1650,10 @@ proto.issue_management.ListSalesRepresentativesRequest.deserializeBinaryFromRead
     }
     var field = reader.getFieldNumber();
     switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setSearchValue(value);
+      break;
     case 2:
       var value = /** @type {number} */ (reader.readInt32());
       msg.setPageSize(value);
@@ -1605,6 +1691,13 @@ proto.issue_management.ListSalesRepresentativesRequest.prototype.serializeBinary
  */
 proto.issue_management.ListSalesRepresentativesRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
+  f = message.getSearchValue();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
   f = message.getPageSize();
   if (f !== 0) {
     writer.writeInt32(
@@ -1619,6 +1712,24 @@ proto.issue_management.ListSalesRepresentativesRequest.serializeBinaryToWriter =
       f
     );
   }
+};
+
+
+/**
+ * optional string search_value = 1;
+ * @return {string}
+ */
+proto.issue_management.ListSalesRepresentativesRequest.prototype.getSearchValue = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.issue_management.ListSalesRepresentativesRequest} returns this
+ */
+proto.issue_management.ListSalesRepresentativesRequest.prototype.setSearchValue = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -2160,6 +2271,7 @@ proto.issue_management.ListPrioritiesRequest.prototype.toObject = function(opt_i
  */
 proto.issue_management.ListPrioritiesRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
+    searchValue: jspb.Message.getFieldWithDefault(msg, 1, ""),
     pageSize: jspb.Message.getFieldWithDefault(msg, 2, 0),
     pageToken: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
@@ -2198,6 +2310,10 @@ proto.issue_management.ListPrioritiesRequest.deserializeBinaryFromReader = funct
     }
     var field = reader.getFieldNumber();
     switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setSearchValue(value);
+      break;
     case 2:
       var value = /** @type {number} */ (reader.readInt32());
       msg.setPageSize(value);
@@ -2235,6 +2351,13 @@ proto.issue_management.ListPrioritiesRequest.prototype.serializeBinary = functio
  */
 proto.issue_management.ListPrioritiesRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
+  f = message.getSearchValue();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
   f = message.getPageSize();
   if (f !== 0) {
     writer.writeInt32(
@@ -2249,6 +2372,24 @@ proto.issue_management.ListPrioritiesRequest.serializeBinaryToWriter = function(
       f
     );
   }
+};
+
+
+/**
+ * optional string search_value = 1;
+ * @return {string}
+ */
+proto.issue_management.ListPrioritiesRequest.prototype.getSearchValue = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.issue_management.ListPrioritiesRequest} returns this
+ */
+proto.issue_management.ListPrioritiesRequest.prototype.setSearchValue = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -2760,6 +2901,7 @@ proto.issue_management.ListStatusesRequest.prototype.toObject = function(opt_inc
  */
 proto.issue_management.ListStatusesRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
+    searchValue: jspb.Message.getFieldWithDefault(msg, 1, ""),
     pageSize: jspb.Message.getFieldWithDefault(msg, 2, 0),
     pageToken: jspb.Message.getFieldWithDefault(msg, 3, ""),
     requestTypeId: jspb.Message.getFieldWithDefault(msg, 4, 0),
@@ -2800,6 +2942,10 @@ proto.issue_management.ListStatusesRequest.deserializeBinaryFromReader = functio
     }
     var field = reader.getFieldNumber();
     switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setSearchValue(value);
+      break;
     case 2:
       var value = /** @type {number} */ (reader.readInt32());
       msg.setPageSize(value);
@@ -2845,6 +2991,13 @@ proto.issue_management.ListStatusesRequest.prototype.serializeBinary = function(
  */
 proto.issue_management.ListStatusesRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
+  f = message.getSearchValue();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
   f = message.getPageSize();
   if (f !== 0) {
     writer.writeInt32(
@@ -2873,6 +3026,24 @@ proto.issue_management.ListStatusesRequest.serializeBinaryToWriter = function(me
       f
     );
   }
+};
+
+
+/**
+ * optional string search_value = 1;
+ * @return {string}
+ */
+proto.issue_management.ListStatusesRequest.prototype.getSearchValue = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.issue_management.ListStatusesRequest} returns this
+ */
+proto.issue_management.ListStatusesRequest.prototype.setSearchValue = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -4416,6 +4587,7 @@ proto.issue_management.ListIssuesRequest.prototype.toObject = function(opt_inclu
  */
 proto.issue_management.ListIssuesRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
+    searchValue: jspb.Message.getFieldWithDefault(msg, 1, ""),
     pageSize: jspb.Message.getFieldWithDefault(msg, 2, 0),
     pageToken: jspb.Message.getFieldWithDefault(msg, 3, ""),
     tableName: jspb.Message.getFieldWithDefault(msg, 4, ""),
@@ -4457,6 +4629,10 @@ proto.issue_management.ListIssuesRequest.deserializeBinaryFromReader = function(
     }
     var field = reader.getFieldNumber();
     switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setSearchValue(value);
+      break;
     case 2:
       var value = /** @type {number} */ (reader.readInt32());
       msg.setPageSize(value);
@@ -4506,6 +4682,13 @@ proto.issue_management.ListIssuesRequest.prototype.serializeBinary = function() 
  */
 proto.issue_management.ListIssuesRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
+  f = message.getSearchValue();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
   f = message.getPageSize();
   if (f !== 0) {
     writer.writeInt32(
@@ -4541,6 +4724,24 @@ proto.issue_management.ListIssuesRequest.serializeBinaryToWriter = function(mess
       f
     );
   }
+};
+
+
+/**
+ * optional string search_value = 1;
+ * @return {string}
+ */
+proto.issue_management.ListIssuesRequest.prototype.getSearchValue = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.issue_management.ListIssuesRequest} returns this
+ */
+proto.issue_management.ListIssuesRequest.prototype.setSearchValue = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -6408,6 +6609,7 @@ proto.issue_management.ListIssueCommentsRequest.prototype.toObject = function(op
  */
 proto.issue_management.ListIssueCommentsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
+    searchValue: jspb.Message.getFieldWithDefault(msg, 1, ""),
     pageSize: jspb.Message.getFieldWithDefault(msg, 2, 0),
     pageToken: jspb.Message.getFieldWithDefault(msg, 3, ""),
     issueId: jspb.Message.getFieldWithDefault(msg, 4, 0),
@@ -6448,6 +6650,10 @@ proto.issue_management.ListIssueCommentsRequest.deserializeBinaryFromReader = fu
     }
     var field = reader.getFieldNumber();
     switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setSearchValue(value);
+      break;
     case 2:
       var value = /** @type {number} */ (reader.readInt32());
       msg.setPageSize(value);
@@ -6493,6 +6699,13 @@ proto.issue_management.ListIssueCommentsRequest.prototype.serializeBinary = func
  */
 proto.issue_management.ListIssueCommentsRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
+  f = message.getSearchValue();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
   f = message.getPageSize();
   if (f !== 0) {
     writer.writeInt32(
@@ -6521,6 +6734,24 @@ proto.issue_management.ListIssueCommentsRequest.serializeBinaryToWriter = functi
       f
     );
   }
+};
+
+
+/**
+ * optional string search_value = 1;
+ * @return {string}
+ */
+proto.issue_management.ListIssueCommentsRequest.prototype.getSearchValue = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.issue_management.ListIssueCommentsRequest} returns this
+ */
+proto.issue_management.ListIssueCommentsRequest.prototype.setSearchValue = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
 };
 
 

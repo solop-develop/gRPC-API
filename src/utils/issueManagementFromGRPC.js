@@ -38,7 +38,10 @@ function getRequestTypeFromGRPC(requestTypeToConvert) {
     uuid: requestTypeToConvert.getUuid(),
     name: requestTypeToConvert.getName(),
     description: requestTypeToConvert.getDescription(),
-    due_date_tolerance: requestTypeToConvert.getDueDateTolerance()
+    due_date_tolerance: requestTypeToConvert.getDueDateTolerance(),
+    default_status: getStatusFromGRPC(
+      requestTypeToConvert.getDefaultStatus()
+    )
   };
 }
 
