@@ -1,6 +1,6 @@
 /*************************************************************************************
  * Product: ADempiere gRPC Issue Management Client                                   *
- * Copyright (C) 2012-2023 E.R.P. Consultores y Asociados, C.A.                      *
+ * Copyright (C) 2018-2023 E.R.P. Consultores y Asociados, C.A.                      *
  * Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                      *
  * This program is free software: you can redistribute it and/or modify              *
  * it under the terms of the GNU General Public License as published by              *
@@ -15,7 +15,7 @@
  ************************************************************************************/
 
 const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
-const { getValidId, getTimestamp } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
+const { getValidInteger, getTimestamp } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
 
 class IssueManagement {
 
@@ -60,19 +60,24 @@ class IssueManagement {
 
   /**
    * List Request Types
+   * @param {string} searchValue
    * @param {number} pageSize
    * @param {string} pageToken
    * @param {string} token
    */
   listRequestTypes({
     token,
+    searchValue,
     pageSize,
     pageToken
   }, callback) {
     const { ListRequestTypesRequest } = this.stubFile;
     const request = new ListRequestTypesRequest();
 
-    request.setPageSize(pageSize);
+    request.setSearchValue(searchValue);
+    request.setPageSize(
+      getValidInteger(pageSize)
+    );
     request.setPageToken(pageToken);
 
     const metadata = getMetadata({
@@ -89,19 +94,24 @@ class IssueManagement {
 
   /**
    * List Request Types
+   * @param {string} searchValue
    * @param {number} pageSize
    * @param {string} pageToken
    * @param {string} token
    */
   listSalesRepresentatives({
     token,
+    searchValue,
     pageSize,
     pageToken
   }, callback) {
     const { ListSalesRepresentativesRequest } = this.stubFile;
     const request = new ListSalesRepresentativesRequest();
 
-    request.setPageSize(pageSize);
+    request.setSearchValue(searchValue);
+    request.setPageSize(
+      getValidInteger(pageSize)
+    );
     request.setPageToken(pageToken);
 
     const metadata = getMetadata({
@@ -118,19 +128,24 @@ class IssueManagement {
 
   /**
    * List Priorities
+   * @param {string} searchValue
    * @param {number} pageSize
    * @param {string} pageToken
    * @param {string} token
    */
   listPriorities({
     token,
+    searchValue,
     pageSize,
     pageToken
   }, callback) {
     const { ListPrioritiesRequest } = this.stubFile;
     const request = new ListPrioritiesRequest();
 
-    request.setPageSize(pageSize);
+    request.setSearchValue(searchValue);
+    request.setPageSize(
+      getValidInteger(pageSize)
+    );
     request.setPageToken(pageToken);
 
     const metadata = getMetadata({
@@ -149,6 +164,7 @@ class IssueManagement {
    * List Statuses
    * @param {number} requestTypeId
    * @param {string} requestTypeUuid
+   * @param {string} searchValue
    * @param {number} pageSize
    * @param {string} pageToken
    * @param {string} token
@@ -157,6 +173,7 @@ class IssueManagement {
     token,
     requestTypeId,
     requestTypeUuid,
+    searchValue,
     pageSize,
     pageToken
   }, callback) {
@@ -164,11 +181,14 @@ class IssueManagement {
     const request = new ListStatusesRequest();
 
     request.setRequestTypeId(
-      getValidId(requestTypeId)
+      getValidInteger(requestTypeId)
     );
     request.setRequestTypeUuid(requestTypeUuid);
 
-    request.setPageSize(pageSize);
+    request.setSearchValue(searchValue);
+    request.setPageSize(
+      getValidInteger(pageSize)
+    );
     request.setPageToken(pageToken);
 
     const metadata = getMetadata({
@@ -202,7 +222,7 @@ class IssueManagement {
 
     request.setTableName(tableName);
     request.setRecordId(
-      getValidId(recordId)
+      getValidInteger(recordId)
     );
     request.setRecordUuid(recordUuid);
 
@@ -222,6 +242,7 @@ class IssueManagement {
    * @param {string} tableName
    * @param {number} recordId
    * @param {string} recordUuid
+   * @param {string} searchValue
    * @param {number} pageSize
    * @param {string} pageToken
    * @param {string} token
@@ -231,6 +252,7 @@ class IssueManagement {
     tableName,
     recordId,
     recordUuid,
+    searchValue,
     pageSize,
     pageToken
   }, callback) {
@@ -239,11 +261,14 @@ class IssueManagement {
 
     request.setTableName(tableName);
     request.setRecordId(
-      getValidId(recordId)
+      getValidInteger(recordId)
     );
     request.setRecordUuid(recordUuid);
 
-    request.setPageSize(pageSize);
+    request.setSearchValue(searchValue);
+    request.setPageSize(
+      getValidInteger(pageSize)
+    );
     request.setPageToken(pageToken);
 
     const metadata = getMetadata({
@@ -290,22 +315,22 @@ class IssueManagement {
 
     request.setTableName(tableName);
     request.setRecordId(
-      getValidId(recordId)
+      getValidInteger(recordId)
     );
     request.setRecordUuid(recordUuid);
 
     request.setSubject(subject);
     request.setSummary(summary);
     request.setRequestTypeId(
-      getValidId(requestTypeId)
+      getValidInteger(requestTypeId)
     );
     request.setRequestTypeUuid(requestTypeUuid);
     request.setSalesRepresentativeId(
-      getValidId(salesRepresentativeId)
+      getValidInteger(salesRepresentativeId)
     );
     request.setSalesRepresentativeUuid(salesRepresentativeUuid);
     request.setStatusId(
-      getValidId(statusId)
+      getValidInteger(statusId)
     );
     request.setStatusUuid(statusUuid);
     request.setPriorityValue(priorityValue);
@@ -355,21 +380,21 @@ class IssueManagement {
 
     request.setUuid(uuid);
     request.setId(
-      getValidId(id)
+      getValidInteger(id)
     );
     
     request.setSubject(subject);
     request.setSummary(summary);
     request.setRequestTypeId(
-      getValidId(requestTypeId)
+      getValidInteger(requestTypeId)
     );
     request.setRequestTypeUuid(requestTypeUuid);
     request.setSalesRepresentativeId(
-      getValidId(salesRepresentativeId)
+      getValidInteger(salesRepresentativeId)
     );
     request.setSalesRepresentativeUuid(salesRepresentativeUuid);
       request.setStatusId(
-      getValidId(statusId)
+        getValidInteger(statusId)
     );
     request.setStatusUuid(statusUuid);
     request.setPriorityValue(priorityValue);
@@ -404,7 +429,7 @@ class IssueManagement {
 
     request.setUuid(uuid);
     request.setId(
-      getValidId(id)
+      getValidInteger(id)
     );
 
     const metadata = getMetadata({
@@ -423,6 +448,7 @@ class IssueManagement {
    * List Issue Comments
    * @param {number} issueId
    * @param {string} issueUuid
+   * @param {string} searchValue
    * @param {number} pageSize
    * @param {string} pageToken
    * @param {string} token
@@ -431,6 +457,7 @@ class IssueManagement {
     token,
     issueId,
     issueUuid,
+    searchValue,
     pageSize,
     pageToken
   }, callback) {
@@ -438,11 +465,14 @@ class IssueManagement {
     const request = new ListIssueCommentsRequest();
 
     request.setIssueId(
-      getValidId(issueId)
+      getValidInteger(issueId)
     );
     request.setIssueUuid(issueUuid);
 
-    request.setPageSize(pageSize);
+    request.setSearchValue(searchValue);
+    request.setPageSize(
+      getValidInteger(pageSize)
+    );
     request.setPageToken(pageToken);
 
     const metadata = getMetadata({
@@ -472,7 +502,7 @@ class IssueManagement {
     const request = new CreateIssueCommentRequest();
 
     request.setIssueId(
-      getValidId(issueId)
+      getValidInteger(issueId)
     );
     request.setIssueUuid(issueUuid);
 
@@ -507,7 +537,7 @@ class IssueManagement {
 
     request.setUuid(uuid);
     request.setId(
-      getValidId(id)
+      getValidInteger(id)
     );
 
     request.setResult(result);
@@ -539,7 +569,7 @@ class IssueManagement {
 
     request.setUuid(uuid);
     request.setId(
-      getValidId(id)
+      getValidInteger(id)
     );
 
     const metadata = getMetadata({
