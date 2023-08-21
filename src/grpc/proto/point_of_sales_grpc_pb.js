@@ -595,6 +595,28 @@ function deserialize_data_ListAvailableWarehousesResponse(buffer_arg) {
   return proto_point_of_sales_pb.ListAvailableWarehousesResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_data_ListBanksRequest(arg) {
+  if (!(arg instanceof proto_point_of_sales_pb.ListBanksRequest)) {
+    throw new Error('Expected argument of type data.ListBanksRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_ListBanksRequest(buffer_arg) {
+  return proto_point_of_sales_pb.ListBanksRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_data_ListBanksResponse(arg) {
+  if (!(arg instanceof proto_point_of_sales_pb.ListBanksResponse)) {
+    throw new Error('Expected argument of type data.ListBanksResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_ListBanksResponse(buffer_arg) {
+  return proto_point_of_sales_pb.ListBanksResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_data_ListCashMovementsRequest(arg) {
   if (!(arg instanceof proto_point_of_sales_pb.ListCashMovementsRequest)) {
     throw new Error('Expected argument of type data.ListCashMovementsRequest');
@@ -1592,6 +1614,18 @@ printShipmentPreview: {
     requestDeserialize: deserialize_data_PrintShipmentPreviewRequest,
     responseSerialize: serialize_data_PrintShipmentPreviewResponse,
     responseDeserialize: deserialize_data_PrintShipmentPreviewResponse,
+  },
+  // Bank
+listBanks: {
+    path: '/data.Store/ListBanks',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_point_of_sales_pb.ListBanksRequest,
+    responseType: proto_point_of_sales_pb.ListBanksResponse,
+    requestSerialize: serialize_data_ListBanksRequest,
+    requestDeserialize: deserialize_data_ListBanksRequest,
+    responseSerialize: serialize_data_ListBanksResponse,
+    responseDeserialize: deserialize_data_ListBanksResponse,
   },
   // 	Create Customer Account
 createCustomerBankAccount: {
