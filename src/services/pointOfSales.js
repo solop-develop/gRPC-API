@@ -2374,6 +2374,43 @@ class PointOfSales {
     );
   }
 
+  /**
+   * List Campaigns
+   * @param {string} posUuid
+   * @param {string} searchValue
+   * @param {number} pageSize
+   * @param {string} pageToken
+   */
+  listCampaigns({
+    token,
+    // DSL
+    posUuid,
+    searchValue,
+    // Page Data
+    pageSize,
+    pageToken
+  }, callback) {
+    const { ListCampaignsRequest } = this.stubFile;
+    const request = new ListCampaignsRequest();
+
+    request.setPosUuid(posUuid);
+    request.setSearchValue(searchValue);
+    request.setPageSize(
+      getValidInteger(pageSize)
+    );
+    request.setPageToken(pageToken);
+
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getPointOfSalesService().listCampaigns(
+      request,
+      metadata,
+      callback
+    );
+  }
+
 }
 
 module.exports = PointOfSales;

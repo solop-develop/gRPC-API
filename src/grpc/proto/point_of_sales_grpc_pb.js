@@ -617,6 +617,28 @@ function deserialize_data_ListBanksResponse(buffer_arg) {
   return proto_point_of_sales_pb.ListBanksResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_data_ListCampaignsRequest(arg) {
+  if (!(arg instanceof proto_point_of_sales_pb.ListCampaignsRequest)) {
+    throw new Error('Expected argument of type data.ListCampaignsRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_ListCampaignsRequest(buffer_arg) {
+  return proto_point_of_sales_pb.ListCampaignsRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_data_ListCampaignsResponse(arg) {
+  if (!(arg instanceof proto_point_of_sales_pb.ListCampaignsResponse)) {
+    throw new Error('Expected argument of type data.ListCampaignsResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_ListCampaignsResponse(buffer_arg) {
+  return proto_point_of_sales_pb.ListCampaignsResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_data_ListCashMovementsRequest(arg) {
   if (!(arg instanceof proto_point_of_sales_pb.ListCashMovementsRequest)) {
     throw new Error('Expected argument of type data.ListCashMovementsRequest');
@@ -1974,6 +1996,18 @@ saveCommandShortcut: {
     requestDeserialize: deserialize_data_DeleteCommandShortcutRequest,
     responseSerialize: serialize_data_Empty,
     responseDeserialize: deserialize_data_Empty,
+  },
+  // Campaign
+listCampaigns: {
+    path: '/data.Store/ListCampaigns',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_point_of_sales_pb.ListCampaignsRequest,
+    responseType: proto_point_of_sales_pb.ListCampaignsResponse,
+    requestSerialize: serialize_data_ListCampaignsRequest,
+    requestDeserialize: deserialize_data_ListCampaignsRequest,
+    responseSerialize: serialize_data_ListCampaignsResponse,
+    responseDeserialize: deserialize_data_ListCampaignsResponse,
   },
 };
 
