@@ -10892,7 +10892,10 @@ proto.data.ShipmentLine.toObject = function(includeInstance, msg) {
     charge: (f = msg.getCharge()) && proto_core_functionality_pb.Charge.toObject(includeInstance, f),
     description: jspb.Message.getFieldWithDefault(msg, 6, ""),
     quantity: (f = msg.getQuantity()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
-    line: jspb.Message.getFieldWithDefault(msg, 8, 0)
+    movementQuantity: (f = msg.getMovementQuantity()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
+    line: jspb.Message.getFieldWithDefault(msg, 9, 0),
+    uom: (f = msg.getUom()) && proto_core_functionality_pb.ProductConversion.toObject(includeInstance, f),
+    productUom: (f = msg.getProductUom()) && proto_core_functionality_pb.ProductConversion.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -10961,8 +10964,23 @@ proto.data.ShipmentLine.deserializeBinaryFromReader = function(msg, reader) {
       msg.setQuantity(value);
       break;
     case 8:
+      var value = new proto_base_data_type_pb.Decimal;
+      reader.readMessage(value,proto_base_data_type_pb.Decimal.deserializeBinaryFromReader);
+      msg.setMovementQuantity(value);
+      break;
+    case 9:
       var value = /** @type {number} */ (reader.readInt32());
       msg.setLine(value);
+      break;
+    case 10:
+      var value = new proto_core_functionality_pb.ProductConversion;
+      reader.readMessage(value,proto_core_functionality_pb.ProductConversion.deserializeBinaryFromReader);
+      msg.setUom(value);
+      break;
+    case 11:
+      var value = new proto_core_functionality_pb.ProductConversion;
+      reader.readMessage(value,proto_core_functionality_pb.ProductConversion.deserializeBinaryFromReader);
+      msg.setProductUom(value);
       break;
     default:
       reader.skipField();
@@ -11045,11 +11063,35 @@ proto.data.ShipmentLine.serializeBinaryToWriter = function(message, writer) {
       proto_base_data_type_pb.Decimal.serializeBinaryToWriter
     );
   }
+  f = message.getMovementQuantity();
+  if (f != null) {
+    writer.writeMessage(
+      8,
+      f,
+      proto_base_data_type_pb.Decimal.serializeBinaryToWriter
+    );
+  }
   f = message.getLine();
   if (f !== 0) {
     writer.writeInt32(
-      8,
+      9,
       f
+    );
+  }
+  f = message.getUom();
+  if (f != null) {
+    writer.writeMessage(
+      10,
+      f,
+      proto_core_functionality_pb.ProductConversion.serializeBinaryToWriter
+    );
+  }
+  f = message.getProductUom();
+  if (f != null) {
+    writer.writeMessage(
+      11,
+      f,
+      proto_core_functionality_pb.ProductConversion.serializeBinaryToWriter
     );
   }
 };
@@ -11239,11 +11281,48 @@ proto.data.ShipmentLine.prototype.hasQuantity = function() {
 
 
 /**
- * optional int32 line = 8;
+ * optional Decimal movement_quantity = 8;
+ * @return {?proto.data.Decimal}
+ */
+proto.data.ShipmentLine.prototype.getMovementQuantity = function() {
+  return /** @type{?proto.data.Decimal} */ (
+    jspb.Message.getWrapperField(this, proto_base_data_type_pb.Decimal, 8));
+};
+
+
+/**
+ * @param {?proto.data.Decimal|undefined} value
+ * @return {!proto.data.ShipmentLine} returns this
+*/
+proto.data.ShipmentLine.prototype.setMovementQuantity = function(value) {
+  return jspb.Message.setWrapperField(this, 8, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.data.ShipmentLine} returns this
+ */
+proto.data.ShipmentLine.prototype.clearMovementQuantity = function() {
+  return this.setMovementQuantity(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.data.ShipmentLine.prototype.hasMovementQuantity = function() {
+  return jspb.Message.getField(this, 8) != null;
+};
+
+
+/**
+ * optional int32 line = 9;
  * @return {number}
  */
 proto.data.ShipmentLine.prototype.getLine = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 8, 0));
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 9, 0));
 };
 
 
@@ -11252,7 +11331,81 @@ proto.data.ShipmentLine.prototype.getLine = function() {
  * @return {!proto.data.ShipmentLine} returns this
  */
 proto.data.ShipmentLine.prototype.setLine = function(value) {
-  return jspb.Message.setProto3IntField(this, 8, value);
+  return jspb.Message.setProto3IntField(this, 9, value);
+};
+
+
+/**
+ * optional ProductConversion uom = 10;
+ * @return {?proto.data.ProductConversion}
+ */
+proto.data.ShipmentLine.prototype.getUom = function() {
+  return /** @type{?proto.data.ProductConversion} */ (
+    jspb.Message.getWrapperField(this, proto_core_functionality_pb.ProductConversion, 10));
+};
+
+
+/**
+ * @param {?proto.data.ProductConversion|undefined} value
+ * @return {!proto.data.ShipmentLine} returns this
+*/
+proto.data.ShipmentLine.prototype.setUom = function(value) {
+  return jspb.Message.setWrapperField(this, 10, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.data.ShipmentLine} returns this
+ */
+proto.data.ShipmentLine.prototype.clearUom = function() {
+  return this.setUom(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.data.ShipmentLine.prototype.hasUom = function() {
+  return jspb.Message.getField(this, 10) != null;
+};
+
+
+/**
+ * optional ProductConversion product_uom = 11;
+ * @return {?proto.data.ProductConversion}
+ */
+proto.data.ShipmentLine.prototype.getProductUom = function() {
+  return /** @type{?proto.data.ProductConversion} */ (
+    jspb.Message.getWrapperField(this, proto_core_functionality_pb.ProductConversion, 11));
+};
+
+
+/**
+ * @param {?proto.data.ProductConversion|undefined} value
+ * @return {!proto.data.ShipmentLine} returns this
+*/
+proto.data.ShipmentLine.prototype.setProductUom = function(value) {
+  return jspb.Message.setWrapperField(this, 11, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.data.ShipmentLine} returns this
+ */
+proto.data.ShipmentLine.prototype.clearProductUom = function() {
+  return this.setProductUom(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.data.ShipmentLine.prototype.hasProductUom = function() {
+  return jspb.Message.getField(this, 11) != null;
 };
 
 
