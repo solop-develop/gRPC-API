@@ -1,6 +1,6 @@
 /*************************************************************************************
  * Product: ADempiere gRPC Bank Statement Match Client                               *
- * Copyright (C) 2018-2023 E.R.P. Consultores y Asociados, C.A.                      *
+ * Copyright (C) 2018-present E.R.P. Consultores y Asociados, C.A.                   *
  * Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                      *
  * This program is free software: you can redistribute it and/or modify              *
  * it under the terms of the GNU General Public License as published by              *
@@ -237,6 +237,7 @@ class BankStatementMatch {
    * Get List Imported Bank Movements
    * @param {string} token
    * @param {string} searchValue
+   * @param {number} bankStatementId
    * @param {number} bankAccountId
    * @param {number} paymentAmountFrom
    * @param {number} paymentAmountTo
@@ -250,6 +251,7 @@ class BankStatementMatch {
     token,
     // DSL
     searchValue,
+    bankStatementId,
     bankAccountId,
     paymentAmountFrom,
     paymentAmountTo,
@@ -265,6 +267,9 @@ class BankStatementMatch {
 
     request.setSearchValue(searchValue);
 
+    request.setBankStatementId(
+      getValidInteger(bankStatementId)
+    );
     request.setBankAccountId(
       getValidInteger(bankAccountId)
     );

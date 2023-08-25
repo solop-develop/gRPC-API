@@ -3809,7 +3809,8 @@ proto.bank_statement_match.ListImportedBankMovementsRequest.toObject = function(
     pageSize: jspb.Message.getFieldWithDefault(msg, 1, 0),
     pageToken: jspb.Message.getFieldWithDefault(msg, 2, ""),
     searchValue: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    bankAccountId: jspb.Message.getFieldWithDefault(msg, 4, 0),
+    bankStatementId: jspb.Message.getFieldWithDefault(msg, 4, 0),
+    bankAccountId: jspb.Message.getFieldWithDefault(msg, 5, 0),
     paymentAmountFrom: (f = msg.getPaymentAmountFrom()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
     paymentAmountTo: (f = msg.getPaymentAmountTo()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
     transactionDateFrom: jspb.Message.getFieldWithDefault(msg, 8, 0),
@@ -3864,6 +3865,10 @@ proto.bank_statement_match.ListImportedBankMovementsRequest.deserializeBinaryFro
       msg.setSearchValue(value);
       break;
     case 4:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setBankStatementId(value);
+      break;
+    case 5:
       var value = /** @type {number} */ (reader.readInt32());
       msg.setBankAccountId(value);
       break;
@@ -3939,10 +3944,17 @@ proto.bank_statement_match.ListImportedBankMovementsRequest.serializeBinaryToWri
       f
     );
   }
-  f = message.getBankAccountId();
+  f = message.getBankStatementId();
   if (f !== 0) {
     writer.writeInt32(
       4,
+      f
+    );
+  }
+  f = message.getBankAccountId();
+  if (f !== 0) {
+    writer.writeInt32(
+      5,
       f
     );
   }
@@ -4041,10 +4053,10 @@ proto.bank_statement_match.ListImportedBankMovementsRequest.prototype.setSearchV
 
 
 /**
- * optional int32 bank_account_id = 4;
+ * optional int32 bank_statement_id = 4;
  * @return {number}
  */
-proto.bank_statement_match.ListImportedBankMovementsRequest.prototype.getBankAccountId = function() {
+proto.bank_statement_match.ListImportedBankMovementsRequest.prototype.getBankStatementId = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
 };
 
@@ -4053,8 +4065,26 @@ proto.bank_statement_match.ListImportedBankMovementsRequest.prototype.getBankAcc
  * @param {number} value
  * @return {!proto.bank_statement_match.ListImportedBankMovementsRequest} returns this
  */
-proto.bank_statement_match.ListImportedBankMovementsRequest.prototype.setBankAccountId = function(value) {
+proto.bank_statement_match.ListImportedBankMovementsRequest.prototype.setBankStatementId = function(value) {
   return jspb.Message.setProto3IntField(this, 4, value);
+};
+
+
+/**
+ * optional int32 bank_account_id = 5;
+ * @return {number}
+ */
+proto.bank_statement_match.ListImportedBankMovementsRequest.prototype.getBankAccountId = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 5, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.bank_statement_match.ListImportedBankMovementsRequest} returns this
+ */
+proto.bank_statement_match.ListImportedBankMovementsRequest.prototype.setBankAccountId = function(value) {
+  return jspb.Message.setProto3IntField(this, 5, value);
 };
 
 
@@ -4227,7 +4257,8 @@ proto.bank_statement_match.ImportedBankMovement.toObject = function(includeInsta
     currency: (f = msg.getCurrency()) && proto.bank_statement_match.Currency.toObject(includeInstance, f),
     amount: (f = msg.getAmount()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
     memo: jspb.Message.getFieldWithDefault(msg, 9, ""),
-    paymentId: jspb.Message.getFieldWithDefault(msg, 10, 0)
+    paymentId: jspb.Message.getFieldWithDefault(msg, 10, 0),
+    bankStatementLineId: jspb.Message.getFieldWithDefault(msg, 11, 0)
   };
 
   if (includeInstance) {
@@ -4306,6 +4337,10 @@ proto.bank_statement_match.ImportedBankMovement.deserializeBinaryFromReader = fu
     case 10:
       var value = /** @type {number} */ (reader.readInt32());
       msg.setPaymentId(value);
+      break;
+    case 11:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setBankStatementLineId(value);
       break;
     default:
       reader.skipField();
@@ -4406,6 +4441,13 @@ proto.bank_statement_match.ImportedBankMovement.serializeBinaryToWriter = functi
   if (f !== 0) {
     writer.writeInt32(
       10,
+      f
+    );
+  }
+  f = message.getBankStatementLineId();
+  if (f !== 0) {
+    writer.writeInt32(
+      11,
       f
     );
   }
@@ -4646,6 +4688,24 @@ proto.bank_statement_match.ImportedBankMovement.prototype.getPaymentId = functio
  */
 proto.bank_statement_match.ImportedBankMovement.prototype.setPaymentId = function(value) {
   return jspb.Message.setProto3IntField(this, 10, value);
+};
+
+
+/**
+ * optional int32 bank_statement_line_id = 11;
+ * @return {number}
+ */
+proto.bank_statement_match.ImportedBankMovement.prototype.getBankStatementLineId = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 11, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.bank_statement_match.ImportedBankMovement} returns this
+ */
+proto.bank_statement_match.ImportedBankMovement.prototype.setBankStatementLineId = function(value) {
+  return jspb.Message.setProto3IntField(this, 11, value);
 };
 
 
