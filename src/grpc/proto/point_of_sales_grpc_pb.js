@@ -595,6 +595,28 @@ function deserialize_data_ListAvailableWarehousesResponse(buffer_arg) {
   return proto_point_of_sales_pb.ListAvailableWarehousesResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_data_ListBankAccountsRequest(arg) {
+  if (!(arg instanceof proto_point_of_sales_pb.ListBankAccountsRequest)) {
+    throw new Error('Expected argument of type data.ListBankAccountsRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_ListBankAccountsRequest(buffer_arg) {
+  return proto_point_of_sales_pb.ListBankAccountsRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_data_ListBankAccountsResponse(arg) {
+  if (!(arg instanceof proto_point_of_sales_pb.ListBankAccountsResponse)) {
+    throw new Error('Expected argument of type data.ListBankAccountsResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_ListBankAccountsResponse(buffer_arg) {
+  return proto_point_of_sales_pb.ListBankAccountsResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_data_ListBanksRequest(arg) {
   if (!(arg instanceof proto_point_of_sales_pb.ListBanksRequest)) {
     throw new Error('Expected argument of type data.ListBanksRequest');
@@ -1648,6 +1670,17 @@ listBanks: {
     requestDeserialize: deserialize_data_ListBanksRequest,
     responseSerialize: serialize_data_ListBanksResponse,
     responseDeserialize: deserialize_data_ListBanksResponse,
+  },
+  listBankAccounts: {
+    path: '/data.Store/ListBankAccounts',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_point_of_sales_pb.ListBankAccountsRequest,
+    responseType: proto_point_of_sales_pb.ListBankAccountsResponse,
+    requestSerialize: serialize_data_ListBankAccountsRequest,
+    requestDeserialize: deserialize_data_ListBankAccountsRequest,
+    responseSerialize: serialize_data_ListBankAccountsResponse,
+    responseDeserialize: deserialize_data_ListBankAccountsResponse,
   },
   // 	Create Customer Account
 createCustomerBankAccount: {

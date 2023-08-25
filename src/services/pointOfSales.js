@@ -1,6 +1,6 @@
 /*************************************************************************************
  * Product: ADempiere gRPC Point Of Sales Client                                     *
- * Copyright (C) 2018-2023 E.R.P. Consultores y Asociados, C.A.                      *
+ * Copyright (C) 2018-present E.R.P. Consultores y Asociados, C.A.                   *
  * Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                      *
  * This program is free software: you can redistribute it and/or modify              *
  * it under the terms of the GNU General Public License as published by              *
@@ -2032,6 +2032,47 @@ class PointOfSales {
     });
 
     this.getPointOfSalesService().listBanks(
+      request,
+      metadata,
+      callback
+    );
+  }
+
+  /**
+   * List Bank Accounts
+   * @param {string} posUuid
+   * @param {number} bankId,
+   * @param {string} searchValue
+   * @param {number} pageSize
+   * @param {string} pageToken
+   */
+  listBankAccounts({
+    token,
+    // DSL
+    posUuid,
+    searchValue,
+    // Page Data
+    pageSize,
+    pageToken
+  }, callback) {
+    const { ListBankAccountsRequest } = this.stubFile;
+    const request = new ListBankAccountsRequest();
+
+    request.setPosUuid(posUuid);
+    request.setBankId(
+      getValidInteger(bankId)
+    );
+    request.setSearchValue(searchValue);
+    request.setPageSize(
+      getValidInteger(pageSize)
+    );
+    request.setPageToken(pageToken);
+
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getPointOfSalesService().listBankAccounts(
       request,
       metadata,
       callback
