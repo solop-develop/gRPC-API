@@ -54,7 +54,7 @@ function getBankAccountFromGRPC(bankAccount) {
   }
   const { getDecimalFromGRPC } = require('@adempiere/grpc-api/src/utils/baseDataTypeFromGRPC.js');
   const {
-    convertBusinessPartnerFromGRPC
+    convertBusinessPartnerFromGRPC, convertCurrencyFromGRPC
   } = require('@adempiere/grpc-api/src/utils/convertCoreFunctionality');
 
   return {
