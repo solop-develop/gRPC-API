@@ -40,7 +40,7 @@ class BankStatementMatch {
     }
 
     this.initBankStatementMatchService();
-    console.log('ADempiere Payment Allocation Client Started');
+    console.info('ADempiere Bank Statement Match Client Started');
   }
 
   // Init connection
@@ -53,7 +53,7 @@ class BankStatementMatch {
     );
   }
 
-  // Get Payment Allocation Service
+  // Get Bank Statement Match Service
   getBankStatementMatchService() {
     return this.bankStatementMatch;
   }

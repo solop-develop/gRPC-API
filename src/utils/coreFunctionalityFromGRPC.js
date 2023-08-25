@@ -1,6 +1,6 @@
 /*************************************************************************************
- * Product: ADempiere gRPC Business Data Client Convert Utils                        *
- * Copyright (C) 2012-2022 E.R.P. Consultores y Asociados, C.A.                      *
+ * Product: ADempiere gRPC Core Functionality Convert Utils                          *
+ * Copyright (C) 2018-present E.R.P. Consultores y Asociados, C.A.                   *
  * Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                      *
  * This program is free software: you can redistribute it and/or modify              *
  * it under the terms of the GNU General Public License as published by              *
@@ -8,11 +8,13 @@
  * (at your option) any later version.                                               *
  * This program is distributed in the hope that it will be useful,                   *
  * but WITHOUT ANY WARRANTY; without even the implied warranty of                    *
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                     *
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the                      *
  * GNU General Public License for more details.                                      *
  * You should have received a copy of the GNU General Public License                 *
  * along with this program. If not, see <https://www.gnu.org/licenses/>.             *
  ************************************************************************************/
+
+const stubFile = require('@adempiere/grpc-api/src/grpc/proto/core_functionality_pb.js');
 
 function getCurrencyFromGRPC(currency) {
   if (!currency) {
@@ -29,6 +31,62 @@ function getCurrencyFromGRPC(currency) {
   };
 }
 
+/**
+ * @returns
+    CHECKING = 0;
+    SAVINGS = 1;
+ */
+function getBankAccount_BankAccountType({ key, value }) {
+  const { getValueOrKey } = require('@adempiere/grpc-api/src/utils/convertEnums.js')
+  const { BankAccount } = stubFile;
+  const { BankAccountType } = BankAccount;
+
+  return getValueOrKey({
+    list: BankAccountType,
+    key,
+    value
+  });
+}
+
+function getBankAccountFromGRPC(bankAccount) {
+  if (!bankAccount) {
+    return undefined;
+  }
+  const { getDecimalFromGRPC } = require('@adempiere/grpc-api/src/utils/baseDataTypeFromGRPC.js');
+  const {
+    convertBusinessPartnerFromGRPC
+  } = require('@adempiere/grpc-api/src/utils/convertCoreFunctionality');
+
+  return {
+    uuid: bankAccount.getUuid(),
+    id: bankAccount.getId(),
+    name: bankAccount.getName(),
+    account_no: bankAccount.getAccountNo(),
+    description: bankAccount.getDescription(),
+    currency: convertCurrencyFromGRPC(
+      bankAccount.getCurrency()
+    ),
+    bban: bankAccount.getBban(),
+    iban: bankAccount.getIban(),
+    credit_limit: getDecimalFromGRPC(
+      bankAccount.getCreditLimit()
+    ),
+    current_balance: getDecimalFromGRPC(
+      bankAccount.getCurrentBalance()
+    ),
+    is_default: bankAccount.getIsDefault(),
+    business_partner: convertBusinessPartnerFromGRPC(
+      bankAccount.getBusinessPartner()
+    ),
+    bank_account_type: bankAccount.getBankAccountType(),
+    bank_account_type_name: getBankAccount_BankAccountType({
+      value: bankAccount.getBankAccountType()
+    })
+  };
+}
+
 module.exports = {
-  getCurrencyFromGRPC
+  getCurrencyFromGRPC,
+  getBankAccountFromGRPC,
+  getBankAccount_BankAccountType
 };
