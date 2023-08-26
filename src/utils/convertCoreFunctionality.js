@@ -1,6 +1,6 @@
 /*************************************************************************************
  * Product: ADempiere gRPC Core Functionality Client Convert Utils                   *
- * Copyright (C) 2012-2023 E.R.P. Consultores y Asociados, C.A.                      *
+ * Copyright (C) 2018-present E.R.P. Consultores y Asociados, C.A.                   *
  * Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                      *
  * This program is free software: you can redistribute it and/or modify              *
  * it under the terms of the GNU General Public License as published by              *
@@ -8,7 +8,7 @@
  * (at your option) any later version.                                               *
  * This program is distributed in the hope that it will be useful,                   *
  * but WITHOUT ANY WARRANTY; without even the implied warranty of                    *
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                     *
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the                      *
  * GNU General Public License for more details.                                      *
  * You should have received a copy of the GNU General Public License                 *
  * along with this program. If not, see <https://www.gnu.org/licenses/>.             *
@@ -16,50 +16,39 @@
 
  const convertCoreFunctionality = {
   convertCountryFromGRPC(countryToConvert) {
-    if (countryToConvert) {
-      return {
-        id: countryToConvert.getId(),
-        uuid: countryToConvert.getUuid(),
-        country_code: countryToConvert.getCountryCode(),
-        name: countryToConvert.getName(),
-        description: countryToConvert.getDescription(),
-        has_region: countryToConvert.getHasRegion(),
-        region_name: countryToConvert.getRegionName(),
-        display_sequence: countryToConvert.getDisplaySequence(),
-        is_address_lines_reverse: countryToConvert.getIsAddressLinesReverse(),
-        capture_sequence: countryToConvert.getCaptureSequence(),
-        display_sequence_local: countryToConvert.getDisplaySequenceLocal(),
-        is_address_lines_local_reverse: countryToConvert.getIsAddressLinesLocalReverse(),
-        expression_postal: countryToConvert.getExpressionPostal(),
-        has_postal_add: countryToConvert.getHasPostalAdd(),
-        expression_phone: countryToConvert.getExpressionPhone(),
-        media_size: countryToConvert.getMediaSize(),
-        expression_bank_routing_no: countryToConvert.getExpressionBankRoutingNo(),
-        expression_bank_account_no: countryToConvert.getExpressionBankAccountNo(),
-        language: countryToConvert.getLanguage(),
-        allow_cities_out_of_list: countryToConvert.getAllowCitiesOutOfList(),
-        is_postcode_lookup: countryToConvert.getIsPostcodeLookup(),
-        currency: convertCoreFunctionality.convertCurrencyFromGRPC(
-          countryToConvert.getCurrency()
-        )
-      };
+    if (!countryToConvert) {
+      return undefined;
     }
-    return undefined;
-  },
 
-  convertCurrencyFromGRPC(currency) {
-    if(currency) {
-      return {
-        id: currency.getId(),
-        uuid: currency.getUuid(),
-        iso_code: currency.getIsoCode(),
-        currency_symbol: currency.getCurSymbol(),
-        description: currency.getDescription(),
-        standard_precision: currency.getStandardPrecision(),
-        costing_precision: currency.getCostingPrecision()
-      };
-    }
-    return undefined;
+    const {
+      getCurrencyFromGRPC
+    } = require('@adempiere/grpc-api/src/utils/coreFunctionalityFromGRPC');
+    return {
+      id: countryToConvert.getId(),
+      uuid: countryToConvert.getUuid(),
+      country_code: countryToConvert.getCountryCode(),
+      name: countryToConvert.getName(),
+      description: countryToConvert.getDescription(),
+      has_region: countryToConvert.getHasRegion(),
+      region_name: countryToConvert.getRegionName(),
+      display_sequence: countryToConvert.getDisplaySequence(),
+      is_address_lines_reverse: countryToConvert.getIsAddressLinesReverse(),
+      capture_sequence: countryToConvert.getCaptureSequence(),
+      display_sequence_local: countryToConvert.getDisplaySequenceLocal(),
+      is_address_lines_local_reverse: countryToConvert.getIsAddressLinesLocalReverse(),
+      expression_postal: countryToConvert.getExpressionPostal(),
+      has_postal_add: countryToConvert.getHasPostalAdd(),
+      expression_phone: countryToConvert.getExpressionPhone(),
+      media_size: countryToConvert.getMediaSize(),
+      expression_bank_routing_no: countryToConvert.getExpressionBankRoutingNo(),
+      expression_bank_account_no: countryToConvert.getExpressionBankAccountNo(),
+      language: countryToConvert.getLanguage(),
+      allow_cities_out_of_list: countryToConvert.getAllowCitiesOutOfList(),
+      is_postcode_lookup: countryToConvert.getIsPostcodeLookup(),
+      currency: getCurrencyFromGRPC(
+        countryToConvert.getCurrency()
+      )
+    };
   },
 
   convertOrganizationFromGRPC(organization) {
@@ -256,9 +245,12 @@
   convertProductPriceFromGRPC(productPrice) {
     if (productPrice) {
       const { getDecimalFromGRPC } = require('@adempiere/grpc-api/src/utils/baseDataTypeFromGRPC.js');
+      const {
+        getCurrencyFromGRPC
+      } = require('@adempiere/grpc-api/src/utils/coreFunctionalityFromGRPC');
 
       return {
-        currency: convertCoreFunctionality.convertCurrencyFromGRPC(
+        currency: getCurrencyFromGRPC(
           productPrice.getCurrency()
         ),
         tax_rate: convertCoreFunctionality.convertTaxRateFromGRPC(
@@ -288,7 +280,7 @@
         quantity_available: getDecimalFromGRPC(
           productPrice.getQuantityAvailable()
         ),
-        schema_currency: convertCoreFunctionality.convertCurrencyFromGRPC(
+        schema_currency: getCurrencyFromGRPC(
           productPrice.getDisplayCurrency()
         ),
         schema_price_list: getDecimalFromGRPC(
@@ -326,50 +318,56 @@
   },
 
   convertPriceListFromGRPC(priceListToConvert) {
-    if (priceListToConvert) {
-      return {
-        uuid: priceListToConvert.getUuid(),
-        id: priceListToConvert.getId(),
-        name: priceListToConvert.getName(),
-        description: priceListToConvert.getDescription(),
-        currency: convertCoreFunctionality.convertCurrencyFromGRPC(
-          priceListToConvert.getCurrency()
-        ),
-        is_default: priceListToConvert.getIsDefault(),
-        is_tax_included: priceListToConvert.getIsTaxIncluded(),
-        is_enforce_price_limit: priceListToConvert.getIsEnforcePriceLimit(),
-        is_net_price: priceListToConvert.getIsNetPrice(),
-        price_precision: priceListToConvert.getPricePrecision()
-      };
+    if (!priceListToConvert) {
+      return undefined;
     }
-    return undefined;
+    const {
+      getCurrencyFromGRPC
+    } = require('@adempiere/grpc-api/src/utils/coreFunctionalityFromGRPC');
+    return {
+      uuid: priceListToConvert.getUuid(),
+      id: priceListToConvert.getId(),
+      name: priceListToConvert.getName(),
+      description: priceListToConvert.getDescription(),
+      currency: getCurrencyFromGRPC(
+        priceListToConvert.getCurrency()
+      ),
+      is_default: priceListToConvert.getIsDefault(),
+      is_tax_included: priceListToConvert.getIsTaxIncluded(),
+      is_enforce_price_limit: priceListToConvert.getIsEnforcePriceLimit(),
+      is_net_price: priceListToConvert.getIsNetPrice(),
+      price_precision: priceListToConvert.getPricePrecision()
+    };
   },
 
   convertConversionRateFromGRPC(conversionRate) {
-    if (conversionRate) {
-      const { getDecimalFromGRPC } = require('@adempiere/grpc-api/src/utils/baseDataTypeFromGRPC.js');
-
-      return {
-        uuid: conversionRate.getUuid(),
-        id: conversionRate.getId(),
-        conversion_type_uuid: conversionRate.getConversionTypeUuid(),
-        valid_from: conversionRate.getValidFrom(),
-        valid_to: conversionRate.getValidTo(),
-        currency_from: convertCoreFunctionality.convertCurrencyFromGRPC(
-          conversionRate.getCurrencyFrom()
-        ),
-        currency_to: convertCoreFunctionality.convertCurrencyFromGRPC(
-          conversionRate.getCurrencyTo()
-        ),
-        multiply_rate: getDecimalFromGRPC(
-          conversionRate.getMultiplyRate()
-        ),
-        divide_rate: getDecimalFromGRPC(
-          conversionRate.getDivideRate()
-        )
-      };
+    if (!conversionRate) {
+      return undefined;
     }
-    return undefined;
+    const { getDecimalFromGRPC } = require('@adempiere/grpc-api/src/utils/baseDataTypeFromGRPC.js');
+    const {
+      getCurrencyFromGRPC
+    } = require('@adempiere/grpc-api/src/utils/coreFunctionalityFromGRPC');
+
+    return {
+      uuid: conversionRate.getUuid(),
+      id: conversionRate.getId(),
+      conversion_type_uuid: conversionRate.getConversionTypeUuid(),
+      valid_from: conversionRate.getValidFrom(),
+      valid_to: conversionRate.getValidTo(),
+      currency_from: getCurrencyFromGRPC(
+        conversionRate.getCurrencyFrom()
+      ),
+      currency_to: getCurrencyFromGRPC(
+        conversionRate.getCurrencyTo()
+      ),
+      multiply_rate: getDecimalFromGRPC(
+        conversionRate.getMultiplyRate()
+      ),
+      divide_rate: getDecimalFromGRPC(
+        conversionRate.getDivideRate()
+      )
+    };
   }
 
 };

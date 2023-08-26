@@ -54,8 +54,11 @@ function getBankAccountFromGRPC(bankAccount) {
   }
   const { getDecimalFromGRPC } = require('@adempiere/grpc-api/src/utils/baseDataTypeFromGRPC.js');
   const {
-    convertBusinessPartnerFromGRPC, convertCurrencyFromGRPC
+    convertBusinessPartnerFromGRPC
   } = require('@adempiere/grpc-api/src/utils/convertCoreFunctionality');
+  const {
+    getCurrencyFromGRPC
+  } = require('@adempiere/grpc-api/src/utils/coreFunctionalityFromGRPC');
 
   return {
     uuid: bankAccount.getUuid(),
@@ -63,7 +66,7 @@ function getBankAccountFromGRPC(bankAccount) {
     name: bankAccount.getName(),
     account_no: bankAccount.getAccountNo(),
     description: bankAccount.getDescription(),
-    currency: convertCurrencyFromGRPC(
+    currency: getCurrencyFromGRPC(
       bankAccount.getCurrency()
     ),
     bban: bankAccount.getBban(),

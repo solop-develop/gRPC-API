@@ -2072,6 +2072,48 @@ class PointOfSales {
     );
   }
 
+  /**
+   * List Bank Accounts
+   * @param {string} posUuid
+   * @param {number} bankId,
+   * @param {string} searchValue
+   * @param {number} pageSize
+   * @param {string} pageToken
+   */
+  listBankAccounts({
+    token,
+    // DSL
+    posUuid,
+    bankId,
+    searchValue,
+    // Page Data
+    pageSize,
+    pageToken
+  }, callback) {
+    const { ListBankAccountsRequest } = this.stubFile;
+    const request = new ListBankAccountsRequest();
+
+    request.setPosUuid(posUuid);
+    request.setBankId(
+      getValidInteger(bankId)
+    );
+    request.setSearchValue(searchValue);
+    request.setPageSize(
+      getValidInteger(pageSize)
+    );
+    request.setPageToken(pageToken);
+
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getPointOfSalesService().listBankAccounts(
+      request,
+      metadata,
+      callback
+    );
+  }
+
   //  List Customer Bank Accounts
   listCustomerBankAccounts({
     token,
