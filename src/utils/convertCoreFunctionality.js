@@ -253,10 +253,10 @@
         currency: getCurrencyFromGRPC(
           productPrice.getCurrency()
         ),
-        tax_rate: getCurrencyFromGRPC(
+        tax_rate: convertCoreFunctionality.convertTaxRateFromGRPC(
           productPrice.getTaxRate()
         ),
-        product: getCurrencyFromGRPC(
+        product: convertCoreFunctionality.convertProductFromGRPC(
           productPrice.getProduct()
         ),
         price_list: getDecimalFromGRPC(
