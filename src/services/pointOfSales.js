@@ -2050,6 +2050,7 @@ class PointOfSales {
     token,
     // DSL
     posUuid,
+    bankId,
     searchValue,
     // Page Data
     pageSize,

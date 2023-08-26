@@ -63,7 +63,7 @@ function getBankAccountFromGRPC(bankAccount) {
     name: bankAccount.getName(),
     account_no: bankAccount.getAccountNo(),
     description: bankAccount.getDescription(),
-    currency: convertCurrencyFromGRPC(
+    currency: getCurrencyFromGRPC(
       bankAccount.getCurrency()
     ),
     bban: bankAccount.getBban(),
