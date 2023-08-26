@@ -56,6 +56,9 @@ function getBankAccountFromGRPC(bankAccount) {
   const {
     convertBusinessPartnerFromGRPC
   } = require('@adempiere/grpc-api/src/utils/convertCoreFunctionality');
+  const {
+    getCurrencyFromGRPC
+  } = require('@adempiere/grpc-api/src/utils/coreFunctionalityFromGRPC');
 
   return {
     uuid: bankAccount.getUuid(),

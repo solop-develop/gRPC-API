@@ -1,6 +1,6 @@
 /*************************************************************************************
  * Product: ADempiere gRPC Point Of Sales Client                                     *
- * Copyright (C) 2018-present E.R.P. Consultores y Asociados, C.A.                   *
+ * Copyright (C) 2018-2023 E.R.P. Consultores y Asociados, C.A.                      *
  * Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                      *
  * This program is free software: you can redistribute it and/or modify              *
  * it under the terms of the GNU General Public License as published by              *
@@ -1024,6 +1024,40 @@ class PointOfSales {
     });
 
     this.getPointOfSalesService().listCashSummaryMovements(
+      request,
+      metadata,
+      callback
+    );
+  }
+
+  //  List Cash movements
+  listCashMovements({
+    token,
+    posUuid,
+    customerUuid,
+    salesRepresentativeUuid,
+    pageSize,
+    pageToken
+  }, callback) {
+    const { ListCashMovementsRequest } = this.stubFile;
+    const request = new ListCashMovementsRequest()
+    if (posUuid) {
+      request.setPosUuid(posUuid)
+    }
+    if (customerUuid) {
+      request.setBusinessPartnerUuid(customerUuid)
+    }
+    if (salesRepresentativeUuid) {
+      request.setSalesRepresentativeUuid(salesRepresentativeUuid)
+    }
+    request.setPageSize(pageSize)
+    request.setPageToken(pageToken)
+
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getPointOfSalesService().listCashMovements(
       request,
       metadata,
       callback
