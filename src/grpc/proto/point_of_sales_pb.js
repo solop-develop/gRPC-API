@@ -6601,7 +6601,9 @@ proto.data.ListCashMovementsResponse.toObject = function(includeInstance, msg) {
     recordCount: jspb.Message.getFieldWithDefault(msg, 1, 0),
     cashMovementsList: jspb.Message.toObjectList(msg.getCashMovementsList(),
     proto.data.Payment.toObject, includeInstance),
-    nextPageToken: jspb.Message.getFieldWithDefault(msg, 3, "")
+    nextPageToken: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    id: jspb.Message.getFieldWithDefault(msg, 4, 0),
+    uuid: jspb.Message.getFieldWithDefault(msg, 5, "")
   };
 
   if (includeInstance) {
@@ -6651,6 +6653,14 @@ proto.data.ListCashMovementsResponse.deserializeBinaryFromReader = function(msg,
       var value = /** @type {string} */ (reader.readString());
       msg.setNextPageToken(value);
       break;
+    case 4:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setId(value);
+      break;
+    case 5:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setUuid(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -6699,6 +6709,20 @@ proto.data.ListCashMovementsResponse.serializeBinaryToWriter = function(message,
   if (f.length > 0) {
     writer.writeString(
       3,
+      f
+    );
+  }
+  f = message.getId();
+  if (f !== 0) {
+    writer.writeInt32(
+      4,
+      f
+    );
+  }
+  f = message.getUuid();
+  if (f.length > 0) {
+    writer.writeString(
+      5,
       f
     );
   }
@@ -6776,6 +6800,42 @@ proto.data.ListCashMovementsResponse.prototype.getNextPageToken = function() {
  */
 proto.data.ListCashMovementsResponse.prototype.setNextPageToken = function(value) {
   return jspb.Message.setProto3StringField(this, 3, value);
+};
+
+
+/**
+ * optional int32 id = 4;
+ * @return {number}
+ */
+proto.data.ListCashMovementsResponse.prototype.getId = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.data.ListCashMovementsResponse} returns this
+ */
+proto.data.ListCashMovementsResponse.prototype.setId = function(value) {
+  return jspb.Message.setProto3IntField(this, 4, value);
+};
+
+
+/**
+ * optional string uuid = 5;
+ * @return {string}
+ */
+proto.data.ListCashMovementsResponse.prototype.getUuid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.data.ListCashMovementsResponse} returns this
+ */
+proto.data.ListCashMovementsResponse.prototype.setUuid = function(value) {
+  return jspb.Message.setProto3StringField(this, 5, value);
 };
 
 
