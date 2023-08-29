@@ -2226,13 +2226,32 @@ class PointOfSales {
   //  Print Ticket
   printTicket({
     token,
-    posUuid,
-    orderUuid
+    posId,
+    orderId,
+    invoiceId,
+    shipmentId,
+    tableName,
+    recordId
   }, callback) {
     const { PrintTicketRequest } = this.stubFile;
-    const request = new PrintTicketRequest()
-    request.setPosUuid(posUuid)
-    request.setOrderUuid(orderUuid)
+    const request = new PrintTicketRequest();
+
+    request.setPosId(
+      getValidInteger(posId)
+    );
+    request.setOrderId(
+      getValidInteger(orderId)
+    );
+    request.setInvoiceId(
+      getValidInteger(invoiceId)
+    );
+    request.setShipmentId(
+      getValidInteger(shipmentId)
+    );
+    request.setTableName(tableName);
+    request.setRecordId(
+      getValidInteger(recordId)
+    );
 
     const metadata = getMetadata({
       token

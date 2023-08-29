@@ -15595,8 +15595,12 @@ proto.data.PrintTicketRequest.prototype.toObject = function(opt_includeInstance)
  */
 proto.data.PrintTicketRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    posUuid: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    orderUuid: jspb.Message.getFieldWithDefault(msg, 3, "")
+    posId: jspb.Message.getFieldWithDefault(msg, 1, 0),
+    orderId: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    invoiceId: jspb.Message.getFieldWithDefault(msg, 3, 0),
+    shipmentId: jspb.Message.getFieldWithDefault(msg, 4, 0),
+    recordId: jspb.Message.getFieldWithDefault(msg, 5, 0),
+    tableName: jspb.Message.getFieldWithDefault(msg, 6, "")
   };
 
   if (includeInstance) {
@@ -15633,13 +15637,29 @@ proto.data.PrintTicketRequest.deserializeBinaryFromReader = function(msg, reader
     }
     var field = reader.getFieldNumber();
     switch (field) {
+    case 1:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setPosId(value);
+      break;
     case 2:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setPosUuid(value);
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setOrderId(value);
       break;
     case 3:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setInvoiceId(value);
+      break;
+    case 4:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setShipmentId(value);
+      break;
+    case 5:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setRecordId(value);
+      break;
+    case 6:
       var value = /** @type {string} */ (reader.readString());
-      msg.setOrderUuid(value);
+      msg.setTableName(value);
       break;
     default:
       reader.skipField();
@@ -15670,17 +15690,45 @@ proto.data.PrintTicketRequest.prototype.serializeBinary = function() {
  */
 proto.data.PrintTicketRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getPosUuid();
-  if (f.length > 0) {
-    writer.writeString(
+  f = message.getPosId();
+  if (f !== 0) {
+    writer.writeInt32(
+      1,
+      f
+    );
+  }
+  f = message.getOrderId();
+  if (f !== 0) {
+    writer.writeInt32(
       2,
       f
     );
   }
-  f = message.getOrderUuid();
+  f = message.getInvoiceId();
+  if (f !== 0) {
+    writer.writeInt32(
+      3,
+      f
+    );
+  }
+  f = message.getShipmentId();
+  if (f !== 0) {
+    writer.writeInt32(
+      4,
+      f
+    );
+  }
+  f = message.getRecordId();
+  if (f !== 0) {
+    writer.writeInt32(
+      5,
+      f
+    );
+  }
+  f = message.getTableName();
   if (f.length > 0) {
     writer.writeString(
-      3,
+      6,
       f
     );
   }
@@ -15688,11 +15736,101 @@ proto.data.PrintTicketRequest.serializeBinaryToWriter = function(message, writer
 
 
 /**
- * optional string pos_uuid = 2;
+ * optional int32 pos_id = 1;
+ * @return {number}
+ */
+proto.data.PrintTicketRequest.prototype.getPosId = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.data.PrintTicketRequest} returns this
+ */
+proto.data.PrintTicketRequest.prototype.setPosId = function(value) {
+  return jspb.Message.setProto3IntField(this, 1, value);
+};
+
+
+/**
+ * optional int32 order_id = 2;
+ * @return {number}
+ */
+proto.data.PrintTicketRequest.prototype.getOrderId = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.data.PrintTicketRequest} returns this
+ */
+proto.data.PrintTicketRequest.prototype.setOrderId = function(value) {
+  return jspb.Message.setProto3IntField(this, 2, value);
+};
+
+
+/**
+ * optional int32 invoice_id = 3;
+ * @return {number}
+ */
+proto.data.PrintTicketRequest.prototype.getInvoiceId = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.data.PrintTicketRequest} returns this
+ */
+proto.data.PrintTicketRequest.prototype.setInvoiceId = function(value) {
+  return jspb.Message.setProto3IntField(this, 3, value);
+};
+
+
+/**
+ * optional int32 shipment_id = 4;
+ * @return {number}
+ */
+proto.data.PrintTicketRequest.prototype.getShipmentId = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.data.PrintTicketRequest} returns this
+ */
+proto.data.PrintTicketRequest.prototype.setShipmentId = function(value) {
+  return jspb.Message.setProto3IntField(this, 4, value);
+};
+
+
+/**
+ * optional int32 record_id = 5;
+ * @return {number}
+ */
+proto.data.PrintTicketRequest.prototype.getRecordId = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 5, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.data.PrintTicketRequest} returns this
+ */
+proto.data.PrintTicketRequest.prototype.setRecordId = function(value) {
+  return jspb.Message.setProto3IntField(this, 5, value);
+};
+
+
+/**
+ * optional string table_name = 6;
  * @return {string}
  */
-proto.data.PrintTicketRequest.prototype.getPosUuid = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+proto.data.PrintTicketRequest.prototype.getTableName = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
 };
 
 
@@ -15700,26 +15838,8 @@ proto.data.PrintTicketRequest.prototype.getPosUuid = function() {
  * @param {string} value
  * @return {!proto.data.PrintTicketRequest} returns this
  */
-proto.data.PrintTicketRequest.prototype.setPosUuid = function(value) {
-  return jspb.Message.setProto3StringField(this, 2, value);
-};
-
-
-/**
- * optional string order_uuid = 3;
- * @return {string}
- */
-proto.data.PrintTicketRequest.prototype.getOrderUuid = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.data.PrintTicketRequest} returns this
- */
-proto.data.PrintTicketRequest.prototype.setOrderUuid = function(value) {
-  return jspb.Message.setProto3StringField(this, 3, value);
+proto.data.PrintTicketRequest.prototype.setTableName = function(value) {
+  return jspb.Message.setProto3StringField(this, 6, value);
 };
 
 
@@ -15755,7 +15875,13 @@ proto.data.PrintTicketResponse.prototype.toObject = function(opt_includeInstance
  */
 proto.data.PrintTicketResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    result: jspb.Message.getFieldWithDefault(msg, 1, "")
+    summary: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    isError: jspb.Message.getBooleanFieldWithDefault(msg, 2, false),
+    fileName: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    mimeType: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    outputStream: msg.getOutputStream_asB64(),
+    resultType: jspb.Message.getFieldWithDefault(msg, 6, ""),
+    resultValuesMap: (f = msg.getResultValuesMap()) ? f.toObject(includeInstance, undefined) : []
   };
 
   if (includeInstance) {
@@ -15794,7 +15920,33 @@ proto.data.PrintTicketResponse.deserializeBinaryFromReader = function(msg, reade
     switch (field) {
     case 1:
       var value = /** @type {string} */ (reader.readString());
-      msg.setResult(value);
+      msg.setSummary(value);
+      break;
+    case 2:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setIsError(value);
+      break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setFileName(value);
+      break;
+    case 4:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setMimeType(value);
+      break;
+    case 5:
+      var value = /** @type {!Uint8Array} */ (reader.readBytes());
+      msg.setOutputStream(value);
+      break;
+    case 6:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setResultType(value);
+      break;
+    case 7:
+      var value = msg.getResultValuesMap();
+      reader.readMessage(value, function(message, reader) {
+        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readString, null, "", "");
+         });
       break;
     default:
       reader.skipField();
@@ -15825,21 +15977,60 @@ proto.data.PrintTicketResponse.prototype.serializeBinary = function() {
  */
 proto.data.PrintTicketResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getResult();
+  f = message.getSummary();
   if (f.length > 0) {
     writer.writeString(
       1,
       f
     );
   }
+  f = message.getIsError();
+  if (f) {
+    writer.writeBool(
+      2,
+      f
+    );
+  }
+  f = message.getFileName();
+  if (f.length > 0) {
+    writer.writeString(
+      3,
+      f
+    );
+  }
+  f = message.getMimeType();
+  if (f.length > 0) {
+    writer.writeString(
+      4,
+      f
+    );
+  }
+  f = message.getOutputStream_asU8();
+  if (f.length > 0) {
+    writer.writeBytes(
+      5,
+      f
+    );
+  }
+  f = message.getResultType();
+  if (f.length > 0) {
+    writer.writeString(
+      6,
+      f
+    );
+  }
+  f = message.getResultValuesMap(true);
+  if (f && f.getLength() > 0) {
+    f.serializeBinary(7, writer, jspb.BinaryWriter.prototype.writeString, jspb.BinaryWriter.prototype.writeString);
+  }
 };
 
 
 /**
- * optional string result = 1;
+ * optional string summary = 1;
  * @return {string}
  */
-proto.data.PrintTicketResponse.prototype.getResult = function() {
+proto.data.PrintTicketResponse.prototype.getSummary = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
@@ -15848,9 +16039,145 @@ proto.data.PrintTicketResponse.prototype.getResult = function() {
  * @param {string} value
  * @return {!proto.data.PrintTicketResponse} returns this
  */
-proto.data.PrintTicketResponse.prototype.setResult = function(value) {
+proto.data.PrintTicketResponse.prototype.setSummary = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
 };
+
+
+/**
+ * optional bool is_error = 2;
+ * @return {boolean}
+ */
+proto.data.PrintTicketResponse.prototype.getIsError = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 2, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.data.PrintTicketResponse} returns this
+ */
+proto.data.PrintTicketResponse.prototype.setIsError = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 2, value);
+};
+
+
+/**
+ * optional string file_name = 3;
+ * @return {string}
+ */
+proto.data.PrintTicketResponse.prototype.getFileName = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.data.PrintTicketResponse} returns this
+ */
+proto.data.PrintTicketResponse.prototype.setFileName = function(value) {
+  return jspb.Message.setProto3StringField(this, 3, value);
+};
+
+
+/**
+ * optional string mime_type = 4;
+ * @return {string}
+ */
+proto.data.PrintTicketResponse.prototype.getMimeType = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.data.PrintTicketResponse} returns this
+ */
+proto.data.PrintTicketResponse.prototype.setMimeType = function(value) {
+  return jspb.Message.setProto3StringField(this, 4, value);
+};
+
+
+/**
+ * optional bytes output_stream = 5;
+ * @return {!(string|Uint8Array)}
+ */
+proto.data.PrintTicketResponse.prototype.getOutputStream = function() {
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
+};
+
+
+/**
+ * optional bytes output_stream = 5;
+ * This is a type-conversion wrapper around `getOutputStream()`
+ * @return {string}
+ */
+proto.data.PrintTicketResponse.prototype.getOutputStream_asB64 = function() {
+  return /** @type {string} */ (jspb.Message.bytesAsB64(
+      this.getOutputStream()));
+};
+
+
+/**
+ * optional bytes output_stream = 5;
+ * Note that Uint8Array is not supported on all browsers.
+ * @see http://caniuse.com/Uint8Array
+ * This is a type-conversion wrapper around `getOutputStream()`
+ * @return {!Uint8Array}
+ */
+proto.data.PrintTicketResponse.prototype.getOutputStream_asU8 = function() {
+  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
+      this.getOutputStream()));
+};
+
+
+/**
+ * @param {!(string|Uint8Array)} value
+ * @return {!proto.data.PrintTicketResponse} returns this
+ */
+proto.data.PrintTicketResponse.prototype.setOutputStream = function(value) {
+  return jspb.Message.setProto3BytesField(this, 5, value);
+};
+
+
+/**
+ * optional string result_type = 6;
+ * @return {string}
+ */
+proto.data.PrintTicketResponse.prototype.getResultType = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.data.PrintTicketResponse} returns this
+ */
+proto.data.PrintTicketResponse.prototype.setResultType = function(value) {
+  return jspb.Message.setProto3StringField(this, 6, value);
+};
+
+
+/**
+ * map<string, string> result_values = 7;
+ * @param {boolean=} opt_noLazyCreate Do not create the map if
+ * empty, instead returning `undefined`
+ * @return {!jspb.Map<string,string>}
+ */
+proto.data.PrintTicketResponse.prototype.getResultValuesMap = function(opt_noLazyCreate) {
+  return /** @type {!jspb.Map<string,string>} */ (
+      jspb.Message.getMapField(this, 7, opt_noLazyCreate,
+      null));
+};
+
+
+/**
+ * Clears values from the map. The map will be non-null.
+ * @return {!proto.data.PrintTicketResponse} returns this
+ */
+proto.data.PrintTicketResponse.prototype.clearResultValuesMap = function() {
+  this.getResultValuesMap().clear();
+  return this;};
 
 
 
