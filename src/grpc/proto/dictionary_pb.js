@@ -3175,7 +3175,9 @@ proto.dictionary.Field.toObject = function(includeInstance, msg) {
     elementId: jspb.Message.getFieldWithDefault(msg, 56, 0),
     elementUuid: jspb.Message.getFieldWithDefault(msg, 57, ""),
     dependentFieldsList: jspb.Message.toObjectList(msg.getDependentFieldsList(),
-    proto.dictionary.DependentField.toObject, includeInstance)
+    proto.dictionary.DependentField.toObject, includeInstance),
+    isDisplayedAsPanel: jspb.Message.getFieldWithDefault(msg, 59, ""),
+    isDisplayedAsTable: jspb.Message.getFieldWithDefault(msg, 60, "")
   };
 
   if (includeInstance) {
@@ -3449,6 +3451,14 @@ proto.dictionary.Field.deserializeBinaryFromReader = function(msg, reader) {
       var value = new proto.dictionary.DependentField;
       reader.readMessage(value,proto.dictionary.DependentField.deserializeBinaryFromReader);
       msg.addDependentFields(value);
+      break;
+    case 59:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setIsDisplayedAsPanel(value);
+      break;
+    case 60:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setIsDisplayedAsTable(value);
       break;
     default:
       reader.skipField();
@@ -3889,6 +3899,20 @@ proto.dictionary.Field.serializeBinaryToWriter = function(message, writer) {
       58,
       f,
       proto.dictionary.DependentField.serializeBinaryToWriter
+    );
+  }
+  f = message.getIsDisplayedAsPanel();
+  if (f.length > 0) {
+    writer.writeString(
+      59,
+      f
+    );
+  }
+  f = message.getIsDisplayedAsTable();
+  if (f.length > 0) {
+    writer.writeString(
+      60,
+      f
     );
   }
 };
@@ -5069,6 +5093,42 @@ proto.dictionary.Field.prototype.addDependentFields = function(opt_value, opt_in
  */
 proto.dictionary.Field.prototype.clearDependentFieldsList = function() {
   return this.setDependentFieldsList([]);
+};
+
+
+/**
+ * optional string is_displayed_as_panel = 59;
+ * @return {string}
+ */
+proto.dictionary.Field.prototype.getIsDisplayedAsPanel = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 59, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.dictionary.Field} returns this
+ */
+proto.dictionary.Field.prototype.setIsDisplayedAsPanel = function(value) {
+  return jspb.Message.setProto3StringField(this, 59, value);
+};
+
+
+/**
+ * optional string is_displayed_as_table = 60;
+ * @return {string}
+ */
+proto.dictionary.Field.prototype.getIsDisplayedAsTable = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 60, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.dictionary.Field} returns this
+ */
+proto.dictionary.Field.prototype.setIsDisplayedAsTable = function(value) {
+  return jspb.Message.setProto3StringField(this, 60, value);
 };
 
 

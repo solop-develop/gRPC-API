@@ -1,6 +1,6 @@
 /*************************************************************************************
  * Product: ADempiere gRPC User Customization Client                                 *
- * Copyright (C) 2012-2023 E.R.P. Consultores y Asociados, C.A.                      *
+ * Copyright (C) 2018-present E.R.P. Consultores y Asociados, C.A.                   *
  * Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                      *
  * This program is free software: you can redistribute it and/or modify              *
  * it under the terms of the GNU General Public License as published by              *
@@ -15,7 +15,7 @@
  ************************************************************************************/
 
 const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
-const { isEmptyValue, getValidId } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
+const { isEmptyValue, getValidInteger } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
 
 class UserCustomization {
 
@@ -75,7 +75,9 @@ class UserCustomization {
 
     request.setSearchValue(searchValue);
 
-    request.setPageSize(pageSize);
+    request.setPageSize(
+      getValidInteger(pageSize)
+    );
     request.setPageToken(pageToken);
 
     const metadata = getMetadata({
@@ -107,7 +109,9 @@ class UserCustomization {
 
     request.setSearchValue(searchValue);
 
-    request.setPageSize(pageSize);
+    request.setPageSize(
+      getValidInteger(pageSize)
+    );
     request.setPageToken(pageToken);
 
     const metadata = getMetadata({
@@ -139,7 +143,9 @@ class UserCustomization {
 
     request.setSearchValue(searchValue);
 
-    request.setPageSize(pageSize);
+    request.setPageSize(
+      getValidInteger(pageSize)
+    );
     request.setPageToken(pageToken);
 
     const metadata = getMetadata({
@@ -157,7 +163,7 @@ class UserCustomization {
   /**
    * Save Window Customization
    * @param {string} tabUuid
-   * @param {number} level
+   * @param {number} levelType
    * @param {number} levelId
    * @param {string} levelUuid
    * @param {array} fieldAttributes
@@ -169,7 +175,7 @@ class UserCustomization {
   saveWindowCustomization({
     token,
     tabUuid,
-    level,
+    levelType,
     levelId,
     levelUuid,
     fieldAttributes
@@ -179,9 +185,11 @@ class UserCustomization {
 
     request.setTabUuid(tabUuid);
 
-    request.setLevel(level);
+    request.setLevelType(
+      getValidInteger(levelType)
+    );
     request.setLevelId(
-      getValidId(levelId)
+      getValidInteger(levelId)
     );
     request.setLevelUuid(levelUuid);
 
@@ -219,7 +227,7 @@ class UserCustomization {
   /**
    * Save Browse Customization
    * @param {string} browseUuid
-   * @param {number} level
+   * @param {number} levelType
    * @param {number} levelId
    * @param {string} levelUuid
    * @param {array} fieldAttributes
@@ -231,7 +239,7 @@ class UserCustomization {
   saveBrowseCustomization({
     token,
     browseUuid,
-    level,
+    levelType,
     levelId,
     levelUuid,
     fieldAttributes
@@ -241,9 +249,11 @@ class UserCustomization {
 
     request.setBrowseUuid(browseUuid);
 
-    request.setLevel(level);
+    request.setLevelType(
+      getValidInteger(levelType)
+    );
     request.setLevelId(
-      getValidId(levelId)
+      getValidInteger(levelId)
     );
     request.setLevelUuid(levelUuid);
 
@@ -281,7 +291,7 @@ class UserCustomization {
   /**
    * Save Process Customization
    * @param {string} processUuid
-   * @param {number} level
+   * @param {number} levelType
    * @param {number} levelId
    * @param {string} levelUuid
    * @param {array} fieldAttributes
@@ -293,7 +303,7 @@ class UserCustomization {
   saveProcessCustomization({
     token,
     processUuid,
-    level,
+    levelType,
     levelId,
     levelUuid,
     fieldAttributes
@@ -303,9 +313,11 @@ class UserCustomization {
 
     request.setProcessUuid(processUuid);
 
-    request.setLevel(level);
+    request.setLevelType(
+      getValidInteger(levelType)
+    );
     request.setLevelId(
-      getValidId(levelId)
+      getValidInteger(levelId)
     );
     request.setLevelUuid(levelUuid);
 

@@ -1,6 +1,6 @@
 /*************************************************************************************
- * Product: ADempiere gRPC Workflow Client Convert Utils                             *
- * Copyright (C) 2012-2020 E.R.P. Consultores y Asociados, C.A.                      *
+ * Product: ADempiere gRPC User Customization Client Convert Utils                   *
+ * Copyright (C) 2018-present E.R.P. Consultores y Asociados, C.A.                   *
  * Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                      *
  * This program is free software: you can redistribute it and/or modify              *
  * it under the terms of the GNU General Public License as published by              *
@@ -24,12 +24,12 @@ const stubFile = require('@adempiere/grpc-api/src/grpc/proto/user_customization_
     ROLE = 1;
     CLIENT = 2;
  */
-function getLevel({ key, value }) {
+function getLevelType({ key, value }) {
   const { getValueOrKeyEnum } = require('@adempiere/grpc-api/src/utils/convertEnums.js');
-  const { Level } = stubFile;
+  const { LevelType } = stubFile;
 
   return getValueOrKeyEnum({
-    list: Level,
+    list: LevelType,
     key,
     value
   });
@@ -61,22 +61,22 @@ function getRoleFromGRPC(roleToConvert) {
   };
 }
 
-function getLevelCustomizationFromGRPC(levelCustomizationToConvert) {
-  if (!levelCustomizationToConvert) {
+function getCustomizationLevelFromGRPC(customizationLevel) {
+  if (!customizationLevel) {
     return undefined;
   }
   return {
-    id: levelCustomizationToConvert.getId(),
+    id: customizationLevel.getId(),
     uuid: levelCustomizationToConvert.getUuid(),
-    value: levelCustomizationToConvert.getValue(),
-    name: levelCustomizationToConvert.getName(),
-    description: levelCustomizationToConvert.getDescription()
+    value: customizationLevel.getValue(),
+    name: customizationLevel.getName(),
+    description: customizationLevel.getDescription()
   };
 }
 
 module.exports = {
-  getLevel,
+  getLevelType,
   getUserFromGRPC,
   getRoleFromGRPC,
-  getLevelCustomizationFromGRPC
+  getCustomizationLevelFromGRPC
 };
