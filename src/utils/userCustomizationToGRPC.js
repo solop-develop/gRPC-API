@@ -1,6 +1,6 @@
 /*************************************************************************************
- * Product: ADempiere gRPC Workflow Client Convert Utils                             *
- * Copyright (C) 2012-2020 E.R.P. Consultores y Asociados, C.A.                      *
+ * Product: ADempiere gRPC User Customization Client Convert Utils                   *
+ * Copyright (C) 2018-present E.R.P. Consultores y Asociados, C.A.                   *
  * Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                      *
  * This program is free software: you can redistribute it and/or modify              *
  * it under the terms of the GNU General Public License as published by              *
@@ -15,6 +15,7 @@
  ************************************************************************************/
 
 const stubFile = require('@adempiere/grpc-api/src/grpc/proto/user_customization_pb.js');
+const { getValidInteger } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
 
 /**
  * Get Field Attributes
@@ -24,17 +25,33 @@ const stubFile = require('@adempiere/grpc-api/src/grpc/proto/user_customization_
  * @returns KeyValue Object
  */
 function getFieldAttributesToGRPC({
-  columnName, sequence, color,
-  isDefaultDisplayed, displaySize,
-  displayComponentType, componenTemplateCode
+  id, uuid,
+  columnName, color,
+  sequencePanel, isDefaultDisplayedAsPanel,
+  sequenceTable, isDefaultDisplayedAsTable,
+  displaySize, displayComponentType, componenTemplateCode
 }) {
   const { FieldAttributes } = stubFile;
   const fieldAttributesInstance = new FieldAttributes();
 
+  fieldAttributesInstance.setId(
+    getValidInteger(id)
+  );
+  fieldAttributesInstance.setUuid(uuid);
   fieldAttributesInstance.setColumnName(columnName);
-  fieldAttributesInstance.setSequence(sequence);
   fieldAttributesInstance.setColor(color);
-  fieldAttributesInstance.setIsDefaultDisplayed(isDefaultDisplayed);
+
+  // panel
+  fieldAttributesInstance.setSequencePanel(
+    getValidInteger(sequencePanel)
+  );
+  fieldAttributesInstance.setIsDefaultDisplayedAsPanel(isDefaultDisplayedAsPanel);
+  // table
+  fieldAttributesInstance.setSequenceTable(
+    getValidInteger(sequenceTable)
+  );
+  fieldAttributesInstance.setIsDefaultDisplayedAsTable(isDefaultDisplayedAsTable);
+
   fieldAttributesInstance.setDisplaySize(displaySize);
   fieldAttributesInstance.setDisplayComponentType(displayComponentType);
   fieldAttributesInstance.setComponentTemplateCode(componenTemplateCode);
