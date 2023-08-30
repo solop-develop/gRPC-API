@@ -2527,6 +2527,39 @@ class PointOfSales {
     );
   }
 
+  /**
+   * Copy Order
+   * @param {string} token
+   * @param {number} posId
+   * @param {number} sourceOrderId
+   */
+  copyOrder({
+    token,
+    // DSL
+    posId,
+    sourceOrderId
+  }, callback) {
+    const { CopyOrderRequest } = this.stubFile;
+    const request = new CopyOrderRequest();
+
+    request.setPosId(
+      getValidInteger(posId)
+    );
+    request.setSourceOrderId(
+      getValidInteger(sourceOrderId)
+    );
+
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getPointOfSalesService().copyOrder(
+      request,
+      metadata,
+      callback
+    );
+  }
+
 }
 
 module.exports = PointOfSales;
