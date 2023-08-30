@@ -882,7 +882,8 @@ class PointOfSales {
     tenderTypeCode,
     currencyUuid,
     conversionTypeUuid,
-    paymentMethodUuid
+    paymentMethodUuid,
+    invoiceReferenceId
   }, callback) {
     const { CreatePaymentReferenceRequest } = this.stubFile;
     const request = new CreatePaymentReferenceRequest();
@@ -931,6 +932,9 @@ class PointOfSales {
     if (paymentAccountDate) {
       request.setPaymentAccountDate(paymentAccountDate)
     }
+    request.setInvoiceReferenceId(
+      getValidInteger(invoiceReferenceId)
+    );
 
     const metadata = getMetadata({
       token
@@ -956,7 +960,8 @@ class PointOfSales {
     tenderTypeCode,
     paymentMethodUuid,
     paymentAccountDate,
-    referenceBankAccountUuid
+    referenceBankAccountUuid,
+    invoiceReferenceId
   }, callback) {
     const { UpdatePaymentRequest } = this.stubFile;
     const request = new UpdatePaymentRequest();
@@ -992,7 +997,10 @@ class PointOfSales {
       request.setPaymentAccountDate(paymentAccountDate)
     }
     request.setReferenceBankAccountUuid(referenceBankAccountUuid);
-
+    request.setInvoiceReferenceId(
+      getValidInteger(invoiceReferenceId)
+    );
+  
     const metadata = getMetadata({
       token
     });
