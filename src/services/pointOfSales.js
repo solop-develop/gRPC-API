@@ -799,7 +799,8 @@ class PointOfSales {
     paymentMethodUuid,
     isRefund,
     referenceBankAccountUuid,
-    customerBankAccountUuid
+    customerBankAccountUuid,
+    invoiceReferenceId
   }, callback) {
     const { CreatePaymentRequest } = this.stubFile;
     const request = new CreatePaymentRequest();
@@ -853,6 +854,9 @@ class PointOfSales {
       request.setPaymentAccountDate(paymentAccountDate)
     }
     request.setReferenceBankAccountUuid(referenceBankAccountUuid);
+    request.setInvoiceReferenceId(
+      getValidInteger(invoiceReferenceId)
+    );
 
     const metadata = getMetadata({
       token
@@ -1160,6 +1164,9 @@ class PointOfSales {
           })
         );
       }
+      paymentRequest.setInvoiceReferenceId(
+        getValidInteger(payment.invoiceReferenceId)
+      );
       request.addPayments(paymentRequest)
     })
 
@@ -1234,6 +1241,9 @@ class PointOfSales {
           })
         );
       }
+      paymentRequest.setInvoiceReferenceId(
+        getValidInteger(payment.invoiceReferenceId)
+      );
       request.addPayments(paymentRequest)
     })
 
@@ -1454,6 +1464,9 @@ class PointOfSales {
           })
         );
       }
+      paymentRequest.setInvoiceReferenceId(
+        getValidInteger(payment.invoiceReferenceId)
+      );
       request.addPayments(paymentRequest)
     })
 
