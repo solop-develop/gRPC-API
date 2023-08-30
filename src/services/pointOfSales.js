@@ -1,6 +1,6 @@
 /*************************************************************************************
  * Product: ADempiere gRPC Point Of Sales Client                                     *
- * Copyright (C) 2018-2023 E.R.P. Consultores y Asociados, C.A.                      *
+ * Copyright (C) 2018-present E.R.P. Consultores y Asociados, C.A.                   *
  * Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                      *
  * This program is free software: you can redistribute it and/or modify              *
  * it under the terms of the GNU General Public License as published by              *
@@ -2753,7 +2753,7 @@ class PointOfSales {
    * @param {string} token
    * @param {number} posId
    * @param {number} rmaId
-   * @param {number} sourceOrderId
+   * @param {number} sourceOrderLineId
    * @param {string} description
    * @param {number} quantity
    */
@@ -2762,7 +2762,7 @@ class PointOfSales {
     // DSL
     posId,
     rmaId,
-    sourceOrderId,
+    sourceOrderLineId,
     description,
     quantity
   }, callback) {
@@ -2775,8 +2775,8 @@ class PointOfSales {
     request.setRmaId(
       getValidInteger(rmaId)
     );
-    request.setSourceOrderId(
-      getValidInteger(sourceOrderId)
+    request.setSourceOrderLineId(
+      getValidInteger(sourceOrderLineId)
     );
     request.setDescription(description);
     request.setQuantity(
