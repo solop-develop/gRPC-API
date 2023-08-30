@@ -100,6 +100,17 @@ function deserialize_data_CommandShortcut(buffer_arg) {
   return proto_point_of_sales_pb.CommandShortcut.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_data_CopyOrderRequest(arg) {
+  if (!(arg instanceof proto_point_of_sales_pb.CopyOrderRequest)) {
+    throw new Error('Expected argument of type data.CopyOrderRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_CopyOrderRequest(buffer_arg) {
+  return proto_point_of_sales_pb.CopyOrderRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_data_CreateCustomerBankAccountRequest(arg) {
   if (!(arg instanceof proto_point_of_sales_pb.CreateCustomerBankAccountRequest)) {
     throw new Error('Expected argument of type data.CreateCustomerBankAccountRequest');
@@ -164,6 +175,28 @@ function serialize_data_CreatePaymentRequest(arg) {
 
 function deserialize_data_CreatePaymentRequest(buffer_arg) {
   return proto_point_of_sales_pb.CreatePaymentRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_data_CreateRMALineRequest(arg) {
+  if (!(arg instanceof proto_point_of_sales_pb.CreateRMALineRequest)) {
+    throw new Error('Expected argument of type data.CreateRMALineRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_CreateRMALineRequest(buffer_arg) {
+  return proto_point_of_sales_pb.CreateRMALineRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_data_CreateRMARequest(arg) {
+  if (!(arg instanceof proto_point_of_sales_pb.CreateRMARequest)) {
+    throw new Error('Expected argument of type data.CreateRMARequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_CreateRMARequest(buffer_arg) {
+  return proto_point_of_sales_pb.CreateRMARequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_data_CreateShipmentLineRequest(arg) {
@@ -287,6 +320,28 @@ function deserialize_data_DeletePaymentRequest(buffer_arg) {
   return proto_point_of_sales_pb.DeletePaymentRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_data_DeleteRMALineRequest(arg) {
+  if (!(arg instanceof proto_point_of_sales_pb.DeleteRMALineRequest)) {
+    throw new Error('Expected argument of type data.DeleteRMALineRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_DeleteRMALineRequest(buffer_arg) {
+  return proto_point_of_sales_pb.DeleteRMALineRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_data_DeleteRMARequest(arg) {
+  if (!(arg instanceof proto_point_of_sales_pb.DeleteRMARequest)) {
+    throw new Error('Expected argument of type data.DeleteRMARequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_DeleteRMARequest(buffer_arg) {
+  return proto_point_of_sales_pb.DeleteRMARequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_data_DeleteShipmentLineRequest(arg) {
   if (!(arg instanceof proto_point_of_sales_pb.DeleteShipmentLineRequest)) {
     throw new Error('Expected argument of type data.DeleteShipmentLineRequest');
@@ -362,6 +417,17 @@ function serialize_data_GetKeyLayoutRequest(arg) {
 
 function deserialize_data_GetKeyLayoutRequest(buffer_arg) {
   return proto_point_of_sales_pb.GetKeyLayoutRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_data_GetOpenRMARequest(arg) {
+  if (!(arg instanceof proto_point_of_sales_pb.GetOpenRMARequest)) {
+    throw new Error('Expected argument of type data.GetOpenRMARequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_GetOpenRMARequest(buffer_arg) {
+  return proto_point_of_sales_pb.GetOpenRMARequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_data_GetOpenShipmentRequest(arg) {
@@ -881,6 +947,28 @@ function deserialize_data_ListProductPriceResponse(buffer_arg) {
   return proto_point_of_sales_pb.ListProductPriceResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_data_ListRMALinesRequest(arg) {
+  if (!(arg instanceof proto_point_of_sales_pb.ListRMALinesRequest)) {
+    throw new Error('Expected argument of type data.ListRMALinesRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_ListRMALinesRequest(buffer_arg) {
+  return proto_point_of_sales_pb.ListRMALinesRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_data_ListRMALinesResponse(arg) {
+  if (!(arg instanceof proto_point_of_sales_pb.ListRMALinesResponse)) {
+    throw new Error('Expected argument of type data.ListRMALinesResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_ListRMALinesResponse(buffer_arg) {
+  return proto_point_of_sales_pb.ListRMALinesResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_data_ListShipmentLinesRequest(arg) {
   if (!(arg instanceof proto_point_of_sales_pb.ListShipmentLinesRequest)) {
     throw new Error('Expected argument of type data.ListShipmentLinesRequest');
@@ -1068,6 +1156,17 @@ function deserialize_data_ProcessOrderRequest(buffer_arg) {
   return proto_point_of_sales_pb.ProcessOrderRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_data_ProcessRMARequest(arg) {
+  if (!(arg instanceof proto_point_of_sales_pb.ProcessRMARequest)) {
+    throw new Error('Expected argument of type data.ProcessRMARequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_ProcessRMARequest(buffer_arg) {
+  return proto_point_of_sales_pb.ProcessRMARequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_data_ProcessShipmentRequest(arg) {
   if (!(arg instanceof proto_point_of_sales_pb.ProcessShipmentRequest)) {
     throw new Error('Expected argument of type data.ProcessShipmentRequest');
@@ -1088,6 +1187,28 @@ function serialize_data_ProductPrice(arg) {
 
 function deserialize_data_ProductPrice(buffer_arg) {
   return proto_core_functionality_pb.ProductPrice.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_data_RMA(arg) {
+  if (!(arg instanceof proto_point_of_sales_pb.RMA)) {
+    throw new Error('Expected argument of type data.RMA');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_RMA(buffer_arg) {
+  return proto_point_of_sales_pb.RMA.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_data_RMALine(arg) {
+  if (!(arg instanceof proto_point_of_sales_pb.RMALine)) {
+    throw new Error('Expected argument of type data.RMALine');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_RMALine(buffer_arg) {
+  return proto_point_of_sales_pb.RMALine.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_data_ReleaseOrderRequest(arg) {
@@ -1198,6 +1319,17 @@ function serialize_data_UpdatePaymentRequest(arg) {
 
 function deserialize_data_UpdatePaymentRequest(buffer_arg) {
   return proto_point_of_sales_pb.UpdatePaymentRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_data_UpdateRMALineRequest(arg) {
+  if (!(arg instanceof proto_point_of_sales_pb.UpdateRMALineRequest)) {
+    throw new Error('Expected argument of type data.UpdateRMALineRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_data_UpdateRMALineRequest(buffer_arg) {
+  return proto_point_of_sales_pb.UpdateRMALineRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_data_UpdateShipmentLineRequest(arg) {
@@ -2041,6 +2173,115 @@ listCampaigns: {
     requestDeserialize: deserialize_data_ListCampaignsRequest,
     responseSerialize: serialize_data_ListCampaignsResponse,
     responseDeserialize: deserialize_data_ListCampaignsResponse,
+  },
+  // 	Copy Order
+copyOrder: {
+    path: '/data.Store/CopyOrder',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_point_of_sales_pb.CopyOrderRequest,
+    responseType: proto_point_of_sales_pb.Order,
+    requestSerialize: serialize_data_CopyOrderRequest,
+    requestDeserialize: deserialize_data_CopyOrderRequest,
+    responseSerialize: serialize_data_Order,
+    responseDeserialize: deserialize_data_Order,
+  },
+  // 	Return
+// 	Create Return
+createRMA: {
+    path: '/data.Store/CreateRMA',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_point_of_sales_pb.CreateRMARequest,
+    responseType: proto_point_of_sales_pb.RMA,
+    requestSerialize: serialize_data_CreateRMARequest,
+    requestDeserialize: deserialize_data_CreateRMARequest,
+    responseSerialize: serialize_data_RMA,
+    responseDeserialize: deserialize_data_RMA,
+  },
+  // 	Delete Return
+deleteRMA: {
+    path: '/data.Store/DeleteRMA',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_point_of_sales_pb.DeleteRMARequest,
+    responseType: proto_base_data_type_pb.Empty,
+    requestSerialize: serialize_data_DeleteRMARequest,
+    requestDeserialize: deserialize_data_DeleteRMARequest,
+    responseSerialize: serialize_data_Empty,
+    responseDeserialize: deserialize_data_Empty,
+  },
+  // 	Create Return Line
+createRMALine: {
+    path: '/data.Store/CreateRMALine',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_point_of_sales_pb.CreateRMALineRequest,
+    responseType: proto_point_of_sales_pb.RMALine,
+    requestSerialize: serialize_data_CreateRMALineRequest,
+    requestDeserialize: deserialize_data_CreateRMALineRequest,
+    responseSerialize: serialize_data_RMALine,
+    responseDeserialize: deserialize_data_RMALine,
+  },
+  // 	Delete Return Line
+deleteRMALine: {
+    path: '/data.Store/DeleteRMALine',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_point_of_sales_pb.DeleteRMALineRequest,
+    responseType: proto_base_data_type_pb.Empty,
+    requestSerialize: serialize_data_DeleteRMALineRequest,
+    requestDeserialize: deserialize_data_DeleteRMALineRequest,
+    responseSerialize: serialize_data_Empty,
+    responseDeserialize: deserialize_data_Empty,
+  },
+  // 	Update RMA Line
+updateRMALine: {
+    path: '/data.Store/UpdateRMALine',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_point_of_sales_pb.UpdateRMALineRequest,
+    responseType: proto_point_of_sales_pb.RMALine,
+    requestSerialize: serialize_data_UpdateRMALineRequest,
+    requestDeserialize: deserialize_data_UpdateRMALineRequest,
+    responseSerialize: serialize_data_RMALine,
+    responseDeserialize: deserialize_data_RMALine,
+  },
+  // 	Get a Open Return
+getOpenRMA: {
+    path: '/data.Store/GetOpenRMA',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_point_of_sales_pb.GetOpenRMARequest,
+    responseType: proto_point_of_sales_pb.RMA,
+    requestSerialize: serialize_data_GetOpenRMARequest,
+    requestDeserialize: deserialize_data_GetOpenRMARequest,
+    responseSerialize: serialize_data_RMA,
+    responseDeserialize: deserialize_data_RMA,
+  },
+  // 	List Return Line
+listRMALines: {
+    path: '/data.Store/ListRMALines',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_point_of_sales_pb.ListRMALinesRequest,
+    responseType: proto_point_of_sales_pb.ListRMALinesResponse,
+    requestSerialize: serialize_data_ListRMALinesRequest,
+    requestDeserialize: deserialize_data_ListRMALinesRequest,
+    responseSerialize: serialize_data_ListRMALinesResponse,
+    responseDeserialize: deserialize_data_ListRMALinesResponse,
+  },
+  // 	Process Return
+processRMA: {
+    path: '/data.Store/ProcessRMA',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_point_of_sales_pb.ProcessRMARequest,
+    responseType: proto_point_of_sales_pb.RMA,
+    requestSerialize: serialize_data_ProcessRMARequest,
+    requestDeserialize: deserialize_data_ProcessRMARequest,
+    responseSerialize: serialize_data_RMA,
+    responseDeserialize: deserialize_data_RMA,
   },
 };
 
