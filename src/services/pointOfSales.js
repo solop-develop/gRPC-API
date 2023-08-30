@@ -16,6 +16,7 @@
 
 const { getMetadata } = require('@adempiere/grpc-api/src/utils/metadata.js');
 const { getValidInteger } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
+const { getDecimalToGRPC } = require('@adempiere/grpc-api/src/utils/baseDataTypeToGRPC');
 
 class PointOfSales {
 
@@ -2554,6 +2555,313 @@ class PointOfSales {
     });
 
     this.getPointOfSalesService().copyOrder(
+      request,
+      metadata,
+      callback
+    );
+  }
+
+  /**
+   * Open RMA
+   * @param {string} token
+   * @param {number} posId
+   * @param {number} sourceOrderId
+   */
+  getOpenRMA({
+    token,
+    // DSL
+    posId,
+    sourceOrderId
+  }, callback) {
+    const { GetOpenRMARequest } = this.stubFile;
+    const request = new GetOpenRMARequest();
+
+    request.setPosId(
+      getValidInteger(posId)
+    );
+    request.setSourceOrderId(
+      getValidInteger(sourceOrderId)
+    );
+
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getPointOfSalesService().getOpenRMA(
+      request,
+      metadata,
+      callback
+    );
+  }
+
+  /**
+   * Create RMA
+   * @param {string} token
+   * @param {number} posId
+   * @param {number} sourceOrderId
+   * @param {number} salesRepresentativeId
+   * @param {boolean} isCreateLinesFromOrder
+   */
+  createRMA({
+    token,
+    // DSL
+    posId,
+    sourceOrderId,
+    salesRepresentativeId,
+    isCreateLinesFromOrder
+  }, callback) {
+    const { CreateRMARequest } = this.stubFile;
+    const request = new CreateRMARequest();
+
+    request.setPosId(
+      getValidInteger(posId)
+    );
+    request.setSourceOrderId(
+      getValidInteger(sourceOrderId)
+    );
+    request.setSalesRepresentativeId(
+      salesRepresentativeId
+    );
+    request.setIsCreateLinesFromOrder(isCreateLinesFromOrder);
+
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getPointOfSalesService().createRMA(
+      request,
+      metadata,
+      callback
+    );
+  }
+
+  /**
+   * Delete RMA
+   * @param {string} token
+   * @param {number} posId
+   * @param {number} id
+   */
+  deleteRMA({
+    token,
+    // DSL
+    posId,
+    id
+  }, callback) {
+    const { DeleteRMARequest } = this.stubFile;
+    const request = new DeleteRMARequest();
+
+    request.setPosId(
+      getValidInteger(posId)
+    );
+    request.setRmaId(
+      getValidInteger(id)
+    );
+
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getPointOfSalesService().deleteRMA(
+      request,
+      metadata,
+      callback
+    );
+  }
+
+  /**
+   * Process RMA
+   * @param {string} token
+   * @param {number} posId
+   * @param {number} id
+   * @param {string} description
+   * @param {string} documentAction
+   */
+  processRMA({
+    token,
+    // DSL
+    posId,
+    id,
+    description,
+    documentAction
+  }, callback) {
+    const { ProcessRMARequest } = this.stubFile;
+    const request = new ProcessRMARequest();
+
+    request.setPosId(
+      getValidInteger(posId)
+    );
+    request.setRmaId(
+      getValidInteger(id)
+    );
+    request.setDescription(description);
+    request.setDocumentAction(documentAction);
+
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getPointOfSalesService().processRMA(
+      request,
+      metadata,
+      callback
+    );
+  }
+
+  /**
+   * List RMA Lines
+   * @param {string} token
+   * @param {number} posId
+   * @param {number} rmaId
+   * @param {number} pageSize
+   * @param {string} pageToken
+   */
+  listRMALines({
+    token,
+    // DSL
+    posId,
+    rmaId,
+    pageSize,
+    pageToken
+  }, callback) {
+    const { ListRMALinesRequest } = this.stubFile;
+    const request = new ListRMALinesRequest();
+
+    request.setPosId(
+      getValidInteger(posId)
+    );
+    request.setRmaId(
+      getValidInteger(rmaId)
+    );
+    request.setPageSize(
+      getValidInteger(pageSize)
+    );
+    request.setPageToken(pageToken);
+
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getPointOfSalesService().listRMALines(
+      request,
+      metadata,
+      callback
+    );
+  }
+
+  /**
+   * Create RMA Line
+   * @param {string} token
+   * @param {number} posId
+   * @param {number} rmaId
+   * @param {number} sourceOrderId
+   * @param {string} description
+   * @param {number} quantity
+   */
+  createRMALine({
+    token,
+    // DSL
+    posId,
+    rmaId,
+    sourceOrderId,
+    description,
+    quantity
+  }, callback) {
+    const { CreateRMALineRequest } = this.stubFile;
+    const request = new CreateRMALineRequest();
+
+    request.setPosId(
+      getValidInteger(posId)
+    );
+    request.setRmaId(
+      getValidInteger(rmaId)
+    );
+    request.setSourceOrderId(
+      getValidInteger(sourceOrderId)
+    );
+    request.setDescription(description);
+    request.setQuantity(
+      getDecimalToGRPC(quantity)
+    );
+
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getPointOfSalesService().createRMALine(
+      request,
+      metadata,
+      callback
+    );
+  }
+
+  /**
+   * Update RMA Line
+   * @param {string} token
+   * @param {number} posId
+   * @param {number} id
+   * @param {string} description
+   * @param {number} quantity
+   */
+  updateRMALine({
+    token,
+    // DSL
+    posId,
+    id,
+    description,
+    quantity
+  }, callback) {
+    const { UpdateRMALineRequest } = this.stubFile;
+    const request = new UpdateRMALineRequest();
+
+    request.setPosId(
+      getValidInteger(posId)
+    );
+    request.setRmaLineId(
+      getValidInteger(id)
+    );
+    request.setDescription(description);
+    request.setQuantity(
+      getDecimalToGRPC(quantity)
+    );
+
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getPointOfSalesService().updateRMALine(
+      request,
+      metadata,
+      callback
+    );
+  }
+
+  /**
+   * Delete RMA Line
+   * @param {string} token
+   * @param {number} posId
+   * @param {number} id
+   */
+  deleteRMALine({
+    token,
+    // DSL
+    posId,
+    id
+  }, callback) {
+    const { DeleteRMALineRequest } = this.stubFile;
+    const request = new DeleteRMALineRequest();
+
+    request.setPosId(
+      getValidInteger(posId)
+    );
+    request.setRmaLineId(
+      getValidInteger(id)
+    );
+
+    const metadata = getMetadata({
+      token
+    });
+
+    this.getPointOfSalesService().deleteRMALine(
       request,
       metadata,
       callback
