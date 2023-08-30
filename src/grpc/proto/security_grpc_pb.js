@@ -52,6 +52,39 @@ function deserialize_security_ListRolesResponse(buffer_arg) {
   return proto_security_pb.ListRolesResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_security_ListServicesRequest(arg) {
+  if (!(arg instanceof proto_security_pb.ListServicesRequest)) {
+    throw new Error('Expected argument of type security.ListServicesRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_security_ListServicesRequest(buffer_arg) {
+  return proto_security_pb.ListServicesRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_security_ListServicesResponse(arg) {
+  if (!(arg instanceof proto_security_pb.ListServicesResponse)) {
+    throw new Error('Expected argument of type security.ListServicesResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_security_ListServicesResponse(buffer_arg) {
+  return proto_security_pb.ListServicesResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_security_LoginOpenIDRequest(arg) {
+  if (!(arg instanceof proto_security_pb.LoginOpenIDRequest)) {
+    throw new Error('Expected argument of type security.LoginOpenIDRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_security_LoginOpenIDRequest(buffer_arg) {
+  return proto_security_pb.LoginOpenIDRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_security_LoginRequest(arg) {
   if (!(arg instanceof proto_security_pb.LoginRequest)) {
     throw new Error('Expected argument of type security.LoginRequest');
@@ -259,6 +292,30 @@ listRoles: {
     requestDeserialize: deserialize_security_ListRolesRequest,
     responseSerialize: serialize_security_ListRolesResponse,
     responseDeserialize: deserialize_security_ListRolesResponse,
+  },
+  // List Available Services
+listServices: {
+    path: '/security.Security/ListServices',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_security_pb.ListServicesRequest,
+    responseType: proto_security_pb.ListServicesResponse,
+    requestSerialize: serialize_security_ListServicesRequest,
+    requestDeserialize: deserialize_security_ListServicesRequest,
+    responseSerialize: serialize_security_ListServicesResponse,
+    responseDeserialize: deserialize_security_ListServicesResponse,
+  },
+  // Request login from Open ID
+runLoginOpenID: {
+    path: '/security.Security/RunLoginOpenID',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_security_pb.LoginOpenIDRequest,
+    responseType: proto_security_pb.Session,
+    requestSerialize: serialize_security_LoginOpenIDRequest,
+    requestDeserialize: deserialize_security_LoginOpenIDRequest,
+    responseSerialize: serialize_security_Session,
+    responseDeserialize: deserialize_security_Session,
   },
 };
 

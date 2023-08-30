@@ -1,6 +1,6 @@
 /*************************************************************************************
  * Product: ADempiere gRPC Security Client                                           *
- * Copyright (C) 2012-2023 E.R.P. Consultores y Asociados, C.A.                      *
+ * Copyright (C) 2018-2023 E.R.P. Consultores y Asociados, C.A.                      *
  * Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                      *
  * This program is free software: you can redistribute it and/or modify              *
  * it under the terms of the GNU General Public License as published by              *
@@ -235,6 +235,54 @@ class Security {
     this.getSecurityService().runLogout(
       request,
       metadata,
+      callback
+    );
+  }
+
+  /**
+   * List Services OpenID
+   */
+  listServices({
+  }, callback) {
+    const { ListServicesRequest } = this.stubFile;
+    const request = new ListServicesRequest();
+
+    // const metadata = getMetadata({
+    //   token
+    // });
+
+    this.getSecurityService().listServices(
+      request,
+      // metadata,
+      callback
+    );
+  }
+
+  /**
+   * Login with OpenID
+   * @param {String} token
+   */
+  runLoginOpenID({
+    codeParameter,
+    stateParameter,
+    language,
+    clientVersion
+  }, callback) {
+    const { LoginOpenIDRequest } = this.stubFile;
+    const request = new LoginOpenIDRequest();
+
+    request.setCodeParameter(codeParameter);
+    request.setStateParameter(stateParameter);
+    request.setLanguage(language);
+    request.setClientVersion(clientVersion);
+
+    // const metadata = getMetadata({
+    //   token
+    // });
+
+    this.getSecurityService().runLoginOpenID(
+      request,
+      // metadata,
       callback
     );
   }
