@@ -33172,10 +33172,12 @@ proto.data.ValidatePINRequest.prototype.toObject = function(opt_includeInstance)
  */
 proto.data.ValidatePINRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
+    posId: jspb.Message.getFieldWithDefault(msg, 1, 0),
     posUuid: jspb.Message.getFieldWithDefault(msg, 2, ""),
     pin: jspb.Message.getFieldWithDefault(msg, 3, ""),
     requestedAccess: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    requestedAmount: (f = msg.getRequestedAmount()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f)
+    requestedAmount: (f = msg.getRequestedAmount()) && proto_base_data_type_pb.Decimal.toObject(includeInstance, f),
+    orderId: jspb.Message.getFieldWithDefault(msg, 6, 0)
   };
 
   if (includeInstance) {
@@ -33212,6 +33214,10 @@ proto.data.ValidatePINRequest.deserializeBinaryFromReader = function(msg, reader
     }
     var field = reader.getFieldNumber();
     switch (field) {
+    case 1:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setPosId(value);
+      break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
       msg.setPosUuid(value);
@@ -33228,6 +33234,10 @@ proto.data.ValidatePINRequest.deserializeBinaryFromReader = function(msg, reader
       var value = new proto_base_data_type_pb.Decimal;
       reader.readMessage(value,proto_base_data_type_pb.Decimal.deserializeBinaryFromReader);
       msg.setRequestedAmount(value);
+      break;
+    case 6:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setOrderId(value);
       break;
     default:
       reader.skipField();
@@ -33258,6 +33268,13 @@ proto.data.ValidatePINRequest.prototype.serializeBinary = function() {
  */
 proto.data.ValidatePINRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
+  f = message.getPosId();
+  if (f !== 0) {
+    writer.writeInt32(
+      1,
+      f
+    );
+  }
   f = message.getPosUuid();
   if (f.length > 0) {
     writer.writeString(
@@ -33287,6 +33304,31 @@ proto.data.ValidatePINRequest.serializeBinaryToWriter = function(message, writer
       proto_base_data_type_pb.Decimal.serializeBinaryToWriter
     );
   }
+  f = message.getOrderId();
+  if (f !== 0) {
+    writer.writeInt32(
+      6,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional int32 pos_id = 1;
+ * @return {number}
+ */
+proto.data.ValidatePINRequest.prototype.getPosId = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.data.ValidatePINRequest} returns this
+ */
+proto.data.ValidatePINRequest.prototype.setPosId = function(value) {
+  return jspb.Message.setProto3IntField(this, 1, value);
 };
 
 
@@ -33378,6 +33420,24 @@ proto.data.ValidatePINRequest.prototype.clearRequestedAmount = function() {
  */
 proto.data.ValidatePINRequest.prototype.hasRequestedAmount = function() {
   return jspb.Message.getField(this, 5) != null;
+};
+
+
+/**
+ * optional int32 order_id = 6;
+ * @return {number}
+ */
+proto.data.ValidatePINRequest.prototype.getOrderId = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 6, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.data.ValidatePINRequest} returns this
+ */
+proto.data.ValidatePINRequest.prototype.setOrderId = function(value) {
+  return jspb.Message.setProto3IntField(this, 6, value);
 };
 
 

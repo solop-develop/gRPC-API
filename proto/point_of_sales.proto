@@ -1192,10 +1192,12 @@ message ListPaymentsRequest {
 
 // Validate PIN Request
 message ValidatePINRequest {
+	int32 pos_id = 1;
 	string pos_uuid = 2;
 	string pin = 3;
 	string requested_access = 4;
 	Decimal requested_amount = 5;
+	int32 order_id = 6;
 }
 
 //	List Payments Response
