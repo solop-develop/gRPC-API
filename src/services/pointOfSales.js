@@ -1508,10 +1508,12 @@ class PointOfSales {
   //  Validate User PIN
   validatePIN({
     token,
+    posId,
     posUuid,
     pin,
     requestedAccess,
-    requestedAmount
+    requestedAmount,
+    orderId
   }, callback) {
     const { ValidatePINRequest } = this.stubFile;
     const request = new ValidatePINRequest();
@@ -1524,7 +1526,13 @@ class PointOfSales {
       );
     }
     request.setPin(pin)
+    request.setPosId(
+      getValidInteger(posId)
+    );
     request.setPosUuid(posUuid)
+    request.setOrderId(
+      getValidInteger(orderId)
+    );
 
     const metadata = getMetadata({
       token
