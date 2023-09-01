@@ -38162,7 +38162,8 @@ proto.data.OrderLine.toObject = function(includeInstance, msg) {
     uom: (f = msg.getUom()) && proto_core_functionality_pb.ProductConversion.toObject(includeInstance, f),
     productUom: (f = msg.getProductUom()) && proto_core_functionality_pb.ProductConversion.toObject(includeInstance, f),
     resourceAssignment: (f = msg.getResourceAssignment()) && proto_time_control_pb.ResourceAssignment.toObject(includeInstance, f),
-    id: jspb.Message.getFieldWithDefault(msg, 33, 0)
+    id: jspb.Message.getFieldWithDefault(msg, 33, 0),
+    sourceRmaLineId: jspb.Message.getFieldWithDefault(msg, 34, 0)
   };
 
   if (includeInstance) {
@@ -38357,6 +38358,10 @@ proto.data.OrderLine.deserializeBinaryFromReader = function(msg, reader) {
     case 33:
       var value = /** @type {number} */ (reader.readInt32());
       msg.setId(value);
+      break;
+    case 34:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setSourceRmaLineId(value);
       break;
     default:
       reader.skipField();
@@ -38642,6 +38647,13 @@ proto.data.OrderLine.serializeBinaryToWriter = function(message, writer) {
   if (f !== 0) {
     writer.writeInt32(
       33,
+      f
+    );
+  }
+  f = message.getSourceRmaLineId();
+  if (f !== 0) {
+    writer.writeInt32(
+      34,
       f
     );
   }
@@ -39752,6 +39764,24 @@ proto.data.OrderLine.prototype.getId = function() {
  */
 proto.data.OrderLine.prototype.setId = function(value) {
   return jspb.Message.setProto3IntField(this, 33, value);
+};
+
+
+/**
+ * optional int32 source_rma_line_id = 34;
+ * @return {number}
+ */
+proto.data.OrderLine.prototype.getSourceRmaLineId = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 34, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.data.OrderLine} returns this
+ */
+proto.data.OrderLine.prototype.setSourceRmaLineId = function(value) {
+  return jspb.Message.setProto3IntField(this, 34, value);
 };
 
 

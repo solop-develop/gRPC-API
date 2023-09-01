@@ -1371,6 +1371,7 @@ message OrderLine {
 	ProductConversion product_uom = 31;
 	time_control.ResourceAssignment resource_assignment = 32;
 	int32 id = 33;
+	int32 source_rma_line_id = 34;
 }
 
 // Request Product Price
