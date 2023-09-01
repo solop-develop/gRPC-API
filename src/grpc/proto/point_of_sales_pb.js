@@ -33718,7 +33718,9 @@ proto.data.Payment.toObject = function(includeInstance, msg) {
     referenceBankAccount: (f = msg.getReferenceBankAccount()) && proto_core_functionality_pb.BankAccount.toObject(includeInstance, f),
     charge: (f = msg.getCharge()) && proto_core_functionality_pb.Charge.toObject(includeInstance, f),
     documentType: (f = msg.getDocumentType()) && proto_core_functionality_pb.DocumentType.toObject(includeInstance, f),
-    isProcessed: jspb.Message.getBooleanFieldWithDefault(msg, 27, false)
+    isProcessed: jspb.Message.getBooleanFieldWithDefault(msg, 27, false),
+    orderDocumentNo: jspb.Message.getFieldWithDefault(msg, 28, ""),
+    invoiceDocumentNo: jspb.Message.getFieldWithDefault(msg, 29, "")
   };
 
   if (includeInstance) {
@@ -33869,6 +33871,14 @@ proto.data.Payment.deserializeBinaryFromReader = function(msg, reader) {
     case 27:
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setIsProcessed(value);
+      break;
+    case 28:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setOrderDocumentNo(value);
+      break;
+    case 29:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setInvoiceDocumentNo(value);
       break;
     default:
       reader.skipField();
@@ -34089,6 +34099,20 @@ proto.data.Payment.serializeBinaryToWriter = function(message, writer) {
   if (f) {
     writer.writeBool(
       27,
+      f
+    );
+  }
+  f = message.getOrderDocumentNo();
+  if (f.length > 0) {
+    writer.writeString(
+      28,
+      f
+    );
+  }
+  f = message.getInvoiceDocumentNo();
+  if (f.length > 0) {
+    writer.writeString(
+      29,
       f
     );
   }
@@ -34769,6 +34793,42 @@ proto.data.Payment.prototype.getIsProcessed = function() {
  */
 proto.data.Payment.prototype.setIsProcessed = function(value) {
   return jspb.Message.setProto3BooleanField(this, 27, value);
+};
+
+
+/**
+ * optional string order_document_no = 28;
+ * @return {string}
+ */
+proto.data.Payment.prototype.getOrderDocumentNo = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 28, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.data.Payment} returns this
+ */
+proto.data.Payment.prototype.setOrderDocumentNo = function(value) {
+  return jspb.Message.setProto3StringField(this, 28, value);
+};
+
+
+/**
+ * optional string invoice_document_no = 29;
+ * @return {string}
+ */
+proto.data.Payment.prototype.getInvoiceDocumentNo = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 29, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.data.Payment} returns this
+ */
+proto.data.Payment.prototype.setInvoiceDocumentNo = function(value) {
+  return jspb.Message.setProto3StringField(this, 29, value);
 };
 
 
