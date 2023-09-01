@@ -2546,7 +2546,8 @@ class PointOfSales {
     token,
     // DSL
     posId,
-    sourceOrderId
+    sourceOrderId,
+    salesRepresentativeId
   }, callback) {
     const { CopyOrderRequest } = this.stubFile;
     const request = new CopyOrderRequest();
@@ -2557,7 +2558,9 @@ class PointOfSales {
     request.setSourceOrderId(
       getValidInteger(sourceOrderId)
     );
-
+    request.setSalesRepresentativeId(
+      getValidInteger(salesRepresentativeId)
+    );
     const metadata = getMetadata({
       token
     });
