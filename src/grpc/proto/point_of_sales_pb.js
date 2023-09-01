@@ -45031,7 +45031,8 @@ proto.data.CopyOrderRequest.prototype.toObject = function(opt_includeInstance) {
 proto.data.CopyOrderRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     sourceOrderId: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    posId: jspb.Message.getFieldWithDefault(msg, 2, 0)
+    salesRepresentativeId: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    posId: jspb.Message.getFieldWithDefault(msg, 3, 0)
   };
 
   if (includeInstance) {
@@ -45074,6 +45075,10 @@ proto.data.CopyOrderRequest.deserializeBinaryFromReader = function(msg, reader) 
       break;
     case 2:
       var value = /** @type {number} */ (reader.readInt32());
+      msg.setSalesRepresentativeId(value);
+      break;
+    case 3:
+      var value = /** @type {number} */ (reader.readInt32());
       msg.setPosId(value);
       break;
     default:
@@ -45112,10 +45117,17 @@ proto.data.CopyOrderRequest.serializeBinaryToWriter = function(message, writer) 
       f
     );
   }
-  f = message.getPosId();
+  f = message.getSalesRepresentativeId();
   if (f !== 0) {
     writer.writeInt32(
       2,
+      f
+    );
+  }
+  f = message.getPosId();
+  if (f !== 0) {
+    writer.writeInt32(
+      3,
       f
     );
   }
@@ -45141,10 +45153,10 @@ proto.data.CopyOrderRequest.prototype.setSourceOrderId = function(value) {
 
 
 /**
- * optional int32 pos_id = 2;
+ * optional int32 sales_representative_id = 2;
  * @return {number}
  */
-proto.data.CopyOrderRequest.prototype.getPosId = function() {
+proto.data.CopyOrderRequest.prototype.getSalesRepresentativeId = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
 };
 
@@ -45153,8 +45165,26 @@ proto.data.CopyOrderRequest.prototype.getPosId = function() {
  * @param {number} value
  * @return {!proto.data.CopyOrderRequest} returns this
  */
-proto.data.CopyOrderRequest.prototype.setPosId = function(value) {
+proto.data.CopyOrderRequest.prototype.setSalesRepresentativeId = function(value) {
   return jspb.Message.setProto3IntField(this, 2, value);
+};
+
+
+/**
+ * optional int32 pos_id = 3;
+ * @return {number}
+ */
+proto.data.CopyOrderRequest.prototype.getPosId = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.data.CopyOrderRequest} returns this
+ */
+proto.data.CopyOrderRequest.prototype.setPosId = function(value) {
+  return jspb.Message.setProto3IntField(this, 3, value);
 };
 
 
